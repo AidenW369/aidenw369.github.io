@@ -14,7 +14,7 @@
 <meta property="og:description" content="变量和赋值">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-02-26T09:05:52.000Z">
-<meta property="article:modified_time" content="2026-03-02T06:37:11.417Z">
+<meta property="article:modified_time" content="2026-03-05T09:53:06.462Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="JAVA">
 <meta name="twitter:card" content="summary">
@@ -545,6 +545,603 @@
 
 <h3 id="2-10-6-常用常量"><a href="#2-10-6-常用常量" class="headerlink" title="2.10.6 常用常量"></a>2.10.6 常用常量</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Math.PI;               <span class="comment">// 圆周率 π</span></span><br><span class="line">Math.E;                <span class="comment">// 自然对数的底数 e</span></span><br></pre></td></tr></table></figure>
 
+
+
+
+
+<h2 id="2-11-整数除法和取模"><a href="#2-11-整数除法和取模" class="headerlink" title="2.11 整数除法和取模"></a>2.11 整数除法和取模</h2><table>
+<thead>
+<tr>
+<th align="left">运算</th>
+<th align="left">运算符</th>
+<th align="left">作用</th>
+<th align="left">注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>整数除法</strong></td>
+<td align="left"><code>/</code></td>
+<td align="left">求两个整数相除的<strong>商</strong>，<strong>舍弃小数部分</strong>。</td>
+<td align="left">两边必须都是整数，结果直接截断，不四舍五入。</td>
+</tr>
+<tr>
+<td align="left"><strong>取模</strong></td>
+<td align="left"><code>%</code></td>
+<td align="left">求两个整数相除的<strong>余数</strong>。</td>
+<td align="left">结果的符号<strong>与被除数（左边）相同</strong>。</td>
+</tr>
+</tbody></table>
+<h2 id="2-12-类型转换"><a href="#2-12-类型转换" class="headerlink" title="2.12 类型转换"></a>2.12 类型转换</h2><p>在Java编程中，<strong>类型转换</strong>是指<strong>将一个数据类型的变量转换为另一种数据类型的的过程</strong>。</p>
+<h3 id="2-12-1-自动类型转换（隐式转换）"><a href="#2-12-1-自动类型转换（隐式转换）" class="headerlink" title="2.12.1 自动类型转换（隐式转换）"></a>2.12.1 自动类型转换（隐式转换）</h3><p><strong>条件</strong>：从 <strong>范围小</strong> 的类型 转换到 <strong>范围大</strong> 的类型。</p>
+<ul>
+<li>Java会自动完成，不需要写任何代码。</li>
+<li><strong>转换路线</strong>：<code>byte</code> -&gt; <code>short</code> -&gt; <code>int</code> -&gt; <code>long</code> -&gt; <code>float</code> -&gt; <code>double</code></li>
+<li><strong>注意</strong>：<code>char</code>可以自动转为<code>int</code>（因为对应ASCII&#x2F;Unicode码）。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="type">long</span> <span class="variable">bigNum</span> <span class="operator">=</span> num;      <span class="comment">// int -&gt; long，自动转换</span></span><br><span class="line"><span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> bigNum;      <span class="comment">// long -&gt; double，自动转换</span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span> <span class="variable">c</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">ascii</span> <span class="operator">=</span> c;          <span class="comment">// char -&gt; int，自动转换，ascii值为65</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;数值：&quot;</span> + <span class="number">100</span>;  <span class="comment">// int → String</span></span><br><span class="line">System.out.println(ascii); <span class="comment">// 输出 65</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-12-2-强制类型转换（显式转换）"><a href="#2-12-2-强制类型转换（显式转换）" class="headerlink" title="2.12.2 强制类型转换（显式转换）"></a>2.12.2 强制类型转换（显式转换）</h3><p><strong>条件</strong>：从 <strong>范围大</strong> 的类型 转换到 <strong>范围小</strong> 的类型。</p>
+<ul>
+<li>这种转换有可能导致<strong>数据溢出</strong>或<strong>精度丢失</strong>。</li>
+<li>必须手动添加 <code>(目标类型)</code> 进行转换。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法1：大范围转小范围</span></span><br><span class="line"><span class="type">double</span> <span class="variable">pi</span> <span class="operator">=</span> <span class="number">3.14159</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">intPi</span> <span class="operator">=</span> (<span class="type">int</span>) pi;              <span class="comment">// 3.14159 → 3（截断小数）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法2：不同类型间的转换</span></span><br><span class="line"><span class="type">char</span> <span class="variable">c</span> <span class="operator">=</span> (<span class="type">char</span>) <span class="number">65</span>;                 <span class="comment">// int → char，得到&#x27;A&#x27;</span></span><br><span class="line"><span class="type">int</span> <span class="variable">ascii</span> <span class="operator">=</span> (<span class="type">int</span>) <span class="string">&#x27;B&#x27;</span>;              <span class="comment">// char → int，得到66</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法3：解决溢出问题（谨慎使用）</span></span><br><span class="line"><span class="type">int</span> <span class="variable">big</span> <span class="operator">=</span> <span class="number">300</span>;</span><br><span class="line"><span class="type">byte</span> <span class="variable">small</span> <span class="operator">=</span> (<span class="type">byte</span>) big;            <span class="comment">// 300超出byte范围，结果44（数据错误）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法4：浮点转整型</span></span><br><span class="line"><span class="type">float</span> <span class="variable">f</span> <span class="operator">=</span> <span class="number">3.9f</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">floor</span> <span class="operator">=</span> (<span class="type">int</span>) f;                <span class="comment">// 3.9 → 3（直接舍去小数，不是四舍五入）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-12-3-字符串与基本类型的转换"><a href="#2-12-3-字符串与基本类型的转换" class="headerlink" title="2.12.3 字符串与基本类型的转换"></a>2.12.3 字符串与基本类型的转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 方法1：基本类型 → String</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> String.valueOf(<span class="number">100</span>);       <span class="comment">// int → String</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> String.valueOf(<span class="number">3.14</span>);      <span class="comment">// double → String</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> Integer.toString(<span class="number">100</span>);     <span class="comment">// 包装类的toString方法</span></span><br><span class="line"><span class="type">String</span> <span class="variable">s4</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span> + <span class="number">100</span>;                  <span class="comment">// 借助+运算符（隐式转换）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 方法2：String → 基本类型（必须显式转换）</span></span><br><span class="line"><span class="type">int</span> <span class="variable">num1</span> <span class="operator">=</span> Integer.parseInt(<span class="string">&quot;123&quot;</span>);        <span class="comment">// String → int</span></span><br><span class="line"><span class="type">double</span> <span class="variable">num2</span> <span class="operator">=</span> Double.parseDouble(<span class="string">&quot;3.14&quot;</span>);  <span class="comment">// String → double</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">bool</span> <span class="operator">=</span> Boolean.parseBoolean(<span class="string">&quot;true&quot;</span>); <span class="comment">// String → boolean</span></span><br><span class="line"><span class="type">long</span> <span class="variable">longNum</span> <span class="operator">=</span> Long.parseLong(<span class="string">&quot;1000000&quot;</span>);  <span class="comment">// String → long</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-13-进制"><a href="#2-13-进制" class="headerlink" title="2.13 进制"></a>2.13 进制</h2><h3 id="2-13-1-二进制-Binary"><a href="#2-13-1-二进制-Binary" class="headerlink" title="2.13.1 二进制 (Binary)"></a>2.13.1 二进制 (Binary)</h3><ul>
+<li><strong>基数</strong>：2</li>
+<li><strong>使用的数字</strong>：0， 1</li>
+<li><strong>特点</strong>：<ul>
+<li>这是<strong>计算机唯一能直接识别和使用的进制</strong>。计算机内部的所有数据（程序、文字、图像、声音等）最终都会被转换为二进制形式，用“0”和“1”来表示电路的通断、电位的高低或磁极的方向。</li>
+<li>二进制运算法则简单，物理实现容易，可靠性高。</li>
+</ul>
+</li>
+<li><strong>表示方法</strong>：通常在后缀加字母 <code>B</code> (Binary)，例如 <code>1010B</code>。或者在代码中使用前缀 <code>0b</code>（如 <code>0b1010</code>）。</li>
+</ul>
+<h3 id="2-13-2-八进制-Octal"><a href="#2-13-2-八进制-Octal" class="headerlink" title="2.13.2 八进制 (Octal)"></a>2.13.2 八进制 (Octal)</h3><ul>
+<li><strong>基数</strong>：8</li>
+<li><strong>使用的数字</strong>：0，1，2，3，4，5，6，7</li>
+<li><strong>特点</strong>：<ul>
+<li>八进制是二进制的一种“缩写”形式。因为 2^3&#x3D;8，所以<strong>一位八进制数正好可以代替三位二进制数</strong>。</li>
+<li>它在早期计算机中比较常用，可以让二进制数（通常很长）的书写和阅读变得更简短。虽然现在被十六进制更多地取代，但在某些权限设置（如Linux&#x2F;Unix文件权限）中依然能看到它的身影。</li>
+</ul>
+</li>
+<li><strong>表示方法</strong>：通常在后缀加字母 <code>O</code> 或 <code>Q</code> (Octal)，例如 <code>12O</code> 或 <code>12Q</code>。或者在代码中使用前缀 <code>0</code>（如 <code>012</code>），但这种方式容易与数字混淆，现代编程更推荐前缀 <code>0o</code>（如 <code>0o12</code>）。</li>
+</ul>
+<h3 id="2-13-3-十进制-Decimal"><a href="#2-13-3-十进制-Decimal" class="headerlink" title="2.13.3 十进制 (Decimal)"></a>2.13.3 十进制 (Decimal)</h3><ul>
+<li><strong>基数</strong>：10</li>
+<li><strong>使用的数字</strong>：0，1，2，3，4，5，6，7，8，9</li>
+<li><strong>特点</strong>：<ul>
+<li>这是<strong>人类日常生活中最习惯使用的进制</strong>。</li>
+<li>在计算机中，我们通常通过键盘输入十进制数，然后由计算机将其转换为二进制进行处理，处理完后再将结果转换回十进制显示。</li>
+</ul>
+</li>
+<li><strong>表示方法</strong>：通常在后缀加字母 <code>D</code> (Decimal) 或不加，例如 <code>10D</code> 或直接写 <code>10</code>。</li>
+</ul>
+<h3 id="2-13-4-十六进制-Hexadecimal"><a href="#2-13-4-十六进制-Hexadecimal" class="headerlink" title="2.13.4 十六进制 (Hexadecimal)"></a>2.13.4 十六进制 (Hexadecimal)</h3><ul>
+<li><p><strong>基数</strong>：16</p>
+</li>
+<li><p><strong>使用的数字</strong>：0-9，A，B，C，D，E，F （其中A-F分别代表10-15）</p>
+</li>
+<li><p><strong>特点</strong>：</p>
+<ul>
+<li>这是<strong>现代计算机领域最常用的辅助进制</strong>。因为 24&#x3D;1624&#x3D;16，所以<strong>一位十六进制数可以完美代替四位二进制数</strong>。</li>
+<li>相比八进制，它能更简洁地表示二进制数。例如，一个字节（8位二进制）只需要两位十六进制数就可以表示（如 <code>1111 1111B</code> 表示为 <code>FFH</code>）。</li>
+<li>它被广泛应用于内存地址表示、MAC地址、颜色代码（如网页设计中的 <code>#FFFFFF</code> 表示白色）、汇编语言和机器码的书写等。</li>
+</ul>
+</li>
+<li><p><strong>表示方法</strong>：通常在后缀加字母 <code>H</code> (Hexadecimal)，例如 <code>0FFH</code>。或者在代码中使用前缀 <code>0x</code>（如 <code>0xFF</code>），这是目前最通用的方式。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">进制</th>
+<th align="left">基数</th>
+<th align="left">数字符号</th>
+<th align="left">主要用途</th>
+<th align="left">示例 (十进制 42)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>二进制</strong></td>
+<td align="left">2</td>
+<td align="left">0, 1</td>
+<td align="left">计算机内部的基础，硬件层面</td>
+<td align="left">101010B</td>
+</tr>
+<tr>
+<td align="left"><strong>八进制</strong></td>
+<td align="left">8</td>
+<td align="left">0-7</td>
+<td align="left">文件权限（Linux&#x2F;Unix），早期编程</td>
+<td align="left">52O</td>
+</tr>
+<tr>
+<td align="left"><strong>十进制</strong></td>
+<td align="left">10</td>
+<td align="left">0-9</td>
+<td align="left">人类日常使用，输入输出</td>
+<td align="left">42</td>
+</tr>
+<tr>
+<td align="left"><strong>十六进制</strong></td>
+<td align="left">16</td>
+<td align="left">0-9, A-F</td>
+<td align="left">内存地址、颜色值、汇编语言、调试</td>
+<td align="left">2AH</td>
+</tr>
+</tbody></table>
+<h2 id="补充：二进制编码方式"><a href="#补充：二进制编码方式" class="headerlink" title="补充：二进制编码方式"></a>补充：二进制编码方式</h2><p>在计算机科学中，<strong>原码、反码和补码</strong>是数字在计算机内部（二进制）的三种表示方法。</p>
+<p>之所以引入这些概念，核心目的是为了<strong>简化 CPU 的硬件设计</strong>：通过补码，计算机可以将减法运算转化为加法运算，从而只需要加法器就能完成所有算术操作。</p>
+<h3 id="1-原码"><a href="#1-原码" class="headerlink" title="1. 原码"></a>1. 原码</h3><p><strong>定义：</strong> 原码是最直观的表示法。最高位（最左边的一位）作为<strong>符号位</strong>（0 表示正数，1 表示负数），其余位表示数值的绝对值。</p>
+<ul>
+<li><strong>特点：</strong> 人类最容易看懂，但计算机做运算很麻烦。</li>
+<li><strong>例子（以 8 位为例）：</strong><ul>
+<li><code>+5</code> 的原码：<code>0000 0101</code></li>
+<li><code>-5</code> 的原码：<code>1000 0101</code> （符号位为1，后面是二进制的5）</li>
+</ul>
+</li>
+<li><strong>问题：</strong><ol>
+<li><strong>0 有两种表示法：</strong> <code>0000 0000</code> （+0） 和 <code>1000 0000</code> （-0）。这在数学上不合理，也浪费了一个编码。</li>
+<li><strong>减法复杂：</strong> 如果要计算 <code>1 + (-1)</code>，结果是 <code>0000 0001</code> + <code>1000 0001</code> &#x3D; <code>1000 0010</code> （-2），这显然是错误的。所以计算机不能直接用原码做加减法。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-反码"><a href="#2-反码" class="headerlink" title="2. 反码"></a>2. 反码</h3><p><strong>定义：</strong> 反码的引入主要是为了帮补码“过渡”。</p>
+<ul>
+<li><strong>正数的反码：</strong> 与原码相同。</li>
+<li><strong>负数的反码：</strong> 符号位保持不变（1），数值位（绝对值部分）按位取反（0 变 1，1 变 0）。</li>
+<li><strong>例子（8 位）：</strong><ul>
+<li><code>+5</code> 的反码：<code>0000 0101</code> （同原码）</li>
+<li><code>-5</code> 的反码：<code>1111 1010</code> （符号位1不变，原码的 <code>000 0101</code> 取反变成 <code>111 1010</code>）</li>
+</ul>
+</li>
+<li><strong>问题：</strong><ul>
+<li><strong>0 仍有二义性：</strong> <code>0000 0000</code> （+0） 和 <code>1111 1111</code> （-0）。</li>
+<li>虽然在一定程度上能运算，但循环进位（End-around carry）的处理很麻烦，最终被补码取代。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-补码"><a href="#3-补码" class="headerlink" title="3. 补码"></a>3. 补码</h3><p><strong>定义：</strong> <strong>这是现代计算机（包括Java）实际存储和运算使用的编码。</strong></p>
+<ul>
+<li><strong>正数的补码：</strong> 与原码相同。</li>
+<li><strong>负数的补码：</strong> 在<strong>反码的二进制最右侧位置上加1（二进制）</strong>。</li>
+<li><strong>例子（8 位）：</strong><ul>
+<li><code>+5</code> 的补码：<code>0000 0101</code></li>
+<li><code>-5</code> 的补码：<code>1111 1011</code> （由反码 <code>1111 1010</code> 加 1 得到）</li>
+</ul>
+</li>
+</ul>
+<h4 id="为什么使用补码？"><a href="#为什么使用补码？" class="headerlink" title="为什么使用补码？"></a>为什么使用补码？</h4><ol>
+<li><strong>统一了零的表示：</strong> 解决了原码和反码中 <code>+0</code> 和 <code>-0</code> 的问题。<ul>
+<li><code>0000 0000</code> 表示 0。</li>
+<li>如果是 <code>-0</code> 的原码 <code>1000 0000</code>，按补码规则转换：反码 <code>1111 1111</code>，加1 变成 <code>1 0000 0000</code>。由于是8位，最高位的1被丢弃（溢出），结果还是 <code>0000 0000</code>。</li>
+<li><strong>节省出来的 <code>1000 0000</code> 被用来表示 -128。</strong> 这就是为什么 Java 中 <code>byte</code> 的范围是 -128 到 127（负数比正数多一个）。</li>
+</ul>
+</li>
+<li><strong>化减法为加法：</strong><ul>
+<li>计算机只需要设计<strong>加法器</strong>电路，就可以处理加减法。</li>
+<li>计算 <code>1 - 1</code> 可以看成 <code>1 + (-1)</code>。</li>
+<li><code>1</code> 的补码：<code>0000 0001</code></li>
+<li><code>-1</code> 的补码：<code>1111 1111</code></li>
+<li>相加：<code>0000 0001 + 1111 1111 = 1 0000 0000</code>。</li>
+<li>丢掉溢出的第9位，结果是 <code>0000 0000</code>，即 0。结果正确！</li>
+</ul>
+</li>
+</ol>
+<h3 id="Java-基本数据类型存储与范围对照表"><a href="#Java-基本数据类型存储与范围对照表" class="headerlink" title="Java 基本数据类型存储与范围对照表"></a>Java 基本数据类型存储与范围对照表</h3><table>
+<thead>
+<tr>
+<th align="left">数据类型</th>
+<th align="left">存储大小 （字节）</th>
+<th align="left">二进制位数 （位）</th>
+<th align="left">默认值</th>
+<th align="left">取值范围 （十进制）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>byte</code></td>
+<td align="left">1 字节</td>
+<td align="left">8 位</td>
+<td align="left">0</td>
+<td align="left">-128 ~ 127 （−27−27 ~ 27−127−1)</td>
+</tr>
+<tr>
+<td align="left"><code>short</code></td>
+<td align="left">2 字节</td>
+<td align="left">16 位</td>
+<td align="left">0</td>
+<td align="left">-32,768 ~ 32,767 （−215−215 ~ 215−1215−1)</td>
+</tr>
+<tr>
+<td align="left"><code>int</code></td>
+<td align="left">4 字节</td>
+<td align="left">32 位</td>
+<td align="left">0</td>
+<td align="left">-2,147,483,648 ~ 2,147,483,647 （−231−231 ~ 231−1231−1)</td>
+</tr>
+<tr>
+<td align="left"><code>long</code></td>
+<td align="left">8 字节</td>
+<td align="left">64 位</td>
+<td align="left">0L</td>
+<td align="left">-9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807 （−263−263 ~ 263−1263−1)</td>
+</tr>
+<tr>
+<td align="left"><code>float</code></td>
+<td align="left">4 字节</td>
+<td align="left">32 位</td>
+<td align="left">0.0f</td>
+<td align="left">约 ±3.40282347E+38F （6-7 位有效数字）</td>
+</tr>
+<tr>
+<td align="left"><code>double</code></td>
+<td align="left">8 字节</td>
+<td align="left">64 位</td>
+<td align="left">0.0d</td>
+<td align="left">约 ±1.79769313486231570E+308 （15 位有效数字）</td>
+</tr>
+<tr>
+<td align="left"><code>char</code></td>
+<td align="left">2 字节</td>
+<td align="left">16 位</td>
+<td align="left">‘\u0000’</td>
+<td align="left">0 ~ 65,535 （00 ~ 216−1216−1，无符号）</td>
+</tr>
+<tr>
+<td align="left"><code>boolean</code></td>
+<td align="left">理论上 1 位，但实际由 JVM 决定（通常视为 1 字节）</td>
+<td align="left">1 位（逻辑上）</td>
+<td align="left">false</td>
+<td align="left">true 或 false</td>
+</tr>
+</tbody></table>
+<h4 id="1-整数类型-（byte-short-int-long）"><a href="#1-整数类型-（byte-short-int-long）" class="headerlink" title="1. 整数类型 （byte, short, int, long）"></a>1. 整数类型 （<code>byte</code>, <code>short</code>, <code>int</code>, <code>long</code>）</h4><p>Java 中的整数都是有符号的（使用补码存储）。</p>
+<ul>
+<li><strong>正数部分：</strong> 最高位（最左位）是 0，剩下的 n-1 位表示数值。最大正数是所有数值位全是 1。<ul>
+<li><code>byte</code> 的最大值：<code>0 1111111</code>（二进制）&#x3D; 127（十进制）&#x3D; 27−127−1。</li>
+</ul>
+</li>
+<li><strong>负数部分：</strong> 最高位是 1。补码有一个特性，就是它比正数多一个数。<ul>
+<li><code>byte</code> 的最小值：<code>1000 0000</code>（二进制）&#x3D; -128（十进制）&#x3D; −27−27。</li>
+<li>这就是为什么负数绝对值总比正数最大绝对值大 1。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-字符类型-（char）"><a href="#2-字符类型-（char）" class="headerlink" title="2. 字符类型 （char）"></a>2. 字符类型 （<code>char</code>）</h4><p><code>char</code> 比较特殊，它是<strong>无符号</strong>的。它不使用补码，直接对应二进制数。</p>
+<ul>
+<li>16 位全部用来存数值，没有符号位。</li>
+<li>最小值：<code>0000 0000 0000 0000</code> &#x3D; 0。</li>
+<li>最大值：<code>1111 1111 1111 1111</code> &#x3D; 216−1216−1 &#x3D; 65535。</li>
+</ul>
+<h4 id="3-浮点类型-（float-double）"><a href="#3-浮点类型-（float-double）" class="headerlink" title="3. 浮点类型 （float, double）"></a>3. 浮点类型 （<code>float</code>, <code>double</code>）</h4><p>浮点数遵循 <strong>IEEE 754 标准</strong>，不是简单的补码。它把二进制位分成三部分：<strong>符号位、指数位、尾数位</strong>。因此它的范围很大（靠指数位撑起来的），但精度有限（靠尾数位决定）。</p>
+<ul>
+<li><code>float</code>（32位）：1位符号 + 8位指数 + 23位尾数。</li>
+<li><code>double</code>（64位）：1位符号 + 11位指数 + 52位尾数。</li>
+</ul>
+<h4 id="4-布尔类型-（boolean）"><a href="#4-布尔类型-（boolean）" class="headerlink" title="4. 布尔类型 （boolean）"></a>4. 布尔类型 （<code>boolean</code>）</h4><p><code>boolean</code> 的大小在 Java 规范中没有严格定义，取决于 Java 虚拟机（JVM）的实现。</p>
+<ul>
+<li>逻辑上它只需要 1 位（0 或 1）。</li>
+<li>但实际内存分配时，为了寻址效率，通常会被处理成 <strong>1 字节</strong>（<code>byte</code> 的大小）或者干脆占 <strong>4 字节</strong>（<code>int</code> 的大小）。</li>
+</ul>
+<h2 id="2-14-字符类型"><a href="#2-14-字符类型" class="headerlink" title="2.14 字符类型"></a>2.14 字符类型</h2><h3 id="2-14-1-字符类型介绍"><a href="#2-14-1-字符类型介绍" class="headerlink" title="2.14.1 字符类型介绍"></a>2.14.1 字符类型介绍</h3><p><strong>char</strong> 是Java中的一种<strong>基本数据类型</strong>，用于表示单个字符。</p>
+<h4 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h4><ol>
+<li><strong>存储大小</strong>：16位（2字节）Unicode字符</li>
+<li><strong>取值范围</strong>：0 到 65,535（无符号）</li>
+<li><strong>默认值</strong>：’\u0000’（空字符）</li>
+</ol>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
+<li><strong>必须用单引号</strong>：字符字面量必须使用单引号 <code>&#39;&#39;</code>，双引号表示字符串</li>
+<li><strong>只能有一个字符</strong>：单引号内只能放一个字符（除了转义序列）</li>
+<li><strong>支持Unicode</strong>：可以表示世界上大多数语言的字符</li>
+</ol>
+<h4 id="特殊转义字符"><a href="#特殊转义字符" class="headerlink" title="特殊转义字符"></a>特殊转义字符</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> <span class="variable">newLine</span> <span class="operator">=</span> <span class="string">&#x27;\n&#x27;</span>;     <span class="comment">// 换行</span></span><br><span class="line"><span class="type">char</span> <span class="variable">tab</span> <span class="operator">=</span> <span class="string">&#x27;\t&#x27;</span>;         <span class="comment">// 制表符</span></span><br><span class="line"><span class="type">char</span> <span class="variable">backspace</span> <span class="operator">=</span> <span class="string">&#x27;\b&#x27;</span>;   <span class="comment">// 退格</span></span><br><span class="line"><span class="type">char</span> <span class="variable">quote</span> <span class="operator">=</span> <span class="string">&#x27;\&#x27;&#x27;</span>;       <span class="comment">// 单引号</span></span><br><span class="line"><span class="type">char</span> <span class="variable">doubleQuote</span> <span class="operator">=</span> <span class="string">&#x27;\&quot;&#x27;</span>; <span class="comment">// 双引号</span></span><br><span class="line"><span class="type">char</span> <span class="variable">backslash</span> <span class="operator">=</span> <span class="string">&#x27;\\&#x27;</span>;   <span class="comment">// 反斜杠</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="数值运算特性"><a href="#数值运算特性" class="headerlink" title="数值运算特性"></a>数值运算特性</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// char可以参与算术运算（会自动转换为int）</span></span><br><span class="line"><span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">nextChar</span> <span class="operator">=</span> ch + <span class="number">1</span>;  <span class="comment">// 得到66，对应 &#x27;B&#x27;</span></span><br><span class="line">System.out.println((<span class="type">char</span>)(ch + <span class="number">1</span>));  <span class="comment">// 输出 &#x27;B&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// char与int比较</span></span><br><span class="line"><span class="keyword">if</span> (ch &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; ch &lt;= <span class="string">&#x27;Z&#x27;</span>) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;是大写字母&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-14-2-ASCII编码"><a href="#2-14-2-ASCII编码" class="headerlink" title="2.14.2 ASCII编码"></a>2.14.2 ASCII编码</h3><ul>
+<li><strong>全称</strong>：American Standard Code for Information Interchange（美国信息交换标准代码）</li>
+<li><strong>特点</strong>：<ul>
+<li>使用7位或8位二进制数表示字符</li>
+<li>共128个或256个字符</li>
+<li>只能表示英文字母、数字、标点符号和控制字符</li>
+</ul>
+</li>
+<li><strong>范围</strong>：0-127（标准ASCII），128-255（扩展ASCII）</li>
+</ul>
+<h4 id="ASCII编码值"><a href="#ASCII编码值" class="headerlink" title="ASCII编码值"></a>ASCII编码值</h4><ul>
+<li><p><strong>特殊符号集1</strong>：32 - 48</p>
+</li>
+<li><p>*<strong>数字0-9</strong>：48 - 57</p>
+</li>
+<li><p><strong>特殊符号集2</strong>：58 - 64</p>
+</li>
+<li><p>*<strong>大写字母A-Z</strong>：65 - 90</p>
+</li>
+<li><p><strong>特殊符号集3</strong>：91 - 96</p>
+</li>
+<li><p>*<strong>小写字母</strong>：97 - 122</p>
+</li>
+<li><p><strong>特殊符号集4</strong>：123 - 126</p>
+</li>
+</ul>
+<h3 id="2-14-3-Unicode编码"><a href="#2-14-3-Unicode编码" class="headerlink" title="2.14.3 Unicode编码"></a>2.14.3 Unicode编码</h3><p>Unicode是一种<strong>字符编码标准</strong>，旨在为全世界所有文字系统中的每个字符分配一个唯一的数字编号（码点）。</p>
+<h4 id="char与Unicode编码"><a href="#char与Unicode编码" class="headerlink" title="char与Unicode编码"></a><strong>char与Unicode编码</strong></h4><ul>
+<li>Java的<code>char</code>类型是<strong>16位无符号整数</strong>，范围：<code>0</code>到<code>65535</code>（<code>\u0000</code>到<code>\uffff</code>）</li>
+<li>最初设计时，Unicode字符都在这个范围内（BMP，基本多文种平面）</li>
+<li>随着Unicode扩展到超过65535个字符，单个<code>char</code>无法表示所有Unicode字符</li>
+</ul>
+<h4 id="常见编码方式"><a href="#常见编码方式" class="headerlink" title="常见编码方式"></a>常见编码方式</h4><p><strong>UTF-8</strong>：变长编码（1-4字节）</p>
+<ul>
+<li>英文字符：1字节</li>
+<li>中文：3字节</li>
+<li>表情符号：4字节</li>
+</ul>
+<p><strong>UTF-16</strong>：变长编码（2或4字节）</p>
+<ul>
+<li>常用字符：2字节</li>
+<li>辅助平面：4字节</li>
+</ul>
+<p><strong>UTF-32</strong>：固定长度（4字节）</p>
+<h3 id="2-14-4-两种编码模式的对比"><a href="#2-14-4-两种编码模式的对比" class="headerlink" title="2.14.4 两种编码模式的对比"></a>2.14.4 两种编码模式的对比</h3><table>
+<thead>
+<tr>
+<th align="left">对比维度</th>
+<th align="left">ASCII</th>
+<th align="left">Unicode</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>本质</strong></td>
+<td align="left">编码标准</td>
+<td align="left">字符集标准</td>
+</tr>
+<tr>
+<td align="left"><strong>诞生时间</strong></td>
+<td align="left">1960年代</td>
+<td align="left">1990年代</td>
+</tr>
+<tr>
+<td align="left"><strong>字符范围</strong></td>
+<td align="left">128个字符</td>
+<td align="left">14万+字符</td>
+</tr>
+<tr>
+<td align="left"><strong>字符集</strong></td>
+<td align="left">仅英文字符</td>
+<td align="left">全球所有文字</td>
+</tr>
+<tr>
+<td align="left"><strong>编码方式</strong></td>
+<td align="left">固定7&#x2F;8位</td>
+<td align="left">UTF-8&#x2F;UTF-16&#x2F;UTF-32等</td>
+</tr>
+<tr>
+<td align="left"><strong>兼容性</strong></td>
+<td align="left">基础</td>
+<td align="left">兼容ASCII（UTF-8）</td>
+</tr>
+<tr>
+<td align="left"><strong>存储空间</strong></td>
+<td align="left">1字节&#x2F;字符</td>
+<td align="left">1-4字节&#x2F;字符（UTF-8）</td>
+</tr>
+<tr>
+<td align="left"><strong>应用场景</strong></td>
+<td align="left">纯英文环境</td>
+<td align="left">国际化应用</td>
+</tr>
+</tbody></table>
+<p><strong>包含关系：</strong></p>
+<ul>
+<li>Unicode完全包含ASCII字符集</li>
+<li>ASCII字符在Unicode中的码点与ASCII码一致（例如 ‘A’ 都是65）</li>
+</ul>
+<p><strong>兼容性：</strong></p>
+<ul>
+<li>UTF-8编码对ASCII字符完全兼容</li>
+<li>任何ASCII文本也是合法的UTF-8文本</li>
+<li>纯英文文本在两种编码下完全相同</li>
+</ul>
+<h2 id="2-15-字符串"><a href="#2-15-字符串" class="headerlink" title="2.15 字符串"></a>2.15 字符串</h2><p>在Java中，String 是一个<strong>不可变</strong>（Immutable）的对象。这意味着一旦创建，它的值就不能被更改。</p>
+<h3 id="2-15-1-字符串简介"><a href="#2-15-1-字符串简介" class="headerlink" title="2.15.1 字符串简介"></a>2.15.1 字符串简介</h3><h4 id="字符串字面量-String-Literal"><a href="#字符串字面量-String-Literal" class="headerlink" title="字符串字面量 (String Literal)"></a>字符串字面量 (String Literal)</h4><p>当使用双引号直接写出字符串时，它就是“字面量”：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>内存位置</strong>：字面量存放在 <strong>字符串常量池 (String Pool)</strong> 中。</p>
+<p><strong>重用机制</strong>：如果你再写一行 <code>String s2 = &quot;Hello&quot;;</code>，Java 不会创建新对象，而是让 <code>s2</code> 直接指向池中已有的 “Hello”。这能显著节省内存。</p>
+<h4 id="字符串赋值的两种方式"><a href="#字符串赋值的两种方式" class="headerlink" title="字符串赋值的两种方式"></a>字符串赋值的两种方式</h4><p>**直接赋值：**String s1 &#x3D; “ABC”;</p>
+<ul>
+<li>检查常量池，有则复用，无则创建并放入池。</li>
+</ul>
+<p>**new 关键字：**String s2 &#x3D; new String(“ABC”);</p>
+<ul>
+<li><strong>强制在堆（Heap）内存中开辟新空间</strong>。即便池里有 “ABC”，它也会创建一个全新的对象。</li>
+</ul>
+<h4 id="字符串特点"><a href="#字符串特点" class="headerlink" title="字符串特点"></a>字符串特点</h4><ol>
+<li><strong>不可变性</strong>：String对象一旦创建就不能被修改</li>
+<li><strong>常量池</strong>：字符串字面量存储在字符串常量池中，可以复用</li>
+<li><strong>equals vs &#x3D;&#x3D;</strong>：比较内容时用equals()，比较引用时用&#x3D;&#x3D;</li>
+<li><strong>常用方法</strong>：熟练掌握length()、charAt()、substring()、indexOf()等基本方法</li>
+<li><strong>性能考虑</strong>：大量字符串拼接时使用StringBuilder&#x2F;StringBuffer</li>
+</ol>
+<h3 id="2-15-2-常用操作方法"><a href="#2-15-2-常用操作方法" class="headerlink" title="2.15.2 常用操作方法"></a>2.15.2 常用操作方法</h3><h4 id="1-长度与判断方法"><a href="#1-长度与判断方法" class="headerlink" title="1. 长度与判断方法"></a>1. 长度与判断方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取字符串长度</span></span><br><span class="line"><span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> str.length();  <span class="comment">// 11</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断字符串是否为空</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isEmpty</span> <span class="operator">=</span> str.isEmpty();  <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断字符串是否为空（包括空格判断）</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">isBlank</span> <span class="operator">=</span> str.isBlank();  <span class="comment">// false (JDK 11+)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-比较方法"><a href="#2-比较方法" class="headerlink" title="2. 比较方法"></a>2. 比较方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str1</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">str2</span> <span class="operator">=</span> <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相等比较（区分大小写）</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">eq</span> <span class="operator">=</span> str1.equals(str2);  <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 相等比较（忽略大小写）</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">eqIgnore</span> <span class="operator">=</span> str1.equalsIgnoreCase(str2);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 比较大小（字典序）</span></span><br><span class="line"><span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> str1.compareTo(str2);  <span class="comment">// 负数，因为&#x27;H&#x27; &lt; &#x27;h&#x27;</span></span><br><span class="line"><span class="type">int</span> <span class="variable">resultIgnore</span> <span class="operator">=</span> str1.compareToIgnoreCase(str2);  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-查找方法"><a href="#3-查找方法" class="headerlink" title="3. 查找方法"></a>3. 查找方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello World, Hello Java&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查找字符/字符串位置</span></span><br><span class="line"><span class="type">int</span> <span class="variable">index1</span> <span class="operator">=</span> str.indexOf(<span class="string">&#x27;o&#x27;</span>);      <span class="comment">// 4（第一个o）</span></span><br><span class="line"><span class="type">int</span> <span class="variable">index2</span> <span class="operator">=</span> str.lastIndexOf(<span class="string">&#x27;o&#x27;</span>);  <span class="comment">// 16（最后一个o）</span></span><br><span class="line"><span class="type">int</span> <span class="variable">index3</span> <span class="operator">=</span> str.indexOf(<span class="string">&quot;Hello&quot;</span>);  <span class="comment">// 0</span></span><br><span class="line"><span class="type">int</span> <span class="variable">index4</span> <span class="operator">=</span> str.lastIndexOf(<span class="string">&quot;Hello&quot;</span>); <span class="comment">// 13</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否包含子串</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">contains</span> <span class="operator">=</span> str.contains(<span class="string">&quot;World&quot;</span>);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否以指定前缀开头</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">starts</span> <span class="operator">=</span> str.startsWith(<span class="string">&quot;Hello&quot;</span>);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 是否以指定后缀结尾</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">ends</span> <span class="operator">=</span> str.endsWith(<span class="string">&quot;Java&quot;</span>);  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-截取与拼接"><a href="#4-截取与拼接" class="headerlink" title="4. 截取与拼接"></a>4. 截取与拼接</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 截取子串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sub1</span> <span class="operator">=</span> str.substring(<span class="number">6</span>);     <span class="comment">// &quot;World&quot;</span></span><br><span class="line"><span class="type">String</span> <span class="variable">sub2</span> <span class="operator">=</span> str.substring(<span class="number">0</span>, <span class="number">5</span>);  <span class="comment">// &quot;Hello&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 拼接字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">concat</span> <span class="operator">=</span> str.concat(<span class="string">&quot;!!!&quot;</span>);  <span class="comment">// &quot;Hello World!!!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串连接（推荐使用+或StringBuilder）</span></span><br><span class="line"><span class="type">String</span> <span class="variable">joined</span> <span class="operator">=</span> String.join(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;2024&quot;</span>, <span class="string">&quot;01&quot;</span>, <span class="string">&quot;15&quot;</span>);  <span class="comment">// &quot;2024-01-15&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 重复字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">repeated</span> <span class="operator">=</span> <span class="string">&quot;Ha&quot;</span>.repeat(<span class="number">3</span>);  <span class="comment">// &quot;HaHaHa&quot; (JDK 11+)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-转换方法"><a href="#5-转换方法" class="headerlink" title="5. 转换方法"></a>5. 转换方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 大小写转换</span></span><br><span class="line"><span class="type">String</span> <span class="variable">upper</span> <span class="operator">=</span> str.toUpperCase();  <span class="comment">// &quot;HELLO WORLD&quot;</span></span><br><span class="line"><span class="type">String</span> <span class="variable">lower</span> <span class="operator">=</span> str.toLowerCase();  <span class="comment">// &quot;hello world&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 转换为字符数组</span></span><br><span class="line"><span class="type">char</span>[] chars = str.toCharArray();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 基本类型转字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">numStr</span> <span class="operator">=</span> String.valueOf(<span class="number">123</span>);     <span class="comment">// &quot;123&quot;</span></span><br><span class="line"><span class="type">String</span> <span class="variable">boolStr</span> <span class="operator">=</span> String.valueOf(<span class="literal">true</span>);   <span class="comment">// &quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 格式化字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">formatted</span> <span class="operator">=</span> String.format(<span class="string">&quot;Hello %s, age %d&quot;</span>, <span class="string">&quot;Tom&quot;</span>, <span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-修剪与替换"><a href="#6-修剪与替换" class="headerlink" title="6. 修剪与替换"></a>6. 修剪与替换</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;  Hello World  &quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 去除首尾空格</span></span><br><span class="line"><span class="type">String</span> <span class="variable">trimmed</span> <span class="operator">=</span> str.trim();  <span class="comment">// &quot;Hello World&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 去除首尾空白（包括全角空格等）</span></span><br><span class="line"><span class="type">String</span> <span class="variable">stripped</span> <span class="operator">=</span> str.strip();  <span class="comment">// &quot;Hello World&quot; (JDK 11+)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换字符</span></span><br><span class="line"><span class="type">String</span> <span class="variable">replaced1</span> <span class="operator">=</span> str.replace(<span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;a&#x27;</span>);  <span class="comment">// &quot;  Hella Warld  &quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换字符串</span></span><br><span class="line"><span class="type">String</span> <span class="variable">replaced2</span> <span class="operator">=</span> str.replace(<span class="string">&quot;Hello&quot;</span>, <span class="string">&quot;Hi&quot;</span>);  <span class="comment">// &quot;  Hi World  &quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换所有匹配正则表达式</span></span><br><span class="line"><span class="type">String</span> <span class="variable">replaced3</span> <span class="operator">=</span> str.replaceAll(<span class="string">&quot;\\s+&quot;</span>, <span class="string">&quot;&quot;</span>);  <span class="comment">// &quot;HelloWorld&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 替换第一个匹配正则表达式</span></span><br><span class="line"><span class="type">String</span> <span class="variable">replaced4</span> <span class="operator">=</span> str.replaceFirst(<span class="string">&quot;\\s+&quot;</span>, <span class="string">&quot;&quot;</span>);  <span class="comment">// &quot;Hello World  &quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-分割与合并"><a href="#7-分割与合并" class="headerlink" title="7. 分割与合并"></a>7. 分割与合并</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;apple,banana,orange&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 分割字符串</span></span><br><span class="line">String[] fruits = str.split(<span class="string">&quot;,&quot;</span>);  <span class="comment">// [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;]</span></span><br><span class="line">String[] limit = str.split(<span class="string">&quot;,&quot;</span>, <span class="number">2</span>);  <span class="comment">// [&quot;apple&quot;, &quot;banana,orange&quot;]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 合并字符串数组</span></span><br><span class="line"><span class="type">String</span> <span class="variable">joined</span> <span class="operator">=</span> String.join(<span class="string">&quot;-&quot;</span>, fruits);  <span class="comment">// &quot;apple-banana-orange&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="8-判断内容"><a href="#8-判断内容" class="headerlink" title="8. 判断内容"></a>8. 判断内容</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断是否匹配正则表达式</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">matches</span> <span class="operator">=</span> <span class="string">&quot;12345&quot;</span>.matches(<span class="string">&quot;\\d+&quot;</span>);  <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否只包含空白字符</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">blank</span> <span class="operator">=</span> <span class="string">&quot;   &quot;</span>.isBlank();  <span class="comment">// true (JDK 11+)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 检查字符串是否为空或只包含空白</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">emptyOrBlank</span> <span class="operator">=</span> <span class="string">&quot;   &quot;</span>.isEmpty();  <span class="comment">// false（注意isEmpty不忽略空格）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-字符操作"><a href="#9-字符操作" class="headerlink" title="9. 字符操作"></a>9. 字符操作</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取指定位置的字符</span></span><br><span class="line"><span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> str.charAt(<span class="number">1</span>);  <span class="comment">// &#x27;e&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取指定位置的字符编码</span></span><br><span class="line"><span class="type">int</span> <span class="variable">codePoint</span> <span class="operator">=</span> str.codePointAt(<span class="number">0</span>);  <span class="comment">// 72 (&#x27;H&#x27;的Unicode编码)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 将基本类型数组转换为字符串</span></span><br><span class="line"><span class="type">char</span>[] arr = &#123;<span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;o&#x27;</span>&#125;;</span><br><span class="line"><span class="type">String</span> <span class="variable">fromChars</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(arr);  <span class="comment">// &quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="2-16-整数溢出"><a href="#2-16-整数溢出" class="headerlink" title="2.16 整数溢出"></a>2.16 整数溢出</h2><h4 id="什么是整数溢出"><a href="#什么是整数溢出" class="headerlink" title="什么是整数溢出"></a>什么是整数溢出</h4><p>整数溢出是指当整数运算的结果超出了该数据类型所能表示的范围时发生的情况。</p>
+<p>Java中的每种整数类型都有固定的取值范围，当计算结果超出这个范围时，就会发生溢出，结果会”绕回”到该类型的另一端。</p>
+<h4 id="Java整数类型的范围"><a href="#Java整数类型的范围" class="headerlink" title="Java整数类型的范围"></a>Java整数类型的范围</h4><table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">字节数</th>
+<th align="left">最小值</th>
+<th align="left">最大值（临界判断）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">byte</td>
+<td align="left">1</td>
+<td align="left">-128</td>
+<td align="left">127（一百）</td>
+</tr>
+<tr>
+<td align="left">short</td>
+<td align="left">2</td>
+<td align="left">-32,768</td>
+<td align="left">32,767（三万）</td>
+</tr>
+<tr>
+<td align="left">int</td>
+<td align="left">4</td>
+<td align="left">-2,147,483,648</td>
+<td align="left">2,147,483,647（二十一亿）</td>
+</tr>
+<tr>
+<td align="left">long</td>
+<td align="left">8</td>
+<td align="left">-9,223,372,036,854,775,808</td>
+<td align="left">9,223,372,036,854,775,807</td>
+</tr>
+</tbody></table>
+<h4 id="为什么会发生溢出"><a href="#为什么会发生溢出" class="headerlink" title="为什么会发生溢出"></a>为什么会发生溢出</h4><p>在计算机中，整数以二进制补码形式存储。以int为例：</p>
+<ul>
+<li>最大值：01111111 11111111 11111111 11111111 (2^31 - 1)</li>
+<li>加1后：10000000 00000000 00000000 00000000 (最小值)</li>
+</ul>
+<p>当最高位（符号位）发生变化时，正数就变成了负数。</p>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><ol>
+<li><strong>了解数据范围</strong>：选择合适的整数类型</li>
+<li><strong>使用溢出检测方法</strong>：对关键计算使用Math.exact系列方法</li>
+<li><strong>及早使用更大的类型</strong>：如果可能，使用long代替int</li>
+<li><strong>处理用户输入</strong>：验证输入值是否在合理范围内</li>
+<li><strong>使用BigInteger</strong>：需要任意精度计算时</li>
+<li><strong>代码审查</strong>：特别注意算术运算和类型转换</li>
+</ol>
+<h2 id="2-17-数值存储类型"><a href="#2-17-数值存储类型" class="headerlink" title="2.17 数值存储类型"></a>2.17 数值存储类型</h2><p>在Java中，基本数据类型主要分为三类：<strong>数值型</strong>、<strong>字符型</strong>和<strong>布尔型</strong>。针对你询问的<strong>数值存储类型</strong>，它们又可以细分为<strong>整数类型</strong>和<strong>浮点类型</strong>。</p>
+<h3 id="2-17-1-整数类型"><a href="#2-17-1-整数类型" class="headerlink" title="2.17.1 整数类型"></a>2.17.1 整数类型</h3><p>整数类型在内存中直接以<strong>二进制补码</strong>的形式存储。</p>
+<ul>
+<li><strong>byte</strong><ul>
+<li><strong>大小：</strong> 8位（1个字节）</li>
+<li><strong>存储范围：</strong> -128 到 127</li>
+<li><strong>默认值：</strong> 0</li>
+<li><strong>应用场景：</strong> 主要用于节省内存空间，例如处理文件流或二进制数据。</li>
+</ul>
+</li>
+<li><strong>short</strong><ul>
+<li><strong>大小：</strong> 16位（2个字节）</li>
+<li><strong>存储范围：</strong> -32,768 到 32,767</li>
+<li><strong>默认值：</strong> 0</li>
+<li><strong>应用场景：</strong> 很少使用，主要在大数组中节省内存。</li>
+</ul>
+</li>
+<li><strong>int</strong><ul>
+<li><strong>大小：</strong> 32位（4个字节）</li>
+<li><strong>存储范围：</strong> -2,147,483,648 到 2,147,483,647</li>
+<li><strong>默认值：</strong> 0</li>
+<li><strong>应用场景：</strong> 最常用的整数类型。Java中整数常量（如 123）默认就是 int 类型。</li>
+</ul>
+</li>
+<li><strong>long</strong><ul>
+<li><strong>大小：</strong> 64位（8个字节）</li>
+<li><strong>存储范围：</strong> -9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</li>
+<li><strong>默认值：</strong> 0L</li>
+<li><strong>应用场景：</strong> 当 int 的范围不够时使用。赋值时需要在数字后加 L 或 l（如 100L）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-17-2-浮点类型"><a href="#2-17-2-浮点类型" class="headerlink" title="2.17.2 浮点类型"></a>2.17.2 浮点类型</h3><p>浮点类型遵循 <strong>IEEE 754 国际标准</strong>，以科学计数法的形式存储（符号位 + 指数位 + 尾数位）。由于这种存储方式，它们<strong>不能用于精确计算</strong>（如货币），否则会有舍入误差。</p>
+<ul>
+<li><strong>float</strong><ul>
+<li><strong>大小：</strong> 32位（4个字节）</li>
+<li><strong>存储范围：</strong> 大约 ±3.40282347E+38F（6-7 位有效数字）</li>
+<li><strong>默认值：</strong> 0.0f</li>
+<li><strong>应用场景：</strong> 节省内存的大范围浮点数。赋值时需要在数字后加 F 或 f（如 3.14F），否则小数默认是 double 类型会报错。</li>
+</ul>
+</li>
+<li><strong>double</strong><ul>
+<li><strong>大小：</strong> 64位（8个字节）</li>
+<li><strong>存储范围：</strong> 大约 ±1.79769313486231570E+308（15 位有效数字）</li>
+<li><strong>默认值：</strong> 0.0d</li>
+<li><strong>应用场景：</strong> 默认的浮点数类型（如 3.14 就是 double），常用于数学函数和常规计算。</li>
+</ul>
+</li>
+</ul>
+<h4 id="32位浮点数的二进制表示"><a href="#32位浮点数的二进制表示" class="headerlink" title="32位浮点数的二进制表示"></a>32位浮点数的二进制表示</h4><p>32位单精度浮点数在内存中分为三个部分：<strong>符号位（Sign）、指数位（Exponent）、尾数位（Mantissa，也叫有效数&#x2F;Significand）</strong></p>
+<ul>
+<li><strong>符号位 (S, Sign) - 1位</strong><ul>
+<li><code>0</code> 表示正数</li>
+<li><code>1</code> 表示负数</li>
+<li>位于最高位（第31位）。</li>
+</ul>
+</li>
+<li><strong>指数位 (E, Exponent) - 8位</strong><ul>
+<li>存储的是<strong>指数加上偏移量</strong>的结果，而不是直接存指数本身。</li>
+<li><strong>偏移量 (Bias)</strong>：对于32位浮点数，偏移量固定为 <strong>127</strong>。</li>
+<li><strong>实际指数范围</strong>：指数位全0（表示非规格化数或0）到全1（表示无穷大或NaN）。除去这两个极端，正常的指数范围是 1 到 254。<ul>
+<li>实际指数 &#x3D; 指数位的值 - 127。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>尾数位 (M, Mantissa) - 23位</strong><ul>
+<li>存储的是小数部分的二进制。</li>
+<li><strong>规格化</strong>：在正常情况下，尾数前隐含了一个 <code>1</code>。即实际的有效数字是 <code>1.M</code>（二进制）。这样做可以多存1位精度，因为开头的1是必然存在的，不需要存储。</li>
+<li><strong>非规格化</strong>：当指数位全为0时，隐含位变成 <code>0</code>（即 <code>0.M</code>），用来表示非常接近0的数。</li>
+</ul>
+</li>
+</ul>
+<p><strong>从高位到低位：<code>[符号位(1)][指数位(8)][尾数位(23)]</code></strong></p>
+<h4 id="精度说明"><a href="#精度说明" class="headerlink" title="精度说明"></a>精度说明</h4><p>由于尾数只有23位，加上隐含的1位，一共能提供约 <strong>7位十进制有效数字</strong>。这也是为什么 <code>float</code> 被称为单精度，而 <code>double</code>（52位尾数）能提供15-16位十进制有效数字的原因。</p>
+<h2 id="2-18-随机数"><a href="#2-18-随机数" class="headerlink" title="2.18 随机数"></a>2.18 随机数</h2>
       
     </div>
     <footer class="article-footer">
