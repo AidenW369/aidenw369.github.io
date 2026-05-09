@@ -14,7 +14,7 @@
 <meta property="og:description" content="排序算法">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-05-05T03:06:16.000Z">
-<meta property="article:modified_time" content="2026-05-09T05:55:30.404Z">
+<meta property="article:modified_time" content="2026-05-09T09:37:24.666Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Data Structure">
 <meta name="twitter:card" content="summary">
@@ -230,6 +230,250 @@
 <td align="left">数据范围不太大，想避免拆分数组的麻烦</td>
 </tr>
 </tbody></table>
+<h2 id="12-8-排序算法概述"><a href="#12-8-排序算法概述" class="headerlink" title="12.8 排序算法概述"></a>12.8 排序算法概述</h2><h3 id="12-8-1-核心对比一览表"><a href="#12-8-1-核心对比一览表" class="headerlink" title="12.8.1 核心对比一览表"></a>12.8.1 核心对比一览表</h3><table>
+<thead>
+<tr>
+<th align="left">排序算法</th>
+<th align="left">平均时间</th>
+<th align="left">最坏时间</th>
+<th align="left">最好时间</th>
+<th align="left">空间复杂度</th>
+<th align="left">稳定性</th>
+<th align="left">核心思想</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>选择排序</strong></td>
+<td align="left">O(n²)</td>
+<td align="left">O(n²)</td>
+<td align="left">O(n²)</td>
+<td align="left">O(1)</td>
+<td align="left"><strong>不稳定</strong></td>
+<td align="left">每次选择最小&#x2F;大元素</td>
+</tr>
+<tr>
+<td align="left"><strong>插入排序</strong></td>
+<td align="left">O(n²)</td>
+<td align="left">O(n²)</td>
+<td align="left">O(n)</td>
+<td align="left">O(1)</td>
+<td align="left"><strong>稳定</strong></td>
+<td align="left">像整理扑克牌，逐个插入已排序序列</td>
+</tr>
+<tr>
+<td align="left"><strong>希尔排序</strong></td>
+<td align="left">O(n log² n) 左右</td>
+<td align="left">取决于序列</td>
+<td align="left">取决于序列</td>
+<td align="left">O(1)</td>
+<td align="left"><strong>不稳定</strong></td>
+<td align="left">分组的插入排序，逐步缩小增量</td>
+</tr>
+<tr>
+<td align="left"><strong>快速排序</strong></td>
+<td align="left">O(n log n)</td>
+<td align="left">O(n²)</td>
+<td align="left">O(n log n)</td>
+<td align="left">O(log n)</td>
+<td align="left"><strong>不稳定</strong></td>
+<td align="left">选基准，小的放左边，大的放右边，递归</td>
+</tr>
+<tr>
+<td align="left"><strong>归并排序</strong></td>
+<td align="left">O(n log n)</td>
+<td align="left">O(n log n)</td>
+<td align="left">O(n log n)</td>
+<td align="left">O(n)</td>
+<td align="left"><strong>稳定</strong></td>
+<td align="left">先分后合，合并两个有序数组</td>
+</tr>
+<tr>
+<td align="left"><strong>堆排序</strong></td>
+<td align="left">O(n log n)</td>
+<td align="left">O(n log n)</td>
+<td align="left">O(n log n)</td>
+<td align="left">O(1)</td>
+<td align="left"><strong>不稳定</strong></td>
+<td align="left">利用大&#x2F;小顶堆反复取堆顶</td>
+</tr>
+<tr>
+<td align="left"><strong>基数排序</strong></td>
+<td align="left">O(k*n)</td>
+<td align="left">O(k*n)</td>
+<td align="left">O(k*n)</td>
+<td align="left">O(n + k)</td>
+<td align="left"><strong>稳定</strong></td>
+<td align="left">按个十百千位，多轮分配与收集</td>
+</tr>
+</tbody></table>
+<p><strong>备注</strong>：</p>
+<ul>
+<li>基数排序的 <code>k</code> 表示最大数字的位数。其时间复杂度严格说与具体实现有关，此处按常见情况给出。</li>
+<li>快速排序的空间消耗主要在递归调用栈上。</li>
+</ul>
+<h3 id="12-8-2-逐个剖析与选型建议"><a href="#12-8-2-逐个剖析与选型建议" class="headerlink" title="12.8.2 逐个剖析与选型建议"></a>12.8.2 逐个剖析与选型建议</h3><h4 id="1-选择排序（不常用）"><a href="#1-选择排序（不常用）" class="headerlink" title="1. 选择排序（不常用）"></a>1. 选择排序（不常用）</h4><ul>
+<li><strong>原理</strong>：每轮找未排序部分的最小值，放到已排序部分的末尾。</li>
+<li><strong>评价</strong>：无论数据怎样，都要进行约 n²&#x2F;2 次比较。数据移动次数最少，为 O(n)。</li>
+<li><strong>场景</strong>：当<strong>数据移动成本远高于比较成本</strong>时可考虑，否则几乎不用。</li>
+</ul>
+<h4 id="2-插入排序（小规模数据好用）"><a href="#2-插入排序（小规模数据好用）" class="headerlink" title="2. 插入排序（小规模数据好用）"></a>2. 插入排序（小规模数据好用）</h4><ul>
+<li><strong>原理</strong>：将无序数据插入到已排好序的序列中。</li>
+<li><strong>核心优势</strong>：对<strong>近乎有序数据</strong>效率极高，可达 O(n)。且是<strong>稳定排序</strong>。</li>
+<li><strong>场景</strong>：数据量小，或数据基本有序时。常作为快速排序、归并排序在递归到小规模时的优化。</li>
+</ul>
+<h4 id="3-希尔排序（实用的改进插入排序）"><a href="#3-希尔排序（实用的改进插入排序）" class="headerlink" title="3. 希尔排序（实用的改进插入排序）"></a>3. 希尔排序（实用的改进插入排序）</h4><ul>
+<li><strong>原理</strong>：它先对相隔一定增量（gap）的元素进行插入排序，使数组变得“大致有序”，然后逐步减小增量，最终进行标准的插入排序。</li>
+<li><strong>核心优势</strong>：利用了插入排序在部分有序时高效的特性，打破了 O(n²) 的壁垒。实现简单，效率不错。</li>
+<li><strong>场景</strong>：嵌入式系统等对代码量有要求，且不要求稳定性的中等规模数据排序。</li>
+</ul>
+<h4 id="4-快速排序（通用大将）"><a href="#4-快速排序（通用大将）" class="headerlink" title="4. 快速排序（通用大将）"></a>4. 快速排序（通用大将）</h4><ul>
+<li><strong>原理</strong>：分治法。选基准值，将数组划分为比基准小和大的两部分，再递归排序。</li>
+<li><strong>核心优势</strong>：实际应用中速度最快的通用排序算法之一，因为其内存访问模式对缓存友好。</li>
+<li><strong>核心劣势</strong>：<strong>不稳定</strong>。在最坏情况下会退化到 O(n²)（如每次选到最小&#x2F;大值作基准）。可通过随机选基准来避免。</li>
+<li><strong>场景</strong>：<strong>绝大多数通用场景的首选</strong>，也是很多语言标准库的默认排序基础（如C++的<code>std::sort</code>）。</li>
+</ul>
+<h4 id="5-归并排序（稳定之王）"><a href="#5-归并排序（稳定之王）" class="headerlink" title="5. 归并排序（稳定之王）"></a>5. 归并排序（稳定之王）</h4><ul>
+<li><strong>原理</strong>：分治法。将数组完全拆分为单元素，然后两两有序合并。</li>
+<li><strong>核心优势</strong>：无论数据如何，都保证 <strong>O(n log n)</strong> 的时间复杂度，是<strong>稳定的外排序</strong>算法首选。</li>
+<li><strong>核心劣势</strong>：需要 O(n) 的额外内存空间。</li>
+<li><strong>场景</strong>：<strong>需要稳定排序</strong>，或处理**超大数据集（外排序）**时。Java语言对对象数组的排序就使用了归并排序（历史版本）。</li>
+</ul>
+<h4 id="6-堆排序（空间苛刻时的选择）"><a href="#6-堆排序（空间苛刻时的选择）" class="headerlink" title="6. 堆排序（空间苛刻时的选择）"></a>6. 堆排序（空间苛刻时的选择）</h4><ul>
+<li><strong>原理</strong>：将数组构建成最大堆，反复取出堆顶元素（最大值）放到数组末尾。</li>
+<li><strong>核心优势</strong>：同样是 O(n log n)，但<strong>只需 O(1) 的额外空间</strong>，这点比归并和快排都好。</li>
+<li><strong>核心劣势</strong>：对缓存不友好，实际速度通常慢于快排。<strong>不稳定</strong>。</li>
+<li><strong>场景</strong>：在内存极其受限，又必须保证 O(n log n) 时间复杂度时。</li>
+</ul>
+<h4 id="7-基数排序（特殊场景专用）"><a href="#7-基数排序（特殊场景专用）" class="headerlink" title="7. 基数排序（特殊场景专用）"></a>7. 基数排序（特殊场景专用）</h4><ul>
+<li><strong>原理</strong>：非比较排序。对数字或字符串的每一位进行分配和收集。</li>
+<li><strong>核心优势</strong>：可以突破比较排序的理论下界 O(n log n)，达到近似线性时间。</li>
+<li><strong>核心限制</strong>：仅适用于可分解为独立“位”或“字符”的数据。非常占内存，且对数据格式敏感。</li>
+<li><strong>场景</strong>：对大量<strong>整数或固定格式字符串</strong>的排序，且数据量很大、范围已知时。</li>
+</ul>
+<h3 id="12-8-3-算法选型"><a href="#12-8-3-算法选型" class="headerlink" title="12.8.3 算法选型"></a>12.8.3 算法选型</h3><ol>
+<li><strong>看数据类型</strong><ul>
+<li>是整数或固定格式字符串，且范围不大？ → 可考虑 <strong>基数排序</strong>。</li>
+<li>是通用的可比较对象？ → 继续往下看。</li>
+</ul>
+</li>
+<li><strong>看稳定性需求</strong><ul>
+<li>必须保持相等元素的原始顺序？ → <strong>归并排序</strong> 或 <strong>插入排序</strong>（数据量小）。</li>
+<li>不需要稳定？ → 继续往下看。</li>
+</ul>
+</li>
+<li><strong>看内存与规模</strong><ul>
+<li>内存极其受限，数据量却很大？ → <strong>堆排序</strong>。</li>
+<li>数据量很小或基本有序？ → <strong>插入排序</strong>。</li>
+<li>数据量中等，不想写复杂代码？ → <strong>希尔排序</strong>。</li>
+<li>以上都不是，追求通用和最佳平均性能？ → <strong>快速排序</strong>。</li>
+</ul>
+</li>
+</ol>
+<h2 id="12-9-冒泡排序"><a href="#12-9-冒泡排序" class="headerlink" title="12.9 冒泡排序"></a>12.9 冒泡排序</h2><p>冒泡排序是一种最基础的交换排序算法。它的核心思想就像水里的气泡往上冒一样，<strong>通过依次比较相邻的两个元素，将较大的数往后“冒”，较小的数往前“浮”</strong>。</p>
+<h3 id="12-9-1-核心原理"><a href="#12-9-1-核心原理" class="headerlink" title="12.9.1 核心原理"></a>12.9.1 核心原理</h3><p>它重复地走访要排序的数列，一次比较两个相邻元素。如果它们的顺序错误（比如希望升序，但前面的比后面的大），就交换它们。这个过程会重复进行，直到没有需要交换的元素为止。</p>
+<p><strong>主要有两个要点：</strong></p>
+<ul>
+<li><strong>相邻比较</strong>：只比较紧挨着的两个元素。</li>
+<li><strong>逐轮归位</strong>：每一轮遍历，都会把当前未排序部分的最大值（或最小值）推到最后面，就像气泡浮出水面。</li>
+</ul>
+<p>总的来说，冒泡排序因为效率问题很少用于生产环境，但它非常适合用来入门算法思想。</p>
+<h3 id="12-9-2-图解步骤（升序为例）"><a href="#12-9-2-图解步骤（升序为例）" class="headerlink" title="12.9.2 图解步骤（升序为例）"></a>12.9.2 图解步骤（升序为例）</h3><p>假设有数组 <code>[5, 1, 4, 2, 8]</code>，<strong>第一轮</strong>会这样操作：</p>
+<ol>
+<li>比较 <code>5</code> 和 <code>1</code>，5&gt;1，交换 → <code>[1, 5, 4, 2, 8]</code></li>
+<li>比较 <code>5</code> 和 <code>4</code>，5&gt;4，交换 → <code>[1, 4, 5, 2, 8]</code></li>
+<li>比较 <code>5</code> 和 <code>2</code>，5&gt;2，交换 → <code>[1, 4, 2, 5, 8]</code></li>
+<li>比较 <code>5</code> 和 <code>8</code>，5&lt;8，不交换 → 数组不变</li>
+</ol>
+<p>第一轮结束，最大的数字 <code>8</code> 已“冒”到最后。</p>
+<p><strong>后续几轮</strong>会忽略已归位的元素，继续重复这个过程：</p>
+<ul>
+<li><strong>第二轮</strong>比较前4个元素，最终 <code>5</code> 就位，数组变为 <code>[1, 4, 2, 5, 8]</code>。</li>
+<li><strong>第三轮</strong>比较前3个元素，<code>4</code> 就位，数组变为 <code>[1, 2, 4, 5, 8]</code>。</li>
+<li><strong>第四轮</strong>比较前2个元素，<code>2</code> 就位，排序完成。</li>
+</ul>
+<h3 id="12-9-3-代码实现（Python）"><a href="#12-9-3-代码实现（Python）" class="headerlink" title="12.9.3 代码实现（Python）"></a>12.9.3 代码实现（Python）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bubble_sort</span>(<span class="params">arr</span>)：</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="comment"># 外层循环控制总轮数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>)：</span><br><span class="line">        <span class="comment"># 优化点：检查本轮是否有交换</span></span><br><span class="line">        swapped = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># 内层循环进行相邻比较，最后 i 个元素已就位，不用管</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>-i)：</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j+<span class="number">1</span>]：</span><br><span class="line">                arr[j], arr[j+<span class="number">1</span>] = arr[j+<span class="number">1</span>], arr[j]</span><br><span class="line">                swapped = <span class="literal">True</span></span><br><span class="line">        <span class="comment"># 如果一轮下来没有交换，说明已经有序，直接结束</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> swapped：</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="12-9-4-性能分析"><a href="#12-9-4-性能分析" class="headerlink" title="12.9.4 性能分析"></a>12.9.4 性能分析</h3><ul>
+<li><strong>时间复杂度</strong><ul>
+<li><strong>最坏&#x2F;平均</strong>：数据完全或部分无序时，需要双重循环，复杂度为 <strong>O(n²)</strong>。</li>
+<li><strong>最好</strong>：数据本身有序，只遍历一轮就结束，复杂度为 <strong>O(n)</strong>。</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：<strong>O(1)</strong>，只在原数组上交换，不需要额外空间。</li>
+<li><strong>稳定性</strong>：<strong>稳定</strong>。当相邻元素相等时，不会发生交换，它们的相对位置得以保留。</li>
+</ul>
+<h3 id="12-9-5-优缺点总结"><a href="#12-9-5-优缺点总结" class="headerlink" title="12.9.5 优缺点总结"></a>12.9.5 优缺点总结</h3><ul>
+<li><strong>优点</strong>：原理简单，代码容易实现；是稳定排序；空间开销小。</li>
+<li><strong>缺点</strong>：时间复杂度高，处理海量数据时效率极低。</li>
+</ul>
+<h2 id="12-10-快速选择-Quickselect"><a href="#12-10-快速选择-Quickselect" class="headerlink" title="12.10 快速选择(Quickselect)"></a>12.10 快速选择(Quickselect)</h2><p><strong>快速选择</strong>是一种从无序数组中找出第k小（或第k大）元素的算法，可以看作是快速排序的变种。它的核心优势是平均时间复杂度为 <strong>O(n)</strong>，远优于直接排序的 O(n log n)。</p>
+<h4 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h4><p>它借用了快速排序的<strong>分区</strong>思想，但每次只递归一侧：</p>
+<ol>
+<li>从数组中随机选一个<strong>基准元素</strong>。</li>
+<li>将数组分为三部分：小于基准的放左边、等于基准的放中间、大于基准的放右边。</li>
+<li>判断第k小的元素落在哪：<ul>
+<li>如果 k ≤ 左部分的长度，就递归处理<strong>左部分</strong>。</li>
+<li>如果 k 在左部分和中间部分长度之和的范围内，那么答案就是<strong>基准值本身</strong>。</li>
+<li>否则，问题就变成在<strong>右部分</strong>找第 <code>(k - 左长度 - 中长度)</code> 小的元素，递归处理右部分。</li>
+</ul>
+</li>
+</ol>
+<h4 id="与快速排序的关键区别"><a href="#与快速排序的关键区别" class="headerlink" title="与快速排序的关键区别"></a>与快速排序的关键区别</h4><ul>
+<li><strong>快速排序</strong>：每次分区后，左右两侧都要递归处理，类似二叉树遍历所有节点。</li>
+<li><strong>快速选择</strong>：每次分区后，只进入包含目标元素的那一侧递归，类似只走二叉树的某一条路径。所以成本从 O(n log n) 降到了 O(n)。</li>
+</ul>
+<h4 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h4><ul>
+<li><strong>平均时间复杂度</strong>：<strong>O(n)</strong>。每次递归处理的数据量大致减半，总工作量是 n + n&#x2F;2 + n&#x2F;4 + …，极限收敛于 2n。</li>
+<li><strong>最坏时间复杂度</strong>：<strong>O(n²)</strong>。当每次选的基准都极不走运（例如总选到最小元素），导致每次只排除一个元素时会发生。不过，使用随机化选择基准可以规避绝大多数最坏情况。</li>
+<li><strong>空间复杂度</strong>：取决于实现，递归栈深度平均 O(log n)，尾递归优化可做到 O(1)。</li>
+</ul>
+<h4 id="一个直观的图示"><a href="#一个直观的图示" class="headerlink" title="一个直观的图示"></a>一个直观的图示</h4><p>假设从 <code>[3, 7, 8, 5, 2, 1, 9, 4]</code> 中找第3小的元素：</p>
+<ol>
+<li>选 5 为基准，分区后为 <code>[3, 2, 1, 4] | 5 | [7, 8, 9]</code>，左边有4个元素。</li>
+<li>要找第3小的，<code>3 &lt; 4</code>，进入左边 <code>[3, 2, 1, 4]</code> 继续找第3小。</li>
+<li>选 3 为基准，分区后为 <code>[2, 1] | 3 | [4]</code>，左边有2个元素。</li>
+<li><code>3 &gt; 2</code>，所以答案在右边 <code>[4]</code>，并变为找第 <code>(3-2-1)=0</code> 小，也就是第一个元素，最终答案是 <strong>4</strong>。</li>
+</ol>
+<h4 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h4><ul>
+<li><strong>寻找Top K问题</strong>（不只是找一个，而是找前K个，可与堆排序等方法权衡选择）。</li>
+<li><strong>数据库中求中位数或百分位数</strong>。</li>
+<li><strong>各类统计和数据分析</strong>中需要极高效率的线性选择操作。</li>
+</ul>
+<h2 id="12-11-桶排序"><a href="#12-11-桶排序" class="headerlink" title="12.11 桶排序"></a>12.11 桶排序</h2><p>桶排序是一种<strong>分布式排序算法</strong>，核心思想不是靠两两比较，而是把数据分到几个有序的“桶”里，再分别排序，最后按桶的顺序倒出来。</p>
+<h4 id="核心原理-1"><a href="#核心原理-1" class="headerlink" title="核心原理"></a><strong>核心原理</strong></h4><ul>
+<li><strong>设置桶</strong>：先确定要几个桶，每个桶覆盖一个数据区间。</li>
+<li><strong>分桶</strong>：遍历所有数据，判断它属于哪个区间，就放进对应的桶里。</li>
+<li><strong>桶内排序</strong>：每个桶里的数据用别的排序算法排好（常用插入排序）。</li>
+<li><strong>合并</strong>：按桶的先后顺序，依次取出所有元素，整体就有序了。</li>
+</ul>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a><strong>示例</strong></h4><p>假设有数据：<code>[0.12, 0.61, 0.29, 0.84, 0.45]</code></p>
+<ul>
+<li><strong>分桶（10个桶，区间[0, 0.1)，[0.1, 0.2)…）</strong>：<ul>
+<li>0.12 放桶1，0.61放桶6，0.29放桶2，以此类推。</li>
+</ul>
+</li>
+<li><strong>桶内排序</strong>：<ul>
+<li>桶1 <code>[0.12]</code>，桶2 <code>[0.29, 0.45]</code>，桶6 <code>[0.61]</code>，桶8 <code>[0.84]</code>，其余空桶。</li>
+</ul>
+</li>
+<li><strong>合并输出</strong>：<ul>
+<li>依次倒出所有桶的元素，结果为：<code>0.12, 0.29, 0.45, 0.61, 0.84</code>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a><strong>时间复杂度</strong></h4><p>它的效率高度依赖数据分布：</p>
+<ul>
+<li><strong>最好&#x2F;平均情况</strong>：数据均匀分布时，只需线性分桶加少量内部排序，<strong>O(n + k)</strong>，约等于线性时间 O(n)。</li>
+<li><strong>最坏情况</strong>：数据全挤进一个桶里，退化成一个普通的排序算法，例如 O(n²) 如果桶内用插入排序。</li>
+<li><strong>空间复杂度</strong>：O(n + k)，需要额外空间存放桶和所有数据。</li>
+</ul>
+<h4 id="核心要点"><a href="#核心要点" class="headerlink" title="核心要点"></a><strong>核心要点</strong></h4><ul>
+<li><strong>适用于外部排序</strong>：比如海量数据无法一次装入内存，可以先分桶存成小文件。</li>
+<li><strong>可对数据要求高</strong>：数据必须能轻松划分区间，并且最好分布得比较均匀。它不能像快排那样对任何数据都表现稳定。</li>
+<li><strong>可以是稳定排序</strong>：只要桶内排序用的也是稳定算法，桶排序就是稳定的。</li>
+</ul>
 
       
     </div>
