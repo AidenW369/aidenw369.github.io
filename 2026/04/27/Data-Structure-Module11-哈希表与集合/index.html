@@ -14,7 +14,7 @@
 <meta property="og:description" content="哈希表与集合">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-04-27T03:26:36.000Z">
-<meta property="article:modified_time" content="2026-05-09T05:55:24.546Z">
+<meta property="article:modified_time" content="2026-05-09T09:52:57.760Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Data Structure">
 <meta name="twitter:card" content="summary">
@@ -418,6 +418,410 @@
 <ul>
 <li>控制<strong>负载因子</strong>（已用槽数&#x2F;表大小）不超过 0.5–0.7，超过就扩容并重新哈希。</li>
 <li>定期在负载较低时重整哈希表，清除 <code>Deleted</code> 标记的槽。</li>
+</ul>
+<h2 id="11-5-二次探测"><a href="#11-5-二次探测" class="headerlink" title="11.5 二次探测"></a>11.5 二次探测</h2><p>二次探测是一种用于<strong>哈希表冲突解决</strong>的开放寻址法。</p>
+<p>当你想插入一个元素，但它的哈希地址已被占用时，二次探测不是去尝试下一个紧邻的位置，而是将冲突次数平方后作为偏移量，按<strong>二次函数</strong>的序列去寻找下一个空位。</p>
+<h4 id="核心思想-1"><a href="#核心思想-1" class="headerlink" title="核心思想"></a><strong>核心思想</strong></h4><p>当插入一个键发生哈希冲突（目标位置已被占用）时，二次探测不是简单地去下一个位置，而是按<strong>二次函数步长</strong>去寻找新的空位。</p>
+<p>探测序列是：</p>
+<ul>
+<li>第1次冲突：找 <code>原位置 + 1²</code></li>
+<li>第2次冲突：找 <code>原位置 + 2²</code></li>
+<li>第3次冲突：找 <code>原位置 + 3²</code><br>……<br>以此类推。</li>
+</ul>
+<p><strong>其通用的序列公式为：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(k, i) = (hash(k) + c1 * i + c2 * i²) mod m</span><br></pre></td></tr></table></figure>
+
+<p><strong>最常见的实现取 <code>c1 = 0, c2 = 1</code>，即：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = (base + i²) mod m</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>其中 <code>i</code> 是探测次数（1, 2, 3…），<code>m</code> 是表长。</li>
+</ul>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>假设哈希表大小 <code>m = 10</code>，键 <code>k</code> 的初始哈希值 <code>hash(k) = 4</code>。</p>
+<ul>
+<li>插入时，位置 4 被占。</li>
+<li><strong>第1次探测</strong>（i&#x3D;1）：检查 <code>(4 + 1²) % 10 = 5</code></li>
+<li>若还冲突，<strong>第2次探测</strong>（i&#x3D;2）：<code>(4 + 2²) % 10 = 8</code></li>
+<li><strong>第3次</strong>（i&#x3D;3）：<code>(4 + 9) % 10 = 3</code></li>
+<li><strong>第4次</strong>（i&#x3D;4）：<code>(4 + 16) % 10 = 0</code></li>
+</ul>
+<p>发现了吗？步长（1, 4, 9, 16…）在快速增大。这让它能跳开线性探测中相邻聚集的区块。</p>
+<h4 id="二次探测意义"><a href="#二次探测意义" class="headerlink" title="二次探测意义"></a>二次探测意义</h4><p>核心是为了解决<strong>线性探测的主要聚集问题</strong>。</p>
+<ul>
+<li><strong>线性探测</strong>：步长固定为1，产生连续冲突链（主要聚集），性能下降快。</li>
+<li><strong>二次探测</strong>：跳跃式查找，能缓解聚集，但也会出现“如果初始位置相同，则整个探测序列完全相同”的<strong>二次聚集</strong>。</li>
+</ul>
+<h4 id="关键注意事项"><a href="#关键注意事项" class="headerlink" title="关键注意事项"></a>关键注意事项</h4><p>使用二次探测时有几个致命限制：</p>
+<ul>
+<li><strong>表长必须是质数，且负载因子必须小于 0.5</strong><br>这是严格的理论要求。如果没有这个保证，二次探测可能永远找不到空位，陷入死循环，导致插入失败。</li>
+<li><strong>无法直接删除</strong><br>和线性探测一样，简单删一个元素会打断探测链，导致后续查找误以为元素不存在。通常用“惰性删除”（打删除标记）替代。</li>
+</ul>
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li><strong>优点</strong>：避免了线性探测那种严重的“连续拥挤”，缓存性能尚可。</li>
+<li><strong>缺点</strong>：对表大小限制严格；存在二次聚集；查找时缓存命中率不如线性探测。</li>
+</ul>
+<h2 id="11-6-双重哈希"><a href="#11-6-双重哈希" class="headerlink" title="11.6 双重哈希"></a>11.6 双重哈希</h2><p>双重哈希（Double Hashing）是开放定址法中用于解决哈希冲突的一种方法。它通过使用<strong>两个不同的哈希函数</strong>来计算探查序列，从而更均匀地将冲突元素分散到哈希表中。</p>
+<p>它的基本思想是：当插入时发现目标位置已被占用，不简单地使用线性探查（逐个找下一个），也不使用二次探查，而是使用<strong>第二个哈希函数</strong>来计算每次探查的“步长”。</p>
+<p>双重哈希虽然分布均匀，但计算成本略高于线性探查，且对哈希函数的设计要求更高。</p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a><strong>工作原理</strong></h4><p>假设哈希表大小为 m<em>m</em>。</p>
+<ol>
+<li><p><strong>两个哈希函数</strong></p>
+<ul>
+<li>h1(key)<em>h</em>1(<em>k**ey</em>)：计算初始探查位置。</li>
+<li>h2(key)<em>h</em>2(<em>k**ey</em>)：计算冲突后的探查步长。这个值绝不能为0，且通常与表的大小 m<em>m</em> 互质，以保证探查序列能覆盖整个表。</li>
+</ul>
+</li>
+<li><p><strong>探查序列</strong><br>插入或查找时，第 i<em>i</em> 次探查的位置计算公式为：</p>
+<p>h(key,i)&#x3D;(h1(key)+i×h2(key)) mod m<em>h</em>(<em>k**ey</em>,<em>i</em>)&#x3D;(<em>h</em>1(<em>k**ey</em>)+<em>i</em>×<em>h</em>2(<em>k**ey</em>))mod<em>m</em></p>
+<p>其中 i<em>i</em> 从 0 开始。</p>
+</li>
+</ol>
+<h4 id="一个具体的例子"><a href="#一个具体的例子" class="headerlink" title="一个具体的例子"></a><strong>一个具体的例子</strong></h4><p>假设表大小 m&#x3D;7<em>m</em>&#x3D;7，哈希函数为：</p>
+<ul>
+<li>h1(key)&#x3D;key mod 7<em>h</em>1(<em>k**ey</em>)&#x3D;<em>k**ey</em>mod7</li>
+<li>h2(key)&#x3D;5−(key mod 5)<em>h</em>2(<em>k**ey</em>)&#x3D;5−(<em>k**ey</em>mod5) （一个常用的步长函数）</li>
+</ul>
+<p>现在要插入键 1515 和 2222：</p>
+<ol>
+<li><strong>插入 key &#x3D; 15</strong><ul>
+<li>h1(15)&#x3D;15 mod 7&#x3D;1<em>h</em>1(15)&#x3D;15mod7&#x3D;1，位置1为空，直接放入。</li>
+<li>哈希表：<code>[空, 15, 空, 空, 空, 空, 空]</code></li>
+</ul>
+</li>
+<li><strong>插入 key &#x3D; 22</strong><ul>
+<li>h1(22)&#x3D;22 mod 7&#x3D;1<em>h</em>1(22)&#x3D;22mod7&#x3D;1，位置1已被15占用，产生冲突。</li>
+<li>h2(22)&#x3D;5−(22 mod 5)&#x3D;5−2&#x3D;3<em>h</em>2(22)&#x3D;5−(22mod5)&#x3D;5−2&#x3D;3</li>
+<li>第一次探查（i&#x3D;1<em>i</em>&#x3D;1）：位置 (1+1×3) mod 7&#x3D;4(1+1×3)mod7&#x3D;4，为空，放入。</li>
+<li>哈希表：<code>[空, 15, 空, 空, 22, 空, 空]</code></li>
+</ul>
+</li>
+</ol>
+<p>如果位置4也被占，就会继续以步长3探查下一个位置：<code>(1+2*3) % 7 = 0</code>，依此类推。</p>
+<h4 id="关键优势"><a href="#关键优势" class="headerlink" title="关键优势"></a><strong>关键优势</strong></h4><ul>
+<li><strong>减少聚集</strong>：线性探查会造成“基本聚集”，二次探查会造成“二次聚集”。双重哈希产生的探查序列动态且与键本身相关，分布更均匀，能最有效地减少聚集。</li>
+<li><strong>性能更稳定</strong>：在高负载因子下，它的查找性能通常优于其他开放定址法。</li>
+</ul>
+<h4 id="关键要求"><a href="#关键要求" class="headerlink" title="关键要求"></a><strong>关键要求</strong></h4><ul>
+<li>*<em>h2(key)*h*2(*k*<em>ey*) 的值绝不能为0。</em></em></li>
+<li>为让探查序列覆盖全表，h2(key)<em>h</em>2(<em>k**ey</em>) 应与表大小 m<em>m</em> <strong>互质</strong>。常通过让表长 m<em>m</em> 为质数，并限制 h2(key)<em>h</em>2(<em>k**ey</em>) 总是小于 m<em>m</em> 来实现。</li>
+<li><strong>无法简单支持删除</strong>（这是所有开放定址法的通病），删除操作通常需要惰性删除标记。如需频繁删除，链地址法可能是更好的选择。</li>
+</ul>
+<h2 id="11-7-调整哈希表大小"><a href="#11-7-调整哈希表大小" class="headerlink" title="11.7 调整哈希表大小"></a>11.7 调整哈希表大小</h2><p>在数据结构中，<strong>调整哈希表大小</strong>是指当哈希表中存储的元素数量变化到一定程度时，<strong>重新创建一个更大（或更小）的数组，然后将所有旧元素重新映射并迁移到新数组中的过程</strong>。</p>
+<p>这是哈希表维持高效性能的核心机制。</p>
+<h3 id="11-7-1-为什么要调整大小"><a href="#11-7-1-为什么要调整大小" class="headerlink" title="11.7.1 为什么要调整大小"></a>11.7.1 为什么要调整大小</h3><p>哈希表的查找、插入、删除操作，理想情况下时间复杂度是 O(1)。但这依赖于一个关键指标：<strong>负载因子</strong>。</p>
+<ul>
+<li><strong>负载因子 &#x3D; 元素数量 &#x2F; 数组容量</strong></li>
+<li>当负载因子过高（比如 &gt; 0.75），哈希冲突会急剧增加，链表或红黑树变长，操作退化为 O(n)。</li>
+<li>当负载因子过低（比如 &lt; 0.1），虽然冲突少，但大量数组空间被浪费。</li>
+</ul>
+<p>因此，需要调整大小来将负载因子维持在一个合理区间，在时间和空间上取得平衡。</p>
+<h3 id="11-7-2-触发条件"><a href="#11-7-2-触发条件" class="headerlink" title="11.7.2 触发条件"></a>11.7.2 触发条件</h3><p>不同实现策略不同，常见的有两种：</p>
+<ul>
+<li><p><strong>扩容</strong>：当负载因子 <strong>大于等于</strong> 某个阈值（如 Java <code>HashMap</code> 默认 0.75）时，将容量扩大为原来的<strong>约两倍</strong>。</p>
+</li>
+<li><p><strong>缩容</strong>：当负载因子 <strong>小于</strong> 某个阈值时，将容量缩小，以节省内存。不过在并发场景下，为避免频繁扩缩容带来的性能抖动，并非所有哈希表都会自动缩容。</p>
+</li>
+</ul>
+<h4 id="为什么不像数组一样原地扩容？"><a href="#为什么不像数组一样原地扩容？" class="headerlink" title="为什么不像数组一样原地扩容？"></a>为什么不像数组一样原地扩容？</h4><p>这是最核心的问题：<strong>哈希函数与数组大小强相关</strong>。</p>
+<p>最常用的哈希映射是：<code>index = hash(key) % capacity</code></p>
+<p>一旦 <code>capacity</code> 变了，<strong>同一个 key 计算出的新下标几乎必然会变</strong>。所以不能简单地在末尾追加空间，必须为每个已存在的键值对在新数组中重新计算位置。这个过程通常称为 <strong>rehashing（重新哈希）</strong>。</p>
+<h3 id="11-7-3-重新哈希的过程"><a href="#11-7-3-重新哈希的过程" class="headerlink" title="11.7.3 重新哈希的过程"></a>11.7.3 重新哈希的过程</h3><p>整个过程大致分四步：</p>
+<ol>
+<li><strong>分配新空间</strong>：创建一个容量更大的新数组。</li>
+<li><strong>遍历旧数组</strong>：依次取出每个桶中的元素。</li>
+<li><strong>重新计算并插入</strong>：对每个键，用 <code>hash(key) % new_capacity</code> 算出在新数组的下标，放入对应的桶中。</li>
+<li><strong>替换引用</strong>：将哈希表内部的数组指针指向新数组，释放旧数组。</li>
+</ol>
+<p><strong>注意</strong>：这是一个开销很大的 O(n) 操作。为了避免单次插入触发长时间卡顿，Redis 等系统采用<strong>渐进式 rehash</strong>，将重映射工作分摊到后续的每次操作中，直到全部迁移完成。</p>
+<h4 id="示例演示"><a href="#示例演示" class="headerlink" title="示例演示"></a>示例演示</h4><p>假设一个简单的哈希表，用 <code>key % capacity</code> 映射，当前容量为 4：</p>
+<table>
+<thead>
+<tr>
+<th align="left">下标</th>
+<th align="left">键 (key)</th>
+<th align="left">计算过程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">4</td>
+<td align="left">4 % 4 &#x3D; 0</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1 % 4 &#x3D; 1</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2, 6</td>
+<td align="left">2 % 4 &#x3D; 2，6 % 4 &#x3D; 2 （冲突）</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3 % 4 &#x3D; 3</td>
+</tr>
+</tbody></table>
+<p>此时元素数量为 5，容量为 4，负载因子 &#x3D; 1.25，需要扩容。</p>
+<p><strong>扩容到容量为 8 后，重新计算</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="left">新下标</th>
+<th align="left">键 (key)</th>
+<th align="left">计算过程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">0</td>
+<td align="left">-</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1 % 8 &#x3D; 1</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">2 % 8 &#x3D; 2</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3 % 8 &#x3D; 3</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">4</td>
+<td align="left">4 % 8 &#x3D; 4</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">-</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">6 % 8 &#x3D; 6</td>
+</tr>
+<tr>
+<td align="left">7</td>
+<td align="left">-</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<p>可以看到，原本冲突的 2 和 6 被分散到了下标 2 和 6，哈希表恢复了高效。</p>
+<h3 id="11-7-4-实际实现中的优化技巧"><a href="#11-7-4-实际实现中的优化技巧" class="headerlink" title="11.7.4 实际实现中的优化技巧"></a>11.7.4 实际实现中的优化技巧</h3><ul>
+<li><strong>容量取 2 的幂</strong>：当容量为 2 的幂（如 16, 32）时，取模运算 <code>hash % capacity</code> 可以用位运算 <code>hash &amp; (capacity - 1)</code> 替代，大大加快 rehash 速度。</li>
+<li><strong>懒惰迁移</strong>：如前面提到的，Redis 的字典在扩容后会同时保留新旧两个哈希表，每次查找先在老表找，找不到再去新表。每次操作顺手将一部分数据从老表迁移到新表，把一次性的大开销均摊了。</li>
+<li><strong>一次性扩容</strong>：像 Java 的 <code>HashMap</code> 在非并发场景下，就是在 <code>resize()</code> 方法里一次性完成所有迁移，逻辑上更简单。</li>
+</ul>
+<p>总的来说，调整哈希表大小就是通过<strong>以空间换时间</strong>或<strong>回收空间</strong>的手段，配合<strong>重新哈希</strong>，来保证操作的高效性。这个过程也是很多集合类在面试和实际优化中的重点。</p>
+<h2 id="11-8-常用哈希函数"><a href="#11-8-常用哈希函数" class="headerlink" title="11.8 常用哈希函数"></a>11.8 常用哈希函数</h2><p>数据结构中常用的哈希函数主要分为几大类，它们的核心目标是<strong>将任意长度的键映射为固定长度的地址，且尽可能均匀分布以减少冲突</strong>。</p>
+<h3 id="11-8-1-直接定址法"><a href="#11-8-1-直接定址法" class="headerlink" title="11.8.1 直接定址法"></a>11.8.1 直接定址法</h3><p>取关键字或关键字的某个线性函数值作为哈希地址。</p>
+<p><strong>H(key)&#x3D;key 或 H(key)&#x3D;a×key+b<em>H</em>(<em>key</em>)&#x3D;<em>key</em>或<em>H</em>(<em>key</em>)&#x3D;<em>a</em>×<em>key</em>+<em>b</em></strong></p>
+<ul>
+<li><strong>优点</strong>：简单、均匀，永远不会产生冲突。</li>
+<li><strong>缺点</strong>：仅适用于关键字基本连续且范围不大的情况。</li>
+<li><strong>场景</strong>：统计学生成绩（0-100分），或人口年龄统计。</li>
+</ul>
+<h3 id="11-8-2-数字分析法"><a href="#11-8-2-数字分析法" class="headerlink" title="11.8.2 数字分析法"></a>11.8.2 数字分析法</h3><p>如果关键字是位数较多的数字（如手机号），且若干位分布较均匀，就抽取这几位组合成地址。</p>
+<p><strong>例：手机号 138xxxx1234→ 取中间4位例：手机号 138xxxx1234→ 取中间4位</strong></p>
+<ul>
+<li><strong>优点</strong>：适合处理已知模式的大规模静态数据。</li>
+<li><strong>缺点</strong>：依赖于关键字的分布特征，更换数据集需重新分析。</li>
+<li><strong>场景</strong>：手机号、身份证号等作为键时。</li>
+</ul>
+<h3 id="11-8-3-平方取中法"><a href="#11-8-3-平方取中法" class="headerlink" title="11.8.3 平方取中法"></a>11.8.3 平方取中法</h3><p>先计算关键字的平方，然后取中间几位作为地址。</p>
+<p><strong>key&#x3D;1234⇒12342&#x3D;1522756⇒取中间 227<em>key</em>&#x3D;1234⇒12342&#x3D;1522756⇒取中间 227</strong></p>
+<ul>
+<li><strong>优点</strong>：得到的地址与关键字每一位都相关，分布较随机。</li>
+<li><strong>缺点</strong>：计算量稍大。</li>
+<li><strong>场景</strong>：关键字分布未知或位数不是很大时。</li>
+</ul>
+<h3 id="11-8-4-折叠法"><a href="#11-8-4-折叠法" class="headerlink" title="11.8.4 折叠法"></a>11.8.4 折叠法</h3><p>将关键字分割为位数相等的几段（最后一段可短些），然后叠加求和。</p>
+<ul>
+<li><p><strong>移位叠加</strong>：直接对齐相加。</p>
+</li>
+<li><p><strong>边界折叠</strong>：相邻段反转后再相加。</p>
+<p><strong>key&#x3D;9876543210⇒987+654+321+0&#x3D;1962<em>key</em>&#x3D;9876543210⇒987+654+321+0&#x3D;1962</strong></p>
+</li>
+<li><p><strong>优点</strong>：适合关键字位数特别多的情况。</p>
+</li>
+<li><p><strong>场景</strong>：老旧系统的注册码、长数字编号。</p>
+</li>
+</ul>
+<h3 id="11-8-5-除留余数法（最常用）"><a href="#11-8-5-除留余数法（最常用）" class="headerlink" title="11.8.5 除留余数法（最常用）"></a>11.8.5 除留余数法（最常用）</h3><p>这是最经典、最简单的方法，也是构建多种哈希表的基础。</p>
+<p><strong>H(key)&#x3D;key mod p(p≤m)<em>H</em>(<em>key</em>)&#x3D;<em>key</em>mod<em>p</em>(<em>p</em>≤<em>m</em>)</strong></p>
+<ul>
+<li><strong>关键</strong>：模数 p<em>p</em> 的选择直接影响冲突概率。一般取<strong>不大于表长 m*m* 的质数</strong>，或不包含小于20的质因数的合数。</li>
+<li><strong>场景</strong>：几乎所有语言的字典或哈希表底层，例如 Java <code>HashMap</code> 的寻址基础思想。</li>
+</ul>
+<h2 id="11-9-直接哈希-Direct-hashing"><a href="#11-9-直接哈希-Direct-hashing" class="headerlink" title="11.9 直接哈希(Direct hashing)"></a>11.9 直接哈希(Direct hashing)</h2><p>在数据结构中，<strong>直接哈希</strong>是一种最理想化、最简单的哈希方法，你可以把它理解为**“完美的一对一映射”**。</p>
+<p>它的核心思想非常直接：</p>
+<blockquote>
+<p><strong>键（Key）本身就直接作为数组的下标（Index），不需要经过任何复杂的哈希函数计算。</strong></p>
+</blockquote>
+<p>具体来说，它必须满足以下条件：</p>
+<ul>
+<li><strong>键必须是整数</strong>，或者是能轻易映射成唯一整数的数据。</li>
+<li><strong>键的取值范围是已知的、有限的，并且足够小</strong>，这样我们才能预先分配一个能容纳所有可能键的数组。</li>
+</ul>
+<p><strong>工作流程很简单：</strong><br>假设有一个数组 <code>arr</code>，对于任意一个键 <code>k</code>，它的存储位置就是 <code>arr[k]</code>。插入、删除和查找的操作，就是直接访问数组的第 <code>k</code> 个位置，时间复杂度瞬间达到 <strong>O(1)</strong>，且<strong>绝对没有冲突</strong>，因为每个键都有自己专属的位置。</p>
+<h4 id="一个直观的例子"><a href="#一个直观的例子" class="headerlink" title="一个直观的例子"></a>一个直观的例子</h4><p>比如，我们要存储一所小学里，某个班级学生的考试成绩。已知这个班的学号是从 1 到 50 的连续整数。</p>
+<p>我们可以直接创建一个长度为 51 的数组 <code>scores</code>（浪费掉索引0）。若学号为 25 的学生考了 98 分，就直接 <code>scores[25] = 98</code>。查找学号为 18 的学生成绩时，只需读取 <code>scores[18]</code> 即可。</p>
+<h4 id="直接哈希的致命缺陷"><a href="#直接哈希的致命缺陷" class="headerlink" title="直接哈希的致命缺陷"></a>直接哈希的致命缺陷</h4><p>既然它这么快又没有冲突，为什么不是所有地方都用呢？因为它的限制条件在现实中太苛刻了：</p>
+<ul>
+<li><strong>空间浪费惊人</strong><br>如果键的取值范围非常大，但实际存储的数据很少，就会造成巨大的空间浪费。例如，用一个 18 位身份证号直接做索引，想想这个数组得有多大。</li>
+<li><strong>键必须是非负整数</strong><br>像姓名、字符串这类键无法直接使用，需要先转换成整数。</li>
+</ul>
+<h4 id="与其他方法的对比"><a href="#与其他方法的对比" class="headerlink" title="与其他方法的对比"></a>与其他方法的对比</h4><p>实际上，正是因为以上限制，“直接哈希”更多是哈希技术的一个理想化模型。我们日常讨论的 <strong>“哈希表”</strong>，通常指的是其改进版：</p>
+<ul>
+<li><strong>直接哈希</strong>：<code>位置 = 键</code>。键与地址是一对一的。</li>
+<li><strong>哈希表</strong>：<code>位置 = 哈希函数(键)</code>。使用一个<strong>哈希函数</strong>将大范围、非整数的键，压缩映射到一个较小的地址空间内。但正因如此，就引入了<strong>哈希冲突</strong>，需要用链地址法或开放寻址法来解决。</li>
+</ul>
+<h2 id="11-10-哈希算法：密码学、密码哈希"><a href="#11-10-哈希算法：密码学、密码哈希" class="headerlink" title="11.10 哈希算法：密码学、密码哈希"></a>11.10 哈希算法：密码学、密码哈希</h2><p>哈希算法，简单说，就是把<strong>任意长度的数据，压缩成一段固定长度的、看似随机的“数字指纹”</strong>。</p>
+<h3 id="11-10-1-密码学哈希函数"><a href="#11-10-1-密码学哈希函数" class="headerlink" title="11.10.1 密码学哈希函数"></a>11.10.1 密码学哈希函数</h3><p>这是哈希算法中<strong>安全等级最高</strong>的一类，主要不是为了快，而是为了“安全”。它必须具备以下四大核心特性，只要一个不满足，就不再安全：</p>
+<ul>
+<li><strong>单向性（不可逆）</strong><br>从哈希值几乎无法反向推导出原始数据。就像看到一杯果汁，你无法还原出榨汁前水果的样子。</li>
+<li><strong>抗碰撞性（唯一性）</strong><br>在现实中，找不到两个不同的输入 X<em>X</em> 和 Y<em>Y</em>，能产生相同的哈希值 H(X)&#x3D;H(Y)<em>H</em>(<em>X</em>)&#x3D;<em>H</em>(<em>Y</em>)。这保证了文件或数据的唯一身份。</li>
+<li><strong>雪崩效应</strong><br>输入的任何微小改动，都会让输出结果面目全非。比如 “hello” 和 “hello!” 的 MD5 值天差地别：<ul>
+<li><code>hello</code> → <code>5d41402abc4b2a76b9719d911017c592</code></li>
+<li><code>hello!</code> → <code>2490f7c74930feecb49b083a4d1f66a5</code></li>
+</ul>
+</li>
+<li><strong>确定性</strong><br>同样的输入，无论何时何地计算，输出永远严格一致。这是数据校验的基础。</li>
+</ul>
+<p><strong>主要应用场景：</strong></p>
+<ul>
+<li><strong>完整性校验</strong>：下载操作系统镜像时，用于验证是否被篡改。</li>
+<li><strong>数字签名</strong>：签名前，先对文件生成摘要，实际签名的是这个摘要，效率更高。</li>
+<li><strong>Git 版本控制</strong>：用 SHA-1（现正迁移至更安全的 SHA-256）来唯一标识每个提交。</li>
+</ul>
+<p><strong>代表性算法：</strong></p>
+<ul>
+<li><strong>MD5</strong>：已破解，<strong>严禁用于安全领域</strong>。</li>
+<li><strong>SHA-1</strong>：已被成功构造碰撞攻击，<strong>正被淘汰</strong>。</li>
+<li><strong>SHA-2 家族 (SHA-256&#x2F;SHA-512)</strong>：当前主流，安全可靠。</li>
+<li><strong>SHA-3 家族</strong>：新一代标准，结构先进，作为后备。</li>
+</ul>
+<h3 id="11-10-2-密码哈希"><a href="#11-10-2-密码哈希" class="headerlink" title="11.10.2 密码哈希"></a>11.10.2 密码哈希</h3><p>这是密码学哈希在<strong>口令保护</strong>上的特定应用，专为存放用户密码设计。除了具备上述特性，还增加了针对黑客攻击的额外防护：</p>
+<ul>
+<li><strong>加盐 (Salt)</strong><br>为每个用户生成一个独一无二的随机字符串（盐），拼接到密码上再计算哈希。它能有效抵御彩虹表（预计算的密码哈希字典）攻击，并让使用相同密码的用户，最终存储的哈希值也完全不同。</li>
+<li><strong>拉伸与成本因子 (Stretching &amp; Cost Factor)</strong><br>通过成千上万次的迭代计算，或要求占用大量内存，故意拖慢哈希运算的速度。用户的正常登录感受不到延迟，却能极大增加黑客暴力破解的成本。</li>
+</ul>
+<p><strong>特别注意：</strong> 像 SHA-256 这类通用哈希算法计算太快，不适合直接用来存密码。应该使用专门的“慢哈希”算法。</p>
+<p><strong>主流算法（由强到弱）：</strong></p>
+<ul>
+<li><strong>Argon2</strong>：2015年密码哈希竞赛冠军，<strong>当前最强者</strong>。可以分别调节占用CPU和内存的大小，能有效对抗专业硬件（如GPU&#x2F;ASIC）的破解。</li>
+<li><strong>bcrypt</strong>：经典稳健，默认自带盐和可调成本因子，依然是很好的选择。</li>
+<li><strong>scrypt</strong>：设计上极其消耗内存，同样能有效对抗硬件破解。</li>
+<li><strong>PBKDF2</strong>：老牌标准，可调节迭代次数，但相对容易被专业硬件计算，强度不如前三者。</li>
+</ul>
+<h4 id="对比总结"><a href="#对比总结" class="headerlink" title="对比总结"></a>对比总结</h4><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">密码学哈希函数 (如 SHA-256)</th>
+<th align="left">密码哈希算法 (如 Argon2)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>核心目标</strong></td>
+<td align="left">快速生成代表数据的唯一“指纹”</td>
+<td align="left">安全地储存用户凭证</td>
+</tr>
+<tr>
+<td align="left"><strong>关键需求</strong></td>
+<td align="left">抗碰撞、确保数据完整性</td>
+<td align="left">单向性、故意减缓速度、抵御暴力破解</td>
+</tr>
+<tr>
+<td align="left"><strong>速度</strong></td>
+<td align="left"><strong>极快</strong>，追求高性能</td>
+<td align="left"><strong>故意很慢</strong>，且能随硬件进步调高成本</td>
+</tr>
+<tr>
+<td align="left"><strong>加盐</strong></td>
+<td align="left">不需要</td>
+<td align="left"><strong>必须加盐</strong>，盐通常与哈希值存储在一起</td>
+</tr>
+<tr>
+<td align="left"><strong>典型应用</strong></td>
+<td align="left">文件校验、数字签名、Git</td>
+<td align="left"><strong>网站&#x2F;应用的用户登录口令存储</strong></td>
+</tr>
+</tbody></table>
+<p>总的来说，<strong>密码学哈希函数</strong>关注的是数据的不可篡改性，属于<strong>一次性快照</strong>；而<strong>密码哈希</strong>关注的是秘密的安全存放，是一个<strong>持续对抗破解的过程</strong>。两者虽然技术同源，但设计哲学完全不同，用途务必区分清楚。</p>
+<h2 id="11-11-集合的抽象数据类型（ADT）"><a href="#11-11-集合的抽象数据类型（ADT）" class="headerlink" title="11.11 集合的抽象数据类型（ADT）"></a>11.11 集合的抽象数据类型（ADT）</h2><p>在数据结构中，<strong>集合的抽象数据类型</strong>是一个纯粹的数学模型，它定义了数据之间的逻辑关系以及可以执行的操作，但完全不涉及这些操作在内存中如何具体实现。</p>
+<p>简单说，它只回答“<strong>集合能做什么</strong>”，不回答“<strong>怎么做</strong>”。</p>
+<h3 id="11-11-1-定义与核心思想"><a href="#11-11-1-定义与核心思想" class="headerlink" title="11.11.1 定义与核心思想"></a>11.11.1 定义与核心思想</h3><p>集合的数学基础是集合论，它有两大核心特征：</p>
+<ul>
+<li><strong>无序性</strong>：元素之间没有先后顺序。<code>{1, 2, 3}</code> 和 <code>{3, 1, 2}</code> 是同一个集合。</li>
+<li><strong>互异性</strong>：集合中不允许出现重复元素，每个元素都是唯一的。</li>
+</ul>
+<p>符合这两个特征的有限无序集，就是集合ADT要描述的数据对象。</p>
+<h3 id="11-11-2-核心操作"><a href="#11-11-2-核心操作" class="headerlink" title="11.11.2 核心操作"></a>11.11.2 核心操作</h3><p>一个典型的集合ADT通常包含以下基本操作：</p>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>创建与销毁</strong></td>
+<td align="left"><code>Create()</code> 建立一个空集合；<code>Destroy()</code> 销毁并释放资源。</td>
+</tr>
+<tr>
+<td align="left"><strong>基础修改</strong></td>
+<td align="left"><code>Add(S, x)</code> 添加元素；<code>Remove(S, x)</code> 删除元素。</td>
+</tr>
+<tr>
+<td align="left"><strong>查询</strong></td>
+<td align="left"><code>Contains(S, x)</code> 判断元素是否存在；<code>Size(S)</code> 返回元素个数；<code>IsEmpty(S)</code> 判断是否为空。</td>
+</tr>
+<tr>
+<td align="left"><strong>集合特有运算</strong></td>
+<td align="left"><code>Union(A, B)</code> 求并集；<code>Intersection(A, B)</code> 求交集；<code>Difference(A, B)</code> 求差集；<code>IsSubset(A, B)</code> 判断A是否为B的子集。</td>
+</tr>
+</tbody></table>
+<h4 id="为什么叫ADT？"><a href="#为什么叫ADT？" class="headerlink" title="为什么叫ADT？"></a>为什么叫ADT？</h4><p>关键在于，这套接口可以用多种底层技术实现，但接口本身保持稳定。</p>
+<ul>
+<li><strong>可以用数组实现</strong><br>比如用位向量表示一个固定范围（如1-10）的集合，判断元素是否存在速度极快 O(1)。但空间效率差，不适合元素范围巨大或稀疏的情况。</li>
+<li><strong>可以用链表实现</strong><br>添加删除灵活，不浪费空间。但判断元素是否存在需要遍历链表，时间复杂度为 O(n)，效率较低。</li>
+<li><strong>理想实现：哈希表和平衡树</strong><ul>
+<li><strong>哈希表</strong>：平均情况下，<code>Add</code>、<code>Remove</code>、<code>Contains</code> 操作都非常快，接近 O(1)，是大多数场景下的首选。</li>
+<li><strong>平衡二叉搜索树</strong>（如红黑树）：所有操作的时间复杂度稳定在 O(log n)，并且能方便地进行有序遍历、查找最大最小值，更适合需要有序性的集合。</li>
+</ul>
+</li>
+</ul>
+<h3 id="11-11-3-集合的数学基础"><a href="#11-11-3-集合的数学基础" class="headerlink" title="11.11.3 集合的数学基础"></a>11.11.3 集合的数学基础</h3><p>集合的数学基础主要来自<strong>集合论</strong>。在数据结构中，几乎你提到的所有概念，都能在数学定义里找到源头。</p>
+<h4 id="一、基本概念与定义"><a href="#一、基本概念与定义" class="headerlink" title="一、基本概念与定义"></a>一、基本概念与定义</h4><p>数学里的集合，是由一些确定的、彼此不同的对象构成的整体。这直接决定了数据结构“集合”的两个核心特性：</p>
+<ul>
+<li><strong>确定性</strong>：对任意元素，它要么属于集合，要么不属于，边界分明。</li>
+<li><strong>互异性</strong>：集合中不能有重复元素，每个元素只出现一次。数据结构中的集合也强制执行这个规则。</li>
+</ul>
+<p>关于元素与集合、集合与集合，有三组基本关系：</p>
+<ul>
+<li><strong>属于</strong>（∈∈）：表达元素和集合的关系。比如 1∈{1,2,3}1∈{1,2,3}。</li>
+<li><strong>相等</strong>：两个集合包含的元素完全一样就是相等，和顺序无关。所以 <code>{1,2,3}</code> 和 <code>{3,1,2}</code> 是同一个集合。</li>
+<li><strong>子集</strong>（⊆⊆）：若A的所有元素都属于B，A就是B的子集，A⊆B<em>A</em>⊆<em>B</em>。真子集（⊂⊂）则要求B中至少有一个元素不属于A。</li>
+</ul>
+<h4 id="二、核心运算"><a href="#二、核心运算" class="headerlink" title="二、核心运算"></a>二、核心运算</h4><p>数据结构中集合ADT的经典操作，直接对应数学集合的三种基本运算：</p>
+<ul>
+<li><strong>并集</strong> (A∪B<em>A</em>∪<em>B</em>)<br>由A和B中所有元素合并而成。比如 <code>{1,2} ∪ {2,3}</code> 结果是 <code>{1,2,3}</code>。</li>
+<li><strong>交集</strong> (A∩B<em>A</em>∩<em>B</em>)<br>由A和B的公共元素组成。 <code>{1,2} ∩ {2,3}</code> 结果是 <code>{2}</code>。如果没公共元素，交集就是空集 ∅∅。</li>
+<li><strong>差集</strong> (A−B<em>A</em>−<em>B</em>)<br>由属于A但不属于B的元素组成。<code>{1,2} - {2,3}</code> 结果是 <code>{1}</code>。</li>
+</ul>
+<h4 id="三、从数学到数据结构的关键映射"><a href="#三、从数学到数据结构的关键映射" class="headerlink" title="三、从数学到数据结构的关键映射"></a>三、从数学到数据结构的关键映射</h4><p>数学集合是无序的，但在计算机中，为了管理数据，需要为元素定义“序”来构建高效结构。根据元素间能否比较大小，数据结构中的集合实现分化为两类：</p>
+<ul>
+<li><strong>有序集合</strong>：数学基础是<strong>全序关系</strong>。任意两个元素都能比较大小。这类结构（如红黑树、跳表）通常按中序遍历就是有序序列，支持高效的查找和范围查询。</li>
+<li><strong>无序集合</strong>：数学基础是<strong>等价关系</strong>。只关心两个元素是否“相同”（哈希值相等），不关心大小。典型实现就是哈希表，查找效率极高但不支持顺序操作。</li>
 </ul>
 
       
