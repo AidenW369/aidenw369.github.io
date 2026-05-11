@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Java-Module9 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="输入&#x2F;输出（I&#x2F;O）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java-Module9">
+<meta property="og:url" content="http://example.com/2026/03/16/Java/Java-Module9-%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="输入&#x2F;输出（I&#x2F;O）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-16T09:14:36.000Z">
+<meta property="article:modified_time" content="2026-03-17T01:37:33.795Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Java/Java-Module9-输入和输出" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/16/Java/Java-Module9-%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/" class="article-date">
+  <time class="dt-published" datetime="2026-03-16T09:14:36.000Z" itemprop="datePublished">2026-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java-Module9
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="输入-输出（I-O）"><a href="#输入-输出（I-O）" class="headerlink" title="输入&#x2F;输出（I&#x2F;O）"></a>输入&#x2F;输出（I&#x2F;O）<span id="more"></span></h1><h2 id="9-1-输入流和输出流"><a href="#9-1-输入流和输出流" class="headerlink" title="9.1 输入流和输出流"></a>9.1 输入流和输出流</h2><p>输入流和输出流是Java程序对外进行数据读写的通道。</p>
+<h3 id="9-1-1-PrintStream-类"><a href="#9-1-1-PrintStream-类" class="headerlink" title="9.1.1 PrintStream 类"></a>9.1.1 PrintStream 类</h3><p><strong><code>PrintStream</code></strong> 是 Java 标准库中的一个类，位于 <code>java.io</code> 包中。它是一个<strong>字节输出流</strong>，提供了方便的打印方法，可以将各种数据类型的数据格式化为字符串并输出。</p>
+<h4 id="主要特点："><a href="#主要特点：" class="headerlink" title="主要特点："></a>主要特点：</h4><ul>
+<li><strong>自动刷新</strong>：某些构造方法创建的PrintStream可以自动刷新</li>
+<li><strong>不抛出IOException</strong>：PrintStream中的方法会捕获内部异常，并通过<code>checkError()</code>方法检查错误状态</li>
+<li><strong>格式化输出</strong>：提供<code>print()</code>、<code>println()</code>和<code>printf()</code>等便捷方法</li>
+</ul>
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本输出方法</span></span><br><span class="line">print(各种数据类型)    <span class="comment">// 打印不换行</span></span><br><span class="line">println(各种数据类型)  <span class="comment">// 打印并换行</span></span><br><span class="line">printf()              <span class="comment">// 格式化输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误检查</span></span><br><span class="line">checkError()          <span class="comment">// 检查流是否发生错误</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="9-1-2-System-out"><a href="#9-1-2-System-out" class="headerlink" title="9.1.2 System.out"></a>9.1.2 System.out</h2><p><strong>System.out</strong> 是 Java 标准输出流，是 <code>PrintStream</code> 类的<strong>静态实例</strong>。</p>
+<h4 id="System类的定义"><a href="#System类的定义" class="headerlink" title="System类的定义"></a>System类的定义</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">System</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> PrintStream out;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li><strong>标准输出流</strong>：默认输出到控制台</li>
+<li><strong>静态 final 变量</strong>：但可以通过 <code>setOut()</code> 方法重定向</li>
+<li><strong>自动初始化</strong>：JVM 启动时自动创建</li>
+</ul>
+<h4 id="三者关系图解"><a href="#三者关系图解" class="headerlink" title="三者关系图解"></a>三者关系图解</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">java.io.PrintStream (类)</span><br><span class="line">         ↑</span><br><span class="line">         |  is a (继承关系)</span><br><span class="line">         |</span><br><span class="line">System.out (对象实例)</span><br><span class="line">    └── 默认指向标准输出流（控制台）</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="实际使用示例"><a href="#实际使用示例" class="headerlink" title="实际使用示例"></a>实际使用示例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// System.out 可以直接使用PrintStream的所有方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Example</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 使用print方法</span></span><br><span class="line">        System.out.print(<span class="string">&quot;Hello&quot;</span>);     <span class="comment">// 不换行</span></span><br><span class="line">        System.out.println(<span class="string">&quot;World&quot;</span>);    <span class="comment">// 换行</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 格式化输出</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;数字: %d&quot;</span>, <span class="number">100</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 打印对象</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Example</span>());</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 错误检查</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">hasError</span> <span class="operator">=</span> System.out.checkError();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="重定向System-out"><a href="#重定向System-out" class="headerlink" title="重定向System.out"></a>重定向System.out</h4><p>由于<code>System.out</code>是一个<code>PrintStream</code>，我们可以将其重定向到其他输出流：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将System.out重定向到文件</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="type">PrintStream</span> <span class="variable">fileOut</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.txt&quot;</span>));</span><br><span class="line">    System.setOut(fileOut);</span><br><span class="line">    System.out.println(<span class="string">&quot;这行文字会写入文件，而不是控制台&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 恢复控制台输出</span></span><br><span class="line">    System.setOut(<span class="keyword">new</span> <span class="title class_">PrintStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(FileDescriptor.out)));</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><strong>PrintStream</strong> 是一个功能丰富的输出流类</li>
+<li><strong>System.out</strong> 是PrintStream类的一个具体实例</li>
+<li>System.out默认指向控制台，但可以被重定向</li>
+<li>我们日常使用的 <code>System.out.println()</code> 实际上就是在调用PrintStream的println方法</li>
+</ul>
+<h3 id="9-1-3-InputStream类"><a href="#9-1-3-InputStream类" class="headerlink" title="9.1.3 InputStream类"></a>9.1.3 InputStream类</h3><p><strong>InputStream</strong> 是Java标准库中所有字节输入流的抽象基类，位于 <code>java.io</code> 包中。</p>
+<h4 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h4><ol>
+<li><strong>抽象类</strong>：不能直接实例化，需要其子类</li>
+<li><strong>字节流</strong>：以字节为单位读取数据</li>
+<li><strong>基础方法</strong>：定义了读取字节的基本操作</li>
+</ol>
+<h4 id="核心方法"><a href="#核心方法" class="headerlink" title="核心方法"></a>核心方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 基本读取方法</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">read</span><span class="params">()</span>                <span class="comment">// 读取一个字节，返回0-255的int，-1表示到达流末尾</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">read</span><span class="params">(<span class="type">byte</span>[] b)</span>        <span class="comment">// 读取多个字节到数组，返回实际读取的字节数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">read</span><span class="params">(<span class="type">byte</span>[] b, <span class="type">int</span> off, <span class="type">int</span> len)</span>  <span class="comment">// 指定偏移量和长度读取</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 其他重要方法</span></span><br><span class="line"><span class="type">long</span> <span class="title function_">skip</span><span class="params">(<span class="type">long</span> n)</span>         <span class="comment">// 跳过指定字节数</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">available</span><span class="params">()</span>           <span class="comment">// 返回可读取的字节数</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">close</span><span class="params">()</span>              <span class="comment">// 关闭流，释放资源</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">mark</span><span class="params">(<span class="type">int</span> readlimit)</span>  <span class="comment">// 标记当前位置</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">reset</span><span class="params">()</span>              <span class="comment">// 重置到最后一次标记的位置</span></span><br><span class="line"><span class="type">boolean</span> <span class="title function_">markSupported</span><span class="params">()</span>   <span class="comment">// 是否支持mark/reset操作</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="InputStream的继承体系"><a href="#InputStream的继承体系" class="headerlink" title="InputStream的继承体系"></a>InputStream的继承体系</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">InputStream (抽象基类)</span><br><span class="line">├── FileInputStream          // 文件输入流</span><br><span class="line">├── ByteArrayInputStream     // 字节数组输入流</span><br><span class="line">├── FilterInputStream        // 过滤输入流</span><br><span class="line">│   ├── BufferedInputStream // 缓冲输入流</span><br><span class="line">│   ├── DataInputStream     // 数据输入流</span><br><span class="line">│   └── PushbackInputStream // 回退输入流</span><br><span class="line">├── ObjectInputStream        // 对象输入流</span><br><span class="line">├── PipedInputStream         // 管道输入流</span><br><span class="line">└── SequenceInputStream      // 序列输入流</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-1-4-System-in"><a href="#9-1-4-System-in" class="headerlink" title="9.1.4 System.in"></a>9.1.4 System.in</h3><p>System.in是 System 类的静态成员变量，类型是 InputStream，代表<strong>标准输入流</strong>，通常指向键盘输入。</p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">System</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> InputStream in;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SystemInExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 直接读取字节</span></span><br><span class="line">        System.out.print(<span class="string">&quot;请输入一个字符: &quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">byteData</span> <span class="operator">=</span> System.in.read();  <span class="comment">// 读取一个字节</span></span><br><span class="line">        System.out.println(<span class="string">&quot;读取的字节: &quot;</span> + byteData);</span><br><span class="line">        System.out.println(<span class="string">&quot;对应字符: &quot;</span> + (<span class="type">char</span>) byteData);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 读取多个字节</span></span><br><span class="line">        <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">100</span>];</span><br><span class="line">        System.out.print(<span class="string">&quot;请输入一些文字: &quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">bytesRead</span> <span class="operator">=</span> System.in.read(buffer);</span><br><span class="line">        System.out.println(<span class="string">&quot;读取了 &quot;</span> + bytesRead + <span class="string">&quot; 个字节&quot;</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;输入内容: &quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(buffer, <span class="number">0</span>, bytesRead));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="实际应用：包装System-in"><a href="#实际应用：包装System-in" class="headerlink" title="实际应用：包装System.in"></a>实际应用：包装System.in</h4><p>由于<code>System.in</code>是原始字节流，通常我们会将其包装成更易用的Reader：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WrappedSystemIn</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 将字节流包装成字符流</span></span><br><span class="line">        <span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(System.in);</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(isr);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.out.print(<span class="string">&quot;请输入姓名: &quot;</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> br.readLine();  <span class="comment">// 读取一行</span></span><br><span class="line">            System.out.println(<span class="string">&quot;你好, &quot;</span> + name);</span><br><span class="line">            </span><br><span class="line">            System.out.print(<span class="string">&quot;请输入年龄: &quot;</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">ageStr</span> <span class="operator">=</span> br.readLine();</span><br><span class="line">            <span class="type">int</span> <span class="variable">age</span> <span class="operator">=</span> Integer.parseInt(ageStr);</span><br><span class="line">            System.out.println(<span class="string">&quot;年龄: &quot;</span> + age);</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="9-2-格式化输出"><a href="#9-2-格式化输出" class="headerlink" title="9.2 格式化输出"></a>9.2 格式化输出</h2><p>在Java中，<code>printf()</code> 是用于<strong>格式化输出</strong>的方法。它源自C语言的printf函数，提供了强大的格式化功能。</p>
+<h3 id="输出流程图"><a href="#输出流程图" class="headerlink" title="输出流程图"></a>输出流程图</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[你的程序] --&gt; printf(&quot;Hello&quot;) </span><br><span class="line">    |</span><br><span class="line">    | (1. 格式化字符串)</span><br><span class="line">    v</span><br><span class="line">[C标准库（libc）] --&gt; 将 &quot;Hello&quot; 放入 stdio 缓冲区</span><br><span class="line">    |</span><br><span class="line">    | (2. 遇到 \n 或缓冲区满，调用 write(1, buf, size))</span><br><span class="line">    v</span><br><span class="line">[操作系统内核] --&gt; 系统调用处理 --&gt; TTY子系统 --&gt; 终端模拟器驱动</span><br><span class="line">    |</span><br><span class="line">    | (3. 将数据发送给硬件控制程序)</span><br><span class="line">    v</span><br><span class="line">[终端模拟器/硬件] --&gt; 将字符点阵渲染到屏幕像素</span><br><span class="line">    |</span><br><span class="line">    v</span><br><span class="line">[显示器] --&gt; 你看到了 &quot;Hello&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(格式字符串, 参数列表);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="格式化说明符结构"><a href="#格式化说明符结构" class="headerlink" title="格式化说明符结构"></a>格式化说明符结构</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[参数索引$][标志][宽度][.精度]转换符</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-2-1-常用格式化转换符"><a href="#9-2-1-常用格式化转换符" class="headerlink" title="9.2.1 常用格式化转换符"></a>9.2.1 常用格式化转换符</h3><h4 id="整数格式化转换符"><a href="#整数格式化转换符" class="headerlink" title="整数格式化转换符"></a>整数格式化转换符</h4><table>
+<thead>
+<tr>
+<th align="left">转换符</th>
+<th align="left">说明</th>
+<th align="left">示例</th>
+<th align="left">输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>%d</code></td>
+<td align="left">十进制整数</td>
+<td align="left"><code>printf(&quot;%d&quot;, 123)</code></td>
+<td align="left">123</td>
+</tr>
+<tr>
+<td align="left"><code>%o</code></td>
+<td align="left">八进制整数</td>
+<td align="left"><code>printf(&quot;%o&quot;, 123)</code></td>
+<td align="left">173</td>
+</tr>
+<tr>
+<td align="left"><code>%x</code></td>
+<td align="left">十六进制整数（小写）</td>
+<td align="left"><code>printf(&quot;%x&quot;, 123)</code></td>
+<td align="left">7b</td>
+</tr>
+<tr>
+<td align="left"><code>%X</code></td>
+<td align="left">十六进制整数（大写）</td>
+<td align="left"><code>printf(&quot;%X&quot;, 123)</code></td>
+<td align="left">7B</td>
+</tr>
+</tbody></table>
+<h4 id="浮点数格式化转换符"><a href="#浮点数格式化转换符" class="headerlink" title="浮点数格式化转换符"></a>浮点数格式化转换符</h4><table>
+<thead>
+<tr>
+<th align="left">转换符</th>
+<th align="left">说明</th>
+<th align="left">示例</th>
+<th align="left">输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>%f</code></td>
+<td align="left">十进制浮点数</td>
+<td align="left"><code>printf(&quot;%f&quot;, 123.45)</code></td>
+<td align="left">123.450000</td>
+</tr>
+<tr>
+<td align="left"><code>%e</code></td>
+<td align="left">科学计数法（小写e）</td>
+<td align="left"><code>printf(&quot;%e&quot;, 123.45)</code></td>
+<td align="left">1.234500e+02</td>
+</tr>
+<tr>
+<td align="left"><code>%E</code></td>
+<td align="left">科学计数法（大写E）</td>
+<td align="left"><code>printf(&quot;%E&quot;, 123.45)</code></td>
+<td align="left">1.234500E+02</td>
+</tr>
+<tr>
+<td align="left"><code>%g</code></td>
+<td align="left">自动选择<code>%f</code>或<code>%e</code></td>
+<td align="left"><code>printf(&quot;%g&quot;, 123.45)</code></td>
+<td align="left">123.45</td>
+</tr>
+<tr>
+<td align="left"><code>%a</code></td>
+<td align="left">十六进制浮点数</td>
+<td align="left"><code>printf(&quot;%a&quot;, 123.45)</code></td>
+<td align="left">0x1.edccccccccccdp6</td>
+</tr>
+</tbody></table>
+<h3 id="9-2-2-常用标志"><a href="#9-2-2-常用标志" class="headerlink" title="9.2.2 常用标志"></a>9.2.2 常用标志</h3><h4 id="通用标志"><a href="#通用标志" class="headerlink" title="通用标志"></a>通用标志</h4><table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">说明</th>
+<th align="left">整数示例</th>
+<th align="left">浮点数示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>-</code></td>
+<td align="left">左对齐</td>
+<td align="left"><code>%-5d</code> → “123 “</td>
+<td align="left"><code>%-8.2f</code> → “123.45 “</td>
+</tr>
+<tr>
+<td align="left"><code>+</code></td>
+<td align="left">显示正负号</td>
+<td align="left"><code>%+d</code> → “+123”</td>
+<td align="left"><code>%+f</code> → “+123.450000”</td>
+</tr>
+<tr>
+<td align="left">空格</td>
+<td align="left">正数前加空格</td>
+<td align="left"><code>% d</code> → “ 123”</td>
+<td align="left"><code>% f</code> → “ 123.450000”</td>
+</tr>
+<tr>
+<td align="left"><code>0</code></td>
+<td align="left">补零</td>
+<td align="left"><code>%05d</code> → “00123”</td>
+<td align="left"><code>%08.2f</code> → “00123.45”</td>
+</tr>
+</tbody></table>
+<h4 id="整数特有标志"><a href="#整数特有标志" class="headerlink" title="整数特有标志"></a>整数特有标志</h4><table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">说明</th>
+<th align="left">示例</th>
+<th align="left">输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>#</code></td>
+<td align="left">显示进制前缀</td>
+<td align="left"><code>%#o</code> (八进制) <code>%#x</code> (十六进制)</td>
+<td align="left">0173 0x7b</td>
+</tr>
+<tr>
+<td align="left"><code>,</code></td>
+<td align="left">千位分隔符</td>
+<td align="left"><code>%,d</code></td>
+<td align="left">1,234,567</td>
+</tr>
+</tbody></table>
+<h4 id="浮点数特有标志"><a href="#浮点数特有标志" class="headerlink" title="浮点数特有标志"></a>浮点数特有标志</h4><table>
+<thead>
+<tr>
+<th align="left">标志</th>
+<th align="left">说明</th>
+<th align="left">示例</th>
+<th align="left">输出</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>#</code></td>
+<td align="left">始终显示小数点</td>
+<td align="left"><code>%#.0f</code></td>
+<td align="left">123.</td>
+</tr>
+<tr>
+<td align="left"><code>,</code></td>
+<td align="left">千位分隔符</td>
+<td align="left"><code>%,.2f</code></td>
+<td align="left">1,234,567.89</td>
+</tr>
+<tr>
+<td align="left"><code>(</code></td>
+<td align="left">负数加括号</td>
+<td align="left"><code>%(f</code></td>
+<td align="left">(123.45)</td>
+</tr>
+</tbody></table>
+<h3 id="9-2-3-精度"><a href="#9-2-3-精度" class="headerlink" title="9.2.3 精度"></a>9.2.3 精度</h3><h4 id="整数精度"><a href="#整数精度" class="headerlink" title="整数精度"></a>整数精度</h4><ul>
+<li><strong>含义</strong>：最小数字位数（不足补零）</li>
+<li><strong>示例</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%.5d&quot;</span>, <span class="number">123</span>);    <span class="comment">// 输出：00123</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%.5d&quot;</span>, <span class="number">12345</span>);  <span class="comment">// 输出：12345（不截断）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="浮点数精度"><a href="#浮点数精度" class="headerlink" title="浮点数精度"></a>浮点数精度</h4><ul>
+<li><strong>含义</strong>：小数点后的位数</li>
+<li><strong>示例</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%.2f&quot;</span>, <span class="number">123.456</span>);   <span class="comment">// 输出：123.46（四舍五入）</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%.0f&quot;</span>, <span class="number">123.456</span>);   <span class="comment">// 输出：124（四舍五入）</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%.8f&quot;</span>, <span class="number">123.45</span>);    <span class="comment">// 输出：123.45000000（补零）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-2-4-宽度"><a href="#9-2-4-宽度" class="headerlink" title="9.2.4 宽度"></a>9.2.4 宽度</h3><h4 id="整数宽度"><a href="#整数宽度" class="headerlink" title="整数宽度"></a>整数宽度</h4><ul>
+<li>包含数字本身和可能的符号、进制前缀</li>
+<li><strong>示例</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%5d&quot;</span>, <span class="number">123</span>);        <span class="comment">// 输出：&quot;  123&quot;</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%5d&quot;</span>, -<span class="number">123</span>);       <span class="comment">// 输出：&quot; -123&quot;</span></span><br><span class="line">System.out.printf(<span class="string">&quot;%#5o&quot;</span>, <span class="number">123</span>);       <span class="comment">// 输出：&quot; 0173&quot;（包含前缀）</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="浮点数宽度"><a href="#浮点数宽度" class="headerlink" title="浮点数宽度"></a>浮点数宽度</h4><ul>
+<li>包含整数部分、小数点、小数部分和符号</li>
+<li><strong>示例</strong>：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">System.out.printf(<span class="string">&quot;%8.2f&quot;</span>, <span class="number">123.45</span>);   <span class="comment">// 输出：&quot;  123.45&quot;（宽度8）</span></span><br><span class="line"><span class="comment">// 各部分：整数3位 + 小数点1位 + 小数2位 + 符号(无) = 6位，补2个空格</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="9-2-5-整数、浮点数完整对比示例"><a href="#9-2-5-整数、浮点数完整对比示例" class="headerlink" title="9.2.5 整数、浮点数完整对比示例"></a>9.2.5 整数、浮点数完整对比示例</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FormatComparison</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">intNum</span> <span class="operator">=</span> <span class="number">123</span>;</span><br><span class="line">        <span class="type">double</span> <span class="variable">doubleNum</span> <span class="operator">=</span> <span class="number">123.456</span>;</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;===== 基本格式化对比 =====&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;整数：%d%n&quot;</span>, intNum);        <span class="comment">// 123</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;浮点数：%f%n&quot;</span>, doubleNum);   <span class="comment">// 123.456000</span></span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;\n===== 宽度和精度对比 =====&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;整数(宽度6)：&#x27;%6d&#x27;%n&quot;</span>, intNum);      <span class="comment">// &#x27;   123&#x27;</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;浮点数(宽度10，精度2)：&#x27;%10.2f&#x27;%n&quot;</span>, doubleNum); <span class="comment">// &#x27;    123.46&#x27;</span></span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;\n===== 补零对比 =====&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;整数补零：%06d%n&quot;</span>, intNum);         <span class="comment">// 000123</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;浮点数补零：%010.2f%n&quot;</span>, doubleNum); <span class="comment">// 0000123.46</span></span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;\n===== 正负号处理对比 =====&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;整数正号：%+d，负号：%+d%n&quot;</span>, <span class="number">123</span>, -<span class="number">123</span>);     <span class="comment">// +123，-123</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;浮点数正号：%+.2f，负号：%+.2f%n&quot;</span>, <span class="number">123.45</span>, -<span class="number">123.45</span>); <span class="comment">// +123.45，-123.45</span></span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;\n===== 千位分隔符对比 =====&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;整数千分位：%,d%n&quot;</span>, <span class="number">1234567</span>);            <span class="comment">// 1,234,567</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;浮点数千分位：%,.2f%n&quot;</span>, <span class="number">1234567.89</span>);     <span class="comment">// 1,234,567.89</span></span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;\n===== 进制转换对比（整数特有） =====&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;十进制：%d，八进制：%o，十六进制：%x%n&quot;</span>, intNum, intNum, intNum);</span><br><span class="line">        System.out.printf(<span class="string">&quot;八进制带前缀：%#o，十六进制带前缀：%#x%n&quot;</span>, intNum, intNum);</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;\n===== 科学计数法（浮点数特有） =====&quot;</span>);</span><br><span class="line">        System.out.printf(<span class="string">&quot;科学计数法：%e%n&quot;</span>, doubleNum);          <span class="comment">// 1.234560e+02</span></span><br><span class="line">        System.out.printf(<span class="string">&quot;自动选择：%g%n&quot;</span>, doubleNum);            <span class="comment">// 123.456</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">整数</th>
+<th align="left">浮点数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">进制转换</td>
+<td align="left">支持（d,o,x）</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">科学计数法</td>
+<td align="left">不支持</td>
+<td align="left">支持（e,g）</td>
+</tr>
+<tr>
+<td align="left">小数点处理</td>
+<td align="left">无小数点</td>
+<td align="left">必须有小数点</td>
+</tr>
+<tr>
+<td align="left">精度含义</td>
+<td align="left">最小位数</td>
+<td align="left">小数位数</td>
+</tr>
+<tr>
+<td align="left">负数括号</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+</tr>
+<tr>
+<td align="left">特殊值处理</td>
+<td align="left">无特殊值</td>
+<td align="left">支持Infinity&#x2F;NaN</td>
+</tr>
+</tbody></table>
+<h3 id="9-2-6-flush-输出"><a href="#9-2-6-flush-输出" class="headerlink" title="9.2.6 flush() 输出"></a>9.2.6 flush() 输出</h3><p><code>flush()</code> 是输出流（OutputStream&#x2F;Writer）中的一个方法，<strong>强制将缓冲区中的数据立即写入到目的地</strong>。简单来说，就是”清空缓冲区”。</p>
+<h4 id="为什么需要flush-？"><a href="#为什么需要flush-？" class="headerlink" title="为什么需要flush()？"></a>为什么需要flush()？</h4><p>为了提高效率，Java的IO流使用了**缓冲区（Buffer）**机制：</p>
+<ul>
+<li>数据先写入内存缓冲区</li>
+<li>缓冲区满了才真正输出到目标设备</li>
+<li>这样可以减少实际的IO操作次数</li>
+</ul>
+<h4 id="哪些流需要flush-？"><a href="#哪些流需要flush-？" class="headerlink" title="哪些流需要flush()？"></a>哪些流需要flush()？</h4><h5 id="需要手动flush的流："><a href="#需要手动flush的流：" class="headerlink" title="需要手动flush的流："></a>需要手动flush的流：</h5><ul>
+<li><code>BufferedOutputStream</code></li>
+<li><code>BufferedWriter</code></li>
+<li><code>PrintStream</code>&#x2F;<code>PrintWriter</code></li>
+<li>网络Socket输出流</li>
+<li>数据库输出流</li>
+</ul>
+<h5 id="自动flush的情况："><a href="#自动flush的情况：" class="headerlink" title="自动flush的情况："></a>自动flush的情况：</h5><ul>
+<li>缓冲区满了自动写入</li>
+<li>流关闭时自动flush</li>
+<li><code>PrintStream</code>&#x2F;<code>PrintWriter</code> 遇到换行符（某些构造器参数）</li>
+</ul>
+<h4 id="flush-的实际应用场景"><a href="#flush-的实际应用场景" class="headerlink" title="flush()的实际应用场景"></a>flush()的实际应用场景</h4><h5 id="场景1：控制台输出"><a href="#场景1：控制台输出" class="headerlink" title="场景1：控制台输出"></a>场景1：控制台输出</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FlushExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// System.out 实际上是 PrintStream，默认会自动flush换行</span></span><br><span class="line">        System.out.print(<span class="string">&quot;正在处理...&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 模拟耗时操作</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 如果不加flush，上面的&quot;正在处理...&quot;可能不会立即显示</span></span><br><span class="line">        System.out.flush();  <span class="comment">// 强制立即显示</span></span><br><span class="line">        System.out.println(<span class="string">&quot;完成！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="场景2：文件写入"><a href="#场景2：文件写入" class="headerlink" title="场景2：文件写入"></a>场景2：文件写入</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FileFlushExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> (<span class="type">BufferedWriter</span> <span class="variable">writer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(<span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;test.txt&quot;</span>))) &#123;</span><br><span class="line">            writer.write(<span class="string">&quot;第一行数据&quot;</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 模拟程序崩溃</span></span><br><span class="line">            <span class="comment">// throw new RuntimeException(&quot;模拟崩溃&quot;);</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 如果不flush，上面的写入可能丢失</span></span><br><span class="line">            writer.flush();  <span class="comment">// 确保数据已经写入文件</span></span><br><span class="line">            </span><br><span class="line">            writer.write(<span class="string">&quot;第二行数据&quot;</span>);</span><br><span class="line">            writer.flush();  <span class="comment">// 立即写入</span></span><br><span class="line">            </span><br><span class="line">            System.out.println(<span class="string">&quot;写入完成，数据已确保保存&quot;</span>);</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="flush-vs-close"><a href="#flush-vs-close" class="headerlink" title="flush() vs close()"></a>flush() vs close()</h4><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">flush()</th>
+<th align="left">close()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">作用</td>
+<td align="left">清空缓冲区</td>
+<td align="left">关闭流并释放资源</td>
+</tr>
+<tr>
+<td align="left">后续使用</td>
+<td align="left">可以继续写入</td>
+<td align="left">不能再写入</td>
+</tr>
+<tr>
+<td align="left">自动行为</td>
+<td align="left">不会自动调用</td>
+<td align="left">自动调用flush</td>
+</tr>
+<tr>
+<td align="left">调用次数</td>
+<td align="left">可以多次调用</td>
+<td align="left">只能调用一次</td>
+</tr>
+</tbody></table>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><p><strong>什么时候必须使用flush()？</strong></p>
+<ol>
+<li><strong>实时交互</strong>：需要立即看到结果时（进度条、提示信息）</li>
+<li><strong>关键数据</strong>：确保数据不丢失，即使程序崩溃</li>
+<li><strong>网络通信</strong>：确保数据立即发送</li>
+<li><strong>调试信息</strong>：需要准确定位问题发生的位置</li>
+</ol>
+<h2 id="9-3-字符流"><a href="#9-3-字符流" class="headerlink" title="9.3 字符流"></a>9.3 字符流</h2><h3 id="9-3-1-输入字符流"><a href="#9-3-1-输入字符流" class="headerlink" title="9.3.1 输入字符流"></a>9.3.1 输入字符流</h3><p><strong>Scanner</strong>是Java 5引入的一个用于简化文本输入处理的类，位于<code>java.util</code>包中，通常被用于<strong>输入字符流</strong>。</p>
+<p>Scanner可以将文本输入（如键盘输入、文件内容等）解析为<strong>基本数据类型</strong>和<strong>字符串</strong>。它使用正则表达式来分隔标记（tokens）。</p>
+<h4 id="创建Scanner对象"><a href="#创建Scanner对象" class="headerlink" title="创建Scanner对象"></a>创建Scanner对象</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从键盘输入读取</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从字符串读取</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(<span class="string">&quot;Hello World 123&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从文件读取</span></span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;input.txt&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 读取不同类型的数据</span></span><br><span class="line"><span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> sc.nextInt();           <span class="comment">// 读取整数</span></span><br><span class="line"><span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> sc.nextDouble();        <span class="comment">// 读取浮点数</span></span><br><span class="line"><span class="type">String</span> <span class="variable">word</span> <span class="operator">=</span> sc.next();           <span class="comment">// 读取单个单词（遇到空白符停止）</span></span><br><span class="line"><span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> sc.nextLine();       <span class="comment">// 读取整行</span></span><br><span class="line"><span class="type">boolean</span> <span class="variable">bool</span> <span class="operator">=</span> sc.nextBoolean();   <span class="comment">// 读取布尔值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断方法</span></span><br><span class="line"><span class="keyword">if</span> (sc.hasNextInt()) &#123;             <span class="comment">// 检查下一个是否为整数</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (sc.hasNextLine()) &#123;            <span class="comment">// 检查是否有下一行</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用分隔符</span></span><br><span class="line">sc.useDelimiter(<span class="string">&quot;,&quot;</span>);              <span class="comment">// 设置逗号为分隔符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 关闭scanner</span></span><br><span class="line">sc.close();                         <span class="comment">// 释放资源</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-3-2-输出字符流"><a href="#9-3-2-输出字符流" class="headerlink" title="9.3.2 输出字符流"></a>9.3.2 输出字符流</h3><h4 id="1-StringWriter"><a href="#1-StringWriter" class="headerlink" title="1. StringWriter"></a>1. StringWriter</h4><p><code>StringWriter</code> 是一个字符流，它将输出收集到一个字符串缓冲区中，可以用来构建字符串。</p>
+<h5 id="主要特点-1"><a href="#主要特点-1" class="headerlink" title="主要特点"></a>主要特点</h5><ul>
+<li>继承自 <code>Writer</code> 类</li>
+<li>内部使用 <code>StringBuffer</code> 来存储字符</li>
+<li>可以方便地获取最终构建的字符串</li>
+</ul>
+<h5 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="常用方法"></a>常用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.StringWriter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StringWriterExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建StringWriter</span></span><br><span class="line">        <span class="type">StringWriter</span> <span class="variable">stringWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringWriter</span>();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 写入数据</span></span><br><span class="line">        stringWriter.write(<span class="string">&quot;Hello, &quot;</span>);</span><br><span class="line">        stringWriter.write(<span class="string">&quot;World!&quot;</span>);</span><br><span class="line">        stringWriter.write(<span class="string">&#x27; &#x27;</span>);</span><br><span class="line">        stringWriter.write(<span class="string">&quot;This is a test.&quot;</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取构建的字符串</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> stringWriter.toString();</span><br><span class="line">        System.out.println(result); <span class="comment">// 输出: Hello, World! This is a test.</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取StringBuffer</span></span><br><span class="line">        <span class="type">StringBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> stringWriter.getBuffer();</span><br><span class="line">        System.out.println(buffer); <span class="comment">// 输出: Hello, World! This is a test.</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 关闭StringWriter（实际上不需要，但为了完整性）</span></span><br><span class="line">        stringWriter.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-PrintWriter"><a href="#2-PrintWriter" class="headerlink" title="2. PrintWriter"></a>2. PrintWriter</h4><p><code>PrintWriter</code> 提供了方便的打印方法，可以格式化输出各种数据类型。</p>
+<h5 id="主要特点-2"><a href="#主要特点-2" class="headerlink" title="主要特点"></a>主要特点</h5><ul>
+<li>可以包装其他Writer或OutputStream</li>
+<li>提供便捷的print()和println()方法</li>
+<li>不会抛出IOException（需要手动检查错误）</li>
+<li>支持自动刷新</li>
+</ul>
+<h5 id="常用方法-3"><a href="#常用方法-3" class="headerlink" title="常用方法"></a>常用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.StringWriter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrintWriterExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建PrintWriter包装StringWriter</span></span><br><span class="line">        <span class="type">StringWriter</span> <span class="variable">stringWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringWriter</span>();</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">printWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(stringWriter);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 使用print和println方法</span></span><br><span class="line">        printWriter.print(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">        printWriter.println(<span class="string">&quot; World!&quot;</span>);</span><br><span class="line">        printWriter.println(<span class="number">123</span>);</span><br><span class="line">        printWriter.println(<span class="number">45.67</span>);</span><br><span class="line">        printWriter.println(<span class="literal">true</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 格式化输出</span></span><br><span class="line">        printWriter.printf(<span class="string">&quot;Name: %s, Age: %d&quot;</span>, <span class="string">&quot;John&quot;</span>, <span class="number">25</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取结果</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">result</span> <span class="operator">=</span> stringWriter.toString();</span><br><span class="line">        System.out.println(result);</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        输出：</span></span><br><span class="line"><span class="comment">        Hello World!</span></span><br><span class="line"><span class="comment">        123</span></span><br><span class="line"><span class="comment">        45.67</span></span><br><span class="line"><span class="comment">        true</span></span><br><span class="line"><span class="comment">        Name: John, Age: 25</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        </span><br><span class="line">        printWriter.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-3-3-组合使用示例"><a href="#9-3-3-组合使用示例" class="headerlink" title="9.3.3 组合使用示例"></a>9.3.3 组合使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.io.StringWriter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CombinedExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建StringWriter和PrintWriter的组合</span></span><br><span class="line">        <span class="type">StringWriter</span> <span class="variable">stringWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringWriter</span>();</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">printWriter</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(stringWriter, <span class="literal">true</span>); <span class="comment">// 启用自动刷新</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 输出各种数据类型</span></span><br><span class="line">        printWriter.println(<span class="string">&quot;User Information:&quot;</span>);</span><br><span class="line">        printWriter.println(<span class="string">&quot;----------------&quot;</span>);</span><br><span class="line">        printWriter.printf(<span class="string">&quot;Name: %s\n&quot;</span>, <span class="string">&quot;Alice Smith&quot;</span>);</span><br><span class="line">        printWriter.printf(<span class="string">&quot;Age: %d\n&quot;</span>, <span class="number">30</span>);</span><br><span class="line">        printWriter.printf(<span class="string">&quot;Salary: $%.2f\n&quot;</span>, <span class="number">75000.50</span>);</span><br><span class="line">        printWriter.printf(<span class="string">&quot;Active: %b\n&quot;</span>, <span class="literal">true</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取所有输出</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">formattedOutput</span> <span class="operator">=</span> stringWriter.toString();</span><br><span class="line">        System.out.println(formattedOutput);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="主要区别总结"><a href="#主要区别总结" class="headerlink" title="主要区别总结"></a>主要区别总结</h4><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">StringWriter</th>
+<th align="left">PrintWriter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">主要用途</td>
+<td align="left">构建字符串</td>
+<td align="left">格式化输出</td>
+</tr>
+<tr>
+<td align="left">输出目标</td>
+<td align="left">内部StringBuffer</td>
+<td align="left">可以包装任意Writer</td>
+</tr>
+<tr>
+<td align="left">异常处理</td>
+<td align="left">可能抛出IOException</td>
+<td align="left">不抛出IOException</td>
+</tr>
+<tr>
+<td align="left">便捷方法</td>
+<td align="left">基本的write()方法</td>
+<td align="left">print(), println(), printf()</td>
+</tr>
+<tr>
+<td align="left">获取结果</td>
+<td align="left">toString()方法</td>
+<td align="left">取决于包装的Writer</td>
+</tr>
+</tbody></table>
+<h4 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h4><ol>
+<li><strong>需要构建字符串时</strong>：使用 <code>StringWriter</code></li>
+<li><strong>需要格式化输出时</strong>：使用 <code>PrintWriter</code></li>
+<li><strong>需要两者功能时</strong>：组合使用 <code>PrintWriter</code> 包装 <code>StringWriter</code></li>
+<li><strong>异常处理</strong>：使用 <code>try-with-resources</code> 自动关闭资源</li>
+</ol>
+<h2 id="9-4-文件读取输入流"><a href="#9-4-文件读取输入流" class="headerlink" title="9.4 文件读取输入流"></a>9.4 文件读取输入流</h2><h3 id="9-4-1-FileInputStream"><a href="#9-4-1-FileInputStream" class="headerlink" title="9.4.1 FileInputStream"></a>9.4.1 FileInputStream</h3><p><strong>FileInputStream</strong> 是Java中用于从文件中读取字节数据的输入流类。它位于 <code>java.io</code> 包中，是 <code>InputStream</code> 抽象类的子类。</p>
+<h4 id="主要特点-3"><a href="#主要特点-3" class="headerlink" title="主要特点"></a>主要特点</h4><ol>
+<li><strong>字节流</strong>：以字节为单位读取文件内容</li>
+<li><strong>文件输入</strong>：专门用于从文件系统中读取数据</li>
+<li><strong>原始数据</strong>：适合读取二进制文件（如图片、音频、视频等）</li>
+</ol>
+<h4 id="常用构造方法"><a href="#常用构造方法" class="headerlink" title="常用构造方法"></a>常用构造方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过文件路径创建</span></span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;file.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过File对象创建</span></span><br><span class="line"><span class="type">File</span> <span class="variable">file</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;file.txt&quot;</span>);</span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(file);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="核心方法-1"><a href="#核心方法-1" class="headerlink" title="核心方法"></a>核心方法</h4><table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>int read()</code></td>
+<td align="left">读取一个字节，返回字节值（0-255），到达文件末尾返回-1</td>
+</tr>
+<tr>
+<td align="left"><code>int read(byte[] b)</code></td>
+<td align="left">读取字节到数组中，返回实际读取的字节数</td>
+</tr>
+<tr>
+<td align="left"><code>int read(byte[] b, int off, int len)</code></td>
+<td align="left">读取指定长度的字节到数组的指定位置</td>
+</tr>
+<tr>
+<td align="left"><code>void close()</code></td>
+<td align="left">关闭流并释放资源</td>
+</tr>
+<tr>
+<td align="left"><code>int available()</code></td>
+<td align="left">返回可以读取的字节数</td>
+</tr>
+<tr>
+<td align="left"><code>long skip(long n)</code></td>
+<td align="left">跳过指定数量的字节</td>
+</tr>
+</tbody></table>
+<h4 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h4><h5 id="1-单个字节读取（不推荐用于大文件）"><a href="#1-单个字节读取（不推荐用于大文件）" class="headerlink" title="1. 单个字节读取（不推荐用于大文件）"></a>1. 单个字节读取（不推荐用于大文件）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;test.txt&quot;</span>)) &#123;</span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="keyword">while</span> ((data = fis.read()) != -<span class="number">1</span>) &#123;</span><br><span class="line">        System.out.print((<span class="type">char</span>) data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-使用缓冲区读取（推荐）"><a href="#2-使用缓冲区读取（推荐）" class="headerlink" title="2. 使用缓冲区读取（推荐）"></a>2. 使用缓冲区读取（推荐）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;test.txt&quot;</span>)) &#123;</span><br><span class="line">    <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="type">int</span> bytesRead;</span><br><span class="line">    <span class="keyword">while</span> ((bytesRead = fis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="comment">// 处理读取的数据，注意bytesRead可能小于buffer长度</span></span><br><span class="line">        System.out.print(<span class="keyword">new</span> <span class="title class_">String</span>(buffer, <span class="number">0</span>, bytesRead));</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
+<li><strong>资源管理</strong>：使用完必须关闭流，推荐使用 try-with-resources 自动关闭</li>
+<li><strong>字符编码</strong>：FileInputStream 是字节流，读取文本文件时可能出现乱码，应使用 InputStreamReader 包装</li>
+<li><strong>性能优化</strong>：使用缓冲区（byte数组）批量读取比单个字节读取性能更好</li>
+<li><strong>异常处理</strong>：必须处理 FileNotFoundException 和 IOException</li>
+</ol>
+<h3 id="9-4-2-hasNextInt-和-hasNext"><a href="#9-4-2-hasNextInt-和-hasNext" class="headerlink" title="9.4.2 hasNextInt() 和 hasNext()"></a>9.4.2 hasNextInt() 和 hasNext()</h3><h4 id="1-hasNext-方法"><a href="#1-hasNext-方法" class="headerlink" title="1. hasNext() 方法"></a>1. <strong>hasNext() 方法</strong></h4><p>检查输入源中是否<strong>还有下一个 token</strong>（默认以空白符分隔的字符串），不关心token的具体类型。</p>
+<h4 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>返回 <code>boolean</code> 值</li>
+<li>只检查是否存在下一个token</li>
+<li>不验证token的类型</li>
+<li>遇到空格、制表符、换行符时会分隔token</li>
+</ul>
+<h4 id="2-hasNextInt-方法"><a href="#2-hasNextInt-方法" class="headerlink" title="2. hasNextInt() 方法"></a>2. <strong>hasNextInt() 方法</strong></h4><p>检查输入源中的<strong>下一个token</strong>是否可以解释为<strong>int类型</strong>的整数。</p>
+<h4 id="特点-2"><a href="#特点-2" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>返回 <code>boolean</code> 值</li>
+<li>验证下一个token是否为有效的整数</li>
+<li>不会消耗（读取）该token</li>
+<li>支持负数和正数</li>
+<li>只检查整数类型，不检查小数</li>
+</ul>
+<h3 id="9-4-3-其他类似的类型检查方法"><a href="#9-4-3-其他类似的类型检查方法" class="headerlink" title="9.4.3 其他类似的类型检查方法"></a><strong>9.4.3 其他类似的类型检查方法</strong></h3><table>
+<thead>
+<tr>
+<th align="left">方法</th>
+<th align="left">检查内容</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>hasNextInt()</code></td>
+<td align="left">是否为整数</td>
+<td align="left">“123” → true, “12.3” → false</td>
+</tr>
+<tr>
+<td align="left"><code>hasNextLong()</code></td>
+<td align="left">是否为长整数</td>
+<td align="left">“12345678901” → true</td>
+</tr>
+<tr>
+<td align="left"><code>hasNextDouble()</code></td>
+<td align="left">是否为双精度浮点数</td>
+<td align="left">“12.3” → true, “abc” → false</td>
+</tr>
+<tr>
+<td align="left"><code>hasNextBoolean()</code></td>
+<td align="left">是否为布尔值</td>
+<td align="left">“true”&#x2F;“false” → true</td>
+</tr>
+<tr>
+<td align="left"><code>hasNextLine()</code></td>
+<td align="left">是否还有下一行</td>
+<td align="left">按行检查</td>
+</tr>
+<tr>
+<td align="left"><code>hasNextBigInteger()</code></td>
+<td align="left">是否为超大整数</td>
+<td align="left">任意大小的整数</td>
+</tr>
+</tbody></table>
+<h3 id="9-4-4-实际应用场景"><a href="#9-4-4-实际应用场景" class="headerlink" title="9.4.4 实际应用场景"></a>9.4.4 <strong>实际应用场景</strong></h3><h4 id="场景1：验证用户输入"><a href="#场景1：验证用户输入" class="headerlink" title="场景1：验证用户输入"></a>场景1：验证用户输入</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">System.out.print(<span class="string">&quot;请输入一个整数：&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (sc.hasNextInt()) &#123;  <span class="comment">// 验证输入是否为整数</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">    System.out.println(<span class="string">&quot;你输入的数字是：&quot;</span> + num);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;输入错误，不是有效的整数！&quot;</span>);</span><br><span class="line">    System.out.println(<span class="string">&quot;你输入的是：&quot;</span> + sc.next());  <span class="comment">// 显示错误输入</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="场景2：混合类型数据处理"><a href="#场景2：混合类型数据处理" class="headerlink" title="场景2：混合类型数据处理"></a>场景2：混合类型数据处理</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">data</span> <span class="operator">=</span> <span class="string">&quot;小明 85 小红 92 小张 78 小王 abc&quot;</span>;</span><br><span class="line"><span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(data);</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;学生成绩统计：&quot;</span>);</span><br><span class="line"><span class="keyword">while</span> (sc.hasNext()) &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> sc.next();  <span class="comment">// 读取姓名</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (sc.hasNextInt()) &#123;    <span class="comment">// 检查下一个是否是成绩</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">score</span> <span class="operator">=</span> sc.nextInt();</span><br><span class="line">        System.out.println(name + <span class="string">&quot;: &quot;</span> + score);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        System.out.println(name + <span class="string">&quot;: 成绩数据异常&quot;</span>);</span><br><span class="line">        sc.next();  <span class="comment">// 跳过异常数据</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// 小明: 85</span></span><br><span class="line"><span class="comment">// 小红: 92</span></span><br><span class="line"><span class="comment">// 小张: 78</span></span><br><span class="line"><span class="comment">// 小王: 成绩数据异常</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="场景3：读取文件中的数字"><a href="#场景3：读取文件中的数字" class="headerlink" title="场景3：读取文件中的数字"></a>场景3：读取文件中的数字</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">Scanner</span> <span class="variable">sc</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;numbers.txt&quot;</span>))) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (sc.hasNext()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (sc.hasNextInt()) &#123;</span><br><span class="line">            sum += sc.nextInt();</span><br><span class="line">            count++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 跳过非数字内容</span></span><br><span class="line">            System.out.println(<span class="string">&quot;跳过非数字: &quot;</span> + sc.next());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    System.out.printf(<span class="string">&quot;共读取%d个数字，和为：%d%n&quot;</span>, count, sum);</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;文件未找到&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a><strong>注意事项</strong></h4><ol>
+<li><strong>不消耗输入</strong>：这两个方法都只检查，不读取输入</li>
+<li><strong>配合使用</strong>：通常先用 <code>hasNextInt()</code> 检查，再用 <code>nextInt()</code> 读取</li>
+<li><strong>阻塞问题</strong>：从键盘读入时，<code>hasNext()</code> 会阻塞等待输入</li>
+<li><strong>异常安全</strong>：使用 <code>hasNextInt()</code> 可以避免 <code>InputMismatchException</code></li>
+</ol>
+<h2 id="9-5-文件写入输出流"><a href="#9-5-文件写入输出流" class="headerlink" title="9.5 文件写入输出流"></a>9.5 文件写入输出流</h2><p>在Java中，<strong>文件写入输出流</strong>通常指的是用于将数据<strong>写入</strong>到文件中的输出流（OutputStream），最典型的就是 <strong><code>FileOutputStream</code></strong> 类。</p>
+<h4 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h4><p><code>FileOutputStream</code> 是 <code>OutputStream</code> 的子类，它属于<strong>字节流</strong>。</p>
+<ul>
+<li><strong>处理单位</strong>：它以 <strong>字节（Byte）</strong> 为单位进行写入。这意味着它可以处理任何类型的文件，包括文本文件（.txt）、图片（.jpg）、音频（.mp3）等。</li>
+<li><strong>工作原理</strong>：你把一个字节数组（<code>byte[]</code>）交给它，它就把这些字节原封不动地写到文件中。</li>
+</ul>
+<h3 id="9-5-1-FileOutputStream"><a href="#9-5-1-FileOutputStream" class="headerlink" title="9.5.1 FileOutputStream"></a>9.5.1 FileOutputStream</h3><p>FileOutputStream以<strong>字节</strong>为单位向文件写入数据的，适合写入所有类型的文件（文本、图片、视频等）。</p>
+<h4 id="写入模式"><a href="#写入模式" class="headerlink" title="写入模式"></a><strong>写入模式</strong></h4><table>
+<thead>
+<tr>
+<th align="left">模式</th>
+<th align="left">构造方法</th>
+<th align="left">行为</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>覆盖模式</strong></td>
+<td align="left"><code>new FileOutputStream(&quot;file.txt&quot;)</code></td>
+<td align="left">每次运行都会<strong>删除原文件内容</strong>，重新写入</td>
+</tr>
+<tr>
+<td align="left"><strong>追加模式</strong></td>
+<td align="left"><code>new FileOutputStream(&quot;file.txt&quot;, true)</code></td>
+<td align="left">在<strong>文件末尾</strong>继续添加内容，保留原有数据</td>
+</tr>
+</tbody></table>
+<h4 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h4><ol>
+<li><strong>创建流对象</strong>：打开通往文件的数据通道。</li>
+<li><strong>写入数据</strong>：通过通道发送数据。</li>
+<li><strong>关闭流</strong>：通道使用完毕，必须关闭以释放系统资源（<strong>这一步非常关键</strong>）。</li>
+</ol>
+<h4 id="基本使用示例"><a href="#基本使用示例" class="headerlink" title="基本使用示例"></a>基本使用示例</h4><h5 id="1-写入字节数据（覆盖模式）"><a href="#1-写入字节数据（覆盖模式）" class="headerlink" title="1. 写入字节数据（覆盖模式）"></a>1. 写入字节数据（覆盖模式）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 1. 创建输出流（默认覆盖模式）</span></span><br><span class="line">            fos = <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.txt&quot;</span>);</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 2. 准备要写入的数据</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">data</span> <span class="operator">=</span> <span class="string">&quot;Hello, Java I/O!&quot;</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 3. 将字符串转换为字节数组并写入</span></span><br><span class="line">            fos.write(data.getBytes());</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 4. 强制将缓冲区数据写入磁盘（可选）</span></span><br><span class="line">            fos.flush();</span><br><span class="line">            </span><br><span class="line">            System.out.println(<span class="string">&quot;文件写入成功！&quot;</span>);</span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="comment">// 5. 关闭流（必须！）</span></span><br><span class="line">            <span class="keyword">if</span> (fos != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    fos.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="2-追加模式写入"><a href="#2-追加模式写入" class="headerlink" title="2. 追加模式写入"></a>2. 追加模式写入</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只需要在构造方法中传入 true 参数</span></span><br><span class="line"><span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">// 这样每次写入都会追加到文件末尾，不会覆盖原有内容</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3-使用-try-with-resources（推荐）"><a href="#3-使用-try-with-resources（推荐）" class="headerlink" title="3. 使用 try-with-resources（推荐）"></a>3. 使用 try-with-resources（推荐）</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// try-with-resources 自动关闭流</span></span><br><span class="line">        <span class="keyword">try</span> (<span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.txt&quot;</span>, <span class="literal">true</span>)) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">content</span> <span class="operator">=</span> <span class="string">&quot;这是追加的内容\n&quot;</span>;</span><br><span class="line">            fos.write(content.getBytes());</span><br><span class="line">            <span class="comment">// 不需要手动 close()</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="9-5-2-实际应用场景"><a href="#9-5-2-实际应用场景" class="headerlink" title="9.5.2 实际应用场景"></a>9.5.2 实际应用场景</h3><h4 id="1-文件复制（经典案例）"><a href="#1-文件复制（经典案例）" class="headerlink" title="1. 文件复制（经典案例）"></a>1. 文件复制（经典案例）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;source.jpg&quot;</span>);</span><br><span class="line">     <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;copy.jpg&quot;</span>)) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>]; <span class="comment">// 1KB缓冲区</span></span><br><span class="line">    <span class="type">int</span> length;</span><br><span class="line">    <span class="keyword">while</span> ((length = fis.read(buffer)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        fos.write(buffer, <span class="number">0</span>, length); <span class="comment">// 边读边写</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-写入日志文件"><a href="#2-写入日志文件" class="headerlink" title="2. 写入日志文件"></a>2. 写入日志文件</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;app.log&quot;</span>, <span class="literal">true</span>)) &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">log</span> <span class="operator">=</span> <span class="string">&quot;2024-01-15 10:30:25 用户登录成功\n&quot;</span>;</span><br><span class="line">    fos.write(log.getBytes());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="注意事项-2"><a href="#注意事项-2" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
+<li><strong>自动创建文件</strong>：如果输出的文件不存在，FileOutputStream 会自动创建（但目录必须存在）</li>
+<li><strong>覆盖风险</strong>：默认模式会清空原文件，小心数据丢失</li>
+<li><strong>编码问题</strong>：写入文本时，<code>getBytes()</code> 使用平台默认编码，可能导致乱码</li>
+<li><strong>必须关闭流</strong>：否则文件可能被锁定，或数据丢失</li>
+<li><strong>flush() 的作用</strong>：强制将缓冲区数据写入磁盘，确保数据不丢失</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/16/Java/Java-Module9-%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA/" data-id="cuidXUBqklfsB0a9MN_yVymPX" data-title="Java-Module9" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/17/Java/Java-Module10-%E7%BB%A7%E6%89%BF/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java-Module10
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/16/Java/Java-Module8-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java-Module8</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenClaw/">OpenClaw</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Data-Structure/" style="font-size: 15px;">Data Structure</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/OpenClaw/" style="font-size: 10px;">OpenClaw</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/05/11/Data-Structure-Module7/">Data-Structure-Module7</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/11/Data-Structure-Module8/">Data-Structure-Module8</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/11/Data-Structure-Module9/">Data-Structure-Module9</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/11/Data-Structure-Module10/">Data-Structure-Module10</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/09/Notes/OpenClaw%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%B8%A9%E5%9D%91/">OpenClaw的容器化部署及踩坑</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
