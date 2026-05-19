@@ -14,7 +14,7 @@
 <meta property="og:description" content="变量和赋值">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-05-19T10:24:57.000Z">
-<meta property="article:modified_time" content="2026-05-19T10:25:54.220Z">
+<meta property="article:modified_time" content="2026-05-19T10:57:08.721Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="System Programming">
 <meta name="twitter:card" content="summary">
@@ -100,7 +100,103 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="变量和赋值"><a href="#变量和赋值" class="headerlink" title="变量和赋值"></a>变量和赋值<span id="more"></span></h1>
+        <h1 id="变量和赋值"><a href="#变量和赋值" class="headerlink" title="变量和赋值"></a>变量和赋值<span id="more"></span></h1><h2 id="2-1-变量和赋值介绍"><a href="#2-1-变量和赋值介绍" class="headerlink" title="2.1 变量和赋值介绍"></a>2.1 变量和赋值介绍</h2><p>略。</p>
+<h2 id="2-2-int变量"><a href="#2-2-int变量" class="headerlink" title="2.2 int变量"></a>2.2 int变量</h2><p>在C语言中，<code>int</code> 是一种基本的数据类型，用于声明<strong>整数变量</strong>。</p>
+<p><code>int</code> 是 “integer”（整数）的缩写，用来存储没有小数部分的数值，比如 <code>-3</code>、<code>0</code>、<code>42</code> 等。</p>
+<h4 id="核心特性"><a href="#核心特性" class="headerlink" title="核心特性"></a>核心特性</h4><ul>
+<li><strong>本质</strong>：在内存中划出一块固定大小的空间（通常是4字节），以二进制形式存放整数。</li>
+<li><strong>有符号</strong>：默认的 <code>int</code> 是有符号的（<code>signed int</code>），表示正数、负数和零。如果想限定非负，要用 <code>unsigned int</code>。</li>
+<li><strong>大小不定</strong>：<code>int</code> 的具体大小取决于编译器、操作系统和CPU架构。在16位系统上是2字节，在现代32位或64位系统上通常是4字节。</li>
+<li><strong>范围</strong>：有了大小，能表示的数值范围也就确定了（2字节的范围约是 -32,768 到 32,767，4字节的范围约是 -21亿 到 21亿）</li>
+</ul>
+<p><strong>相关的整数类型：</strong></p>
+<ul>
+<li><code>short int</code>（较短，通常 2 字节）</li>
+<li><code>long int</code>（较长，通常 4 或 8 字节）</li>
+<li><code>long long int</code>（更长，通常 8 字节）</li>
+<li><code>unsigned int</code>（无符号，只存正数和零）</li>
+</ul>
+<h4 id="声明与初始化"><a href="#声明与初始化" class="headerlink" title="声明与初始化"></a>声明与初始化</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a;            <span class="comment">// 声明一个 int 变量，但未初始化（值随机）</span></span><br><span class="line"><span class="type">int</span> b = <span class="number">10</span>;       <span class="comment">// 声明的同时初始化</span></span><br><span class="line"><span class="type">int</span> c = b + <span class="number">5</span>;    <span class="comment">// 用表达式初始化</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 批量声明</span></span><br><span class="line"><span class="type">int</span> x, y, z;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 const 定义常量（值不可修改）</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> rate = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>C语言有 <code>short int</code> 和 <code>long int</code> 等变体来适配不同大小的需求：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">short</span> <span class="type">int</span> s = <span class="number">32767</span>;        <span class="comment">// 通常 2 字节</span></span><br><span class="line"><span class="type">int</span> i = <span class="number">2147483647</span>;         <span class="comment">// 通常 4 字节</span></span><br><span class="line"><span class="type">long</span> <span class="type">int</span> l = <span class="number">2147483647L</span>;   <span class="comment">// 4 或 8 字节</span></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> ll = <span class="number">9223372036854775807LL</span>; <span class="comment">// 通常 8 字节</span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> ui = <span class="number">4294967295U</span>; <span class="comment">// 无符号，可表示更大正数</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="常见用法与注意事项"><a href="#常见用法与注意事项" class="headerlink" title="常见用法与注意事项"></a>常见用法与注意事项</h4><ul>
+<li><p><strong>打印输出</strong>：使用 <code>%d</code> 占位符，无符号用 <code>%u</code>。</p>
+</li>
+<li><p><strong>整数运算</strong>：运算结果仍是整数，特别要注意<strong>截断</strong>。</p>
+</li>
+<li><p><strong>溢出问题</strong>：超出范围会发生“环绕”或未定义行为，很危险。</p>
+</li>
+</ul>
+<h2 id="2-3-标识符"><a href="#2-3-标识符" class="headerlink" title="2.3 标识符"></a>2.3 标识符</h2><p>C语言中的<strong>标识符</strong>（Identifier）是程序员用来给各种程序元素命名的符号，比如变量、函数、数组、结构体、宏等。它本质上就是一个”名字”，让编译器和程序员能够识别和引用程序中的不同实体。</p>
+<h4 id="标识符的命名规则"><a href="#标识符的命名规则" class="headerlink" title="标识符的命名规则"></a><strong>标识符的命名规则</strong></h4><ul>
+<li><strong>组成字符</strong>：只能由 <strong>字母</strong>（a-z， A-Z）、<strong>数字</strong>（0-9）和 <strong>下划线</strong>（_）组成。</li>
+<li><strong>首字符限制</strong>：第一个字符<strong>不能是数字</strong>。</li>
+<li><strong>区分大小写</strong>：<code>Apple</code>、<code>apple</code> 和 <code>APPLE</code> 是三个完全不同的标识符。</li>
+<li><strong>不能是关键字</strong>：不能用C语言保留的关键字，比如 <code>int</code>、<code>if</code>、<code>return</code>。</li>
+<li><strong>长度限制</strong>：C标准规定内部名至少区分前31个字符，外部名至少6个，单字符（如循环变量<code>i</code>）也有特定用途。现代编译器通常支持更长，但建议不要过长。</li>
+</ul>
+<h3 id="有效与无效的标识符示例"><a href="#有效与无效的标识符示例" class="headerlink" title="有效与无效的标识符示例"></a>有效与无效的标识符示例</h3><table>
+<thead>
+<tr>
+<th align="left">标识符示例</th>
+<th align="left">是否有效</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>myVariable</code></td>
+<td align="left">✅ 有效</td>
+<td align="left">字母开头，标准驼峰命名</td>
+</tr>
+<tr>
+<td align="left"><code>_count</code></td>
+<td align="left">✅ 有效</td>
+<td align="left">下划线开头，常用于系统内部变量，需谨慎使用</td>
+</tr>
+<tr>
+<td align="left"><code>Data_1</code></td>
+<td align="left">✅ 有效</td>
+<td align="left">字母、数字和下划线组合</td>
+</tr>
+<tr>
+<td align="left"><code>2data</code></td>
+<td align="left">❌ 无效</td>
+<td align="left"><strong>数字不能作为开头</strong></td>
+</tr>
+<tr>
+<td align="left"><code>my-variable</code></td>
+<td align="left">❌ 无效</td>
+<td align="left"><strong>连字符是非法字符</strong></td>
+</tr>
+<tr>
+<td align="left"><code>float</code></td>
+<td align="left">❌ 无效</td>
+<td align="left"><strong><code>float</code>是C语言关键字</strong></td>
+</tr>
+<tr>
+<td align="left"><code>$amount</code></td>
+<td align="left">❌ 无效</td>
+<td align="left"><strong>美元符号是非法字符</strong></td>
+</tr>
+<tr>
+<td align="left"><code>姓名</code></td>
+<td align="left">依赖编译器</td>
+<td align="left">现代编译器可能支持Unicode，但<strong>强烈不建议</strong>这样用</td>
+</tr>
+</tbody></table>
+<h4 id="常见的命名习惯"><a href="#常见的命名习惯" class="headerlink" title="常见的命名习惯"></a><strong>常见的命名习惯</strong></h4><ul>
+<li><strong>见名知意</strong>：用 <code>studentAge</code> 而不是 <code>sa</code> 或 <code>a</code>。</li>
+<li><strong>变量&#x2F;函数</strong>：常用<strong>驼峰命名法</strong> (<code>studentCount</code>) 或<strong>下划线法</strong> (<code>student_count</code>)。</li>
+<li><strong>常量&#x2F;宏</strong>：通常<strong>全大写，单词间用下划线</strong> (<code>MAX_SIZE</code>)。</li>
+<li><strong>避免误导</strong>：少用 <code>l</code>、<code>O</code> 等容易和数字混淆的字母。</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
