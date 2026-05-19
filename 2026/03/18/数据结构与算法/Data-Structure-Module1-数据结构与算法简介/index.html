@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Data Structure Module1 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="数据结构与算法简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Structure Module1">
+<meta property="og:url" content="http://example.com/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="数据结构与算法简介">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-18T01:12:32.000Z">
+<meta property="article:modified_time" content="2026-03-17T09:08:58.931Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据结构与算法/Data-Structure-Module1-数据结构与算法简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" class="article-date">
+  <time class="dt-published" datetime="2026-03-18T01:12:32.000Z" itemprop="datePublished">2026-03-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Structure/">Data Structure</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Data Structure Module1
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="数据结构与算法简介"><a href="#数据结构与算法简介" class="headerlink" title="数据结构与算法简介"></a>数据结构与算法简介<span id="more"></span></h1><h2 id="1-1-数据结构"><a href="#1-1-数据结构" class="headerlink" title="1.1 数据结构"></a>1.1 数据结构</h2><p><strong>数据结构</strong>是计算机存储、组织数据的方式。它不仅指数据在内存中的存储方式，还包括了数据之间的相互关系以及对数据的一系列操作（如增删改查）。</p>
+<p>可以把它理解为<strong>数据的容器和排列规则</strong>。选择合适的数据结构，可以显著提高算法的效率和资源的利用率。</p>
+<h3 id="1-1-1-记录（Record）-结构体（Struct）"><a href="#1-1-1-记录（Record）-结构体（Struct）" class="headerlink" title="1.1.1 记录（Record） &#x2F; 结构体（Struct）"></a>1.1.1 记录（Record） &#x2F; 结构体（Struct）</h3><ul>
+<li><strong>定义</strong>：记录是一种用于存储不同类型数据项的复合数据结构。在面向对象编程的语言中，它类似于一个没有复杂方法的简单类。在数据库中，它通常指代表中的一行数据。</li>
+<li><strong>特点</strong>：将逻辑上相关的多个属性（字段）组合成一个单一的单元。</li>
+<li><strong>应用场景</strong>：<ul>
+<li><strong>数据库表</strong>：如学生表中的一行（包含学号、姓名、年龄）。</li>
+<li><strong>文件存储</strong>：如读取CSV文件时，每一行数据被解析成一个记录。</li>
+<li><strong>网络协议</strong>：定义数据包的结构，包含固定的头部和数据负载。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-2-数组（Array）"><a href="#1-1-2-数组（Array）" class="headerlink" title="1.1.2 数组（Array）"></a>1.1.2 数组（Array）</h3><ul>
+<li><strong>定义</strong>：数组是一种线性数据结构，它在内存中占用一块<strong>连续</strong>的空间，用于存储<strong>相同类型</strong>的多个元素。</li>
+<li><strong>特点</strong>：支持通过索引（下标）进行<strong>随机访问</strong>，时间复杂度为O（1）。但插入和删除操作（特别是中间位置）较慢，因为需要移动其他元素。</li>
+<li><strong>应用场景</strong>：<ul>
+<li><strong>图像处理</strong>：图像通常被表示为像素值的二维数组。</li>
+<li><strong>矩阵运算</strong>：科学计算、机器学习中的矩阵和张量。</li>
+<li><strong>查找表</strong>：如存储一个月的天数 <code>int days[12] = {31， 28， ...}</code>。</li>
+<li><strong>缓存友好</strong>：由于数据连续存储，CPU缓存命中率高，适合高性能计算。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-3-链表（Linked-List）"><a href="#1-1-3-链表（Linked-List）" class="headerlink" title="1.1.3 链表（Linked List）"></a>1.1.3 链表（Linked List）</h3><ul>
+<li><strong>定义</strong>：链表是一种线性数据结构，元素（节点）在内存中是<strong>离散存储</strong>的。每个节点包含数据和指向下一个节点的指针。</li>
+<li><strong>特点</strong>：插入和删除非常快（只需修改指针），但查找元素需要从头遍历（顺序访问），时间复杂度为O（n）。</li>
+<li><strong>应用场景</strong>：<ul>
+<li><strong>操作系统</strong>：文件系统的FAT表（文件分配表）。</li>
+<li><strong>内存管理</strong>：空闲内存块通常用链表管理（空闲链表）。</li>
+<li><strong>实现复杂数据结构</strong>：如栈、队列、图的邻接表通常使用链表实现。</li>
+<li><strong>音乐播放器播放列表</strong>：可以轻松地插入、删除和切换上一首&#x2F;下一首歌曲。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-4-二叉树（Binary-Tree）"><a href="#1-1-4-二叉树（Binary-Tree）" class="headerlink" title="1.1.4 二叉树（Binary Tree）"></a>1.1.4 二叉树（Binary Tree）</h3><ul>
+<li><strong>定义</strong>：一种树形结构，每个节点最多有两个子节点（左子树和右子树）。最常用的是**二叉搜索树（BST）**及其变种。</li>
+<li><strong>特点</strong>：结合了有序数组的查找优势（通过二分思想）和链表的插入优势。在理想情况下，查找、插入、删除的时间复杂度都是O（log n）。</li>
+<li><strong>应用场景</strong>：<ul>
+<li><strong>数据库索引</strong>：许多非关系型数据库使用B-树（B树，一种自平衡树结构）作为索引结构。</li>
+<li><strong>文件系统目录</strong>：操作系统的目录结构本身就是树形结构。</li>
+<li><strong>编译器设计</strong>：解析源代码时生成抽象语法树（AST，Abstract Syntax Tree）。</li>
+<li><strong>哈夫曼编码</strong>：使用二叉树实现数据压缩算法。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-5-哈希表（Hash-Table）-散列表"><a href="#1-1-5-哈希表（Hash-Table）-散列表" class="headerlink" title="1.1.5 哈希表（Hash Table） &#x2F; 散列表"></a>1.1.5 哈希表（Hash Table） &#x2F; 散列表</h3><ul>
+<li><strong>定义</strong>：哈希表根据键（Key）直接访问在内存存储位置的数据结构。它通过哈希函数将键映射到表中的一个位置以加快查找速度。</li>
+<li><strong>特点</strong>：插入、删除、查找的平均时间复杂度都是<strong>O（1）</strong>（常数时间），这是非常高效的。但它是无序的，且需要考虑哈希冲突。</li>
+<li><strong>应用场景</strong>：<ul>
+<li><strong>数据库索引</strong>：某些数据库引擎也使用哈希索引进行等值查询。</li>
+<li><strong>缓存系统</strong>：如Redis（一种内存数据库）、Memcached（一种分布式内存对象缓存系统）本质上是一个巨大的哈希表。</li>
+<li><strong>编译器&#x2F;解释器</strong>：用于维护符号表（变量名 -&gt; 变量信息的映射）。</li>
+<li><strong>对象属性存储</strong>：JavaScript中的对象、Python中的字典（Dict）都是哈希表的实现。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-6-堆（Heap）"><a href="#1-1-6-堆（Heap）" class="headerlink" title="1.1.6 堆（Heap）"></a>1.1.6 堆（Heap）</h3><ul>
+<li><strong>定义</strong>：堆是一种特殊的完全二叉树。<strong>最大堆</strong>的每个节点都大于等于它的子节点，根节点是最大值；<strong>最小堆</strong>则相反。</li>
+<li><strong>特点</strong>：专门用于快速获取最大或最小元素。</li>
+<li><strong>应用场景</strong>：<ul>
+<li><strong>优先队列</strong>：操作系统调度进程时，优先级高的进程先执行。</li>
+<li><strong>堆排序</strong>：一种时间复杂度为O（n log n）的高效排序算法。</li>
+<li><strong>求Top K问题</strong>：例如从1亿个数中找出最大的100个数（使用大小为100的最小堆）。</li>
+<li><strong>任务调度</strong>：定时任务执行器中，最近需要执行的任务排在堆顶。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-7-图（Graph）"><a href="#1-1-7-图（Graph）" class="headerlink" title="1.1.7 图（Graph）"></a>1.1.7 图（Graph）</h3><ul>
+<li><strong>定义</strong>：图由顶点和连接顶点的边组成。它比树更复杂，可以有环路。</li>
+<li><strong>特点</strong>：表达多对多的复杂关系。</li>
+<li><strong>应用场景</strong>：<ul>
+<li><strong>社交网络</strong>：用户是顶点，关注&#x2F;好友关系是边，用于好友推荐。</li>
+<li><strong>地图导航</strong>：地点是顶点，道路是边，使用Dijkstra（一种最短路径算法）、A*（一种启发式搜索算法）算法计算最短路径。</li>
+<li><strong>推荐系统</strong>：如“买了这个商品的用户也买了”。</li>
+<li><strong>计算机网络</strong>：互联网的路由器构成了巨大的图，使用路由协议寻找最佳路径。</li>
+<li><strong>知识图谱</strong>：搜索引擎（如Google）使用知识图谱来理解实体之间的关系（如：姚明 与 叶莉 是 夫妻）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th align="left">数据结构</th>
+<th align="left">核心特点</th>
+<th align="left">常用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>记录</strong></td>
+<td align="left">组合不同类型数据</td>
+<td align="left">数据库行、对象属性</td>
+</tr>
+<tr>
+<td align="left"><strong>数组</strong></td>
+<td align="left">连续内存、随机访问</td>
+<td align="left">矩阵、缓冲区、查找表</td>
+</tr>
+<tr>
+<td align="left"><strong>链表</strong></td>
+<td align="left">离散内存、动态增删</td>
+<td align="left">内存管理、实现队列&#x2F;栈</td>
+</tr>
+<tr>
+<td align="left"><strong>二叉树</strong></td>
+<td align="left">层级结构、快速查找</td>
+<td align="left">文件系统、表达式解析</td>
+</tr>
+<tr>
+<td align="left"><strong>哈希表</strong></td>
+<td align="left">键值映射、极速查找</td>
+<td align="left">缓存、字典、索引</td>
+</tr>
+<tr>
+<td align="left"><strong>堆</strong></td>
+<td align="left">极值获取</td>
+<td align="left">优先队列、Top K问题、定时器</td>
+</tr>
+<tr>
+<td align="left"><strong>图</strong></td>
+<td align="left">复杂关系网络</td>
+<td align="left">社交网络、导航、推荐系统</td>
+</tr>
+</tbody></table>
+<h2 id="1-2-算法简介"><a href="#1-2-算法简介" class="headerlink" title="1.2 算法简介"></a>1.2 算法简介</h2><h3 id="NP问题的全称与核心概念"><a href="#NP问题的全称与核心概念" class="headerlink" title="NP问题的全称与核心概念"></a>NP问题的全称与核心概念</h3><p>NP 的全称是 <strong>Nondeterministic Polynomial time</strong>，即 <strong>非确定性多项式时间</strong>。</p>
+<p>这个概念的核心，并非在于问题是否难解，而在于验证一个解的正确性是否容易。</p>
+<h4 id="P-类问题-Polynomial-time-："><a href="#P-类问题-Polynomial-time-：" class="headerlink" title="P 类问题 (Polynomial time)："></a><strong>P 类问题 (Polynomial time)</strong>：</h4><p>这是指那些<strong>可以在多项式时间内</strong>找到解的问题。简单来说，就是计算机能够“快速”解决的问题。</p>
+<ul>
+<li><em>例子：</em> 对一组数字进行排序、在数据库中搜索一个条目。这些任务都很容易。</li>
+</ul>
+<h4 id="NP-类问题-Nondeterministic-Polynomial-time-："><a href="#NP-类问题-Nondeterministic-Polynomial-time-：" class="headerlink" title="NP 类问题 (Nondeterministic Polynomial time)："></a><strong>NP 类问题 (Nondeterministic Polynomial time)</strong>：</h4><p>这是指那些<strong>可以在多项式时间内验证一个解是否正确</strong>的问题。</p>
+<ul>
+<li><em>关键点：</em> 对于NP问题，找到答案可能很慢（甚至非常非常慢），但如果你给我一个候选答案，我可以<strong>快速地</strong>检查它是不是对的。</li>
+<li><em>经典例子：</em> <strong>数独游戏</strong>。<ul>
+<li><em>找到一个解可能很慢：</em> 一个空白的数独盘，你要尝试很多种数字组合才能填满它。</li>
+<li><em>验证一个解非常快：</em> 如果我给你一个填满的数字盘，你可以很快地检查每一行、每一列、每一个小九宫格是否都包含了1-9且不重复。你不需要知道这个解是怎么来的，只需要验证它是否正确。</li>
+</ul>
+</li>
+</ul>
+<h3 id="NP完全问题与NP难问题"><a href="#NP完全问题与NP难问题" class="headerlink" title="NP完全问题与NP难问题"></a>NP完全问题与NP难问题</h3><h4 id="NP完全问题："><a href="#NP完全问题：" class="headerlink" title="NP完全问题："></a><strong>NP完全问题</strong>：</h4><p>这是NP问题中最难的一类。它们有一个神奇的特性：<strong>如果我们能够找到一个“快速”（多项式时间）的算法来解决任意一个NP完全问题，那么所有NP问题就都能被“快速”解决。</strong> 换句话说，NP完全问题是NP问题复杂性的“标杆”。上面提到的旅行商问题、数独、布尔可满足性问题都属于NP完全问题。</p>
+<h4 id="NP难问题："><a href="#NP难问题：" class="headerlink" title="NP难问题："></a><strong>NP难问题</strong>：</h4><p>这类问题<strong>不比任何一个NP问题简单</strong>，但它们<strong>本身可能不属于NP问题</strong>（即，可能连验证一个解是否正确都无法在多项式时间内完成）。</p>
+<h3 id="P-是否等于-NP？"><a href="#P-是否等于-NP？" class="headerlink" title="P 是否等于 NP？"></a>P 是否等于 NP？</h3><ul>
+<li><strong>如果 P &#x3D; NP</strong>：这意味着所有能快速验证的问题，也都能被快速解决。这将带来巨大的变革：现在的许多难题（如药物分子设计、最优路线规划、数学定理自动证明）都将迎刃而解。当然，这也意味着现有的很多加密体系（如RSA加密）将会失效，因为黑客也能快速破解密码了。</li>
+<li><strong>如果 P ≠ NP</strong>：这意味着有些问题（至少是NP完全问题）天生就是难解的，我们永远无法为它们找到一个高效的通用算法。我们只能退而求其次，寻找近似解、或针对特定情况的有效算法。</li>
+</ul>
+<p>目前，绝大多数科学家都倾向于相信 <strong>P ≠ NP</strong>，但这一点至今未能被严格证明。</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">P 问题</th>
+<th align="left">NP 问题</th>
+<th align="left">NP 完全问题</th>
+<th align="left">NP 难问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>找解的速度</strong></td>
+<td align="left">快速</td>
+<td align="left">可能很慢</td>
+<td align="left">很慢（目前已知）</td>
+<td align="left">很慢</td>
+</tr>
+<tr>
+<td align="left"><strong>验证的速度</strong></td>
+<td align="left">快速</td>
+<td align="left">快速</td>
+<td align="left">快速</td>
+<td align="left">可能很慢</td>
+</tr>
+<tr>
+<td align="left"><strong>核心比喻</strong></td>
+<td align="left">容易做，也容易检查</td>
+<td align="left">不容易做，但容易检查</td>
+<td align="left">NP里最难的一批</td>
+<td align="left">至少和NP一样难，甚至更离谱</td>
+</tr>
+</tbody></table>
+<h2 id="1-3-数据结构与算法的关系"><a href="#1-3-数据结构与算法的关系" class="headerlink" title="1.3 数据结构与算法的关系"></a>1.3 数据结构与算法的关系</h2><h3 id="1-3-1-相互依存的关系"><a href="#1-3-1-相互依存的关系" class="headerlink" title="1.3.1 相互依存的关系"></a>1.3.1 相互依存的关系</h3><p><strong>数据结构是算法的操作对象和载体。</strong></p>
+<ul>
+<li>算法在运行过程中，必然需要处理数据。这些数据如何组织、存储在哪里，就是数据结构要考虑的问题。</li>
+<li>没有数据结构，算法就没有了操作的“原材料”和“工作台”。一个算法的设计和选择，很大程度上依赖于数据是如何组织的。</li>
+</ul>
+<p><strong>算法是数据结构的“使用方法”和“行为逻辑”。</strong></p>
+<ul>
+<li>数据结构只是静态地存储数据，而算法定义了如何对这些数据进行操作，比如插入、删除、查找、排序、遍历等。</li>
+<li>一个数据结构是否有用、是否高效，是通过在其上运行的算法来体现的。如果没有算法，数据结构就只是一堆杂乱无章的数据。</li>
+<li><strong>例子：</strong> 你设计了一个“图”这种数据结构，用来表示城市间的航线。如果没有“最短路径算法”（如Dijkstra算法），这个图就只是一个静态的模型，无法帮你找到从北京到上海最便宜的航班。</li>
+</ul>
+<h3 id="1-3-2-选择决定了效率：程序-数据结构-算法"><a href="#1-3-2-选择决定了效率：程序-数据结构-算法" class="headerlink" title="1.3.2 选择决定了效率：程序 &#x3D; 数据结构 + 算法"></a>1.3.2 选择决定了效率：程序 &#x3D; 数据结构 + 算法</h3><p>计算机科学家尼古拉斯·沃斯（Niklaus Wirth）曾提出一个著名的公式：<strong>程序 &#x3D; 数据结构 + 算法</strong>。这个公式精准地概括了它们的核心地位。</p>
+<ul>
+<li>对于一个特定的问题，选择什么样的数据结构，会直接影响到解决问题的算法的效率。</li>
+<li><strong>数据结构的选择会影响算法的时间复杂度和空间复杂度。</strong></li>
+<li><strong>例子： 实现一个“撤销”功能</strong><ul>
+<li><strong>方法一：</strong> 使用<strong>数组</strong>来存储操作历史。要撤销时，你需要找到最后一个操作（需要知道数组的长度），然后把它移除。如果数组长度是n，找到最后一个元素的时间是O(1)，但移除后可能需要移动其他元素，最坏情况是O(n)。</li>
+<li><strong>方法二：</strong> 使用<strong>栈（Stack）</strong> 这种数据结构。栈的特性就是“后进先出”（LIFO），完美匹配撤销功能。入栈和出栈（撤销）操作的时间复杂度都是O(1)，显然比用数组更简单、更高效。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-3-抽象与实现的关系"><a href="#1-3-3-抽象与实现的关系" class="headerlink" title="1.3.3 抽象与实现的关系"></a>1.3.3 抽象与实现的关系</h3><ul>
+<li><strong>抽象数据类型（ADT，Abstract Data Type）</strong> 是站在用户角度，描述了一类数据结构的逻辑行为和操作，<strong>它定义了“做什么”</strong>。比如，字典ADT，你只需要知道它可以插入、删除、查找键值对。</li>
+<li><strong>数据结构</strong> 则是ADT的具体实现方式，它定义了“<strong>如何做</strong>”。同一个ADT可以有多种不同的数据结构来实现。</li>
+<li><strong>算法</strong> 则是实现这些操作的具体步骤。<ul>
+<li><strong>例子：</strong> “字典”这个ADT，可以使用<strong>哈希表</strong>这种数据结构来实现，其插入和查找算法的平均时间复杂度是O(1)；也可以使用<strong>二叉搜索树</strong>这种数据结构来实现，其插入和查找算法的平均时间复杂度是O(log n)。选择哪种数据结构，取决于你对算法效率（是查找快更重要，还是有序遍历更重要）的具体需求。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-4-抽象数据类型（ADT）"><a href="#1-4-抽象数据类型（ADT）" class="headerlink" title="1.4 抽象数据类型（ADT）"></a>1.4 抽象数据类型（ADT）</h2><ul>
+<li><strong>ADT（抽象数据类型）：</strong> 定义了一组操作和行为的逻辑规范，它只关心“能做什么”（如：插入、删除、查找），而不关心“怎么做”。</li>
+<li><strong>数据结构：</strong> 是ADT的具体实现方式，它关心“怎么做”（如：用数组还是链表来存储数据）。</li>
+</ul>
+<h3 id="1-4-1-列表-ADT"><a href="#1-4-1-列表-ADT" class="headerlink" title="1.4.1 列表 ADT"></a>1.4.1 列表 ADT</h3><p>这是最基础、最常用的 ADT。它代表一个有序的元素序列。你可以访问、添加或删除其中的元素。</p>
+<ul>
+<li><strong>定义的操作：</strong><ul>
+<li><code>insert(pos, element)</code>：在指定位置插入元素</li>
+<li><code>remove(pos)</code>：移除指定位置的元素</li>
+<li><code>get(pos)</code>：获取指定位置的元素</li>
+<li><code>size()</code>：获取列表长度</li>
+</ul>
+</li>
+<li><strong>常见底层实现：</strong><ul>
+<li><strong>数组（或动态数组）：</strong><ul>
+<li><strong>原理：</strong> 在内存中开辟一块连续的空间。</li>
+<li><strong>优点：</strong> 按下标访问非常快（O(1)）。</li>
+<li><strong>缺点：</strong> 在中间插入或删除元素比较慢，因为需要移动后续所有元素（O(n)）。动态数组（如 Java 的 ArrayList，Python 的 list）在扩容时也会有性能开销。</li>
+</ul>
+</li>
+<li><strong>链表：</strong><ul>
+<li><strong>原理：</strong> 元素在内存中是分散的，每个元素（节点）里存着下一个（或上一个）元素的地址。</li>
+<li><strong>优点：</strong> 在已知位置的插入和删除非常快（只需修改指针，O(1)）。</li>
+<li><strong>缺点：</strong> 查找某个位置的元素比较慢，需要从头开始遍历（O(n)）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-2-栈-ADT"><a href="#1-4-2-栈-ADT" class="headerlink" title="1.4.2 栈 ADT"></a>1.4.2 栈 ADT</h3><p>这是一种受限制的列表。它的操作遵循 <strong>后进先出</strong> 的原则。就像一叠盘子，你总是用最上面的，洗完的新盘子也总是放在最上面。</p>
+<ul>
+<li><strong>定义的操作：</strong><ul>
+<li><code>push(element)</code>：把元素压入栈顶</li>
+<li><code>pop()</code>：弹出（移除并返回）栈顶元素</li>
+<li><code>peek()/top()</code>：查看栈顶元素但不移除</li>
+<li><code>isEmpty()</code>：检查是否为空</li>
+</ul>
+</li>
+<li><strong>常见底层实现：</strong><ul>
+<li><strong>动态数组：</strong> 因为总是在“末尾”进行 push 和 pop，正好利用数组末尾操作快的特性。</li>
+<li><strong>链表：</strong> 总是在“头部”进行 push 和 pop，也很方便。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-3-队列-ADT"><a href="#1-4-3-队列-ADT" class="headerlink" title="1.4.3 队列 ADT"></a>1.4.3 队列 ADT</h3><p>这也是一种受限制的列表。它的操作遵循 <strong>先进先出</strong> 的原则。就像在电影院排队买票，先来的人先买到票离开。</p>
+<ul>
+<li><strong>定义的操作：</strong><ul>
+<li><code>enqueue(element)</code>：把元素加入队尾</li>
+<li><code>dequeue()</code>：从队首移除并返回元素</li>
+<li><code>front()</code>：查看队首元素但不移除</li>
+</ul>
+</li>
+<li><strong>常见底层实现：</strong><ul>
+<li><strong>循环数组：</strong> 为了高效利用空间，使用一个固定大小的数组，并用两个指针（头指针和尾指针）来标记队首和队尾。</li>
+<li><strong>链表：</strong> 在头部进行出队（dequeue），在尾部进行入队（enqueue），也很合适。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-4-优先队列-ADT"><a href="#1-4-4-优先队列-ADT" class="headerlink" title="1.4.4 优先队列 ADT"></a>1.4.4 优先队列 ADT</h3><p>这是一种特殊的队列。它不再遵守“先进先出”，而是 <strong>谁优先级高，谁先出</strong>。</p>
+<ul>
+<li><strong>定义的操作：</strong><ul>
+<li><code>insert(element, priority)</code>：插入一个带有优先级的元素</li>
+<li><code>deleteMin() / deleteMax()</code>：移除并返回优先级最高（或最低）的元素</li>
+</ul>
+</li>
+<li><strong>常见底层实现：</strong><ul>
+<li><strong>堆（Heap）：</strong> 这是最经典、最高效的实现方式。堆通常是一个<strong>完全二叉树</strong>，通常用<strong>数组</strong>来存储（因为完全二叉树很适合用数组连续存储，父节点和子节点的索引有固定的数学关系，不需要用指针）。比如 Java 的 <code>PriorityQueue</code>，Python 的 <code>heapq</code>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-5-映射-字典-ADT"><a href="#1-4-5-映射-字典-ADT" class="headerlink" title="1.4.5 映射&#x2F;字典 ADT"></a>1.4.5 映射&#x2F;字典 ADT</h3><p>这是一个非常重要的 ADT。它存储的是 <strong>键值对</strong>，通过“键”来快速查找、添加或删除对应的“值”。</p>
+<ul>
+<li><strong>定义的操作：</strong><ul>
+<li><code>put(key, value)</code>：存入键值对</li>
+<li><code>get(key)</code>：根据键获取值</li>
+<li><code>remove(key)</code>：根据键移除键值对</li>
+</ul>
+</li>
+<li><strong>常见底层实现：</strong><ul>
+<li><strong>哈希表：</strong><ul>
+<li><strong>原理：</strong> 通过一个哈希函数计算出 key 应该存放的位置（数组下标），然后直接访问。</li>
+<li><strong>优点：</strong> 平均情况下，查找、插入、删除都非常快（O(1)）。</li>
+<li><strong>缺点：</strong> 需要处理哈希冲突，且元素是无序的。例如 Python 的 <code>dict</code>，Java 的 <code>HashMap</code>。</li>
+</ul>
+</li>
+<li><strong>平衡二叉搜索树：</strong><ul>
+<li><strong>原理：</strong> 用树的结构来组织数据，保证树的大致平衡。</li>
+<li><strong>优点：</strong> 元素是<strong>有序</strong>的。可以方便地找到最大、最小或某个范围内的所有键。</li>
+<li><strong>缺点：</strong> 基本操作的时间复杂度是 O(log n)，通常比哈希表慢一点。例如 Java 的 <code>TreeMap</code>，C++ 的 <code>map</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-6-集合-ADT"><a href="#1-4-6-集合-ADT" class="headerlink" title="1.4.6 集合 ADT"></a>1.4.6 集合 ADT</h3><p>它就像一个数学上的集合。里面是<strong>不重复的元素</strong>。</p>
+<ul>
+<li><strong>定义的操作：</strong><ul>
+<li><code>add(element)</code>：添加元素（如果已存在则不添加）</li>
+<li><code>contains(element)</code>：检查元素是否在集合中</li>
+<li><code>remove(element)</code>：移除元素</li>
+</ul>
+</li>
+<li><strong>常见底层实现：</strong><ul>
+<li>集合的实现通常直接基于<strong>字典</strong>。可以理解为把字典的“键”拿出来，忽略“值”。或者用“值”来表示元素是否存在。</li>
+<li><strong>哈希表</strong> 实现的集合（如 Python 的 <code>set</code>，Java 的 <code>HashSet</code>）是无序的。</li>
+<li><strong>树</strong> 实现的集合（如 Java 的 <code>TreeSet</code>）是有序的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-7-Deque-ADT（双端队列）"><a href="#1-4-7-Deque-ADT（双端队列）" class="headerlink" title="1.4.7 Deque ADT（双端队列）"></a>1.4.7 Deque ADT（双端队列）</h3><p><strong>发音</strong>：通常读作 “Deck”（像”甲板”一样），是 <strong>Double-ended queue</strong> 的缩写。</p>
+<p>顾名思义，它允许你在<strong>两端</strong>进行插入和删除操作。你可以把它想象成一个管道，两头都是通的。</p>
+<h4 id="核心操作"><a href="#核心操作" class="headerlink" title="核心操作"></a>核心操作</h4><p>相比于只能在栈顶操作的 Stack（栈）和只能在队首&#x2F;队尾操作的 Queue（队列），Deque 更加灵活：</p>
+<ul>
+<li><code>addFront(element)</code>：在队首插入元素</li>
+<li><code>addBack(element)</code>：在队尾插入元素（相当于队列的 enqueue）</li>
+<li><code>removeFront()</code>：移除并返回队首元素（相当于队列的 dequeue 和栈的 pop）</li>
+<li><code>removeBack()</code>：移除并返回队尾元素</li>
+<li><code>getFront()</code> &#x2F; <code>getBack()</code>：查看两端元素</li>
+</ul>
+<h4 id="和-Stack、Queue-的关系"><a href="#和-Stack、Queue-的关系" class="headerlink" title="和 Stack、Queue 的关系"></a>和 Stack、Queue 的关系</h4><ul>
+<li><strong>如果禁用 <code>addFront</code> 和 <code>removeFront</code></strong>，Deque 就变成了 Queue（只能从一端进，另一端出）。</li>
+<li><strong>如果禁用 <code>addFront</code> 和 <code>removeBack</code></strong>（即只操作同一端），Deque 就变成了 Stack。</li>
+</ul>
+<h3 id="1-4-8-Bag-ADT（包-多重集合）"><a href="#1-4-8-Bag-ADT（包-多重集合）" class="headerlink" title="1.4.8 Bag ADT（包 &#x2F; 多重集合）"></a>1.4.8 Bag ADT（包 &#x2F; 多重集合）</h3><p>这是一个在很多教科书里单独讲解，但在实际编程语言中较少作为独立接口出现的 ADT。它的另一个名字更能说明其本质：<strong>Multiset（多重集合）</strong>。</p>
+<p>如果说 Set 是”装了各种球的袋子，每种颜色的球只能有一个”，那么 Bag 就是<strong>一个普通的袋子，你可以往里面随便扔东西，不在乎顺序，也允许重复</strong>。</p>
+<h4 id="核心操作-1"><a href="#核心操作-1" class="headerlink" title="核心操作"></a>核心操作</h4><p>Bag 强调<strong>收集</strong>和<strong>计数</strong>：</p>
+<ul>
+<li><code>add(element)</code>：添加一个元素（允许重复）</li>
+<li><code>remove(element)</code>：移除一个元素（通常只移除一个匹配项）</li>
+<li><code>count(element)</code>：返回该元素在 Bag 中出现的次数（这是 Bag 区别于 List 的关键）</li>
+<li><code>size()</code>：返回袋子中所有元素的总个数（包含重复计数）</li>
+<li></li>
+</ul>
+<h4 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h4><p>通常用<strong>哈希表</strong>来实现，只是表的 Key 是元素，Value 是出现次数（计数器）。</p>
+<h4 id="举个例子帮你区分-Bag-和-Set"><a href="#举个例子帮你区分-Bag-和-Set" class="headerlink" title="举个例子帮你区分 Bag 和 Set"></a>举个例子帮你区分 Bag 和 Set</h4><p>假设你数桌子上硬币的个数：</p>
+<ul>
+<li>如果你关心的是<strong>有哪些面值</strong>（比如有1元、5角、1角），你在用的是 <strong>Set</strong>。</li>
+<li>如果你关心的是<strong>总共有多少钱</strong>（比如2个1元，3个5角，5个1角），你在用的是 <strong>Bag</strong>。</li>
+</ul>
+<h4 id="底层实现-1"><a href="#底层实现-1" class="headerlink" title="底层实现"></a>底层实现</h4><p>通常用<strong>双向链表</strong>（每个节点有前后指针）或者<strong>循环数组</strong>来实现，因为这两种结构都能高效地在两端进行操作。</p>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th align="left">ADT</th>
+<th align="left">核心特点</th>
+<th align="left">常见的底层数据结构（怎么做）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>列表</strong></td>
+<td align="left">线性序列，按位置访问</td>
+<td align="left">动态数组、链表</td>
+</tr>
+<tr>
+<td align="left"><strong>栈</strong></td>
+<td align="left">后进先出</td>
+<td align="left">动态数组、链表</td>
+</tr>
+<tr>
+<td align="left"><strong>队列</strong></td>
+<td align="left">先进先出</td>
+<td align="left">循环数组、链表</td>
+</tr>
+<tr>
+<td align="left"><strong>优先队列</strong></td>
+<td align="left">按优先级出队</td>
+<td align="left">堆（本质是一个数组）</td>
+</tr>
+<tr>
+<td align="left"><strong>字典&#x2F;映射</strong></td>
+<td align="left">键值对，通过键访问</td>
+<td align="left">哈希表、平衡二叉搜索树</td>
+</tr>
+<tr>
+<td align="left"><strong>集合</strong></td>
+<td align="left">不重复的元素</td>
+<td align="left">哈希表、平衡二叉搜索树</td>
+</tr>
+</tbody></table>
+<h2 id="1-5-抽象数据类型（ADT）的应用"><a href="#1-5-抽象数据类型（ADT）的应用" class="headerlink" title="1.5 抽象数据类型（ADT）的应用"></a>1.5 抽象数据类型（ADT）的应用</h2><h3 id="1-5-1-选择ADT的决策框架"><a href="#1-5-1-选择ADT的决策框架" class="headerlink" title="1.5.1 选择ADT的决策框架"></a>1.5.1 选择ADT的决策框架</h3><h4 id="1-根据数据组织方式选择"><a href="#1-根据数据组织方式选择" class="headerlink" title="1. 根据数据组织方式选择"></a>1. <strong>根据数据组织方式选择</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线性结构 vs 层次结构 vs 图形结构</span></span><br><span class="line">- 线性关系 → List, Queue, Stack</span><br><span class="line">- 层次关系 → Tree, Heap</span><br><span class="line">- 复杂关系 → Graph, Set, Map</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-根据操作需求选择"><a href="#2-根据操作需求选择" class="headerlink" title="2. 根据操作需求选择"></a>2. <strong>根据操作需求选择</strong></h4><table>
+<thead>
+<tr>
+<th align="left">主要操作</th>
+<th align="left">推荐ADT</th>
+<th align="left">特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">频繁按索引访问</td>
+<td align="left">ArrayList</td>
+<td align="left">O(1)随机访问</td>
+</tr>
+<tr>
+<td align="left">频繁插入&#x2F;删除</td>
+<td align="left">LinkedList</td>
+<td align="left">O(1)插入删除</td>
+</tr>
+<tr>
+<td align="left">后进先出</td>
+<td align="left">Stack</td>
+<td align="left">LIFO</td>
+</tr>
+<tr>
+<td align="left">先进先出</td>
+<td align="left">Queue&#x2F;Deque</td>
+<td align="left">FIFO</td>
+</tr>
+<tr>
+<td align="left">键值对查找</td>
+<td align="left">HashMap</td>
+<td align="left">O(1)查找</td>
+</tr>
+<tr>
+<td align="left">有序键值对</td>
+<td align="left">TreeMap</td>
+<td align="left">红黑树实现</td>
+</tr>
+<tr>
+<td align="left">唯一元素</td>
+<td align="left">HashSet</td>
+<td align="left">去重</td>
+</tr>
+</tbody></table>
+<h4 id="3-选择决策树"><a href="#3-选择决策树" class="headerlink" title="3. 选择决策树"></a>3. 选择决策树</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">开始选择ADT</span><br><span class="line">    │</span><br><span class="line">    ├─ 是否需要键值对？</span><br><span class="line">    │    ├─ 是 → 进入Map选择</span><br><span class="line">    │    │    ├─ 需要线程安全？ → ConcurrentHashMap</span><br><span class="line">    │    │    ├─ 需要排序？ → TreeMap</span><br><span class="line">    │    │    ├─ 需要保持插入顺序？ → LinkedHashMap</span><br><span class="line">    │    │    └─ 一般场景 → HashMap</span><br><span class="line">    │    │</span><br><span class="line">    │    └─ 否 → 继续</span><br><span class="line">    │</span><br><span class="line">    ├─ 是否需要元素唯一性？</span><br><span class="line">    │    ├─ 是 → 进入Set选择</span><br><span class="line">    │    │    ├─ 需要排序？ → TreeSet</span><br><span class="line">    │    │    ├─ 需要保持插入顺序？ → LinkedHashSet</span><br><span class="line">    │    │    └─ 一般场景 → HashSet</span><br><span class="line">    │    │</span><br><span class="line">    │    └─ 否 → 继续</span><br><span class="line">    │</span><br><span class="line">    ├─ 是否需要FIFO/LIFO处理？</span><br><span class="line">    │    ├─ 是 → 进入Queue/Deque选择</span><br><span class="line">    │    │    ├─ 需要优先级？ → PriorityQueue</span><br><span class="line">    │    │    ├─ 需要线程安全？ → BlockingQueue实现</span><br><span class="line">    │    │    └─ 一般队列/栈 → ArrayDeque</span><br><span class="line">    │    │</span><br><span class="line">    │    └─ 否 → 继续</span><br><span class="line">    │</span><br><span class="line">    └─ 需要有序集合？</span><br><span class="line">         ├─ 频繁随机访问 → ArrayList</span><br><span class="line">         └─ 频繁插入删除 → LinkedList</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-5-2-核心ADT及其适用场景"><a href="#1-5-2-核心ADT及其适用场景" class="headerlink" title="1.5.2 核心ADT及其适用场景"></a>1.5.2 核心ADT及其适用场景</h3><h4 id="1-List（列表）"><a href="#1-List（列表）" class="headerlink" title="1. List（列表）"></a>1. <strong>List（列表）</strong></h4><p><strong>适用场景</strong>：需要有序集合，可以通过索引访问元素</p>
+<ul>
+<li><p><strong>ArrayList</strong></p>
+<ul>
+<li>✅ <strong>适合</strong>：频繁随机访问、较少插入删除、主要在末尾添加元素</li>
+<li>❌ <strong>不适合</strong>：频繁在中间插入&#x2F;删除元素</li>
+<li><strong>典型应用</strong>：配置数据列表、缓存数据、大多数查询为主的场景</li>
+</ul>
+</li>
+<li><p><strong>LinkedList</strong></p>
+<ul>
+<li>✅ <strong>适合</strong>：频繁在任意位置插入&#x2F;删除、需要实现队列&#x2F;双端队列</li>
+<li>❌ <strong>不适合</strong>：频繁随机访问</li>
+<li><strong>典型应用</strong>：LRU缓存实现、消息队列、撤销操作记录</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：频繁随机访问 - 使用ArrayList</span></span><br><span class="line">List&lt;User&gt; userList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">userList.get(<span class="number">100</span>); <span class="comment">// O(1)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：频繁插入删除 - 使用LinkedList</span></span><br><span class="line">List&lt;Task&gt; taskQueue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">taskQueue.add(<span class="number">0</span>, newTask); <span class="comment">// O(1)</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-Set（集合）"><a href="#2-Set（集合）" class="headerlink" title="2. Set（集合）"></a>2. <strong>Set（集合）</strong></h4><p><strong>适用场景</strong>：需要元素唯一性，不需要重复元素</p>
+<ul>
+<li><p><strong>HashSet</strong></p>
+<ul>
+<li>✅ <strong>适合</strong>：不需要有序、快速查找去重</li>
+<li><strong>典型应用</strong>：用户权限集合、已处理ID记录、数据去重</li>
+</ul>
+</li>
+<li><p><strong>LinkedHashSet</strong></p>
+<ul>
+<li>✅ <strong>适合</strong>：需要保持插入顺序的唯一集合</li>
+<li><strong>典型应用</strong>：最近访问记录、按添加顺序的去重列表</li>
+</ul>
+</li>
+<li><p><strong>TreeSet</strong></p>
+<ul>
+<li><p>✅ <strong>适合</strong>：需要自动排序的唯一集合</p>
+</li>
+<li><p><strong>典型应用</strong>：排行榜、自动排序的配置项、范围查询</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：数据去重 - 使用HashSet</span></span><br><span class="line">Set&lt;String&gt; uniqueIpSet = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：需要排序的唯一集合 - 使用TreeSet</span></span><br><span class="line">Set&lt;Score&gt; sortedScores = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-Map（映射）"><a href="#3-Map（映射）" class="headerlink" title="3. Map（映射）"></a>3. <strong>Map（映射）</strong></h4><p><strong>适用场景</strong>：需要键值对存储，通过键快速查找值</p>
+<ul>
+<li><p><strong>HashMap</strong></p>
+<ul>
+<li>✅ <strong>适合</strong>：大多数键值对场景，无顺序要求</li>
+<li><strong>典型应用</strong>：缓存系统、配置属性、对象映射关系</li>
+</ul>
+</li>
+<li><p><strong>LinkedHashMap</strong></p>
+<ul>
+<li>✅ <strong>适合</strong>：需要保持插入顺序或访问顺序的Map</li>
+<li><strong>典型应用</strong>：LRU缓存实现、有序配置加载</li>
+</ul>
+</li>
+<li><p><strong>TreeMap</strong></p>
+<ul>
+<li>✅ <strong>适合</strong>：需要按键排序的Map</li>
+<li><strong>典型应用</strong>：范围查询、字典排序、按时间戳的日志</li>
+</ul>
+</li>
+<li><p><strong>ConcurrentHashMap</strong></p>
+<ul>
+<li><p>✅ <strong>适合</strong>：多线程环境下的键值对存储</p>
+</li>
+<li><p><strong>典型应用</strong>：共享缓存、计数器、会话管理</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：缓存实现 - 使用HashMap</span></span><br><span class="line">Map&lt;String, Object&gt; cache = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：线程安全的计数器 - 使用ConcurrentHashMap</span></span><br><span class="line">Map&lt;String, AtomicInteger&gt; counter = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：LRU缓存 - 使用LinkedHashMap</span></span><br><span class="line">Map&lt;String, Object&gt; lruCache = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;&gt;(<span class="number">16</span>, <span class="number">0.75f</span>, <span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">removeEldestEntry</span><span class="params">(Map.Entry eldest)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> size() &gt; <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-Queue-Deque（队列-双端队列）"><a href="#4-Queue-Deque（队列-双端队列）" class="headerlink" title="4. Queue&#x2F;Deque（队列&#x2F;双端队列）"></a>4. <strong>Queue&#x2F;Deque（队列&#x2F;双端队列）</strong></h4><p><strong>适用场景</strong>：需要按特定顺序处理元素</p>
+<ul>
+<li><strong>ArrayDeque</strong><ul>
+<li>✅ <strong>适合</strong>：作为栈或队列使用，比Stack和LinkedList性能更好</li>
+<li><strong>典型应用</strong>：任务调度、表达式求值、撤销操作</li>
+</ul>
+</li>
+<li><strong>PriorityQueue</strong><ul>
+<li>✅ <strong>适合</strong>：需要按优先级处理元素的场景</li>
+<li><strong>典型应用</strong>：任务优先级调度、Dijkstra算法、霍夫曼编码</li>
+</ul>
+</li>
+<li><strong>BlockingQueue</strong>（及其实现）<ul>
+<li>✅ <strong>适合</strong>：生产者-消费者模式，需要线程安全的队列</li>
+<li><strong>典型应用</strong>：线程池任务队列、消息中间件</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例：FIFO队列 - 使用ArrayDeque</span></span><br><span class="line">Queue&lt;Task&gt; taskQueue = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：优先级队列 - 使用PriorityQueue</span></span><br><span class="line">Queue&lt;Job&gt; priorityQueue = <span class="keyword">new</span> <span class="title class_">PriorityQueue</span>&lt;&gt;((j1, j2) -&gt; </span><br><span class="line">    j2.getPriority() - j1.getPriority());</span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例：生产者-消费者 - 使用BlockingQueue</span></span><br><span class="line">BlockingQueue&lt;Message&gt; messageQueue = <span class="keyword">new</span> <span class="title class_">LinkedBlockingQueue</span>&lt;&gt;(<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="特殊场景建议"><a href="#特殊场景建议" class="headerlink" title="特殊场景建议"></a>特殊场景建议</h4><ol>
+<li><strong>大数据量处理</strong>：考虑使用<code>EnumMap</code>（键为枚举类型）或<code>EnumSet</code>，性能更好</li>
+<li><strong>需要统计频率</strong>：使用<code>HashMap</code>配合<code>AtomicInteger</code>或<code>LongAdder</code></li>
+<li><strong>不可变集合</strong>：Java 9+的<code>List.of()</code>、<code>Set.of()</code>、<code>Map.of()</code></li>
+<li><strong>需要空值安全</strong>：考虑使用<code>Optional</code>包装或<code>Collections.emptyXXX()</code></li>
+</ol>
+<h3 id="1-5-3-性能考量速查表"><a href="#1-5-3-性能考量速查表" class="headerlink" title="1.5.3 性能考量速查表"></a>1.5.3 性能考量速查表</h3><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">ArrayList</th>
+<th align="left">LinkedList</th>
+<th align="left">HashSet</th>
+<th align="left">TreeSet</th>
+<th align="left">HashMap</th>
+<th align="left">TreeMap</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">插入</td>
+<td align="left">O(1)*</td>
+<td align="left">O(1)</td>
+<td align="left">O(1)</td>
+<td align="left">O(log n)</td>
+<td align="left">O(1)</td>
+<td align="left">O(log n)</td>
+</tr>
+<tr>
+<td align="left">删除</td>
+<td align="left">O(n)</td>
+<td align="left">O(1)</td>
+<td align="left">O(1)</td>
+<td align="left">O(log n)</td>
+<td align="left">O(1)</td>
+<td align="left">O(log n)</td>
+</tr>
+<tr>
+<td align="left">查找</td>
+<td align="left">O(1)</td>
+<td align="left">O(n)</td>
+<td align="left">O(1)</td>
+<td align="left">O(log n)</td>
+<td align="left">O(1)</td>
+<td align="left">O(log n)</td>
+</tr>
+<tr>
+<td align="left">内存</td>
+<td align="left">低</td>
+<td align="left">高</td>
+<td align="left">中</td>
+<td align="left">中</td>
+<td align="left">中</td>
+<td align="left">中</td>
+</tr>
+</tbody></table>
+<p>*<strong>ArrayList插入在末尾为O(1)，在中间为O(n)</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" data-id="cuidkjXa85i9gsSFVaC8Kgxit" data-title="Data Structure Module1" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module2-%E6%90%9C%E7%B4%A2%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Data-Structure-Module2
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/17/Java/Java-Module12-%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java-Module12</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenClaw/">OpenClaw</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Programming/">System Programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Programming/" rel="tag">System Programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Data-Structure/" style="font-size: 20px;">Data Structure</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/OpenClaw/" style="font-size: 10px;">OpenClaw</a> <a href="/tags/System-Programming/" style="font-size: 15px;">System Programming</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/05/19/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/">System-Programming-Module2</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/19/System-Programming-Module1-C%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/">System Programming Module1</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/09/Notes/OpenClaw%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%B8%A9%E5%9D%91/">OpenClaw的容器化部署及踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">Data-Structure-Module12</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module11-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88/">Data-Structure-Module11</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

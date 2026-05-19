@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Data-Structure-Module2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="搜索与算法分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure-Module2">
+<meta property="og:url" content="http://example.com/2026/03/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module2-%E6%90%9C%E7%B4%A2%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="搜索与算法分析">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-23T06:29:00.000Z">
+<meta property="article:modified_time" content="2026-03-25T01:18:40.553Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据结构与算法/Data-Structure-Module2-搜索与算法分析" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module2-%E6%90%9C%E7%B4%A2%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" class="article-date">
+  <time class="dt-published" datetime="2026-03-23T06:29:00.000Z" itemprop="datePublished">2026-03-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Structure/">Data Structure</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Data-Structure-Module2
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="搜索与算法分析"><a href="#搜索与算法分析" class="headerlink" title="搜索与算法分析"></a>搜索与算法分析<span id="more"></span></h1><h2 id="2-1-算法效率"><a href="#2-1-算法效率" class="headerlink" title="2.1 算法效率"></a>2.1 算法效率</h2><p>算法效率，简单来说，就是衡量一个算法在解决问题时对计算机资源（主要是时间和内存）的消耗程度。</p>
+<p>评价算法效率主要看两个核心指标：</p>
+<ul>
+<li><strong>时间复杂度</strong>：算法运行需要的时间，随输入数据量的增长如何变化。</li>
+<li><strong>空间复杂度</strong>：算法运行额外占用的内存，随输入数据量的增长如何变化。</li>
+</ul>
+<h3 id="2-1-1-时间复杂度"><a href="#2-1-1-时间复杂度" class="headerlink" title="2.1.1 时间复杂度"></a>2.1.1 时间复杂度</h3><p>指<strong>算法运行时间随输入规模 n 增长的变化趋势</strong>。它是对算法效率的抽象描述，通常用大O表示法来刻画。</p>
+<ol>
+<li><p><strong>O(1) —— 常数时间</strong></p>
+<ul>
+<li><p><strong>描述</strong>：无论数据量多大，执行时间都恒定。</p>
+</li>
+<li><p><strong>例子</strong>：在数组里通过下标直接取数 <code>arr[500]</code>；判断一个数是奇数还是偶数。</p>
+</li>
+<li><p><strong>比喻</strong>：直接翻到第500页，一秒钟搞定。无论电话簿是100页还是1万页，都是一瞬间。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>O(log⁡n) —— 对数时间</strong></p>
+<ul>
+<li><p><strong>描述</strong>：数据量翻倍，时间只增加一个常数步。</p>
+</li>
+<li><p><strong>例子</strong>：<strong>二分查找</strong>。每次查找都排除一半的数据。</p>
+</li>
+<li><p><strong>比喻</strong>：你翻开电话簿的中间，发现“L”在右边，于是丢掉左边一半；再翻剩余部分的中间……直到找到目标。1000页的电话簿，最多只需要翻10次（210≈1000210≈1000）。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>O(n) —— 线性时间</strong></p>
+<ul>
+<li><strong>描述</strong>：时间随数据量线性增长。数据量变成10倍，时间也变成10倍。</li>
+<li><strong>例子</strong>：遍历一个数组找出最大值；简单的循环。</li>
+<li><strong>比喻</strong>：从第一页开始，一页一页地找名字。如果电话簿厚了10倍，找的时间也长了10倍。</li>
+</ul>
+</li>
+<li><p><strong>O(nlog⁡n) —— 线性对数时间</strong></p>
+<ul>
+<li><strong>描述</strong>：这是比较高效的排序算法能达到的效率。</li>
+<li><strong>例子</strong>：<strong>归并排序、快速排序</strong>（平均情况）。</li>
+<li><strong>比喻</strong>：这类似于将电话簿拆分成小份分别整理，再合并。这是处理大规模数据时比较理想的时间复杂度。</li>
+<li></li>
+</ul>
+</li>
+<li><p><strong>O(n^2) —— 平方时间</strong></p>
+<ul>
+<li><strong>描述</strong>：数据量翻倍，时间变成4倍。</li>
+<li><strong>例子</strong>：<strong>冒泡排序、选择排序</strong>；双层嵌套循环。</li>
+<li><strong>比喻</strong>：你拿着电话簿里的每一个名字，去跟电话簿里的其他所有名字比对一遍。当页数翻倍时，比对次数变成了4倍。</li>
+<li></li>
+</ul>
+</li>
+<li><p><strong>O(2^n) —— 指数&#x2F;阶乘时间</strong></p>
+<ul>
+<li><strong>描述</strong>：数据量稍微增加一点，时间就爆炸性增长。</li>
+<li><strong>例子</strong>：<strong>递归计算斐波那契数列（未经优化）</strong>、旅行商问题的暴力解法。</li>
+<li><strong>比喻</strong>：尝试所有可能的排列组合。当名字从10个变成20个时，可能全宇宙的计算机算到宇宙毁灭也算不完。</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="left">情况</th>
+<th align="left">含义</th>
+<th align="left">快速排序示例</th>
+<th align="left">实际意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>最佳情况</strong></td>
+<td align="left">输入最有利时，算法达到的最优表现</td>
+<td align="left">数组已完全排好序（且使用三数取中法）→ O(nlog⁡n)</td>
+<td align="left">意义不大，因为不总能遇到最优输入</td>
+</tr>
+<tr>
+<td align="left"><strong>最坏情况</strong></td>
+<td align="left">输入最不利时，算法的最差表现</td>
+<td align="left">数组已排好序，且每次选第一个元素作基准 → O(n2)</td>
+<td align="left"><strong>最重要</strong>，因为它决定了算法的<strong>上界</strong>和稳定性</td>
+</tr>
+<tr>
+<td align="left"><strong>平均情况</strong></td>
+<td align="left">对所有可能输入的概率加权平均</td>
+<td align="left">随机排列的数组 → O(nlog⁡n)</td>
+<td align="left">最接近真实使用场景，但计算复杂</td>
+</tr>
+</tbody></table>
+<h4 id="为什么最坏情况最重要？"><a href="#为什么最坏情况最重要？" class="headerlink" title="为什么最坏情况最重要？"></a>为什么最坏情况最重要？</h4><p>在工程和面试中，<strong>最坏情况复杂度</strong>往往是第一关注点。原因很简单：</p>
+<ul>
+<li><strong>保证性</strong>：知道最坏情况，就知道算法“再差也不会差过这个底线”。对于实时系统（比如自动驾驶、手术设备），不能接受某个输入让程序突然卡死。</li>
+<li><strong>防御性</strong>：如果用户或攻击者可以构造恶意输入（比如让排序退化成 O(n2) 的输入），你不希望系统被轻易拖垮。</li>
+</ul>
+<p>因此，当我们说一个算法“时间复杂度是 O(nlog⁡n) 时，通常是指<strong>最坏情况</strong>，除非特别说明是平均情况。</p>
+<h4 id="运行时复杂度的完整表达"><a href="#运行时复杂度的完整表达" class="headerlink" title="运行时复杂度的完整表达"></a>运行时复杂度的完整表达</h4><p>在严谨的算法分析中，我们通常会这样表述：</p>
+<blockquote>
+<p>算法 A 的<strong>时间复杂度</strong>：</p>
+<ul>
+<li><strong>最坏情况</strong>：O(f(n))</li>
+<li><strong>平均情况</strong>：O(g(n))</li>
+<li><strong>最佳情况</strong>：O(h(n))</li>
+</ul>
+</blockquote>
+<p>比如快速排序的完整描述就是：</p>
+<ul>
+<li>最坏：O(n2)</li>
+<li>平均：O(nlog⁡n)</li>
+<li>最佳：O(nlog⁡n)</li>
+</ul>
+<h3 id="2-1-2-空间复杂度"><a href="#2-1-2-空间复杂度" class="headerlink" title="2.1.2 空间复杂度"></a>2.1.2 空间复杂度</h3><p><strong>算法的空间复杂度</strong>是衡量算法在运行过程中<strong>临时占用存储空间大小</strong>的量度。</p>
+<p>它不仅关注算法本身代码所占的空间（通常是固定的），更关注<strong>输入数据所占的空间</strong>以及<strong>算法运行时额外申请的临时空间</strong>。</p>
+<p>空间复杂度通常用大 <em>O</em> 符号（Big O notation）来表示，反映了空间需求与数据规模 <em>n</em> 之间的增长关系。</p>
+<h4 id="常见的空间复杂度量级"><a href="#常见的空间复杂度量级" class="headerlink" title="常见的空间复杂度量级"></a>常见的空间复杂度量级</h4><p><strong>O(1) —— 常数空间</strong></p>
+<ul>
+<li><strong>含义</strong>：无论输入数据量 <em>n</em> 有多大，算法所需要的额外内存空间都是固定的，不随 <em>n</em> 变化。</li>
+<li><strong>例子</strong>：冒泡排序、插入排序、交换两个变量的值。</li>
+</ul>
+<p><strong>O(n) —— 线性空间</strong></p>
+<ul>
+<li><strong>含义</strong>：算法需要的额外空间与输入规模 <em>n</em> 成正比。</li>
+<li><strong>例子</strong>：归并排序（临时数组）、深度优先搜索（DFS）中的递归栈、复制一个数组。</li>
+</ul>
+<p><strong>O(n^2) —— 平方空间</strong></p>
+<ul>
+<li><strong>含义</strong>：空间需求与 <em>n</em> 的平方成正比。</li>
+<li><strong>例子</strong>：存储一个 n×n 的二维矩阵（如动态规划中的二维DP表，当无法状态压缩时）。</li>
+</ul>
+<h3 id="2-1-3-空间复杂度-vs-时间复杂度"><a href="#2-1-3-空间复杂度-vs-时间复杂度" class="headerlink" title="2.1.3 空间复杂度 vs 时间复杂度"></a>2.1.3 空间复杂度 vs 时间复杂度</h3><p>在算法分析中，通常需要在<strong>空间</strong>和<strong>时间</strong>之间做权衡（即<strong>时空权衡</strong>）：</p>
+<ul>
+<li><strong>拿空间换时间</strong>：比如<strong>动态规划</strong>中的<strong>记忆化搜索</strong>，通过存储中间结果（消耗更多内存），避免重复计算（节省时间）。</li>
+<li><strong>拿时间换空间</strong>：比如<strong>递归</strong>，虽然代码简洁，但递归调用会占用大量的<strong>栈空间</strong>（每次递归都要保存现场），且函数调用本身有一定时间开销。</li>
+</ul>
+<h2 id="2-2-搜索和算法（线性查找）"><a href="#2-2-搜索和算法（线性查找）" class="headerlink" title="2.2 搜索和算法（线性查找）"></a>2.2 搜索和算法（线性查找）</h2><p>线性搜索的时间复杂度用大O表示法表示：</p>
+<ul>
+<li><p><strong>最好情况 O(1)</strong>：目标元素在第一个位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">示例：搜索 10，数组 [10, 23, 45, 70, 11, 15]</span><br><span class="line">只需1次比较</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>最坏情况 O(n)</strong>：目标元素在最后一个位置或不存在</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">示例：搜索 15，数组 [10, 23, 45, 70, 11, 15]</span><br><span class="line">需要6次比较</span><br></pre></td></tr></table></figure>
+
+
+</li>
+<li><p><strong>平均情况 O(n)</strong>：目标元素在中间某个位置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">平均需要 n/2 次比较</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="2-3-二分查找"><a href="#2-3-二分查找" class="headerlink" title="2.3 二分查找"></a>2.3 二分查找</h2><p>二分查找（Binary Search）是一种在<strong>有序数组</strong>中查找特定元素的高效算法。它的核心思想是<strong>分而治之</strong>，每次将查找范围缩小一半。</p>
+<h4 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h4><ol>
+<li>每次比较数组中间元素与目标值</li>
+<li>如果相等，返回索引</li>
+<li>如果中间元素大于目标值，在左半部分继续查找</li>
+<li>如果中间元素小于目标值，在右半部分继续查找</li>
+<li>重复直到找到目标或范围为空</li>
+</ol>
+<h4 id="使用Java标准库实现二分查找"><a href="#使用Java标准库实现二分查找" class="headerlink" title="使用Java标准库实现二分查找"></a>使用Java标准库实现二分查找</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BinarySearchExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">16</span>, <span class="number">23</span>, <span class="number">38</span>, <span class="number">45</span>, <span class="number">56</span>, <span class="number">72</span>&#125;;</span><br><span class="line">        <span class="type">int</span> <span class="variable">target</span> <span class="operator">=</span> <span class="number">23</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Java内置二分查找</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> Arrays.binarySearch(arr, target);</span><br><span class="line">        System.out.println(<span class="string">&quot;元素索引: &quot;</span> + index); <span class="comment">// 输出: 元素索引: 5</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="确定索引值-向下取整原则"><a href="#确定索引值-向下取整原则" class="headerlink" title="确定索引值-向下取整原则"></a>确定索引值-向下取整原则</h4><ul>
+<li>在Java的二分查找实现中，通常通过计算中间索引来确定第一个要比较的元素。</li>
+<li>中间索引 mid &#x3D; (low + high) &#x2F; 2</li>
+<li>整数除法会自动舍弃小数部分（即<strong>向下取整</strong>）</li>
+</ul>
+<p>例如数组 [0, 1, 2, 3, 4, 5]，中间索引 &#x3D; (0 + 5) &#x2F; 2 &#x3D; 2.5，向下取整为2，通常为左边数值。</p>
+<p>向下取整：|3.8| &#x3D; 3          |-2.4| &#x3D; -3        </p>
+<h2 id="2-4-常量时间运算"><a href="#2-4-常量时间运算" class="headerlink" title="2.4 常量时间运算"></a>2.4 常量时间运算</h2><p>在算法分析中，<strong>常量时间运算</strong>指的是：无论输入数据的规模（n）有多大，该运算所花费的时间都保持固定，不会随着 n 的增长而增加。用大 <em>O</em> 符号表示，就是 <em>O</em>(1)。</p>
+<h4 id="核心特征"><a href="#核心特征" class="headerlink" title="核心特征"></a>核心特征</h4><ol>
+<li><strong>与输入规模无关</strong><br>操作的执行步数不依赖于输入大小 n。例如：<ul>
+<li>访问数组中的某个元素：<code>arr[i]</code></li>
+<li>执行基本的算术运算：<code>a + b</code>、<code>x * y</code></li>
+<li>比较两个数的大小：<code>if (a &gt; b)</code></li>
+<li>给变量赋值：<code>int x = 5</code></li>
+</ul>
+</li>
+<li><strong>不代表“一秒钟”</strong><br>“常量”指的是增长阶数，而不是绝对时间。一个 O(1) 的操作可能执行了 100 条指令，但只要它不随 <em>n</em> 增长，就仍是常量时间。</li>
+</ol>
+<h3 id="2-4-1-常量时间运算操作"><a href="#2-4-1-常量时间运算操作" class="headerlink" title="2.4.1 常量时间运算操作"></a>2.4.1 <strong>常量时间运算操作</strong></h3><table>
+<thead>
+<tr>
+<th align="left">类别</th>
+<th align="left">常量时间操作</th>
+<th align="left">注意事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">算术&#x2F;逻辑</td>
+<td align="left"><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>&amp;</code>, &#96;</td>
+<td align="left"><code>, </code>^<code>, </code>&lt;<code>, </code>&gt;&#96;</td>
+</tr>
+<tr>
+<td align="left">内存访问</td>
+<td align="left">数组索引 <code>arr[i]</code>，变量读写，指针解引用</td>
+<td align="left">必须是随机访问结构</td>
+</tr>
+<tr>
+<td align="left">哈希表</td>
+<td align="left">字典&#x2F;集合的增删查（平均）</td>
+<td align="left">最坏情况 O(n)<em>O</em>(<em>n</em>)</td>
+</tr>
+<tr>
+<td align="left">栈&#x2F;队列</td>
+<td align="left">尾部压入&#x2F;弹出，双端队列两端操作</td>
+<td align="left">依赖具体实现</td>
+</tr>
+<tr>
+<td align="left">元数据</td>
+<td align="left">获取长度 <code>len()</code>，获取类型</td>
+<td align="left">语言需预存该信息</td>
+</tr>
+<tr>
+<td align="left">控制流</td>
+<td align="left">函数调用，<code>if</code> 判断，<code>return</code></td>
+<td align="left">不含循环内的调用</td>
+</tr>
+</tbody></table>
+<h3 id="2-4-2-看似常量但实际不是的操作"><a href="#2-4-2-看似常量但实际不是的操作" class="headerlink" title="2.4.2 看似常量但实际不是的操作"></a>2.4.2 看似常量但实际不是的操作</h3><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">原因</th>
+<th align="left">实际复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">字符串拼接 <code>s1 + s2</code></td>
+<td align="left">需要复制两个字符串的内容</td>
+<td align="left">O(n+m)</td>
+</tr>
+<tr>
+<td align="left">链表访问 <code>list.get(i)</code></td>
+<td align="left">需要从头遍历</td>
+<td align="left">O(i)</td>
+</tr>
+<tr>
+<td align="left">Python <code>list.insert(0, x)</code></td>
+<td align="left">需要移动所有后续元素</td>
+<td align="left">O(n)</td>
+</tr>
+<tr>
+<td align="left">字符串 <code>len(s)</code></td>
+<td align="left">有些语言是 O(n)<em>O</em>(<em>n</em>)（如 C 的 <code>strlen</code>），但 Python&#x2F;Java 是 O(1)<em>O</em>(1)</td>
+<td align="left">视语言而定</td>
+</tr>
+<tr>
+<td align="left">复制整个数组</td>
+<td align="left">需要复制每个元素</td>
+<td align="left">O(n)</td>
+</tr>
+</tbody></table>
+<h3 id="2-4-3-不同编程语言之间的执行绝对时间"><a href="#2-4-3-不同编程语言之间的执行绝对时间" class="headerlink" title="2.4.3 不同编程语言之间的执行绝对时间"></a>2.4.3 不同编程语言之间的执行绝对时间</h3><p><strong>同样逻辑的代码在不同编程语言中，常量时间运算的实际耗时可能不一致，但它们在算法分析中的大O复杂度分类仍然是 O(1)。</strong></p>
+<h4 id="示例：整数加法"><a href="#示例：整数加法" class="headerlink" title="示例：整数加法"></a>示例：整数加法</h4><table>
+<thead>
+<tr>
+<th align="left">语言</th>
+<th align="left">相对耗时</th>
+<th align="left">原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">C&#x2F;C++</td>
+<td align="left">极快（1-2 CPU指令）</td>
+<td align="left">直接编译为机器码，操作CPU寄存器</td>
+</tr>
+<tr>
+<td align="left">Java</td>
+<td align="left">较快</td>
+<td align="left">JIT编译后接近C，但仍有JVM开销</td>
+</tr>
+<tr>
+<td align="left">Python</td>
+<td align="left">较慢</td>
+<td align="left">整数是对象，需要解引用、类型检查、内存管理</td>
+</tr>
+<tr>
+<td align="left">JavaScript</td>
+<td align="left">中等</td>
+<td align="left">JIT优化后较快，但动态类型有额外检查</td>
+</tr>
+</tbody></table>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left">是否一致</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>复杂度分类（大O）</strong></td>
+<td align="left">✅ 一致</td>
+<td align="left">只要不随 n<em>n</em> 增长，都是 O(1)<em>O</em>(1)</td>
+</tr>
+<tr>
+<td align="left"><strong>实际执行时间</strong></td>
+<td align="left">❌ 不一致</td>
+<td align="left">解释型 vs 编译型，动态类型 vs 静态类型，对象开销等</td>
+</tr>
+<tr>
+<td align="left"><strong>具体操作是否O(1)</strong></td>
+<td align="left">⚠️ 可能不一致</td>
+<td align="left">如字符串长度、拼接、大整数运算在不同语言中实现不同</td>
+</tr>
+<tr>
+<td align="left"><strong>工程实践建议</strong></td>
+<td align="left">-</td>
+<td align="left">算法分析时看大O；性能优化时需考虑语言特性</td>
+</tr>
+</tbody></table>
+<p><strong>关键结论</strong>：常量时间运算是<strong>理论概念</strong>（大O分析），在不同语言中这个标签是一致的。但<strong>实际性能</strong>会因语言实现、运行时环境、硬件等差异很大。优秀的程序员既要知道理论上的复杂度，也要了解具体语言在实际执行时的表现。</p>
+<h2 id="2-5-算法的复杂性增长"><a href="#2-5-算法的复杂性增长" class="headerlink" title="2.5 算法的复杂性增长"></a>2.5 算法的复杂性增长</h2><p><strong>复杂性的增长</strong>是指随着输入规模 <em>n</em> 变大，算法所消耗的资源（通常是时间或内存）会如何变化。</p>
+<p>例如：</p>
+<ul>
+<li>一个排序算法的功能是把一组无序数排成有序。</li>
+<li>它的<strong>复杂度增长</strong>可能表现为：当 n 翻倍时，运行时间也大致翻倍（线性），或者变成原来的4倍（平方）。</li>
+</ul>
+<p>这种增长我们用<strong>增长率</strong>来描述，目的是为了在不同算法之间进行比较，并预测算法在大输入下的表现。</p>
+<h3 id="2-5-1-上界和下界"><a href="#2-5-1-上界和下界" class="headerlink" title="2.5.1 上界和下界"></a>2.5.1 上界和下界</h3><p><strong>上界 O(⋅)<br>	表示算法在最坏情况下的复杂度</strong>不会超过*<em>某个增长速度。<br>	例如 T</em>(<em>n</em>)&#x3D;<em>O</em>(*n^2) 意味着当 <em>n</em> 足够大时，算法运行时间至多与 n^2 成正比（忽略常数与低阶项）。<br>	通常我们通过分析算法的逻辑结构得到上界。</p>
+<p><strong>下界 Ω(⋅)</strong><br>	表示在最坏情况下，算法的复杂度<strong>至少</strong>是某个增长速度。<br>	例如 T(n)&#x3D;Ω(nlog⁡n) 说明在最坏情况下，算法所需时间至少与 nlog⁡n 成正比。<br>	有时下界是对某个问题而言的（即任何解决该问题的算法都必须满足这个下界），这称为问题的下界。</p>
+<p><strong>紧确界 Θ(⋅)</strong><br>当上界和下界相同时，我们说算法的复杂度是 Θ(f(n))，即增长率精确为 f(n) 的量级。</p>
+<h3 id="2-5-2-增长率与渐近符号"><a href="#2-5-2-增长率与渐近符号" class="headerlink" title="2.5.2 增长率与渐近符号"></a>2.5.2 增长率与渐近符号</h3><p><strong>增长率</strong>是比较算法效率的核心，指的是当 n→∞时，函数的行为趋势。<br><strong>渐近符号</strong>就是用来数学化描述增长率的工具。</p>
+<ul>
+<li><p><strong>O（大O）</strong>：渐近上界。<br>f(n) &#x3D; O(g(n)) 表示存在常数 c &gt; 0,n0​，使 0 ≤ f(n) ≤ cg(n) 对所有 n ≥ n0​ 成立。</p>
+</li>
+<li><p><strong>Ω（大Omega）</strong>：渐近下界。<br>f(n) &#x3D; Ω(g(n)) 表示存在 c &gt; 0,n0​，使 0 ≤ cg(n) ≤ f(n)对所有 n ≥ n0​ 成立。</p>
+</li>
+<li><p><strong>Θ（大Theta）</strong>：渐近紧界。<br>f(n) &#x3D; Θ(g(n))表示 f(n) &#x3D; O(g(n))且 f(n) &#x3D; Ω(g(n))，即增长率与 g(n) 同阶。</p>
+</li>
+</ul>
+<h4 id="它们之间的关系"><a href="#它们之间的关系" class="headerlink" title="它们之间的关系"></a>它们之间的关系</h4><ul>
+<li><strong>功能</strong>决定算法是什么，而<strong>复杂性增长</strong>决定算法在规模变大时的可行性。</li>
+<li>我们通过<strong>上界</strong>（算法保证不超过）与<strong>下界</strong>（问题本身或算法至少需要）来刻画复杂性。</li>
+<li><strong>渐近符号</strong>用来精确比较增长率，忽略常数和低阶项，让我们能聚焦在核心增长趋势上。</li>
+</ul>
+<h2 id="2-6-大O表示法"><a href="#2-6-大O表示法" class="headerlink" title="2.6 大O表示法"></a>2.6 大O表示法</h2><p>算法的大O表示法（Big O notation）是用于描述<strong>算法效率</strong>（时间复杂度或空间复杂度）随着输入规模增长时，其<strong>变化趋势</strong>的数学表示方法。它关注的是“当输入规模足够大时，算法的运行时间或内存占用如何增长”。</p>
+<p>大O表示法<strong>忽略常数因子和低阶项</strong>，只关注<strong>主要增长趋势</strong>。</p>
+<h3 id="2-6-1-常见的大O复杂度"><a href="#2-6-1-常见的大O复杂度" class="headerlink" title="2.6.1 常见的大O复杂度"></a>2.6.1 常见的大O复杂度</h3><table>
+<thead>
+<tr>
+<th align="left">大O表示法</th>
+<th align="left">名称</th>
+<th align="left">说明</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>O(1)</strong></td>
+<td align="left">常数时间</td>
+<td align="left">无论输入多大，执行时间不变</td>
+<td align="left">数组按索引访问、哈希表查找</td>
+</tr>
+<tr>
+<td align="left"><strong>O(log n)</strong></td>
+<td align="left">对数时间</td>
+<td align="left">每次操作将规模减半</td>
+<td align="left">二分查找、平衡二叉搜索树操作</td>
+</tr>
+<tr>
+<td align="left"><strong>O(n)</strong></td>
+<td align="left">线性时间</td>
+<td align="left">与输入规模成正比</td>
+<td align="left">简单循环遍历数组</td>
+</tr>
+<tr>
+<td align="left"><strong>O(n log n)</strong></td>
+<td align="left">线性对数时间</td>
+<td align="left">常见于高效排序算法</td>
+<td align="left">归并排序、快速排序（平均情况）</td>
+</tr>
+<tr>
+<td align="left"><strong>O(n²)</strong></td>
+<td align="left">平方时间</td>
+<td align="left">嵌套循环遍历二维数据</td>
+<td align="left">冒泡排序、选择排序</td>
+</tr>
+<tr>
+<td align="left"><strong>O(2ⁿ)</strong></td>
+<td align="left">指数时间</td>
+<td align="left">每增加一个元素，时间翻倍</td>
+<td align="left">递归求解斐波那契数列（未优化）</td>
+</tr>
+<tr>
+<td align="left"><strong>O(n!)</strong></td>
+<td align="left">阶乘时间</td>
+<td align="left">极慢，仅适用于极小输入</td>
+<td align="left">旅行商问题的暴力解法</td>
+</tr>
+</tbody></table>
+<h4 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h4><ol>
+<li><strong>最坏情况</strong>：大O通常描述最坏情况下的增长趋势（但也可用于平均情况）。</li>
+<li><strong>丢弃低阶项和常数。</strong></li>
+<li><strong>空间复杂度</strong>：同样可以用大O表示内存占用，如 O(n) 表示额外空间与输入规模成线性关系。</li>
+</ol>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>大O是<strong>渐近</strong>分析，对于小规模数据，常数较大的 O(n) 可能比常数小的 O(n2) 慢。</li>
+<li>实际应用中需要结合<strong>常数因子</strong>、<strong>硬件环境</strong>和<strong>输入特征</strong>综合评估。</li>
+</ul>
+<h3 id="2-6-2-计算规则"><a href="#2-6-2-计算规则" class="headerlink" title="2.6.2 计算规则"></a>2.6.2 计算规则</h3><h4 id="1-只考虑最高阶项"><a href="#1-只考虑最高阶项" class="headerlink" title="1. 只考虑最高阶项"></a>1. 只考虑最高阶项</h4><p>当 n 趋向无穷大时，低阶项和常数系数对增长趋势的影响可以忽略不计。</p>
+<ul>
+<li><strong>忽略低阶项</strong>：T(n)&#x3D;n2+n 的复杂度为 <strong>O(n2)</strong>。</li>
+<li><strong>忽略常数系数</strong>：T(n)&#x3D;3n 的复杂度为 <strong>O(n)</strong>；T(n)&#x3D;2n^2的复杂度为 <strong>O(n^2)</strong>。</li>
+<li><strong>常数时间</strong>：无论输入大小，执行时间固定，均为 <strong>O(1)</strong>。</li>
+</ul>
+<h4 id="2-加法规则"><a href="#2-加法规则" class="headerlink" title="2. 加法规则"></a>2. 加法规则</h4><p>如果算法由顺序执行的两部分组成，总复杂度取<strong>增长更快</strong>的那个：</p>
+<p><strong>O(f(n)) + O(g(n)) &#x3D; O(max⁡(f(n), g(n)))</strong></p>
+<h4 id="3-乘法规则"><a href="#3-乘法规则" class="headerlink" title="3. 乘法规则"></a>3. 乘法规则</h4><p>嵌套循环&#x2F;复合操作时，复杂度相乘：</p>
+<p><strong>O(f(n)) × O(g(n)) &#x3D; O(f(n)⋅g(n))</strong></p>
+<h4 id="4-常见递归复杂度"><a href="#4-常见递归复杂度" class="headerlink" title="4. 常见递归复杂度"></a><strong>4. 常见递归复杂度</strong></h4><table>
+<thead>
+<tr>
+<th align="left">递归形式</th>
+<th align="left">示例</th>
+<th align="left">复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">T(n) &#x3D; 2T(n&#x2F;2) + O(1)</td>
+<td align="left">二叉树遍历</td>
+<td align="left">O(n)</td>
+</tr>
+<tr>
+<td align="left">T(n) &#x3D; 2T(n&#x2F;2) + O(n)</td>
+<td align="left">归并排序</td>
+<td align="left">O(n log n)</td>
+</tr>
+<tr>
+<td align="left">T(n) &#x3D; T(n−1) + O(1)</td>
+<td align="left">递归求和</td>
+<td align="left">O(n)</td>
+</tr>
+<tr>
+<td align="left">T(n) &#x3D; T(n−1) + O(n)</td>
+<td align="left">快速排序最坏情况</td>
+<td align="left">O(n²)</td>
+</tr>
+<tr>
+<td align="left">T(n) &#x3D; 2T(n−1) + O(1)</td>
+<td align="left">斐波那契递归</td>
+<td align="left">O(2ⁿ)</td>
+</tr>
+</tbody></table>
+<h2 id="2-7-算法分析"><a href="#2-7-算法分析" class="headerlink" title="2.7 算法分析"></a>2.7 算法分析</h2><p>分析算法的最坏时间复杂度，核心在于<strong>确定输入规模与基本操作执行次数之间的函数关系</strong>，并取其<strong>增长最快的项</strong>作为渐进上界。</p>
+<h3 id="2-7-1-明确分析目标"><a href="#2-7-1-明确分析目标" class="headerlink" title="2.7.1 明确分析目标"></a>2.7.1 明确分析目标</h3><p>最坏时间复杂度关注的是：对于<strong>任意规模为 n 的输入</strong>，算法所需执行的基本操作次数的<strong>最大值</strong>。</p>
+<p>它通常用大 O 表示法描述，即 T(n)&#x3D;O(f(n))，表示存在常数 c 和 n0，使得当 n≥n0时，T(n)≤c⋅f(n)。</p>
+<h3 id="2-7-2-具体分析步骤"><a href="#2-7-2-具体分析步骤" class="headerlink" title="2.7.2 具体分析步骤"></a>2.7.2 具体分析步骤</h3><h4 id="1-确定输入规模"><a href="#1-确定输入规模" class="headerlink" title="1. 确定输入规模"></a>1. 确定输入规模</h4><p>明确哪个参数代表问题规模，如：</p>
+<ul>
+<li>数组长度 n</li>
+<li>矩阵维度 n×n</li>
+<li>图的顶点数 V 和边数 E</li>
+</ul>
+<h4 id="2-识别基本操作"><a href="#2-识别基本操作" class="headerlink" title="2. 识别基本操作"></a>2. 识别基本操作</h4><p>基本操作是算法中耗时最多的“原子操作”，通常是：</p>
+<ul>
+<li>比较（如 <code>if (a[i] &gt; a[j])</code>）</li>
+<li>赋值（如 <code>temp = a[i]</code>）</li>
+<li>算术运算（如 <code>sum += a[i]</code>）</li>
+</ul>
+<p>在循环或递归中，<strong>最内层循环体中的操作</strong>往往成为主导。</p>
+<h4 id="3-分析执行次数"><a href="#3-分析执行次数" class="headerlink" title="3. 分析执行次数"></a>3. 分析执行次数</h4><p>根据算法结构，统计基本操作执行的<strong>最坏情况次数</strong>：</p>
+<ul>
+<li><strong>顺序结构</strong>：直接相加。</li>
+<li><strong>分支结构</strong>：取分支中最大执行次数。</li>
+<li><strong>循环结构</strong>：<ul>
+<li>单层循环：执行次数为循环次数。</li>
+<li>多层循环：通常为各层循环次数的乘积（注意循环变量是否依赖外层）。</li>
+</ul>
+</li>
+<li><strong>递归结构</strong>：建立递推关系式并求解。</li>
+</ul>
+<h4 id="4-构造最坏情况输入"><a href="#4-构造最坏情况输入" class="headerlink" title="4. 构造最坏情况输入"></a>4. 构造最坏情况输入</h4><p>思考哪种输入会导致基本操作次数最大。例如：</p>
+<ul>
+<li><p>排序算法：输入完全逆序（对于冒泡排序）或已排序（对于快速排序的某些枢轴选择）。</p>
+</li>
+<li><p>查找算法：目标元素在末尾或不存在。</p>
+</li>
+</ul>
+<h4 id="5-用大-O表示"><a href="#5-用大-O表示" class="headerlink" title="5. 用大 O表示"></a>5. 用大 O表示</h4><p>忽略低阶项和常数系数，只保留增长最快的项。</p>
+<h3 id="2-7-3-常见误区与注意事项"><a href="#2-7-3-常见误区与注意事项" class="headerlink" title="2.7.3 常见误区与注意事项"></a>2.7.3 常见误区与注意事项</h3><ol>
+<li><p><strong>不要将平均情况与最坏情况混淆</strong><br>例如快速排序平均为 O(nlog⁡n)，但最坏为 O(n^2)。</p>
+</li>
+<li><p><strong>注意递归深度与每层工作量的平衡</strong><br>如归并排序每层 O(n)，深度 log⁡n，总复杂度 O(nlog⁡n)。</p>
+</li>
+<li><p><strong>区分“输入规模”与“输入值”</strong><br>例如判断一个数是否为质数，输入规模是数的位数 d，而非数值本身，此时 O(n)实际上是关于 n 的指数级（因为 n 是 2^d 量级）。</p>
+</li>
+<li><p><strong>大 O 是上界，不一定是紧确界</strong><br>如果分析得到 O(n^2)，但实际是 O(n)，说明上界放得太宽，应寻找更紧的界。</p>
+</li>
+</ol>
+<h2 id="附录1-Java-集合框架"><a href="#附录1-Java-集合框架" class="headerlink" title="附录1 Java 集合框架"></a>附录1 Java 集合框架</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module2-%E6%90%9C%E7%B4%A2%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" data-id="cuid92nP8mMyZHuA_LDiFEvfr" data-title="Data-Structure-Module2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module3-%E9%93%BE%E8%A1%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Data-Structure-Module3
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Data Structure Module1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenClaw/">OpenClaw</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Programming/">System Programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Programming/" rel="tag">System Programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Data-Structure/" style="font-size: 20px;">Data Structure</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/OpenClaw/" style="font-size: 10px;">OpenClaw</a> <a href="/tags/System-Programming/" style="font-size: 15px;">System Programming</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/05/19/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/">System-Programming-Module2</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/19/System-Programming-Module1-C%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/">System Programming Module1</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/09/Notes/OpenClaw%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%B8%A9%E5%9D%91/">OpenClaw的容器化部署及踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">Data-Structure-Module12</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module11-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88/">Data-Structure-Module11</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

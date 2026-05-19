@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Data-Structure-Module3 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="链表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure-Module3">
+<meta property="og:url" content="http://example.com/2026/03/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module3-%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="链表">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-30T09:28:15.000Z">
+<meta property="article:modified_time" content="2026-04-03T02:41:41.971Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-数据结构与算法/Data-Structure-Module3-链表" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module3-%E9%93%BE%E8%A1%A8/" class="article-date">
+  <time class="dt-published" datetime="2026-03-30T09:28:15.000Z" itemprop="datePublished">2026-03-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Data-Structure/">Data Structure</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Data-Structure-Module3
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表<span id="more"></span></h1><h2 id="3-1-列表的抽象数据类型（ADT）"><a href="#3-1-列表的抽象数据类型（ADT）" class="headerlink" title="3.1 列表的抽象数据类型（ADT）"></a>3.1 列表的抽象数据类型（ADT）</h2><p><strong>列表抽象数据类型（List ADT）</strong> 是一种按照<strong>线性顺序</strong>组织数据元素的抽象数据类型。它强调“<strong>逻辑上的线性关系</strong>”，而隐藏了具体的物理存储结构（如数组或链表）。</p>
+<h3 id="3-1-1-核心特征"><a href="#3-1-1-核心特征" class="headerlink" title="3.1.1 核心特征"></a>3.1.1 核心特征</h3><ul>
+<li><strong>线性结构</strong>：除第一个元素外，每个元素都有唯一的前驱；除最后一个元素外，每个元素都有唯一的后继。</li>
+<li><strong>有序性</strong>：元素的位置由插入顺序或索引决定（区别于集合的无序性）。</li>
+<li><strong>允许重复</strong>：与数学中的“集合”不同，列表允许存储重复的元素。</li>
+<li><strong>动态性</strong>：大小可以动态变化（在抽象定义层面，不限制容量）。</li>
+</ul>
+<h3 id="3-1-2-常见操作"><a href="#3-1-2-常见操作" class="headerlink" title="3.1.2 常见操作"></a>3.1.2 常见操作</h3><h4 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>add(element)</code></td>
+<td align="left">在列表末尾添加元素</td>
+<td align="left"><code>list.add(10)</code> → <code>[..., 10]</code></td>
+</tr>
+<tr>
+<td align="left"><code>insert(index, element)</code></td>
+<td align="left">在指定位置插入元素</td>
+<td align="left"><code>list.insert(2, 99)</code> → 索引 2 处插入 99</td>
+</tr>
+<tr>
+<td align="left"><code>addAll(collection)</code></td>
+<td align="left">批量添加多个元素</td>
+<td align="left"><code>list.addAll([1,2,3])</code></td>
+</tr>
+</tbody></table>
+<h4 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>remove(index)</code></td>
+<td align="left">删除指定索引位置的元素</td>
+<td align="left"><code>list.remove(2)</code> → 删除第 3 个元素</td>
+</tr>
+<tr>
+<td align="left"><code>removeElement(element)</code></td>
+<td align="left">删除第一个匹配的元素值</td>
+<td align="left"><code>list.removeElement(5)</code> → 删除值为 5 的元素</td>
+</tr>
+<tr>
+<td align="left"><code>clear()</code></td>
+<td align="left">清空所有元素</td>
+<td align="left"><code>list.clear()</code> → <code>[]</code></td>
+</tr>
+</tbody></table>
+<h4 id="访问与修改"><a href="#访问与修改" class="headerlink" title="访问与修改"></a>访问与修改</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>get(index)</code></td>
+<td align="left">获取指定索引的元素</td>
+<td align="left"><code>int x = list.get(3)</code></td>
+</tr>
+<tr>
+<td align="left"><code>set(index, element)</code></td>
+<td align="left">替换指定索引的元素</td>
+<td align="left"><code>list.set(1, 100)</code> → 将索引 1 改为 100</td>
+</tr>
+<tr>
+<td align="left"><code>indexOf(element)</code></td>
+<td align="left">查找元素第一次出现的索引</td>
+<td align="left"><code>int pos = list.indexOf(42)</code></td>
+</tr>
+<tr>
+<td align="left"><code>lastIndexOf(element)</code></td>
+<td align="left">查找元素最后一次出现的索引</td>
+<td align="left"><code>int pos = list.lastIndexOf(42)</code></td>
+</tr>
+</tbody></table>
+<h4 id="查询与状态"><a href="#查询与状态" class="headerlink" title="查询与状态"></a>查询与状态</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>size()</code></td>
+<td align="left">返回元素个数</td>
+<td align="left"><code>int len = list.size()</code></td>
+</tr>
+<tr>
+<td align="left"><code>isEmpty()</code></td>
+<td align="left">判断是否为空</td>
+<td align="left"><code>if (list.isEmpty())</code></td>
+</tr>
+<tr>
+<td align="left"><code>contains(element)</code></td>
+<td align="left">判断是否包含某元素</td>
+<td align="left"><code>if (list.contains(5))</code></td>
+</tr>
+<tr>
+<td align="left"><code>subList(from, to)</code></td>
+<td align="left">获取子列表（视图）</td>
+<td align="left"><code>list.subList(1, 4)</code> → 索引 1~3</td>
+</tr>
+</tbody></table>
+<h4 id="遍历操作"><a href="#遍历操作" class="headerlink" title="遍历操作"></a>遍历操作</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>iterator()</code></td>
+<td align="left">获取迭代器</td>
+<td align="left"><code>for (var e : list)</code></td>
+</tr>
+<tr>
+<td align="left"><code>forEach(consumer)</code></td>
+<td align="left">函数式遍历（Lambda）</td>
+<td align="left"><code>list.forEach(e -&gt; System.out.println(e))</code></td>
+</tr>
+</tbody></table>
+<h4 id="批量操作"><a href="#批量操作" class="headerlink" title="批量操作"></a>批量操作</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+<th align="left">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>addAll(collection)</code></td>
+<td align="left">追加另一个集合</td>
+<td align="left"><code>list.addAll(otherList)</code></td>
+</tr>
+<tr>
+<td align="left"><code>removeAll(collection)</code></td>
+<td align="left">删除所有在集合中的元素</td>
+<td align="left"><code>list.removeAll([1,2])</code></td>
+</tr>
+<tr>
+<td align="left"><code>retainAll(collection)</code></td>
+<td align="left">仅保留集合中的元素</td>
+<td align="left"><code>list.retainAll([1,2])</code></td>
+</tr>
+<tr>
+<td align="left"><code>sort(comparator)</code></td>
+<td align="left">排序</td>
+<td align="left"><code>list.sort()</code></td>
+</tr>
+</tbody></table>
+<h4 id="其他常见操作"><a href="#其他常见操作" class="headerlink" title="其他常见操作"></a>其他常见操作</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>toArray()</code></td>
+<td align="left">转换为数组</td>
+</tr>
+<tr>
+<td align="left"><code>clone()</code> &#x2F; <code>copy()</code></td>
+<td align="left">复制列表</td>
+</tr>
+<tr>
+<td align="left"><code>reverse()</code></td>
+<td align="left">反转顺序（某些语言提供）</td>
+</tr>
+</tbody></table>
+<h2 id="3-2-单链表"><a href="#3-2-单链表" class="headerlink" title="3.2 单链表"></a>3.2 单链表</h2><p>单链表是一种<strong>线性数据结构</strong>，由一系列节点组成，每个节点包含<strong>数据域</strong>和<strong>指针域</strong>（指向下一个节点）。</p>
+<p>与数组不同，单链表中的元素在内存中<strong>不连续存储</strong>，通过指针链接成链。</p>
+<h4 id="核心结构"><a href="#核心结构" class="headerlink" title="核心结构"></a>核心结构</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">头指针 → [data|next] → [data|next] → [data|next] → None</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>头指针</strong>：指向第一个节点，是访问链表的唯一入口</li>
+<li><strong>节点</strong>：包含<strong>数据域</strong>（存储数据）和<strong>指针域</strong>（存储下一个节点的地址）</li>
+<li><strong>尾节点</strong>：指针域指向 <code>NULL</code>，表示链表结束</li>
+</ul>
+<h4 id="主要操作"><a href="#主要操作" class="headerlink" title="主要操作"></a>主要操作</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">时间复杂度</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">头插法</td>
+<td align="left">O(1)</td>
+<td align="left">新节点插入链表头部</td>
+</tr>
+<tr>
+<td align="left">尾插法</td>
+<td align="left">O(n)</td>
+<td align="left">需遍历到尾部（维护尾指针可优化为O(1)）</td>
+</tr>
+<tr>
+<td align="left">指定位置插入</td>
+<td align="left">O(n)</td>
+<td align="left">需先遍历到目标位置</td>
+</tr>
+<tr>
+<td align="left">删除节点</td>
+<td align="left">O(n)</td>
+<td align="left">需找到前驱节点</td>
+</tr>
+<tr>
+<td align="left">查找</td>
+<td align="left">O(n)</td>
+<td align="left">顺序遍历</td>
+</tr>
+<tr>
+<td align="left">遍历</td>
+<td align="left">O(n)</td>
+<td align="left">访问所有节点</td>
+</tr>
+</tbody></table>
+<h4 id="特点总结"><a href="#特点总结" class="headerlink" title="特点总结"></a>特点总结</h4><p><strong>优点</strong></p>
+<ul>
+<li>动态内存分配，无需预先分配连续空间</li>
+<li>插入和删除操作效率高（仅需修改指针）</li>
+<li>空间利用率灵活，随用随申请</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>不支持随机访问，只能顺序遍历</li>
+<li>需要额外存储指针，有内存开销</li>
+<li>查找效率较低，为 O(n)</li>
+</ul>
+<h4 id="与其他结构的对比"><a href="#与其他结构的对比" class="headerlink" title="与其他结构的对比"></a>与其他结构的对比</h4><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">单链表</th>
+<th align="left">顺序表（数组）</th>
+<th align="left">双链表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">存储方式</td>
+<td align="left">非连续</td>
+<td align="left">连续</td>
+<td align="left">非连续</td>
+</tr>
+<tr>
+<td align="left">随机访问</td>
+<td align="left">不支持</td>
+<td align="left">支持 O(1)</td>
+<td align="left">不支持</td>
+</tr>
+<tr>
+<td align="left">插入&#x2F;删除</td>
+<td align="left">O(1)*</td>
+<td align="left">O(n)</td>
+<td align="left">O(1)*</td>
+</tr>
+<tr>
+<td align="left">内存占用</td>
+<td align="left">数据+指针</td>
+<td align="left">仅数据</td>
+<td align="left">数据+两个指针</td>
+</tr>
+<tr>
+<td align="left">反向遍历</td>
+<td align="left">不支持</td>
+<td align="left">支持</td>
+<td align="left">支持</td>
+</tr>
+</tbody></table>
+<p>*<em>注：指已知插入位置的情况下</em></p>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<li>频繁插入&#x2F;删除，但很少随机访问</li>
+<li>实现栈、队列等抽象数据类型</li>
+<li>LRU 缓存淘汰算法</li>
+<li>多项式运算、大数运算等动态结构需求</li>
+</ul>
+<h3 id="3-3-单链表：查询和插入"><a href="#3-3-单链表：查询和插入" class="headerlink" title="3.3 单链表：查询和插入"></a>3.3 单链表：查询和插入</h3><h3 id="3-3-1-单链表的节点结构"><a href="#3-3-1-单链表的节点结构" class="headerlink" title="3.3.1 单链表的节点结构"></a>3.3.1 单链表的节点结构</h3><ul>
+<li><strong>数据域</strong>：存储具体的数据（可以是任意类型，这里用泛型 <code>T</code> 表示）。</li>
+<li><strong>指针域</strong>：存储下一个节点的引用（Java 中就是对象引用）。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SinglyLinkedList</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="comment">// 节点内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Node</span>&lt;T&gt; &#123;</span><br><span class="line">        T data;</span><br><span class="line">        Node&lt;T&gt; next;</span><br><span class="line">        </span><br><span class="line">        Node(T data) &#123;</span><br><span class="line">            <span class="built_in">this</span>.data = data;</span><br><span class="line">            <span class="built_in">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> Node&lt;T&gt; head;  <span class="comment">// 头节点</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 构造方法，初始时链表为空</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SinglyLinkedList</span><span class="params">()</span> &#123;</span><br><span class="line">        head = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3-2-单链表的查询"><a href="#3-3-2-单链表的查询" class="headerlink" title="3.3.2 单链表的查询"></a>3.3.2 单链表的查询</h3><h4 id="按值查找"><a href="#按值查找" class="headerlink" title="按值查找"></a>按值查找</h4><p>从头部开始，依次比较每个节点的数据，直到找到匹配的值或到达链表末尾。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Node&lt;T&gt; <span class="title function_">findByValue</span><span class="params">(T value)</span> &#123;</span><br><span class="line">    Node&lt;T&gt; current = head;</span><br><span class="line">    <span class="keyword">while</span> (current != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (current.data.equals(value)) &#123;</span><br><span class="line">            <span class="keyword">return</span> current;</span><br><span class="line">        &#125;</span><br><span class="line">        current = current.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">// 未找到</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="按索引查找"><a href="#按索引查找" class="headerlink" title="按索引查找"></a>按索引查找</h4><p>从头部开始，计数器记录当前位置，直到找到指定索引或超出链表长度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Node&lt;T&gt; <span class="title function_">findByIndex</span><span class="params">(<span class="type">int</span> index)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    Node&lt;T&gt; current = head;</span><br><span class="line">    <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (current != <span class="literal">null</span> &amp;&amp; pos &lt; index) &#123;</span><br><span class="line">        current = current.next;</span><br><span class="line">        pos++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> current; <span class="comment">// 如果索引超出范围，返回 null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>按值查找：最坏情况下需要遍历整个链表，时间复杂度为 <strong>O(n)</strong>。</li>
+<li>按索引查找：同样需要遍历到指定位置，时间复杂度为 <strong>O(n)</strong>。</li>
+</ul>
+<h3 id="3-3-3-单链表的插入"><a href="#3-3-3-单链表的插入" class="headerlink" title="3.3.3 单链表的插入"></a>3.3.3 单链表的插入</h3><h4 id="头部插入"><a href="#头部插入" class="headerlink" title="头部插入"></a>头部插入</h4><p>新节点成为新的头节点，其 <code>next</code> 指向原来的头节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertAtHead</span><span class="params">(T data)</span> &#123;</span><br><span class="line">    Node&lt;T&gt; newNode = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;&gt;(data);</span><br><span class="line">    newNode.next = head;</span><br><span class="line">    head = newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="尾部插入"><a href="#尾部插入" class="headerlink" title="尾部插入"></a>尾部插入</h4><p>如果链表为空，新节点直接作为头节点；否则遍历到最后一个节点，将其 <code>next</code> 指向新节点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertAtTail</span><span class="params">(T data)</span> &#123;</span><br><span class="line">    Node&lt;T&gt; newNode = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;&gt;(data);</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">        head = newNode;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node&lt;T&gt; current = head;</span><br><span class="line">    <span class="keyword">while</span> (current.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        current = current.next;</span><br><span class="line">    &#125;</span><br><span class="line">    current.next = newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="指定节点后插入"><a href="#指定节点后插入" class="headerlink" title="指定节点后插入"></a>指定节点后插入</h4><p>已知一个节点 <code>prevNode</code>（不为空），将新节点插入到它后面。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertAfter</span><span class="params">(Node&lt;T&gt; prevNode, T data)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (prevNode == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;前驱节点不能为空&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    Node&lt;T&gt; newNode = <span class="keyword">new</span> <span class="title class_">Node</span>&lt;&gt;(data);</span><br><span class="line">    newNode.next = prevNode.next;</span><br><span class="line">    prevNode.next = newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="指定位置插入（索引位置）"><a href="#指定位置插入（索引位置）" class="headerlink" title="指定位置插入（索引位置）"></a>指定位置插入（索引位置）</h4><p>如果索引为 0，则头插；否则找到索引位置的前一个节点，然后在其后插入。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">insertAtIndex</span><span class="params">(<span class="type">int</span> index, T data)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;索引不能为负数&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (index == <span class="number">0</span>) &#123;</span><br><span class="line">        insertAtHead(data);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Node&lt;T&gt; prev = findByIndex(index - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (prev == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IndexOutOfBoundsException</span>(<span class="string">&quot;索引超出链表长度&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    insertAfter(prev, data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><ul>
+<li>头插法：<strong>O(1)</strong>。</li>
+<li>尾插法：<strong>O(n)</strong>（因为需要遍历找到尾部，可以维护尾指针优化为 O(1)）。</li>
+<li>中间插入：<strong>O(n)</strong>（查找前驱节点需要遍历）。</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><strong>单链表</strong> 由节点组成，每个节点包含数据和指向下一个节点的引用。</li>
+<li><strong>查询</strong> 需要遍历，时间复杂度 O(n)。</li>
+<li><strong>插入</strong> 在头部为 O(1)，在尾部或中间需要先定位，时间复杂度 O(n)。</li>
+<li>Java 实现中，注意空指针处理，特别是插入和查找时对头节点的判断。</li>
+</ul>
+<h2 id="3-4-单链表：删除"><a href="#3-4-单链表：删除" class="headerlink" title="3.4 单链表：删除"></a>3.4 单链表：删除</h2><p>在数据结构中，<strong>单链表的删除操作</strong>指的是从链表中移除一个节点。</p>
+<p>由于单链表是单向的，每个节点只知道下一个节点的位置，因此删除操作的核心是：<strong>找到要删除节点的前一个节点，然后将其指针指向要删除节点的下一个节点</strong>。</p>
+<h4 id="删除头节点"><a href="#删除头节点" class="headerlink" title="删除头节点"></a>删除头节点</h4><ul>
+<li><strong>操作</strong>：将头指针指向原头节点的下一个节点。</li>
+<li><strong>注意</strong>：若原头节点被其他指针引用，需先处理（如释放内存）。</li>
+<li><strong>时间复杂度</strong>：O(1)</li>
+</ul>
+<h4 id="删除尾节点"><a href="#删除尾节点" class="headerlink" title="删除尾节点"></a>删除尾节点</h4><ul>
+<li><strong>操作</strong>：<ol>
+<li>从头遍历找到<strong>倒数第二个节点</strong>。</li>
+<li>将其 <code>next</code> 指针设为 <code>null</code>。</li>
+<li>释放原尾节点（如果需要）。</li>
+</ol>
+</li>
+<li><strong>时间复杂度</strong>：O(n)</li>
+</ul>
+<h4 id="删除中间节点"><a href="#删除中间节点" class="headerlink" title="删除中间节点"></a>删除中间节点</h4><ul>
+<li><p><strong>操作</strong>：假设要删除节点 <code>curr</code>，需先找到其<strong>前驱节点</strong> <code>prev</code>，然后：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prev.next = curr.next</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>时间复杂度</strong>：查找前驱需要 O(n)，单纯指针修改是 O(1)</p>
+</li>
+</ul>
+<h4 id="删除指定值的节点"><a href="#删除指定值的节点" class="headerlink" title="删除指定值的节点"></a>删除指定值的节点</h4><ul>
+<li><strong>步骤</strong>：<ul>
+<li>处理头节点匹配的情况。</li>
+<li>遍历链表，找到待删除节点的前一个节点。</li>
+<li>执行指针跳过操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="不同删除操作的复杂度对比"><a href="#不同删除操作的复杂度对比" class="headerlink" title="不同删除操作的复杂度对比"></a>不同删除操作的复杂度对比</h3><table>
+<thead>
+<tr>
+<th align="left">场景</th>
+<th align="left">时间复杂度</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">删除头节点</td>
+<td align="left">O(1)</td>
+<td align="left">直接移动头指针</td>
+</tr>
+<tr>
+<td align="left">删除已知节点的下一个节点</td>
+<td align="left">O(1)</td>
+<td align="left">已知前驱时可直接操作</td>
+</tr>
+<tr>
+<td align="left">删除给定值的节点</td>
+<td align="left">O(n)</td>
+<td align="left">主要耗时在查找节点</td>
+</tr>
+<tr>
+<td align="left">删除尾节点</td>
+<td align="left">O(n)</td>
+<td align="left">必须遍历到倒数第二个节点</td>
+</tr>
+</tbody></table>
+<h2 id="3-5-基于数组的列表"><a href="#3-5-基于数组的列表" class="headerlink" title="3.5 基于数组的列表"></a>3.5 基于数组的列表</h2><p>在数据结构中，<strong>基于数组的列表</strong>是一种使用<strong>连续内存空间</strong>来存储元素的线性表实现方式。它通常被称为<strong>顺序列表</strong>或<strong>动态数组</strong></p>
+<h4 id="核心特点"><a href="#核心特点" class="headerlink" title="核心特点"></a>核心特点</h4><table>
+<thead>
+<tr>
+<th align="left">特点</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>物理存储</strong></td>
+<td align="left">内存中连续的一块区域</td>
+</tr>
+<tr>
+<td align="left"><strong>逻辑顺序</strong></td>
+<td align="left">元素按插入顺序排列</td>
+</tr>
+<tr>
+<td align="left"><strong>随机访问</strong></td>
+<td align="left">通过索引 O(1) 时间访问任意元素</td>
+</tr>
+<tr>
+<td align="left"><strong>动态扩容</strong></td>
+<td align="left">容量不足时自动分配更大的数组并复制</td>
+</tr>
+</tbody></table>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">数组底层（容量 capacity = 8）</span><br><span class="line">索引:  0    1    2    3    4    5    6    7</span><br><span class="line">      ┌────┬────┬────┬────┬────┬────┬────┬────┐</span><br><span class="line">数据: │ A  │ B  │ C  │ D  │    │    │    │    │</span><br><span class="line">      └────┴────┴────┴────┴────┴────┴────┴────┘</span><br><span class="line">                    ↑</span><br><span class="line">               size = 4 (实际元素个数)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="主要操作复杂度"><a href="#主要操作复杂度" class="headerlink" title="主要操作复杂度"></a>主要操作复杂度</h4><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">访问&#x2F;修改（按索引）</td>
+<td align="left">O(1)</td>
+</tr>
+<tr>
+<td align="left">尾部插入&#x2F;删除</td>
+<td align="left">O(1) 均摊</td>
+</tr>
+<tr>
+<td align="left">中间插入&#x2F;删除</td>
+<td align="left">O(n)</td>
+</tr>
+<tr>
+<td align="left">查找元素</td>
+<td align="left">O(n)</td>
+</tr>
+</tbody></table>
+<h4 id="扩容机制"><a href="#扩容机制" class="headerlink" title="扩容机制"></a>扩容机制</h4><p>当 <code>size == capacity</code> 时触发扩容：</p>
+<ol>
+<li>创建新数组（通常为原容量的 <strong>1.5 倍</strong>或 <strong>2 倍</strong>）</li>
+<li>复制所有元素到新数组</li>
+<li>释放原数组</li>
+</ol>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><table>
+<thead>
+<tr>
+<th align="left">优点</th>
+<th align="left">缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">✅ 内存连续，CPU 缓存友好</td>
+<td align="left">❌ 插入&#x2F;删除（非尾部）需要移动元素</td>
+</tr>
+<tr>
+<td align="left">✅ 随机访问速度极快</td>
+<td align="left">❌ 扩容时有复制开销</td>
+</tr>
+<tr>
+<td align="left">✅ 实现简单</td>
+<td align="left">❌ 可能造成内存浪费（预留容量未用）</td>
+</tr>
+</tbody></table>
+<h4 id="与链表的对比"><a href="#与链表的对比" class="headerlink" title="与链表的对比"></a>与链表的对比</h4><table>
+<thead>
+<tr>
+<th align="left">特性</th>
+<th align="left">基于数组的列表</th>
+<th align="left">链表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">随机访问</td>
+<td align="left">O(1) ✅</td>
+<td align="left">O(n)</td>
+</tr>
+<tr>
+<td align="left">中间插入&#x2F;删除</td>
+<td align="left">O(n)</td>
+<td align="left">O(1)（已知位置）</td>
+</tr>
+<tr>
+<td align="left">内存开销</td>
+<td align="left">可能预留空间</td>
+<td align="left">每个节点多存指针</td>
+</tr>
+<tr>
+<td align="left">缓存局部性</td>
+<td align="left">好</td>
+<td align="left">差</td>
+</tr>
+</tbody></table>
+<p><strong>适用场景</strong>：读多写少、频繁按索引访问、尾部增删为主的情况。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/30/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module3-%E9%93%BE%E8%A1%A8/" data-id="cuiduvveOSRtLkVccJL1vIh8E" data-title="Data-Structure-Module3" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/04/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module4-%E9%93%BE%E8%A1%A8%E9%AB%98%E7%BA%A7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Data-Structure-Module4
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module2-%E6%90%9C%E7%B4%A2%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Data-Structure-Module2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenClaw/">OpenClaw</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Programming/">System Programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Programming/" rel="tag">System Programming</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Data-Structure/" style="font-size: 20px;">Data Structure</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/OpenClaw/" style="font-size: 10px;">OpenClaw</a> <a href="/tags/System-Programming/" style="font-size: 15px;">System Programming</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/05/19/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/">System-Programming-Module2</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/19/System-Programming-Module1-C%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/">System Programming Module1</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/09/Notes/OpenClaw%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%B8%A9%E5%9D%91/">OpenClaw的容器化部署及踩坑</a>
+          </li>
+        
+          <li>
+            <a href="/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">Data-Structure-Module12</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module11-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88/">Data-Structure-Module11</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
