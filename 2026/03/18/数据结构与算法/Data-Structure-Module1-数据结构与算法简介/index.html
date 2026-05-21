@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Data Structure Module1 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="数据结构与算法简介">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="数据结构与算法简介">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Data Structure Module1">
 <meta property="og:url" content="http://example.com/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/index.html">
@@ -18,89 +32,203 @@
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Data Structure">
 <meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/","path":"2026/03/18/数据结构与算法/Data-Structure-Module1-数据结构与算法简介/","title":"Data Structure Module1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Data Structure Module1 | Hexo</title>
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
 
   
+
+
+
+
+
+
   
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">数据结构与算法简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E8%AE%B0%E5%BD%95%EF%BC%88Record%EF%BC%89-%E7%BB%93%E6%9E%84%E4%BD%93%EF%BC%88Struct%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 记录（Record） &#x2F; 结构体（Struct）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E6%95%B0%E7%BB%84%EF%BC%88Array%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 数组（Array）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-%E9%93%BE%E8%A1%A8%EF%BC%88Linked-List%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 链表（Linked List）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-%E4%BA%8C%E5%8F%89%E6%A0%91%EF%BC%88Binary-Tree%EF%BC%89"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.1.4 二叉树（Binary Tree）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-%E5%93%88%E5%B8%8C%E8%A1%A8%EF%BC%88Hash-Table%EF%BC%89-%E6%95%A3%E5%88%97%E8%A1%A8"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.1.5 哈希表（Hash Table） &#x2F; 散列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-6-%E5%A0%86%EF%BC%88Heap%EF%BC%89"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.1.6 堆（Heap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-7-%E5%9B%BE%EF%BC%88Graph%EF%BC%89"><span class="nav-number">1.1.7.</span> <span class="nav-text">1.1.7 图（Graph）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 算法简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NP%E9%97%AE%E9%A2%98%E7%9A%84%E5%85%A8%E7%A7%B0%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">NP问题的全称与核心概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#P-%E7%B1%BB%E9%97%AE%E9%A2%98-Polynomial-time-%EF%BC%9A"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">P 类问题 (Polynomial time)：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NP-%E7%B1%BB%E9%97%AE%E9%A2%98-Nondeterministic-Polynomial-time-%EF%BC%9A"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">NP 类问题 (Nondeterministic Polynomial time)：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NP%E5%AE%8C%E5%85%A8%E9%97%AE%E9%A2%98%E4%B8%8ENP%E9%9A%BE%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">NP完全问题与NP难问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NP%E5%AE%8C%E5%85%A8%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">NP完全问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NP%E9%9A%BE%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">NP难问题：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#P-%E6%98%AF%E5%90%A6%E7%AD%89%E4%BA%8E-NP%EF%BC%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">P 是否等于 NP？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 数据结构与算法的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-%E7%9B%B8%E4%BA%92%E4%BE%9D%E5%AD%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 相互依存的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-%E9%80%89%E6%8B%A9%E5%86%B3%E5%AE%9A%E4%BA%86%E6%95%88%E7%8E%87%EF%BC%9A%E7%A8%8B%E5%BA%8F-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 选择决定了效率：程序 &#x3D; 数据结构 + 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-%E6%8A%BD%E8%B1%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3.3 抽象与实现的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88ADT%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 抽象数据类型（ADT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-%E5%88%97%E8%A1%A8-ADT"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 列表 ADT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-%E6%A0%88-ADT"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2 栈 ADT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-3-%E9%98%9F%E5%88%97-ADT"><span class="nav-number">1.4.3.</span> <span class="nav-text">1.4.3 队列 ADT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97-ADT"><span class="nav-number">1.4.4.</span> <span class="nav-text">1.4.4 优先队列 ADT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-5-%E6%98%A0%E5%B0%84-%E5%AD%97%E5%85%B8-ADT"><span class="nav-number">1.4.5.</span> <span class="nav-text">1.4.5 映射&#x2F;字典 ADT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-6-%E9%9B%86%E5%90%88-ADT"><span class="nav-number">1.4.6.</span> <span class="nav-text">1.4.6 集合 ADT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-7-Deque-ADT%EF%BC%88%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.4.7.</span> <span class="nav-text">1.4.7 Deque ADT（双端队列）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C"><span class="nav-number">1.4.7.1.</span> <span class="nav-text">核心操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%92%8C-Stack%E3%80%81Queue-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.4.7.2.</span> <span class="nav-text">和 Stack、Queue 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-8-Bag-ADT%EF%BC%88%E5%8C%85-%E5%A4%9A%E9%87%8D%E9%9B%86%E5%90%88%EF%BC%89"><span class="nav-number">1.4.8.</span> <span class="nav-text">1.4.8 Bag ADT（包 &#x2F; 多重集合）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C-1"><span class="nav-number">1.4.8.1.</span> <span class="nav-text">核心操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.8.2.</span> <span class="nav-text">底层实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%B8%AE%E4%BD%A0%E5%8C%BA%E5%88%86-Bag-%E5%92%8C-Set"><span class="nav-number">1.4.8.3.</span> <span class="nav-text">举个例子帮你区分 Bag 和 Set</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.4.8.4.</span> <span class="nav-text">底层实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-2"><span class="nav-number">1.4.8.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88ADT%EF%BC%89%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 抽象数据类型（ADT）的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-%E9%80%89%E6%8B%A9ADT%E7%9A%84%E5%86%B3%E7%AD%96%E6%A1%86%E6%9E%B6"><span class="nav-number">1.5.1.</span> <span class="nav-text">1.5.1 选择ADT的决策框架</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%B9%E6%8D%AE%E6%95%B0%E6%8D%AE%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F%E9%80%89%E6%8B%A9"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">1. 根据数据组织方式选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%A0%B9%E6%8D%AE%E6%93%8D%E4%BD%9C%E9%9C%80%E6%B1%82%E9%80%89%E6%8B%A9"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">2. 根据操作需求选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%80%89%E6%8B%A9%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">3. 选择决策树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-2-%E6%A0%B8%E5%BF%83ADT%E5%8F%8A%E5%85%B6%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.5.2.</span> <span class="nav-text">1.5.2 核心ADT及其适用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-List%EF%BC%88%E5%88%97%E8%A1%A8%EF%BC%89"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">1. List（列表）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Set%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%89"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">2. Set（集合）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Map%EF%BC%88%E6%98%A0%E5%B0%84%EF%BC%89"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">3. Map（映射）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Queue-Deque%EF%BC%88%E9%98%9F%E5%88%97-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">4. Queue&#x2F;Deque（队列&#x2F;双端队列）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%9C%BA%E6%99%AF%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.5.2.5.</span> <span class="nav-text">特殊场景建议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-3-%E6%80%A7%E8%83%BD%E8%80%83%E9%87%8F%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">1.5.3 性能考量速查表</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
       </div>
     </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-数据结构与算法/Data-Structure-Module1-数据结构与算法简介" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" class="article-date">
-  <time class="dt-published" datetime="2026-03-18T01:12:32.000Z" itemprop="datePublished">2026-03-18</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Data-Structure/">Data Structure</a>
-  </div>
+  </aside>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Data Structure Module1
-    </h1>
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
   
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Data Structure Module1 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Data Structure Module1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-03-18 09:12:32" itemprop="dateCreated datePublished" datetime="2026-03-18T09:12:32+08:00">2026-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-17 17:08:58" itemprop="dateModified" datetime="2026-03-17T17:08:58+08:00">2026-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
       </header>
+
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="数据结构与算法简介"><a href="#数据结构与算法简介" class="headerlink" title="数据结构与算法简介"></a>数据结构与算法简介<span id="more"></span></h1><h2 id="1-1-数据结构"><a href="#1-1-数据结构" class="headerlink" title="1.1 数据结构"></a>1.1 数据结构</h2><p><strong>数据结构</strong>是计算机存储、组织数据的方式。它不仅指数据在内存中的存储方式，还包括了数据之间的相互关系以及对数据的一系列操作（如增删改查）。</p>
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="数据结构与算法简介"><a href="#数据结构与算法简介" class="headerlink" title="数据结构与算法简介"></a>数据结构与算法简介<span id="more"></span></h1><h2 id="1-1-数据结构"><a href="#1-1-数据结构" class="headerlink" title="1.1 数据结构"></a>1.1 数据结构</h2><p><strong>数据结构</strong>是计算机存储、组织数据的方式。它不仅指数据在内存中的存储方式，还包括了数据之间的相互关系以及对数据的一系列操作（如增删改查）。</p>
 <p>可以把它理解为<strong>数据的容器和排列规则</strong>。选择合适的数据结构，可以显著提高算法的效率和资源的利用率。</p>
 <h3 id="1-1-1-记录（Record）-结构体（Struct）"><a href="#1-1-1-记录（Record）-结构体（Struct）" class="headerlink" title="1.1.1 记录（Record） / 结构体（Struct）"></a>1.1.1 记录（Record） / 结构体（Struct）</h3><ul>
 <li><strong>定义</strong>：记录是一种用于存储不同类型数据项的复合数据结构。在面向对象编程的语言中，它类似于一个没有复杂方法的简单类。在数据库中，它通常指代表中的一行数据。</li>
@@ -699,157 +827,75 @@
 </div>
 <p><strong>*ArrayList插入在末尾为O(1)，在中间为O(n)</strong></p>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/03/18/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module1-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/" data-id="cuidNyIZca9BPmoPdzu7dxS_q" data-title="Data Structure Module1" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li></ul>
 
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/17/Java/Java-Module12-%E7%AE%97%E6%B3%95/" rel="prev" title="Java-Module12">
+                  <i class="fa fa-angle-left"></i> Java-Module12
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module2-%E6%90%9C%E7%B4%A2%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" rel="next" title="Data-Structure-Module2">
+                  Data-Structure-Module2 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2026/03/23/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module2-%E6%90%9C%E7%B4%A2%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Data-Structure-Module2
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2026/03/17/Java/Java-Module12-%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java-Module12</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Mathematics/">Advanced Mathematics</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenClaw/">OpenClaw</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Programming/">System Programming</a></li></ul>
-    </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Advanced-Mathematics/" rel="tag">Advanced Mathematics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Programming/" rel="tag">System Programming</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Advanced-Mathematics/" style="font-size: 10px;">Advanced Mathematics</a> <a href="/tags/Data-Structure/" style="font-size: 20px;">Data Structure</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/OpenClaw/" style="font-size: 10px;">OpenClaw</a> <a href="/tags/System-Programming/" style="font-size: 15px;">System Programming</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/05/21/Advanced-Mathematics-01/">Advanced Mathematics 01</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/19/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/">System-Programming-Module2</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/19/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module1-C%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/">System Programming Module1</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/09/Notes/OpenClaw%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%B8%A9%E5%9D%91/">OpenClaw的容器化部署及踩坑</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">Data-Structure-Module12</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
 
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
+  </footer>
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
 </body>
 </html>

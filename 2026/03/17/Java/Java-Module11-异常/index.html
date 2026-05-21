@@ -1,12 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Java-Module11 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="异常">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="异常">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java-Module11">
 <meta property="og:url" content="http://example.com/2026/03/17/Java/Java-Module11-%E5%BC%82%E5%B8%B8/index.html">
@@ -18,89 +32,197 @@
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/03/17/Java/Java-Module11-%E5%BC%82%E5%B8%B8/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/03/17/Java/Java-Module11-%E5%BC%82%E5%B8%B8/","path":"2026/03/17/Java/Java-Module11-异常/","title":"Java-Module11"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java-Module11 | Hexo</title>
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+
+
+
+
+
+
 
   
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
 
   
+
+
+
+
+
+
   
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8"><span class="nav-number">1.</span> <span class="nav-text">异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="nav-number">1.1.</span> <span class="nav-text">11.1 异常处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-1-%E5%BC%82%E5%B8%B8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.1.</span> <span class="nav-text">11.1.1 异常的分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-2-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E7%9A%84%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.1.2.</span> <span class="nav-text">11.1.2 异常处理的关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-3-%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8"><span class="nav-number">1.1.3.</span> <span class="nav-text">11.1.3 捕获异常</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#try-catch%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">try-catch基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%87%8Dcatch%E5%9D%97"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">多重catch块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#try-catch-finally%E5%AE%8C%E6%95%B4%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">try-catch-finally完整结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#try-with-resources%E8%87%AA%E5%8A%A8%E6%8D%95%E8%8E%B7"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">try-with-resources自动捕获</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-4-%E5%B8%B8%E8%A7%81%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">11.1.4 常见异常类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%EF%BC%88RuntimeException%EF%BC%89"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1. 运行时异常（RuntimeException）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8F%97%E6%A3%80%E5%BC%82%E5%B8%B8%EF%BC%88Checked-Exception%EF%BC%89"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">2. 受检异常（Checked Exception）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%94%99%E8%AF%AF%EF%BC%88Error%EF%BC%89"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">3. 错误（Error）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.1.4.4.</span> <span class="nav-text">捕获异常的最佳实践</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8"><span class="nav-number">1.2.</span> <span class="nav-text">11.2 抛出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-1-%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">11.2.1 抛出异常的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8throw%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%BB%E5%8A%A8%E6%8A%9B%E5%87%BA"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1. 使用throw关键字主动抛出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%96%B9%E6%B3%95%E5%A3%B0%E6%98%8E%E4%B8%AD%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%EF%BC%88throws%EF%BC%89"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">2. 方法声明中抛出异常（throws）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-2-%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">11.2.2 异常类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A3%80%E6%9F%A5%E5%9E%8B%E5%BC%82%E5%B8%B8%EF%BC%88Checked-Exception%EF%BC%89"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1. 检查型异常（Checked Exception）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%9D%9E%E6%A3%80%E6%9F%A5%E5%9E%8B%E5%BC%82%E5%B8%B8%EF%BC%88Unchecked-Exception%EF%BC%89"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2. 非检查型异常（Unchecked Exception）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-3-%E5%9C%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8throw"><span class="nav-number">1.2.3.</span> <span class="nav-text">11.2.3 在构造函数中使用throw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-4-%E7%BB%93%E5%90%88try-catch%E4%BD%BF%E7%94%A8throw"><span class="nav-number">1.2.4.</span> <span class="nav-text">11.2.4 结合try-catch使用throw</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-5-%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BD%BF%E7%94%A8%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.2.5.</span> <span class="nav-text">11.2.5 常见的使用模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8throw%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">使用throw的注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E6%96%B9%E6%B3%95%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8"><span class="nav-number">1.3.</span> <span class="nav-text">11.3 方法抛出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-1-throw%EF%BC%88%E4%B8%BB%E5%8A%A8%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">11.3.1 throw（主动抛出异常）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-2-throws%EF%BC%88%E5%A3%B0%E6%98%8E%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">11.3.2 throws（声明抛出异常）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#throw%E5%92%8Cthrows%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">throw和throws的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-3-%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">11.3.3 实际应用示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B1%EF%BC%9A%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8-%E6%96%B9%E6%B3%95%E6%8A%9B%E5%87%BA"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">示例1：自定义异常 + 方法抛出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B2%EF%BC%9A%E5%A4%9A%E5%B1%82%E6%96%B9%E6%B3%95%E8%B0%83%E7%94%A8%E4%B8%AD%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%A0%E9%80%92"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">示例2：多层方法调用中的异常传递</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-4-%E5%BC%82%E5%B8%B8%E6%8A%9B%E5%87%BA%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.3.4.</span> <span class="nav-text">11.3.4 异常抛出的最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%BD%E6%97%A9%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">尽早抛出异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">异常转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E5%9E%8B%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8%E7%9A%84%E9%80%89%E6%8B%A9"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">检查型和运行时异常的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="nav-number">1.4.</span> <span class="nav-text">11.4 用户自定义异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-1-%E5%88%9B%E5%BB%BA%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.4.1.</span> <span class="nav-text">11.4.1 创建自定义异常的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-2-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">11.4.2 完整示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-3-%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.4.3.</span> <span class="nav-text">11.4.3 最佳实践</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E4%BD%93%E7%B3%BB%E9%80%89%E6%8B%A9"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">继承体系选择</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-5-%E6%96%87%E4%BB%B6%E5%BC%82%E5%B8%B8"><span class="nav-number">1.5.</span> <span class="nav-text">11.5 文件异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-1-%E5%B8%B8%E8%A7%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">11.5.1 常见的文件异常类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-FileNotFoundException"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">1. FileNotFoundException</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-IOException"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">2. IOException</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-SecurityException"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">3. SecurityException</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-EOFException"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">4. EOFException</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-2-%E6%96%87%E4%BB%B6%E5%BC%82%E5%B8%B8%E7%9A%84%E5%B8%B8%E8%A7%81%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.5.2.</span> <span class="nav-text">11.5.2 文件异常的常见原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-3-%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">1.5.3.</span> <span class="nav-text">11.5.3 异常处理方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-try-catch-%E5%A4%84%E7%90%86"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">1. try-catch 处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-throws-%E5%A3%B0%E6%98%8E%E5%BC%82%E5%B8%B8"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">2. throws 声明异常</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-try-with-resources-%E8%87%AA%E5%8A%A8%E5%85%B3%E9%97%AD%E8%B5%84%E6%BA%90"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">3. try-with-resources (自动关闭资源)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.5.3.4.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-4-finally%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">1.5.4.</span> <span class="nav-text">11.5.4 finally代码块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8"><span class="nav-number">1.5.4.1.</span> <span class="nav-text">主要作用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E9%87%8A%E6%94%BE%E8%B5%84%E6%BA%90"><span class="nav-number">1.5.4.1.1.</span> <span class="nav-text">1. 释放资源</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%B8%85%E7%90%86%E6%93%8D%E4%BD%9C"><span class="nav-number">1.5.4.2.</span> <span class="nav-text">2. 清理操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#finally%E7%9A%84%E6%89%A7%E8%A1%8C%E7%89%B9%E6%80%A7"><span class="nav-number">1.5.4.3.</span> <span class="nav-text">finally的执行特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.4.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-5-5-%E4%BD%BF%E7%94%A8-try-with-resources-%E8%AF%AD%E5%8F%A5%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.5.</span> <span class="nav-text">11.5.5 使用 try-with-resources 语句关闭文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.5.5.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.5.5.2.</span> <span class="nav-text">文件操作的示例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.5.2.1.</span> <span class="nav-text">1. 读取文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%99%E5%85%A5%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.5.3.</span> <span class="nav-text">2. 写入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8A%BF%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.5.4.</span> <span class="nav-text">优势总结</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
       </div>
     </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-Java/Java-Module11-异常" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2026/03/17/Java/Java-Module11-%E5%BC%82%E5%B8%B8/" class="article-date">
-  <time class="dt-published" datetime="2026-03-17T07:39:19.000Z" itemprop="datePublished">2026-03-17</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
-  </div>
+  </aside>
 
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Java-Module11
-    </h1>
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/03/17/Java/Java-Module11-%E5%BC%82%E5%B8%B8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java-Module11 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java-Module11
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
       
-        <h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常<span id="more"></span></h1><h2 id="11-1-异常处理"><a href="#11-1-异常处理" class="headerlink" title="11.1 异常处理"></a>11.1 异常处理</h2><p><strong>异常处理</strong>是Java编程中用于管理程序运行时出现的异常情况（错误）的机制。它允许程序在遇到问题时能够优雅地处理，而不是直接崩溃。</p>
+
+      <time title="Created: 2026-03-17 15:39:19 / Modified: 17:00:42" itemprop="dateCreated datePublished" datetime="2026-03-17T15:39:19+08:00">2026-03-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">Java基础</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常<span id="more"></span></h1><h2 id="11-1-异常处理"><a href="#11-1-异常处理" class="headerlink" title="11.1 异常处理"></a>11.1 异常处理</h2><p><strong>异常处理</strong>是Java编程中用于管理程序运行时出现的异常情况（错误）的机制。它允许程序在遇到问题时能够优雅地处理，而不是直接崩溃。</p>
 <p>异常是程序执行过程中出现的打断正常流程的事件。在Java中，异常被表示为对象，这些对象描述了错误的类型、发生位置等信息。</p>
 <h3 id="11-1-1-异常的分类"><a href="#11-1-1-异常的分类" class="headerlink" title="11.1.1 异常的分类"></a>11.1.1 <strong>异常的分类</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Throwable</span><br><span class="line">├── Error（错误） - 系统级错误，通常不应捕获</span><br><span class="line">└── Exception（异常）</span><br><span class="line">    ├── RuntimeException（运行时异常/非受检异常）</span><br><span class="line">    └── 其他Exception（受检异常）</span><br></pre></td></tr></table></figure>
 <ul>
@@ -457,157 +579,75 @@
 <li><strong>自动按序关闭</strong>：按照创建顺序的逆序自动关闭资源</li>
 </ol>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2026/03/17/Java/Java-Module11-%E5%BC%82%E5%B8%B8/" data-id="cuidrimfWigJgN3CuklROfME6" data-title="Java-Module11" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
 
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/03/17/Java/Java-Module10-%E7%BB%A7%E6%89%BF/" rel="prev" title="Java-Module10">
+                  <i class="fa fa-angle-left"></i> Java-Module10
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/03/17/Java/Java-Module12-%E7%AE%97%E6%B3%95/" rel="next" title="Java-Module12">
+                  Java-Module12 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2026/03/17/Java/Java-Module12-%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Java-Module12
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2026/03/17/Java/Java-Module10-%E7%BB%A7%E6%89%BF/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java-Module10</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Advanced-Mathematics/">Advanced Mathematics</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Data-Structure/">Data Structure</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/OpenClaw/">OpenClaw</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/System-Programming/">System Programming</a></li></ul>
-    </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Advanced-Mathematics/" rel="tag">Advanced Mathematics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/System-Programming/" rel="tag">System Programming</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/Advanced-Mathematics/" style="font-size: 10px;">Advanced Mathematics</a> <a href="/tags/Data-Structure/" style="font-size: 20px;">Data Structure</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/OpenClaw/" style="font-size: 10px;">OpenClaw</a> <a href="/tags/System-Programming/" style="font-size: 15px;">System Programming</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/05/">May 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2026/05/21/Advanced-Mathematics-01/">Advanced Mathematics 01</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/19/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/">System-Programming-Module2</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/19/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module1-C%E8%AF%AD%E8%A8%80%E4%BB%8B%E7%BB%8D/">System Programming Module1</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/09/Notes/OpenClaw%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96%E9%83%A8%E7%BD%B2%E5%8F%8A%E8%B8%A9%E5%9D%91/">OpenClaw的容器化部署及踩坑</a>
-          </li>
-        
-          <li>
-            <a href="/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">Data-Structure-Module12</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2026 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
 
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
+  </footer>
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
 </body>
 </html>
