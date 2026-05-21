@@ -112,7 +112,6 @@
 <li><strong>编程</strong>是把这些方法和步骤用计算机能理解的<strong>语言</strong>表达出来，它关注的是<strong>实现</strong>。</li>
 </ul>
 <h2 id="1-2-编程基础"><a href="#1-2-编程基础" class="headerlink" title="1.2 编程基础"></a>1.2 编程基础</h2><h3 id="1-2-1-第一个项目"><a href="#1-2-1-第一个项目" class="headerlink" title="1.2.1 第一个项目"></a>1.2.1 第一个项目</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Salary</span> &#123;                       </span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String [] args)</span> &#123;</span><br><span class="line">      <span class="type">int</span> wage;</span><br><span class="line"></span><br><span class="line">      wage = <span class="number">20</span>;                        </span><br><span class="line"></span><br><span class="line">      System.out.print(<span class="string">&quot;Salary is &quot;</span>);       </span><br><span class="line">      System.out.println(wage * <span class="number">40</span> * <span class="number">52</span>);   </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>程序从 main() <strong>方法</strong>开始，依次执行 main() 方法大括号 { } 内的语句。</li>
 <li>每个语句通常单独成行，以<strong>英文分号</strong>结尾。</li>
@@ -120,7 +119,6 @@
 <li>print() 和 println() 方法会输出各种值。</li>
 </ul>
 <h3 id="1-2-2-基本输入"><a href="#1-2-2-基本输入" class="headerlink" title="1.2.2 基本输入"></a>1.2.2 基本输入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner; # 导入Scanner类</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Salary</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String [] args)</span> &#123;</span><br><span class="line">      <span class="type">int</span> wage;</span><br><span class="line"></span><br><span class="line">      <span class="type">Scanner</span> <span class="variable">scnr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in); # 创建Scanner对象，用于获取键盘输入</span><br><span class="line">      wage = scnr.nextInt(); # 获取一个输入值，并赋值给wage</span><br><span class="line"></span><br><span class="line">      System.out.print(<span class="string">&quot;Salary is &quot;</span>);</span><br><span class="line">      System.out.println(wage * <span class="number">40</span> * <span class="number">52</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>程序通常会获取输入值，对这些输入值进行处理，然后将输出值显示在屏幕或其他位置。输入值通常来自键盘、文件、网页表单或应用程序中的字段等。</p>
 </li>
@@ -131,17 +129,13 @@
 <ul>
 <li>以下两个方法都是 Java 中用于控制台输出的基本方法，主要区别在于是否换行。</li>
 </ul>
-<p>​	<strong>System.out.print() :</strong> 连续输出在同一行。<br>​	<strong>System.out.println() :</strong> 每个输出独占一行，可以单独使用输出空行。</p>
+<p>​    <strong>System.out.print() :</strong> 连续输出在同一行。<br>​    <strong>System.out.println() :</strong> 每个输出独占一行，可以单独使用输出空行。</p>
 <ul>
 <li>输出文本的方式如下：System.out.print(“desired text”); 双引号内的文本称为字符串字面量。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">KeepCalm</span> &#123;</span><br><span class="line">   <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String [] args)</span> &#123;</span><br><span class="line"></span><br><span class="line">      System.out.print(<span class="string">&quot;Keep calm&quot;</span>);</span><br><span class="line">      System.out.print(<span class="string">&quot; and&quot;</span>);</span><br><span class="line">      System.out.println(<span class="string">&quot;carry on&quot;</span>);</span><br><span class="line">       </span><br><span class="line">      # 输出结果：Keep calm and</span><br><span class="line">      #         carry on</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>输出变量值</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Salary</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span> <span class="params">(String [] args)</span> &#123;</span><br><span class="line">     <span class="type">int</span> wage;</span><br><span class="line"></span><br><span class="line">     wage = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">     System.out.print(<span class="string">&quot;Wage is: &quot;</span> + wage);  # Wage is: <span class="number">20</span></span><br><span class="line">     System.out.println(<span class="string">&quot;Goodbye.&quot;</span>); # Goodbye.  </span><br><span class="line">         </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><strong>使用同一条语句输出多个内容</strong></p>
 <ul>
 <li><p>程序员通常通过将文本、变量值和新行的输出合并，为每一行输出使用一条输出语句，只需用+符号分隔各项即可。</p>
@@ -150,66 +144,61 @@
 </li>
 </ul>
 <h2 id="1-3-注释和空格"><a href="#1-3-注释和空格" class="headerlink" title="1.3 注释和空格"></a>1.3 注释和空格</h2><h3 id="1-3-1-注释"><a href="#1-3-1-注释" class="headerlink" title="1.3.1 注释"></a>1.3.1 注释</h3><p>注释是用来向代码中添加说明和描述的文字，它们不会被编译器执行，JAVA语言中共有3种注释形式。</p>
-<p>**单行注释：**使用 &#x2F;&#x2F; 开头，注释内容从 &#x2F;&#x2F; 开始到本行结束。</p>
+<p><strong>单行注释：</strong>使用 // 开头，注释内容从 // 开始到本行结束。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是单行注释</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>**多行注释：*<em>使用 &#x2F;</em> 开头，*&#x2F; 结尾，可以注释多行内容。</p>
+<p><strong>多行注释：</strong>使用 /<em> 开头，</em>/ 结尾，可以注释多行内容。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   这是多行注释</span></span><br><span class="line"><span class="comment">   可以写多行内容</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>*<em>JavaDoc 注释：<strong>使用 &#x2F;</strong> 开头，</em>&#x2F; 结尾，用于生成API文档的特殊注释。可以通过javadoc工具自动生成HTML格式的文档。</p>
+<p><strong>JavaDoc 注释：</strong>使用 /<em>* 开头，</em>/ 结尾，用于生成API文档的特殊注释。可以通过javadoc工具自动生成HTML格式的文档。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * JavaDoc注释</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 作者名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 版本号</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>JavaDoc常用标签</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">标签</th>
-<th align="left">描述</th>
-<th align="left">示例</th>
+<th style="text-align:left">标签</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">示例</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>@author</code></td>
-<td align="left">作者</td>
-<td align="left"><code>@author John Doe</code></td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>@author</code></td>
+<td style="text-align:left">作者</td>
+<td style="text-align:left"><code>@author John Doe</code></td>
 </tr>
 <tr>
-<td align="left"><code>@version</code></td>
-<td align="left">版本</td>
-<td align="left"><code>@version 1.0</code></td>
+<td style="text-align:left"><code>@version</code></td>
+<td style="text-align:left">版本</td>
+<td style="text-align:left"><code>@version 1.0</code></td>
 </tr>
 <tr>
-<td align="left"><code>@param</code></td>
-<td align="left">方法参数</td>
-<td align="left"><code>@param name 用户名</code></td>
+<td style="text-align:left"><code>@param</code></td>
+<td style="text-align:left">方法参数</td>
+<td style="text-align:left"><code>@param name 用户名</code></td>
 </tr>
 <tr>
-<td align="left"><code>@return</code></td>
-<td align="left">返回值</td>
-<td align="left"><code>@return 计算结果</code></td>
+<td style="text-align:left"><code>@return</code></td>
+<td style="text-align:left">返回值</td>
+<td style="text-align:left"><code>@return 计算结果</code></td>
 </tr>
 <tr>
-<td align="left"><code>@throws</code></td>
-<td align="left">异常</td>
-<td align="left"><code>@throws IOException 文件读写异常</code></td>
+<td style="text-align:left"><code>@throws</code></td>
+<td style="text-align:left">异常</td>
+<td style="text-align:left"><code>@throws IOException 文件读写异常</code></td>
 </tr>
 <tr>
-<td align="left"><code>@see</code></td>
-<td align="left">参考</td>
-<td align="left"><code>@see OtherClass</code></td>
+<td style="text-align:left"><code>@see</code></td>
+<td style="text-align:left">参考</td>
+<td style="text-align:left"><code>@see OtherClass</code></td>
 </tr>
 <tr>
-<td align="left"><code>@since</code></td>
-<td align="left">起始版本</td>
-<td align="left"><code>@since 1.8</code></td>
+<td style="text-align:left"><code>@since</code></td>
+<td style="text-align:left">起始版本</td>
+<td style="text-align:left"><code>@since 1.8</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="1-3-2-空格"><a href="#1-3-2-空格" class="headerlink" title="1.3.2 空格"></a>1.3.2 空格</h3><p>在Java中，空格（包括空格符、制表符、换行符等）被称为<strong>空白字符</strong>。</p>
 <p>编译器只会识别1个空格，而忽略多余空格。</p>
 <p><strong>良好的缩进与空格规范</strong></p>
@@ -218,7 +207,7 @@
 </li>
 <li><p>保持相同缩进。</p>
 </li>
-<li><p>在运算符（如&#x3D;、+、*）前后各加一个空格，使语句更易读。</p>
+<li><p>在运算符（如=、+、*）前后各加一个空格，使语句更易读。</p>
 </li>
 </ul>
 <h2 id="1-4-错误和警告"><a href="#1-4-错误和警告" class="headerlink" title="1.4 错误和警告"></a>1.4 错误和警告</h2><h3 id="1-4-1-语法错误"><a href="#1-4-1-语法错误" class="headerlink" title="1.4.1 语法错误"></a>1.4.1 语法错误</h3><p><strong>语法错误</strong>是指程序员编写的代码不符合Java编程语言的语法规则，导致编译器无法理解或编译代码的错误。</p>
@@ -234,11 +223,11 @@
 <ul>
 <li><p>缺少分号</p>
 </li>
-<li><p>括号缺失 &#x2F; 括号不匹配</p>
+<li><p>括号缺失 / 括号不匹配</p>
 </li>
 <li><p>关键字拼写错误</p>
 </li>
-<li><p>变量未声明 &#x2F; 未初始化</p>
+<li><p>变量未声明 / 未初始化</p>
 </li>
 <li><p>数据类型不匹配</p>
 </li>
@@ -278,13 +267,13 @@
 <li><p>默认情况下，Java 编译器不会打印所有可能的警告。</p>
 </li>
 </ul>
-<h2 id="1-5-计算机和程序概述"><a href="#1-5-计算机和程序概述" class="headerlink" title="1.5 计算机和程序概述"></a>1.5 计算机和程序概述</h2><h3 id="1-5-1-开关与计算机的诞生"><a href="#1-5-1-开关与计算机的诞生" class="headerlink" title="1.5.1 开关与计算机的诞生"></a>1.5.1 开关与计算机的诞生</h3><p>开关的发明及其衍生的“开&#x2F;关”逻辑，是现代电子计算机得以诞生的最根本的物理和逻辑基石。</p>
+<h2 id="1-5-计算机和程序概述"><a href="#1-5-计算机和程序概述" class="headerlink" title="1.5 计算机和程序概述"></a>1.5 计算机和程序概述</h2><h3 id="1-5-1-开关与计算机的诞生"><a href="#1-5-1-开关与计算机的诞生" class="headerlink" title="1.5.1 开关与计算机的诞生"></a>1.5.1 开关与计算机的诞生</h3><p>开关的发明及其衍生的“开/关”逻辑，是现代电子计算机得以诞生的最根本的物理和逻辑基石。</p>
 <ul>
-<li>**手动开关：**控制电灯的通断。</li>
-<li>**继电器（自动开关）：**实现了远程控制和逻辑门电路（与、或、非）。</li>
-<li>**电子管&#x2F;真空管（高速电子开关）：**实现了每秒数百万次的通断，使ENIAC等电子计算机成为可能。</li>
-<li>**晶体管（更小、更快的开关）：**取代了笨重、发热大的电子管，催生了个人电脑的诞生。</li>
-<li>**集成电路（集成上亿个微小开关）：**将数十亿个晶体管（开关）封装在指甲大小的芯片上，即今天的CPU。</li>
+<li><strong>手动开关：</strong>控制电灯的通断。</li>
+<li><strong>继电器（自动开关）：</strong>实现了远程控制和逻辑门电路（与、或、非）。</li>
+<li><strong>电子管/真空管（高速电子开关）：</strong>实现了每秒数百万次的通断，使ENIAC等电子计算机成为可能。</li>
+<li><strong>晶体管（更小、更快的开关）：</strong>取代了笨重、发热大的电子管，催生了个人电脑的诞生。</li>
+<li><strong>集成电路（集成上亿个微小开关）：</strong>将数十亿个晶体管（开关）封装在指甲大小的芯片上，即今天的CPU。</li>
 </ul>
 <h3 id="1-5-2-处理器和内存"><a href="#1-5-2-处理器和内存" class="headerlink" title="1.5.2 处理器和内存"></a>1.5.2 处理器和内存</h3><h5 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a><strong>处理器</strong></h5><p><strong>定义：</strong> 中央处理器，英文简称CPU，是计算机最核心的部件。</p>
 <p><strong>核心功能：</strong></p>
@@ -324,7 +313,7 @@
 <li><strong>逻辑运算</strong>：做“与、或、非”等逻辑判断。</li>
 <li><strong>数据传送</strong>：在内存和CPU之间搬运数据。比如 <code>LOAD</code>（从内存读数据到CPU）和 <code>STORE</code>（把CPU的数据写回内存）。</li>
 <li><strong>控制转移</strong>：改变程序的执行顺序。比如 <code>JUMP</code>（跳转到另一行代码执行）或 <code>IF...THEN...</code> 这类条件判断。</li>
-<li><strong>输入&#x2F;输出</strong>：和键盘、鼠标、硬盘等设备交换数据。</li>
+<li><strong>输入/输出</strong>：和键盘、鼠标、硬盘等设备交换数据。</li>
 </ul>
 <h5 id="指令的执行过程（指令周期）"><a href="#指令的执行过程（指令周期）" class="headerlink" title="指令的执行过程（指令周期）"></a>指令的执行过程（指令周期）</h5><p>一条指令从被CPU接收到执行完毕，通常会经历三个步骤，也就是机器周期：</p>
 <ol>
@@ -333,7 +322,7 @@
 <li><strong>执行</strong>：CPU指挥对应的运算单元完成操作。</li>
 </ol>
 <h5 id="常见指令集"><a href="#常见指令集" class="headerlink" title="常见指令集"></a><strong>常见指令集</strong></h5><ul>
-<li><p><strong>x86</strong>：主要用于英特尔和AMD的电脑&#x2F;服务器CPU。这种指令集比较复杂，通常称为复杂指令集计算机。</p>
+<li><p><strong>x86</strong>：主要用于英特尔和AMD的电脑/服务器CPU。这种指令集比较复杂，通常称为复杂指令集计算机。</p>
 </li>
 <li><p><strong>ARM</strong>：主要用于手机、平板、苹果M系列芯片。这种指令集相对精简，通常称为精简指令集计算机。</p>
 </li>
@@ -399,7 +388,7 @@
 <li><strong>Xcode</strong>：苹果官方提供的 IDE，专门用于 macOS 和 iOS 平台的开发。</li>
 </ul>
 <h2 id="1-7-计算机概览"><a href="#1-7-计算机概览" class="headerlink" title="1.7 计算机概览"></a>1.7 计算机概览</h2><ul>
-<li><strong>输入&#x2F;输出设备</strong>：是计算机与外部世界（人或设备）进行交互的桥梁。<ul>
+<li><strong>输入/输出设备</strong>：是计算机与外部世界（人或设备）进行交互的桥梁。<ul>
 <li><strong>输入设备</strong>：负责将外部信息（如文字、图像、声音）和指令送入计算机，例如<strong>键盘、鼠标、麦克风</strong>。</li>
 <li><strong>输出设备</strong>：负责将计算机处理后的结果以人能感知的形式呈现出来，例如<strong>显示器、打印机、音箱</strong>。</li>
 </ul>
@@ -414,9 +403,9 @@
 <li><strong>诞生背景 （1969-1973年）：</strong> 在C语言之前，程序员主要用汇编语言写操作系统，效率极低。1969年，肯·汤普森在贝尔实验室用汇编语言写出了Unix操作系统的雏形。为了将Unix移植到其他机器，他先发明了B语言，但B语言的性能不足。</li>
 <li><strong>C语言的诞生：</strong> 丹尼斯·里奇在B语言的基础上，加入了类型系统，于1972年左右设计出了C语言。1973年，他和汤普森用C语言重写了Unix内核。这一举措具有划时代的意义——从此，操作系统可以用高级语言编写，具备了无与伦比的<strong>可移植性</strong>。</li>
 <li><strong>经典确立 （1978年）：</strong> 布莱恩·柯林汉和丹尼斯·里奇合著了《C程序设计语言》（K&amp;R C），成为事实标准。</li>
-<li><strong>标准化 （1989年）：</strong> 美国国家标准协会（ANSI）发布了C语言标准（C89&#x2F;C90），C语言正式成为最主流的系统级开发语言。</li>
+<li><strong>标准化 （1989年）：</strong> 美国国家标准协会（ANSI）发布了C语言标准（C89/C90），C语言正式成为最主流的系统级开发语言。</li>
 </ul>
-<p><strong>核心贡献：</strong> 兼具高级语言的逻辑和汇编语言的效率，是Unix&#x2F;Linux&#x2F;Windows内核的核心语言，深刻影响了其后几乎所有编程语言的设计。</p>
+<p><strong>核心贡献：</strong> 兼具高级语言的逻辑和汇编语言的效率，是Unix/Linux/Windows内核的核心语言，深刻影响了其后几乎所有编程语言的设计。</p>
 <h3 id="C-：在C语言中加入类"><a href="#C-：在C语言中加入类" class="headerlink" title="C++：在C语言中加入类"></a>C++：在C语言中加入类</h3><p>C++的发展史，是“既要高性能，又要面向对象”的探索。</p>
 <ul>
 <li><strong>诞生 （1979年）：</strong> 比雅尼·斯特劳斯特鲁普在贝尔实验室攻读博士时，研究如何将 Simula（第一个面向对象语言）的“类”概念与C语言的性能结合起来。他最初开发的语言叫“C with Classes”。</li>
@@ -435,7 +424,7 @@
 <p><strong>核心贡献：</strong> 通过“虚拟机”实现了跨平台，并发明了“自动垃圾回收”机制，让程序员从手动管理内存的繁琐工作中解放出来。</p>
 <h3 id="JavaScript：浏览器的“胶水语言”"><a href="#JavaScript：浏览器的“胶水语言”" class="headerlink" title="JavaScript：浏览器的“胶水语言”"></a>JavaScript：浏览器的“胶水语言”</h3><p>JavaScript的发展史，是“10天设计出来，却因互联网而意外称霸”的传奇。</p>
 <ul>
-<li><strong>诞生 （1995年）：</strong> 网景公司（Netscape）为了让浏览器具有动态交互能力，雇佣布兰登·艾奇开发一门脚本语言。他仅用了10天就设计出了JavaScript（最初叫Mocha&#x2F;LiveScript）。当时Java正火，为了蹭热度，才改名为JavaScript，但两者除了语法都像C之外，几乎没有关系。</li>
+<li><strong>诞生 （1995年）：</strong> 网景公司（Netscape）为了让浏览器具有动态交互能力，雇佣布兰登·艾奇开发一门脚本语言。他仅用了10天就设计出了JavaScript（最初叫Mocha/LiveScript）。当时Java正火，为了蹭热度，才改名为JavaScript，但两者除了语法都像C之外，几乎没有关系。</li>
 <li><strong>大战与标准 （1990年代末）：</strong> 微软在IE浏览器中模仿实现了JScript，引发了浏览器厂商的“脚本大战”，导致前端开发极其痛苦（需为不同浏览器写不同代码）。1997年，欧洲计算机制造商协会（ECMA）将其标准化为ECMAScript。</li>
 <li><strong>停滞与重生 （2000年代）：</strong> 因浏览器大战结束和IE垄断，JS在几年间进展缓慢，主要被用来做弹窗或表单验证。</li>
 <li><strong>Ajax与爆发 （2005年）：</strong> Ajax技术（异步JavaScript和XML）的出现，让网页可以在不刷新的情况下与服务器交互（如Gmail）。2006年jQuery库诞生，极大简化了DOM操作。</li>
@@ -445,51 +434,55 @@
 <h3 id="Python：追求简洁与优雅"><a href="#Python：追求简洁与优雅" class="headerlink" title="Python：追求简洁与优雅"></a>Python：追求简洁与优雅</h3><p>Python的发展史，是“一门面向教育的语言，因大数据和AI时代而封神”的故事。</p>
 <ul>
 <li><strong>诞生 （1989年）：</strong> 吉多·范罗苏姆在荷兰国家数学与计算机科学研究中心（CWI）设计了一门语言，希望它既像C一样强大，又像Shell脚本一样简洁。他因喜爱喜剧《蒙提·派森的飞行马戏团》而将其命名为Python。</li>
-<li><strong>理念确立 （1991年）：</strong> 吉多发布了Python 0.9.0版本，已经包含了类、函数、异常处理等核心模块。Python的核心理念是**“用一种方法，最好是只有一种方法来做一件事”**，强调代码的可读性。</li>
+<li><strong>理念确立 （1991年）：</strong> 吉多发布了Python 0.9.0版本，已经包含了类、函数、异常处理等核心模块。Python的核心理念是<strong>“用一种方法，最好是只有一种方法来做一件事”</strong>，强调代码的可读性。</li>
 <li><strong>Python 2 vs Python 3 （2000年 &amp; 2008年）：</strong> Python 2开始被广泛采用。但为了理清语言早期的一些设计瑕疵，吉多推出了不向后兼容的<strong>Python 3</strong>，这导致了长达近十年的分裂期，许多经典库长期停留在Python 2。</li>
-<li><strong>AI时代的爆发 （2010年代至今）：</strong> Python之所以最终胜出，关键在于它作为“胶水语言”的特性。在数据科学和人工智能领域，底层的计算库（如NumPy， PyTorch）通常用C&#x2F;C++编写以获得极致性能，但上层调用接口使用Python。这使得Python成为AI领域的标准语言。</li>
+<li><strong>AI时代的爆发 （2010年代至今）：</strong> Python之所以最终胜出，关键在于它作为“胶水语言”的特性。在数据科学和人工智能领域，底层的计算库（如NumPy， PyTorch）通常用C/C++编写以获得极致性能，但上层调用接口使用Python。这使得Python成为AI领域的标准语言。</li>
 </ul>
 <p><strong>核心贡献：</strong> 极低的入门门槛和极致的代码可读性，让科学家和工程师能快速上手，最终成为人工智能时代的第一语言。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">语言</th>
-<th align="left">核心解决问题</th>
-<th align="left">主要应用领域</th>
-<th align="left">地位与影响</th>
+<th style="text-align:left">语言</th>
+<th style="text-align:left">核心解决问题</th>
+<th style="text-align:left">主要应用领域</th>
+<th style="text-align:left">地位与影响</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>C</strong></td>
-<td align="left">直接操作硬件、追求极致性能</td>
-<td align="left">操作系统、嵌入式、驱动</td>
-<td align="left">现代编程语言的基石，所有后来者都借鉴其语法</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>C</strong></td>
+<td style="text-align:left">直接操作硬件、追求极致性能</td>
+<td style="text-align:left">操作系统、嵌入式、驱动</td>
+<td style="text-align:left">现代编程语言的基石，所有后来者都借鉴其语法</td>
 </tr>
 <tr>
-<td align="left"><strong>C++</strong></td>
-<td align="left">在C基础上实现大型复杂系统</td>
-<td align="left">游戏、高频交易、大型桌面软件</td>
-<td align="left">C语言的超集，引入了面向对象，兼顾性能与抽象</td>
+<td style="text-align:left"><strong>C++</strong></td>
+<td style="text-align:left">在C基础上实现大型复杂系统</td>
+<td style="text-align:left">游戏、高频交易、大型桌面软件</td>
+<td style="text-align:left">C语言的超集，引入了面向对象，兼顾性能与抽象</td>
 </tr>
 <tr>
-<td align="left"><strong>Java</strong></td>
-<td align="left">跨平台运行、简化企业级开发</td>
-<td align="left">大型后端系统、Android开发</td>
-<td align="left">在C++基础上进一步简化，引入JVM实现跨平台</td>
+<td style="text-align:left"><strong>Java</strong></td>
+<td style="text-align:left">跨平台运行、简化企业级开发</td>
+<td style="text-align:left">大型后端系统、Android开发</td>
+<td style="text-align:left">在C++基础上进一步简化，引入JVM实现跨平台</td>
 </tr>
 <tr>
-<td align="left"><strong>JS</strong></td>
-<td align="left">赋予网页动态交互能力</td>
-<td align="left">网页前端、全栈（Node.js）</td>
-<td align="left">靠原型链实现面向对象，现今唯一通吃前后端的语言</td>
+<td style="text-align:left"><strong>JS</strong></td>
+<td style="text-align:left">赋予网页动态交互能力</td>
+<td style="text-align:left">网页前端、全栈（Node.js）</td>
+<td style="text-align:left">靠原型链实现面向对象，现今唯一通吃前后端的语言</td>
 </tr>
 <tr>
-<td align="left"><strong>Python</strong></td>
-<td align="left">提高程序员开发效率、代码可读</td>
-<td align="left">人工智能、数据分析、脚本</td>
-<td align="left">语法最简洁，靠“胶水”特性调用底层C&#x2F;C++库制霸AI时代</td>
+<td style="text-align:left"><strong>Python</strong></td>
+<td style="text-align:left">提高程序员开发效率、代码可读</td>
+<td style="text-align:left">人工智能、数据分析、脚本</td>
+<td style="text-align:left">语法最简洁，靠“胶水”特性调用底层C/C++库制霸AI时代</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="1-9-通过编程解决问题"><a href="#1-9-通过编程解决问题" class="headerlink" title="1.9 通过编程解决问题"></a>1.9 通过编程解决问题</h2><p>略。</p>
 <h2 id="1-10-为什么需要编程"><a href="#1-10-为什么需要编程" class="headerlink" title="1.10 为什么需要编程"></a>1.10 为什么需要编程</h2><p>略。</p>
 <h2 id="1-11-为什么空格和精确度十分重要"><a href="#1-11-为什么空格和精确度十分重要" class="headerlink" title="1.11 为什么空格和精确度十分重要"></a>1.11 为什么空格和精确度十分重要</h2><p>略。</p>
@@ -497,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/02/25/Java/Java-Module1-Java%E7%AE%80%E4%BB%8B/" data-id="cuidrcGzpmfp-kj0iqxL54Vte" data-title="Java-Module1" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/02/25/Java/Java-Module1-Java%E7%AE%80%E4%BB%8B/" data-id="cuidpnVJpIP5VjqfB783T8DIk" data-title="Java-Module1" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

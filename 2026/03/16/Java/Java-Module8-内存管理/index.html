@@ -140,9 +140,6 @@
 <li>ZGC（低延迟）</li>
 </ul>
 <h4 id="内存分配策略"><a href="#内存分配策略" class="headerlink" title="内存分配策略"></a>内存分配策略</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 示例代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MemoryDemo</span> &#123;</span><br><span class="line">    <span class="comment">// 静态变量 - 方法区</span></span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="variable">staticVar</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 成员变量 - 堆</span></span><br><span class="line">    String name;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 局部变量 - 栈</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">localVar</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line">        <span class="comment">// 对象实例 - 堆</span></span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="常见内存问题"><a href="#常见内存问题" class="headerlink" title="常见内存问题"></a>常见内存问题</h4><ol>
 <li><strong>内存泄漏</strong>：对象不再使用但无法被回收</li>
 <li><strong>内存溢出</strong>：堆内存不足（OutOfMemoryError）</li>
@@ -150,68 +147,60 @@
 </ol>
 <h2 id="8-2-第一个链表"><a href="#8-2-第一个链表" class="headerlink" title="8.2 第一个链表"></a>8.2 第一个链表</h2><p>链表是一种<strong>线性数据结构</strong>，由一系列节点组成，每个节点包含<strong>数据</strong>和指向下一个节点的<strong>引用（指针）</strong>。</p>
 <h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[数据|next] -&gt; [数据|next] -&gt; [数据|next] -&gt; <span class="literal">null</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="8-2-1-Java中的链表实现"><a href="#8-2-1-Java中的链表实现" class="headerlink" title="8.2.1 Java中的链表实现"></a>8.2.1 Java中的链表实现</h3><h4 id="1-LinkedList类（双向链表）"><a href="#1-LinkedList类（双向链表）" class="headerlink" title="1. LinkedList类（双向链表）"></a>1. <strong>LinkedList类</strong>（双向链表）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"></span><br><span class="line">LinkedList&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;A&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;B&quot;</span>);</span><br><span class="line">list.add(<span class="number">1</span>, <span class="string">&quot;C&quot;</span>); <span class="comment">// 在索引1处插入</span></span><br><span class="line"><span class="type">String</span> <span class="variable">first</span> <span class="operator">=</span> list.getFirst(); <span class="comment">// 获取第一个元素</span></span><br><span class="line"><span class="type">String</span> <span class="variable">last</span> <span class="operator">=</span> list.getLast();   <span class="comment">// 获取最后一个元素</span></span><br><span class="line">list.removeFirst(); <span class="comment">// 删除第一个元素</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="2-手动实现链表（理解原理）"><a href="#2-手动实现链表（理解原理）" class="headerlink" title="2. 手动实现链表（理解原理）"></a>2. <strong>手动实现链表</strong>（理解原理）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 节点类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    Node next;</span><br><span class="line">    </span><br><span class="line">    Node(<span class="type">int</span> data) &#123;</span><br><span class="line">        <span class="built_in">this</span>.data = data;</span><br><span class="line">        <span class="built_in">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 链表类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyLinkedList</span> &#123;</span><br><span class="line">    Node head;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 添加节点</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> data)</span> &#123;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(data);</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">            head = newNode;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">Node</span> <span class="variable">current</span> <span class="operator">=</span> head;</span><br><span class="line">            <span class="keyword">while</span> (current.next != <span class="literal">null</span>) &#123;</span><br><span class="line">                current = current.next;</span><br><span class="line">            &#125;</span><br><span class="line">            current.next = newNode;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="链表的类型"><a href="#链表的类型" class="headerlink" title="链表的类型"></a>链表的类型</h4><ol>
 <li><strong>单向链表</strong>：每个节点只有指向下一个节点的指针</li>
 <li><strong>双向链表</strong>：每个节点有指向前一个和后一个节点的指针</li>
 <li><strong>循环链表</strong>：最后一个节点指向第一个节点</li>
 </ol>
-<h4 id="与ArrayList的比较"><a href="#与ArrayList的比较" class="headerlink" title="与ArrayList的比较"></a>与ArrayList的比较</h4><table>
+<h4 id="与ArrayList的比较"><a href="#与ArrayList的比较" class="headerlink" title="与ArrayList的比较"></a>与ArrayList的比较</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">LinkedList</th>
-<th align="left">ArrayList</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">LinkedList</th>
+<th style="text-align:left">ArrayList</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">底层实现</td>
-<td align="left">双向链表</td>
-<td align="left">动态数组</td>
+<tbody>
+<tr>
+<td style="text-align:left">底层实现</td>
+<td style="text-align:left">双向链表</td>
+<td style="text-align:left">动态数组</td>
 </tr>
 <tr>
-<td align="left">插入&#x2F;删除</td>
-<td align="left">快（O(1)）</td>
-<td align="left">慢（O(n)）</td>
+<td style="text-align:left">插入/删除</td>
+<td style="text-align:left">快（O(1)）</td>
+<td style="text-align:left">慢（O(n)）</td>
 </tr>
 <tr>
-<td align="left">随机访问</td>
-<td align="left">慢（O(n)）</td>
-<td align="left">快（O(1)）</td>
+<td style="text-align:left">随机访问</td>
+<td style="text-align:left">慢（O(n)）</td>
+<td style="text-align:left">快（O(1)）</td>
 </tr>
 <tr>
-<td align="left">内存占用</td>
-<td align="left">较大（存储指针）</td>
-<td align="left">较小</td>
+<td style="text-align:left">内存占用</td>
+<td style="text-align:left">较大（存储指针）</td>
+<td style="text-align:left">较小</td>
 </tr>
 <tr>
-<td align="left">适用场景</td>
-<td align="left">频繁插入删除</td>
-<td align="left">频繁随机访问</td>
+<td style="text-align:left">适用场景</td>
+<td style="text-align:left">频繁插入删除</td>
+<td style="text-align:left">频繁随机访问</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="LinkedList常用操作的时间复杂度"><a href="#LinkedList常用操作的时间复杂度" class="headerlink" title="LinkedList常用操作的时间复杂度"></a>LinkedList常用操作的时间复杂度</h4><ul>
-<li><strong>插入&#x2F;删除开头</strong>：O(1)</li>
-<li><strong>插入&#x2F;删除末尾</strong>：O(1)（有尾指针）</li>
-<li><strong>插入&#x2F;删除中间</strong>：O(n)</li>
+<li><strong>插入/删除开头</strong>：O(1)</li>
+<li><strong>插入/删除末尾</strong>：O(1)（有尾指针）</li>
+<li><strong>插入/删除中间</strong>：O(n)</li>
 <li><strong>查找元素</strong>：O(n)</li>
 </ul>
 <h3 id="8-2-2-使用示例"><a href="#8-2-2-使用示例" class="headerlink" title="8.2.2 使用示例"></a>8.2.2 使用示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加元素</span></span><br><span class="line">list.add(<span class="number">10</span>);</span><br><span class="line">list.addFirst(<span class="number">5</span>);  <span class="comment">// 开头添加</span></span><br><span class="line">list.addLast(<span class="number">15</span>);  <span class="comment">// 末尾添加</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取元素</span></span><br><span class="line"><span class="type">int</span> <span class="variable">first</span> <span class="operator">=</span> list.getFirst();</span><br><span class="line"><span class="type">int</span> <span class="variable">last</span> <span class="operator">=</span> list.getLast();</span><br><span class="line"><span class="type">int</span> <span class="variable">element</span> <span class="operator">=</span> list.get(<span class="number">1</span>);  <span class="comment">// 索引访问</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除元素</span></span><br><span class="line">list.removeFirst();</span><br><span class="line">list.removeLast();</span><br><span class="line">list.remove(<span class="number">1</span>);  <span class="comment">// 删除指定索引</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">for</span> (Integer num : list) &#123;</span><br><span class="line">    System.out.println(num);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 作为队列使用</span></span><br><span class="line">list.offer(<span class="number">20</span>);     <span class="comment">// 入队</span></span><br><span class="line"><span class="type">int</span> <span class="variable">poll</span> <span class="operator">=</span> list.poll();  <span class="comment">// 出队</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 作为栈使用</span></span><br><span class="line">list.push(<span class="number">25</span>);      <span class="comment">// 入栈</span></span><br><span class="line"><span class="type">int</span> <span class="variable">pop</span> <span class="operator">=</span> list.pop();    <span class="comment">// 出栈</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="主要应用场景"><a href="#主要应用场景" class="headerlink" title="主要应用场景"></a>主要应用场景</h4><ol>
-<li><strong>需要频繁插入&#x2F;删除操作</strong></li>
+<li><strong>需要频繁插入/删除操作</strong></li>
 <li><strong>不确定数据规模</strong></li>
 <li><strong>实现队列和栈</strong></li>
 <li><strong>LRU缓存实现</strong></li>
@@ -222,7 +211,7 @@
 <ul>
 <li><strong>存储什么</strong>：<ul>
 <li><strong>基本数据类型</strong>：例如整数、浮点数、布尔值、字符等，它们直接存储值。</li>
-<li><strong>对象引用&#x2F;指针</strong>：当你在方法内创建一个对象（例如 <code>Person p = new Person()</code>），变量 <code>p</code> 本身（也就是指向对象的地址）是存储在栈上的。对象本体则存储在堆上。</li>
+<li><strong>对象引用/指针</strong>：当你在方法内创建一个对象（例如 <code>Person p = new Person()</code>），变量 <code>p</code> 本身（也就是指向对象的地址）是存储在栈上的。对象本体则存储在堆上。</li>
 <li><strong>方法调用的上下文</strong>：每次调用一个方法，Java 虚拟机会在栈上为这个方法创建一个“栈帧”，用来存放方法的局部变量、中间计算结果以及方法的返回地址。方法调用结束，这个栈帧就会被销毁。</li>
 </ul>
 </li>
@@ -241,54 +230,58 @@
 <li><strong>优点</strong>：灵活性高，可以在运行时动态地分配内存大小，只要还有空间，就可以创建新对象。</li>
 <li><strong>缺点</strong>：分配和访问速度比栈慢，因为堆是更复杂的内存区域。如果创建了太多对象而没有及时回收，会导致 <strong>堆溢出</strong> 错误。</li>
 </ul>
-<h3 id="8-3-3-核心区别总结"><a href="#8-3-3-核心区别总结" class="headerlink" title="8.3.3 核心区别总结"></a>8.3.3 核心区别总结</h3><table>
+<h3 id="8-3-3-核心区别总结"><a href="#8-3-3-核心区别总结" class="headerlink" title="8.3.3 核心区别总结"></a>8.3.3 核心区别总结</h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">栈 (Stack)</th>
-<th align="left">堆 (Heap)</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">栈 (Stack)</th>
+<th style="text-align:left">堆 (Heap)</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>存储内容</strong></td>
-<td align="left">基本数据类型、对象引用（指针）、方法调用上下文</td>
-<td align="left">对象实例、数组</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>存储内容</strong></td>
+<td style="text-align:left">基本数据类型、对象引用（指针）、方法调用上下文</td>
+<td style="text-align:left">对象实例、数组</td>
 </tr>
 <tr>
-<td align="left"><strong>管理方式</strong></td>
-<td align="left"><strong>自动管理</strong> （方法调用结束即释放）</td>
-<td align="left"><strong>垃圾回收器管理</strong> （自动回收无用对象）</td>
+<td style="text-align:left"><strong>管理方式</strong></td>
+<td style="text-align:left"><strong>自动管理</strong> （方法调用结束即释放）</td>
+<td style="text-align:left"><strong>垃圾回收器管理</strong> （自动回收无用对象）</td>
 </tr>
 <tr>
-<td align="left"><strong>生命周期</strong></td>
-<td align="left">与方法调用同步，生命周期短</td>
-<td align="left">从对象创建到不再被引用，生命周期长</td>
+<td style="text-align:left"><strong>生命周期</strong></td>
+<td style="text-align:left">与方法调用同步，生命周期短</td>
+<td style="text-align:left">从对象创建到不再被引用，生命周期长</td>
 </tr>
 <tr>
-<td align="left"><strong>存取速度</strong></td>
-<td align="left"><strong>快</strong> （仅次于寄存器）</td>
-<td align="left"><strong>相对较慢</strong></td>
+<td style="text-align:left"><strong>存取速度</strong></td>
+<td style="text-align:left"><strong>快</strong> （仅次于寄存器）</td>
+<td style="text-align:left"><strong>相对较慢</strong></td>
 </tr>
 <tr>
-<td align="left"><strong>内存大小</strong></td>
-<td align="left">通常较小（由 JVM 参数控制）</td>
-<td align="left">通常较大（由 JVM 参数控制）</td>
+<td style="text-align:left"><strong>内存大小</strong></td>
+<td style="text-align:left">通常较小（由 JVM 参数控制）</td>
+<td style="text-align:left">通常较大（由 JVM 参数控制）</td>
 </tr>
 <tr>
-<td align="left"><strong>数据共享</strong></td>
-<td align="left">不支持多线程间共享</td>
-<td align="left">多线程可以共享堆上的对象</td>
+<td style="text-align:left"><strong>数据共享</strong></td>
+<td style="text-align:left">不支持多线程间共享</td>
+<td style="text-align:left">多线程可以共享堆上的对象</td>
 </tr>
 <tr>
-<td align="left"><strong>主要问题</strong></td>
-<td align="left"><strong>栈溢出</strong> （如无限递归）</td>
-<td align="left"><strong>堆溢出</strong> （如创建过多对象）</td>
+<td style="text-align:left"><strong>主要问题</strong></td>
+<td style="text-align:left"><strong>栈溢出</strong> （如无限递归）</td>
+<td style="text-align:left"><strong>堆溢出</strong> （如创建过多对象）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="8-4-垃圾回收机制"><a href="#8-4-垃圾回收机制" class="headerlink" title="8.4 垃圾回收机制"></a>8.4 垃圾回收机制</h2><p><strong>垃圾回收</strong>（Garbage Collection, GC）是<strong>Java虚拟机</strong>（JVM）自动管理内存的一种机制，它负责：</p>
 <ul>
 <li>自动检测并释放不再被程序使用的对象所占用的内存</li>
-<li>无需程序员手动释放内存（对比C&#x2F;C++的malloc&#x2F;free）</li>
+<li>无需程序员手动释放内存（对比C/C++的malloc/free）</li>
 </ul>
 <h3 id="8-4-1-如何判断对象是否可回收"><a href="#8-4-1-如何判断对象是否可回收" class="headerlink" title="8.4.1 如何判断对象是否可回收"></a><strong>8.4.1 如何判断对象是否可回收</strong></h3><h4 id="1-引用计数法（早期方法，已不常用）"><a href="#1-引用计数法（早期方法，已不常用）" class="headerlink" title="1. 引用计数法（早期方法，已不常用）"></a>1. 引用计数法（早期方法，已不常用）</h4><ul>
 <li>每个对象维护一个引用计数器</li>
@@ -297,85 +290,85 @@
 <li><strong>缺点</strong>：无法解决循环引用问题</li>
 </ul>
 <h4 id="2-可达性分析（主流方法）"><a href="#2-可达性分析（主流方法）" class="headerlink" title="2. 可达性分析（主流方法）"></a>2. 可达性分析（主流方法）</h4><p>从GC Roots对象出发，通过引用链无法到达的对象即为可回收对象</p>
-<h3 id="8-4-2-垃圾回收算法"><a href="#8-4-2-垃圾回收算法" class="headerlink" title="8.4.2 垃圾回收算法"></a><strong>8.4.2 垃圾回收算法</strong></h3><table>
+<h3 id="8-4-2-垃圾回收算法"><a href="#8-4-2-垃圾回收算法" class="headerlink" title="8.4.2 垃圾回收算法"></a><strong>8.4.2 垃圾回收算法</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">算法</th>
-<th align="left">原理</th>
-<th align="left">优点</th>
-<th align="left">缺点</th>
+<th style="text-align:left">算法</th>
+<th style="text-align:left">原理</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>标记-清除</strong></td>
-<td align="left">先标记可回收对象，然后统一清除</td>
-<td align="left">实现简单</td>
-<td align="left">产生内存碎片</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>标记-清除</strong></td>
+<td style="text-align:left">先标记可回收对象，然后统一清除</td>
+<td style="text-align:left">实现简单</td>
+<td style="text-align:left">产生内存碎片</td>
 </tr>
 <tr>
-<td align="left"><strong>标记-复制</strong></td>
-<td align="left">将内存分为两块，只使用一块，存活对象复制到另一块</td>
-<td align="left">无碎片</td>
-<td align="left">内存利用率低</td>
+<td style="text-align:left"><strong>标记-复制</strong></td>
+<td style="text-align:left">将内存分为两块，只使用一块，存活对象复制到另一块</td>
+<td style="text-align:left">无碎片</td>
+<td style="text-align:left">内存利用率低</td>
 </tr>
 <tr>
-<td align="left"><strong>标记-整理</strong></td>
-<td align="left">标记后让存活对象向一端移动</td>
-<td align="left">无碎片，内存利用率高</td>
-<td align="left">移动对象开销大</td>
+<td style="text-align:left"><strong>标记-整理</strong></td>
+<td style="text-align:left">标记后让存活对象向一端移动</td>
+<td style="text-align:left">无碎片，内存利用率高</td>
+<td style="text-align:left">移动对象开销大</td>
 </tr>
 <tr>
-<td align="left"><strong>分代收集</strong></td>
-<td align="left">结合多种算法，不同代使用不同算法</td>
-<td align="left">综合性能好</td>
-<td align="left">实现复杂</td>
+<td style="text-align:left"><strong>分代收集</strong></td>
+<td style="text-align:left">结合多种算法，不同代使用不同算法</td>
+<td style="text-align:left">综合性能好</td>
+<td style="text-align:left">实现复杂</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="8-4-3-常见的垃圾收集器"><a href="#8-4-3-常见的垃圾收集器" class="headerlink" title="8.4.3 常见的垃圾收集器"></a><strong>8.4.3 常见的垃圾收集器</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 根据应用场景选择合适的收集器</span></span><br><span class="line">- Serial收集器：单线程，适合桌面应用</span><br><span class="line">- ParNew收集器：Serial的多线程版本</span><br><span class="line">- Parallel Scavenge：关注吞吐量，适合后台计算</span><br><span class="line">- CMS收集器：最短回收停顿时间，适合交互式应用</span><br><span class="line">- G1收集器：服务端应用，可预测停顿时间（JDK9+默认）</span><br><span class="line">- ZGC：低延迟，超大堆内存（JDK11+）</span><br></pre></td></tr></table></figure>
-
-
-
-
-
 <h2 id="8-5-垃圾回收机制和变量作用域"><a href="#8-5-垃圾回收机制和变量作用域" class="headerlink" title="8.5 垃圾回收机制和变量作用域"></a>8.5 垃圾回收机制和变量作用域</h2><p>变量作用域决定了对象的”可见性”和”生命周期”，而垃圾回收则负责回收超出作用域的对象所占用的内存。</p>
 <h3 id="8-5-1-作用域对对象可达性的影响"><a href="#8-5-1-作用域对对象可达性的影响" class="headerlink" title="8.5.1 作用域对对象可达性的影响"></a><strong>8.5.1 作用域对对象可达性的影响</strong></h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ScopeGCDemo</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">methodScope</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 1. 局部变量作用域</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 代码块作用域开始</span></span><br><span class="line">            <span class="type">User</span> <span class="variable">user1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;张三&quot;</span>);  <span class="comment">// 对象在堆中创建</span></span><br><span class="line">            <span class="comment">// user1引用在栈中，指向堆对象</span></span><br><span class="line">        &#125;  <span class="comment">// 代码块结束，user1引用失效</span></span><br><span class="line">        <span class="comment">// 此时User(&quot;张三&quot;)对象失去引用，成为垃圾回收候选</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2. 方法参数作用域</span></span><br><span class="line">        processData(<span class="keyword">new</span> <span class="title class_">Data</span>());  <span class="comment">// 方法调用结束后，参数引用失效</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 3. 循环内部变量</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            <span class="type">Temp</span> <span class="variable">temp</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Temp</span>();  <span class="comment">// 每次循环创建新对象</span></span><br><span class="line">            <span class="comment">// 循环迭代结束时，temp引用失效</span></span><br><span class="line">        &#125;  <span class="comment">// 每次迭代的对象都可被回收</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">processData</span><span class="params">(Data data)</span> &#123;</span><br><span class="line">        <span class="comment">// data参数在方法执行期间有效</span></span><br><span class="line">        data.execute();</span><br><span class="line">    &#125;  <span class="comment">// 方法结束，data引用失效</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="8-5-2-不同作用域的生命周期对比"><a href="#8-5-2-不同作用域的生命周期对比" class="headerlink" title="8.5.2 不同作用域的生命周期对比"></a><strong>8.5.2 不同作用域的生命周期对比</strong></h3><table>
+<h3 id="8-5-2-不同作用域的生命周期对比"><a href="#8-5-2-不同作用域的生命周期对比" class="headerlink" title="8.5.2 不同作用域的生命周期对比"></a><strong>8.5.2 不同作用域的生命周期对比</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">作用域类型</th>
-<th align="left">生命周期</th>
-<th align="left">对GC的影响</th>
-<th align="left">示例</th>
+<th style="text-align:left">作用域类型</th>
+<th style="text-align:left">生命周期</th>
+<th style="text-align:left">对GC的影响</th>
+<th style="text-align:left">示例</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>局部变量</strong></td>
-<td align="left">方法&#x2F;代码块执行期间</td>
-<td align="left">方法返回后立即成为GC候选</td>
-<td align="left"><code>void method() { Object o = new Object(); }</code></td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>局部变量</strong></td>
+<td style="text-align:left">方法/代码块执行期间</td>
+<td style="text-align:left">方法返回后立即成为GC候选</td>
+<td style="text-align:left"><code>void method() { Object o = new Object(); }</code></td>
 </tr>
 <tr>
-<td align="left"><strong>成员变量</strong></td>
-<td align="left">对象生命周期内</td>
-<td align="left">随对象一起存活&#x2F;回收</td>
-<td align="left"><code>class A { B b; }</code></td>
+<td style="text-align:left"><strong>成员变量</strong></td>
+<td style="text-align:left">对象生命周期内</td>
+<td style="text-align:left">随对象一起存活/回收</td>
+<td style="text-align:left"><code>class A { B b; }</code></td>
 </tr>
 <tr>
-<td align="left"><strong>静态变量</strong></td>
-<td align="left">类生命周期内</td>
-<td align="left">类卸载时才回收（几乎永久）</td>
-<td align="left"><code>static List cache = new ArrayList();</code></td>
+<td style="text-align:left"><strong>静态变量</strong></td>
+<td style="text-align:left">类生命周期内</td>
+<td style="text-align:left">类卸载时才回收（几乎永久）</td>
+<td style="text-align:left"><code>static List cache = new ArrayList();</code></td>
 </tr>
 <tr>
-<td align="left"><strong>方法参数</strong></td>
-<td align="left">方法调用期间</td>
-<td align="left">方法返回后失去引用</td>
-<td align="left"><code>public void func(Param p) {}</code></td>
+<td style="text-align:left"><strong>方法参数</strong></td>
+<td style="text-align:left">方法调用期间</td>
+<td style="text-align:left">方法返回后失去引用</td>
+<td style="text-align:left"><code>public void func(Param p) {}</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="最佳实践总结"><a href="#最佳实践总结" class="headerlink" title="最佳实践总结"></a><strong>最佳实践总结</strong></h4><ol>
 <li><strong>最小化变量作用域</strong>：在需要的地方定义变量</li>
 <li><strong>及时清理不再使用的引用</strong>：特别是大对象</li>
@@ -388,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/03/16/Java/Java-Module8-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" data-id="cuidHPKDpyE2HWNU_XqPxbtQs" data-title="Java-Module8" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/03/16/Java/Java-Module8-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" data-id="cuidU2i8pUWU2y1BgqCgdps5O" data-title="Java-Module8" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

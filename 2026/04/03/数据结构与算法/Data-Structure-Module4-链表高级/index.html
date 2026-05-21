@@ -110,47 +110,48 @@
 </ul>
 <p><strong>示意图：</strong></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">null &lt;- [ prev | 数据 | next ] &lt;-&gt; [ prev | 数据 | next ] &lt;-&gt; [ prev | 数据 | next ] -&gt; null</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-1-2-双链表与单链表的主要区别"><a href="#4-1-2-双链表与单链表的主要区别" class="headerlink" title="4.1.2 双链表与单链表的主要区别"></a>4.1.2 双链表与单链表的主要区别</h3><table>
+<h3 id="4-1-2-双链表与单链表的主要区别"><a href="#4-1-2-双链表与单链表的主要区别" class="headerlink" title="4.1.2 双链表与单链表的主要区别"></a>4.1.2 双链表与单链表的主要区别</h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">单链表</th>
-<th align="left">双链表</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">单链表</th>
+<th style="text-align:left">双链表</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>指针数量</strong></td>
-<td align="left">只有 <code>next</code> 指针</td>
-<td align="left">有 <code>prev</code> 和 <code>next</code> 两个指针</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>指针数量</strong></td>
+<td style="text-align:left">只有 <code>next</code> 指针</td>
+<td style="text-align:left">有 <code>prev</code> 和 <code>next</code> 两个指针</td>
 </tr>
 <tr>
-<td align="left"><strong>内存占用</strong></td>
-<td align="left">较小（每个节点少存一个指针）</td>
-<td align="left">较大（每个节点多存一个指针）</td>
+<td style="text-align:left"><strong>内存占用</strong></td>
+<td style="text-align:left">较小（每个节点少存一个指针）</td>
+<td style="text-align:left">较大（每个节点多存一个指针）</td>
 </tr>
 <tr>
-<td align="left"><strong>遍历方向</strong></td>
-<td align="left">只能<strong>单向</strong>（从头到尾）</td>
-<td align="left">可以<strong>双向</strong>（从头到尾或从尾到头）</td>
+<td style="text-align:left"><strong>遍历方向</strong></td>
+<td style="text-align:left">只能<strong>单向</strong>（从头到尾）</td>
+<td style="text-align:left">可以<strong>双向</strong>（从头到尾或从尾到头）</td>
 </tr>
 <tr>
-<td align="left"><strong>删除节点</strong></td>
-<td align="left">需要知道前驱节点，通常要遍历</td>
-<td align="left">有节点本身即可直接删除（借助 <code>prev</code>）</td>
+<td style="text-align:left"><strong>删除节点</strong></td>
+<td style="text-align:left">需要知道前驱节点，通常要遍历</td>
+<td style="text-align:left">有节点本身即可直接删除（借助 <code>prev</code>）</td>
 </tr>
 <tr>
-<td align="left"><strong>插入节点</strong></td>
-<td align="left">需要遍历到目标位置的前一个节点</td>
-<td align="left">更方便，可双向查找或直接操作</td>
+<td style="text-align:left"><strong>插入节点</strong></td>
+<td style="text-align:left">需要遍历到目标位置的前一个节点</td>
+<td style="text-align:left">更方便，可双向查找或直接操作</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="4-1-3-双链表的优缺点"><a href="#4-1-3-双链表的优缺点" class="headerlink" title="4.1.3 双链表的优缺点"></a>4.1.3 双链表的优缺点</h3><p><strong>优点：</strong></p>
 <ul>
 <li><strong>双向遍历</strong>：可以从任意节点向前或向后遍历，灵活性高。</li>
-<li><strong>删除&#x2F;插入更高效</strong>：如果已经定位到某个节点，删除或在其前面插入新节点时，不需要再从头遍历寻找前驱节点，时间复杂度为 <strong>O(1)</strong>（单链表在这种情况下是 O(n)）。</li>
+<li><strong>删除/插入更高效</strong>：如果已经定位到某个节点，删除或在其前面插入新节点时，不需要再从头遍历寻找前驱节点，时间复杂度为 <strong>O(1)</strong>（单链表在这种情况下是 O(n)）。</li>
 <li><strong>支持反向操作</strong>：适合需要从尾部向前处理的场景（如浏览器的后退功能）。</li>
 </ul>
 <p><strong>缺点：</strong></p>
@@ -162,7 +163,7 @@
 <li><strong>浏览器的前进后退功能</strong>：每访问一个新页面，就添加到链表末尾；后退时，利用 <code>prev</code> 指针回到前一页。</li>
 <li><strong>LRU（最近最少使用）缓存淘汰算法</strong>：通常使用“双链表 + 哈希表”的结构实现，双链表用于维护数据的访问顺序。</li>
 <li><strong>操作系统的任务调度</strong>：某些需要双向遍历任务队列的场景。</li>
-<li><strong>编辑器的撤销&#x2F;重做（Undo&#x2F;Redo）功能</strong>。</li>
+<li><strong>编辑器的撤销/重做（Undo/Redo）功能</strong>。</li>
 </ul>
 <h2 id="4-2-双链表：搜索和插入"><a href="#4-2-双链表：搜索和插入" class="headerlink" title="4.2 双链表：搜索和插入"></a>4.2 双链表：搜索和插入</h2><h3 id="4-2-1-双链表搜索"><a href="#4-2-1-双链表搜索" class="headerlink" title="4.2.1 双链表搜索"></a>4.2.1 双链表搜索</h3><p><strong>目标</strong>：在双链表中查找一个包含特定值的节点。</p>
 <p><strong>步骤</strong>（通常从头节点开始）：</p>
@@ -201,12 +202,12 @@
 <li>将 <code>p.next = new_node</code></li>
 </ol>
 <h5 id="时间复杂度："><a href="#时间复杂度：" class="headerlink" title="时间复杂度："></a><strong>时间复杂度</strong>：</h5><ul>
-<li>在已知节点位置的前&#x2F;后插入：<strong>O(1)</strong>（只需修改指针）。</li>
-<li>如果不知道位置，需要先搜索到该位置：<strong>O(n) + O(1) &#x3D; O(n)</strong>。</li>
+<li>在已知节点位置的前/后插入：<strong>O(1)</strong>（只需修改指针）。</li>
+<li>如果不知道位置，需要先搜索到该位置：<strong>O(n) + O(1) = O(n)</strong>。</li>
 </ul>
 <h4 id="双链表的优势与注意点"><a href="#双链表的优势与注意点" class="headerlink" title="双链表的优势与注意点"></a>双链表的优势与注意点</h4><ul>
 <li><strong>优势</strong>：相比单链表，双链表可以双向遍历，删除给定节点时不需要知道前驱节点（因为可以直接通过 <code>prev</code> 找到）。</li>
-<li><strong>注意</strong>：每个节点多一个指针，占用更多内存；插入&#x2F;删除时要小心更新两个方向的指针（容易出错）。</li>
+<li><strong>注意</strong>：每个节点多一个指针，占用更多内存；插入/删除时要小心更新两个方向的指针（容易出错）。</li>
 </ul>
 <h3 id="4-3-双链表：删除"><a href="#4-3-双链表：删除" class="headerlink" title="4.3 双链表：删除"></a>4.3 双链表：删除</h3><p>在数据结构中，<strong>双链表的删除操作</strong>是指删除链表中某个指定的节点。由于双链表每个节点都包含<strong>前驱指针（prev）</strong> 和<strong>后继指针（next）</strong>，删除时比单链表更灵活，但需要维护更多的指针连接。</p>
 <h4 id="删除头节点（第一个节点）"><a href="#删除头节点（第一个节点）" class="headerlink" title="删除头节点（第一个节点）"></a>删除头节点（第一个节点）</h4><p><strong>步骤：</strong></p>
@@ -228,35 +229,39 @@
 <li>将 <code>curr-&gt;next-&gt;prev</code> 指向 <code>curr-&gt;prev</code>。</li>
 <li>释放 <code>curr</code>。</li>
 </ul>
-<h4 id="与单链表删除的对比"><a href="#与单链表删除的对比" class="headerlink" title="与单链表删除的对比"></a>与单链表删除的对比</h4><table>
+<h4 id="与单链表删除的对比"><a href="#与单链表删除的对比" class="headerlink" title="与单链表删除的对比"></a>与单链表删除的对比</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">单链表删除</th>
-<th align="left">双链表删除</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">单链表删除</th>
+<th style="text-align:left">双链表删除</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">已知节点删除</td>
-<td align="left">需要从头遍历找到前驱</td>
-<td align="left">直接通过 <code>prev</code> 指针完成</td>
+<tbody>
+<tr>
+<td style="text-align:left">已知节点删除</td>
+<td style="text-align:left">需要从头遍历找到前驱</td>
+<td style="text-align:left">直接通过 <code>prev</code> 指针完成</td>
 </tr>
 <tr>
-<td align="left">时间复杂度</td>
-<td align="left">O(n)（需查找前驱）</td>
-<td align="left">O(1)（已知节点指针）</td>
+<td style="text-align:left">时间复杂度</td>
+<td style="text-align:left">O(n)（需查找前驱）</td>
+<td style="text-align:left">O(1)（已知节点指针）</td>
 </tr>
 <tr>
-<td align="left">维护的指针</td>
-<td align="left">1个（next）</td>
-<td align="left">2个（prev 和 next）</td>
+<td style="text-align:left">维护的指针</td>
+<td style="text-align:left">1个（next）</td>
+<td style="text-align:left">2个（prev 和 next）</td>
 </tr>
 <tr>
-<td align="left">空间开销</td>
-<td align="left">较小</td>
-<td align="left">较大（多一个指针）</td>
+<td style="text-align:left">空间开销</td>
+<td style="text-align:left">较小</td>
+<td style="text-align:left">较大（多一个指针）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h4><ul>
 <li>空链表：<code>head == NULL</code></li>
 <li>删除唯一节点：头尾指针需同时更新</li>
@@ -264,25 +269,10 @@
 </ul>
 <h2 id="4-4-链表遍历"><a href="#4-4-链表遍历" class="headerlink" title="4.4 链表遍历"></a>4.4 链表遍历</h2><p>链表遍历是指<strong>按顺序访问链表中每个节点的数据</strong>，直到链表末尾。这是链表操作中最基础的操作之一。</p>
 <h3 id="4-4-1-单链表遍历"><a href="#4-4-1-单链表遍历" class="headerlink" title="4.4.1 单链表遍历"></a>4.4.1 单链表遍历</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义节点类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    </span><br><span class="line">    ListNode(<span class="type">int</span> val) &#123;</span><br><span class="line">        <span class="built_in">this</span>.val = val;</span><br><span class="line">        <span class="built_in">this</span>.next = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 遍历单向链表</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">traverseLinkedList</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">current</span> <span class="operator">=</span> head;  <span class="comment">// 从头部开始</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (current != <span class="literal">null</span>) &#123;  <span class="comment">// 当前节点不为空时继续</span></span><br><span class="line">        System.out.print(current.val + <span class="string">&quot; &quot;</span>);  <span class="comment">// 访问节点数据</span></span><br><span class="line">        current = current.next;  <span class="comment">// 移动到下一个节点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="遍历示例"><a href="#遍历示例" class="headerlink" title="遍历示例"></a>遍历示例</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LinkedListTraversal</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建链表: 1 -&gt; 2 -&gt; 3 -&gt; 4</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">head</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">1</span>);</span><br><span class="line">        head.next = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">2</span>);</span><br><span class="line">        head.next.next = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">3</span>);</span><br><span class="line">        head.next.next.next = <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">4</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 遍历并打印</span></span><br><span class="line">        traverseLinkedList(head);  <span class="comment">// 输出: 1 2 3 4</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="使用-for-循环遍历"><a href="#使用-for-循环遍历" class="headerlink" title="使用 for 循环遍历"></a><strong>使用 for 循环遍历</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">ListNode</span> <span class="variable">current</span> <span class="operator">=</span> head; current != <span class="literal">null</span>; current = current.next) &#123;</span><br><span class="line">    System.out.print(current.val + <span class="string">&quot; &quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="递归遍历"><a href="#递归遍历" class="headerlink" title="递归遍历"></a><strong>递归遍历</strong></h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">traverseRecursive</span><span class="params">(ListNode node)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="literal">null</span>) <span class="keyword">return</span>;  <span class="comment">// 递归出口</span></span><br><span class="line">    System.out.print(node.val + <span class="string">&quot; &quot;</span>);  <span class="comment">// 访问当前节点</span></span><br><span class="line">    traverseRecursive(node.next);  <span class="comment">// 递归遍历下一个</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="4-4-2-双链表遍历"><a href="#4-4-2-双链表遍历" class="headerlink" title="4.4.2 双链表遍历"></a>4.4.2 双链表遍历</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DoublyListNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    DoublyListNode prev;</span><br><span class="line">    DoublyListNode next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正向遍历</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">traverseForward</span><span class="params">(DoublyListNode head)</span> &#123;</span><br><span class="line">    <span class="type">DoublyListNode</span> <span class="variable">current</span> <span class="operator">=</span> head;</span><br><span class="line">    <span class="keyword">while</span> (current != <span class="literal">null</span>) &#123;</span><br><span class="line">        System.out.print(current.val + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        current = current.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反向遍历</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">traverseBackward</span><span class="params">(DoublyListNode tail)</span> &#123;</span><br><span class="line">    <span class="type">DoublyListNode</span> <span class="variable">current</span> <span class="operator">=</span> tail;</span><br><span class="line">    <span class="keyword">while</span> (current != <span class="literal">null</span>) &#123;</span><br><span class="line">        System.out.print(current.val + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        current = current.prev;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="常见应用场景"><a href="#常见应用场景" class="headerlink" title="常见应用场景"></a>常见应用场景</h4><ol>
 <li><strong>查找元素</strong> - 遍历链表找到目标值</li>
 <li><strong>计算长度</strong> - 遍历统计节点个数</li>
@@ -314,6 +304,8 @@
 <li><strong>优点</strong>：稳定、不需要随机访问、性能稳定，是链表排序的首选。</li>
 </ul>
 </li>
+</ol>
+<ol>
 <li><p><strong>快速排序（Quick Sort）</strong></p>
 <ul>
 <li><strong>原理</strong>：选取一个基准节点，将比基准小的节点放到一个子链表，大的放到另一个子链表，然后递归排序，最后拼接。</li>
@@ -322,6 +314,8 @@
 <li><strong>使用场景</strong>：较少用于链表，不如归并排序。</li>
 </ul>
 </li>
+</ol>
+<ol>
 <li><p><strong>插入排序（Insertion Sort）</strong></p>
 <ul>
 <li><strong>原理</strong>：维护一个已排序的部分，每次从原链表中取出一个节点，插入到已排序链表的正确位置。</li>
@@ -330,6 +324,8 @@
 <li><strong>缺点</strong>：效率低，不适用于大数据量。</li>
 </ul>
 </li>
+</ol>
+<ol>
 <li><p><strong>冒泡排序（Bubble Sort）</strong></p>
 <ul>
 <li><strong>原理</strong>：重复遍历链表，比较相邻节点并交换值（或交换节点）。</li>
@@ -340,7 +336,7 @@
 </ol>
 <h4 id="关键注意事项"><a href="#关键注意事项" class="headerlink" title="关键注意事项"></a>关键注意事项</h4><ul>
 <li><strong>不能直接使用数组排序方法</strong>：如二分查找、基于索引的交换等。</li>
-<li><strong>操作的是指针&#x2F;引用</strong>：排序时通常改变节点的 next 指向，而不是移动节点内的数据（虽然交换数据也允许，但改变链接更符合链表操作习惯）。</li>
+<li><strong>操作的是指针/引用</strong>：排序时通常改变节点的 next 指向，而不是移动节点内的数据（虽然交换数据也允许，但改变链接更符合链表操作习惯）。</li>
 <li><strong>稳定性</strong>：归并排序和插入排序可以保持相等元素的相对顺序；快速排序通常不稳定。</li>
 </ul>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
@@ -357,11 +353,11 @@
 </ul>
 <h4 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h4><ol>
 <li><strong>消除对空链表的特殊处理</strong><ul>
-<li>普通链表插入&#x2F;删除头节点时需要单独判断 <code>if (head == null)</code>。</li>
+<li>普通链表插入/删除头节点时需要单独判断 <code>if (head == null)</code>。</li>
 <li>使用虚拟节点后，<code>dummy.next</code> 始终代表当前有效头节点。</li>
 </ul>
 </li>
-<li><strong>统一插入&#x2F;删除逻辑</strong><ul>
+<li><strong>统一插入/删除逻辑</strong><ul>
 <li>不需要区分操作位置是头节点还是中间节点，代码更简洁、更少出错。</li>
 </ul>
 </li>
@@ -371,13 +367,7 @@
 </li>
 </ol>
 <h3 id="4-6-1-典型使用场景"><a href="#4-6-1-典型使用场景" class="headerlink" title="4.6.1 典型使用场景"></a>4.6.1 典型使用场景</h3><h4 id="删除链表中所有值为某个值的节点"><a href="#删除链表中所有值为某个值的节点" class="headerlink" title="删除链表中所有值为某个值的节点"></a>删除链表中所有值为某个值的节点</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">removeElements</span><span class="params">(ListNode head, <span class="type">int</span> val)</span> &#123;</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);  <span class="comment">// 虚拟节点</span></span><br><span class="line">    dummy.next = head;</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">prev</span> <span class="operator">=</span> dummy;</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">curr</span> <span class="operator">=</span> head;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (curr != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (curr.val == val) &#123;</span><br><span class="line">            prev.next = curr.next;  <span class="comment">// 删除节点</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            prev = curr;</span><br><span class="line">        &#125;</span><br><span class="line">        curr = curr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="合并两个有序链表"><a href="#合并两个有序链表" class="headerlink" title="合并两个有序链表"></a>合并两个有序链表</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">mergeTwoLists</span><span class="params">(ListNode l1, ListNode l2)</span> &#123;</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">dummy</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">curr</span> <span class="operator">=</span> dummy;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (l1 != <span class="literal">null</span> &amp;&amp; l2 != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (l1.val &lt;= l2.val) &#123;</span><br><span class="line">            curr.next = l1;</span><br><span class="line">            l1 = l1.next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            curr.next = l2;</span><br><span class="line">            l2 = l2.next;</span><br><span class="line">        &#125;</span><br><span class="line">        curr = curr.next;</span><br><span class="line">    &#125;</span><br><span class="line">    curr.next = (l1 != <span class="literal">null</span>) ? l1 : l2;</span><br><span class="line">    <span class="keyword">return</span> dummy.next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
 <li><strong>内存泄漏</strong>：虚拟节点本身不会被自动回收，但通常影响很小，因为只有极少量额外内存。</li>
 <li><strong>返回值</strong>：永远返回 <code>dummy.next</code>，而不是 <code>dummy</code> 或原 <code>head</code>。</li>
@@ -393,49 +383,47 @@
 <h3 id="4-7-1-主要实现类"><a href="#4-7-1-主要实现类" class="headerlink" title="4.7.1 主要实现类"></a>4.7.1 主要实现类</h3><h4 id="ArrayList（最常用）"><a href="#ArrayList（最常用）" class="headerlink" title="ArrayList（最常用）"></a><strong>ArrayList</strong>（最常用）</h4><ul>
 <li>底层基于<strong>动态数组</strong>实现</li>
 <li><strong>特点</strong>：查询快（O(1)）、增删慢（尤其是中间位置，O(n)）</li>
-<li><strong>适用场景</strong>：频繁读取、遍历，较少插入&#x2F;删除</li>
+<li><strong>适用场景</strong>：频繁读取、遍历，较少插入/删除</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;Apple&quot;</span>);</span><br><span class="line">list.add(<span class="string">&quot;Banana&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">fruit</span> <span class="operator">=</span> list.get(<span class="number">0</span>);  <span class="comment">// 快速访问</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a><strong>LinkedList</strong></h4><ul>
 <li>底层基于<strong>双向链表</strong>实现</li>
 <li><strong>特点</strong>：增删快（头尾O(1)，中间需遍历）、查询慢（O(n)）</li>
-<li><strong>适用场景</strong>：频繁在头尾插入&#x2F;删除元素</li>
+<li><strong>适用场景</strong>：频繁在头尾插入/删除元素</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">list.add(<span class="number">1</span>);</span><br><span class="line">list.add(<span class="number">0</span>, <span class="number">10</span>);  <span class="comment">// 在索引0处插入</span></span><br><span class="line">list.remove(<span class="number">0</span>);   <span class="comment">// 删除第一个元素</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="与其他数据结构的区别"><a href="#与其他数据结构的区别" class="headerlink" title="与其他数据结构的区别"></a>与其他数据结构的区别</h4><table>
+<h4 id="与其他数据结构的区别"><a href="#与其他数据结构的区别" class="headerlink" title="与其他数据结构的区别"></a>与其他数据结构的区别</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">List</th>
-<th align="left">Set</th>
-<th align="left">Map</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">List</th>
+<th style="text-align:left">Set</th>
+<th style="text-align:left">Map</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">顺序</td>
-<td align="left">有序</td>
-<td align="left">无序（或有序）</td>
-<td align="left">键值对</td>
+<tbody>
+<tr>
+<td style="text-align:left">顺序</td>
+<td style="text-align:left">有序</td>
+<td style="text-align:left">无序（或有序）</td>
+<td style="text-align:left">键值对</td>
 </tr>
 <tr>
-<td align="left">重复</td>
-<td align="left">允许</td>
-<td align="left">不允许</td>
-<td align="left">键唯一，值可重复</td>
+<td style="text-align:left">重复</td>
+<td style="text-align:left">允许</td>
+<td style="text-align:left">不允许</td>
+<td style="text-align:left">键唯一，值可重复</td>
 </tr>
 <tr>
-<td align="left">索引访问</td>
-<td align="left">支持</td>
-<td align="left">不支持</td>
-<td align="left">通过键访问</td>
+<td style="text-align:left">索引访问</td>
+<td style="text-align:left">支持</td>
+<td style="text-align:left">不支持</td>
+<td style="text-align:left">通过键访问</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="4-8-循环链表"><a href="#4-8-循环链表" class="headerlink" title="4.8 循环链表"></a>4.8 循环链表</h2><p><strong>循环链表</strong>是一种特殊的链表，它的最后一个节点<strong>不是</strong>指向 <code>null</code>（空），而是<strong>指回第一个节点</strong>（头节点），从而形成一个闭环。</p>
 <ul>
 <li><strong>空表处理</strong>：空表通常用 <code>head == NULL</code> 表示。</li>
@@ -450,7 +438,7 @@
 <h4 id="核心特点-1"><a href="#核心特点-1" class="headerlink" title="核心特点"></a>核心特点</h4><ul>
 <li><strong>无尾节点</strong>：从任何节点出发，沿着 <code>next</code> 指针走，最终都会回到起点。</li>
 <li><strong>遍历条件改变</strong>：遍历的终止条件不再是 <code>p == null</code>，而是 <code>p == 头节点</code>。</li>
-<li><strong>插入&#x2F;删除灵活</strong>：在任意位置（包括头部）进行插入和删除操作时，代码逻辑比普通链表更统一，因为不需要单独处理 <code>null</code> 指针。</li>
+<li><strong>插入/删除灵活</strong>：在任意位置（包括头部）进行插入和删除操作时，代码逻辑比普通链表更统一，因为不需要单独处理 <code>null</code> 指针。</li>
 </ul>
 <h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
 <li><strong>优点</strong>：<ul>
@@ -464,40 +452,44 @@
 </ul>
 </li>
 </ul>
-<h4 id="与普通链表的区别"><a href="#与普通链表的区别" class="headerlink" title="与普通链表的区别"></a>与普通链表的区别</h4><table>
+<h4 id="与普通链表的区别"><a href="#与普通链表的区别" class="headerlink" title="与普通链表的区别"></a>与普通链表的区别</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">普通链表</th>
-<th align="left">循环链表</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">普通链表</th>
+<th style="text-align:left">循环链表</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">尾节点指向</td>
-<td align="left"><code>null</code></td>
-<td align="left">头节点</td>
+<tbody>
+<tr>
+<td style="text-align:left">尾节点指向</td>
+<td style="text-align:left"><code>null</code></td>
+<td style="text-align:left">头节点</td>
 </tr>
 <tr>
-<td align="left">遍历终止条件</td>
-<td align="left"><code>cur == null</code></td>
-<td align="left"><code>cur == 头节点</code></td>
+<td style="text-align:left">遍历终止条件</td>
+<td style="text-align:left"><code>cur == null</code></td>
+<td style="text-align:left"><code>cur == 头节点</code></td>
 </tr>
 <tr>
-<td align="left">首尾操作</td>
-<td align="left">需额外处理 <code>null</code></td>
-<td align="left">逻辑更统一</td>
+<td style="text-align:left">首尾操作</td>
+<td style="text-align:left">需额外处理 <code>null</code></td>
+<td style="text-align:left">逻辑更统一</td>
 </tr>
 <tr>
-<td align="left">内存使用</td>
-<td align="left">少一个指针</td>
-<td align="left">多一个尾指向头</td>
+<td style="text-align:left">内存使用</td>
+<td style="text-align:left">少一个指针</td>
+<td style="text-align:left">多一个尾指向头</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module4-%E9%93%BE%E8%A1%A8%E9%AB%98%E7%BA%A7/" data-id="cuidfknw5c8Yu25hGDFf06OwF" data-title="Data-Structure-Module4" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/04/03/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module4-%E9%93%BE%E8%A1%A8%E9%AB%98%E7%BA%A7/" data-id="cuidgQntNcgVsKDq_IfDZVK7l" data-title="Data-Structure-Module4" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

@@ -123,7 +123,7 @@
 <li><strong>适用性</strong>：不允许使用外部排序的<strong>中等规模数据</strong>很有效。代码简单，易于实现。</li>
 <li><strong>与插入排序对比</strong>：它解决了简单插入排序在近似逆序数组上的性能瓶颈，核心优势在于快速减少逆序对。</li>
 </ul>
-<p>简单总结就是：<strong>希尔排序 &#x3D; 分组预排 + 最终精排</strong>。增量序列的选择是影响它效率的关键。</p>
+<p>简单总结就是：<strong>希尔排序 = 分组预排 + 最终精排</strong>。增量序列的选择是影响它效率的关键。</p>
 <h3 id="12-4-4交错式插入排序算法"><a href="#12-4-4交错式插入排序算法" class="headerlink" title="12.4.4交错式插入排序算法"></a>12.4.4交错式插入排序算法</h3><p>希尔排序中的“交错式插入排序”，是指<strong>不是逐个处理子序列，而是交替扫描，一次性完成所有子序列的排序</strong>。</p>
 <p>为了理解它，我们可以和另一种策略“逐个处理”对比：</p>
 <ul>
@@ -133,7 +133,6 @@
 <h3 id="为什么希尔排序实际采用交错式？"><a href="#为什么希尔排序实际采用交错式？" class="headerlink" title="为什么希尔排序实际采用交错式？"></a>为什么希尔排序实际采用交错式？</h3><p>原因很直观：<strong>缓存友好，遍历顺序和数组在内存中的物理顺序一致</strong>。</p>
 <p>以标准实现（递减增量）为例：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">shell_sort</span>(<span class="params">arr</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    gap = n // <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> gap &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 从gap开始向后遍历，这就是交错处理</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gap, n):</span><br><span class="line">            temp = arr[i]</span><br><span class="line">            j = i</span><br><span class="line">            <span class="comment"># 对当前元素所属的子序列进行插入排序</span></span><br><span class="line">            <span class="keyword">while</span> j &gt;= gap <span class="keyword">and</span> arr[j - gap] &gt; temp:</span><br><span class="line">                arr[j] = arr[j - gap]</span><br><span class="line">                j -= gap</span><br><span class="line">            arr[j] = temp</span><br><span class="line">        gap //= <span class="number">2</span></span><br></pre></td></tr></table></figure>
-
 <p>你可以看到，循环变量 <code>i</code> 是连续从 <code>gap</code> 递增到 <code>n-1</code> 的，这保证了数组是<strong>从前到后顺序访问</strong>的，能充分利用CPU缓存和现代硬件的预取机制。</p>
 <h4 id="具体过程解析"><a href="#具体过程解析" class="headerlink" title="具体过程解析"></a>具体过程解析</h4><p>假设数组 <code>[8, 5, 3, 7, 1, 6, 4, 2]</code>，初始增量 <code>gap = 3</code>。它被分为3个逻辑子序列：</p>
 <ul>
@@ -201,9 +200,6 @@
 <li><strong>合并</strong>：将处理后的负数数组和非负数数组合并。</li>
 </ol>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">原数组：    [-170, -45, 75, -2, 0, 802, 24]</span><br><span class="line">负数取绝对：[170, 45, 2]</span><br><span class="line">非负数：    [75, 0, 802, 24]</span><br><span class="line"></span><br><span class="line">对负数绝对值排序：    [2, 45, 170]</span><br><span class="line">逆序后再加负号：      [-170, -45, -2]</span><br><span class="line">非负数排序：          [0, 24, 75, 802]</span><br><span class="line"></span><br><span class="line">合并结果：[-170, -45, -2, 0, 24, 75, 802]</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="方法二：偏移量映射"><a href="#方法二：偏移量映射" class="headerlink" title="方法二：偏移量映射"></a>方法二：偏移量映射</h4><p>给所有数加上一个偏移量，把负数映射到非负范围，排序后再减回来。</p>
 <p><strong>核心思路：</strong></p>
 <ol>
@@ -214,98 +210,106 @@
 <li>排序完成后，所有元素<strong>减去偏移量</strong>，还原成原始值。</li>
 </ol>
 <p><strong>优点</strong>：一趟完成，不用拆数组。<br><strong>缺点</strong>：如果最小值很小（比如 -10^9）而数据量不大，加了偏移后数字跨度巨大，基数排序的轮数和空间消耗会增加。</p>
-<h4 id="实际选择建议"><a href="#实际选择建议" class="headerlink" title="实际选择建议"></a>实际选择建议</h4><table>
+<h4 id="实际选择建议"><a href="#实际选择建议" class="headerlink" title="实际选择建议"></a>实际选择建议</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">方法</th>
-<th align="left">适用场景</th>
+<th style="text-align:left">方法</th>
+<th style="text-align:left">适用场景</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">正负分治</td>
-<td align="left">通用性好，负数和非负数数量相当，实现直观</td>
+<tbody>
+<tr>
+<td style="text-align:left">正负分治</td>
+<td style="text-align:left">通用性好，负数和非负数数量相当，实现直观</td>
 </tr>
 <tr>
-<td align="left">偏移量映射</td>
-<td align="left">数据范围不太大，想避免拆分数组的麻烦</td>
+<td style="text-align:left">偏移量映射</td>
+<td style="text-align:left">数据范围不太大，想避免拆分数组的麻烦</td>
 </tr>
-</tbody></table>
-<h2 id="12-8-排序算法概述"><a href="#12-8-排序算法概述" class="headerlink" title="12.8 排序算法概述"></a>12.8 排序算法概述</h2><h3 id="12-8-1-核心对比一览表"><a href="#12-8-1-核心对比一览表" class="headerlink" title="12.8.1 核心对比一览表"></a>12.8.1 核心对比一览表</h3><table>
+</tbody>
+</table>
+</div>
+<h2 id="12-8-排序算法概述"><a href="#12-8-排序算法概述" class="headerlink" title="12.8 排序算法概述"></a>12.8 排序算法概述</h2><h3 id="12-8-1-核心对比一览表"><a href="#12-8-1-核心对比一览表" class="headerlink" title="12.8.1 核心对比一览表"></a>12.8.1 核心对比一览表</h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">排序算法</th>
-<th align="left">平均时间</th>
-<th align="left">最坏时间</th>
-<th align="left">最好时间</th>
-<th align="left">空间复杂度</th>
-<th align="left">稳定性</th>
-<th align="left">核心思想</th>
+<th style="text-align:left">排序算法</th>
+<th style="text-align:left">平均时间</th>
+<th style="text-align:left">最坏时间</th>
+<th style="text-align:left">最好时间</th>
+<th style="text-align:left">空间复杂度</th>
+<th style="text-align:left">稳定性</th>
+<th style="text-align:left">核心思想</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>选择排序</strong></td>
-<td align="left">O(n²)</td>
-<td align="left">O(n²)</td>
-<td align="left">O(n²)</td>
-<td align="left">O(1)</td>
-<td align="left"><strong>不稳定</strong></td>
-<td align="left">每次选择最小&#x2F;大元素</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>选择排序</strong></td>
+<td style="text-align:left">O(n²)</td>
+<td style="text-align:left">O(n²)</td>
+<td style="text-align:left">O(n²)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong>不稳定</strong></td>
+<td style="text-align:left">每次选择最小/大元素</td>
 </tr>
 <tr>
-<td align="left"><strong>插入排序</strong></td>
-<td align="left">O(n²)</td>
-<td align="left">O(n²)</td>
-<td align="left">O(n)</td>
-<td align="left">O(1)</td>
-<td align="left"><strong>稳定</strong></td>
-<td align="left">像整理扑克牌，逐个插入已排序序列</td>
+<td style="text-align:left"><strong>插入排序</strong></td>
+<td style="text-align:left">O(n²)</td>
+<td style="text-align:left">O(n²)</td>
+<td style="text-align:left">O(n)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong>稳定</strong></td>
+<td style="text-align:left">像整理扑克牌，逐个插入已排序序列</td>
 </tr>
 <tr>
-<td align="left"><strong>希尔排序</strong></td>
-<td align="left">O(n log² n) 左右</td>
-<td align="left">取决于序列</td>
-<td align="left">取决于序列</td>
-<td align="left">O(1)</td>
-<td align="left"><strong>不稳定</strong></td>
-<td align="left">分组的插入排序，逐步缩小增量</td>
+<td style="text-align:left"><strong>希尔排序</strong></td>
+<td style="text-align:left">O(n log² n) 左右</td>
+<td style="text-align:left">取决于序列</td>
+<td style="text-align:left">取决于序列</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong>不稳定</strong></td>
+<td style="text-align:left">分组的插入排序，逐步缩小增量</td>
 </tr>
 <tr>
-<td align="left"><strong>快速排序</strong></td>
-<td align="left">O(n log n)</td>
-<td align="left">O(n²)</td>
-<td align="left">O(n log n)</td>
-<td align="left">O(log n)</td>
-<td align="left"><strong>不稳定</strong></td>
-<td align="left">选基准，小的放左边，大的放右边，递归</td>
+<td style="text-align:left"><strong>快速排序</strong></td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(n²)</td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(log n)</td>
+<td style="text-align:left"><strong>不稳定</strong></td>
+<td style="text-align:left">选基准，小的放左边，大的放右边，递归</td>
 </tr>
 <tr>
-<td align="left"><strong>归并排序</strong></td>
-<td align="left">O(n log n)</td>
-<td align="left">O(n log n)</td>
-<td align="left">O(n log n)</td>
-<td align="left">O(n)</td>
-<td align="left"><strong>稳定</strong></td>
-<td align="left">先分后合，合并两个有序数组</td>
+<td style="text-align:left"><strong>归并排序</strong></td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(n)</td>
+<td style="text-align:left"><strong>稳定</strong></td>
+<td style="text-align:left">先分后合，合并两个有序数组</td>
 </tr>
 <tr>
-<td align="left"><strong>堆排序</strong></td>
-<td align="left">O(n log n)</td>
-<td align="left">O(n log n)</td>
-<td align="left">O(n log n)</td>
-<td align="left">O(1)</td>
-<td align="left"><strong>不稳定</strong></td>
-<td align="left">利用大&#x2F;小顶堆反复取堆顶</td>
+<td style="text-align:left"><strong>堆排序</strong></td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(n log n)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong>不稳定</strong></td>
+<td style="text-align:left">利用大/小顶堆反复取堆顶</td>
 </tr>
 <tr>
-<td align="left"><strong>基数排序</strong></td>
-<td align="left">O(k*n)</td>
-<td align="left">O(k*n)</td>
-<td align="left">O(k*n)</td>
-<td align="left">O(n + k)</td>
-<td align="left"><strong>稳定</strong></td>
-<td align="left">按个十百千位，多轮分配与收集</td>
+<td style="text-align:left"><strong>基数排序</strong></td>
+<td style="text-align:left">O(k*n)</td>
+<td style="text-align:left">O(k*n)</td>
+<td style="text-align:left">O(k*n)</td>
+<td style="text-align:left">O(n + k)</td>
+<td style="text-align:left"><strong>稳定</strong></td>
+<td style="text-align:left">按个十百千位，多轮分配与收集</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>备注</strong>：</p>
 <ul>
 <li>基数排序的 <code>k</code> 表示最大数字的位数。其时间复杂度严格说与具体实现有关，此处按常见情况给出。</li>
@@ -313,7 +317,7 @@
 </ul>
 <h3 id="12-8-2-逐个剖析与选型建议"><a href="#12-8-2-逐个剖析与选型建议" class="headerlink" title="12.8.2 逐个剖析与选型建议"></a>12.8.2 逐个剖析与选型建议</h3><h4 id="1-选择排序（不常用）"><a href="#1-选择排序（不常用）" class="headerlink" title="1. 选择排序（不常用）"></a>1. 选择排序（不常用）</h4><ul>
 <li><strong>原理</strong>：每轮找未排序部分的最小值，放到已排序部分的末尾。</li>
-<li><strong>评价</strong>：无论数据怎样，都要进行约 n²&#x2F;2 次比较。数据移动次数最少，为 O(n)。</li>
+<li><strong>评价</strong>：无论数据怎样，都要进行约 n²/2 次比较。数据移动次数最少，为 O(n)。</li>
 <li><strong>场景</strong>：当<strong>数据移动成本远高于比较成本</strong>时可考虑，否则几乎不用。</li>
 </ul>
 <h4 id="2-插入排序（小规模数据好用）"><a href="#2-插入排序（小规模数据好用）" class="headerlink" title="2. 插入排序（小规模数据好用）"></a>2. 插入排序（小规模数据好用）</h4><ul>
@@ -329,14 +333,14 @@
 <h4 id="4-快速排序（通用大将）"><a href="#4-快速排序（通用大将）" class="headerlink" title="4. 快速排序（通用大将）"></a>4. 快速排序（通用大将）</h4><ul>
 <li><strong>原理</strong>：分治法。选基准值，将数组划分为比基准小和大的两部分，再递归排序。</li>
 <li><strong>核心优势</strong>：实际应用中速度最快的通用排序算法之一，因为其内存访问模式对缓存友好。</li>
-<li><strong>核心劣势</strong>：<strong>不稳定</strong>。在最坏情况下会退化到 O(n²)（如每次选到最小&#x2F;大值作基准）。可通过随机选基准来避免。</li>
+<li><strong>核心劣势</strong>：<strong>不稳定</strong>。在最坏情况下会退化到 O(n²)（如每次选到最小/大值作基准）。可通过随机选基准来避免。</li>
 <li><strong>场景</strong>：<strong>绝大多数通用场景的首选</strong>，也是很多语言标准库的默认排序基础（如C++的<code>std::sort</code>）。</li>
 </ul>
 <h4 id="5-归并排序（稳定之王）"><a href="#5-归并排序（稳定之王）" class="headerlink" title="5. 归并排序（稳定之王）"></a>5. 归并排序（稳定之王）</h4><ul>
 <li><strong>原理</strong>：分治法。将数组完全拆分为单元素，然后两两有序合并。</li>
 <li><strong>核心优势</strong>：无论数据如何，都保证 <strong>O(n log n)</strong> 的时间复杂度，是<strong>稳定的外排序</strong>算法首选。</li>
 <li><strong>核心劣势</strong>：需要 O(n) 的额外内存空间。</li>
-<li><strong>场景</strong>：<strong>需要稳定排序</strong>，或处理**超大数据集（外排序）**时。Java语言对对象数组的排序就使用了归并排序（历史版本）。</li>
+<li><strong>场景</strong>：<strong>需要稳定排序</strong>，或处理<strong>超大数据集（外排序）</strong>时。Java语言对对象数组的排序就使用了归并排序（历史版本）。</li>
 </ul>
 <h4 id="6-堆排序（空间苛刻时的选择）"><a href="#6-堆排序（空间苛刻时的选择）" class="headerlink" title="6. 堆排序（空间苛刻时的选择）"></a>6. 堆排序（空间苛刻时的选择）</h4><ul>
 <li><strong>原理</strong>：将数组构建成最大堆，反复取出堆顶元素（最大值）放到数组末尾。</li>
@@ -392,12 +396,9 @@
 <li><strong>第四轮</strong>比较前2个元素，<code>2</code> 就位，排序完成。</li>
 </ul>
 <h3 id="12-9-3-代码实现（Python）"><a href="#12-9-3-代码实现（Python）" class="headerlink" title="12.9.3 代码实现（Python）"></a>12.9.3 代码实现（Python）</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bubble_sort</span>(<span class="params">arr</span>)：</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="comment"># 外层循环控制总轮数</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>)：</span><br><span class="line">        <span class="comment"># 优化点：检查本轮是否有交换</span></span><br><span class="line">        swapped = <span class="literal">False</span></span><br><span class="line">        <span class="comment"># 内层循环进行相邻比较，最后 i 个元素已就位，不用管</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n-<span class="number">1</span>-i)：</span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j+<span class="number">1</span>]：</span><br><span class="line">                arr[j], arr[j+<span class="number">1</span>] = arr[j+<span class="number">1</span>], arr[j]</span><br><span class="line">                swapped = <span class="literal">True</span></span><br><span class="line">        <span class="comment"># 如果一轮下来没有交换，说明已经有序，直接结束</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> swapped：</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> arr</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="12-9-4-性能分析"><a href="#12-9-4-性能分析" class="headerlink" title="12.9.4 性能分析"></a>12.9.4 性能分析</h3><ul>
 <li><strong>时间复杂度</strong><ul>
-<li><strong>最坏&#x2F;平均</strong>：数据完全或部分无序时，需要双重循环，复杂度为 <strong>O(n²)</strong>。</li>
+<li><strong>最坏/平均</strong>：数据完全或部分无序时，需要双重循环，复杂度为 <strong>O(n²)</strong>。</li>
 <li><strong>最好</strong>：数据本身有序，只遍历一轮就结束，复杂度为 <strong>O(n)</strong>。</li>
 </ul>
 </li>
@@ -425,7 +426,7 @@
 <li><strong>快速选择</strong>：每次分区后，只进入包含目标元素的那一侧递归，类似只走二叉树的某一条路径。所以成本从 O(n log n) 降到了 O(n)。</li>
 </ul>
 <h4 id="时间与空间复杂度"><a href="#时间与空间复杂度" class="headerlink" title="时间与空间复杂度"></a>时间与空间复杂度</h4><ul>
-<li><strong>平均时间复杂度</strong>：<strong>O(n)</strong>。每次递归处理的数据量大致减半，总工作量是 n + n&#x2F;2 + n&#x2F;4 + …，极限收敛于 2n。</li>
+<li><strong>平均时间复杂度</strong>：<strong>O(n)</strong>。每次递归处理的数据量大致减半，总工作量是 n + n/2 + n/4 + …，极限收敛于 2n。</li>
 <li><strong>最坏时间复杂度</strong>：<strong>O(n²)</strong>。当每次选的基准都极不走运（例如总选到最小元素），导致每次只排除一个元素时会发生。不过，使用随机化选择基准可以规避绝大多数最坏情况。</li>
 <li><strong>空间复杂度</strong>：取决于实现，递归栈深度平均 O(log n)，尾递归优化可做到 O(1)。</li>
 </ul>
@@ -465,7 +466,7 @@
 </ul>
 <h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a><strong>时间复杂度</strong></h4><p>它的效率高度依赖数据分布：</p>
 <ul>
-<li><strong>最好&#x2F;平均情况</strong>：数据均匀分布时，只需线性分桶加少量内部排序，<strong>O(n + k)</strong>，约等于线性时间 O(n)。</li>
+<li><strong>最好/平均情况</strong>：数据均匀分布时，只需线性分桶加少量内部排序，<strong>O(n + k)</strong>，约等于线性时间 O(n)。</li>
 <li><strong>最坏情况</strong>：数据全挤进一个桶里，退化成一个普通的排序算法，例如 O(n²) 如果桶内用插入排序。</li>
 <li><strong>空间复杂度</strong>：O(n + k)，需要额外空间存放桶和所有数据。</li>
 </ul>
@@ -478,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" data-id="cuidSplttIe0-GxjSlNdDU_zU" data-title="Data-Structure-Module12" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" data-id="cuidXtMcVry21RscOFQyhP6gC" data-title="Data-Structure-Module12" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

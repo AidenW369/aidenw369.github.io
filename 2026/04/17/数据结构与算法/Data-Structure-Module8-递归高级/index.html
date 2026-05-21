@@ -109,37 +109,40 @@
 <li><strong>递归步骤（Recursive Step）</strong><br>把问题分解为更小的同类子问题，并调用函数自身去解决。它必须保证每次调用都<strong>向基准情形靠近</strong>。</li>
 </ul>
 <h4 id="递归-vs-迭代"><a href="#递归-vs-迭代" class="headerlink" title="递归 vs. 迭代"></a>递归 vs. 迭代</h4><p>很多递归算法都能用循环（迭代）重写。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">对比项</th>
-<th align="left">递归</th>
-<th align="left">迭代</th>
+<th style="text-align:left">对比项</th>
+<th style="text-align:left">递归</th>
+<th style="text-align:left">迭代</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>核心思想</strong></td>
-<td align="left">函数自调用，分解问题</td>
-<td align="left">循环结构，重复执行代码</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>核心思想</strong></td>
+<td style="text-align:left">函数自调用，分解问题</td>
+<td style="text-align:left">循环结构，重复执行代码</td>
 </tr>
 <tr>
-<td align="left"><strong>代码清晰度</strong></td>
-<td align="left">对树、图等递归结构，代码极简自然</td>
-<td align="left">线性逻辑更直观</td>
+<td style="text-align:left"><strong>代码清晰度</strong></td>
+<td style="text-align:left">对树、图等递归结构，代码极简自然</td>
+<td style="text-align:left">线性逻辑更直观</td>
 </tr>
 <tr>
-<td align="left"><strong>性能开销</strong></td>
-<td align="left">每次调用都有额外开销，可能栈溢出</td>
-<td align="left">通常效率更高，无栈溢出风险</td>
+<td style="text-align:left"><strong>性能开销</strong></td>
+<td style="text-align:left">每次调用都有额外开销，可能栈溢出</td>
+<td style="text-align:left">通常效率更高，无栈溢出风险</td>
 </tr>
 <tr>
-<td align="left"><strong>适用场景</strong></td>
-<td align="left">树和图的遍历、分治算法（如快排）</td>
-<td align="left">简单重复计算（如阶乘、累加）</td>
+<td style="text-align:left"><strong>适用场景</strong></td>
+<td style="text-align:left">树和图的遍历、分治算法（如快排）</td>
+<td style="text-align:left">简单重复计算（如阶乘、累加）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="8-2-1-使用递归实现二分查找算法"><a href="#8-2-1-使用递归实现二分查找算法" class="headerlink" title="8.2.1 使用递归实现二分查找算法"></a>8.2.1 使用递归实现二分查找算法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BinarySearch</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 递归二分查找</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr 有序数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left 左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right 右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> target 目标值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 目标值的索引，未找到返回-1</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="comment">// 递归终止条件：搜索区间为空</span></span><br><span class="line">        <span class="keyword">if</span> (left &gt; right) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 计算中间索引（避免整数溢出）</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 找到目标值</span></span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 目标值在左半部分</span></span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &gt; target) &#123;</span><br><span class="line">            <span class="keyword">return</span> binarySearch(arr, left, mid - <span class="number">1</span>, target);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 目标值在右半部分</span></span><br><span class="line">        <span class="keyword">return</span> binarySearch(arr, mid + <span class="number">1</span>, right, target);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重载方法，简化调用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> binarySearch(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>, target);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>&#125;;</span><br><span class="line">        <span class="type">int</span> <span class="variable">target</span> <span class="operator">=</span> <span class="number">7</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> binarySearch(arr, target);</span><br><span class="line">        <span class="keyword">if</span> (result != -<span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;找到目标值 &quot;</span> + target + <span class="string">&quot;，索引为: &quot;</span> + result);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;未找到目标值 &quot;</span> + target);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="关键要点"><a href="#关键要点" class="headerlink" title="关键要点"></a>关键要点</h4><ol>
 <li><strong>递归终止条件</strong>：当 <code>left &gt; right</code> 时，表示搜索区间为空</li>
 <li><strong>避免整数溢出</strong>：使用 <code>left + (right - left) / 2</code> 而不是 <code>(left + right) / 2</code></li>
@@ -150,18 +153,15 @@
 <h2 id="8-3-递归算法的时间复杂度"><a href="#8-3-递归算法的时间复杂度" class="headerlink" title="8.3 递归算法的时间复杂度"></a>8.3 递归算法的时间复杂度</h2><p>计算递归算法的时间复杂度，核心是<strong>找出递归关系式，然后求解</strong>。主要方法有三种：递归树法、主定理法和代入法。</p>
 <h4 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h4><p>先建立描述时间开销的递归方程：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = [递归调用的时间] + [分解与合并的时间]</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="8-3-1-主定理法（最快，适合分治算法）"><a href="#8-3-1-主定理法（最快，适合分治算法）" class="headerlink" title="8.3.1 主定理法（最快，适合分治算法）"></a>8.3.1 主定理法（最快，适合分治算法）</h3><p>当递归式形式为 <strong>T(n) &#x3D; a·T(n&#x2F;b) + f(n)</strong> 时直接套用：</p>
+<h3 id="8-3-1-主定理法（最快，适合分治算法）"><a href="#8-3-1-主定理法（最快，适合分治算法）" class="headerlink" title="8.3.1 主定理法（最快，适合分治算法）"></a>8.3.1 主定理法（最快，适合分治算法）</h3><p>当递归式形式为 <strong>T(n) = a·T(n/b) + f(n)</strong> 时直接套用：</p>
 <ul>
-<li><strong>Case 1</strong>：若 f(n) &#x3D; O(n^(log_b(a) - ε))，则 T(n) &#x3D; Θ(n^(log_b(a)))</li>
-<li><strong>Case 2</strong>：若 f(n) &#x3D; Θ(n^(log_b(a)))，则 T(n) &#x3D; Θ(n^(log_b(a)) · log n)</li>
-<li><strong>Case 3</strong>：若 f(n) &#x3D; Ω(n^(log_b(a) + ε)) 且满足正则条件，则 T(n) &#x3D; Θ(f(n))</li>
+<li><strong>Case 1</strong>：若 f(n) = O(n^(log_b(a) - ε))，则 T(n) = Θ(n^(log_b(a)))</li>
+<li><strong>Case 2</strong>：若 f(n) = Θ(n^(log_b(a)))，则 T(n) = Θ(n^(log_b(a)) · log n)</li>
+<li><strong>Case 3</strong>：若 f(n) = Ω(n^(log_b(a) + ε)) 且满足正则条件，则 T(n) = Θ(f(n))</li>
 </ul>
 <p><strong>经典例子：</strong></p>
-<p>归并排序 T(n) &#x3D; 2T(n&#x2F;2) + O(n)<br>a&#x3D;2，b&#x3D;2，log_b(a)&#x3D;1，f(n)&#x3D;O(n) 正好是 n¹ → <strong>Case 2</strong><br>结果：<strong>O(n log n)</strong></p>
-<p>二分查找 T(n) &#x3D; T(n&#x2F;2) + O(1)<br>a&#x3D;1，b&#x3D;2，log_b(a)&#x3D;0，f(n)&#x3D;O(1)&#x3D;n⁰ → <strong>Case 2</strong><br>结果：<strong>O(log n)</strong></p>
+<p>归并排序 T(n) = 2T(n/2) + O(n)<br>a=2，b=2，log_b(a)=1，f(n)=O(n) 正好是 n¹ → <strong>Case 2</strong><br>结果：<strong>O(n log n)</strong></p>
+<p>二分查找 T(n) = T(n/2) + O(1)<br>a=1，b=2，log_b(a)=0，f(n)=O(1)=n⁰ → <strong>Case 2</strong><br>结果：<strong>O(log n)</strong></p>
 <h3 id="8-3-2-递归树法（最直观）"><a href="#8-3-2-递归树法（最直观）" class="headerlink" title="8.3.2 递归树法（最直观）"></a>8.3.2 递归树法（最直观）</h3><h4 id="什么是递归树"><a href="#什么是递归树" class="headerlink" title="什么是递归树"></a>什么是递归树</h4><p>假如公司里有一条规则：<br><strong>“第1排的人直接告诉老板一句话，后面每个人把前面人的话加上自己的工号，再告诉下一个人。”</strong></p>
 <p>这时候，如果想知道一句话从第1排传到第N排会变成什么样，你会怎么分析？</p>
 <p>你可能会画一棵“倒着长的树”：</p>
@@ -181,22 +181,21 @@
 </ul>
 <p>一句话总结：</p>
 <blockquote>
-<p>递归树 &#x3D; 把递归的调用关系画成一棵树，用来直观地看问题如何被分解，以及总工作量如何累加。</p>
+<p>递归树 = 把递归的调用关系画成一棵树，用来直观地看问题如何被分解，以及总工作量如何累加。</p>
 </blockquote>
 <h4 id="它和“递归调用栈”有什么区别？"><a href="#它和“递归调用栈”有什么区别？" class="headerlink" title="它和“递归调用栈”有什么区别？"></a>它和“递归调用栈”有什么区别？</h4><ul>
-<li><strong>递归调用栈</strong>：是程序运行时真实发生的栈帧压入&#x2F;弹出，是一维的、纵向的时间线；</li>
+<li><strong>递归调用栈</strong>：是程序运行时真实发生的栈帧压入/弹出，是一维的、纵向的时间线；</li>
 <li><strong>递归树</strong>：是<strong>空间展开、静态分析模型</strong>，把每一次递归调用都画成一个节点，以便分析<strong>总代价</strong>。</li>
 </ul>
 <p>你可以这样理解：<br>递归调用栈是“演电影”，一步步发生；递归树是“分镜头剧本”，一次性铺开看清所有分支。</p>
 <h4 id="递归树最常见的用途：分析时间复杂度"><a href="#递归树最常见的用途：分析时间复杂度" class="headerlink" title="递归树最常见的用途：分析时间复杂度"></a>递归树最常见的用途：分析时间复杂度</h4><p>递归树的经典应用场景，就是用来<strong>求解递归方程</strong>，例如：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = 2T(n/2) + O(n)</span><br></pre></td></tr></table></figure>
-
 <p>步骤通常是：</p>
 <ol>
 <li><strong>画根节点</strong>：代价 cn<em>c**n</em>（规模 n）；</li>
 <li><strong>一层层展开</strong>：<ul>
-<li>第1层：2个 n&#x2F;2<em>n</em>&#x2F;2，每份代价 cn&#x2F;2<em>c**n</em>&#x2F;2，合计 cn<em>c**n</em>；</li>
-<li>第2层：4个 n&#x2F;4<em>n</em>&#x2F;4，每份代价 cn&#x2F;4<em>c**n</em>&#x2F;4，合计 cn<em>c**n</em>；</li>
+<li>第1层：2个 n/2<em>n</em>/2，每份代价 cn/2<em>c**n</em>/2，合计 cn<em>c**n</em>；</li>
+<li>第2层：4个 n/4<em>n</em>/4，每份代价 cn/4<em>c**n</em>/4，合计 cn<em>c**n</em>；</li>
 </ul>
 </li>
 <li><strong>直到叶节点</strong>：n<em>n</em> 个规模为1的子问题，每份代价常数；</li>
@@ -204,73 +203,73 @@
 </ol>
 <p>于是得到结论：总代价 ≈ O(nlog⁡n)<em>O</em>(<em>n</em>log<em>n</em>)<br>这恰好就是归并排序的复杂度分析方法之一。</p>
 <h4 id="斐波那契数列递归"><a href="#斐波那契数列递归" class="headerlink" title="斐波那契数列递归"></a><strong>斐波那契数列递归</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>对于 <code>fib(4)</code>，递归树如下（省略规模很小的部分标注）：</strong></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">             fib(4)</span><br><span class="line">           /       \</span><br><span class="line">      fib(3)       fib(2)</span><br><span class="line">      /    \        /    \</span><br><span class="line">  fib(2) fib(1) fib(1) fib(0)</span><br><span class="line">   /   \</span><br><span class="line">fib(1) fib(0)</span><br></pre></td></tr></table></figure>
-
 <p>在这棵树里：</p>
 <ul>
-<li><strong>节点</strong> &#x3D; 一次函数调用；</li>
+<li><strong>节点</strong> = 一次函数调用；</li>
 <li><strong>节点数</strong> ≈ 重复计算量；</li>
 <li>可以看出很多子问题（如 <code>fib(2)</code>）被重复计算多次；</li>
 <li>从而可以<strong>从树形直观看到指数爆炸的原因</strong>，进而引出动态规划优化的动机。</li>
 </ul>
 <h4 id="递归树的通用绘制思路"><a href="#递归树的通用绘制思路" class="headerlink" title="递归树的通用绘制思路"></a>递归树的通用绘制思路</h4><p>如果你需要手画递归树来分析一道题，可按以下步骤：</p>
 <ol>
-<li>确定<strong>递归关系</strong>，比如 T(n)&#x3D;aT(n&#x2F;b)+f(n)<em>T</em>(<em>n</em>)&#x3D;<em>a**T</em>(<em>n</em>&#x2F;<em>b</em>)+<em>f</em>(<em>n</em>)；</li>
+<li>确定<strong>递归关系</strong>，比如 T(n)=aT(n/b)+f(n)<em>T</em>(<em>n</em>)=<em>a**T</em>(<em>n</em>/<em>b</em>)+<em>f</em>(<em>n</em>)；</li>
 <li>根 - 规模 n<em>n</em>，非递归代价 f(n)<em>f</em>(<em>n</em>)；</li>
 <li>逐层展开：<ul>
 <li>第 i 层有 ai<em>a**i</em> 个节点；</li>
-<li>每个节点规模 n&#x2F;bi<em>n</em>&#x2F;<em>b**i</em>；</li>
-<li>每个节点代价 f(n&#x2F;bi)<em>f</em>(<em>n</em>&#x2F;<em>b**i</em>)；</li>
+<li>每个节点规模 n/bi<em>n</em>/<em>b**i</em>；</li>
+<li>每个节点代价 f(n/bi)<em>f</em>(<em>n</em>/<em>b**i</em>)；</li>
 </ul>
 </li>
 <li>当子问题规模到达 base case 时停止；</li>
 <li>分层相加 → 总代价。</li>
 </ol>
 <h3 id="8-3-3-代入法（先猜后证）"><a href="#8-3-3-代入法（先猜后证）" class="headerlink" title="8.3.3 代入法（先猜后证）"></a>8.3.3 代入法（先猜后证）</h3><p>猜一个复杂度，然后用数学归纳法证明。</p>
-<p>比如 T(n) &#x3D; 2T(n&#x2F;2) + n，猜测是 O(n log n)：<br>假设 T(k) ≤ c·k log k 对 k &lt; n 成立，<br>T(n) ≤ 2c·(n&#x2F;2)log(n&#x2F;2) + n &#x3D; cn·log n − cn + n ≤ cn·log n（当 c ≥ 1 时），归纳成立。</p>
-<h2 id="8-3-4-常见递归模式速查"><a href="#8-3-4-常见递归模式速查" class="headerlink" title="8.3.4 常见递归模式速查"></a>8.3.4 常见递归模式速查</h2><table>
+<p>比如 T(n) = 2T(n/2) + n，猜测是 O(n log n)：<br>假设 T(k) ≤ c·k log k 对 k &lt; n 成立，<br>T(n) ≤ 2c·(n/2)log(n/2) + n = cn·log n − cn + n ≤ cn·log n（当 c ≥ 1 时），归纳成立。</p>
+<h2 id="8-3-4-常见递归模式速查"><a href="#8-3-4-常见递归模式速查" class="headerlink" title="8.3.4 常见递归模式速查"></a>8.3.4 常见递归模式速查</h2><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">递归式</th>
-<th align="left">对应算法</th>
-<th align="left">时间复杂度</th>
+<th style="text-align:left">递归式</th>
+<th style="text-align:left">对应算法</th>
+<th style="text-align:left">时间复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">T(n) &#x3D; T(n-1) + O(1)</td>
-<td align="left">线性递归（链表遍历）</td>
-<td align="left">O(n)</td>
+<tbody>
+<tr>
+<td style="text-align:left">T(n) = T(n-1) + O(1)</td>
+<td style="text-align:left">线性递归（链表遍历）</td>
+<td style="text-align:left">O(n)</td>
 </tr>
 <tr>
-<td align="left">T(n) &#x3D; T(n-1) + O(n)</td>
-<td align="left">选择排序</td>
-<td align="left">O(n²)</td>
+<td style="text-align:left">T(n) = T(n-1) + O(n)</td>
+<td style="text-align:left">选择排序</td>
+<td style="text-align:left">O(n²)</td>
 </tr>
 <tr>
-<td align="left">T(n) &#x3D; 2T(n-1) + O(1)</td>
-<td align="left">汉诺塔</td>
-<td align="left">O(2ⁿ)</td>
+<td style="text-align:left">T(n) = 2T(n-1) + O(1)</td>
+<td style="text-align:left">汉诺塔</td>
+<td style="text-align:left">O(2ⁿ)</td>
 </tr>
 <tr>
-<td align="left">T(n) &#x3D; T(n&#x2F;2) + O(1)</td>
-<td align="left">二分查找</td>
-<td align="left">O(log n)</td>
+<td style="text-align:left">T(n) = T(n/2) + O(1)</td>
+<td style="text-align:left">二分查找</td>
+<td style="text-align:left">O(log n)</td>
 </tr>
 <tr>
-<td align="left">T(n) &#x3D; 2T(n&#x2F;2) + O(n)</td>
-<td align="left">归并排序</td>
-<td align="left">O(n log n)</td>
+<td style="text-align:left">T(n) = 2T(n/2) + O(n)</td>
+<td style="text-align:left">归并排序</td>
+<td style="text-align:left">O(n log n)</td>
 </tr>
 <tr>
-<td align="left">T(n) &#x3D; T(n&#x2F;2) + O(n)</td>
-<td align="left">快速选择（平均）</td>
-<td align="left">O(n)</td>
+<td style="text-align:left">T(n) = T(n/2) + O(n)</td>
+<td style="text-align:left">快速选择（平均）</td>
+<td style="text-align:left">O(n)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="8-4-链表：递归"><a href="#8-4-链表：递归" class="headerlink" title="8.4 链表：递归"></a>8.4 链表：递归</h2><p>在数据结构中，链表：递归是指<strong>利用递归的思想来操作或定义链表</strong>。它的核心是把一个链表问题，分解成一个规模更小的同类子问题。</p>
 <p>简单来说，就是把一个长链表想象成由 <strong>“头节点”</strong> 和 <strong>“剩余部分”</strong> 组成，而“剩余部分”本身又是一个链表。这正是递归的用武之地。</p>
 <h4 id="递归定义链表"><a href="#递归定义链表" class="headerlink" title="递归定义链表"></a>递归定义链表</h4><p>可以从定义上把链表看成一个递归结构：<br><strong>一个链表，要么是空的（空链表），要么是一个节点，该节点包含数据，并指向另一个链表（子链表）。</strong></p>
@@ -293,10 +292,9 @@
 </ul>
 <p><strong>代码实现 (Java)：</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">reverseList</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 终止条件：空链表或只有一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2. 递归反转剩余部分，newHead 最终是原链表的尾节点</span></span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">newHead</span> <span class="operator">=</span> reverseList(head.next);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 处理当前节点，实现反转指向</span></span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 返回新的头节点</span></span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><strong>过程模拟：</strong><br>当你调用 <code>reverseList(1)</code> 时，它会一路递归到链表末尾节点 <code>4</code>，然后逐层返回。在每一层返回时，执行反转指向的操作，最终 <code>4</code> 成为新头节点，整个链表方向被翻转。</p>
 <h4 id="常见递归应用场景"><a href="#常见递归应用场景" class="headerlink" title="常见递归应用场景"></a>常见递归应用场景</h4><ul>
-<li><strong>正向&#x2F;反向打印链表</strong></li>
+<li><strong>正向/反向打印链表</strong></li>
 <li><strong>合并两个有序链表</strong></li>
 <li><strong>回文链表判断</strong>（借助递归的“后序遍历”特性）</li>
 <li><strong>删除链表中指定值的节点</strong></li>
@@ -321,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module8-%E9%80%92%E5%BD%92%E9%AB%98%E7%BA%A7/" data-id="cuidndf6B3V6ZrVDo-2c_TpWU" data-title="Data-Structure-Module8" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module8-%E9%80%92%E5%BD%92%E9%AB%98%E7%BA%A7/" data-id="cuidynIYpwxH8NnIGFwtYWW0Z" data-title="Data-Structure-Module8" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

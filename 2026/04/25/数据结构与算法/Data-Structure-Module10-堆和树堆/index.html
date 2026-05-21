@@ -136,7 +136,6 @@
 <li><strong>图中数值</strong>：每个节点的数字都<strong>小于等于</strong>它下方的数字。</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      [1]          &lt;- 全局最小值</span><br><span class="line">     /   \</span><br><span class="line">   [3]   [6]</span><br><span class="line">  /  \   /</span><br><span class="line">[5] [9][8]</span><br></pre></td></tr></table></figure>
-
 <p>从上往下看，数字 1-3-6-5-9-8，每条路径上的数字都是递增的。</p>
 <h4 id="最大堆"><a href="#最大堆" class="headerlink" title="最大堆"></a>最大堆</h4><ul>
 <li><strong>规矩</strong>：父亲 ≥ 所有孩子。</li>
@@ -144,63 +143,70 @@
 <li><strong>图中数值</strong>：每个节点的数字都<strong>大于等于</strong>它下方的数字。</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      [9]          &lt;- 全局最大值</span><br><span class="line">     /   \</span><br><span class="line">   [5]   [8]</span><br><span class="line">  /  \   /</span><br><span class="line">[3] [1][6]</span><br></pre></td></tr></table></figure>
-
 <p>从上往下看，数字 9-5-8-3-1-6，每条路径上的数字都是递减的。</p>
 <h4 id="上浮与下沉"><a href="#上浮与下沉" class="headerlink" title="上浮与下沉"></a>上浮与下沉</h4><p>为了维持各自的规矩，它们在调整时用的比较逻辑是相反的：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">最小堆的目的</th>
-<th align="left">最大堆的目的</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">最小堆的目的</th>
+<th style="text-align:left">最大堆的目的</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>上浮</strong></td>
-<td align="left">如果当前节点 &lt; 父节点，就交换</td>
-<td align="left">如果当前节点 &gt; 父节点，就交换</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>上浮</strong></td>
+<td style="text-align:left">如果当前节点 &lt; 父节点，就交换</td>
+<td style="text-align:left">如果当前节点 &gt; 父节点，就交换</td>
 </tr>
 <tr>
-<td align="left"><strong>下沉</strong></td>
-<td align="left">如果当前节点 &gt; <strong>较小</strong>的子节点，就交换</td>
-<td align="left">如果当前节点 &lt; <strong>较大</strong>的子节点，就交换</td>
+<td style="text-align:left"><strong>下沉</strong></td>
+<td style="text-align:left">如果当前节点 &gt; <strong>较小</strong>的子节点，就交换</td>
+<td style="text-align:left">如果当前节点 &lt; <strong>较大</strong>的子节点，就交换</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="没有全局排序"><a href="#没有全局排序" class="headerlink" title="没有全局排序"></a>没有全局排序</h4><p>堆只保证<strong>父子之间</strong>的顺序，不保证<strong>同级之间</strong>或<strong>全局顺序</strong>。</p>
 <ul>
 <li><strong>最小堆的反例</strong>：<code>[1, 3, 6]</code> 中，3 和 6 在同一层，但 6 比 3 大，这完全合法。最小堆只保证顶上的 1 最小。</li>
 <li><strong>最大堆的反例</strong>：<code>[9, 5, 8]</code> 中，5 和 8 在同一层，8 比 5 大，完全合法。</li>
 </ul>
 <p>所以，<strong>堆是一个“半有序”结构</strong>，它只为快速拿最值而生。</p>
-<h4 id="用途上的直接对应关系"><a href="#用途上的直接对应关系" class="headerlink" title="用途上的直接对应关系"></a>用途上的直接对应关系</h4><table>
+<h4 id="用途上的直接对应关系"><a href="#用途上的直接对应关系" class="headerlink" title="用途上的直接对应关系"></a>用途上的直接对应关系</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">场景</th>
-<th align="left">用什么堆</th>
-<th align="left">为什么</th>
+<th style="text-align:left">场景</th>
+<th style="text-align:left">用什么堆</th>
+<th style="text-align:left">为什么</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>找出最小的K个数</strong></td>
-<td align="left"><strong>最大堆</strong></td>
-<td align="left">堆顶是K个数里最大的，新来的数只要比堆顶小，就替换掉堆顶。这样能顺利淘汰大数，留住小数。</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>找出最小的K个数</strong></td>
+<td style="text-align:left"><strong>最大堆</strong></td>
+<td style="text-align:left">堆顶是K个数里最大的，新来的数只要比堆顶小，就替换掉堆顶。这样能顺利淘汰大数，留住小数。</td>
 </tr>
 <tr>
-<td align="left"><strong>找出最大的K个数</strong></td>
-<td align="left"><strong>最小堆</strong></td>
-<td align="left">堆顶是K个数里最小的，新来的数只要比堆顶大，就替换掉堆顶。这样能顺利淘汰小数，留住大数。</td>
+<td style="text-align:left"><strong>找出最大的K个数</strong></td>
+<td style="text-align:left"><strong>最小堆</strong></td>
+<td style="text-align:left">堆顶是K个数里最小的，新来的数只要比堆顶大，就替换掉堆顶。这样能顺利淘汰小数，留住大数。</td>
 </tr>
 <tr>
-<td align="left"><strong>任务优先级 (数值越小越优先)</strong></td>
-<td align="left"><strong>最小堆</strong></td>
-<td align="left">快速取出优先级最高（数值最小）的任务。</td>
+<td style="text-align:left"><strong>任务优先级 (数值越小越优先)</strong></td>
+<td style="text-align:left"><strong>最小堆</strong></td>
+<td style="text-align:left">快速取出优先级最高（数值最小）的任务。</td>
 </tr>
 <tr>
-<td align="left"><strong>堆排序 (升序)</strong></td>
-<td align="left"><strong>最大堆</strong></td>
-<td align="left">反复取出堆顶最大值，放到数组末尾，就能形成升序序列。</td>
+<td style="text-align:left"><strong>堆排序 (升序)</strong></td>
+<td style="text-align:left"><strong>最大堆</strong></td>
+<td style="text-align:left">反复取出堆顶最大值，放到数组末尾，就能形成升序序列。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="10-1-4-实现与应用"><a href="#10-1-4-实现与应用" class="headerlink" title="10.1.4 实现与应用"></a>10.1.4 实现与应用</h3><h4 id="基本实现思路"><a href="#基本实现思路" class="headerlink" title="基本实现思路"></a>基本实现思路</h4><p>在 Python 中，<code>heapq</code> 模块就是一个标准的最小堆实现。当然，你也可以用数组手写一个，其核心就是控制元素的上浮和下沉。</p>
 <h4 id="典型应用场景"><a href="#典型应用场景" class="headerlink" title="典型应用场景"></a>典型应用场景</h4><p>堆擅长<strong>快速获取最值</strong>，典型应用有：</p>
 <ul>
@@ -220,7 +226,6 @@
 </ul>
 <p><strong>举个例子</strong>，下面这棵大顶堆：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    100</span><br><span class="line">   /   \</span><br><span class="line">  50    60</span><br><span class="line"> / \   /</span><br><span class="line">10 20 30</span><br></pre></td></tr></table></figure>
-
 <p>用数组存储就是：<code>[100, 50, 60, 10, 20, 30]</code></p>
 <ul>
 <li><code>50</code> (索引1) 的父节点是 <code>100</code> (索引 <code>(1-1)/2 = 0</code>)</li>
@@ -254,7 +259,6 @@
 <h3 id="10-2-3-最大堆类"><a href="#10-2-3-最大堆类" class="headerlink" title="10.2.3 最大堆类"></a>10.2.3 最大堆类</h3><p>这是把堆封装成了一个对象，让你可以像使用一个独立的数据结构一样操作它，内部自动维护堆的性质。它把数据（数组）和操作（插入、删除）绑定在一起。</p>
 <p>一个典型的<strong>最大堆类</strong>的骨架如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MaxHeap</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="variable language_">self</span>.heap = []  <span class="comment"># 这就是“堆存储”</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 以下是它的核心操作，内部会用到“父子索引”公式</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">push</span>(<span class="params">self, val</span>):</span><br><span class="line">        <span class="comment"># ... 调用 _sift_up</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">pop</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># ... 调用 _sift_down</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">peek</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.heap[<span class="number">0</span>] <span class="keyword">if</span> <span class="variable language_">self</span>.heap <span class="keyword">else</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_sift_up</span>(<span class="params">self, i</span>):</span><br><span class="line">        <span class="comment"># ... 利用 (i-1)//2 公式找父节点并比较</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_sift_down</span>(<span class="params">self, i</span>):</span><br><span class="line">        <span class="comment"># ... 利用 2*i+1 和 2*i+2 找子节点并比较</span></span><br></pre></td></tr></table></figure>
-
 <p>通过这个类，外部用户只需 <code>heap.push(5)</code> 和 <code>heap.pop()</code>，无需关心内部如何用数组和索引维护堆序。</p>
 <h3 id="10-2-4-渗透算法"><a href="#10-2-4-渗透算法" class="headerlink" title="10.2.4 渗透算法"></a>10.2.4 渗透算法</h3><p>这其实就是“上浮”和“下沉”操作的学术化统称。它描述的是元素在堆中“渗透”到正确位置，以维持堆的性质的过程。因此，它包括两个方向：</p>
 <ul>
@@ -294,23 +298,13 @@
 <h3 id="10-3-2-过程图解"><a href="#10-3-2-过程图解" class="headerlink" title="10.3.2 过程图解"></a>10.3.2 过程图解</h3><p>假设我们对数组 <code>[4, 10, 3, 5, 1]</code> 进行堆排序：</p>
 <p><strong>步骤一：建堆</strong><br>将无序数组构建成一个最大堆，此时堆顶是最大值 <code>10</code>。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">    10</span><br><span class="line">   /  \</span><br><span class="line">  5    3</span><br><span class="line"> / \</span><br><span class="line">4   1</span><br></pre></td></tr></table></figure>
-
 <p>此时数组结构变为：<code>[10, 5, 3, 4, 1]</code></p>
 <p><strong>步骤二：第一次交换与调整</strong><br>交换堆顶 <code>10</code> 和堆末 <code>1</code>，<code>10</code> 被排到最后，脱离堆。再调整以 <code>1</code> 为顶的新堆。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">交换后: [1, 5, 3, 4, | 10] （&quot;|&quot; 后是已排序部分）</span><br><span class="line">调整后: [5, 4, 3, 1, | 10]</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>步骤三：重复操作</strong><br>继续交换堆顶 <code>5</code> 和堆末 <code>1</code>，然后调整。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">交换后: [1, 4, 3, | 5, 10]</span><br><span class="line">调整后: [4, 1, 3, | 5, 10]</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>步骤四：最终流程</strong></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">交换并调整后: [3, 1, | 4, 5, 10]</span><br><span class="line">交换并调整后: [1, | 3, 4, 5, 10]</span><br><span class="line">最终数组: [1, 3, 4, 5, 10]</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="算法特点"><a href="#算法特点" class="headerlink" title="算法特点"></a>算法特点</h4><ul>
 <li><strong>原地排序</strong>：除了几个临时变量，不需要额外开辟大量空间。</li>
 <li><strong>时间复杂度</strong>：无论最好、最坏还是平均情况，都是 <strong>O(n log n)</strong>。建堆是O(n)，每次调整是O(log n)，需要调整n-1次。</li>
@@ -326,10 +320,8 @@
 </ul>
 <p><strong>一个例子</strong><br>在最大堆 <code>[1, 5, 3]</code> 中，根节点 <code>1</code> 小于左孩子 <code>5</code>。</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  1</span><br><span class="line"> / \</span><br><span class="line">5   3</span><br></pre></td></tr></table></figure>
-
 <p>将 <code>1</code> 和 <code>5</code> 交换：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  5</span><br><span class="line"> / \</span><br><span class="line">1   3</span><br></pre></td></tr></table></figure>
-
 <p>节点 <code>1</code> 下沉到了正确位置，堆恢复合法。</p>
 <h3 id="2-自底向上的堆化（Sift-Up）"><a href="#2-自底向上的堆化（Sift-Up）" class="headerlink" title="2. 自底向上的堆化（Sift Up）"></a>2. 自底向上的堆化（Sift Up）</h3><ul>
 <li><strong>场景</strong>：相反地，当堆尾插入新元素，或某个子节点的值<strong>大于</strong>它的父节点（在最大堆中）时使用。</li>
@@ -352,74 +344,82 @@
 <p>它的关键特征在于：<br>元素出队的顺序<strong>只取决于优先级</strong>，与入队顺序无关。如果优先级相同，具体顺序则由实现决定，ADT本身不作严格规定。</p>
 <h4 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h4><p>实现方式决定了操作的效率，各有优劣。</p>
 <ul>
-<li><strong>无序数组&#x2F;链表</strong><br>插入时直接放到末尾，<strong>O(1)</strong>；取出时需遍历查找最大&#x2F;最小优先级，<strong>O(n)</strong>。</li>
-<li><strong>有序数组&#x2F;链表</strong><br>插入时找到合适位置以保持有序，<strong>O(n)</strong>；取出时直接取端点，<strong>O(1)</strong>。</li>
+<li><strong>无序数组/链表</strong><br>插入时直接放到末尾，<strong>O(1)</strong>；取出时需遍历查找最大/最小优先级，<strong>O(n)</strong>。</li>
+<li><strong>有序数组/链表</strong><br>插入时找到合适位置以保持有序，<strong>O(n)</strong>；取出时直接取端点，<strong>O(1)</strong>。</li>
 <li><strong>二叉堆</strong><br>这是最常见、最经典的实现方式。插入和取出操作都能在 <strong>O(log n)</strong> 时间内完成，性能非常均衡。它是堆排序和高效任务调度的基础。</li>
 <li><strong>平衡二叉搜索树（如AVL树）</strong><br>插入和取出也都是 <strong>O(log n)</strong>。功能更强大，能支持查找任意优先级等操作，但实现复杂，单纯用于优先级队列有些“大材小用”。</li>
 </ul>
-<h4 id="与普通队列的区别"><a href="#与普通队列的区别" class="headerlink" title="与普通队列的区别"></a>与普通队列的区别</h4><table>
-<thead>
-<tr>
-<th align="left">特性</th>
-<th align="left">普通队列</th>
-<th align="left">优先级队列</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>核心规则</strong></td>
-<td align="left">先进先出 (FIFO)</td>
-<td align="left">按优先级出队</td>
-</tr>
-<tr>
-<td align="left"><strong>出队元素</strong></td>
-<td align="left">最早入队的元素</td>
-<td align="left">优先级最高的元素</td>
-</tr>
-<tr>
-<td align="left"><strong>类比</strong></td>
-<td align="left">排队结账</td>
-<td align="left">急诊室分诊：重症优先</td>
-</tr>
-<tr>
-<td align="left"><strong>典型应用</strong></td>
-<td align="left">广度优先搜索 (BFS)、缓冲区</td>
-<td align="left">任务调度、Dijkstra算法、哈夫曼编码</td>
-</tr>
-</tbody></table>
-<h4 id="常见实现方式"><a href="#常见实现方式" class="headerlink" title="常见实现方式"></a>常见实现方式</h4><p>实现方式决定了操作的时间复杂度，这是选择时的关键考量：</p>
+<h4 id="与普通队列的区别"><a href="#与普通队列的区别" class="headerlink" title="与普通队列的区别"></a>与普通队列的区别</h4><div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">实现结构</th>
-<th align="left">插入</th>
-<th align="left">删除最值</th>
-<th align="left">特点</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">普通队列</th>
+<th style="text-align:left">优先级队列</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">无序数组&#x2F;链表</td>
-<td align="left">O(1)</td>
-<td align="left">O(n)</td>
-<td align="left">插入快，但需要扫描找最值</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>核心规则</strong></td>
+<td style="text-align:left">先进先出 (FIFO)</td>
+<td style="text-align:left">按优先级出队</td>
 </tr>
 <tr>
-<td align="left">有序数组&#x2F;链表</td>
-<td align="left">O(n)</td>
-<td align="left">O(1)</td>
-<td align="left">删除快，但插入要找位置</td>
+<td style="text-align:left"><strong>出队元素</strong></td>
+<td style="text-align:left">最早入队的元素</td>
+<td style="text-align:left">优先级最高的元素</td>
 </tr>
 <tr>
-<td align="left"><strong>二叉堆</strong></td>
-<td align="left">O(log n)</td>
-<td align="left">O(log n)</td>
-<td align="left"><strong>最常用</strong>，插入和删除都均衡高效</td>
+<td style="text-align:left"><strong>类比</strong></td>
+<td style="text-align:left">排队结账</td>
+<td style="text-align:left">急诊室分诊：重症优先</td>
 </tr>
-</tbody></table>
+<tr>
+<td style="text-align:left"><strong>典型应用</strong></td>
+<td style="text-align:left">广度优先搜索 (BFS)、缓冲区</td>
+<td style="text-align:left">任务调度、Dijkstra算法、哈夫曼编码</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="常见实现方式"><a href="#常见实现方式" class="headerlink" title="常见实现方式"></a>常见实现方式</h4><p>实现方式决定了操作的时间复杂度，这是选择时的关键考量：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">实现结构</th>
+<th style="text-align:left">插入</th>
+<th style="text-align:left">删除最值</th>
+<th style="text-align:left">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">无序数组/链表</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left">O(n)</td>
+<td style="text-align:left">插入快，但需要扫描找最值</td>
+</tr>
+<tr>
+<td style="text-align:left">有序数组/链表</td>
+<td style="text-align:left">O(n)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left">删除快，但插入要找位置</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>二叉堆</strong></td>
+<td style="text-align:left">O(log n)</td>
+<td style="text-align:left">O(log n)</td>
+<td style="text-align:left"><strong>最常用</strong>，插入和删除都均衡高效</td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>二叉堆凭借对数级别的稳定性能，成为实际应用中最主流的实现方式。</p>
 <h3 id="核心应用场景"><a href="#核心应用场景" class="headerlink" title="核心应用场景"></a>核心应用场景</h3><p>优先级队列在算法和系统中无处不在：</p>
 <ul>
 <li><strong>任务调度</strong>：操作系统根据进程优先级分配CPU时间</li>
-<li><strong>图论算法</strong>：Dijkstra最短路径、Prim最小生成树，用来高效选择当前最短&#x2F;最小的边</li>
+<li><strong>图论算法</strong>：Dijkstra最短路径、Prim最小生成树，用来高效选择当前最短/最小的边</li>
 <li><strong>数据压缩</strong>：哈夫曼编码中反复合并频率最低的两个节点</li>
 <li><strong>事件模拟</strong>：按时间顺序处理未来事件，时间越早优先级越高</li>
 </ul>
@@ -461,7 +461,7 @@
 <p>如果每次插入前，所有Key都已知，你随机打乱插入顺序，建出的树的期望高度就是 O(log n)。Treap 的精妙之处在于，<strong>给每个Key赋予随机优先级，恰好等价于生成了一种随机的插入顺序</strong>，因为优先级的大小关系决定了节点加入树的先后关系。所以，即使按顺序插入1到n，只要优先级随机，树在期望下依然是平衡的。</p>
 <h4 id="与其他数据结构的比较"><a href="#与其他数据结构的比较" class="headerlink" title="与其他数据结构的比较"></a>与其他数据结构的比较</h4><ul>
 <li><strong>对比普通BST</strong>：Treap解决了BST在数据有序时退化成链表的问题。</li>
-<li><strong>对比AVL&#x2F;红黑树</strong>：AVL和红黑树用复杂规则保证严格的平衡，实现繁琐。Treap用随机化和简洁的旋转达到了概率平衡，实现代码量更少，更不易出错。</li>
+<li><strong>对比AVL/红黑树</strong>：AVL和红黑树用复杂规则保证严格的平衡，实现繁琐。Treap用随机化和简洁的旋转达到了概率平衡，实现代码量更少，更不易出错。</li>
 <li><strong>对比跳表</strong>：两者都是随机化数据结构的代表，都提供概率平衡和期望对数时间。</li>
 </ul>
 <h3 id="10-5-3-Treap-的常见变种"><a href="#10-5-3-Treap-的常见变种" class="headerlink" title="10.5.3 Treap 的常见变种"></a>10.5.3 Treap 的常见变种</h3><ul>
@@ -473,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module10-%E5%A0%86%E5%92%8C%E6%A0%91%E5%A0%86/" data-id="cuidEqZ6NusLCqoyYLV886qYd" data-title="Data-Structure-Module10" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/04/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module10-%E5%A0%86%E5%92%8C%E6%A0%91%E5%A0%86/" data-id="cuid7GyECfI4Q4na_UX7o0dBu" data-title="Data-Structure-Module10" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

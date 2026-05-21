@@ -108,50 +108,53 @@
 <li><strong>入队</strong>的元素总是被添加到<strong>队尾</strong>。</li>
 <li><strong>出队</strong>的元素总是从<strong>队头</strong>移除。</li>
 </ul>
-<h4 id="队列-ADT-的基本操作"><a href="#队列-ADT-的基本操作" class="headerlink" title="队列 ADT 的基本操作"></a>队列 ADT 的基本操作</h4><table>
+<h4 id="队列-ADT-的基本操作"><a href="#队列-ADT-的基本操作" class="headerlink" title="队列 ADT 的基本操作"></a>队列 ADT 的基本操作</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left"><strong>操作</strong></th>
-<th align="left"><strong>描述</strong></th>
-<th align="left"><strong>通常的别名</strong></th>
+<th style="text-align:left"><strong>操作</strong></th>
+<th style="text-align:left"><strong>描述</strong></th>
+<th style="text-align:left"><strong>通常的别名</strong></th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong><code>enqueue(e)</code></strong></td>
-<td align="left"><strong>将元素 <code>e</code> 添加到队列的队尾。</strong></td>
-<td align="left"><strong><code>add</code>, <code>offer</code>, <code>push</code></strong></td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong><code>enqueue(e)</code></strong></td>
+<td style="text-align:left"><strong>将元素 <code>e</code> 添加到队列的队尾。</strong></td>
+<td style="text-align:left"><strong><code>add</code>, <code>offer</code>, <code>push</code></strong></td>
 </tr>
 <tr>
-<td align="left"><strong><code>dequeue()</code></strong></td>
-<td align="left"><strong>移除并返回队头的元素。如果队列为空，则发生错误。</strong></td>
-<td align="left"><strong><code>remove</code>, <code>poll</code>, <code>pop</code></strong></td>
+<td style="text-align:left"><strong><code>dequeue()</code></strong></td>
+<td style="text-align:left"><strong>移除并返回队头的元素。如果队列为空，则发生错误。</strong></td>
+<td style="text-align:left"><strong><code>remove</code>, <code>poll</code>, <code>pop</code></strong></td>
 </tr>
 <tr>
-<td align="left"><strong><code>front()</code></strong></td>
-<td align="left"><strong>返回队头元素，但不移除它。</strong></td>
-<td align="left"><strong><code>peek</code>, <code>element</code></strong></td>
+<td style="text-align:left"><strong><code>front()</code></strong></td>
+<td style="text-align:left"><strong>返回队头元素，但不移除它。</strong></td>
+<td style="text-align:left"><strong><code>peek</code>, <code>element</code></strong></td>
 </tr>
 <tr>
-<td align="left"><strong><code>isEmpty()</code></strong></td>
-<td align="left"><strong>检查队列是否为空。</strong></td>
-<td align="left"></td>
+<td style="text-align:left"><strong><code>isEmpty()</code></strong></td>
+<td style="text-align:left"><strong>检查队列是否为空。</strong></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><strong><code>size()</code></strong></td>
-<td align="left"><strong>返回队列中元素的个数。</strong></td>
-<td align="left"><strong><code>length</code></strong></td>
+<td style="text-align:left"><strong><code>size()</code></strong></td>
+<td style="text-align:left"><strong>返回队列中元素的个数。</strong></td>
+<td style="text-align:left"><strong><code>length</code></strong></td>
 </tr>
 <tr>
-<td align="left"><strong>peek()</strong></td>
-<td align="left"><strong>返回队列的头部元素，但不移除。</strong></td>
-<td align="left"></td>
+<td style="text-align:left"><strong>peek()</strong></td>
+<td style="text-align:left"><strong>返回队列的头部元素，但不移除。</strong></td>
+<td style="text-align:left"></td>
 </tr>
 <tr>
-<td align="left"><strong>isEmpty()</strong></td>
-<td align="left"><strong>检查队列是否为空。</strong></td>
-<td align="left"></td>
+<td style="text-align:left"><strong>isEmpty()</strong></td>
+<td style="text-align:left"><strong>检查队列是否为空。</strong></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="队列的常见变体"><a href="#队列的常见变体" class="headerlink" title="队列的常见变体"></a>队列的常见变体</h4><ul>
 <li><strong>双端队列 (Deque)</strong>：两端都可以进行插入和删除操作。</li>
 <li><strong>优先队列 (Priority Queue)</strong>：元素带有优先级，出队时优先级最高的元素先出队，而不是严格按FIFO顺序。</li>
@@ -159,43 +162,46 @@
 <li><strong>阻塞队列 (Blocking Queue)</strong>：在多线程环境下，当队列为空时，获取元素的线程会被阻塞等待；当队列满时，添加元素的线程会被阻塞。</li>
 </ul>
 <h2 id="6-2-链表实现队列"><a href="#6-2-链表实现队列" class="headerlink" title="6.2 链表实现队列"></a>6.2 链表实现队列</h2><p>在数据结构中，<strong>使用链表的队列</strong>是指用<strong>链表</strong>作为底层存储结构来实现的<strong>队列</strong>。队列是一种先进先出（FIFO, First In First Out）的线性表，只允许在一端（队尾）插入元素，在另一端（队头）删除元素。</p>
-<p><strong>使用链表的队列</strong>是一种用链表节点串联、通过头尾指针实现高效 FIFO 操作的动态数据结构，适合无法预估最大容量或频繁入队&#x2F;出队的场景，但会牺牲一定的内存和缓存性能。</p>
+<p><strong>使用链表的队列</strong>是一种用链表节点串联、通过头尾指针实现高效 FIFO 操作的动态数据结构，适合无法预估最大容量或频繁入队/出队的场景，但会牺牲一定的内存和缓存性能。</p>
 <h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><ul>
 <li>使用<strong>单链表</strong>存储元素，每个节点包含数据域和指向下一个节点的指针。</li>
 <li>维护两个指针：<code>front</code>（头指针）指向队头节点，<code>rear</code>（尾指针）指向队尾节点。</li>
 <li>入队（enqueue）在链表尾部添加新节点，出队（dequeue）从链表头部删除节点。</li>
 </ul>
-<h4 id="基本操作及时间复杂度"><a href="#基本操作及时间复杂度" class="headerlink" title="基本操作及时间复杂度"></a>基本操作及时间复杂度</h4><table>
+<h4 id="基本操作及时间复杂度"><a href="#基本操作及时间复杂度" class="headerlink" title="基本操作及时间复杂度"></a>基本操作及时间复杂度</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">描述</th>
-<th align="left">时间复杂度</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">时间复杂度</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>enqueue(x)</code></td>
-<td align="left">将元素 x 插入队尾</td>
-<td align="left">O(1)</td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>enqueue(x)</code></td>
+<td style="text-align:left">将元素 x 插入队尾</td>
+<td style="text-align:left">O(1)</td>
 </tr>
 <tr>
-<td align="left"><code>dequeue()</code></td>
-<td align="left">删除并返回队头元素</td>
-<td align="left">O(1)</td>
+<td style="text-align:left"><code>dequeue()</code></td>
+<td style="text-align:left">删除并返回队头元素</td>
+<td style="text-align:left">O(1)</td>
 </tr>
 <tr>
-<td align="left"><code>peek()</code> &#x2F; <code>front()</code></td>
-<td align="left">返回队头元素但不删除</td>
-<td align="left">O(1)</td>
+<td style="text-align:left"><code>peek()</code> / <code>front()</code></td>
+<td style="text-align:left">返回队头元素但不删除</td>
+<td style="text-align:left">O(1)</td>
 </tr>
 <tr>
-<td align="left"><code>isEmpty()</code></td>
-<td align="left">判断队列是否为空</td>
-<td align="left">O(1)</td>
+<td style="text-align:left"><code>isEmpty()</code></td>
+<td style="text-align:left">判断队列是否为空</td>
+<td style="text-align:left">O(1)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="结构示意图"><a href="#结构示意图" class="headerlink" title="结构示意图"></a>结构示意图</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">队头 (front)                    队尾 (rear)</span><br><span class="line">  ↓                               ↓</span><br><span class="line">[ data1 | next ] → [ data2 | next ] → [ data3 | next ] → NULL</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>入队时：<code>rear.next = newNode</code>，然后 <code>rear = newNode</code></li>
 <li>出队时：<code>front = front.next</code>（若原队头节点需要释放内存）</li>
@@ -205,41 +211,45 @@
 <li><strong>避免数据搬移</strong>：数组实现队列时，出队可能导致“假溢出”或需要移动大量元素（循环队列可缓解，但仍有容量限制）。链表实现只需修改指针，无需移动数据。</li>
 <li><strong>内存利用率高</strong>：按需分配节点，不会像数组那样可能预留过多空间。</li>
 </ol>
-<h4 id="与数组实现队列的对比"><a href="#与数组实现队列的对比" class="headerlink" title="与数组实现队列的对比"></a>与数组实现队列的对比</h4><table>
+<h4 id="与数组实现队列的对比"><a href="#与数组实现队列的对比" class="headerlink" title="与数组实现队列的对比"></a>与数组实现队列的对比</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">链表队列</th>
-<th align="left">数组队列（含循环队列）</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">链表队列</th>
+<th style="text-align:left">数组队列（含循环队列）</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">容量</td>
-<td align="left">无上限（受内存限制）</td>
-<td align="left">固定或需动态扩容</td>
+<tbody>
+<tr>
+<td style="text-align:left">容量</td>
+<td style="text-align:left">无上限（受内存限制）</td>
+<td style="text-align:left">固定或需动态扩容</td>
 </tr>
 <tr>
-<td align="left">入队&#x2F;出队时间</td>
-<td align="left">严格 O(1)</td>
-<td align="left">O(1)（均摊，扩容时可能 O(n)）</td>
+<td style="text-align:left">入队/出队时间</td>
+<td style="text-align:left">严格 O(1)</td>
+<td style="text-align:left">O(1)（均摊，扩容时可能 O(n)）</td>
 </tr>
 <tr>
-<td align="left">内存开销</td>
-<td align="left">每个节点额外存储指针（4或8字节）</td>
-<td align="left">仅存储数据，无指针开销</td>
+<td style="text-align:left">内存开销</td>
+<td style="text-align:left">每个节点额外存储指针（4或8字节）</td>
+<td style="text-align:left">仅存储数据，无指针开销</td>
 </tr>
 <tr>
-<td align="left">缓存友好性</td>
-<td align="left">较差（节点分散在堆中）</td>
-<td align="left">好（连续内存）</td>
+<td style="text-align:left">缓存友好性</td>
+<td style="text-align:left">较差（节点分散在堆中）</td>
+<td style="text-align:left">好（连续内存）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="6-3-数组实现队列"><a href="#6-3-数组实现队列" class="headerlink" title="6.3 数组实现队列"></a>6.3 数组实现队列</h2><p><strong>数组实现队列</strong>是指使用一段连续的存储空间（即数组）来模拟队列的“先进先出”（FIFO, First In First Out）特性。队列的两个基本操作是：</p>
 <ul>
 <li><strong>入队（enqueue）</strong>：在队尾添加元素。</li>
-<li><strong>出队（dequeue）</strong>：从队头删除&#x2F;取出元素。</li>
+<li><strong>出队（dequeue）</strong>：从队头删除/取出元素。</li>
 </ul>
-<p>数组实现队列是一种利用数组和两个下标（front&#x2F;rear）模拟 FIFO 行为的数据结构，通常采用循环方式避免假溢出，具有固定容量、高效存取的特点。</p>
+<p>数组实现队列是一种利用数组和两个下标（front/rear）模拟 FIFO 行为的数据结构，通常采用循环方式避免假溢出，具有固定容量、高效存取的特点。</p>
 <h4 id="基本实现方式"><a href="#基本实现方式" class="headerlink" title="基本实现方式"></a>基本实现方式</h4><p>最简单的数组队列使用两个整数指针（或下标）：</p>
 <ul>
 <li><code>front</code>：指向队头元素的位置。</li>
@@ -261,26 +271,30 @@
 <blockquote>
 <p>另一种避免牺牲空间的做法是维护一个单独的大小计数器 <code>size</code>。</p>
 </blockquote>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><table>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">优点</th>
-<th align="left">缺点</th>
+<th style="text-align:left">优点</th>
+<th style="text-align:left">缺点</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">内存连续，缓存友好</td>
-<td align="left">容量固定，需预先知道最大长度</td>
+<tbody>
+<tr>
+<td style="text-align:left">内存连续，缓存友好</td>
+<td style="text-align:left">容量固定，需预先知道最大长度</td>
 </tr>
 <tr>
-<td align="left">操作简单，时间复杂度 O(1)</td>
-<td align="left">动态扩容代价较高（需拷贝数据）</td>
+<td style="text-align:left">操作简单，时间复杂度 O(1)</td>
+<td style="text-align:left">动态扩容代价较高（需拷贝数据）</td>
 </tr>
 <tr>
-<td align="left">无指针开销，适合嵌入式或高性能场景</td>
-<td align="left">循环队列需要处理边界取模</td>
+<td style="text-align:left">无指针开销，适合嵌入式或高性能场景</td>
+<td style="text-align:left">循环队列需要处理边界取模</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
 <li>任务调度、消息队列、缓冲池等固定大小的队列场景。</li>
 <li>对内存分配效率要求高、不希望频繁 malloc 的环境。</li>
@@ -289,7 +303,7 @@
 <h4 id="1-有界队列"><a href="#1-有界队列" class="headerlink" title="1. 有界队列"></a>1. 有界队列</h4><ul>
 <li><strong>定义</strong>：队列拥有固定的最大容量（记为 <code>capacity</code>），同时存储的元素个数不能超过该上限。</li>
 <li><strong>行为</strong>：<ul>
-<li>当队列已满时，再尝试<strong>入队（put&#x2F;enqueue）</strong> 的操作会被阻塞、拒绝（抛出异常）或返回失败（取决于具体实现）。</li>
+<li>当队列已满时，再尝试<strong>入队（put/enqueue）</strong> 的操作会被阻塞、拒绝（抛出异常）或返回失败（取决于具体实现）。</li>
 <li>出队操作不受容量影响。</li>
 </ul>
 </li>
@@ -321,40 +335,44 @@
 </ul>
 </li>
 </ul>
-<h4 id="3-主要区别对比"><a href="#3-主要区别对比" class="headerlink" title="3. 主要区别对比"></a>3. 主要区别对比</h4><table>
+<h4 id="3-主要区别对比"><a href="#3-主要区别对比" class="headerlink" title="3. 主要区别对比"></a>3. 主要区别对比</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">有界队列</th>
-<th align="left">无界队列</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">有界队列</th>
+<th style="text-align:left">无界队列</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">容量限制</td>
-<td align="left">固定最大值</td>
-<td align="left">无固定上限（受物理内存限制）</td>
+<tbody>
+<tr>
+<td style="text-align:left">容量限制</td>
+<td style="text-align:left">固定最大值</td>
+<td style="text-align:left">无固定上限（受物理内存限制）</td>
 </tr>
 <tr>
-<td align="left">满时入队行为</td>
-<td align="left">阻塞&#x2F;抛异常&#x2F;返回 false</td>
-<td align="left">永远成功（除非内存耗尽）</td>
+<td style="text-align:left">满时入队行为</td>
+<td style="text-align:left">阻塞/抛异常/返回 false</td>
+<td style="text-align:left">永远成功（除非内存耗尽）</td>
 </tr>
 <tr>
-<td align="left">内存风险</td>
-<td align="left">可控</td>
-<td align="left">可能 OOM</td>
+<td style="text-align:left">内存风险</td>
+<td style="text-align:left">可控</td>
+<td style="text-align:left">可能 OOM</td>
 </tr>
 <tr>
-<td align="left">典型使用场景</td>
-<td align="left">线程池任务队列、缓冲区、流量控制</td>
-<td align="left">事件驱动、异步日志、消息中间件（谨慎）</td>
+<td style="text-align:left">典型使用场景</td>
+<td style="text-align:left">线程池任务队列、缓冲区、流量控制</td>
+<td style="text-align:left">事件驱动、异步日志、消息中间件（谨慎）</td>
 </tr>
 <tr>
-<td align="left">实现复杂度</td>
-<td align="left">需处理边界和阻塞逻辑</td>
-<td align="left">相对简单（无需检查满状态）</td>
+<td style="text-align:left">实现复杂度</td>
+<td style="text-align:left">需处理边界和阻塞逻辑</td>
+<td style="text-align:left">相对简单（无需检查满状态）</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="4-与“数组实现队列”的关系"><a href="#4-与“数组实现队列”的关系" class="headerlink" title="4. 与“数组实现队列”的关系"></a>4. 与“数组实现队列”的关系</h4><ul>
 <li><strong>数组实现的有界队列</strong>：数组大小固定，天然是有界队列。之前介绍的循环队列就是典型的有界队列。</li>
 <li><strong>数组实现的无界队列</strong>：可以通过动态扩容（如 <code>ArrayList</code> 内部机制）模拟无界队列。但扩容需要复制数据，可能导致延迟峰值，通常不如链表实现自然。</li>
@@ -371,45 +389,49 @@
 <li><strong>不支持下标的随机访问</strong>：与数组不同，通常不能直接通过索引（如 <code>deque[3]</code>）访问元素。访问必须通过两端的操作进行。</li>
 <li><strong>不保证线程安全</strong>：标准的 Deque ADT 不包含同步机制。</li>
 </ul>
-<h4 id="核心操作"><a href="#核心操作" class="headerlink" title="核心操作"></a>核心操作</h4><table>
+<h4 id="核心操作"><a href="#核心操作" class="headerlink" title="核心操作"></a>核心操作</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">操作</th>
-<th align="left">描述</th>
-<th align="left">通常的命名</th>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">通常的命名</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>在头部插入</strong></td>
-<td align="left">在双端队列的最前面添加一个元素</td>
-<td align="left"><code>addFirst(e)</code>, <code>pushFront(e)</code>, <code>offerFirst(e)</code></td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>在头部插入</strong></td>
+<td style="text-align:left">在双端队列的最前面添加一个元素</td>
+<td style="text-align:left"><code>addFirst(e)</code>, <code>pushFront(e)</code>, <code>offerFirst(e)</code></td>
 </tr>
 <tr>
-<td align="left"><strong>在尾部插入</strong></td>
-<td align="left">在双端队列的最后面添加一个元素</td>
-<td align="left"><code>addLast(e)</code>, <code>pushBack(e)</code>, <code>offerLast(e)</code></td>
+<td style="text-align:left"><strong>在尾部插入</strong></td>
+<td style="text-align:left">在双端队列的最后面添加一个元素</td>
+<td style="text-align:left"><code>addLast(e)</code>, <code>pushBack(e)</code>, <code>offerLast(e)</code></td>
 </tr>
 <tr>
-<td align="left"><strong>从头部删除</strong></td>
-<td align="left">移除并返回双端队列最前面的元素</td>
-<td align="left"><code>removeFirst()</code>, <code>popFront()</code>, <code>pollFirst()</code></td>
+<td style="text-align:left"><strong>从头部删除</strong></td>
+<td style="text-align:left">移除并返回双端队列最前面的元素</td>
+<td style="text-align:left"><code>removeFirst()</code>, <code>popFront()</code>, <code>pollFirst()</code></td>
 </tr>
 <tr>
-<td align="left"><strong>从尾部删除</strong></td>
-<td align="left">移除并返回双端队列最后面的元素</td>
-<td align="left"><code>removeLast()</code>, <code>popBack()</code>, <code>pollLast()</code></td>
+<td style="text-align:left"><strong>从尾部删除</strong></td>
+<td style="text-align:left">移除并返回双端队列最后面的元素</td>
+<td style="text-align:left"><code>removeLast()</code>, <code>popBack()</code>, <code>pollLast()</code></td>
 </tr>
 <tr>
-<td align="left"><strong>查看头部元素</strong></td>
-<td align="left">返回头部的元素，但不移除它</td>
-<td align="left"><code>getFirst()</code>, <code>peekFirst()</code></td>
+<td style="text-align:left"><strong>查看头部元素</strong></td>
+<td style="text-align:left">返回头部的元素，但不移除它</td>
+<td style="text-align:left"><code>getFirst()</code>, <code>peekFirst()</code></td>
 </tr>
 <tr>
-<td align="left"><strong>查看尾部元素</strong></td>
-<td align="left">返回尾部的元素，但不移除它</td>
-<td align="left"><code>getLast()</code>, <code>peekLast()</code></td>
+<td style="text-align:left"><strong>查看尾部元素</strong></td>
+<td style="text-align:left">返回尾部的元素，但不移除它</td>
+<td style="text-align:left"><code>getLast()</code>, <code>peekLast()</code></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="辅助操作"><a href="#辅助操作" class="headerlink" title="辅助操作"></a>辅助操作</h4><ul>
 <li><code>size()</code>：返回双端队列中元素的数量。</li>
 <li><code>isEmpty()</code>：检查双端队列是否为空。</li>
@@ -429,7 +451,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module6-%E9%98%9F%E5%88%97/" data-id="cuid-YadCd_klMBXTx75TwgNN" data-title="Data-Structure-Module6" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/04/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module6-%E9%98%9F%E5%88%97/" data-id="cuidBta1i_UJiA_hbhOnVCljf" data-title="Data-Structure-Module6" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

@@ -112,7 +112,6 @@
 </ul>
 <p>最经典的例子是计算阶乘：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">factorial_recursive</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:          <span class="comment"># 边界条件</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 递归体：调用自身，问题规模缩小</span></span><br><span class="line">        <span class="keyword">return</span> n * factorial_recursive(n - <span class="number">1</span>) </span><br></pre></td></tr></table></figure>
-
 <p><strong>执行过程</strong>：<code>fact(3)</code> 会逐层调用 <code>fact(2)</code>、<code>fact(1)</code>、<code>fact(0)</code>，到达边界后，再逐层返回计算结果。</p>
 <h3 id="7-1-2-递归在内存中是如何运行的"><a href="#7-1-2-递归在内存中是如何运行的" class="headerlink" title="7.1.2 递归在内存中是如何运行的"></a>7.1.2 递归在内存中是如何运行的</h3><p>理解递归的关键在于<strong>调用栈（Call Stack）</strong>。每次函数调用，系统都会在栈顶分配一块内存（栈帧），用于存储局部变量和返回地址。</p>
 <p>递归的执行分为两个阶段：</p>
@@ -155,52 +154,50 @@
 <h3 id="7-2-1-非递归方法"><a href="#7-2-1-非递归方法" class="headerlink" title="7.2.1 非递归方法"></a>7.2.1 非递归方法</h3><p><strong>核心思想</strong>：不靠函数自身调用，而是使用 <strong>循环</strong> 和 <strong>显式的辅助数据结构（如栈、队列）</strong> 来模拟递归过程，或直接迭代求解。</p>
 <p><strong>经典例子：同样计算阶乘 <code>n!</code></strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">factorial_iterative</span>(<span class="params">n</span>):</span><br><span class="line">    result = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n + <span class="number">1</span>):   <span class="comment"># 显式循环</span></span><br><span class="line">        result *= i</span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>一棵二叉树的前序遍历</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 递归方式（依赖函数栈）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">preorder_recursive</span>(<span class="params">node</span>):</span><br><span class="line">    <span class="keyword">if</span> node:</span><br><span class="line">        <span class="built_in">print</span>(node.val)</span><br><span class="line">        preorder_recursive(node.left)</span><br><span class="line">        preorder_recursive(node.right)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非递归方式（用显式栈模拟）</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">preorder_iterative</span>(<span class="params">root</span>):</span><br><span class="line">    stack = [root]</span><br><span class="line">    <span class="keyword">while</span> stack:</span><br><span class="line">        node = stack.pop()</span><br><span class="line">        <span class="keyword">if</span> node:</span><br><span class="line">            <span class="built_in">print</span>(node.val)</span><br><span class="line">            stack.append(node.right) <span class="comment"># 注意：先右后左</span></span><br><span class="line">            stack.append(node.left)</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
 <li>✅ <strong>效率高</strong>：无函数调用开销；<strong>无栈溢出风险</strong>；易于优化。</li>
-<li>❌ <strong>代码可能复杂</strong>：需要手动管理执行状态，不如递归直观，尤其是在复杂的树&#x2F;图操作中。</li>
+<li>❌ <strong>代码可能复杂</strong>：需要手动管理执行状态，不如递归直观，尤其是在复杂的树/图操作中。</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">方面</th>
-<th align="left">递归</th>
-<th align="left">非递归（循环+栈）</th>
+<th style="text-align:left">方面</th>
+<th style="text-align:left">递归</th>
+<th style="text-align:left">非递归（循环+栈）</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>代码直观性</strong></td>
-<td align="left">⭐⭐⭐⭐⭐ 非常直观，尤其是分治与树</td>
-<td align="left">⭐⭐ 相对复杂，需手动模拟</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>代码直观性</strong></td>
+<td style="text-align:left">⭐⭐⭐⭐⭐ 非常直观，尤其是分治与树</td>
+<td style="text-align:left">⭐⭐ 相对复杂，需手动模拟</td>
 </tr>
 <tr>
-<td align="left"><strong>执行效率</strong></td>
-<td align="left">⭐⭐ 函数调用有开销</td>
-<td align="left">⭐⭐⭐⭐ 效率更高</td>
+<td style="text-align:left"><strong>执行效率</strong></td>
+<td style="text-align:left">⭐⭐ 函数调用有开销</td>
+<td style="text-align:left">⭐⭐⭐⭐ 效率更高</td>
 </tr>
 <tr>
-<td align="left"><strong>空间占用</strong></td>
-<td align="left">⭐⭐ 函数调用栈，可能很深</td>
-<td align="left">⭐⭐⭐ 可控的堆空间</td>
+<td style="text-align:left"><strong>空间占用</strong></td>
+<td style="text-align:left">⭐⭐ 函数调用栈，可能很深</td>
+<td style="text-align:left">⭐⭐⭐ 可控的堆空间</td>
 </tr>
 <tr>
-<td align="left"><strong>易出错点</strong></td>
-<td align="left">边界条件错误导致无限递归</td>
-<td align="left">循环逻辑、栈操作顺序错误</td>
+<td style="text-align:left"><strong>易出错点</strong></td>
+<td style="text-align:left">边界条件错误导致无限递归</td>
+<td style="text-align:left">循环逻辑、栈操作顺序错误</td>
 </tr>
 <tr>
-<td align="left"><strong>适用限制</strong></td>
-<td align="left">受系统栈大小限制，可能溢出</td>
-<td align="left">无此限制</td>
+<td style="text-align:left"><strong>适用限制</strong></td>
+<td style="text-align:left">受系统栈大小限制，可能溢出</td>
+<td style="text-align:left">无此限制</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="决策指南"><a href="#决策指南" class="headerlink" title="决策指南"></a>决策指南</h4><ol>
 <li><strong>首选递归</strong>：当问题本身具有天然的递归结构（如<strong>树的遍历</strong>），且深度可控（不会栈溢出），优先考虑递归，代码清晰可维护。</li>
 <li><strong>转为非递归</strong>：<ul>
@@ -211,7 +208,7 @@
 </ul>
 </li>
 </ol>
-<h4 id="扩展：尾递归优化"><a href="#扩展：尾递归优化" class="headerlink" title="扩展：尾递归优化"></a>扩展：尾递归优化</h4><p>有些编译器&#x2F;解释器支持<strong>尾递归</strong>优化。如果递归调用是函数的最后一条语句，可被优化为类似循环的形式，避免栈增长，兼具两者优点。但需注意，<strong>Python、Java 等许多语言默认不支持尾递归优化</strong>。</p>
+<h4 id="扩展：尾递归优化"><a href="#扩展：尾递归优化" class="headerlink" title="扩展：尾递归优化"></a>扩展：尾递归优化</h4><p>有些编译器/解释器支持<strong>尾递归</strong>优化。如果递归调用是函数的最后一条语句，可被优化为类似循环的形式，避免栈增长，兼具两者优点。但需注意，<strong>Python、Java 等许多语言默认不支持尾递归优化</strong>。</p>
 <h2 id="7-3-递归搜索算法"><a href="#7-3-递归搜索算法" class="headerlink" title="7.3 递归搜索算法"></a>7.3 递归搜索算法</h2><p>数据结构中的递归搜索算法，本质上就是<strong>一个函数通过不断调用自身，在某种数据结构中寻找目标元素的方法</strong>。</p>
 <p>要理解它，我们得先抓住它的两个核心：</p>
 <ul>
@@ -222,7 +219,6 @@
 <h3 id="7-3-1-二叉搜索树的递归查找"><a href="#7-3-1-二叉搜索树的递归查找" class="headerlink" title="7.3.1 二叉搜索树的递归查找"></a>7.3.1 二叉搜索树的递归查找</h3><p>这是递归搜索最完美的体现。二叉搜索树有天然递归结构：一个节点，左边所有节点值都比它小，右边所有节点值都比它大。</p>
 <p>比如，在下面这棵树中找数字 <code>8</code>：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">    10</span><br><span class="line">   /  \</span><br><span class="line">  5    15</span><br><span class="line"> / \   / \</span><br><span class="line">3   7 12  18</span><br><span class="line">     \</span><br><span class="line">      8</span><br></pre></td></tr></table></figure>
-
 <p><strong>递归过程是这样的：</strong></p>
 <ol>
 <li>从根节点 <code>10</code> 开始，<code>8 &lt; 10</code>，所以去左子树找。</li>
@@ -232,9 +228,6 @@
 </ol>
 <p><strong>对应的伪代码逻辑很清晰：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">search_bst</span>(<span class="params">root, target</span>):</span><br><span class="line">    <span class="comment"># 基线条件1：树空了，没找到</span></span><br><span class="line">    <span class="keyword">if</span> root <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="comment"># 基线条件2：当前节点就是目标</span></span><br><span class="line">    <span class="keyword">if</span> root.value == target:</span><br><span class="line">        <span class="keyword">return</span> root</span><br><span class="line">    <span class="comment"># 递归条件：去左或右子树找</span></span><br><span class="line">    <span class="keyword">if</span> target &lt; root.value:</span><br><span class="line">        <span class="keyword">return</span> search_bst(root.left, target)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> search_bst(root.right, target)</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="7-3-2-文件系统中的深度优先搜索"><a href="#7-3-2-文件系统中的深度优先搜索" class="headerlink" title="7.3.2 文件系统中的深度优先搜索"></a>7.3.2 文件系统中的深度优先搜索</h3><p>再看一个更贴近日常的例子。你电脑的文件系统是一个<strong>树状结构</strong>（文件夹是节点，文件是叶子）。要找 <code>简历.pdf</code>，你通常会一个文件夹挖到底，再退回上一层，这其实就是<strong>深度优先搜索</strong>，一种典型的递归。</p>
 <p><strong>逻辑描述：</strong></p>
 <ol>
@@ -248,18 +241,15 @@
 </ol>
 <p><strong>这个逻辑的伪代码如下：</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">search_file</span>(<span class="params">folder, target_name</span>):</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> folder:     </span><br><span class="line">        <span class="keyword">if</span> is_file(item) <span class="keyword">and</span> item.name == target_name:</span><br><span class="line">            <span class="keyword">return</span> item.path   <span class="comment"># 基线条件</span></span><br><span class="line">        <span class="keyword">if</span> is_folder(item):</span><br><span class="line">            <span class="comment"># 递归条件：深入子文件夹</span></span><br><span class="line">            result = search_file(item, target_name) </span><br><span class="line">            <span class="keyword">if</span> result <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> result</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span>  <span class="comment"># 基线条件</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="7-3-3-递归搜索算法的关键组成"><a href="#7-3-3-递归搜索算法的关键组成" class="headerlink" title="7.3.3 递归搜索算法的关键组成"></a>7.3.3 递归搜索算法的关键组成</h3><p>从上面两个例子，我们可以总结出递归搜索的通用模板：</p>
 <ol>
 <li><strong>基线条件</strong><br>用于终止递归，通常是<strong>找到了</strong>或<strong>搜索范围为空</strong>。</li>
-<li><strong>递归条件</strong><br>将问题分解。通常包含<strong>处理当前元素</strong>、并<strong>对结构的一部分（如左&#x2F;右子树、子文件夹、子数组）发起新的搜索调用</strong>。</li>
+<li><strong>递归条件</strong><br>将问题分解。通常包含<strong>处理当前元素</strong>、并<strong>对结构的一部分（如左/右子树、子文件夹、子数组）发起新的搜索调用</strong>。</li>
 <li><strong>状态传递</strong><br>每次递归调用，搜索范围（如传入的节点）都在缩小，必须朝着基线条件迈进。</li>
 </ol>
 <h3 id="7-3-4-常见应用场景"><a href="#7-3-4-常见应用场景" class="headerlink" title="7.3.4 常见应用场景"></a>7.3.4 常见应用场景</h3><p>除了上面两种，递归搜索还常用于：</p>
 <ul>
-<li><strong>广义表&#x2F;嵌套列表</strong>：如搜索 <code>[1， [2， [3， 4]]， 5]</code> 这种任意嵌套的结构。</li>
+<li><strong>广义表/嵌套列表</strong>：如搜索 <code>[1， [2， [3， 4]]， 5]</code> 这种任意嵌套的结构。</li>
 <li><strong>图的遍历</strong>：深度优先搜索本质上也是递归搜索在节点和边构成的图上的应用。</li>
 <li><strong>分治搜索</strong>：如二分查找，虽然常用循环实现，但其“将数组一分为二”的思想同样是递归，可以很方便地写成递归形式。</li>
 </ul>
@@ -284,16 +274,10 @@
 <li><strong>循环实现</strong><br>通过不断更新 <code>left</code>， <code>right</code> 这两个边界指针来缩小范围。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">binary_search_iterative</span>(<span class="params">arr, target</span>):</span><br><span class="line">    left, right = <span class="number">0</span>, <span class="built_in">len</span>(arr) - <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> left &lt;= right:</span><br><span class="line">        mid = (left + right) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> arr[mid] == target:</span><br><span class="line">            <span class="keyword">return</span> mid</span><br><span class="line">        <span class="keyword">elif</span> arr[mid] &lt; target:</span><br><span class="line">            left = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            right = mid - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
-
-
-
 <ul>
 <li><strong>递归实现</strong><br>不修改变量，而是通过函数参数传递新的、缩小后的边界。它的特点是状态不可变、逻辑更贴近数学定义。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">binary_search_recursive</span>(<span class="params">arr, target, left, right</span>):</span><br><span class="line">    <span class="comment"># 基线条件1：搜索区间无效，未找到</span></span><br><span class="line">    <span class="keyword">if</span> left &gt; right:  </span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    mid = (left + right) // <span class="number">2</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 基线条件2：找到目标</span></span><br><span class="line">    <span class="keyword">if</span> arr[mid] == target:</span><br><span class="line">        <span class="keyword">return</span> mid</span><br><span class="line">    <span class="comment"># 递归条件1：目标在右侧</span></span><br><span class="line">    <span class="keyword">elif</span> arr[mid] &lt; target:</span><br><span class="line">        <span class="keyword">return</span> binary_search_recursive(arr, target, mid + <span class="number">1</span>, right)</span><br><span class="line">    <span class="comment"># 递归条件2：目标在左侧</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> binary_search_recursive(arr, target, left, mid - <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="优缺点与适用场景"><a href="#优缺点与适用场景" class="headerlink" title="优缺点与适用场景"></a>优缺点与适用场景</h4><ul>
 <li><strong>优点</strong>：代码清晰，函数式风格强，没有副作用（每次调用都使用新的 <code>left</code> 和 <code>right</code>），容易在数学上验证其正确性。</li>
 <li><strong>缺点</strong>：效率较低。递归调用会带来函数调用栈的开销，有栈溢出风险。比如在Python中，列表过长时，递归版可能导致 <code>RecursionError</code>。而循环版只消耗常量级别的额外内存。</li>
@@ -303,27 +287,14 @@
 <p>我直接用一个经典的<strong>二叉树前序遍历</strong>例子，给你展示三种最常见的调试套路。</p>
 <h3 id="7-4-1-基础版：只打印当前节点"><a href="#7-4-1-基础版：只打印当前节点" class="headerlink" title="7.4.1 基础版：只打印当前节点"></a>7.4.1 基础版：只打印当前节点</h3><p>适合快速确认遍历顺序，但看不出递归层级。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">preOrder</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 调试输出：当前正在访问哪个节点</span></span><br><span class="line">    System.out.println(<span class="string">&quot;访问节点: &quot;</span> + root.val);</span><br><span class="line">    </span><br><span class="line">    preOrder(root.left);</span><br><span class="line">    preOrder(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="7-4-2-进阶版：显示递归深度（最常用）"><a href="#7-4-2-进阶版：显示递归深度（最常用）" class="headerlink" title="7.4.2 进阶版：显示递归深度（最常用）"></a>7.4.2 进阶版：显示递归深度（最常用）</h3><p>用缩进直观反映调用栈的层次，一眼就能看出递归的“深入”和“回溯”。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">preOrder</span><span class="params">(TreeNode root, <span class="type">int</span> depth)</span> &#123;</span><br><span class="line">    <span class="comment">// 用空格缩进表示深度</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">indent</span> <span class="operator">=</span> <span class="string">&quot;  &quot;</span>.repeat(depth);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">        System.out.println(indent + <span class="string">&quot;进入: null (直接返回)&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 1. 进入函数时打印</span></span><br><span class="line">    System.out.println(indent + <span class="string">&quot;进入: 节点 &quot;</span> + root.val + <span class="string">&quot; (深度=&quot;</span> + depth + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    preOrder(root.left, depth + <span class="number">1</span>);   <span class="comment">// 递归左子树，深度+1</span></span><br><span class="line">    preOrder(root.right, depth + <span class="number">1</span>);  <span class="comment">// 递归右子树，深度+1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 退出函数时打印（能清楚看到回溯）</span></span><br><span class="line">    System.out.println(indent + <span class="string">&quot;退出: 节点 &quot;</span> + root.val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>输出效果</strong>（假设树结构为：根1，左2，右3）：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">进入: 节点 1 (深度=0)</span><br><span class="line">  进入: 节点 2 (深度=1)</span><br><span class="line">    进入: null (直接返回)</span><br><span class="line">    进入: null (直接返回)</span><br><span class="line">  退出: 节点 2</span><br><span class="line">  进入: 节点 3 (深度=1)</span><br><span class="line">    进入: null (直接返回)</span><br><span class="line">    进入: null (直接返回)</span><br><span class="line">  退出: 节点 3</span><br><span class="line">退出: 节点 1</span><br></pre></td></tr></table></figure>
-
 <p>从这个输出你可以清楚地看到：先深入左子树到底，然后逐层回溯，再进入右子树。</p>
 <h3 id="7-4-3-带返回值版：追踪计算结果"><a href="#7-4-3-带返回值版：追踪计算结果" class="headerlink" title="7.4.3 带返回值版：追踪计算结果"></a>7.4.3 带返回值版：追踪计算结果</h3><p>当递归有返回值时（如求二叉树深度），打印出“收到下层返回了什么，本层计算后返回什么”非常有助于排错。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepth</span><span class="params">(TreeNode root, <span class="type">int</span> depth)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">indent</span> <span class="operator">=</span> <span class="string">&quot;  &quot;</span>.repeat(depth);</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;计算深度: &quot;</span> + (root == <span class="literal">null</span> ? <span class="string">&quot;null&quot;</span> : root.val));</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) &#123;</span><br><span class="line">        System.out.println(indent + <span class="string">&quot;返回: 0&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">leftDepth</span> <span class="operator">=</span> maxDepth(root.left, depth + <span class="number">1</span>);</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;左子树返回: &quot;</span> + leftDepth);</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">rightDepth</span> <span class="operator">=</span> maxDepth(root.right, depth + <span class="number">1</span>);</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;右子树返回: &quot;</span> + rightDepth);</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Math.max(leftDepth, rightDepth) + <span class="number">1</span>;</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;本层计算结果: &quot;</span> + result + <span class="string">&quot; 并返回&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="7-4-4-调试递归的通用模板"><a href="#7-4-4-调试递归的通用模板" class="headerlink" title="7.4.4 调试递归的通用模板"></a>7.4.4 调试递归的通用模板</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ReturnType <span class="title function_">recursion</span><span class="params">(Parameter param, <span class="type">int</span> depth)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">indent</span> <span class="operator">=</span> <span class="string">&quot;  &quot;</span>.repeat(depth);</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;--&gt; 进入函数, 参数= &quot;</span> + param);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 1. 终止条件</span></span><br><span class="line">    <span class="keyword">if</span> (baseCondition) &#123;</span><br><span class="line">        System.out.println(indent + <span class="string">&quot;&lt;-- 达到终止条件, 返回 &quot;</span> + baseValue);</span><br><span class="line">        <span class="keyword">return</span> baseValue;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2. 递归调用</span></span><br><span class="line">    <span class="type">ReturnType</span> <span class="variable">result1</span> <span class="operator">=</span> recursion(subParam1, depth + <span class="number">1</span>);</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;&lt;-- 下层返回1: &quot;</span> + result1);</span><br><span class="line">    </span><br><span class="line">    <span class="type">ReturnType</span> <span class="variable">result2</span> <span class="operator">=</span> recursion(subParam2, depth + <span class="number">1</span>);</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;&lt;-- 下层返回2: &quot;</span> + result2);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 本层逻辑</span></span><br><span class="line">    <span class="type">ReturnType</span> <span class="variable">finalResult</span> <span class="operator">=</span> combine(result1, result2);</span><br><span class="line">    System.out.println(indent + <span class="string">&quot;&lt;-- 本层处理完毕, 返回 &quot;</span> + finalResult);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> finalResult;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="几个实用技巧"><a href="#几个实用技巧" class="headerlink" title="几个实用技巧"></a>几个实用技巧</h4><ul>
 <li><strong>开关控制</strong>：调试完记得别全删掉，可以加个<code>boolean DEBUG = false;</code>，用<code>if(DEBUG) System.out.println(...);</code>包裹，方便日后重新启用。</li>
 <li><strong>限制深度</strong>：如果递归很深，可以加个<code>if(depth &gt; 10) return;</code>防止输出爆炸。</li>
@@ -336,7 +307,6 @@
 </ol>
 <h3 id="7-5-1-链表的递归：反转链表"><a href="#7-5-1-链表的递归：反转链表" class="headerlink" title="7.5.1 链表的递归：反转链表"></a>7.5.1 链表的递归：反转链表</h3><p>这是理解递归的绝佳例子。递归反转链表的核心思想是：先假设后面部分已反转好，再处理当前节点。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 链表节点定义</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">    ListNode(<span class="type">int</span> val) &#123; </span><br><span class="line">        <span class="built_in">this</span>.val = val; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ListRecursion</span> &#123;</span><br><span class="line">    <span class="comment">// 递归反转链表</span></span><br><span class="line">    <span class="keyword">public</span> ListNode <span class="title function_">reverseList</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">        <span class="comment">// ① 基准情形：空节点或只有一个节点，直接返回</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// ② 递归步骤：先反转以 head.next 为头的子链表</span></span><br><span class="line">        <span class="type">ListNode</span> <span class="variable">newHead</span> <span class="operator">=</span> reverseList(head.next);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// ③ 核心操作：让后一个节点指向自己，翻转箭头</span></span><br><span class="line">        head.next.next = head;</span><br><span class="line">        head.next = <span class="literal">null</span>; <span class="comment">// 原头节点现在变成尾节点</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> newHead; <span class="comment">// newHead 始终是原链表的尾节点，即新头节点</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><strong>执行逻辑图示</strong>（对于 <code>1 -&gt; 2 -&gt; 3 -&gt; null</code>）：</p>
 <ol>
 <li>递归到底：<code>head = 3</code>，<code>3.next==null</code>返回<code>3</code>。</li>
@@ -373,46 +343,28 @@
 </ul>
 <p>递归的数学核心是<strong>递推关系</strong>，它描述了问题规模之间的关系。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数学归纳法思想</span></span><br><span class="line"><span class="comment">// 1. 基础情形（Base Case）：n = 0 时，factorial(0) = 1</span></span><br><span class="line"><span class="comment">// 2. 归纳步骤：假设 factorial(k) 已知，则 factorial(k+1) = (k+1) * factorial(k)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;  <span class="comment">// 基础情形</span></span><br><span class="line">    <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);  <span class="comment">// 归纳步骤</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="7-6-2-斐波那契数列"><a href="#7-6-2-斐波那契数列" class="headerlink" title="7.6.2 斐波那契数列"></a>7.6.2 斐波那契数列</h3><h4 id="数学定义（递推关系）"><a href="#数学定义（递推关系）" class="headerlink" title="数学定义（递推关系）"></a>数学定义（递推关系）</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">F(0) = 0                    // 初始条件1</span><br><span class="line">F(1) = 1                    // 初始条件2</span><br><span class="line">F(n) = F(n-1) + F(n-2)      // 递推关系（n ≥ 2）</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="Java代码实现"><a href="#Java代码实现" class="headerlink" title="Java代码实现"></a>Java代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 版本1：直接递归（数学定义的直接翻译）</span></span><br><span class="line"><span class="comment">  * 递推关系：T(n) = T(n-1) + T(n-2) + O(1)</span></span><br><span class="line"><span class="comment">  * 时间复杂度：O(2^n)</span></span><br><span class="line"><span class="comment">  * 问题：大量重复计算</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">fib1</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">     <span class="comment">// 基础情形（对应数学归纳法的初始条件）</span></span><br><span class="line">     <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">     </span><br><span class="line">     <span class="comment">// 递推关系（对应数学归纳法的归纳步骤）</span></span><br><span class="line">     <span class="keyword">return</span> fib1(n - <span class="number">1</span>) + fib1(n - <span class="number">2</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="递推关系求解（时间复杂度分析）"><a href="#递推关系求解（时间复杂度分析）" class="headerlink" title="递推关系求解（时间复杂度分析）"></a>递推关系求解（时间复杂度分析）</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">T(n) = T(n-1) + T(n-2) + c</span><br><span class="line">T(0) = T(1) = 1  (常数时间)</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>求解：</strong></p>
 <ul>
 <li>T(n) 的增长速度与 F(n) 相同</li>
-<li>F(n) ≈ φ^n &#x2F; √5 （其中 φ ≈ 1.618）</li>
-<li>因此 T(n) &#x3D; O(φ^n) &#x3D; O(1.618^n) ≈ O(2^n)</li>
+<li>F(n) ≈ φ^n / √5 （其中 φ ≈ 1.618）</li>
+<li>因此 T(n) = O(φ^n) = O(1.618^n) ≈ O(2^n)</li>
 </ul>
-<h3 id="7-6-2-最大公约数（欧几里得算法）"><a href="#7-6-2-最大公约数（欧几里得算法）" class="headerlink" title="7.6.2 最大公约数（欧几里得算法）"></a>7.6.2 最大公约数（欧几里得算法）</h3><h4 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h4><p><strong>定理：gcd(a, b) &#x3D; gcd(b, a mod b)</strong></p>
-<p><strong>证明：</strong><br>设 d &#x3D; gcd(a, b)，则 d|a 且 d|b<br>设 a &#x3D; bq + r (0 ≤ r &lt; b)，即 r &#x3D; a mod b</p>
+<h3 id="7-6-2-最大公约数（欧几里得算法）"><a href="#7-6-2-最大公约数（欧几里得算法）" class="headerlink" title="7.6.2 最大公约数（欧几里得算法）"></a>7.6.2 最大公约数（欧几里得算法）</h3><h4 id="数学原理"><a href="#数学原理" class="headerlink" title="数学原理"></a>数学原理</h4><p><strong>定理：gcd(a, b) = gcd(b, a mod b)</strong></p>
+<p><strong>证明：</strong><br>设 d = gcd(a, b)，则 d|a 且 d|b<br>设 a = bq + r (0 ≤ r &lt; b)，即 r = a mod b</p>
 <ul>
 <li>因为 d|b，所以 d|bq</li>
-<li>因为 d|a 且 d|bq，所以 d|(a - bq) &#x3D; d|r</li>
+<li>因为 d|a 且 d|bq，所以 d|(a - bq) = d|r</li>
 <li>因此 d 也是 b 和 r 的公因数</li>
 </ul>
-<p>反过来，如果 d|b 且 d|r，则 d|(bq + r) &#x3D; d|a<br>因此 d 也是 a 和 b 的公因数</p>
-<p>所以 {a,b的公因数} &#x3D; {b,r的公因数}<br>因此 gcd(a,b) &#x3D; gcd(b,r) ✓</p>
+<p>反过来，如果 d|b 且 d|r，则 d|(bq + r) = d|a<br>因此 d 也是 a 和 b 的公因数</p>
+<p>所以 {a,b的公因数} = {b,r的公因数}<br>因此 gcd(a,b) = gcd(b,r) ✓</p>
 <h4 id="Java代码实现-1"><a href="#Java代码实现-1" class="headerlink" title="Java代码实现"></a>Java代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GCDAnalysis</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 版本1：基本递归（直接翻译数学定义）</span></span><br><span class="line"><span class="comment">     * 递推关系：T(a,b) = T(b, a mod b) + O(1)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">gcd1</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="comment">// 基础情形：当第二个数为0时返回第一个数</span></span><br><span class="line">        <span class="keyword">if</span> (b == <span class="number">0</span>) <span class="keyword">return</span> a;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 递推关系：gcd(a,b) = gcd(b, a mod b)</span></span><br><span class="line">        <span class="keyword">return</span> gcd1(b, a % b);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="时间复杂度分析（递推关系求解）"><a href="#时间复杂度分析（递推关系求解）" class="headerlink" title="时间复杂度分析（递推关系求解）"></a>时间复杂度分析（递推关系求解）</h4><p><strong>递推关系：</strong></p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(a, b) = T(b, a mod b) + O(1)</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>关键引理：a mod b ≤ a&#x2F;2</strong> （当 b ≤ a&#x2F;2 时显然；当 b &gt; a&#x2F;2 时，a mod b &#x3D; a-b &lt; a&#x2F;2）</p>
+<p><strong>关键引理：a mod b ≤ a/2</strong> （当 b ≤ a/2 时显然；当 b &gt; a/2 时，a mod b = a-b &lt; a/2）</p>
 <p><strong>拉梅定理：</strong> 欧几里得算法的步数不超过较小数的位数的5倍</p>
 <p><strong>严格分析：</strong></p>
 <ul>
@@ -423,53 +375,53 @@
 <p><strong>斐波那契数是最坏情况：</strong></p>
 <ul>
 <li>gcd(F(n+1), F(n)) 需要 n-1 步</li>
-<li>例如：gcd(8, 5) &#x3D; gcd(5, 3) &#x3D; gcd(3, 2) &#x3D; gcd(2, 1) &#x3D; gcd(1, 0) &#x3D; 1</li>
+<li>例如：gcd(8, 5) = gcd(5, 3) = gcd(3, 2) = gcd(2, 1) = gcd(1, 0) = 1</li>
 </ul>
 <h2 id="7-7-使用递归探索所有可能性（回溯算法）"><a href="#7-7-使用递归探索所有可能性（回溯算法）" class="headerlink" title="7.7 使用递归探索所有可能性（回溯算法）"></a>7.7 使用递归探索所有可能性（回溯算法）</h2><p>“使用递归探索所有可能性”是数据结构与算法中的一种核心思维模式，官方常称之为<strong>回溯算法</strong>或<strong>深度优先搜索</strong>。</p>
 <p>它的本质是：面对一个有多步选择的问题，通过递归函数，在每一步尝试所有合法选项，自动形成一棵“决策树”，从而系统地遍历所有可能的解。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">backtrack</span>(<span class="params">路径, 选择列表</span>):</span><br><span class="line">    <span class="keyword">if</span> 满足结束条件:</span><br><span class="line">        收集结果</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> 选择 <span class="keyword">in</span> 选择列表:</span><br><span class="line">        <span class="comment"># 1. 做出选择</span></span><br><span class="line">        将该选择加入路径</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 2. 递归探索</span></span><br><span class="line">        backtrack(路径, 新的选择列表)</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 3. 撤销选择（回溯的关键）</span></span><br><span class="line">        将该选择从路径中移除</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>可以这样理解它和普通递归的区别：</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">特性</th>
-<th align="left">普通递归</th>
-<th align="left">探索所有可能性（回溯）</th>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">普通递归</th>
+<th style="text-align:left">探索所有可能性（回溯）</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><strong>目标</strong></td>
-<td align="left">解决一个<strong>确定</strong>的问题，如计算阶乘</td>
-<td align="left">生成<strong>所有可能</strong>的组合或路径</td>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>目标</strong></td>
+<td style="text-align:left">解决一个<strong>确定</strong>的问题，如计算阶乘</td>
+<td style="text-align:left">生成<strong>所有可能</strong>的组合或路径</td>
 </tr>
 <tr>
-<td align="left"><strong>选择</strong></td>
-<td align="left">每层通常只有<strong>一种</strong>处理方式</td>
-<td align="left">每层有<strong>多个</strong>选项需逐一尝试</td>
+<td style="text-align:left"><strong>选择</strong></td>
+<td style="text-align:left">每层通常只有<strong>一种</strong>处理方式</td>
+<td style="text-align:left">每层有<strong>多个</strong>选项需逐一尝试</td>
 </tr>
 <tr>
-<td align="left"><strong>关键操作</strong></td>
-<td align="left">单向递归调用</td>
-<td align="left"><strong>选择 → 探索 → 撤销选择（回溯）</strong></td>
+<td style="text-align:left"><strong>关键操作</strong></td>
+<td style="text-align:left">单向递归调用</td>
+<td style="text-align:left"><strong>选择 → 探索 → 撤销选择（回溯）</strong></td>
 </tr>
-</tbody></table>
-<h4 id="典型应用场景"><a href="#典型应用场景" class="headerlink" title="典型应用场景"></a>典型应用场景</h4><p>这个思想能解决一大类问题，它们的共同点是要求“所有组合&#x2F;排列&#x2F;子集”等。</p>
+</tbody>
+</table>
+</div>
+<h4 id="典型应用场景"><a href="#典型应用场景" class="headerlink" title="典型应用场景"></a>典型应用场景</h4><p>这个思想能解决一大类问题，它们的共同点是要求“所有组合/排列/子集”等。</p>
 <ul>
 <li><strong>组合与子集问题</strong>：生成数组 <code>[1,2,3]</code> 的所有子集。每步选择是“选或不选”当前元素。</li>
 <li><strong>排列问题</strong>：求 <code>[1,2,3]</code> 的全排列。每步选择是“选一个没用过的数字”。</li>
-<li><strong>棋盘问题</strong>：八皇后、解数独。每步选择是“在合法位置放置皇后&#x2F;数字”。</li>
+<li><strong>棋盘问题</strong>：八皇后、解数独。每步选择是“在合法位置放置皇后/数字”。</li>
 <li><strong>图路径问题</strong>：找到从起点到终点的所有路径。每步选择是“访问一个未被访问的相邻节点”。</li>
 </ul>
 <h4 id="一个具体例子：生成所有子集"><a href="#一个具体例子：生成所有子集" class="headerlink" title="一个具体例子：生成所有子集"></a>一个具体例子：生成所有子集</h4><p>以集合 <code>{1, 2, 3}</code> 为例，递归生成的<strong>决策树</strong>如下：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">            []</span><br><span class="line">           /  \</span><br><span class="line">          /    \</span><br><span class="line">       [1]      []</span><br><span class="line">      /   \    /  \</span><br><span class="line">    [1,2] [1] [2] []</span><br><span class="line">   /   \   ...</span><br><span class="line">[1,2,3] [1,2]</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>第一层：决定“1”这个元素选不选。</li>
 <li>第二层：决定“2”选不选。</li>
-<li>第三层：决定“3”选不选。<br>最终所有叶子节点就是全部 2³ &#x3D; 8 个子集。</li>
+<li>第三层：决定“3”选不选。<br>最终所有叶子节点就是全部 2³ = 8 个子集。</li>
 </ul>
 <h4 id="关键技巧与注意事项"><a href="#关键技巧与注意事项" class="headerlink" title="关键技巧与注意事项"></a>关键技巧与注意事项</h4><ul>
 <li><strong>循环与递归的关系</strong>：递归表示“纵向深入”，而函数内部的 <code>for</code> 循环表示“横向遍历同一层的不同选择”。</li>
@@ -487,19 +439,13 @@
 <p><strong>堆栈溢出通常由两种原因引起：</strong></p>
 <h4 id="无限递归"><a href="#无限递归" class="headerlink" title="无限递归"></a>无限递归</h4><p>最常见的原因。递归函数如果没有正确的终止条件，或终止条件永远无法满足，就会无限调用自身。每次调用都会在调用栈中分配一块<strong>栈帧</strong>，空间很快就被耗尽了。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 错误示例：缺少终止条件</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">infinite_recursion</span>():</span><br><span class="line">    <span class="keyword">return</span> infinite_recursion()</span><br><span class="line"></span><br><span class="line">infinite_recursion()</span><br><span class="line"><span class="comment"># 报错：RecursionError: maximum recursion depth exceeded</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="栈帧过大"><a href="#栈帧过大" class="headerlink" title="栈帧过大"></a>栈帧过大</h4><p>即使调用次数不多，如果函数内定义了巨大的局部变量，也可能直接撑爆栈空间。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误示例：在栈上申请巨大数组</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">bad_function</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 假设栈空间只有8MB，这个数组就占了8MB</span></span><br><span class="line">    <span class="type">char</span> large_array[<span class="number">8</span> * <span class="number">1024</span> * <span class="number">1024</span>]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="发生时会怎样？"><a href="#发生时会怎样？" class="headerlink" title="发生时会怎样？"></a>发生时会怎样？</h4><p>程序会触发<strong>段错误</strong>或抛出特定异常：</p>
 <ul>
 <li><strong>Python</strong>：<code>RecursionError</code></li>
-<li><strong>Java&#x2F;C#</strong>：<code>StackOverflowError</code> &#x2F; <code>StackOverflowException</code></li>
-<li><strong>C&#x2F;C++</strong>：程序崩溃，通常显示 <code>segmentation fault</code>（栈帧过大时）或无响应（递归过深时）。</li>
+<li><strong>Java/C#</strong>：<code>StackOverflowError</code> / <code>StackOverflowException</code></li>
+<li><strong>C/C++</strong>：程序崩溃，通常显示 <code>segmentation fault</code>（栈帧过大时）或无响应（递归过深时）。</li>
 </ul>
 <h4 id="如何避免栈溢出"><a href="#如何避免栈溢出" class="headerlink" title="如何避免栈溢出"></a>如何避免栈溢出</h4><ul>
 <li><strong>确保递归有可达的终止条件</strong>，或改用循环来避免过深的递归。</li>
@@ -510,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/04/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module7-%E9%80%92%E5%BD%92/" data-id="cuid_04Uz3PDIJxAhwOMIp7TN" data-title="Data-Structure-Module7" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/04/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/Data-Structure-Module7-%E9%80%92%E5%BD%92/" data-id="cuidbXftgLTvnMIgssfEZExvN" data-title="Data-Structure-Module7" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       

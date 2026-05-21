@@ -117,14 +117,8 @@
 <li><code>unsigned int</code>（无符号，只存正数和零）</li>
 </ul>
 <h4 id="声明与初始化"><a href="#声明与初始化" class="headerlink" title="声明与初始化"></a>声明与初始化</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a;            <span class="comment">// 声明一个 int 变量，但未初始化（值随机）</span></span><br><span class="line"><span class="type">int</span> b = <span class="number">10</span>;       <span class="comment">// 声明的同时初始化</span></span><br><span class="line"><span class="type">int</span> c = b + <span class="number">5</span>;    <span class="comment">// 用表达式初始化</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 批量声明</span></span><br><span class="line"><span class="type">int</span> x, y, z;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用 const 定义常量（值不可修改）</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> rate = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-
-
-
 <p><strong>C语言有 <code>short int</code> 和 <code>long int</code> 等变体来适配不同大小的需求：</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">short</span> <span class="type">int</span> s = <span class="number">32767</span>;        <span class="comment">// 通常 2 字节</span></span><br><span class="line"><span class="type">int</span> i = <span class="number">2147483647</span>;         <span class="comment">// 通常 4 字节</span></span><br><span class="line"><span class="type">long</span> <span class="type">int</span> l = <span class="number">2147483647L</span>;   <span class="comment">// 4 或 8 字节</span></span><br><span class="line"><span class="type">long</span> <span class="type">long</span> <span class="type">int</span> ll = <span class="number">9223372036854775807LL</span>; <span class="comment">// 通常 8 字节</span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> ui = <span class="number">4294967295U</span>; <span class="comment">// 无符号，可表示更大正数</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="常见用法与注意事项"><a href="#常见用法与注意事项" class="headerlink" title="常见用法与注意事项"></a>常见用法与注意事项</h4><ul>
 <li><p><strong>打印输出</strong>：使用 <code>%d</code> 占位符，无符号用 <code>%u</code>。</p>
 </li>
@@ -141,63 +135,68 @@
 <li><strong>不能是关键字</strong>：不能用C语言保留的关键字，比如 <code>int</code>、<code>if</code>、<code>return</code>。</li>
 <li><strong>长度限制</strong>：C标准规定内部名至少区分前31个字符，外部名至少6个，单字符（如循环变量<code>i</code>）也有特定用途。现代编译器通常支持更长，但建议不要过长。</li>
 </ul>
-<h3 id="有效与无效的标识符示例"><a href="#有效与无效的标识符示例" class="headerlink" title="有效与无效的标识符示例"></a>有效与无效的标识符示例</h3><table>
+<h3 id="有效与无效的标识符示例"><a href="#有效与无效的标识符示例" class="headerlink" title="有效与无效的标识符示例"></a>有效与无效的标识符示例</h3><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">标识符示例</th>
-<th align="left">是否有效</th>
-<th align="left">说明</th>
+<th style="text-align:left">标识符示例</th>
+<th style="text-align:left">是否有效</th>
+<th style="text-align:left">说明</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left"><code>myVariable</code></td>
-<td align="left">✅ 有效</td>
-<td align="left">字母开头，标准驼峰命名</td>
+<tbody>
+<tr>
+<td style="text-align:left"><code>myVariable</code></td>
+<td style="text-align:left">✅ 有效</td>
+<td style="text-align:left">字母开头，标准驼峰命名</td>
 </tr>
 <tr>
-<td align="left"><code>_count</code></td>
-<td align="left">✅ 有效</td>
-<td align="left">下划线开头，常用于系统内部变量，需谨慎使用</td>
+<td style="text-align:left"><code>_count</code></td>
+<td style="text-align:left">✅ 有效</td>
+<td style="text-align:left">下划线开头，常用于系统内部变量，需谨慎使用</td>
 </tr>
 <tr>
-<td align="left"><code>Data_1</code></td>
-<td align="left">✅ 有效</td>
-<td align="left">字母、数字和下划线组合</td>
+<td style="text-align:left"><code>Data_1</code></td>
+<td style="text-align:left">✅ 有效</td>
+<td style="text-align:left">字母、数字和下划线组合</td>
 </tr>
 <tr>
-<td align="left"><code>2data</code></td>
-<td align="left">❌ 无效</td>
-<td align="left"><strong>数字不能作为开头</strong></td>
+<td style="text-align:left"><code>2data</code></td>
+<td style="text-align:left">❌ 无效</td>
+<td style="text-align:left"><strong>数字不能作为开头</strong></td>
 </tr>
 <tr>
-<td align="left"><code>my-variable</code></td>
-<td align="left">❌ 无效</td>
-<td align="left"><strong>连字符是非法字符</strong></td>
+<td style="text-align:left"><code>my-variable</code></td>
+<td style="text-align:left">❌ 无效</td>
+<td style="text-align:left"><strong>连字符是非法字符</strong></td>
 </tr>
 <tr>
-<td align="left"><code>float</code></td>
-<td align="left">❌ 无效</td>
-<td align="left"><strong><code>float</code>是C语言关键字</strong></td>
+<td style="text-align:left"><code>float</code></td>
+<td style="text-align:left">❌ 无效</td>
+<td style="text-align:left"><strong><code>float</code>是C语言关键字</strong></td>
 </tr>
 <tr>
-<td align="left"><code>$amount</code></td>
-<td align="left">❌ 无效</td>
-<td align="left"><strong>美元符号是非法字符</strong></td>
+<td style="text-align:left"><code>$amount</code></td>
+<td style="text-align:left">❌ 无效</td>
+<td style="text-align:left"><strong>美元符号是非法字符</strong></td>
 </tr>
 <tr>
-<td align="left"><code>姓名</code></td>
-<td align="left">依赖编译器</td>
-<td align="left">现代编译器可能支持Unicode，但<strong>强烈不建议</strong>这样用</td>
+<td style="text-align:left"><code>姓名</code></td>
+<td style="text-align:left">依赖编译器</td>
+<td style="text-align:left">现代编译器可能支持Unicode，但<strong>强烈不建议</strong>这样用</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="常见的命名习惯"><a href="#常见的命名习惯" class="headerlink" title="常见的命名习惯"></a><strong>常见的命名习惯</strong></h4><ul>
 <li><strong>见名知意</strong>：用 <code>studentAge</code> 而不是 <code>sa</code> 或 <code>a</code>。</li>
-<li><strong>变量&#x2F;函数</strong>：常用<strong>驼峰命名法</strong> (<code>studentCount</code>) 或<strong>下划线法</strong> (<code>student_count</code>)。</li>
-<li><strong>常量&#x2F;宏</strong>：通常<strong>全大写，单词间用下划线</strong> (<code>MAX_SIZE</code>)。</li>
+<li><strong>变量/函数</strong>：常用<strong>驼峰命名法</strong> (<code>studentCount</code>) 或<strong>下划线法</strong> (<code>student_count</code>)。</li>
+<li><strong>常量/宏</strong>：通常<strong>全大写，单词间用下划线</strong> (<code>MAX_SIZE</code>)。</li>
 <li><strong>避免误导</strong>：少用 <code>l</code>、<code>O</code> 等容易和数字混淆的字母。</li>
 </ul>
 <h2 id="2-4-算数表达式"><a href="#2-4-算数表达式" class="headerlink" title="2.4 算数表达式"></a>2.4 算数表达式</h2><p><strong>算术表达式</strong>是C语言中由<strong>操作数</strong>（变量、常量、函数返回值等）和<strong>算术运算符</strong>组成、用于进行数学计算的式子，其计算结果是一个数值。</p>
 <h3 id="2-4-1-算术运算符"><a href="#2-4-1-算术运算符" class="headerlink" title="2.4.1 算术运算符"></a>2.4.1 算术运算符</h3><p>C语言提供以下基本算术运算符：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -207,7 +206,8 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>+</code></td>
 <td>加</td>
 <td><code>a + b</code></td>
@@ -249,7 +249,9 @@
 <td><code>a--</code>、<code>--a</code></td>
 <td>变量值减 1</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="2-4-2-运算符的优先级与结合性"><a href="#2-4-2-运算符的优先级与结合性" class="headerlink" title="2.4.2 运算符的优先级与结合性"></a>2.4.2 运算符的优先级与结合性</h3><p><strong>优先级从高到低：</strong></p>
 <ol>
 <li><code>()</code> 括号</li>
@@ -258,27 +260,16 @@
 <li><code>+</code>、<code>-</code>（双目运算符）</li>
 </ol>
 <h3 id="2-4-3-几个关键特性"><a href="#2-4-3-几个关键特性" class="headerlink" title="2.4.3 几个关键特性"></a>2.4.3 几个关键特性</h3><h4 id="整数除法会截断小数部分"><a href="#整数除法会截断小数部分" class="headerlink" title="整数除法会截断小数部分"></a><strong>整数除法会截断小数部分</strong></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">7</span> / <span class="number">2</span>;      <span class="comment">// 结果是 3，不是 3.5</span></span><br><span class="line"><span class="type">double</span> b = <span class="number">7.0</span> / <span class="number">2</span>; <span class="comment">// 结果是 3.5</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="取模运算-只能用于整数"><a href="#取模运算-只能用于整数" class="headerlink" title="取模运算 % 只能用于整数"></a>取模运算 <code>%</code> 只能用于整数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> r = <span class="number">10</span> % <span class="number">3</span>;   <span class="comment">// 结果是 1</span></span><br><span class="line"><span class="comment">// 10.5 % 3 是错误的，% 不能用于浮点数</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h4><p>当不同类型的数据参与运算时，编译器会自动将”低精度”类型转换为”高精度”类型再计算，例如 <code>int + double</code> 的结果是 <code>double</code>。</p>
 <ul>
 <li><strong>自动转换</strong>：不同类型混合运算时，窄类型自动转为宽类型（如 <code>int</code> 转 <code>float</code>）</li>
 <li><strong>强制转换</strong>：用 <code>(类型)</code> 显式转换，如 <code>(float)a / b</code></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">5</span>, b = <span class="number">2</span>;</span><br><span class="line"><span class="type">float</span> result1 = a / b;       <span class="comment">// 结果为 2.0（整数除法）</span></span><br><span class="line"><span class="type">float</span> result2 = (<span class="type">float</span>)a / b; <span class="comment">// 结果为 2.5</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
 <h2 id="2-5-算数表达式（int）"><a href="#2-5-算数表达式（int）" class="headerlink" title="2.5 算数表达式（int）"></a>2.5 算数表达式（int）</h2><p>略。</p>
 <h2 id="2-6-案例：健康数据"><a href="#2-6-案例：健康数据" class="headerlink" title="2.6 案例：健康数据"></a>2.6 案例：健康数据</h2><p>略。</p>
-<h2 id="2-7-浮点数（double）"><a href="#2-7-浮点数（double）" class="headerlink" title="2.7 浮点数（double）"></a>2.7 浮点数（double）</h2><p>在 C 语言中,**双精度浮点数(double)**是一种用于表示带小数的实数的数据类型,相比单精度浮点数(float)拥有更高的精度和更大的数值范围。</p>
+<h2 id="2-7-浮点数（double）"><a href="#2-7-浮点数（double）" class="headerlink" title="2.7 浮点数（double）"></a>2.7 浮点数（double）</h2><p>在 C 语言中,<strong>双精度浮点数(double)</strong>是一种用于表示带小数的实数的数据类型,相比单精度浮点数(float)拥有更高的精度和更大的数值范围。</p>
 <h4 id="基本特征"><a href="#基本特征" class="headerlink" title="基本特征"></a>基本特征</h4><p><strong>存储大小</strong>:通常占用 8 个字节(64 位),而 float 只占 4 个字节(32 位)。</p>
 <p><strong>精度</strong>:大约有 15-17 位有效十进制数字,远高于 float 的 6-7 位。</p>
 <p><strong>数值范围</strong>:大约从 ±2.23 × 10⁻³⁰⁸ 到 ±1.79 × 10³⁰⁸。</p>
@@ -289,10 +280,8 @@
 <li>52 位尾数位</li>
 </ul>
 <h4 id="声明与使用"><a href="#声明与使用" class="headerlink" title="声明与使用"></a>声明与使用</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">double</span> pi = <span class="number">3.141592653589793</span>;</span><br><span class="line">    <span class="type">double</span> large = <span class="number">1.5e308</span>;      <span class="comment">// 科学计数法</span></span><br><span class="line">    <span class="type">double</span> small = <span class="number">2.5e-10</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 输出时使用 %lf 或 %f</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pi = %lf\n&quot;</span>, pi);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;精确到 10 位小数: %.10lf\n&quot;</span>, pi);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="与-float-的对比"><a href="#与-float-的对比" class="headerlink" title="与 float 的对比"></a>与 float 的对比</h4><table>
+<h4 id="与-float-的对比"><a href="#与-float-的对比" class="headerlink" title="与 float 的对比"></a>与 float 的对比</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>特性</th>
@@ -300,7 +289,8 @@
 <th>double(双精度)</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>字节数</td>
 <td>4</td>
 <td>8</td>
@@ -320,7 +310,9 @@
 <td>%f</td>
 <td>%lf</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ol>
 <li><strong>字面量默认是 double</strong>:在 C 中,像 <code>3.14</code> 这样的字面量默认就是 double 类型,如果想表示 float 需要写成 <code>3.14f</code>。</li>
 <li><strong>精度有限</strong>:即使是 double 也不能精确表示所有实数,例如 <code>0.1 + 0.2</code> 不会严格等于 <code>0.3</code>,因此比较浮点数时通常用差的绝对值小于某个极小值(如 1e-9)来判断。</li>
@@ -331,9 +323,6 @@
 <h2 id="2-8-浮点数字面量的科学计数法"><a href="#2-8-浮点数字面量的科学计数法" class="headerlink" title="2.8 浮点数字面量的科学计数法"></a>2.8 浮点数字面量的科学计数法</h2><p>在 C 语言里，<strong>科学计数法</strong>（也称指数计数法）是一种用 <code>e</code> 或 <code>E</code> 表示浮点数的方式，专门用来简洁地书写<strong>非常大或非常小</strong>的数值。</p>
 <p>核心格式是：<strong>尾数 <code>e</code> 指数</strong>，表示 <strong>尾数 × 10^指数</strong>。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> big = <span class="number">1.23e4</span>;    <span class="comment">// 1.23 × 10⁴ = 12300.0</span></span><br><span class="line"><span class="type">double</span> small = <span class="number">5.67E-3</span>; <span class="comment">// 5.67 × 10⁻³ = 0.00567</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="格式规则分解"><a href="#格式规则分解" class="headerlink" title="格式规则分解"></a>格式规则分解</h4><ul>
 <li><p><strong>尾数部分</strong>:</p>
 <ul>
@@ -355,20 +344,12 @@
 </li>
 </ul>
 <h4 id="合法与非法示例"><a href="#合法与非法示例" class="headerlink" title="合法与非法示例"></a>合法与非法示例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 合法</span></span><br><span class="line"><span class="type">double</span> a = <span class="number">1.5e3</span>;       <span class="comment">// 1500</span></span><br><span class="line"><span class="type">double</span> b = <span class="number">1.5E3</span>;       <span class="comment">// 1500(E 大写也行)</span></span><br><span class="line"><span class="type">double</span> c = <span class="number">1e10</span>;        <span class="comment">// 10000000000(尾数可省略小数点)</span></span><br><span class="line"><span class="type">double</span> d = .<span class="number">5e2</span>;        <span class="comment">// 50(尾数可省略整数部分)</span></span><br><span class="line"><span class="type">double</span> e = <span class="number">5.e2</span>;        <span class="comment">// 500(尾数可省略小数部分)</span></span><br><span class="line"><span class="type">double</span> f = <span class="number">1.5e+3</span>;      <span class="comment">// 1500(指数前的 + 可省略)</span></span><br><span class="line"><span class="type">double</span> g = <span class="number">-1.5e-3</span>;     <span class="comment">// -0.0015</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 非法</span></span><br><span class="line"><span class="type">double</span> h = <span class="number">1.5e3</span>.<span class="number">5</span>;     <span class="comment">// 错误:指数必须是整数</span></span><br><span class="line"><span class="type">double</span> i = <span class="number">1.5</span>e;        <span class="comment">// 错误:缺少指数</span></span><br><span class="line"><span class="type">double</span> j = e3;          <span class="comment">// 错误:缺少尾数</span></span><br><span class="line"><span class="type">double</span> k = <span class="number">1.5</span> e3;      <span class="comment">// 错误:e 前后不能有空格</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="字面量的类型"><a href="#字面量的类型" class="headerlink" title="字面量的类型"></a>字面量的类型</h4><p>科学计数法字面量<strong>默认是 double 类型</strong>:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> x = <span class="number">1.5e3</span>;    <span class="comment">// double 类型</span></span><br><span class="line"><span class="type">float</span>  y = <span class="number">1.5e3</span>f;   <span class="comment">// 加 f 后缀变成 float</span></span><br><span class="line"><span class="type">long</span> <span class="type">double</span> z = <span class="number">1.5e3</span>L;  <span class="comment">// 加 L 后缀变成 long double</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="输出时的格式符"><a href="#输出时的格式符" class="headerlink" title="输出时的格式符"></a>输出时的格式符</h3><p>要用 <code>printf</code> 以科学计数法输出，用 <strong><code>%e</code></strong>（小写 e）或 <strong><code>%E</code></strong>（大写 E）：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> num = <span class="number">1234.567</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%e\n&quot;</span>, num);   <span class="comment">// 输出：1.234567e+03</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%E\n&quot;</span>, num);   <span class="comment">// 输出：1.234567E+03</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.2e\n&quot;</span>, num); <span class="comment">// 输出：1.23e+03 (控制小数位数)</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><table>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>写法</th>
@@ -376,7 +357,8 @@
 <th>等价于</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>1.5e3</code></td>
 <td>1.5 × 10³</td>
 <td>1500.0</td>
@@ -401,25 +383,19 @@
 <td>-3.14 × 10²</td>
 <td>-314.0</td>
 </tr>
-</tbody></table>
-<h4 id="位数计算"><a href="#位数计算" class="headerlink" title="位数计算"></a>位数计算</h4><p>**大于0：**指数 &#x3D; 小数点向左移动的位数，即 230000 &#x3D; 2.3 * e5</p>
+</tbody>
+</table>
+</div>
+<h4 id="位数计算"><a href="#位数计算" class="headerlink" title="位数计算"></a>位数计算</h4><p><strong>大于0：</strong>指数 = 小数点向左移动的位数，即 230000 = 2.3 * e5</p>
 <ul>
 <li>或 把小数点<strong>向左</strong>移动,直到只剩一位非零数字在小数点前。移动了几位,指数就是几。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">230000</span>  →  <span class="number">2.30000</span> × <span class="number">10</span>⁵   (小数点左移 <span class="number">5</span> 位)→ <span class="number">2.3e5</span></span><br><span class="line"><span class="number">4500</span>    →  <span class="number">4.500</span>   × <span class="number">10</span>³   (小数点左移 <span class="number">3</span> 位)→ <span class="number">4.5e3</span></span><br><span class="line"><span class="number">7</span>       →  <span class="number">7.0</span>     × <span class="number">10</span>⁰   (没有移动)        → <span class="number">7e0</span></span><br><span class="line"><span class="number">1234.5</span>  →  <span class="number">1.2345</span>  × <span class="number">10</span>³   (小数点左移 <span class="number">3</span> 位)→ <span class="number">1.2345e3</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>**小于0：**指数 &#x3D; -(小数点向右移动到第一个非零数字之后的位数)，即：0.0000567 &#x3D; 5.67 * e-5</p>
+<p><strong>小于0：</strong>指数 = -(小数点向右移动到第一个非零数字之后的位数)，即：0.0000567 = 5.67 * e-5</p>
 <ul>
 <li>或 把小数点<strong>向右</strong>移动,直到第一个非零数字的右边，移动了几位,指数就是 -几。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.0000567</span>  →  <span class="number">5.67</span> × <span class="number">10</span>⁻⁵   (小数点右移 <span class="number">5</span> 位)→ <span class="number">5.67e-5</span></span><br><span class="line"><span class="number">0.0023</span>     →  <span class="number">2.3</span>  × <span class="number">10</span>⁻³   (小数点右移 <span class="number">3</span> 位)→ <span class="number">2.3e-3</span></span><br><span class="line"><span class="number">0.5</span>        →  <span class="number">5.0</span>  × <span class="number">10</span>⁻¹   (小数点右移 <span class="number">1</span> 位)→ <span class="number">5e-1</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
 <h2 id="2-9-常量"><a href="#2-9-常量" class="headerlink" title="2.9 常量"></a>2.9 常量</h2><p>常量（Constant）是指在程序运行过程中其值<strong>不能被改变</strong>的量。与变量相对，常量一旦定义就保持固定。</p>
 <h3 id="2-9-1-字面常量（直接常量）"><a href="#2-9-1-字面常量（直接常量）" class="headerlink" title="2.9.1 字面常量（直接常量）"></a><strong>2.9.1 字面常量（直接常量）</strong></h3><p>直接在代码中写出的值：</p>
 <ul>
@@ -430,19 +406,10 @@
 </ul>
 <h3 id="2-9-2-使用-define-定义的符号常量（宏常量）"><a href="#2-9-2-使用-define-定义的符号常量（宏常量）" class="headerlink" title="2.9.2 使用 #define 定义的符号常量（宏常量）"></a>2.9.2 使用 <code>#define</code> 定义的符号常量（宏常量）</h3><p>通过预处理器进行文本替换，没有数据类型：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14159</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX_SIZE 100</span></span><br><span class="line"></span><br><span class="line"><span class="type">float</span> area = PI * r * r;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="2-9-3-使用-const-修饰的常变量"><a href="#2-9-3-使用-const-修饰的常变量" class="headerlink" title="2.9.3 使用 const 修饰的常变量"></a>2.9.3 使用 <code>const</code> 修饰的常变量</h3><p>有明确数据类型，编译器会进行类型检查：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> days = <span class="number">7</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">float</span> pi = <span class="number">3.14159</span>;</span><br><span class="line"></span><br><span class="line">days = <span class="number">8</span>;  <span class="comment">// 错误！不能修改 const 变量</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="2-9-4-枚举常量"><a href="#2-9-4-枚举常量" class="headerlink" title="2.9.4 枚举常量"></a>2.9.4 <strong>枚举常量</strong></h3><p>用 <code>enum</code> 定义的一组命名整数常量：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Weekday</span> &#123;</span> MON, TUE, WED, THU, FRI &#125;;</span><br><span class="line"><span class="comment">// MON=0, TUE=1, WED=2, ...</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="2-9-5-转义字符常量"><a href="#2-9-5-转义字符常量" class="headerlink" title="2.9.5 转义字符常量"></a>2.9.5 转义字符常量</h3><p>以反斜杠 <code>\</code> 开头，代表特殊的控制字符，也属于字符常量。</p>
 <ul>
 <li><code>\n</code>：换行</li>
@@ -455,9 +422,6 @@
 <h4 id="使用常量的好处"><a href="#使用常量的好处" class="headerlink" title="使用常量的好处"></a>使用常量的好处</h4><p>提高代码可读性（<code>PI</code> 比 <code>3.14159</code> 更直观）、便于维护（修改一处即可全局生效）、防止意外修改重要数值。</p>
 <h2 id="2-10-数学函数"><a href="#2-10-数学函数" class="headerlink" title="2.10 数学函数"></a>2.10 数学函数</h2><p>C语言中的数学函数是标准库提供的一组用于执行常见数学运算的预定义函数，它们大多声明在头文件 <code>&lt;math.h&gt;</code> 中。使用前需要包含这个头文件：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="2-10-1-常用数学函数分类"><a href="#2-10-1-常用数学函数分类" class="headerlink" title="2.10.1 常用数学函数分类"></a>2.10.1 常用数学函数分类</h3><h4 id="1-基本算术函数"><a href="#1-基本算术函数" class="headerlink" title="1. 基本算术函数"></a>1. 基本算术函数</h4><ul>
 <li><code>fabs(x)</code> — 浮点数的绝对值</li>
 <li><code>fmod(x, y)</code> — 浮点数取余 (x除以y的余数)</li>
@@ -475,7 +439,7 @@
 <h4 id="3-三角函数"><a href="#3-三角函数" class="headerlink" title="3. 三角函数"></a>3. 三角函数</h4><ul>
 <li><code>sin(x)</code>, <code>cos(x)</code>, <code>tan(x)</code> — 正弦、余弦、正切（x以弧度为单位）</li>
 <li><code>asin(x)</code>, <code>acos(x)</code>, <code>atan(x)</code> — 反正弦、反余弦、反正切</li>
-<li><code>atan2(y, x)</code> — 计算y&#x2F;x的反正切，能正确处理象限</li>
+<li><code>atan2(y, x)</code> — 计算y/x的反正切，能正确处理象限</li>
 </ul>
 <h4 id="4-双曲函数"><a href="#4-双曲函数" class="headerlink" title="4. 双曲函数"></a>4. 双曲函数</h4><ul>
 <li><code>sinh(x)</code>, <code>cosh(x)</code>, <code>tanh(x)</code> — 双曲正弦、余弦、正切</li>
@@ -487,7 +451,7 @@
 <li><code>trunc(x)</code> — 截断小数部分 (C99)</li>
 </ul>
 <h4 id="6-其他函数"><a href="#6-其他函数" class="headerlink" title="6. 其他函数"></a>6. 其他函数</h4><ul>
-<li><code>fmax(x, y)</code> &#x2F; <code>fmin(x, y)</code> — 返回较大&#x2F;较小值 (C99)</li>
+<li><code>fmax(x, y)</code> / <code>fmin(x, y)</code> — 返回较大/较小值 (C99)</li>
 <li><code>fabs(x)</code> — 浮点数绝对值</li>
 <li><code>ldexp(x, exp)</code> — x * 2^exp</li>
 <li><code>frexp(x, *exp)</code> — 将x分解为尾数和指数</li>
@@ -495,9 +459,6 @@
 <li><code>tgamma(x)</code> — Gamma函数 (C99)</li>
 </ul>
 <h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">double</span> x = <span class="number">16.0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sqrt(%.1f) = %.2f\n&quot;</span>, x, <span class="built_in">sqrt</span>(x));      <span class="comment">// 4.00</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pow(2, 10) = %.0f\n&quot;</span>, <span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">10</span>));      <span class="comment">// 1024</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sin(π/2) = %.2f\n&quot;</span>, <span class="built_in">sin</span>(M_PI / <span class="number">2</span>));     <span class="comment">// 1.00</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;log(e) = %.2f\n&quot;</span>, <span class="built_in">log</span>(M_E));            <span class="comment">// 1.00</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="关键注意点："><a href="#关键注意点：" class="headerlink" title="关键注意点："></a><strong>关键注意点：</strong></h4><ul>
 <li><p>几乎所有数学函数的参数和返回值都是 <code>double</code> 类型（也有 <code>float</code> 和 <code>long double</code> 版本，如 <code>sinf</code>, <code>sinl</code>）</p>
 </li>
@@ -506,84 +467,46 @@
 <li><p>使用 <code>pow()</code> 时注意精度问题和可能的性能开销</p>
 </li>
 <li><p>在使用 GCC 等编译器时，编译数学函数代码可能需要手动链接数学库，加上 <code>-lm</code> 选项：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc program.c -o program -lm</span><br></pre></td></tr></table></figure></li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc program.c -o program -lm</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <h2 id="2-11-除法和取模"><a href="#2-11-除法和取模" class="headerlink" title="2.11 除法和取模"></a>2.11 除法和取模</h2><h3 id="2-11-1-除法运算符"><a href="#2-11-1-除法运算符" class="headerlink" title="2.11.1 除法运算符 /"></a>2.11.1 除法运算符 <code>/</code></h3><h4 id="浮点数除法"><a href="#浮点数除法" class="headerlink" title="浮点数除法"></a>浮点数除法</h4><p>只要两个操作数中有一个是浮点数（<code>float</code> 或 <code>double</code>），执行的就是通常的数学除法，结果也是浮点数。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">float</span> a = <span class="number">5.0</span> / <span class="number">2.0</span>;   <span class="comment">// 结果是 2.5</span></span><br><span class="line"><span class="type">float</span> b = <span class="number">5</span> / <span class="number">2.0</span>;     <span class="comment">// 结果是 2.5</span></span><br><span class="line"><span class="type">float</span> c = <span class="number">5.0</span> / <span class="number">2</span>;     <span class="comment">// 结果是 2.5</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="整数除法"><a href="#整数除法" class="headerlink" title="整数除法"></a>整数除法</h4><p>如果<strong>两个操作数都是整数</strong>，C语言会执行<strong>整数除法</strong>，即结果只保留<strong>整数部分，直接截断小数</strong>（向零取整）。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">5</span> / <span class="number">2</span>;    <span class="comment">// 结果是 2，不是 2.5</span></span><br><span class="line"><span class="type">int</span> b = <span class="number">3</span> / <span class="number">4</span>;    <span class="comment">// 结果是 0</span></span><br><span class="line"><span class="type">int</span> c = <span class="number">-5</span> / <span class="number">2</span>;   <span class="comment">// 结果是 -2 (C99标准后，向零取整)</span></span><br><span class="line"><span class="type">int</span> d = <span class="number">5</span> / <span class="number">-2</span>;   <span class="comment">// 结果是 -2</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>特别注意</strong>：整数除法不会四舍五入，而是直接丢弃小数部分。</p>
 <h3 id="2-11-2-取模运算符"><a href="#2-11-2-取模运算符" class="headerlink" title="2.11.2 取模运算符 %"></a>2.11.2 取模运算符 <code>%</code></h3><p>取模运算符 <code>%</code> 用于求两个<strong>整数</strong>相除后的余数，<strong>不能用于浮点数</strong>。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">5</span> % <span class="number">2</span>;    <span class="comment">// 结果是 1 (5 = 2*2 + 1)</span></span><br><span class="line"><span class="type">int</span> b = <span class="number">10</span> % <span class="number">3</span>;   <span class="comment">// 结果是 1 (10 = 3*3 + 1)</span></span><br><span class="line"><span class="type">int</span> c = <span class="number">3</span> % <span class="number">5</span>;    <span class="comment">// 结果是 3 (3 = 5*0 + 3)</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="结果的符号规则"><a href="#结果的符号规则" class="headerlink" title="结果的符号规则"></a>结果的符号规则</h4><p>这非常重要：<code>a % b</code> 的结果符号<strong>总与 <code>a</code>（被除数）的符号相同</strong>（符合C99及以后标准）。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> d = <span class="number">-5</span> % <span class="number">2</span>;   <span class="comment">// 结果是 -1 (-5 = 2*(-2) + (-1))</span></span><br><span class="line"><span class="type">int</span> e = <span class="number">5</span> % <span class="number">-2</span>;   <span class="comment">// 结果是  1 (5 = -2*(-2) + 1)</span></span><br></pre></td></tr></table></figure>
-
 <p>可以这样记忆：只要 <code>a</code> 是负数，结果就是负数或零。</p>
 <h4 id="等式关系"><a href="#等式关系" class="headerlink" title="等式关系"></a>等式关系</h4><p>除法与取模的结果总是满足：<br><code>a = (a / b) * b + (a % b)</code></p>
 <h3 id="2-11-3-常见陷阱与实用技巧"><a href="#2-11-3-常见陷阱与实用技巧" class="headerlink" title="2.11.3 常见陷阱与实用技巧"></a>2.11.3 常见陷阱与实用技巧</h3><h4 id="误用整数除法"><a href="#误用整数除法" class="headerlink" title="误用整数除法"></a><strong>误用整数除法</strong></h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> result = <span class="number">5</span> / <span class="number">2</span>; <span class="comment">// result的值是2.0，不是2.5！</span></span><br></pre></td></tr></table></figure>
-
 <p>因为 <code>5</code> 和 <code>2</code> 都是整数，先执行了整数除法得到 <code>2</code>，然后才将 <code>2</code> 转换为 <code>2.0</code> 赋值。要得到正确结果，必须将至少一个操作数转为浮点数：<code>5.0 / 2</code> 或 <code>(double)5 / 2</code>。</p>
 <h4 id="对负数取模"><a href="#对负数取模" class="headerlink" title="对负数取模"></a><strong>对负数取模</strong></h4><p>不同编程语言处理负数取模的方式不同，在C语言中，结果的符号一定与被除数相同。这在编写跨语言代码时很容易混淆。</p>
 <h4 id="循环与奇偶判断"><a href="#循环与奇偶判断" class="headerlink" title="循环与奇偶判断"></a><strong>循环与奇偶判断</strong></h4><p>取模最常用的是判断奇偶和实现循环边界。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (num % <span class="number">2</span> == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 偶数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 让索引index在0到(N-1)之间循环</span></span><br><span class="line">index = (index + <span class="number">1</span>) % N;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="浮点数不能取模"><a href="#浮点数不能取模" class="headerlink" title="浮点数不能取模"></a><strong>浮点数不能取模</strong></h3><p><code>3.14 % 2</code> 是错误的。如果需要对浮点数求余，可以使用标准库函数 <code>fmod</code>（声明在 <code>math.h</code> 里）。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="type">double</span> result = <span class="built_in">fmod</span>(<span class="number">5.3</span>, <span class="number">2.0</span>); <span class="comment">// result约为 1.3</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="2-12-类型转换"><a href="#2-12-类型转换" class="headerlink" title="2.12 类型转换"></a>2.12 类型转换</h2><p>类型转换（Type Conversion &#x2F; Type Casting）是指将一种数据类型的值转换为另一种数据类型。C语言中的类型转换分为两大类：<strong>隐式转换</strong>和<strong>显式转换</strong>。</p>
+<h2 id="2-12-类型转换"><a href="#2-12-类型转换" class="headerlink" title="2.12 类型转换"></a>2.12 类型转换</h2><p>类型转换（Type Conversion / Type Casting）是指将一种数据类型的值转换为另一种数据类型。C语言中的类型转换分为两大类：<strong>隐式转换</strong>和<strong>显式转换</strong>。</p>
 <h3 id="2-12-1-隐式类型转换（自动转换）"><a href="#2-12-1-隐式类型转换（自动转换）" class="headerlink" title="2.12.1 隐式类型转换（自动转换）"></a>2.12.1 隐式类型转换（自动转换）</h3><p>由编译器自动完成，无需程序员干预。常见场景包括：</p>
 <h4 id="1-算术运算中的类型提升"><a href="#1-算术运算中的类型提升" class="headerlink" title="1. 算术运算中的类型提升"></a><strong>1. 算术运算中的类型提升</strong></h4><p>当不同类型的数据进行运算时，编译器会自动将”低精度”类型转换为”高精度”类型，遵循以下顺序：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>/<span class="type">short</span> → <span class="type">int</span> → <span class="type">unsigned</span> <span class="type">int</span> → <span class="type">long</span> → <span class="type">unsigned</span> <span class="type">long</span> → <span class="type">long</span> <span class="type">long</span> → <span class="type">float</span> → <span class="type">double</span> → <span class="type">long</span> <span class="type">double</span></span><br></pre></td></tr></table></figure>
-
 <p><strong>示例</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="type">double</span> b = <span class="number">3.14</span>;</span><br><span class="line"><span class="type">double</span> result = a + b;  <span class="comment">// a 被自动转换为 double 类型</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="2-赋值时的转换"><a href="#2-赋值时的转换" class="headerlink" title="2. 赋值时的转换"></a>2. 赋值时的转换</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">3.7</span>;     <span class="comment">// double 转 int，结果 x = 3（小数部分被截断）</span></span><br><span class="line"><span class="type">double</span> y = <span class="number">5</span>;    <span class="comment">// int 转 double，结果 y = 5.0</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="3-函数参数传递时的转换"><a href="#3-函数参数传递时的转换" class="headerlink" title="3. 函数参数传递时的转换"></a><strong>3. 函数参数传递时的转换</strong></h4><p>实参类型会自动转换为形参声明的类型。</p>
 <h3 id="2-12-2-显式类型转换（强制转换）"><a href="#2-12-2-显式类型转换（强制转换）" class="headerlink" title="2.12.2 显式类型转换（强制转换）"></a>2.12.2 显式类型转换（强制转换）</h3><p>由程序员通过强制转换运算符 <code>(类型名)</code> 明确指定。</p>
 <p><strong>语法</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(目标类型) 表达式</span><br></pre></td></tr></table></figure>
-
 <p><strong>示例</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">10</span>, b = <span class="number">3</span>;</span><br><span class="line"><span class="type">double</span> result = (<span class="type">double</span>)a / b;  <span class="comment">// 将 a 强制转为 double，结果为 3.333...</span></span><br><span class="line"></span><br><span class="line"><span class="type">float</span> f = <span class="number">3.75</span>;</span><br><span class="line"><span class="type">int</span> n = (<span class="type">int</span>)f;  <span class="comment">// n = 3，小数部分被舍弃</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="2-12-3-需要注意的问题"><a href="#2-12-3-需要注意的问题" class="headerlink" title="2.12.3 需要注意的问题"></a>2.12.3 需要注意的问题</h3><h4 id="1-精度丢失"><a href="#1-精度丢失" class="headerlink" title="1. 精度丢失"></a>1. 精度丢失</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> d = <span class="number">3.99</span>;</span><br><span class="line"><span class="type">int</span> i = (<span class="type">int</span>)d;  <span class="comment">// i = 3，不是四舍五入</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="2-数据溢出"><a href="#2-数据溢出" class="headerlink" title="2. 数据溢出"></a>2. 数据溢出</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> big = <span class="number">300</span>;</span><br><span class="line"><span class="type">char</span> c = (<span class="type">char</span>)big;  <span class="comment">// char 范围一般是 -128~127，会溢出</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="3-整数除法陷阱"><a href="#3-整数除法陷阱" class="headerlink" title="3. 整数除法陷阱"></a>3. 整数除法陷阱</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">5</span>, b = <span class="number">2</span>;</span><br><span class="line"><span class="type">double</span> r1 = a / b;          <span class="comment">// r1 = 2.0（整数除法后才转换）</span></span><br><span class="line"><span class="type">double</span> r2 = (<span class="type">double</span>)a / b;  <span class="comment">// r2 = 2.5（正确做法）</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="4-指针类型转换"><a href="#4-指针类型转换" class="headerlink" title="4. 指针类型转换"></a>4. 指针类型转换</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *p;</span><br><span class="line"><span class="type">int</span> *ip = (<span class="type">int</span> *)p;  <span class="comment">// void指针转具体类型指针时必须强制转换</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="小结对比"><a href="#小结对比" class="headerlink" title="小结对比"></a>小结对比</h4><table>
+<h4 id="小结对比"><a href="#小结对比" class="headerlink" title="小结对比"></a>小结对比</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>类型</th>
@@ -592,7 +515,8 @@
 <th>使用场景</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>隐式转换</td>
 <td>编译器自动</td>
 <td>通常安全（精度可能丢失）</td>
@@ -604,7 +528,9 @@
 <td>需谨慎使用</td>
 <td>需要明确控制转换时</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="核心风险"><a href="#核心风险" class="headerlink" title="核心风险"></a>核心风险</h4><ul>
 <li><strong>数据丢失</strong>：高精度转低精度时，如 <code>int</code> 转 <code>short</code>，可能截断高位。</li>
 <li><strong>符号改变</strong>：负的 <code>int</code> 转为 <code>unsigned int</code>，值会变成一个很大的正数。</li>
@@ -612,72 +538,72 @@
 </ul>
 <h2 id="2-13-二进制"><a href="#2-13-二进制" class="headerlink" title="2.13 二进制"></a>2.13 二进制</h2><h3 id="2-13-1-十进制转二进制"><a href="#2-13-1-十进制转二进制" class="headerlink" title="2.13.1 十进制转二进制"></a>2.13.1 十进制转二进制</h3><h4 id="方法：除2取余法（倒序读取）"><a href="#方法：除2取余法（倒序读取）" class="headerlink" title="方法：除2取余法（倒序读取）"></a>方法：除2取余法（倒序读取）</h4><p>不断用2去除十进制数,记录每次的<strong>余数</strong>,直到商为0,然后<strong>从下往上</strong>读取余数。</p>
 <h4 id="示例：把-13-转换为二进制"><a href="#示例：把-13-转换为二进制" class="headerlink" title="示例：把 13 转换为二进制"></a>示例：把 13 转换为二进制</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">13 ÷ 2 = 6 …… 余 1  ↑</span><br><span class="line"> 6 ÷ 2 = 3 …… 余 0  │</span><br><span class="line"> 3 ÷ 2 = 1 …… 余 1  │ 从下往上读</span><br><span class="line"> 1 ÷ 2 = 0 …… 余 1  │</span><br></pre></td></tr></table></figure>
-
 <p>从下往上读余数:<strong>1101</strong></p>
-<p>所以 13(十进制) &#x3D; 1101(二进制)</p>
+<p>所以 13(十进制) = 1101(二进制)</p>
 <h3 id="2-13-2-二进制转十进制"><a href="#2-13-2-二进制转十进制" class="headerlink" title="2.13.2 二进制转十进制"></a>2.13.2 二进制转十进制</h3><h4 id="方法：按权展开求和"><a href="#方法：按权展开求和" class="headerlink" title="方法：按权展开求和"></a>方法：按权展开求和</h4><p>二进制每一位的”权”是 2 的幂次,从右往左依次是 2⁰、2¹、2²、2³……把每一位上的数字乘以对应的权,再相加即可。</p>
 <h4 id="示例：把-11001-转换为十进制"><a href="#示例：把-11001-转换为十进制" class="headerlink" title="示例：把 11001 转换为十进制"></a>示例：把 11001 转换为十进制</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1×2⁴ + 1×2³ + 0×2² + 0×2¹ + 1×2⁰</span><br><span class="line">= 16 + 8 + 0 + 0 + 1</span><br><span class="line">= 25</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="快速心算小技巧"><a href="#快速心算小技巧" class="headerlink" title="快速心算小技巧"></a>快速心算小技巧</h4><p>记熟常用的2的幂次，转换会快很多：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="left">2的幂</th>
-<th align="left">十进制值</th>
-<th align="left">二进制</th>
+<th style="text-align:left">2的幂</th>
+<th style="text-align:left">十进制值</th>
+<th style="text-align:left">二进制</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">2⁰</td>
-<td align="left">1</td>
-<td align="left">1</td>
+<tbody>
+<tr>
+<td style="text-align:left">2⁰</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
 </tr>
 <tr>
-<td align="left">2¹</td>
-<td align="left">2</td>
-<td align="left">10</td>
+<td style="text-align:left">2¹</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">10</td>
 </tr>
 <tr>
-<td align="left">2²</td>
-<td align="left">4</td>
-<td align="left">100</td>
+<td style="text-align:left">2²</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">100</td>
 </tr>
 <tr>
-<td align="left">2³</td>
-<td align="left">8</td>
-<td align="left">1000</td>
+<td style="text-align:left">2³</td>
+<td style="text-align:left">8</td>
+<td style="text-align:left">1000</td>
 </tr>
 <tr>
-<td align="left">2⁴</td>
-<td align="left">16</td>
-<td align="left">10000</td>
+<td style="text-align:left">2⁴</td>
+<td style="text-align:left">16</td>
+<td style="text-align:left">10000</td>
 </tr>
 <tr>
-<td align="left">2⁵</td>
-<td align="left">32</td>
-<td align="left">100000</td>
+<td style="text-align:left">2⁵</td>
+<td style="text-align:left">32</td>
+<td style="text-align:left">100000</td>
 </tr>
 <tr>
-<td align="left">2⁶</td>
-<td align="left">64</td>
-<td align="left">1000000</td>
+<td style="text-align:left">2⁶</td>
+<td style="text-align:left">64</td>
+<td style="text-align:left">1000000</td>
 </tr>
 <tr>
-<td align="left">2⁷</td>
-<td align="left">128</td>
-<td align="left">10000000</td>
+<td style="text-align:left">2⁷</td>
+<td style="text-align:left">128</td>
+<td style="text-align:left">10000000</td>
 </tr>
 <tr>
-<td align="left">2⁸</td>
-<td align="left">256</td>
-<td align="left">100000000</td>
+<td style="text-align:left">2⁸</td>
+<td style="text-align:left">256</td>
+<td style="text-align:left">100000000</td>
 </tr>
-</tbody></table>
-<p>心算时，<strong>把十进制数拆成2的幂之和</strong>，然后对应的位写1，其余写0即可。<br>比如 25 &#x3D; 16 + 8 + 1 → 11001，一目了然。</p>
+</tbody>
+</table>
+</div>
+<p>心算时，<strong>把十进制数拆成2的幂之和</strong>，然后对应的位写1，其余写0即可。<br>比如 25 = 16 + 8 + 1 → 11001，一目了然。</p>
 <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
-<li><strong>无限循环小数</strong>：有些十进制小数转二进制会无限循环（如 0.1₁₀ &#x3D; 0.0001100110011…₂），计算机里只能用有限位近似存储，这就是浮点数误差的根源。</li>
+<li><strong>无限循环小数</strong>：有些十进制小数转二进制会无限循环（如 0.1₁₀ = 0.0001100110011…₂），计算机里只能用有限位近似存储，这就是浮点数误差的根源。</li>
 <li><strong>负数</strong>：计算机里通常用补码表示，不是直接用负号加绝对值。</li>
 <li><strong>位宽补齐</strong>：实际编程中常需要补前导零到固定位数（如8位：00011001）。</li>
 </ul>
@@ -685,7 +611,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/05/19/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/" data-id="cuidVpZrWyPMtjfTghZqBBse2" data-title="System-Programming-Module2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/05/19/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/" data-id="cuidtrCMukmsYYGUbmKiegSG4" data-title="System-Programming-Module2" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
