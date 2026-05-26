@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="递归高级">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure-Module8">
+<meta property="og:url" content="http://example.com/2026/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module8-%E9%80%92%E5%BD%92%E9%AB%98%E7%BA%A7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="递归高级">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-17T01:12:30.000Z">
+<meta property="article:modified_time" content="2026-05-11T06:18:29.633Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module8-%E9%80%92%E5%BD%92%E9%AB%98%E7%BA%A7/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module8-%E9%80%92%E5%BD%92%E9%AB%98%E7%BA%A7/","path":"2026/04/17/数据结构/Data-Structure-Module8-递归高级/","title":"Data-Structure-Module8"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Data-Structure-Module8 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E9%AB%98%E7%BA%A7"><span class="nav-number">1.</span> <span class="nav-text">递归高级</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E9%80%92%E5%BD%92%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">8.1 递归的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">8.2 递归算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E5%A4%A7%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0"><span class="nav-number">1.2.1.</span> <span class="nav-text">两大核心要素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92-vs-%E8%BF%AD%E4%BB%A3"><span class="nav-number">1.2.2.</span> <span class="nav-text">递归 vs. 迭代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.3.</span> <span class="nav-text">8.2.1 使用递归实现二分查找算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%A6%81%E7%82%B9"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">关键要点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.3.</span> <span class="nav-text">8.3 递归算法的时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-number">1.3.1.</span> <span class="nav-text">核心思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-1-%E4%B8%BB%E5%AE%9A%E7%90%86%E6%B3%95%EF%BC%88%E6%9C%80%E5%BF%AB%EF%BC%8C%E9%80%82%E5%90%88%E5%88%86%E6%B2%BB%E7%AE%97%E6%B3%95%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">8.3.1 主定理法（最快，适合分治算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-2-%E9%80%92%E5%BD%92%E6%A0%91%E6%B3%95%EF%BC%88%E6%9C%80%E7%9B%B4%E8%A7%82%EF%BC%89"><span class="nav-number">1.3.3.</span> <span class="nav-text">8.3.2 递归树法（最直观）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%92%E5%BD%92%E6%A0%91"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">什么是递归树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%A0%91%E7%9A%84%E6%AD%A3%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">递归树的正式定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%83%E5%92%8C%E2%80%9C%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8%E6%A0%88%E2%80%9D%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">它和“递归调用栈”有什么区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%A0%91%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E7%94%A8%E9%80%94%EF%BC%9A%E5%88%86%E6%9E%90%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">递归树最常见的用途：分析时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E9%80%92%E5%BD%92"><span class="nav-number">1.3.3.5.</span> <span class="nav-text">斐波那契数列递归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%A0%91%E7%9A%84%E9%80%9A%E7%94%A8%E7%BB%98%E5%88%B6%E6%80%9D%E8%B7%AF"><span class="nav-number">1.3.3.6.</span> <span class="nav-text">递归树的通用绘制思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-3-%E4%BB%A3%E5%85%A5%E6%B3%95%EF%BC%88%E5%85%88%E7%8C%9C%E5%90%8E%E8%AF%81%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">8.3.3 代入法（先猜后证）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-4-%E5%B8%B8%E8%A7%81%E9%80%92%E5%BD%92%E6%A8%A1%E5%BC%8F%E9%80%9F%E6%9F%A5"><span class="nav-number">1.4.</span> <span class="nav-text">8.3.4 常见递归模式速查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-%E9%93%BE%E8%A1%A8%EF%BC%9A%E9%80%92%E5%BD%92"><span class="nav-number">1.5.</span> <span class="nav-text">8.4 链表：递归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%AE%9A%E4%B9%89%E9%93%BE%E8%A1%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">递归定义链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%93%8D%E4%BD%9C%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.5.2.</span> <span class="nav-text">递归操作的核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E4%BE%8B%E5%AD%90%EF%BC%9A%E9%80%92%E5%BD%92%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">经典例子：递归反转链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%80%92%E5%BD%92%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.5.4.</span> <span class="nav-text">常见递归应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9%E4%B8%8E%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.5.5.</span> <span class="nav-text">优缺点与注意事项</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module8-%E9%80%92%E5%BD%92%E9%AB%98%E7%BA%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Data-Structure-Module8 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Data-Structure-Module8
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-04-17 09:12:30" itemprop="dateCreated datePublished" datetime="2026-04-17T09:12:30+08:00">2026-04-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-05-11 14:18:29" itemprop="dateModified" datetime="2026-05-11T14:18:29+08:00">2026-05-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="递归高级"><a href="#递归高级" class="headerlink" title="递归高级"></a>递归高级<span id="more"></span></h1><h2 id="8-1-递归的定义"><a href="#8-1-递归的定义" class="headerlink" title="8.1 递归的定义"></a>8.1 递归的定义</h2><p>略。</p>
+<h2 id="8-2-递归算法"><a href="#8-2-递归算法" class="headerlink" title="8.2 递归算法"></a>8.2 递归算法</h2><p>数据结构中的<strong>递归算法</strong>，简单说就是<strong>一个函数在其定义中直接或间接调用自身</strong>。</p>
+<p>你可以把它理解为一种“层层递进，再逐层返回”的思考方式。它不是直接解决整个大问题，而是把大问题不断分解成规模更小、结构相同的子问题，直到子问题简单到可以直接解决，然后把结果逐层合并回去。</p>
+<h4 id="两大核心要素"><a href="#两大核心要素" class="headerlink" title="两大核心要素"></a>两大核心要素</h4><p>一个正确的递归必须包含两部分，缺一不可：</p>
+<ul>
+<li><strong>基准情形（Base Case）</strong><br>这是递归的“出口”。问题简化到最基本情况，无需再递归，直接返回结果。<strong>没有它，函数会无限调用下去，导致栈溢出。</strong></li>
+<li><strong>递归步骤（Recursive Step）</strong><br>把问题分解为更小的同类子问题，并调用函数自身去解决。它必须保证每次调用都<strong>向基准情形靠近</strong>。</li>
+</ul>
+<h4 id="递归-vs-迭代"><a href="#递归-vs-迭代" class="headerlink" title="递归 vs. 迭代"></a>递归 vs. 迭代</h4><p>很多递归算法都能用循环（迭代）重写。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">对比项</th>
+<th style="text-align:left">递归</th>
+<th style="text-align:left">迭代</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>核心思想</strong></td>
+<td style="text-align:left">函数自调用，分解问题</td>
+<td style="text-align:left">循环结构，重复执行代码</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>代码清晰度</strong></td>
+<td style="text-align:left">对树、图等递归结构，代码极简自然</td>
+<td style="text-align:left">线性逻辑更直观</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>性能开销</strong></td>
+<td style="text-align:left">每次调用都有额外开销，可能栈溢出</td>
+<td style="text-align:left">通常效率更高，无栈溢出风险</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>适用场景</strong></td>
+<td style="text-align:left">树和图的遍历、分治算法（如快排）</td>
+<td style="text-align:left">简单重复计算（如阶乘、累加）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="8-2-1-使用递归实现二分查找算法"><a href="#8-2-1-使用递归实现二分查找算法" class="headerlink" title="8.2.1 使用递归实现二分查找算法"></a>8.2.1 使用递归实现二分查找算法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BinarySearch</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 递归二分查找</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> arr 有序数组</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> left 左边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> right 右边界</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> target 目标值</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 目标值的索引，未找到返回-1</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="comment">// 递归终止条件：搜索区间为空</span></span><br><span class="line">        <span class="keyword">if</span> (left &gt; right) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 计算中间索引（避免整数溢出）</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 找到目标值</span></span><br><span class="line">        <span class="keyword">if</span> (arr[mid] == target) &#123;</span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 目标值在左半部分</span></span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &gt; target) &#123;</span><br><span class="line">            <span class="keyword">return</span> binarySearch(arr, left, mid - <span class="number">1</span>, target);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 目标值在右半部分</span></span><br><span class="line">        <span class="keyword">return</span> binarySearch(arr, mid + <span class="number">1</span>, right, target);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 重载方法，简化调用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span>[] arr, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> binarySearch(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>, target);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>, <span class="number">13</span>, <span class="number">15</span>&#125;;</span><br><span class="line">        <span class="type">int</span> <span class="variable">target</span> <span class="operator">=</span> <span class="number">7</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> binarySearch(arr, target);</span><br><span class="line">        <span class="keyword">if</span> (result != -<span class="number">1</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;找到目标值 &quot;</span> + target + <span class="string">&quot;，索引为: &quot;</span> + result);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;未找到目标值 &quot;</span> + target);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关键要点"><a href="#关键要点" class="headerlink" title="关键要点"></a>关键要点</h4><ol>
+<li><strong>递归终止条件</strong>：当 <code>left &gt; right</code> 时，表示搜索区间为空</li>
+<li><strong>避免整数溢出</strong>：使用 <code>left + (right - left) / 2</code> 而不是 <code>(left + right) / 2</code></li>
+<li><strong>时间复杂度</strong>：O(log n)</li>
+<li><strong>空间复杂度</strong>：O(log n)（递归调用栈）</li>
+<li><strong>前提条件</strong>：数组必须是有序的</li>
+</ol>
+<h2 id="8-3-递归算法的时间复杂度"><a href="#8-3-递归算法的时间复杂度" class="headerlink" title="8.3 递归算法的时间复杂度"></a>8.3 递归算法的时间复杂度</h2><p>计算递归算法的时间复杂度，核心是<strong>找出递归关系式，然后求解</strong>。主要方法有三种：递归树法、主定理法和代入法。</p>
+<h4 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h4><p>先建立描述时间开销的递归方程：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = [递归调用的时间] + [分解与合并的时间]</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-1-主定理法（最快，适合分治算法）"><a href="#8-3-1-主定理法（最快，适合分治算法）" class="headerlink" title="8.3.1 主定理法（最快，适合分治算法）"></a>8.3.1 主定理法（最快，适合分治算法）</h3><p>当递归式形式为 <strong>T(n) = a·T(n/b) + f(n)</strong> 时直接套用：</p>
+<ul>
+<li><strong>Case 1</strong>：若 f(n) = O(n^(log_b(a) - ε))，则 T(n) = Θ(n^(log_b(a)))</li>
+<li><strong>Case 2</strong>：若 f(n) = Θ(n^(log_b(a)))，则 T(n) = Θ(n^(log_b(a)) · log n)</li>
+<li><strong>Case 3</strong>：若 f(n) = Ω(n^(log_b(a) + ε)) 且满足正则条件，则 T(n) = Θ(f(n))</li>
+</ul>
+<p><strong>经典例子：</strong></p>
+<p>归并排序 T(n) = 2T(n/2) + O(n)<br>a=2，b=2，log_b(a)=1，f(n)=O(n) 正好是 n¹ → <strong>Case 2</strong><br>结果：<strong>O(n log n)</strong></p>
+<p>二分查找 T(n) = T(n/2) + O(1)<br>a=1，b=2，log_b(a)=0，f(n)=O(1)=n⁰ → <strong>Case 2</strong><br>结果：<strong>O(log n)</strong></p>
+<h3 id="8-3-2-递归树法（最直观）"><a href="#8-3-2-递归树法（最直观）" class="headerlink" title="8.3.2 递归树法（最直观）"></a>8.3.2 递归树法（最直观）</h3><h4 id="什么是递归树"><a href="#什么是递归树" class="headerlink" title="什么是递归树"></a>什么是递归树</h4><p>假如公司里有一条规则：<br><strong>“第1排的人直接告诉老板一句话，后面每个人把前面人的话加上自己的工号，再告诉下一个人。”</strong></p>
+<p>这时候，如果想知道一句话从第1排传到第N排会变成什么样，你会怎么分析？</p>
+<p>你可能会画一棵“倒着长的树”：</p>
+<ul>
+<li>根节点是第1排的原始话；</li>
+<li>每一条边代表“传给下一个人的一次处理”；</li>
+<li>每个节点代表某一排人听到的内容。</li>
+</ul>
+<p>这颗“描述层层调用过程”的树，就非常接近<strong>递归树</strong>的概念。</p>
+<p><strong>递归树就是把递归算法“横向铺开”的一棵树，目的是为了直观理解和数学分析递归的时间复杂度，尤其在分治算法中至关重要。</strong></p>
+<h4 id="递归树的正式定义"><a href="#递归树的正式定义" class="headerlink" title="递归树的正式定义"></a>递归树的正式定义</h4><p>在数据结构与算法分析中，<strong>递归树</strong>是用来<strong>直观描述递归算法执行过程</strong>的一种树形结构：</p>
+<ul>
+<li><strong>根节点</strong>：表示第一次递归调用的问题规模与代价；</li>
+<li><strong>每个节点</strong>：表示一次递归调用要处理的问题，通常标注该次调用的<strong>代价</strong>或<strong>数据规模</strong>；</li>
+<li><strong>边</strong>：表示调用关系，从父问题指向子问题；</li>
+<li><strong>叶节点</strong>：表示递归终止条件，即不再继续递归的 base case。</li>
+</ul>
+<p>一句话总结：</p>
+<blockquote>
+<p>递归树 = 把递归的调用关系画成一棵树，用来直观地看问题如何被分解，以及总工作量如何累加。</p>
+</blockquote>
+<h4 id="它和“递归调用栈”有什么区别？"><a href="#它和“递归调用栈”有什么区别？" class="headerlink" title="它和“递归调用栈”有什么区别？"></a>它和“递归调用栈”有什么区别？</h4><ul>
+<li><strong>递归调用栈</strong>：是程序运行时真实发生的栈帧压入/弹出，是一维的、纵向的时间线；</li>
+<li><strong>递归树</strong>：是<strong>空间展开、静态分析模型</strong>，把每一次递归调用都画成一个节点，以便分析<strong>总代价</strong>。</li>
+</ul>
+<p>你可以这样理解：<br>递归调用栈是“演电影”，一步步发生；递归树是“分镜头剧本”，一次性铺开看清所有分支。</p>
+<h4 id="递归树最常见的用途：分析时间复杂度"><a href="#递归树最常见的用途：分析时间复杂度" class="headerlink" title="递归树最常见的用途：分析时间复杂度"></a>递归树最常见的用途：分析时间复杂度</h4><p>递归树的经典应用场景，就是用来<strong>求解递归方程</strong>，例如：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">T(n) = 2T(n/2) + O(n)</span><br></pre></td></tr></table></figure>
+<p>步骤通常是：</p>
+<ol>
+<li><strong>画根节点</strong>：代价 cn<em>c**n</em>（规模 n）；</li>
+<li><strong>一层层展开</strong>：<ul>
+<li>第1层：2个 n/2<em>n</em>/2，每份代价 cn/2<em>c**n</em>/2，合计 cn<em>c**n</em>；</li>
+<li>第2层：4个 n/4<em>n</em>/4，每份代价 cn/4<em>c**n</em>/4，合计 cn<em>c**n</em>；</li>
+</ul>
+</li>
+<li><strong>直到叶节点</strong>：n<em>n</em> 个规模为1的子问题，每份代价常数；</li>
+<li><strong>累加每层代价</strong> × <strong>树高</strong>。</li>
+</ol>
+<p>于是得到结论：总代价 ≈ O(nlog⁡n)<em>O</em>(<em>n</em>log<em>n</em>)<br>这恰好就是归并排序的复杂度分析方法之一。</p>
+<h4 id="斐波那契数列递归"><a href="#斐波那契数列递归" class="headerlink" title="斐波那契数列递归"></a><strong>斐波那契数列递归</strong></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fib</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> n</span><br><span class="line">    <span class="keyword">return</span> fib(n-<span class="number">1</span>) + fib(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>对于 <code>fib(4)</code>，递归树如下（省略规模很小的部分标注）：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">             fib(4)</span><br><span class="line">           /       \</span><br><span class="line">      fib(3)       fib(2)</span><br><span class="line">      /    \        /    \</span><br><span class="line">  fib(2) fib(1) fib(1) fib(0)</span><br><span class="line">   /   \</span><br><span class="line">fib(1) fib(0)</span><br></pre></td></tr></table></figure>
+<p>在这棵树里：</p>
+<ul>
+<li><strong>节点</strong> = 一次函数调用；</li>
+<li><strong>节点数</strong> ≈ 重复计算量；</li>
+<li>可以看出很多子问题（如 <code>fib(2)</code>）被重复计算多次；</li>
+<li>从而可以<strong>从树形直观看到指数爆炸的原因</strong>，进而引出动态规划优化的动机。</li>
+</ul>
+<h4 id="递归树的通用绘制思路"><a href="#递归树的通用绘制思路" class="headerlink" title="递归树的通用绘制思路"></a>递归树的通用绘制思路</h4><p>如果你需要手画递归树来分析一道题，可按以下步骤：</p>
+<ol>
+<li>确定<strong>递归关系</strong>，比如 T(n)=aT(n/b)+f(n)<em>T</em>(<em>n</em>)=<em>a**T</em>(<em>n</em>/<em>b</em>)+<em>f</em>(<em>n</em>)；</li>
+<li>根 - 规模 n<em>n</em>，非递归代价 f(n)<em>f</em>(<em>n</em>)；</li>
+<li>逐层展开：<ul>
+<li>第 i 层有 ai<em>a**i</em> 个节点；</li>
+<li>每个节点规模 n/bi<em>n</em>/<em>b**i</em>；</li>
+<li>每个节点代价 f(n/bi)<em>f</em>(<em>n</em>/<em>b**i</em>)；</li>
+</ul>
+</li>
+<li>当子问题规模到达 base case 时停止；</li>
+<li>分层相加 → 总代价。</li>
+</ol>
+<h3 id="8-3-3-代入法（先猜后证）"><a href="#8-3-3-代入法（先猜后证）" class="headerlink" title="8.3.3 代入法（先猜后证）"></a>8.3.3 代入法（先猜后证）</h3><p>猜一个复杂度，然后用数学归纳法证明。</p>
+<p>比如 T(n) = 2T(n/2) + n，猜测是 O(n log n)：<br>假设 T(k) ≤ c·k log k 对 k &lt; n 成立，<br>T(n) ≤ 2c·(n/2)log(n/2) + n = cn·log n − cn + n ≤ cn·log n（当 c ≥ 1 时），归纳成立。</p>
+<h2 id="8-3-4-常见递归模式速查"><a href="#8-3-4-常见递归模式速查" class="headerlink" title="8.3.4 常见递归模式速查"></a>8.3.4 常见递归模式速查</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">递归式</th>
+<th style="text-align:left">对应算法</th>
+<th style="text-align:left">时间复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">T(n) = T(n-1) + O(1)</td>
+<td style="text-align:left">线性递归（链表遍历）</td>
+<td style="text-align:left">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:left">T(n) = T(n-1) + O(n)</td>
+<td style="text-align:left">选择排序</td>
+<td style="text-align:left">O(n²)</td>
+</tr>
+<tr>
+<td style="text-align:left">T(n) = 2T(n-1) + O(1)</td>
+<td style="text-align:left">汉诺塔</td>
+<td style="text-align:left">O(2ⁿ)</td>
+</tr>
+<tr>
+<td style="text-align:left">T(n) = T(n/2) + O(1)</td>
+<td style="text-align:left">二分查找</td>
+<td style="text-align:left">O(log n)</td>
+</tr>
+<tr>
+<td style="text-align:left">T(n) = 2T(n/2) + O(n)</td>
+<td style="text-align:left">归并排序</td>
+<td style="text-align:left">O(n log n)</td>
+</tr>
+<tr>
+<td style="text-align:left">T(n) = T(n/2) + O(n)</td>
+<td style="text-align:left">快速选择（平均）</td>
+<td style="text-align:left">O(n)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="8-4-链表：递归"><a href="#8-4-链表：递归" class="headerlink" title="8.4 链表：递归"></a>8.4 链表：递归</h2><p>在数据结构中，链表：递归是指<strong>利用递归的思想来操作或定义链表</strong>。它的核心是把一个链表问题，分解成一个规模更小的同类子问题。</p>
+<p>简单来说，就是把一个长链表想象成由 <strong>“头节点”</strong> 和 <strong>“剩余部分”</strong> 组成，而“剩余部分”本身又是一个链表。这正是递归的用武之地。</p>
+<h4 id="递归定义链表"><a href="#递归定义链表" class="headerlink" title="递归定义链表"></a>递归定义链表</h4><p>可以从定义上把链表看成一个递归结构：<br><strong>一个链表，要么是空的（空链表），要么是一个节点，该节点包含数据，并指向另一个链表（子链表）。</strong></p>
+<p>这个定义本身就是递归的，它为递归算法提供了基础。</p>
+<h4 id="递归操作的核心思想"><a href="#递归操作的核心思想" class="headerlink" title="递归操作的核心思想"></a>递归操作的核心思想</h4><p>处理链表递归时，通常遵循两步：</p>
+<ol>
+<li><strong>处理当前节点（头节点）</strong></li>
+<li><strong>递归处理剩余链表</strong></li>
+</ol>
+<p>这就形成了一个链条，直到遇到终止条件（通常是空链表）。</p>
+<h4 id="经典例子：递归反转链表"><a href="#经典例子：递归反转链表" class="headerlink" title="经典例子：递归反转链表"></a>经典例子：递归反转链表</h4><p>反转链表是理解链表递归的绝佳例子。</p>
+<p><strong>思路拆解：</strong><br>假设链表是 <code>1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; null</code>，我们要反转它。</p>
+<ul>
+<li><strong>递归假设</strong>：先假设 <code>head.next</code> 及之后的部分已经反转好了，变成 <code>4 -&gt; 3 -&gt; 2 -&gt; null</code>。</li>
+<li><strong>处理当前节点</strong>：现在 <code>head</code> 是 <code>1</code>，它仍然指向 <code>2</code>。我们需要让 <code>2</code> 指向 <code>1</code>，并让 <code>1</code> 指向 <code>null</code>。<ul>
+<li>关键操作是 <code>head.next.next = head; head.next = null;</code></li>
+</ul>
+</li>
+<li><strong>终止条件</strong>：当链表为空或只有一个节点时，直接返回，它就是反转后的头节点。</li>
+</ul>
+<p><strong>代码实现 (Java)：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ListNode <span class="title function_">reverseList</span><span class="params">(ListNode head)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 终止条件：空链表或只有一个节点</span></span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span> || head.next == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 2. 递归反转剩余部分，newHead 最终是原链表的尾节点</span></span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">newHead</span> <span class="operator">=</span> reverseList(head.next);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3. 处理当前节点，实现反转指向</span></span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = <span class="literal">null</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 4. 返回新的头节点</span></span><br><span class="line">    <span class="keyword">return</span> newHead;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>过程模拟：</strong><br>当你调用 <code>reverseList(1)</code> 时，它会一路递归到链表末尾节点 <code>4</code>，然后逐层返回。在每一层返回时，执行反转指向的操作，最终 <code>4</code> 成为新头节点，整个链表方向被翻转。</p>
+<h4 id="常见递归应用场景"><a href="#常见递归应用场景" class="headerlink" title="常见递归应用场景"></a>常见递归应用场景</h4><ul>
+<li><strong>正向/反向打印链表</strong></li>
+<li><strong>合并两个有序链表</strong></li>
+<li><strong>回文链表判断</strong>（借助递归的“后序遍历”特性）</li>
+<li><strong>删除链表中指定值的节点</strong></li>
+</ul>
+<h4 id="优缺点与注意事项"><a href="#优缺点与注意事项" class="headerlink" title="优缺点与注意事项"></a>优缺点与注意事项</h4><p><strong>优点</strong>：</p>
+<ul>
+<li><strong>代码简洁</strong>：对于反转、回文判断等复杂操作，代码量很少。</li>
+<li><strong>思想优雅</strong>：符合链表天然的递归结构，能自然实现从后往前的操作。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>空间开销大</strong>：递归会使用系统调用栈，链表很长时可能导致栈溢出。</li>
+<li><strong>性能略低</strong>：函数调用的开销比迭代循环大。</li>
+</ul>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li><strong>必须设定终止条件</strong>，避免无限递归。</li>
+<li><strong>警惕栈溢出</strong>：在线编程平台（如力扣、牛客网）对长链表可能直接限制递归深度。工业级代码长链表通常考虑迭代。</li>
+</ul>
+<p>总的来说，链表递归把大问题化小，用层层分解的方式处理链表，代码往往非常简洁。理解它，对掌握树、图等更复杂的递归结构也很有帮助。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module7-%E9%80%92%E5%BD%92/" rel="prev" title="Data-Structure-Module7">
+                  <i class="fa fa-angle-left"></i> Data-Structure-Module7
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/04/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module9-%E6%A0%91%E7%BB%93%E6%9E%84/" rel="next" title="Data-Structure-Module9">
+                  Data-Structure-Module9 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

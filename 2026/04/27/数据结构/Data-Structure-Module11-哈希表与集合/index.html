@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="哈希表与集合">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data-Structure-Module11">
+<meta property="og:url" content="http://example.com/2026/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module11-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="哈希表与集合">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-27T03:26:36.000Z">
+<meta property="article:modified_time" content="2026-05-09T09:52:57.760Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Data Structure">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module11-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module11-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88/","path":"2026/04/27/数据结构/Data-Structure-Module11-哈希表与集合/","title":"Data-Structure-Module11"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Data-Structure-Module11 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88"><span class="nav-number">1.</span> <span class="nav-text">哈希表与集合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-%E6%98%A0%E5%B0%84%E7%9A%84%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88ADT%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">11.1 映射的抽象数据类型（ADT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-1-%E6%A0%B8%E5%BF%83%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">11.1.1 核心定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-2-ADT-%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.2.</span> <span class="nav-text">11.1.2 ADT 核心操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">1.2.</span> <span class="nav-text">11.2 哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">11.2.1 基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%88%E5%B8%8C"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">什么是哈希</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">什么是哈希表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-2-%E5%93%88%E5%B8%8C%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">11.2.2 哈希码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-3-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%EF%BC%9A%E7%94%9F%E6%88%90%E5%92%8C%E8%BF%90%E7%94%A8%E5%93%88%E5%B8%8C%E7%A0%81%E7%9A%84%E8%A7%84%E5%88%99"><span class="nav-number">1.2.3.</span> <span class="nav-text">11.2.3 哈希函数：生成和运用哈希码的规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">完整流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-4-%E5%93%88%E5%B8%8C%E7%A0%81%E3%80%81%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0%E5%92%8C%E5%93%88%E5%B8%8C%E8%A1%A8%E6%A6%82%E5%BF%B5%E5%8C%BA%E5%88%86"><span class="nav-number">1.2.4.</span> <span class="nav-text">11.2.4 哈希码、哈希函数和哈希表概念区分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB%EF%BC%9A%E5%9C%A8%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C%E8%A7%92%E8%89%B2"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">核心区别：在流程中的不同角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E4%BD%9C%E6%B5%81%E7%A8%8B%EF%BC%9A%E4%B8%80%E6%AC%A1%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">协作流程：一次插入操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%94%E7%B3%BB%E4%B8%8E%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">联系与对比总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-5-%E5%93%88%E5%B8%8C%E5%86%B2%E7%AA%81"><span class="nav-number">1.2.5.</span> <span class="nav-text">11.2.5 哈希冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%8F%91%E7%94%9F%E5%86%B2%E7%AA%81%EF%BC%9F"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">为什么会发生冲突？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%A3%E5%86%B3%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">核心解决策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E4%B8%80%EF%BC%9A%E9%93%BE%E8%A1%A8%E6%B3%95%EF%BC%88Separate-Chaining%EF%BC%89"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">策略一：链表法（Separate Chaining）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E4%BA%8C%EF%BC%9A%E5%BC%80%E6%94%BE%E5%AF%BB%E5%9D%80%E6%B3%95%EF%BC%88Open-Addressing%EF%BC%89"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">策略二：开放寻址法（Open Addressing）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-6-%E5%93%88%E5%B8%8C%E6%A1%B6"><span class="nav-number">1.2.6.</span> <span class="nav-text">11.2.6 哈希桶</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8F%AB%E2%80%9C%E6%A1%B6%E2%80%9D%EF%BC%9F"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">为什么要叫“桶”？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E6%A1%B6%E7%9A%84%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">哈希桶的内部结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%8A%B6%E6%80%81%E7%9A%84%E4%B8%A4%E7%A7%8D%E2%80%9C%E6%A1%B6%E2%80%9D%E5%8C%BA%E5%88%86"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">关键状态的两种“桶”区分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E8%A7%A3%E5%93%88%E5%B8%8C%E6%A1%B6%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="nav-number">1.2.6.4.</span> <span class="nav-text">图解哈希桶的工作流</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E9%93%BE%E5%9C%B0%E5%9D%80%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">11.3 链地址法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.3.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.2.</span> <span class="nav-text">工作流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E8%A7%A3%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.3.</span> <span class="nav-text">图解结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.3.4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-1-%E9%93%BE%E5%BC%8F%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-number">1.3.5.</span> <span class="nav-text">11.3.1 链式哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0%E5%AF%B9%E6%AF%94"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">两种哈希表实现对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B"><span class="nav-number">1.4.</span> <span class="nav-text">11.4 线性探测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-1-%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E5%9F%BA%E6%9C%AC%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.1.</span> <span class="nav-text">11.4.1 线性探测基本过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%BC%BA%E7%82%B9"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">主要缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-2-%E5%93%88%E5%B8%8C%E8%A1%A8%E7%9A%84%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">11.4.2 哈希表的线性探测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">移除</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-3-%E7%A9%BA%E6%A1%B6%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%B1%80%E9%99%90%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9B%A0%E5%AD%90"><span class="nav-number">1.4.3.</span> <span class="nav-text">11.4.3 空桶实现的局限与负载因子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-5-%E4%BA%8C%E6%AC%A1%E6%8E%A2%E6%B5%8B"><span class="nav-number">1.5.</span> <span class="nav-text">11.5 二次探测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">1.5.2.</span> <span class="nav-text">举例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E6%AC%A1%E6%8E%A2%E6%B5%8B%E6%84%8F%E4%B9%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">二次探测意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.5.4.</span> <span class="nav-text">关键注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-number">1.5.5.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-6-%E5%8F%8C%E9%87%8D%E5%93%88%E5%B8%8C"><span class="nav-number">1.6.</span> <span class="nav-text">11.6 双重哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.6.1.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.6.2.</span> <span class="nav-text">一个具体的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E4%BC%98%E5%8A%BF"><span class="nav-number">1.6.3.</span> <span class="nav-text">关键优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%A6%81%E6%B1%82"><span class="nav-number">1.6.4.</span> <span class="nav-text">关键要求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-7-%E8%B0%83%E6%95%B4%E5%93%88%E5%B8%8C%E8%A1%A8%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.7.</span> <span class="nav-text">11.7 调整哈希表大小</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-7-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%B0%83%E6%95%B4%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.7.1.</span> <span class="nav-text">11.7.1 为什么要调整大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-7-2-%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.7.2.</span> <span class="nav-text">11.7.2 触发条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E5%83%8F%E6%95%B0%E7%BB%84%E4%B8%80%E6%A0%B7%E5%8E%9F%E5%9C%B0%E6%89%A9%E5%AE%B9%EF%BC%9F"><span class="nav-number">1.7.2.1.</span> <span class="nav-text">为什么不像数组一样原地扩容？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-7-3-%E9%87%8D%E6%96%B0%E5%93%88%E5%B8%8C%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">1.7.3.</span> <span class="nav-text">11.7.3 重新哈希的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E6%BC%94%E7%A4%BA"><span class="nav-number">1.7.3.1.</span> <span class="nav-text">示例演示</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-7-4-%E5%AE%9E%E9%99%85%E5%AE%9E%E7%8E%B0%E4%B8%AD%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7"><span class="nav-number">1.7.4.</span> <span class="nav-text">11.7.4 实际实现中的优化技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-8-%E5%B8%B8%E7%94%A8%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="nav-number">1.8.</span> <span class="nav-text">11.8 常用哈希函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-8-1-%E7%9B%B4%E6%8E%A5%E5%AE%9A%E5%9D%80%E6%B3%95"><span class="nav-number">1.8.1.</span> <span class="nav-text">11.8.1 直接定址法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-8-2-%E6%95%B0%E5%AD%97%E5%88%86%E6%9E%90%E6%B3%95"><span class="nav-number">1.8.2.</span> <span class="nav-text">11.8.2 数字分析法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-8-3-%E5%B9%B3%E6%96%B9%E5%8F%96%E4%B8%AD%E6%B3%95"><span class="nav-number">1.8.3.</span> <span class="nav-text">11.8.3 平方取中法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-8-4-%E6%8A%98%E5%8F%A0%E6%B3%95"><span class="nav-number">1.8.4.</span> <span class="nav-text">11.8.4 折叠法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-8-5-%E9%99%A4%E7%95%99%E4%BD%99%E6%95%B0%E6%B3%95%EF%BC%88%E6%9C%80%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="nav-number">1.8.5.</span> <span class="nav-text">11.8.5 除留余数法（最常用）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-9-%E7%9B%B4%E6%8E%A5%E5%93%88%E5%B8%8C-Direct-hashing"><span class="nav-number">1.9.</span> <span class="nav-text">11.9 直接哈希(Direct hashing)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%9B%B4%E8%A7%82%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">1.9.1.</span> <span class="nav-text">一个直观的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%93%88%E5%B8%8C%E7%9A%84%E8%87%B4%E5%91%BD%E7%BC%BA%E9%99%B7"><span class="nav-number">1.9.2.</span> <span class="nav-text">直接哈希的致命缺陷</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E%E5%85%B6%E4%BB%96%E6%96%B9%E6%B3%95%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.9.3.</span> <span class="nav-text">与其他方法的对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-10-%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%EF%BC%9A%E5%AF%86%E7%A0%81%E5%AD%A6%E3%80%81%E5%AF%86%E7%A0%81%E5%93%88%E5%B8%8C"><span class="nav-number">1.10.</span> <span class="nav-text">11.10 哈希算法：密码学、密码哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-10-1-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="nav-number">1.10.1.</span> <span class="nav-text">11.10.1 密码学哈希函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-10-2-%E5%AF%86%E7%A0%81%E5%93%88%E5%B8%8C"><span class="nav-number">1.10.2.</span> <span class="nav-text">11.10.2 密码哈希</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.10.2.1.</span> <span class="nav-text">对比总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-11-%E9%9B%86%E5%90%88%E7%9A%84%E6%8A%BD%E8%B1%A1%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%EF%BC%88ADT%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">11.11 集合的抽象数据类型（ADT）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-11-1-%E5%AE%9A%E4%B9%89%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.11.1.</span> <span class="nav-text">11.11.1 定义与核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-11-2-%E6%A0%B8%E5%BF%83%E6%93%8D%E4%BD%9C"><span class="nav-number">1.11.2.</span> <span class="nav-text">11.11.2 核心操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%ABADT%EF%BC%9F"><span class="nav-number">1.11.2.1.</span> <span class="nav-text">为什么叫ADT？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-11-3-%E9%9B%86%E5%90%88%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80"><span class="nav-number">1.11.3.</span> <span class="nav-text">11.11.3 集合的数学基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%AE%9A%E4%B9%89"><span class="nav-number">1.11.3.1.</span> <span class="nav-text">一、基本概念与定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%A0%B8%E5%BF%83%E8%BF%90%E7%AE%97"><span class="nav-number">1.11.3.2.</span> <span class="nav-text">二、核心运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BB%8E%E6%95%B0%E5%AD%A6%E5%88%B0%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%85%B3%E9%94%AE%E6%98%A0%E5%B0%84"><span class="nav-number">1.11.3.3.</span> <span class="nav-text">三、从数学到数据结构的关键映射</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/04/27/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module11-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%B8%8E%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Data-Structure-Module11 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Data-Structure-Module11
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-04-27 11:26:36" itemprop="dateCreated datePublished" datetime="2026-04-27T11:26:36+08:00">2026-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-05-09 17:52:57" itemprop="dateModified" datetime="2026-05-09T17:52:57+08:00">2026-05-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="哈希表与集合"><a href="#哈希表与集合" class="headerlink" title="哈希表与集合"></a>哈希表与集合<span id="more"></span></h1><h2 id="11-1-映射的抽象数据类型（ADT）"><a href="#11-1-映射的抽象数据类型（ADT）" class="headerlink" title="11.1 映射的抽象数据类型（ADT）"></a>11.1 映射的抽象数据类型（ADT）</h2><p>映射（字典）的抽象数据类型，简单说就是定义了一组<strong>键值对（key-value pair）</strong>集合上的操作规范，它只告诉你“能做什么”，不关心“怎么做”。</p>
+<h3 id="11-1-1-核心定义"><a href="#11-1-1-核心定义" class="headerlink" title="11.1.1 核心定义"></a>11.1.1 核心定义</h3><p>映射可看作一种特殊的集合，其中每个元素都是一对<strong>唯一键</strong>和<strong>关联值</strong>的绑定。最核心的特征是：</p>
+<ul>
+<li><strong>键唯一</strong>：每个键在映射中只能出现一次</li>
+<li><strong>键到值的单向映射</strong>：给定键，能快速找到对应的值</li>
+<li><strong>值可重复</strong>：不同的键可以映射到相同的值</li>
+</ul>
+<h3 id="11-1-2-ADT-核心操作"><a href="#11-1-2-ADT-核心操作" class="headerlink" title="11.1.2 ADT 核心操作"></a>11.1.2 ADT 核心操作</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>put(key, value)</code>、<code>insert(key, value)</code></td>
+<td style="text-align:left">向映射中添加键值对。若键已存在，通常更新其值</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>get(key)</code></td>
+<td style="text-align:left">返回与键关联的值。若键不存在，可能报错或返回空</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>remove(key)</code></td>
+<td style="text-align:left">删除指定键及其关联值</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>contains(key)</code></td>
+<td style="text-align:left">检查映射中是否存在该键</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>size()</code> / <code>isEmpty()</code></td>
+<td style="text-align:left">返回键值对数量 / 判空</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>keys()</code> / <code>values()</code> / <code>entries()</code> / <code>getLength()</code></td>
+<td style="text-align:left">返回所有键、所有值或所有键值对的集合视图、或集合的长度</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="11-2-哈希表"><a href="#11-2-哈希表" class="headerlink" title="11.2 哈希表"></a>11.2 哈希表</h2><h3 id="11-2-1-基本概念"><a href="#11-2-1-基本概念" class="headerlink" title="11.2.1 基本概念"></a>11.2.1 基本概念</h3><h4 id="什么是哈希"><a href="#什么是哈希" class="headerlink" title="什么是哈希"></a>什么是哈希</h4><p>哈希，本质是一个<strong>将任意长度的输入，通过特定算法，变换成固定长度的输出</strong>的过程。这个过程就好比给一本书配上一个唯一的国际标准书号（ISBN），无论这本书多厚，书号长度都是固定的。</p>
+<p>这个转换函数叫<strong>哈希函数</strong>，输出的值叫<strong>哈希值</strong>。理想的哈希函数需要满足：</p>
+<ul>
+<li><strong>确定性</strong>：同一个输入，无论算多少次，结果必须相同。</li>
+<li><strong>高效性</strong>：计算速度要非常快。</li>
+<li><strong>均匀性</strong>：不同输入得到的哈希值，应尽可能均匀分布，避免扎堆。</li>
+</ul>
+<h4 id="什么是哈希表"><a href="#什么是哈希表" class="headerlink" title="什么是哈希表"></a>什么是哈希表</h4><p><strong>哈希表，也叫散列表，是一种基于哈希思想实现的高效“键 - 值对”存储结构。</strong></p>
+<p>它就相当于一个通过书号（ISBN）极速找书的智能书架。核心思想是，用你存储的“键”，通过哈希函数算出它对应的“值”应该存在哪个位置。它的核心思想是<strong>将键映射为数组的索引</strong>，这样查找时一步到位，理想情况下时间复杂度是惊人的 <strong>O(1)</strong>。</p>
+<p><strong>一个典型的存值过程：</strong><br>你要存 <code>“张三”的电话号码 138xxxx</code> 。</p>
+<ol>
+<li>哈希表用哈希函数计算<code>“张三”</code>的哈希值，得到一个数字。</li>
+<li>用这个数字对底层数组的总长度取模，得到索引 <code>3</code>。</li>
+<li>将这组键值对存入数组的第 <code>3</code> 个位置。</li>
+<li>下次用 <code>“张三”</code> 查询时，通过相同的计算，就能直接去位置 <code>3</code> 取出号码。</li>
+</ol>
+<h3 id="11-2-2-哈希码"><a href="#11-2-2-哈希码" class="headerlink" title="11.2.2 哈希码"></a>11.2.2 哈希码</h3><p>哈希码（Hash Code）就是一个<strong>整数</strong>。</p>
+<p>你可以把它理解为哈希函数为一段数据（比如一个字符串、一个对象）生成的<strong>数字摘要或指纹</strong>。</p>
+<ul>
+<li><strong>特点</strong>：它本身不是数据在哈希表里的最终存储位置（索引），而是生成索引的<strong>原材料</strong>。</li>
+<li><strong>作用</strong>：它的本质是尽量用一个紧凑的数字，来代表一段可能很复杂、很大的原始数据，方便计算机后续进行高速的数学运算（比如取模）。</li>
+</ul>
+<p>回到储物柜的比喻：哈希码不是“3号柜”，而是管理员看到“书包”这俩字后，脑子里蹦出的一个内部编号，比如 <strong>888</strong>。他需要基于 888 再做一步运算，才决定最终是 3 号柜。</p>
+<h3 id="11-2-3-哈希函数：生成和运用哈希码的规则"><a href="#11-2-3-哈希函数：生成和运用哈希码的规则" class="headerlink" title="11.2.3 哈希函数：生成和运用哈希码的规则"></a>11.2.3 哈希函数：生成和运用哈希码的规则</h3><p>哈希函数（Hash Function）的范围更广，它包含了两个关键的步骤：</p>
+<p><strong>第一步：生成哈希码</strong><br>把任意长度的输入，通过一套算法，转换成一个固定长度的整数（即哈希码）。</p>
+<ul>
+<li><strong>要求</strong>：这个过程必须是<strong>确定性</strong>的，同一个输入，哪怕运行一万次，也必须生成一模一样的哈希码。</li>
+<li><strong>例子</strong>：在Java中，每个对象都有 <code>hashCode()</code> 方法，它就是用来做这件事的。对于字符串 “abc”，它的 <code>hashCode()</code> 会永远返回 <code>96354</code>。</li>
+</ul>
+<p><strong>第二步：将哈希码转化为数组索引</strong><br>哈希表内部是有固定大小的数组，哈希码这个整数可能非常大（比如上亿），远超数组长度。所以，需要第二步运算，把这个大范围的整数，映射到数组的有效索引范围内（比如 0 到 15）。</p>
+<ul>
+<li><strong>常见方法</strong>：最直接的就是<strong>取模运算</strong>。<br><code>index = hashcode % array_length</code><br>这就是为什么哈希函数常被通俗地解释为“将键映射为索引的函数”，因为它最终干了这件事。</li>
+</ul>
+<h4 id="完整流程"><a href="#完整流程" class="headerlink" title="完整流程"></a>完整流程</h4><p>假设你创建了一个大小为 16 的哈希表，并想存入键值对 <code>&quot;apple&quot; -&gt; 5.0</code>。</p>
+<ol>
+<li><strong>调用哈希函数，生成哈希码</strong><br>哈希函数读取键 <code>&quot;apple&quot;</code>，根据算法（比如每个字符的ASCII值进行 <code>31 * 前一个结果 + 当前字符值</code> 的循环计算），得到一个整数 <strong>哈希码</strong>，假设是 <code>96548</code>。</li>
+<li><strong>转化哈希码为索引</strong><br>哈希函数继续用这个哈希码对数组长度取模：<br><code>索引 = 96548 % 16 = 4</code><br>最终，它返回 <code>4</code>。</li>
+<li><strong>存入哈希表</strong><br>哈希表拿到索引 <code>4</code>，将 <code>&quot;apple&quot;</code> 和 <code>5.0</code> 这个整体，存到内部数组的第 4 号槽位里。</li>
+</ol>
+<h3 id="11-2-4-哈希码、哈希函数和哈希表概念区分"><a href="#11-2-4-哈希码、哈希函数和哈希表概念区分" class="headerlink" title="11.2.4 哈希码、哈希函数和哈希表概念区分"></a>11.2.4 哈希码、哈希函数和哈希表概念区分</h3><h4 id="核心区别：在流程中的不同角色"><a href="#核心区别：在流程中的不同角色" class="headerlink" title="核心区别：在流程中的不同角色"></a>核心区别：在流程中的不同角色</h4><ul>
+<li><strong>哈希函数 (Hash Function)</strong><br><strong>本质是规则</strong>。它是一个函数/算法，职责是接收任意长度的输入，输出一个固定长度的值。<br><em>例如：<code>hash(&quot;张三&quot;)</code> 这个计算过程本身，就是哈希函数。</em></li>
+<li><strong>哈希码 (Hash Code)</strong><br><strong>本质是中间值</strong>。它是哈希函数计算后的直接产物，通常是一个整数。但它<strong>不是</strong>最终数据在内存中的存储地址。<br><em>例如：<code>hash(&quot;张三&quot;)</code> 计算得出 <code>123456</code>，这个 <code>123456</code> 就是哈希码。</em></li>
+<li><strong>哈希表 (Hash Table)</strong><br><strong>本质是完整存储结构</strong>。它是一个包含底层数组、哈希函数、冲突解决策略在内的“套装”，直接用来增删改查数据。<br><em>你可以直接对它说：<code>map.put(&quot;张三&quot;, &quot;138xxxx&quot;)</code>。</em></li>
+</ul>
+<h4 id="协作流程：一次插入操作"><a href="#协作流程：一次插入操作" class="headerlink" title="协作流程：一次插入操作"></a>协作流程：一次插入操作</h4><p>当你执行 <code>map.put(&quot;张三&quot;, &quot;138xxxx&quot;)</code> 时，内部会经历一个三级流转的过程：</p>
+<ol>
+<li><strong>生成哈希码</strong><br>哈希表调用哈希函数，计算Key的哈希码。<br><code>int hashCode = hash(&quot;张三&quot;)</code> // 得到哈希码</li>
+<li><strong>映射为数组索引 (压缩映射)</strong><br>哈希表拿到哈希码后，自己内部再做进一步处理，将哈希码转换为数组的具体槽位，这一步也叫<strong>压缩映射</strong>。<br><code>int index = hashCode % array.length</code> // 得到具体位置</li>
+<li><strong>存入底层数组</strong><br>哈希表将Value (<code>&quot;138xxxx&quot;</code>) 存放到数组的 <code>index</code> 位置。如果该位置有冲突，就启动链表或红黑树等解决机制。</li>
+</ol>
+<p>关键点来了：<strong>哈希函数和哈希码都不直接操作内存，只有哈希表管理真正的存储。</strong></p>
+<h4 id="联系与对比总结"><a href="#联系与对比总结" class="headerlink" title="联系与对比总结"></a>联系与对比总结</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">项目</th>
+<th style="text-align:left">哈希函数</th>
+<th style="text-align:left">哈希码</th>
+<th style="text-align:left">哈希表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>是什么</strong></td>
+<td style="text-align:left">算法 / 规则</td>
+<td style="text-align:left">算法输出的一个<strong>整数</strong></td>
+<td style="text-align:left">基于哈希思想实现的<strong>数据结构</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>核心任务</strong></td>
+<td style="text-align:left">把任意输入变成固定长度的输出</td>
+<td style="text-align:left">作为Key的”摘要”，是通往最终索引的桥梁</td>
+<td style="text-align:left">向使用者提供 O(1) 级别的键值存取服务</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>使用者</strong></td>
+<td style="text-align:left">通常被哈希表或其他加密算法调用</td>
+<td style="text-align:left">被哈希表内部逻辑（压缩映射）使用</td>
+<td style="text-align:left">被软件工程师直接调用</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>是否有冲突</strong></td>
+<td style="text-align:left">理想上希望无冲突，但实际上可能存在（碰撞）</td>
+<td style="text-align:left">不同对象可能有相同哈希码，这很正常</td>
+<td style="text-align:left">必须处理<strong>哈希码冲突导致的索引冲突</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>典型产出</strong></td>
+<td style="text-align:left">SHA-256算法、Java的 <code>hashCode()</code> 方法</td>
+<td style="text-align:left"><code>123456</code> (一个整型值)</td>
+<td style="text-align:left">Java的 <code>HashMap</code>、Python的 <code>dict</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="11-2-5-哈希冲突"><a href="#11-2-5-哈希冲突" class="headerlink" title="11.2.5 哈希冲突"></a>11.2.5 哈希冲突</h3><p>哈希冲突，也叫哈希碰撞，可以看作是<strong>两个不同的数据，被哈希算法分到了同一个“格子”里</strong>。它是哈希表设计中无法回避、必须妥善解决的核心问题。</p>
+<h4 id="为什么会发生冲突？"><a href="#为什么会发生冲突？" class="headerlink" title="为什么会发生冲突？"></a>为什么会发生冲突？</h4><p>这背后的根本原因，是两个数字上的“不对称”：</p>
+<ul>
+<li><strong>无限的输入</strong>：现实世界中，可作为“键”的数据是无穷无尽的。例如，各种长度的用户名、字符串。</li>
+<li><strong>有限的输出</strong>：无论采用哪种算法，哈希码通常都是一个固定范围的整数。在Java中，<code>int</code>类型的范围是-2³¹到2³¹-1。而底层数组的真实槽位数量，远比这个范围更小。</li>
+</ul>
+<p>用有限的格子去映射无限的物品，<strong>冲突在数学上是必然的</strong>。这就像给全世界的人分配10个房间，无论算法多精妙，总会有人被分到同一个房间。好的哈希函数，只是让冲突尽可能均匀、尽可能少，但无法消灭它。</p>
+<h4 id="核心解决策略"><a href="#核心解决策略" class="headerlink" title="核心解决策略"></a>核心解决策略</h4><h4 id="策略一：链表法（Separate-Chaining）"><a href="#策略一：链表法（Separate-Chaining）" class="headerlink" title="策略一：链表法（Separate Chaining）"></a>策略一：链表法（Separate Chaining）</h4><p>这是最常见、最朴素的方法。</p>
+<ul>
+<li><strong>核心思想</strong>：让哈希表的每个“格子”，不再直接存单个数据，而是存一个链表（或红黑树等动态结构）的<strong>头指针</strong>。</li>
+<li><strong>工作流程</strong>：<ul>
+<li>多个数据冲突了，没关系，都挂在这个格子上的链表中。</li>
+<li>查找时，先通过哈希码找到格子，再沿着链表逐个比对<strong>原始的“键”</strong>本身，直到找到完全匹配的。</li>
+</ul>
+</li>
+<li><strong>现实应用</strong>：Java 的 <code>HashMap</code> 就是典型。当冲突过多、链表过长时，它还会将链表转化为红黑树，保证哪怕冲突严重，查询效率也不会退化得太难看（从 O(n) 优化到 O(log n)）。</li>
+</ul>
+<p>可以理解为：一个储物柜里又加装了几个挂钩，挂所有人的包，取的时候看标签上的名字。</p>
+<h4 id="策略二：开放寻址法（Open-Addressing）"><a href="#策略二：开放寻址法（Open-Addressing）" class="headerlink" title="策略二：开放寻址法（Open Addressing）"></a>策略二：开放寻址法（Open Addressing）</h4><p>这种方法没有链表，数据直接存在底层数组里。</p>
+<ul>
+<li><strong>核心思想</strong>：当一个键算出的索引位置被占了，就按某种固定规则，去探查<strong>“下一个”空闲的槽位</strong>，直到找到空位并插入。</li>
+<li><strong>探查序列</strong>：怎么找下一个？常见规则有：<ul>
+<li><strong>线性探测</strong>：<code>index + 1</code>，<code>index + 2</code>… 逐个往后找。</li>
+<li><strong>二次探测</strong>：<code>index + 1²</code>，<code>index + 2²</code>… 减少扎堆。</li>
+</ul>
+</li>
+<li><strong>现实应用</strong>：ThreadLocal 的内部实现正是采用此方法。</li>
+<li><strong>代价</strong>：删除数据时很麻烦，不能直接置空，必须设标记，否则会切断探查链，让后续数据“失联”。且当表快满时，效率会急剧下降。</li>
+</ul>
+<h3 id="11-2-6-哈希桶"><a href="#11-2-6-哈希桶" class="headerlink" title="11.2.6 哈希桶"></a>11.2.6 哈希桶</h3><p><strong>哈希桶</strong>并不是一个独立的新概念，它正是<strong>链表法</strong>这种哈希冲突解决策略中，对哈希表底层数组里<strong>每一个槽位（Slot）的形象化称呼</strong>。</p>
+<ul>
+<li><strong>哈希表</strong>是一组用于分类的<strong>柜子</strong>（底层数组）。</li>
+<li>这个柜子里的每一个<strong>格子</strong>，就是一个<strong>哈希桶</strong>。</li>
+<li>发生哈希冲突时，同一个桶里会像<strong>串珠子</strong>一样挂上多个数据。</li>
+</ul>
+<h4 id="为什么要叫“桶”？"><a href="#为什么要叫“桶”？" class="headerlink" title="为什么要叫“桶”？"></a>为什么要叫“桶”？</h4><p>如果每个格子只能存一个数据（开放寻址法），那它就是一个固定大小的“盒子”。<br>但如果采用<strong>链表法</strong>，这个格子的容量就变成了动态的。来一个数据就挂上去，再来一个还能挂，就像往一个<strong>桶</strong>里放东西一样，在装不下之前可以一直放。</p>
+<p>因此，“桶”这个叫法，特指那些<strong>能够容纳多个冲突元素的容器</strong>。</p>
+<h4 id="哈希桶的内部结构"><a href="#哈希桶的内部结构" class="headerlink" title="哈希桶的内部结构"></a>哈希桶的内部结构</h4><p>一个桶的内部经历了从简单到复杂的发展，主要形态有：</p>
+<ol>
+<li><strong>链表桶</strong><br>最经典的形态。每个桶是一个链表的头节点。发生冲突的元素，就依次挂在链表上。<ul>
+<li><strong>缺点</strong>：如果冲突严重，链表很长，查找会退化为 O(n)。比如存了100个冲突数据，就得遍历这100个。</li>
+<li><strong>比喻</strong>：所有书都串在一条绳子上，找书得从头一本本翻。</li>
+</ul>
+</li>
+<li><strong>红黑树桶</strong><br>这是现代哈希表（如 Java 8+ 的 <code>HashMap</code>）的优化态。当一个桶里的冲突元素太多，链表太长时，桶的结构会自动从“链表”切换为“红黑树”。<ul>
+<li><strong>优点</strong>：即使桶里数据很多，查找复杂度也是 O(log n)，比 O(n) 快得多。</li>
+<li><strong>比喻</strong>：书太多了，就给这个格子单独配一个有分类索引的书架。</li>
+</ul>
+</li>
+<li><strong>排序链表或二叉搜索树桶</strong><br>其他语言或库也可能使用有序链表、二叉搜索树等结构，核心思想都是让桶内查找加速。</li>
+</ol>
+<h4 id="关键状态的两种“桶”区分"><a href="#关键状态的两种“桶”区分" class="headerlink" title="关键状态的两种“桶”区分"></a>关键状态的两种“桶”区分</h4><ul>
+<li><strong>桶的总数 (Capacity)：</strong><br>指哈希表底层数组的长度，也就是柜子格子的总数。一个刚创建的 <code>HashMap</code> 默认有 16 个桶。</li>
+<li><strong>桶内的元素数 (Bin Count)：</strong><br>指单个桶里挂了多少冲突数据。Java 中，当某个桶内元素 &gt;= 8 个且总桶数 &gt;= 64 时，链表就会转为红黑树，以优化性能。</li>
+</ul>
+<p>简单总结，<strong>哈希桶</strong>就是哈希表解决冲突时，为每个数组槽位配备的、可动态扩容的“小仓库”。它的设计直接决定了哈希表在高冲突情况下的性能下限。</p>
+<h4 id="图解哈希桶的工作流"><a href="#图解哈希桶的工作流" class="headerlink" title="图解哈希桶的工作流"></a>图解哈希桶的工作流</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">哈希表底层数组 (Array)</span><br><span class="line">┌───┬───┬───┬───┐</span><br><span class="line">│ 0 │ 1 │ 2 │ 3 │  ← 数组的每个格子，就是一个“桶”</span><br><span class="line">└───┴─┬─┴───┴───┘</span><br><span class="line">      │</span><br><span class="line">      ▼</span><br><span class="line">    [桶 #1]</span><br><span class="line">   ┌─────────────┐</span><br><span class="line">   │ “张三” | 138 │</span><br><span class="line">   │   ● next ───┼───→  ┌─────────────┐</span><br><span class="line">   └─────────────┘      │ “李四” | 139 │</span><br><span class="line">                         │   ● next ───┼───→ NULL (桶尾)</span><br><span class="line">                         └─────────────┘</span><br></pre></td></tr></table></figure>
+<h2 id="11-3-链地址法"><a href="#11-3-链地址法" class="headerlink" title="11.3 链地址法"></a>11.3 链地址法</h2><p><strong>链地址法</strong>，也叫<strong>拉链法</strong>，是处理哈希冲突最经典的方法之一。</p>
+<h4 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h4><p>哈希表每个槽位不直接存单个数据，而是存一个数据结构（通常是链表）的指针。所有哈希到同一个槽位的元素，就串在同一条链表里。</p>
+<h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><ol>
+<li><strong>插入</strong>：对键算哈希值找到槽位，把新节点插入该槽位链表的头部或尾部。</li>
+<li><strong>查找</strong>：算哈希值定位槽位，然后沿着链表逐个比对键。</li>
+<li><strong>删除</strong>：找到槽位后，从链表中移除对应节点。</li>
+</ol>
+<h4 id="图解结构"><a href="#图解结构" class="headerlink" title="图解结构"></a>图解结构</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">哈希表数组</span><br><span class="line">[0] -&gt; A -&gt; C          // A和C哈希冲突，挂在同一链表</span><br><span class="line">[1] -&gt; B</span><br><span class="line">[2] -&gt; null            // 空槽位</span><br><span class="line">[3] -&gt; D -&gt; E -&gt; F     // D/E/F都映射到3</span><br></pre></td></tr></table></figure>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p><strong>优点</strong>：实现简单，能容纳远超表长的元素，删除操作方便（不像开放寻址法那样有“墓碑”问题）。</p>
+<p><strong>缺点</strong>：需要额外指针存储开销，当链表过长时查找会退化成 O(n)。</p>
+<h3 id="11-3-1-链式哈希表"><a href="#11-3-1-链式哈希表" class="headerlink" title="11.3.1 链式哈希表"></a>11.3.1 链式哈希表</h3><p><strong>链式哈希表就是使用了链地址法来解决哈希冲突的哈希表。</strong></p>
+<p>这几乎就是同一个概念从不同角度的两种叫法：</p>
+<ul>
+<li><strong>链地址法</strong> 侧重于描述<strong>解决冲突的“方法”</strong>。</li>
+<li><strong>链式哈希表</strong> 侧重于描述<strong>使用了这种方法的“数据结构”</strong>。</li>
+</ul>
+<h4 id="两种哈希表实现对比"><a href="#两种哈希表实现对比" class="headerlink" title="两种哈希表实现对比"></a>两种哈希表实现对比</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left"><strong>链式哈希表</strong> (Chaining Hash Table)</th>
+<th style="text-align:left"><strong>开放寻址哈希表</strong> (Open Addressing Hash Table)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>冲突解决法</strong></td>
+<td style="text-align:left"><strong>链地址法</strong></td>
+<td style="text-align:left"><strong>开放寻址法</strong> (如线性探测)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>数据结构</strong></td>
+<td style="text-align:left">数组 + 链表（或红黑树）</td>
+<td style="text-align:left">仅用数组</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>元素存储位置</strong></td>
+<td style="text-align:left">冲突的元素存在<strong>同一个槽位的链表中</strong></td>
+<td style="text-align:left">冲突的元素存在数组的<strong>其他空闲槽位中</strong></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>负载因子</strong></td>
+<td style="text-align:left">可以大于1，元素总数可超过数组长度</td>
+<td style="text-align:left">必须严格小于1，数组长度决定容量上限</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>链式哈希表（用链地址法）</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">索引 0: []</span><br><span class="line">索引 1: [&quot;apple&quot; -&gt; &quot;banana&quot; -&gt; &quot;cherry&quot;]  // 它们在一个链表里</span><br><span class="line">索引 2: []</span><br><span class="line">索引 3: []</span><br><span class="line">索引 4: []</span><br></pre></td></tr></table></figure>
+<p><strong>开放寻址哈希表（用线性探测）</strong></p>
+<p>它会为后两个元素在表中寻找空位。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">索引 0: []</span><br><span class="line">索引 1: [&quot;apple&quot;]           // 第一个元素占据此位</span><br><span class="line">索引 2: [&quot;banana&quot;]          // &quot;banana&quot;冲突，向下寻找，发现索引2为空，存入</span><br><span class="line">索引 3: [&quot;cherry&quot;]          // &quot;cherry&quot;冲突，继续向下，发现索引3为空，存入</span><br><span class="line">索引 4: []</span><br></pre></td></tr></table></figure>
+<h2 id="11-4-线性探测"><a href="#11-4-线性探测" class="headerlink" title="11.4 线性探测"></a>11.4 线性探测</h2><p>线性探测是一种<strong>开放寻址法</strong>的冲突解决策略，主要用于哈希表。</p>
+<p>当你想存入一个键值对时，如果它的理想位置已被占用，线性探测就会按固定步长（通常是1）依次检查下一个位置，直到找到空位。</p>
+<h3 id="11-4-1-线性探测基本过程"><a href="#11-4-1-线性探测基本过程" class="headerlink" title="11.4.1 线性探测基本过程"></a><strong>11.4.1 线性探测基本过程</strong></h3><ol>
+<li>对键 <code>key</code> 计算哈希值，找到初始索引 <code>i = hash(key)</code></li>
+<li>如果 <code>table[i]</code> 为空，就插入这里</li>
+<li>如果已被占用，就检查 <code>i+1</code>，接着 <code>i+2</code>…… 直到找到空位</li>
+<li>查找时同理，从 <code>i</code> 开始逐个比较，直到找到相同的键或遇到空位</li>
+</ol>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a><strong>示例</strong></h4><p>假设表大小为10，哈希函数是 <code>key % 10</code>。</p>
+<ul>
+<li>插入 15（15%10=5，位置5空）→ 直接存入位置5</li>
+<li>插入 25（25%10=5，位置5已被15占用）→ 检查位置6<ul>
+<li>位置6空 → 存入位置6</li>
+</ul>
+</li>
+<li>插入 35（35%10=5）→ 位置5、6都已被占，位置7空 → 存入位置7</li>
+</ul>
+<p>查找25时，也会从位置5开始，发现是15，就继续检查位置6，找到25。</p>
+<h4 id="主要缺点"><a href="#主要缺点" class="headerlink" title="主要缺点"></a><strong>主要缺点</strong></h4><ul>
+<li><strong>主聚集现象</strong>：连续的占用位置会越来越长，形成“聚集区”。新元素一旦落到聚集区边缘，就会加入其中，使聚集区进一步扩大，严重拖慢查找和插入速度。</li>
+<li>删除操作不能简单置空，否则会切断探测链，导致后续查找失败。通常需要用“懒惰删除”标记来解决。</li>
+</ul>
+<h3 id="11-4-2-哈希表的线性探测"><a href="#11-4-2-哈希表的线性探测" class="headerlink" title="11.4.2 哈希表的线性探测"></a>11.4.2 哈希表的线性探测</h3><p><strong>用空桶（Empty）作为“未占用”标记</strong>的线性探测实现，这是最基础、最直观的一种。</p>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>插入的核心是一条<strong>带终止条件的线性搜索</strong>。</p>
+<p>假设哈希表 <code>table</code> 是一个数组，每个槽有三种状态：</p>
+<ul>
+<li><code>Empty</code>（空）</li>
+<li><code>Active</code>（已占用）</li>
+<li><code>Deleted</code>（已删除，后面会讲）</li>
+</ul>
+<p><strong>插入键 <code>k</code>：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">i = hash(k)</span><br><span class="line">while table[i] 是 Active:</span><br><span class="line">    if table[i].key == k:</span><br><span class="line">        更新值并返回  // 键已存在</span><br><span class="line">    i = (i + 1) % 表大小</span><br><span class="line">// 此时 table[i] 是 Empty 或 Deleted</span><br><span class="line">table[i] = (k, v) 并标记为 Active</span><br></pre></td></tr></table></figure>
+<p>循环会一直找到 <code>Empty</code> 或 <code>Deleted</code> 才停止，这就是为什么删除不能简单置成 <code>Empty</code>。</p>
+<h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>搜索的探测序列必须和插入时一致。</p>
+<p><strong>搜索键 <code>k</code>：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i = hash(k)</span><br><span class="line">while table[i] 不是 Empty:</span><br><span class="line">    if table[i] is Active 且 table[i].key == k:</span><br><span class="line">        找到，返回值</span><br><span class="line">    i = (i + 1) % 表大小</span><br><span class="line">返回未找到</span><br></pre></td></tr></table></figure>
+<p><strong>关键点：</strong></p>
+<ul>
+<li>遇到 <code>Empty</code> 就停止，因为插入时遇到 <code>Empty</code> 也会停，所以键不可能在更后面。</li>
+<li>遇到 <code>Deleted</code> 不能停，必须继续探测，因为当时它被插入时这里可能还是 <code>Active</code>，后来才被删掉。</li>
+</ul>
+<h4 id="移除"><a href="#移除" class="headerlink" title="移除"></a>移除</h4><p>如果直接将一个槽设为 <code>Empty</code>，会把探测链断开，导致后续搜索提前终止、找不到本来存在的键。</p>
+<p><strong>示例</strong><br>假设表大小为5，依次插入 key1→桶0，key2→桶1，key3→桶1（冲突后放桶2）。<br>此时桶数组：[key1, key2, key3, Empty, Empty]</p>
+<p>删除 key2 时，若把桶1直接变成 <code>Empty</code>：<br>[ key1, Empty, key3, Empty, Empty ]</p>
+<p>现在搜索 key3，hash(key3)=1，桶1是 <code>Empty</code>，搜索直接停止返回“未找到”，但 key3 实际在桶2——<strong>探测链断了</strong>。</p>
+<p><strong>正确做法：懒惰删除</strong><br>删除 key2 后，桶1标记为 <code>Deleted</code>：<br>[ key1, Deleted, key3, Empty, Empty ]</p>
+<p>此时：</p>
+<ul>
+<li><strong>搜索 key3</strong>：从桶1开始，遇到 <code>Deleted</code> 继续走，最终在桶2找到。</li>
+<li><strong>插入新键</strong>：可以把 <code>Deleted</code> 槽当成空位来存放新键，节省空间。</li>
+</ul>
+<p><strong>移除流程</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">i = hash(k)</span><br><span class="line">while table[i] 不是 Empty:</span><br><span class="line">    if table[i] is Active 且 table[i].key == k:</span><br><span class="line">        table[i] 标记为 Deleted</span><br><span class="line">        可能缩小 size</span><br><span class="line">        return</span><br><span class="line">    i = (i + 1) % 表大小</span><br><span class="line">// 未找到，无需操作</span><br></pre></td></tr></table></figure>
+<h3 id="11-4-3-空桶实现的局限与负载因子"><a href="#11-4-3-空桶实现的局限与负载因子" class="headerlink" title="11.4.3 空桶实现的局限与负载因子"></a>11.4.3 空桶实现的局限与负载因子</h3><p>这种基础的空桶实现只区分 <code>Empty</code> 和 <code>Active</code> 时，无法正确处理删除（必须引入 <code>Deleted</code>）。</p>
+<p>即便引入 <code>Deleted</code> 解决删除问题，<strong>性能也会随负载因子升高而急剧恶化</strong>（主聚集效应）。实际工程中通常会：</p>
+<ul>
+<li>控制<strong>负载因子</strong>（已用槽数/表大小）不超过 0.5–0.7，超过就扩容并重新哈希。</li>
+<li>定期在负载较低时重整哈希表，清除 <code>Deleted</code> 标记的槽。</li>
+</ul>
+<h2 id="11-5-二次探测"><a href="#11-5-二次探测" class="headerlink" title="11.5 二次探测"></a>11.5 二次探测</h2><p>二次探测是一种用于<strong>哈希表冲突解决</strong>的开放寻址法。</p>
+<p>当你想插入一个元素，但它的哈希地址已被占用时，二次探测不是去尝试下一个紧邻的位置，而是将冲突次数平方后作为偏移量，按<strong>二次函数</strong>的序列去寻找下一个空位。</p>
+<h4 id="核心思想-1"><a href="#核心思想-1" class="headerlink" title="核心思想"></a><strong>核心思想</strong></h4><p>当插入一个键发生哈希冲突（目标位置已被占用）时，二次探测不是简单地去下一个位置，而是按<strong>二次函数步长</strong>去寻找新的空位。</p>
+<p>探测序列是：</p>
+<ul>
+<li>第1次冲突：找 <code>原位置 + 1²</code></li>
+<li>第2次冲突：找 <code>原位置 + 2²</code></li>
+<li>第3次冲突：找 <code>原位置 + 3²</code><br>……<br>以此类推。</li>
+</ul>
+<p><strong>其通用的序列公式为：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h(k, i) = (hash(k) + c1 * i + c2 * i²) mod m</span><br></pre></td></tr></table></figure>
+<p><strong>最常见的实现取 <code>c1 = 0, c2 = 1</code>，即：</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">index = (base + i²) mod m</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其中 <code>i</code> 是探测次数（1, 2, 3…），<code>m</code> 是表长。</li>
+</ul>
+<h4 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h4><p>假设哈希表大小 <code>m = 10</code>，键 <code>k</code> 的初始哈希值 <code>hash(k) = 4</code>。</p>
+<ul>
+<li>插入时，位置 4 被占。</li>
+<li><strong>第1次探测</strong>（i=1）：检查 <code>(4 + 1²) % 10 = 5</code></li>
+<li>若还冲突，<strong>第2次探测</strong>（i=2）：<code>(4 + 2²) % 10 = 8</code></li>
+<li><strong>第3次</strong>（i=3）：<code>(4 + 9) % 10 = 3</code></li>
+<li><strong>第4次</strong>（i=4）：<code>(4 + 16) % 10 = 0</code></li>
+</ul>
+<p>发现了吗？步长（1, 4, 9, 16…）在快速增大。这让它能跳开线性探测中相邻聚集的区块。</p>
+<h4 id="二次探测意义"><a href="#二次探测意义" class="headerlink" title="二次探测意义"></a>二次探测意义</h4><p>核心是为了解决<strong>线性探测的主要聚集问题</strong>。</p>
+<ul>
+<li><strong>线性探测</strong>：步长固定为1，产生连续冲突链（主要聚集），性能下降快。</li>
+<li><strong>二次探测</strong>：跳跃式查找，能缓解聚集，但也会出现“如果初始位置相同，则整个探测序列完全相同”的<strong>二次聚集</strong>。</li>
+</ul>
+<h4 id="关键注意事项"><a href="#关键注意事项" class="headerlink" title="关键注意事项"></a>关键注意事项</h4><p>使用二次探测时有几个致命限制：</p>
+<ul>
+<li><strong>表长必须是质数，且负载因子必须小于 0.5</strong><br>这是严格的理论要求。如果没有这个保证，二次探测可能永远找不到空位，陷入死循环，导致插入失败。</li>
+<li><strong>无法直接删除</strong><br>和线性探测一样，简单删一个元素会打断探测链，导致后续查找误以为元素不存在。通常用“惰性删除”（打删除标记）替代。</li>
+</ul>
+<h4 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li><strong>优点</strong>：避免了线性探测那种严重的“连续拥挤”，缓存性能尚可。</li>
+<li><strong>缺点</strong>：对表大小限制严格；存在二次聚集；查找时缓存命中率不如线性探测。</li>
+</ul>
+<h2 id="11-6-双重哈希"><a href="#11-6-双重哈希" class="headerlink" title="11.6 双重哈希"></a>11.6 双重哈希</h2><p>双重哈希（Double Hashing）是开放定址法中用于解决哈希冲突的一种方法。它通过使用<strong>两个不同的哈希函数</strong>来计算探查序列，从而更均匀地将冲突元素分散到哈希表中。</p>
+<p>它的基本思想是：当插入时发现目标位置已被占用，不简单地使用线性探查（逐个找下一个），也不使用二次探查，而是使用<strong>第二个哈希函数</strong>来计算每次探查的“步长”。</p>
+<p>双重哈希虽然分布均匀，但计算成本略高于线性探查，且对哈希函数的设计要求更高。</p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a><strong>工作原理</strong></h4><p>假设哈希表大小为 m<em>m</em>。</p>
+<ol>
+<li><p><strong>两个哈希函数</strong></p>
+<ul>
+<li>h1(key)<em>h</em>1(<em>k**ey</em>)：计算初始探查位置。</li>
+<li>h2(key)<em>h</em>2(<em>k**ey</em>)：计算冲突后的探查步长。这个值绝不能为0，且通常与表的大小 m<em>m</em> 互质，以保证探查序列能覆盖整个表。</li>
+</ul>
+</li>
+<li><p><strong>探查序列</strong><br>插入或查找时，第 i<em>i</em> 次探查的位置计算公式为：</p>
+<p>h(key,i)=(h1(key)+i×h2(key)) mod m<em>h</em>(<em>k**ey</em>,<em>i</em>)=(<em>h</em>1(<em>k**ey</em>)+<em>i</em>×<em>h</em>2(<em>k**ey</em>))mod<em>m</em></p>
+<p>其中 i<em>i</em> 从 0 开始。</p>
+</li>
+</ol>
+<h4 id="一个具体的例子"><a href="#一个具体的例子" class="headerlink" title="一个具体的例子"></a><strong>一个具体的例子</strong></h4><p>假设表大小 m=7<em>m</em>=7，哈希函数为：</p>
+<ul>
+<li>h1(key)=key mod 7<em>h</em>1(<em>k**ey</em>)=<em>k**ey</em>mod7</li>
+<li>h2(key)=5−(key mod 5)<em>h</em>2(<em>k**ey</em>)=5−(<em>k**ey</em>mod5) （一个常用的步长函数）</li>
+</ul>
+<p>现在要插入键 1515 和 2222：</p>
+<ol>
+<li><strong>插入 key = 15</strong><ul>
+<li>h1(15)=15 mod 7=1<em>h</em>1(15)=15mod7=1，位置1为空，直接放入。</li>
+<li>哈希表：<code>[空, 15, 空, 空, 空, 空, 空]</code></li>
+</ul>
+</li>
+<li><strong>插入 key = 22</strong><ul>
+<li>h1(22)=22 mod 7=1<em>h</em>1(22)=22mod7=1，位置1已被15占用，产生冲突。</li>
+<li>h2(22)=5−(22 mod 5)=5−2=3<em>h</em>2(22)=5−(22mod5)=5−2=3</li>
+<li>第一次探查（i=1<em>i</em>=1）：位置 (1+1×3) mod 7=4(1+1×3)mod7=4，为空，放入。</li>
+<li>哈希表：<code>[空, 15, 空, 空, 22, 空, 空]</code></li>
+</ul>
+</li>
+</ol>
+<p>如果位置4也被占，就会继续以步长3探查下一个位置：<code>(1+2*3) % 7 = 0</code>，依此类推。</p>
+<h4 id="关键优势"><a href="#关键优势" class="headerlink" title="关键优势"></a><strong>关键优势</strong></h4><ul>
+<li><strong>减少聚集</strong>：线性探查会造成“基本聚集”，二次探查会造成“二次聚集”。双重哈希产生的探查序列动态且与键本身相关，分布更均匀，能最有效地减少聚集。</li>
+<li><strong>性能更稳定</strong>：在高负载因子下，它的查找性能通常优于其他开放定址法。</li>
+</ul>
+<h4 id="关键要求"><a href="#关键要求" class="headerlink" title="关键要求"></a><strong>关键要求</strong></h4><ul>
+<li><strong>h2(key)*h*2(*k\</strong>ey*) 的值绝不能为0。**</li>
+<li>为让探查序列覆盖全表，h2(key)<em>h</em>2(<em>k**ey</em>) 应与表大小 m<em>m</em> <strong>互质</strong>。常通过让表长 m<em>m</em> 为质数，并限制 h2(key)<em>h</em>2(<em>k**ey</em>) 总是小于 m<em>m</em> 来实现。</li>
+<li><strong>无法简单支持删除</strong>（这是所有开放定址法的通病），删除操作通常需要惰性删除标记。如需频繁删除，链地址法可能是更好的选择。</li>
+</ul>
+<h2 id="11-7-调整哈希表大小"><a href="#11-7-调整哈希表大小" class="headerlink" title="11.7 调整哈希表大小"></a>11.7 调整哈希表大小</h2><p>在数据结构中，<strong>调整哈希表大小</strong>是指当哈希表中存储的元素数量变化到一定程度时，<strong>重新创建一个更大（或更小）的数组，然后将所有旧元素重新映射并迁移到新数组中的过程</strong>。</p>
+<p>这是哈希表维持高效性能的核心机制。</p>
+<h3 id="11-7-1-为什么要调整大小"><a href="#11-7-1-为什么要调整大小" class="headerlink" title="11.7.1 为什么要调整大小"></a>11.7.1 为什么要调整大小</h3><p>哈希表的查找、插入、删除操作，理想情况下时间复杂度是 O(1)。但这依赖于一个关键指标：<strong>负载因子</strong>。</p>
+<ul>
+<li><strong>负载因子 = 元素数量 / 数组容量</strong></li>
+<li>当负载因子过高（比如 &gt; 0.75），哈希冲突会急剧增加，链表或红黑树变长，操作退化为 O(n)。</li>
+<li>当负载因子过低（比如 &lt; 0.1），虽然冲突少，但大量数组空间被浪费。</li>
+</ul>
+<p>因此，需要调整大小来将负载因子维持在一个合理区间，在时间和空间上取得平衡。</p>
+<h3 id="11-7-2-触发条件"><a href="#11-7-2-触发条件" class="headerlink" title="11.7.2 触发条件"></a>11.7.2 触发条件</h3><p>不同实现策略不同，常见的有两种：</p>
+<ul>
+<li><p><strong>扩容</strong>：当负载因子 <strong>大于等于</strong> 某个阈值（如 Java <code>HashMap</code> 默认 0.75）时，将容量扩大为原来的<strong>约两倍</strong>。</p>
+</li>
+<li><p><strong>缩容</strong>：当负载因子 <strong>小于</strong> 某个阈值时，将容量缩小，以节省内存。不过在并发场景下，为避免频繁扩缩容带来的性能抖动，并非所有哈希表都会自动缩容。</p>
+</li>
+</ul>
+<h4 id="为什么不像数组一样原地扩容？"><a href="#为什么不像数组一样原地扩容？" class="headerlink" title="为什么不像数组一样原地扩容？"></a>为什么不像数组一样原地扩容？</h4><p>这是最核心的问题：<strong>哈希函数与数组大小强相关</strong>。</p>
+<p>最常用的哈希映射是：<code>index = hash(key) % capacity</code></p>
+<p>一旦 <code>capacity</code> 变了，<strong>同一个 key 计算出的新下标几乎必然会变</strong>。所以不能简单地在末尾追加空间，必须为每个已存在的键值对在新数组中重新计算位置。这个过程通常称为 <strong>rehashing（重新哈希）</strong>。</p>
+<h3 id="11-7-3-重新哈希的过程"><a href="#11-7-3-重新哈希的过程" class="headerlink" title="11.7.3 重新哈希的过程"></a>11.7.3 重新哈希的过程</h3><p>整个过程大致分四步：</p>
+<ol>
+<li><strong>分配新空间</strong>：创建一个容量更大的新数组。</li>
+<li><strong>遍历旧数组</strong>：依次取出每个桶中的元素。</li>
+<li><strong>重新计算并插入</strong>：对每个键，用 <code>hash(key) % new_capacity</code> 算出在新数组的下标，放入对应的桶中。</li>
+<li><strong>替换引用</strong>：将哈希表内部的数组指针指向新数组，释放旧数组。</li>
+</ol>
+<p><strong>注意</strong>：这是一个开销很大的 O(n) 操作。为了避免单次插入触发长时间卡顿，Redis 等系统采用<strong>渐进式 rehash</strong>，将重映射工作分摊到后续的每次操作中，直到全部迁移完成。</p>
+<h4 id="示例演示"><a href="#示例演示" class="headerlink" title="示例演示"></a>示例演示</h4><p>假设一个简单的哈希表，用 <code>key % capacity</code> 映射，当前容量为 4：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">下标</th>
+<th style="text-align:left">键 (key)</th>
+<th style="text-align:left">计算过程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">4 % 4 = 0</td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1 % 4 = 1</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2, 6</td>
+<td style="text-align:left">2 % 4 = 2，6 % 4 = 2 （冲突）</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3 % 4 = 3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>此时元素数量为 5，容量为 4，负载因子 = 1.25，需要扩容。</p>
+<p><strong>扩容到容量为 8 后，重新计算</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">新下标</th>
+<th style="text-align:left">键 (key)</th>
+<th style="text-align:left">计算过程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">1 % 8 = 1</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2</td>
+<td style="text-align:left">2 % 8 = 2</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3</td>
+<td style="text-align:left">3 % 8 = 3</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">4</td>
+<td style="text-align:left">4 % 8 = 4</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">-</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">6</td>
+<td style="text-align:left">6 % 8 = 6</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看到，原本冲突的 2 和 6 被分散到了下标 2 和 6，哈希表恢复了高效。</p>
+<h3 id="11-7-4-实际实现中的优化技巧"><a href="#11-7-4-实际实现中的优化技巧" class="headerlink" title="11.7.4 实际实现中的优化技巧"></a>11.7.4 实际实现中的优化技巧</h3><ul>
+<li><strong>容量取 2 的幂</strong>：当容量为 2 的幂（如 16, 32）时，取模运算 <code>hash % capacity</code> 可以用位运算 <code>hash &amp; (capacity - 1)</code> 替代，大大加快 rehash 速度。</li>
+<li><strong>懒惰迁移</strong>：如前面提到的，Redis 的字典在扩容后会同时保留新旧两个哈希表，每次查找先在老表找，找不到再去新表。每次操作顺手将一部分数据从老表迁移到新表，把一次性的大开销均摊了。</li>
+<li><strong>一次性扩容</strong>：像 Java 的 <code>HashMap</code> 在非并发场景下，就是在 <code>resize()</code> 方法里一次性完成所有迁移，逻辑上更简单。</li>
+</ul>
+<p>总的来说，调整哈希表大小就是通过<strong>以空间换时间</strong>或<strong>回收空间</strong>的手段，配合<strong>重新哈希</strong>，来保证操作的高效性。这个过程也是很多集合类在面试和实际优化中的重点。</p>
+<h2 id="11-8-常用哈希函数"><a href="#11-8-常用哈希函数" class="headerlink" title="11.8 常用哈希函数"></a>11.8 常用哈希函数</h2><p>数据结构中常用的哈希函数主要分为几大类，它们的核心目标是<strong>将任意长度的键映射为固定长度的地址，且尽可能均匀分布以减少冲突</strong>。</p>
+<h3 id="11-8-1-直接定址法"><a href="#11-8-1-直接定址法" class="headerlink" title="11.8.1 直接定址法"></a>11.8.1 直接定址法</h3><p>取关键字或关键字的某个线性函数值作为哈希地址。</p>
+<p><strong>H(key)=key 或 H(key)=a×key+b<em>H</em>(<em>key</em>)=<em>key</em>或<em>H</em>(<em>key</em>)=<em>a</em>×<em>key</em>+<em>b</em></strong></p>
+<ul>
+<li><strong>优点</strong>：简单、均匀，永远不会产生冲突。</li>
+<li><strong>缺点</strong>：仅适用于关键字基本连续且范围不大的情况。</li>
+<li><strong>场景</strong>：统计学生成绩（0-100分），或人口年龄统计。</li>
+</ul>
+<h3 id="11-8-2-数字分析法"><a href="#11-8-2-数字分析法" class="headerlink" title="11.8.2 数字分析法"></a>11.8.2 数字分析法</h3><p>如果关键字是位数较多的数字（如手机号），且若干位分布较均匀，就抽取这几位组合成地址。</p>
+<p><strong>例：手机号 138xxxx1234→ 取中间4位例：手机号 138xxxx1234→ 取中间4位</strong></p>
+<ul>
+<li><strong>优点</strong>：适合处理已知模式的大规模静态数据。</li>
+<li><strong>缺点</strong>：依赖于关键字的分布特征，更换数据集需重新分析。</li>
+<li><strong>场景</strong>：手机号、身份证号等作为键时。</li>
+</ul>
+<h3 id="11-8-3-平方取中法"><a href="#11-8-3-平方取中法" class="headerlink" title="11.8.3 平方取中法"></a>11.8.3 平方取中法</h3><p>先计算关键字的平方，然后取中间几位作为地址。</p>
+<p><strong>key=1234⇒12342=1522756⇒取中间 227<em>key</em>=1234⇒12342=1522756⇒取中间 227</strong></p>
+<ul>
+<li><strong>优点</strong>：得到的地址与关键字每一位都相关，分布较随机。</li>
+<li><strong>缺点</strong>：计算量稍大。</li>
+<li><strong>场景</strong>：关键字分布未知或位数不是很大时。</li>
+</ul>
+<h3 id="11-8-4-折叠法"><a href="#11-8-4-折叠法" class="headerlink" title="11.8.4 折叠法"></a>11.8.4 折叠法</h3><p>将关键字分割为位数相等的几段（最后一段可短些），然后叠加求和。</p>
+<ul>
+<li><p><strong>移位叠加</strong>：直接对齐相加。</p>
+</li>
+<li><p><strong>边界折叠</strong>：相邻段反转后再相加。</p>
+<p><strong>key=9876543210⇒987+654+321+0=1962<em>key</em>=9876543210⇒987+654+321+0=1962</strong></p>
+</li>
+<li><p><strong>优点</strong>：适合关键字位数特别多的情况。</p>
+</li>
+<li><p><strong>场景</strong>：老旧系统的注册码、长数字编号。</p>
+</li>
+</ul>
+<h3 id="11-8-5-除留余数法（最常用）"><a href="#11-8-5-除留余数法（最常用）" class="headerlink" title="11.8.5 除留余数法（最常用）"></a>11.8.5 除留余数法（最常用）</h3><p>这是最经典、最简单的方法，也是构建多种哈希表的基础。</p>
+<p><strong>H(key)=key mod p(p≤m)<em>H</em>(<em>key</em>)=<em>key</em>mod<em>p</em>(<em>p</em>≤<em>m</em>)</strong></p>
+<ul>
+<li><strong>关键</strong>：模数 p<em>p</em> 的选择直接影响冲突概率。一般取<strong>不大于表长 m*m* 的质数</strong>，或不包含小于20的质因数的合数。</li>
+<li><strong>场景</strong>：几乎所有语言的字典或哈希表底层，例如 Java <code>HashMap</code> 的寻址基础思想。</li>
+</ul>
+<h2 id="11-9-直接哈希-Direct-hashing"><a href="#11-9-直接哈希-Direct-hashing" class="headerlink" title="11.9 直接哈希(Direct hashing)"></a>11.9 直接哈希(Direct hashing)</h2><p>在数据结构中，<strong>直接哈希</strong>是一种最理想化、最简单的哈希方法，你可以把它理解为<strong>“完美的一对一映射”</strong>。</p>
+<p>它的核心思想非常直接：</p>
+<blockquote>
+<p><strong>键（Key）本身就直接作为数组的下标（Index），不需要经过任何复杂的哈希函数计算。</strong></p>
+</blockquote>
+<p>具体来说，它必须满足以下条件：</p>
+<ul>
+<li><strong>键必须是整数</strong>，或者是能轻易映射成唯一整数的数据。</li>
+<li><strong>键的取值范围是已知的、有限的，并且足够小</strong>，这样我们才能预先分配一个能容纳所有可能键的数组。</li>
+</ul>
+<p><strong>工作流程很简单：</strong><br>假设有一个数组 <code>arr</code>，对于任意一个键 <code>k</code>，它的存储位置就是 <code>arr[k]</code>。插入、删除和查找的操作，就是直接访问数组的第 <code>k</code> 个位置，时间复杂度瞬间达到 <strong>O(1)</strong>，且<strong>绝对没有冲突</strong>，因为每个键都有自己专属的位置。</p>
+<h4 id="一个直观的例子"><a href="#一个直观的例子" class="headerlink" title="一个直观的例子"></a>一个直观的例子</h4><p>比如，我们要存储一所小学里，某个班级学生的考试成绩。已知这个班的学号是从 1 到 50 的连续整数。</p>
+<p>我们可以直接创建一个长度为 51 的数组 <code>scores</code>（浪费掉索引0）。若学号为 25 的学生考了 98 分，就直接 <code>scores[25] = 98</code>。查找学号为 18 的学生成绩时，只需读取 <code>scores[18]</code> 即可。</p>
+<h4 id="直接哈希的致命缺陷"><a href="#直接哈希的致命缺陷" class="headerlink" title="直接哈希的致命缺陷"></a>直接哈希的致命缺陷</h4><p>既然它这么快又没有冲突，为什么不是所有地方都用呢？因为它的限制条件在现实中太苛刻了：</p>
+<ul>
+<li><strong>空间浪费惊人</strong><br>如果键的取值范围非常大，但实际存储的数据很少，就会造成巨大的空间浪费。例如，用一个 18 位身份证号直接做索引，想想这个数组得有多大。</li>
+<li><strong>键必须是非负整数</strong><br>像姓名、字符串这类键无法直接使用，需要先转换成整数。</li>
+</ul>
+<h4 id="与其他方法的对比"><a href="#与其他方法的对比" class="headerlink" title="与其他方法的对比"></a>与其他方法的对比</h4><p>实际上，正是因为以上限制，“直接哈希”更多是哈希技术的一个理想化模型。我们日常讨论的 <strong>“哈希表”</strong>，通常指的是其改进版：</p>
+<ul>
+<li><strong>直接哈希</strong>：<code>位置 = 键</code>。键与地址是一对一的。</li>
+<li><strong>哈希表</strong>：<code>位置 = 哈希函数(键)</code>。使用一个<strong>哈希函数</strong>将大范围、非整数的键，压缩映射到一个较小的地址空间内。但正因如此，就引入了<strong>哈希冲突</strong>，需要用链地址法或开放寻址法来解决。</li>
+</ul>
+<h2 id="11-10-哈希算法：密码学、密码哈希"><a href="#11-10-哈希算法：密码学、密码哈希" class="headerlink" title="11.10 哈希算法：密码学、密码哈希"></a>11.10 哈希算法：密码学、密码哈希</h2><p>哈希算法，简单说，就是把<strong>任意长度的数据，压缩成一段固定长度的、看似随机的“数字指纹”</strong>。</p>
+<h3 id="11-10-1-密码学哈希函数"><a href="#11-10-1-密码学哈希函数" class="headerlink" title="11.10.1 密码学哈希函数"></a>11.10.1 密码学哈希函数</h3><p>这是哈希算法中<strong>安全等级最高</strong>的一类，主要不是为了快，而是为了“安全”。它必须具备以下四大核心特性，只要一个不满足，就不再安全：</p>
+<ul>
+<li><strong>单向性（不可逆）</strong><br>从哈希值几乎无法反向推导出原始数据。就像看到一杯果汁，你无法还原出榨汁前水果的样子。</li>
+<li><strong>抗碰撞性（唯一性）</strong><br>在现实中，找不到两个不同的输入 X<em>X</em> 和 Y<em>Y</em>，能产生相同的哈希值 H(X)=H(Y)<em>H</em>(<em>X</em>)=<em>H</em>(<em>Y</em>)。这保证了文件或数据的唯一身份。</li>
+<li><strong>雪崩效应</strong><br>输入的任何微小改动，都会让输出结果面目全非。比如 “hello” 和 “hello!” 的 MD5 值天差地别：<ul>
+<li><code>hello</code> → <code>5d41402abc4b2a76b9719d911017c592</code></li>
+<li><code>hello!</code> → <code>2490f7c74930feecb49b083a4d1f66a5</code></li>
+</ul>
+</li>
+<li><strong>确定性</strong><br>同样的输入，无论何时何地计算，输出永远严格一致。这是数据校验的基础。</li>
+</ul>
+<p><strong>主要应用场景：</strong></p>
+<ul>
+<li><strong>完整性校验</strong>：下载操作系统镜像时，用于验证是否被篡改。</li>
+<li><strong>数字签名</strong>：签名前，先对文件生成摘要，实际签名的是这个摘要，效率更高。</li>
+<li><strong>Git 版本控制</strong>：用 SHA-1（现正迁移至更安全的 SHA-256）来唯一标识每个提交。</li>
+</ul>
+<p><strong>代表性算法：</strong></p>
+<ul>
+<li><strong>MD5</strong>：已破解，<strong>严禁用于安全领域</strong>。</li>
+<li><strong>SHA-1</strong>：已被成功构造碰撞攻击，<strong>正被淘汰</strong>。</li>
+<li><strong>SHA-2 家族 (SHA-256/SHA-512)</strong>：当前主流，安全可靠。</li>
+<li><strong>SHA-3 家族</strong>：新一代标准，结构先进，作为后备。</li>
+</ul>
+<h3 id="11-10-2-密码哈希"><a href="#11-10-2-密码哈希" class="headerlink" title="11.10.2 密码哈希"></a>11.10.2 密码哈希</h3><p>这是密码学哈希在<strong>口令保护</strong>上的特定应用，专为存放用户密码设计。除了具备上述特性，还增加了针对黑客攻击的额外防护：</p>
+<ul>
+<li><strong>加盐 (Salt)</strong><br>为每个用户生成一个独一无二的随机字符串（盐），拼接到密码上再计算哈希。它能有效抵御彩虹表（预计算的密码哈希字典）攻击，并让使用相同密码的用户，最终存储的哈希值也完全不同。</li>
+<li><strong>拉伸与成本因子 (Stretching &amp; Cost Factor)</strong><br>通过成千上万次的迭代计算，或要求占用大量内存，故意拖慢哈希运算的速度。用户的正常登录感受不到延迟，却能极大增加黑客暴力破解的成本。</li>
+</ul>
+<p><strong>特别注意：</strong> 像 SHA-256 这类通用哈希算法计算太快，不适合直接用来存密码。应该使用专门的“慢哈希”算法。</p>
+<p><strong>主流算法（由强到弱）：</strong></p>
+<ul>
+<li><strong>Argon2</strong>：2015年密码哈希竞赛冠军，<strong>当前最强者</strong>。可以分别调节占用CPU和内存的大小，能有效对抗专业硬件（如GPU/ASIC）的破解。</li>
+<li><strong>bcrypt</strong>：经典稳健，默认自带盐和可调成本因子，依然是很好的选择。</li>
+<li><strong>scrypt</strong>：设计上极其消耗内存，同样能有效对抗硬件破解。</li>
+<li><strong>PBKDF2</strong>：老牌标准，可调节迭代次数，但相对容易被专业硬件计算，强度不如前三者。</li>
+</ul>
+<h4 id="对比总结"><a href="#对比总结" class="headerlink" title="对比总结"></a>对比总结</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">密码学哈希函数 (如 SHA-256)</th>
+<th style="text-align:left">密码哈希算法 (如 Argon2)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>核心目标</strong></td>
+<td style="text-align:left">快速生成代表数据的唯一“指纹”</td>
+<td style="text-align:left">安全地储存用户凭证</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>关键需求</strong></td>
+<td style="text-align:left">抗碰撞、确保数据完整性</td>
+<td style="text-align:left">单向性、故意减缓速度、抵御暴力破解</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>速度</strong></td>
+<td style="text-align:left"><strong>极快</strong>，追求高性能</td>
+<td style="text-align:left"><strong>故意很慢</strong>，且能随硬件进步调高成本</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>加盐</strong></td>
+<td style="text-align:left">不需要</td>
+<td style="text-align:left"><strong>必须加盐</strong>，盐通常与哈希值存储在一起</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>典型应用</strong></td>
+<td style="text-align:left">文件校验、数字签名、Git</td>
+<td style="text-align:left"><strong>网站/应用的用户登录口令存储</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>总的来说，<strong>密码学哈希函数</strong>关注的是数据的不可篡改性，属于<strong>一次性快照</strong>；而<strong>密码哈希</strong>关注的是秘密的安全存放，是一个<strong>持续对抗破解的过程</strong>。两者虽然技术同源，但设计哲学完全不同，用途务必区分清楚。</p>
+<h2 id="11-11-集合的抽象数据类型（ADT）"><a href="#11-11-集合的抽象数据类型（ADT）" class="headerlink" title="11.11 集合的抽象数据类型（ADT）"></a>11.11 集合的抽象数据类型（ADT）</h2><p>在数据结构中，<strong>集合的抽象数据类型</strong>是一个纯粹的数学模型，它定义了数据之间的逻辑关系以及可以执行的操作，但完全不涉及这些操作在内存中如何具体实现。</p>
+<p>简单说，它只回答“<strong>集合能做什么</strong>”，不回答“<strong>怎么做</strong>”。</p>
+<h3 id="11-11-1-定义与核心思想"><a href="#11-11-1-定义与核心思想" class="headerlink" title="11.11.1 定义与核心思想"></a>11.11.1 定义与核心思想</h3><p>集合的数学基础是集合论，它有两大核心特征：</p>
+<ul>
+<li><strong>无序性</strong>：元素之间没有先后顺序。<code>{1, 2, 3}</code> 和 <code>{3, 1, 2}</code> 是同一个集合。</li>
+<li><strong>互异性</strong>：集合中不允许出现重复元素，每个元素都是唯一的。</li>
+</ul>
+<p>符合这两个特征的有限无序集，就是集合ADT要描述的数据对象。</p>
+<h3 id="11-11-2-核心操作"><a href="#11-11-2-核心操作" class="headerlink" title="11.11.2 核心操作"></a>11.11.2 核心操作</h3><p>一个典型的集合ADT通常包含以下基本操作：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>创建与销毁</strong></td>
+<td style="text-align:left"><code>Create()</code> 建立一个空集合；<code>Destroy()</code> 销毁并释放资源。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>基础修改</strong></td>
+<td style="text-align:left"><code>Add(S, x)</code> 添加元素；<code>Remove(S, x)</code> 删除元素。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>查询</strong></td>
+<td style="text-align:left"><code>Contains(S, x)</code> 判断元素是否存在；<code>Size(S)</code> 返回元素个数；<code>IsEmpty(S)</code> 判断是否为空。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>集合特有运算</strong></td>
+<td style="text-align:left"><code>Union(A, B)</code> 求并集；<code>Intersection(A, B)</code> 求交集；<code>Difference(A, B)</code> 求差集；<code>IsSubset(A, B)</code> 判断A是否为B的子集。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="为什么叫ADT？"><a href="#为什么叫ADT？" class="headerlink" title="为什么叫ADT？"></a>为什么叫ADT？</h4><p>关键在于，这套接口可以用多种底层技术实现，但接口本身保持稳定。</p>
+<ul>
+<li><strong>可以用数组实现</strong><br>比如用位向量表示一个固定范围（如1-10）的集合，判断元素是否存在速度极快 O(1)。但空间效率差，不适合元素范围巨大或稀疏的情况。</li>
+<li><strong>可以用链表实现</strong><br>添加删除灵活，不浪费空间。但判断元素是否存在需要遍历链表，时间复杂度为 O(n)，效率较低。</li>
+<li><strong>理想实现：哈希表和平衡树</strong><ul>
+<li><strong>哈希表</strong>：平均情况下，<code>Add</code>、<code>Remove</code>、<code>Contains</code> 操作都非常快，接近 O(1)，是大多数场景下的首选。</li>
+<li><strong>平衡二叉搜索树</strong>（如红黑树）：所有操作的时间复杂度稳定在 O(log n)，并且能方便地进行有序遍历、查找最大最小值，更适合需要有序性的集合。</li>
+</ul>
+</li>
+</ul>
+<h3 id="11-11-3-集合的数学基础"><a href="#11-11-3-集合的数学基础" class="headerlink" title="11.11.3 集合的数学基础"></a>11.11.3 集合的数学基础</h3><p>集合的数学基础主要来自<strong>集合论</strong>。在数据结构中，几乎你提到的所有概念，都能在数学定义里找到源头。</p>
+<h4 id="一、基本概念与定义"><a href="#一、基本概念与定义" class="headerlink" title="一、基本概念与定义"></a>一、基本概念与定义</h4><p>数学里的集合，是由一些确定的、彼此不同的对象构成的整体。这直接决定了数据结构“集合”的两个核心特性：</p>
+<ul>
+<li><strong>确定性</strong>：对任意元素，它要么属于集合，要么不属于，边界分明。</li>
+<li><strong>互异性</strong>：集合中不能有重复元素，每个元素只出现一次。数据结构中的集合也强制执行这个规则。</li>
+</ul>
+<p>关于元素与集合、集合与集合，有三组基本关系：</p>
+<ul>
+<li><strong>属于</strong>（∈∈）：表达元素和集合的关系。比如 1∈{1,2,3}1∈{1,2,3}。</li>
+<li><strong>相等</strong>：两个集合包含的元素完全一样就是相等，和顺序无关。所以 <code>{1,2,3}</code> 和 <code>{3,1,2}</code> 是同一个集合。</li>
+<li><strong>子集</strong>（⊆⊆）：若A的所有元素都属于B，A就是B的子集，A⊆B<em>A</em>⊆<em>B</em>。真子集（⊂⊂）则要求B中至少有一个元素不属于A。</li>
+</ul>
+<h4 id="二、核心运算"><a href="#二、核心运算" class="headerlink" title="二、核心运算"></a>二、核心运算</h4><p>数据结构中集合ADT的经典操作，直接对应数学集合的三种基本运算：</p>
+<ul>
+<li><strong>并集</strong> (A∪B<em>A</em>∪<em>B</em>)<br>由A和B中所有元素合并而成。比如 <code>{1,2} ∪ {2,3}</code> 结果是 <code>{1,2,3}</code>。</li>
+<li><strong>交集</strong> (A∩B<em>A</em>∩<em>B</em>)<br>由A和B的公共元素组成。 <code>{1,2} ∩ {2,3}</code> 结果是 <code>{2}</code>。如果没公共元素，交集就是空集 ∅∅。</li>
+<li><strong>差集</strong> (A−B<em>A</em>−<em>B</em>)<br>由属于A但不属于B的元素组成。<code>{1,2} - {2,3}</code> 结果是 <code>{1}</code>。</li>
+</ul>
+<h4 id="三、从数学到数据结构的关键映射"><a href="#三、从数学到数据结构的关键映射" class="headerlink" title="三、从数学到数据结构的关键映射"></a>三、从数学到数据结构的关键映射</h4><p>数学集合是无序的，但在计算机中，为了管理数据，需要为元素定义“序”来构建高效结构。根据元素间能否比较大小，数据结构中的集合实现分化为两类：</p>
+<ul>
+<li><strong>有序集合</strong>：数学基础是<strong>全序关系</strong>。任意两个元素都能比较大小。这类结构（如红黑树、跳表）通常按中序遍历就是有序序列，支持高效的查找和范围查询。</li>
+<li><strong>无序集合</strong>：数学基础是<strong>等价关系</strong>。只关心两个元素是否“相同”（哈希值相等），不关心大小。典型实现就是哈希表，查找效率极高但不支持顺序操作。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/04/25/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module10-%E5%A0%86%E5%92%8C%E6%A0%91%E5%A0%86/" rel="prev" title="Data-Structure-Module10">
+                  <i class="fa fa-angle-left"></i> Data-Structure-Module10
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/05/05/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Data-Structure-Module12-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="next" title="Data-Structure-Module12">
+                  Data-Structure-Module12 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
