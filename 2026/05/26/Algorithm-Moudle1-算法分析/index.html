@@ -28,7 +28,7 @@
 <meta property="og:description" content="Algorithm Analysis">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-05-26T03:32:21.000Z">
-<meta property="article:modified_time" content="2026-05-28T04:08:53.401Z">
+<meta property="article:modified_time" content="2026-05-28T05:22:10.647Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -213,7 +213,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-05-28 12:08:53" itemprop="dateModified" datetime="2026-05-28T12:08:53+08:00">2026-05-28</time>
+      <time title="Modified: 2026-05-28 13:22:10" itemprop="dateModified" datetime="2026-05-28T13:22:10+08:00">2026-05-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -340,9 +340,9 @@
 <tr>
 <td>常数时间</td>
 <td>
-    <span id="mjx-48776438">
+    <span id="mjx-e560bdb8">
       <style>
-      #mjx-48776438{
+      #mjx-e560bdb8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -506,9 +506,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>对数时间</td>
 <td>
-    <span id="mjx-38673e08">
+    <span id="mjx-70682af">
       <style>
-      #mjx-38673e08{
+      #mjx-70682af{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -672,9 +672,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>线性时间</td>
 <td>
-    <span id="mjx-0ec5156">
+    <span id="mjx-8d8639c">
       <style>
-      #mjx-0ec5156{
+      #mjx-8d8639c{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -838,9 +838,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>线性对数</td>
 <td>
-    <span id="mjx-5b7634">
+    <span id="mjx-8bcc9ce">
       <style>
-      #mjx-5b7634{
+      #mjx-8bcc9ce{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1004,9 +1004,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>平方时间</td>
 <td>
-    <span id="mjx-de2996d8">
+    <span id="mjx-3083f4d">
       <style>
-      #mjx-de2996d8{
+      #mjx-3083f4d{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1271,7 +1271,7 @@ g[data-mml-node="xypic"] path {
 <td>每个单元存储一个&quot;字&quot;（数字、字符串或地址）</td>
 </tr>
 <tr>
-<td><strong>“随机访问”</strong></td>
+<td><strong>随机访问</strong></td>
 <td>CPU 可用一次原始操作访问任意内存单元</td>
 </tr>
 <tr>
@@ -1335,7 +1335,7 @@ g[data-mml-node="xypic"] path {
 </table>
 <h5 id="核心思想">核心思想</h5>
 <ul>
-<li>不测量每个操作的具体时间，只<strong>计算操作总数</strong> t(n)t(n) t(n)</li>
+<li>不测量每个操作的具体时间，只<strong>计算操作总数</strong> t(n)</li>
 <li>操作数与实际运行时间<strong>成正比</strong>（因为每个原始操作都是常数时间）</li>
 </ul>
 <h4 id="4-案例分析：arrayMax-算法">4. 案例分析：arrayMax 算法</h4>
@@ -1378,9 +1378,9 @@ g[data-mml-node="xypic"] path {
 </table>
 <p><strong>总操作数</strong></p>
 <p>​		
-    <span id="mjx-083476d">
+    <span id="mjx-7af10a98">
       <style>
-      #mjx-083476d{
+      #mjx-7af10a98{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1540,9 +1540,9 @@ g[data-mml-node="xypic"] path {
     </span>
   （最好情况）</p>
 <p>​		
-    <span id="mjx-fbdd551">
+    <span id="mjx-511d48b">
       <style>
-      #mjx-fbdd551{
+      #mjx-511d48b{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1792,9 +1792,9 @@ g[data-mml-node="xypic"] path {
 <p>分析递归算法运行时间，需要建立 <strong>递推方程</strong>，定义函数 <em>T(n)</em> 表示规模为 <em>n</em> 时的运行时间。</p>
 <p>对 <code>recursiveMax</code> 算法（每次比较、数组访问、递归调用、max计算、return 均计为1次原始操作）：</p>
 
-    <span id="mjx-1b2d54d8">
+    <span id="mjx-17fc3">
       <style>
-      #mjx-1b2d54d8{
+      #mjx-17fc3{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1958,9 +1958,9 @@ g[data-mml-node="xypic"] path {
 <p><strong>封闭形式</strong>：将递推方程转化为<strong>不含 T 自身引用</strong>的显式表达式。</p>
 <p><strong>推导过程</strong></p>
 <p>
-    <span id="mjx-5b458d08">
+    <span id="mjx-8b1efa1">
       <style>
-      #mjx-5b458d08{
+      #mjx-8b1efa1{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2120,9 +2120,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </p>
 <p>
-    <span id="mjx-38693ba">
+    <span id="mjx-9e9799a">
       <style>
-      #mjx-38693ba{
+      #mjx-9e9799a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2282,9 +2282,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </p>
 <p>
-    <span id="mjx-78fcfcc">
+    <span id="mjx-a29509a">
       <style>
-      #mjx-78fcfcc{
+      #mjx-a29509a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2444,9 +2444,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </p>
 <p>
-    <span id="mjx-0e745f68">
+    <span id="mjx-b6bdde5">
       <style>
-      #mjx-0e745f68{
+      #mjx-b6bdde5{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2605,9 +2605,9 @@ g[data-mml-node="xypic"] path {
       <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="11.21ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 4955 1000" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(389,0)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g><g data-mml-node="mo" transform="translate(1187.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2243.6,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3065.8,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(4066,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(4566,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo stretchy="false">(</mo><mi>k</mi><mo>=</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container>
     </span>
     
-    <span id="mjx-6cfd0a7">
+    <span id="mjx-dc87ca2">
       <style>
-      #mjx-6cfd0a7{
+      #mjx-dc87ca2{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2767,9 +2767,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </p>
 <p>
-    <span id="mjx-abf7af38">
+    <span id="mjx-ef58d09">
       <style>
-      #mjx-abf7af38{
+      #mjx-ef58d09{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2994,9 +2994,9 @@ g[data-mml-node="xypic"] path {
 </ul>
 <p>使得对所有 n ≥ n0，都有：</p>
 <p>​		
-    <span id="mjx-f3cc9b28">
+    <span id="mjx-0c9c1b8">
       <style>
-      #mjx-f3cc9b28{
+      #mjx-0c9c1b8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3177,9 +3177,9 @@ g[data-mml-node="xypic"] path {
 <tbody>
 <tr>
 <td>
-    <span id="mjx-f5d204d">
+    <span id="mjx-c82d2f9">
       <style>
-      #mjx-f5d204d{
+      #mjx-c82d2f9{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3339,9 +3339,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-601e5f3">
+    <span id="mjx-e88efc08">
       <style>
-      #mjx-601e5f3{
+      #mjx-e88efc08{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3501,9 +3501,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-300eb58">
+    <span id="mjx-fbddba08">
       <style>
-      #mjx-300eb58{
+      #mjx-fbddba08{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3665,9 +3665,9 @@ g[data-mml-node="xypic"] path {
 </tr>
 <tr>
 <td>
-    <span id="mjx-cd73fa08">
+    <span id="mjx-e741d79">
       <style>
-      #mjx-cd73fa08{
+      #mjx-e741d79{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3827,9 +3827,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-88b9f398">
+    <span id="mjx-9162bea8">
       <style>
-      #mjx-88b9f398{
+      #mjx-9162bea8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3989,9 +3989,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-d23acbe8">
+    <span id="mjx-5c498ea8">
       <style>
-      #mjx-d23acbe8{
+      #mjx-5c498ea8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4153,9 +4153,9 @@ g[data-mml-node="xypic"] path {
 </tr>
 <tr>
 <td>
-    <span id="mjx-6173b0f">
+    <span id="mjx-cac1498">
       <style>
-      #mjx-6173b0f{
+      #mjx-cac1498{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4315,9 +4315,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-a03ffd98">
+    <span id="mjx-19feab58">
       <style>
-      #mjx-a03ffd98{
+      #mjx-19feab58{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4477,9 +4477,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-481080a">
+    <span id="mjx-ad2916a8">
       <style>
-      #mjx-481080a{
+      #mjx-ad2916a8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4642,9 +4642,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>$2^{100} $</td>
 <td>
-    <span id="mjx-9b026ee8">
+    <span id="mjx-8049f478">
       <style>
-      #mjx-9b026ee8{
+      #mjx-8049f478{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4804,9 +4804,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </td>
 <td>
-    <span id="mjx-93526a9">
+    <span id="mjx-1777e6a">
       <style>
-      #mjx-93526a9{
+      #mjx-1777e6a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4968,9 +4968,9 @@ g[data-mml-node="xypic"] path {
 </tr>
 <tr>
 <td>
-    <span id="mjx-7e595cb8">
+    <span id="mjx-b6404d58">
       <style>
-      #mjx-7e595cb8{
+      #mjx-b6404d58{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -5131,9 +5131,9 @@ g[data-mml-node="xypic"] path {
   </td>
 <td>$O(n\log n) $</td>
 <td>
-    <span id="mjx-2249654">
+    <span id="mjx-ef2859e">
       <style>
-      #mjx-2249654{
+      #mjx-ef2859e{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
