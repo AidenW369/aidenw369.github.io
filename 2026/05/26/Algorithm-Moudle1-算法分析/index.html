@@ -28,7 +28,7 @@
 <meta property="og:description" content="Algorithm Analysis">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-05-26T03:32:21.000Z">
-<meta property="article:modified_time" content="2026-05-26T03:33:20.766Z">
+<meta property="article:modified_time" content="2026-05-28T04:08:53.401Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary">
@@ -122,7 +122,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Algorithm-Analysis"><span class="nav-number">1.</span> <span class="nav-text">Algorithm Analysis</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Algorithm-Analysis"><span class="nav-number">1.</span> <span class="nav-text">Algorithm Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 算法分析简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9A%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%E4%B8%8E%E7%AE%97%E6%B3%95-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1  核心概念：可扩展性与算法&#x2F;数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 算法分析框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%EF%BC%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%EF%BC%88Running-Time%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 分析工具：运行时间（Running Time）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E6%9C%80%E9%87%8D%E8%A6%81%EF%BC%9F"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">为什么运行时间最重要？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E5%88%86%E6%9E%90%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 分析算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E9%80%9A%E7%94%A8%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 通用分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9E%E9%AA%8C%E7%A0%94%E7%A9%B6%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">1. 实验研究方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">核心思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">可视化方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%BD%B1%E5%93%8D%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">2. 影响运行时间的因素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%9E%E9%AA%8C%E7%A0%94%E7%A9%B6%E7%9A%84%E5%B1%80%E9%99%90%E6%80%A7"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">3. 实验研究的局限性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%80%9A%E7%94%A8%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%E7%9A%84%E8%A6%81%E6%B1%82"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">4. 通用分析方法的要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%87%BD%E6%95%B0%E5%A2%9E%E9%95%BF%E7%8E%87%E4%B8%8E%E7%AE%97%E6%B3%95%E6%AF%94%E8%BE%83"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">5. 函数增长率与算法比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84-f-n-%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.8.</span> <span class="nav-text">常见的 $ f(n)$ 类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E4%BC%AA%E4%BB%A3%E7%A0%81%EF%BC%88Pseudocode%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 伪代码（Pseudocode）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BC%AA%E4%BB%A3%E7%A0%81%EF%BC%9F"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">1. 什么是伪代码？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BC%AA%E4%BB%A3%E7%A0%81%E7%9A%84%E8%AF%AD%E6%B3%95%E6%9E%84%E6%88%90"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2. 伪代码的语法构成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%EF%BC%9AarrayMax-%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">3. 示例：arrayMax 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%AE%97%E6%B3%95%E6%AD%A3%E7%A1%AE%E6%80%A7%E9%AA%8C%E8%AF%81%EF%BC%88%E4%BB%A5-arrayMax-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">4. 算法正确性验证（以 arrayMax 为例）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-%E5%8E%9F%E5%A7%8B%E6%93%8D%E4%BD%9C%E8%AE%A1%E6%95%B0%E4%B8%8ERAM%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3 原始操作计数与RAM模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95%EF%BC%9F"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">1. 为什么需要分析方法？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-RAM%E6%A8%A1%E5%9E%8B%EF%BC%88%E9%9A%8F%E6%9C%BA%E8%AE%BF%E9%97%AE%E6%9C%BA%E5%99%A8%E6%A8%A1%E5%9E%8B%EF%BC%89"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2. RAM模型（随机访问机器模型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8E%9F%E5%A7%8B%E6%93%8D%E4%BD%9C%EF%BC%88Primitive-Operations%EF%BC%89"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">3. 原始操作（Primitive Operations）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83%E7%B1%BB%E5%8E%9F%E5%A7%8B%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.3.5.</span> <span class="nav-text">七类原始操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.2.3.5.1.</span> <span class="nav-text">核心思想</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%EF%BC%9AarrayMax-%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.3.6.</span> <span class="nav-text">4. 案例分析：arrayMax 算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%84%E6%AD%A5%E9%AA%A4%E5%8E%9F%E5%A7%8B%E6%93%8D%E4%BD%9C%E8%AE%A1%E6%95%B0"><span class="nav-number">1.2.3.7.</span> <span class="nav-text">各步骤原始操作计数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9C%80%E5%A5%BD-vs-%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5"><span class="nav-number">1.2.3.7.1.</span> <span class="nav-text">最好 vs 最坏情况</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%B9%B3%E5%9D%87%E6%83%85%E5%86%B5-vs-%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%E5%88%86%E6%9E%90"><span class="nav-number">1.2.3.8.</span> <span class="nav-text">5. 平均情况 vs 最坏情况分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%81%8F%E7%88%B1%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%EF%BC%9F"><span class="nav-number">1.2.3.9.</span> <span class="nav-text">为什么偏爱最坏情况？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-%E9%80%92%E5%BD%92"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4 递归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%80%92%E5%BD%92%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1. 递归概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E9%80%92%E5%BD%92%E6%B1%82%E6%95%B0%E7%BB%84%E6%9C%80%E5%A4%A7%E5%80%BC"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">2. 示例：递归求数组最大值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">3. 递归算法的时间分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E6%8E%A8%E6%96%B9%E7%A8%8B%EF%BC%88Recurrence-Equation%EF%BC%89"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">递推方程（Recurrence Equation）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%B0%81%E9%97%AD%E5%BD%A2%E5%BC%8F%EF%BC%88Closed-Form%EF%BC%89"><span class="nav-number">1.2.4.5.</span> <span class="nav-text">4. 封闭形式（Closed Form）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.2.4.6.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%A1%A5%E5%85%85%EF%BC%9A%E9%80%92%E5%BD%92-vs-%E8%BF%AD%E4%BB%A3"><span class="nav-number">1.2.4.7.</span> <span class="nav-text">5. 补充：递归 vs 迭代</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7%EF%BC%88Asymptotic-Notation%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.2.5 渐进符号（Asymptotic Notation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%83%8C%E6%99%AF%E4%B8%8E%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">1. 背景与动机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A4%A7O%E7%AC%A6%E5%8F%B7%EF%BC%88Big-Oh-Notation%EF%BC%89"><span class="nav-number">1.2.6.</span> <span class="nav-text">2. 大O符号（Big-Oh Notation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E8%A7%A3%E8%AF%BB"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">语义解读</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%85%B8%E5%9E%8B%E4%BE%8B%E9%A2%98"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">3. 典型例题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.2.7.</span> <span class="nav-text">使用建议</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -199,9 +199,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2026-05-26 11:32:21 / Modified: 11:33:20" itemprop="dateCreated datePublished" datetime="2026-05-26T11:32:21+08:00">2026-05-26</time>
+      <time title="Created: 2026-05-26 11:32:21" itemprop="dateCreated datePublished" datetime="2026-05-26T11:32:21+08:00">2026-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-05-28 12:08:53" itemprop="dateModified" datetime="2026-05-28T12:08:53+08:00">2026-05-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -222,7 +228,544 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="Algorithm-Analysis"><a href="#Algorithm-Analysis" class="headerlink" title="Algorithm Analysis"></a>Algorithm Analysis<span id="more"></span></h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="Algorithm-Analysis"><a href="#Algorithm-Analysis" class="headerlink" title="Algorithm Analysis"></a>Algorithm Analysis<span id="more"></span></h1><h2 id="1-1-算法分析简介"><a href="#1-1-算法分析简介" class="headerlink" title="1.1 算法分析简介"></a>1.1 算法分析简介</h2><h3 id="1-1-1-核心概念：可扩展性与算法-数据结构"><a href="#1-1-1-核心概念：可扩展性与算法-数据结构" class="headerlink" title="1.1.1  核心概念：可扩展性与算法/数据结构"></a>1.1.1  核心概念：可扩展性与算法/数据结构</h3><ul>
+<li><strong>科学中的尺度</strong>：科学家处理从微观到天文级别的物理尺度差异。</li>
+<li><strong>计算中的尺度</strong>：计算机科学家处理<strong>数据量</strong>的规模差异。</li>
+<li><strong>可扩展性</strong>：系统在输入规模或工作负载显著增长时，仍能优雅地保持性能的能力。这是技术方案能否在市场中成功的关键。</li>
+<li><strong>核心研究对象</strong><ul>
+<li><strong>算法</strong>：在有限时间内完成特定任务的<strong>分步操作流程</strong>。</li>
+<li><strong>数据结构</strong>：组织和访问数据的<strong>系统性方法</strong>。</li>
+</ul>
+</li>
+<li><strong>学习目标</strong>：设计<strong>正确</strong>且<strong>高效</strong>（可扩展）的数据结构与算法。</li>
+</ul>
+<h3 id="1-1-2-算法分析框架"><a href="#1-1-2-算法分析框架" class="headerlink" title="1.1.2 算法分析框架"></a>1.1.2 算法分析框架</h3><p>分析算法的目的是精确衡量其可扩展性。主要衡量指标是<strong>运行时间</strong>，其次是<strong>空间占用</strong>，因为时间是稀缺且昂贵的资源。</p>
+<p>分析框架的构成：</p>
+<ol>
+<li><strong>描述语言</strong>：用于清晰表达算法的语言。</li>
+<li><strong>计算模型</strong>：算法运行所基于的抽象计算机模型。</li>
+<li><strong>计数要素</strong>：决定运行时统计哪些基本操作。</li>
+<li><strong>递归分析</strong>：简要介绍分析递归算法的方法。</li>
+</ol>
+<p>主要理论工具：<strong>渐近记号</strong>（大O记号等），用于刻画运行时间的增长趋势。</p>
+<h3 id="1-1-3-分析工具：运行时间（Running-Time）"><a href="#1-1-3-分析工具：运行时间（Running-Time）" class="headerlink" title="1.1.3 分析工具：运行时间（Running Time）"></a>1.1.3 分析工具：运行时间（Running Time）</h3><ul>
+<li><strong>首要分析工具</strong> = 刻画算法或数据结构操作的<strong>运行时间</strong></li>
+<li>次要关注：<strong>空间使用（Space Usage）</strong></li>
+</ul>
+<h4 id="为什么运行时间最重要？"><a href="#为什么运行时间最重要？" class="headerlink" title="为什么运行时间最重要？"></a>为什么运行时间最重要？</h4><ol>
+<li>时间是宝贵资源（Precious Resource）</li>
+<li>在经济和科学应用中，所有人都希望程序运行得尽可能快</li>
+<li>运行时间是衡量可扩展性的天然指标</li>
+</ol>
+<h2 id="1-2-分析算法"><a href="#1-2-分析算法" class="headerlink" title="1.2 分析算法"></a>1.2 分析算法</h2><h3 id="1-2-1-通用分析方法"><a href="#1-2-1-通用分析方法" class="headerlink" title="1.2.1 通用分析方法"></a>1.2.1 通用分析方法</h3><h4 id="1-实验研究方法"><a href="#1-实验研究方法" class="headerlink" title="1. 实验研究方法"></a>1. 实验研究方法</h4><h4 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h4><p>通过在<strong>不同规模的测试输入</strong>上运行算法，记录每次运行的实际耗时，以研究运行时间与输入规模 n 的关系。</p>
+<h4 id="可视化方式"><a href="#可视化方式" class="headerlink" title="可视化方式"></a>可视化方式</h4><p>将实验结果绘制成散点图：</p>
+<ul>
+<li><strong>x 轴</strong>：输入规模 n</li>
+<li><strong>y 轴</strong>：运行时间 t（单位：毫秒 ms）</li>
+</ul>
+<h4 id="2-影响运行时间的因素"><a href="#2-影响运行时间的因素" class="headerlink" title="2. 影响运行时间的因素"></a>2. 影响运行时间的因素</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>因素类别</th>
+<th>具体内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>输入规模</strong></td>
+<td>规模越大，时间通常越长</td>
+</tr>
+<tr>
+<td><strong>输入内容</strong></td>
+<td>相同规模下，输入内容不同也可能导致时间差异</td>
+</tr>
+<tr>
+<td><strong>硬件环境</strong></td>
+<td>处理器速度、时钟频率、内存、磁盘等</td>
+</tr>
+<tr>
+<td><strong>软件环境</strong></td>
+<td>操作系统、编程语言、编译器/解释器等</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>💡 <strong>补充</strong>：这也是为什么算法分析中常区分<strong>最好情况 / 平均情况 / 最坏情况</strong>复杂度。</p>
+<h4 id="3-实验研究的局限性"><a href="#3-实验研究的局限性" class="headerlink" title="3. 实验研究的局限性"></a>3. 实验研究的局限性</h4><ol>
+<li>实验只能覆盖<strong>有限的测试输入</strong>，需保证代表性</li>
+<li>不同硬件/软件环境下，<strong>结果难以横向比较</strong></li>
+<li>必须<strong>先实现算法</strong>才能实验，成本较高</li>
+</ol>
+<h4 id="4-通用分析方法的要求"><a href="#4-通用分析方法的要求" class="headerlink" title="4. 通用分析方法的要求"></a>4. 通用分析方法的要求</h4><p>为了克服实验局限，需要一种更通用的分析框架，满足：</p>
+<ul>
+<li>✅ 考虑<strong>所有可能的输入</strong></li>
+<li>✅ <strong>独立于硬件与软件环境</strong>，评估算法相对效率</li>
+<li>✅ 仅通过算法的<strong>高级描述</strong>进行分析，无需实际实现</li>
+</ul>
+<blockquote>
+<p>这正是<strong>渐进复杂度分析（Big-O 分析）</strong> 的动机所在。</p>
+</blockquote>
+<h4 id="5-函数增长率与算法比较"><a href="#5-函数增长率与算法比较" class="headerlink" title="5. 函数增长率与算法比较"></a>5. 函数增长率与算法比较</h4><p>将每个算法与一个函数 $ f(n) $ 关联，用来表征其运行时间随输入规模的变化。</p>
+<h4 id="常见的-f-n-类型"><a href="#常见的-f-n-类型" class="headerlink" title="常见的 $ f(n)$ 类型"></a>常见的 $ f(n)$ 类型</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>增长类型</th>
+<th>表示</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常数时间</td>
+<td>$O(1)$</td>
+<td>与输入规模无关</td>
+</tr>
+<tr>
+<td>对数时间</td>
+<td>$O(log⁡n)$</td>
+<td>极慢增长，如二分查找</td>
+</tr>
+<tr>
+<td>线性时间</td>
+<td>$O(n)$</td>
+<td>与输入成正比</td>
+</tr>
+<tr>
+<td>线性对数</td>
+<td>$O(nlog⁡n)$</td>
+<td>如归并排序</td>
+</tr>
+<tr>
+<td>平方时间</td>
+<td>$O(n^2)$</td>
+<td>如冒泡排序</td>
+</tr>
+<tr>
+<td>指数时间</td>
+<td>$O(2^n) $</td>
+<td>增长极快，通常不可接受</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="1-2-2-伪代码（Pseudocode）"><a href="#1-2-2-伪代码（Pseudocode）" class="headerlink" title="1.2.2 伪代码（Pseudocode）"></a>1.2.2 伪代码（Pseudocode）</h3><h4 id="1-什么是伪代码？"><a href="#1-什么是伪代码？" class="headerlink" title="1. 什么是伪代码？"></a>1. 什么是伪代码？</h4><p>伪代码是程序员用来描述算法的一种<strong>介于自然语言和编程语言之间</strong>的描述方式：</p>
+<ul>
+<li>专供<strong>人类阅读</strong>，而非计算机执行</li>
+<li>比普通文字更有结构性</li>
+<li>有助于对数据结构或算法进行<strong>高层次分析</strong></li>
+</ul>
+<blockquote>
+<p>核心原则：传达<strong>高层思想</strong>，而非底层实现细节；既不过于简略，也不过于繁琐。</p>
+</blockquote>
+<h4 id="2-伪代码的语法构成"><a href="#2-伪代码的语法构成" class="headerlink" title="2. 伪代码的语法构成"></a>2. 伪代码的语法构成</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>构成要素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>表达式</strong></td>
+<td>用数学符号表示；<code>←</code> 为赋值，<code>=</code> 为等值判断</td>
+</tr>
+<tr>
+<td><strong>方法声明</strong></td>
+<td><code>Algorithm name(param1, param2, ...)</code></td>
+</tr>
+<tr>
+<td><strong>条件结构</strong></td>
+<td><code>if</code> 条件 <code>then</code> 真操作 <code>[else</code> 假操作<code>]</code></td>
+</tr>
+<tr>
+<td><strong>While循环</strong></td>
+<td><code>while</code> 条件 <code>do</code> 操作</td>
+</tr>
+<tr>
+<td><strong>Repeat循环</strong></td>
+<td><code>repeat</code> 操作 <code>until</code> 条件</td>
+</tr>
+<tr>
+<td><strong>For循环</strong></td>
+<td><code>for</code> 变量定义 <code>do</code> 操作</td>
+</tr>
+<tr>
+<td><strong>数组索引</strong></td>
+<td><code>A[i]</code> 表示数组第 i 个元素，下标从 0 或 1 开始</td>
+</tr>
+<tr>
+<td><strong>方法调用</strong></td>
+<td><code>object.method(args)</code></td>
+</tr>
+<tr>
+<td><strong>方法返回</strong></td>
+<td><code>return</code> 值</td>
+</tr>
+<tr>
+<td><strong>注释</strong></td>
+<td><code>//</code> 符号后跟注释内容</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-示例：arrayMax-算法"><a href="#3-示例：arrayMax-算法" class="headerlink" title="3. 示例：arrayMax 算法"></a>3. 示例：arrayMax 算法</h4><p><strong>问题：</strong> 求数组 A（含 n 个整数）中的最大值</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Algorithm arrayMax(A, n)</span><br><span class="line">    Input:  数组 A，包含 n ≥ 1 个整数</span><br><span class="line">    Output: A 中的最大元素</span><br><span class="line"></span><br><span class="line">    currentMax ← A[0]</span><br><span class="line">    for i ← 1 to n-1 do</span><br><span class="line">        if currentMax &lt; A[i] then</span><br><span class="line">            currentMax ← A[i]</span><br><span class="line">    return currentMax</span><br></pre></td></tr></table></figure>
+<h4 id="4-算法正确性验证（以-arrayMax-为例）"><a href="#4-算法正确性验证（以-arrayMax-为例）" class="headerlink" title="4. 算法正确性验证（以 arrayMax 为例）"></a>4. 算法正确性验证（以 arrayMax 为例）</h4><p>采用<strong>循环不变量</strong>思路逐步推导：</p>
+<ol>
+<li>初始：<code>currentMax = A[0]</code>（第 1 个元素的最大值）</li>
+<li>第 i 次迭代开始时：<code>currentMax</code> = 前 i 个元素的最大值</li>
+<li>比较 <code>currentMax</code> 与 <code>A[i]</code>，若成立则更新</li>
+<li>因此第 i+1 次迭代前仍然成立</li>
+<li>经过 n−1 次迭代后，<code>currentMax</code> = 整个数组的最大值 ✓</li>
+</ol>
+<blockquote>
+<p>好的伪代码应<strong>足够详细</strong>以验证算法正确性，同时<strong>足够简洁</strong>以便人类理解。</p>
+</blockquote>
+<h3 id="1-2-3-原始操作计数与RAM模型"><a href="#1-2-3-原始操作计数与RAM模型" class="headerlink" title="1.2.3 原始操作计数与RAM模型"></a>1.2.3 原始操作计数与RAM模型</h3><h4 id="1-为什么需要分析方法？"><a href="#1-为什么需要分析方法？" class="headerlink" title="1. 为什么需要分析方法？"></a>1. 为什么需要分析方法？</h4><p>实验分析有其局限性。为此，我们采用<strong>分析方法</strong>：直接对高层代码或伪代码进行分析，无需实际运行程序。</p>
+<h4 id="2-RAM模型（随机访问机器模型）"><a href="#2-RAM模型（随机访问机器模型）" class="headerlink" title="2. RAM模型（随机访问机器模型）"></a>2. RAM模型（随机访问机器模型）</h4><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>RAM（Random Access Machine）是一种计算模型，将计算机抽象为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CPU  ←→  内存单元（Memory Cells）</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>内存单元</strong></td>
+<td>每个单元存储一个”字”（数字、字符串或地址）</td>
+</tr>
+<tr>
+<td><strong>“随机访问”</strong></td>
+<td>CPU 可用一次原始操作访问任意内存单元</td>
+</tr>
+<tr>
+<td><strong>数字大小</strong></td>
+<td>模型中不限制存储数字的大小（简化假设）</td>
+</tr>
+<tr>
+<td><strong>执行时间</strong></td>
+<td>CPU 执行任何原始操作均视为<strong>常数步骤</strong>，与输入规模无关</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="3-原始操作（Primitive-Operations）"><a href="#3-原始操作（Primitive-Operations）" class="headerlink" title="3. 原始操作（Primitive Operations）"></a>3. 原始操作（Primitive Operations）</h4><p>原始操作是独立于编程语言、可在伪代码中识别的<strong>高层基本操作</strong>，每个操作对应一条常数时间的底层指令。</p>
+<h4 id="七类原始操作"><a href="#七类原始操作" class="headerlink" title="七类原始操作"></a>七类原始操作</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>操作类型</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>变量赋值</strong></td>
+<td><code>x = 5</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>调用方法</strong></td>
+<td><code>arrayMax(A)</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>算术运算</strong></td>
+<td><code>a + b</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>比较两个数</strong></td>
+<td><code>i &lt; n</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>数组索引</strong></td>
+<td><code>A[i]</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>对象引用跟随</strong></td>
+<td><code>node.next</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>方法返回</strong></td>
+<td><code>return value</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h5><ul>
+<li>不测量每个操作的具体时间，只<strong>计算操作总数</strong> t(n)t(n) t(n)</li>
+<li>操作数与实际运行时间<strong>成正比</strong>（因为每个原始操作都是常数时间）</li>
+</ul>
+<h4 id="4-案例分析：arrayMax-算法"><a href="#4-案例分析：arrayMax-算法" class="headerlink" title="4. 案例分析：arrayMax 算法"></a>4. 案例分析：arrayMax 算法</h4><h4 id="各步骤原始操作计数"><a href="#各步骤原始操作计数" class="headerlink" title="各步骤原始操作计数"></a>各步骤原始操作计数</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作说明</th>
+<th>操作数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始化 <code>currentMax = A[0]</code></td>
+<td>数组索引 + 赋值</td>
+<td><strong>2</strong>（执行1次）</td>
+</tr>
+<tr>
+<td><code>for</code> 循环初始化 <code>i = 1</code></td>
+<td>赋值</td>
+<td><strong>1</strong>（执行1次）</td>
+</tr>
+<tr>
+<td>条件判断 <code>i &lt; n</code></td>
+<td>比较</td>
+<td><strong>n</strong>（执行n次）</td>
+</tr>
+<tr>
+<td>循环体（每次迭代）</td>
+<td>索引+比较，[可能]索引+赋值，加法+赋值</td>
+<td><strong>4 或 6</strong>（执行 n−1 次）</td>
+</tr>
+<tr>
+<td>返回 <code>currentMax</code></td>
+<td>返回操作</td>
+<td><strong>1</strong>（执行1次）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>总操作数</strong></p>
+<p>​        $t(n)≥2+1+n+4(n−1)+1=5n$（最好情况）</p>
+<p>​        $t(n)≤2+1+n+6(n−1)+1=7n−2$（最坏情况）</p>
+<h5 id="最好-vs-最坏情况"><a href="#最好-vs-最坏情况" class="headerlink" title="最好 vs 最坏情况"></a>最好 vs 最坏情况</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>t(n)</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>最好情况</strong></td>
+<td>5n</td>
+<td><code>A[0]</code> 是最大值，<code>currentMax</code> 从不被重新赋值</td>
+</tr>
+<tr>
+<td><strong>最坏情况</strong></td>
+<td>7n−2</td>
+<td>数组升序排列，<code>currentMax</code> 每次迭代都被更新</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="5-平均情况-vs-最坏情况分析"><a href="#5-平均情况-vs-最坏情况分析" class="headerlink" title="5. 平均情况 vs 最坏情况分析"></a>5. 平均情况 vs 最坏情况分析</h4><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">运行时间</span><br><span class="line">  ↑</span><br><span class="line">5ms|---- ■ --------■-------------- ← 最坏情况</span><br><span class="line">4ms|     |    ■    |    ■          ← 平均情况？</span><br><span class="line">3ms|     | ■  |    |  ■           </span><br><span class="line">2ms|-----|----|----|----|------- ← 最好情况</span><br><span class="line">  A    B    C    D    E    F    G</span><br><span class="line">              输入实例</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>分析类型</th>
+<th>难度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>最坏情况分析</strong></td>
+<td>✅ 较简单</td>
+<td>无需概率论，只需找到最差输入；本书主要使用此方法</td>
+</tr>
+<tr>
+<td><strong>平均情况分析</strong></td>
+<td>❌ 较复杂</td>
+<td>需定义输入的概率分布，数学要求高</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="为什么偏爱最坏情况？"><a href="#为什么偏爱最坏情况？" class="headerlink" title="为什么偏爱最坏情况？"></a>为什么偏爱最坏情况？</h4><ol>
+<li><strong>简单</strong>：不需要概率论</li>
+<li><strong>强健</strong>：为最坏情况设计意味着对<strong>每个输入</strong>都表现良好</li>
+<li><strong>类比</strong>：就像田径运动员总是在上坡练习，能建立更强的”算法肌肉”</li>
+</ol>
+<h3 id="1-2-4-递归"><a href="#1-2-4-递归" class="headerlink" title="1.2.4 递归"></a>1.2.4 递归</h3><h4 id="1-递归概念"><a href="#1-递归概念" class="headerlink" title="1. 递归概念"></a>1. 递归概念</h4><p><strong>递归（Recursion）</strong> 是一种重要的算法设计技术，核心思想是：</p>
+<blockquote>
+<p>定义一个过程 <em>P</em>，允许它将<strong>自身作为子程序</strong>调用，但每次调用必须针对<strong>规模更小的子问题</strong>。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>递归调用</strong></td>
+<td>过程对自身的调用，每次处理更小规模的输入</td>
+</tr>
+<tr>
+<td><strong>基础情形（Base Case）</strong></td>
+<td>问题规模足够小，可以<strong>直接求解</strong>，无需继续递归</td>
+</tr>
+<tr>
+<td><strong>递推关系</strong></td>
+<td>如何将大问题分解为小问题</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="2-示例：递归求数组最大值"><a href="#2-示例：递归求数组最大值" class="headerlink" title="2. 示例：递归求数组最大值"></a>2. 示例：递归求数组最大值</h4><p><strong>recursiveMax(A, n)</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：数组 A，包含 n ≥ 1 个整数</span><br><span class="line">输出：A 中的最大元素</span><br><span class="line"></span><br><span class="line">if n = 1 then</span><br><span class="line">    return A[0]           ← 基础情形</span><br><span class="line">return max(recursiveMax(A, n-1), A[n-1])   ← 递归情形</span><br></pre></td></tr></table></figure>
+<p><strong>执行逻辑</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">recursiveMax(A, 4)</span><br><span class="line">  └── max(recursiveMax(A, 3), A[3])</span><br><span class="line">        └── max(recursiveMax(A, 2), A[2])</span><br><span class="line">              └── max(recursiveMax(A, 1), A[1])</span><br><span class="line">                    └── return A[0]   ← base case</span><br></pre></td></tr></table></figure>
+<p>先递归求前 <em>n-1</em> 个元素的最大值</p>
+<p>再与第 <em>n</em> 个元素比较，取较大值返回</p>
+<h4 id="3-递归算法的时间分析"><a href="#3-递归算法的时间分析" class="headerlink" title="3. 递归算法的时间分析"></a>3. 递归算法的时间分析</h4><h4 id="递推方程（Recurrence-Equation）"><a href="#递推方程（Recurrence-Equation）" class="headerlink" title="递推方程（Recurrence Equation）"></a>递推方程（Recurrence Equation）</h4><p>分析递归算法运行时间，需要建立 <strong>递推方程</strong>，定义函数 <em>T(n)</em> 表示规模为 <em>n</em> 时的运行时间。</p>
+<p>对 <code>recursiveMax</code> 算法（每次比较、数组访问、递归调用、max计算、return 均计为1次原始操作）：</p>
+<script type="math/tex; mode=display">
+T(n) = \begin{cases} 3 & \text{if } n = 1 \\ T(n-1) + 7 & \text{otherwise} \end{cases}</script><p><strong>为什么基础情形是 3？</strong> <code>n=1</code> 时执行：① 比较 <code>n=1</code>，② 访问 <code>A[0]</code>，③ <code>return</code> → 共 <strong>3次</strong>操作</p>
+<p><strong>为什么递推情形是 +7？</strong> 每层执行：① 比较 <code>n=1?</code>，② 递归调用，③ 访问 <code>A[n-1]</code>，④ <code>max</code> 计算，⑤ <code>return</code>等 → 约 <strong>7次</strong>操作</p>
+<h4 id="4-封闭形式（Closed-Form）"><a href="#4-封闭形式（Closed-Form）" class="headerlink" title="4. 封闭形式（Closed Form）"></a>4. 封闭形式（Closed Form）</h4><p><strong>封闭形式</strong>：将递推方程转化为<strong>不含 T 自身引用</strong>的显式表达式。</p>
+<p><strong>推导过程</strong></p>
+<p>$T(n)=T(n−1)+7$</p>
+<p>$=T(n−2)+7+7$</p>
+<p>$=T(n−k)+7k$</p>
+<p>$(k=n−1)$  $T(1)+7(n−1)=3+7n−7$</p>
+<p>$T(n)=7n−4$</p>
+<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>递推形式</td>
+<td>T(n) = T(n−1)+7，T(1) = 3</td>
+</tr>
+<tr>
+<td>封闭形式</td>
+<td>T(n) = 7n−4</td>
+</tr>
+<tr>
+<td>渐近复杂度</td>
+<td>O(n) — 线性时间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="5-补充：递归-vs-迭代"><a href="#5-补充：递归-vs-迭代" class="headerlink" title="5. 补充：递归 vs 迭代"></a>5. 补充：递归 vs 迭代</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>递归</th>
+<th>迭代</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码风格</td>
+<td>更<strong>简洁优雅</strong></td>
+<td>较为直接</td>
+</tr>
+<tr>
+<td>时间分析</td>
+<td>需建立递推方程</td>
+<td>直接计数循环次数</td>
+</tr>
+<tr>
+<td>空间开销</td>
+<td>有调用栈开销 O(n)</td>
+<td>通常 O(1)</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>分治、树/图遍历等</td>
+<td>简单循环计算</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="1-2-5-渐进符号（Asymptotic-Notation）"><a href="#1-2-5-渐进符号（Asymptotic-Notation）" class="headerlink" title="1.2.5 渐进符号（Asymptotic Notation）"></a>1.2.5 渐进符号（Asymptotic Notation）</h3><h4 id="1-背景与动机"><a href="#1-背景与动机" class="headerlink" title="1. 背景与动机"></a>1. 背景与动机</h4><p>对于简单算法（如 <code>arrayMax</code>、<code>recursiveMax</code>），逐步计算原始操作数过于繁琐。实际上，伪代码中每一步对应的原始操作数<strong>不依赖于输入规模</strong>，因此可以做简化分析——<strong>估计到常数倍数级别</strong>即可。渐进符号正是为此而生。</p>
+<h3 id="2-大O符号（Big-Oh-Notation）"><a href="#2-大O符号（Big-Oh-Notation）" class="headerlink" title="2. 大O符号（Big-Oh Notation）"></a>2. 大O符号（Big-Oh Notation）</h3><p><strong>定义：</strong> 设 f(n)和 g(n)是从非负整数到实数的函数。若存在：</p>
+<ul>
+<li>实常数 c &gt; 0</li>
+<li>整数常数 n0 ≥ 1</li>
+</ul>
+<p>使得对所有 n ≥ n0，都有：</p>
+<p>​        $f(n)≤c⋅g(n)$</p>
+<p>则称 f(n)是 O(g(n))，读作 <strong>“f(n) 是 big-Oh of g(n)”</strong> 或 <strong>“f(n) 是 order g(n)”</strong>。</p>
+<p><strong>图形理解（Figure 1.2.3）</strong></p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Running Time</span><br><span class="line">     |          cg(n)  ← 蓝色曲线（上界）</span><br><span class="line">     |         /</span><br><span class="line">     |    f(n)/        ← 黑色曲线（实际函数）</span><br><span class="line">     |   \  /</span><br><span class="line">     |    \/</span><br><span class="line">     +----n₀----------→ Input Size</span><br></pre></td></tr></table></figure>
+<p>从 n0 开始，cg(n)  <strong>永远在</strong> f(n) 上方，即 f(n) 被 cg(n) 从上方”压住”。</p>
+<h4 id="语义解读"><a href="#语义解读" class="headerlink" title="语义解读"></a>语义解读</h4><ul>
+<li><strong>“≤”</strong>：f 小于等于 g（上界）</li>
+<li><strong>常数 c</strong>：允许忽略常数倍数差异</li>
+<li><strong>n≥n0</strong>：渐进意义，只关心 $n→∞ $ 时的趋势</li>
+</ul>
+<h4 id="3-典型例题"><a href="#3-典型例题" class="headerlink" title="3. 典型例题"></a>3. 典型例题</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>例题</th>
+<th>结论</th>
+<th>证明思路</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$7n−2$</td>
+<td>$O(n)$</td>
+<td>$取 c=7,n_0=1，则 7n−2≤7n$</td>
+</tr>
+<tr>
+<td>$20n3+10n2+5$</td>
+<td>$O(n^3)$</td>
+<td>$取 c=35,n_0=1，则原式 ≤35n^3$</td>
+</tr>
+<tr>
+<td>$3logn+loglogn$</td>
+<td>$O(logn)$</td>
+<td>$取 c=4,n_0=2，因为 log⁡log⁡n&lt;log⁡n（n≥2）$</td>
+</tr>
+<tr>
+<td>$2^{100} $</td>
+<td>$O(1)$</td>
+<td>$取 c=2100,n_0=1，常数函数，n不出现$</td>
+</tr>
+<tr>
+<td>$5nlogn+2n$</td>
+<td>$O(n\log n) $</td>
+<td>$取 c=7,n_0=2，则原式 ≤7nlog⁡n$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>规律：</strong>任意多项式 <script type="math/tex">a_k n^k + a_{k-1} n^{k-1} + \cdots + a_0 = O(n^k)</script></p>
+<h3 id="使用建议"><a href="#使用建议" class="headerlink" title="使用建议"></a>使用建议</h3><ul>
+<li>应使用尽可能简单且紧致的 g(n)来描述 f(n)</li>
+<li>精确分析运行时间往往困难，而用大O刻画<strong>通常更简便</strong></li>
+<li>实践中可用<strong>简化规则</strong>（下一节内容）来快速得出大O表达式，无需每次回到定义</li>
+</ul>
+
     </div>
 
     
