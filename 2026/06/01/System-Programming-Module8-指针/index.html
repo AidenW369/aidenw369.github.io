@@ -28,7 +28,7 @@
 <meta property="og:description" content="指针">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-06-01T08:07:51.000Z">
-<meta property="article:modified_time" content="2026-06-01T08:07:12.547Z">
+<meta property="article:modified_time" content="2026-06-01T10:24:50.371Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="System Programming">
 <meta name="twitter:card" content="summary">
@@ -128,7 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">指针</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E6%8C%87%E9%92%88"><span class="nav-number">1.1.</span> <span class="nav-text">8.1 为什么使用指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%87%E9%92%88%EF%BC%9F"><span class="nav-number">1.1.1.</span> <span class="nav-text">8.1.1 什么是指针？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">指针的基本语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E6%8C%87%E9%92%88%EF%BC%9F"><span class="nav-number">1.1.2.</span> <span class="nav-text">8.1.2 为什么要使用指针？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%87%BD%E6%95%B0%E9%97%B4%E4%BC%A0%E9%80%92%E5%92%8C%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F%EF%BC%88%E4%BC%A0%E5%9D%80%E8%B0%83%E7%94%A8%EF%BC%89"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1. 函数间传递和修改变量（传址调用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2. 动态内存分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%AB%98%E6%95%88%E5%A4%84%E7%90%86%E5%A4%A7%E5%9E%8B%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">3. 高效处理大型数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%9E%84%E5%BB%BA%E5%A4%8D%E6%9D%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">4. 构建复杂数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%93%8D%E4%BD%9C%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">5. 操作数组和字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.1.2.6.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3-%E9%87%8E%E6%8C%87%E9%92%88%EF%BC%88%E6%9C%AA%E5%88%9D%E5%A7%8B%E5%8C%96%E6%8C%87%E9%92%88%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">8.1.3 野指针（未初始化指针）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">发生了什么？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4-%E7%A9%BA%E6%8C%87%E9%92%88%E8%A7%A3%E5%BC%95%E7%94%A8"><span class="nav-number">1.1.4.</span> <span class="nav-text">8.1.4 空指针解引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F-2"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">发生了什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E8%80%85%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">两者的对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%80%BB%E7%BB%93"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">一句话总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E6%8C%87%E9%92%88%E5%9F%BA%E7%A1%80"><span class="nav-number">1.2.</span> <span class="nav-text">8.2 指针基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-malloc-%E5%92%8C-free%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.</span> <span class="nav-text">8.3 malloc 和 free函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-1-malloc%EF%BC%88Memory-Allocation%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">8.3.1 malloc（Memory Allocation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">示例：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-2-free"><span class="nav-number">1.3.2.</span> <span class="nav-text">8.3.2 free</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-2"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">示例：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-3-%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">8.3.3 完整使用流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-4-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%EF%BC%9F"><span class="nav-number">1.3.4.</span> <span class="nav-text">8.3.4 为什么需要动态内存分配？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">常见错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">相关函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-4-%E6%8C%87%E9%92%88%E5%92%8C%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.4.</span> <span class="nav-text">8.4 指针和结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-1-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">1.4.1.</span> <span class="nav-text">8.4.1 基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">结构体指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%88%90%E5%91%98%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">访问成员的两种方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-2-%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.4.2.</span> <span class="nav-text">8.4.2 动态分配结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-3-%E4%BC%A0%E9%80%92%E7%BB%93%E6%9E%84%E4%BD%93%E6%8C%87%E9%92%88%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.4.3.</span> <span class="nav-text">8.4.3 传递结构体指针的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-4-%E7%BB%93%E6%9E%84%E4%BD%93%E5%86%85%E5%B5%8C%E6%8C%87%E9%92%88%EF%BC%88%E9%93%BE%E8%A1%A8%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">8.4.4 结构体内嵌指针（链表）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.4.4.1.</span> <span class="nav-text">常见注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.4.4.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-5-%E5%B8%A6%E6%8C%87%E9%92%88%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">8.5 带指针的字符串函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-1-%E6%A0%87%E5%87%86%E5%BA%93%E5%87%BD%E6%95%B0%EF%BC%88-string-h-%EF%BC%89"><span class="nav-number">1.5.1.</span> <span class="nav-text">8.5.1 标准库函数（&lt;string.h&gt;）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#strlen-%E2%80%94-%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">strlen — 字符串长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strcpy-strncpy-%E2%80%94-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E5%88%B6"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">strcpy &#x2F; strncpy — 字符串复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strcat-strncat-%E2%80%94-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">strcat &#x2F; strncat — 字符串拼接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strcmp-strncmp-%E2%80%94-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">strcmp &#x2F; strncmp — 字符串比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strchr-strrchr-%E2%80%94-%E6%9F%A5%E6%89%BE%E5%AD%97%E7%AC%A6"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">strchr &#x2F; strrchr — 查找字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strstr-%E2%80%94-%E6%9F%A5%E6%89%BE%E5%AD%90%E4%B8%B2"><span class="nav-number">1.5.1.6.</span> <span class="nav-text">strstr — 查找子串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strtok-%E2%80%94-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%86%E5%89%B2"><span class="nav-number">1.5.1.7.</span> <span class="nav-text">strtok — 字符串分割</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-2"><span class="nav-number">1.5.1.8.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-2-%E6%8C%87%E9%92%88%E6%93%8D%E4%BD%9C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%B8%B8%E8%A7%81%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.5.2.</span> <span class="nav-text">8.5.2 指针操作字符串的常见模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%8D%E5%8E%86%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">遍历字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%86%99-strlen"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">手写 strlen</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%86%99-strcpy"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">手写 strcpy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">关键注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-5-3-stdio-h-%E4%B8%AD%E7%9A%84%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.3.</span> <span class="nav-text">8.5.3 &lt;stdio.h&gt; 中的相关函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-6-%E7%94%A8%E4%BA%8E%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84-malloc-%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">8.6 用于数组和字符串的 malloc 函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B"><span class="nav-number">1.6.1.</span> <span class="nav-text">函数原型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-1-%E4%B8%BA%E6%95%B0%E7%BB%84%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98"><span class="nav-number">1.6.2.</span> <span class="nav-text">8.6.1 为数组动态分配内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-2-%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E5%86%85%E5%AD%98"><span class="nav-number">1.6.3.</span> <span class="nav-text">8.6.2 为字符串动态分配内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-3-malloc-vs-%E9%9D%99%E6%80%81%E6%95%B0%E7%BB%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.6.4.</span> <span class="nav-text">8.6.3 malloc vs 静态数组对比</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="nav-number">1.6.4.1.</span> <span class="nav-text">常见注意事项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-6-4-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.5.</span> <span class="nav-text">8.6.4 相关函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-7-realloc%E5%87%BD%E6%95%B0"><span class="nav-number">1.7.</span> <span class="nav-text">8.7 realloc函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-7-1-%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B"><span class="nav-number">1.7.1.</span> <span class="nav-text">8.7.1 函数原型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">参数说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.7.1.3.</span> <span class="nav-text">工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-number">1.7.1.4.</span> <span class="nav-text">作用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-7-2-%E5%85%B8%E5%9E%8B%E7%94%A8%E6%B3%95"><span class="nav-number">1.7.2.</span> <span class="nav-text">8.7.2 典型用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-7-3-%E5%B8%B8%E8%A7%81%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.7.3.</span> <span class="nav-text">8.7.3 常见注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.7.4.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0%E5%AF%B9%E6%AF%94"><span class="nav-number">1.7.4.1.</span> <span class="nav-text">与相关函数对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-8-%E5%90%91%E9%87%8FADT"><span class="nav-number">1.8.</span> <span class="nav-text">8.8 向量ADT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.8.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%93%8D%E4%BD%9C%EF%BC%88%E6%8E%A5%E5%8F%A3%EF%BC%89"><span class="nav-number">1.8.2.</span> <span class="nav-text">主要操作（接口）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%89%B9%E6%80%A7"><span class="nav-number">1.8.3.</span> <span class="nav-text">关键特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E%E6%95%B0%E7%BB%84%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.8.4.</span> <span class="nav-text">与数组的对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-9-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%8C%87%E9%92%88%EF%BC%9A%E4%BB%A5%E6%95%B0%E7%BB%84%E4%B8%BA%E4%BE%8B%E5%AE%9E%E7%8E%B0%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">1.9.</span> <span class="nav-text">8.9 为什么需要指针：以数组为例实现向量操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%EF%BC%9A%E5%87%BD%E6%95%B0%E6%97%A0%E6%B3%95%E7%9B%B4%E6%8E%A5%E4%BF%AE%E6%94%B9%E5%A4%96%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">1.9.1.</span> <span class="nav-text">核心问题：函数无法直接修改外部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-9-1-%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%BA%E4%BE%8B%E5%AD%90%EF%BC%9A%E5%90%91%E9%87%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">1.9.2.</span> <span class="nav-text">8.9.1 数组作为例子：向量操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E7%94%A8%E6%8C%87%E9%92%88%EF%BC%88%E8%A1%8C%E4%B8%8D%E9%80%9A%EF%BC%89"><span class="nav-number">1.9.2.1.</span> <span class="nav-text">不用指针（行不通）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%8C%87%E9%92%88%EF%BC%88%E6%AD%A3%E7%A1%AE%E5%81%9A%E6%B3%95%EF%BC%89"><span class="nav-number">1.9.2.2.</span> <span class="nav-text">用指针（正确做法）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-9-2-%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.9.3.</span> <span class="nav-text">8.9.2 指针与数组的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-3"><span class="nav-number">1.9.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-10-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%93%BE%E8%A1%A8"><span class="nav-number">1.10.</span> <span class="nav-text">8.10 C语言中的链表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.10.1.</span> <span class="nav-text">指针回顾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.10.2.</span> <span class="nav-text">链表的结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-10-1-%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="nav-number">1.10.3.</span> <span class="nav-text">8.10.1 常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%9B%E5%BB%BA%E8%8A%82%E7%82%B9"><span class="nav-number">1.10.3.1.</span> <span class="nav-text">1. 创建节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9C%A8%E5%A4%B4%E9%83%A8%E6%8F%92%E5%85%A5%E8%8A%82%E7%82%B9"><span class="nav-number">1.10.3.2.</span> <span class="nav-text">2. 在头部插入节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%81%8D%E5%8E%86%E9%93%BE%E8%A1%A8"><span class="nav-number">1.10.3.3.</span> <span class="nav-text">3. 遍历链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9"><span class="nav-number">1.10.3.4.</span> <span class="nav-text">4. 删除节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number">1.10.3.5.</span> <span class="nav-text">内存示意图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="nav-number">1.10.3.6.</span> <span class="nav-text">关键注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E7%9A%84%E5%8F%98%E7%A7%8D"><span class="nav-number">1.10.3.7.</span> <span class="nav-text">链表的变种</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-11-%E5%A0%86%E5%86%85%E5%AD%98%E5%92%8C%E6%A0%88%E5%86%85%E5%AD%98"><span class="nav-number">1.11.</span> <span class="nav-text">8.11 堆内存和栈内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-12-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F"><span class="nav-number">1.12.</span> <span class="nav-text">8.12 内存泄漏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.12.1.</span> <span class="nav-text">产生原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.12.2.</span> <span class="nav-text">典型示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E7%A1%AE%E5%86%99%E6%B3%95"><span class="nav-number">1.12.3.</span> <span class="nav-text">正确写法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%9C%BA%E6%99%AF"><span class="nav-number">1.12.4.</span> <span class="nav-text">常见场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D"><span class="nav-number">1.12.5.</span> <span class="nav-text">如何避免</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -207,7 +207,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2026-06-01 16:07:51 / Modified: 16:07:12" itemprop="dateCreated datePublished" datetime="2026-06-01T16:07:51+08:00">2026-06-01</time>
+      <time title="Created: 2026-06-01 16:07:51 / Modified: 18:24:50" itemprop="dateCreated datePublished" datetime="2026-06-01T16:07:51+08:00">2026-06-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -229,6 +229,799 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1>指针<span id="more"></span></h1>
+<h2 id="8-1-为什么使用指针">8.1 为什么使用指针</h2>
+<h3 id="8-1-1-什么是指针？">8.1.1 什么是指针？</h3>
+<p>指针是一个变量，它存储的不是普通数据，而是<strong>另一个变量的内存地址</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> *p = &amp;x;  <span class="comment">// p 是指针，存储了 x 的地址</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, x);   <span class="comment">// 输出: 10（变量的值）</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%p&quot;</span>, p);   <span class="comment">// 输出: 0x... （x 的内存地址）</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, *p);  <span class="comment">// 输出: 10（通过指针解引用，获取地址上的值）</span></span><br></pre></td></tr></table></figure>
+<p>可以这样理解：如果变量是一栋房子，那么指针就是这栋房子的<strong>门牌号</strong>。</p>
+<h4 id="指针的基本语法">指针的基本语法</h4>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>语法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>声明指针</td>
+<td><code>int *p;</code></td>
+<td>p 是一个指向 int 的指针</td>
+</tr>
+<tr>
+<td>取地址</td>
+<td><code>p = &amp;x;</code></td>
+<td>将 x 的地址赋给 p</td>
+</tr>
+<tr>
+<td>解引用</td>
+<td><code>*p</code></td>
+<td>访问 p 所指向地址上的值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-1-2-为什么要使用指针？">8.1.2 为什么要使用指针？</h3>
+<h4 id="1-函数间传递和修改变量（传址调用）">1. 函数间传递和修改变量（传址调用）</h4>
+<p>C语言函数参数默认是<strong>值传递</strong>（拷贝），无法直接修改原变量。指针可以解决这个问题：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">add_one</span><span class="params">(<span class="type">int</span> *p)</span> &#123;</span><br><span class="line">    *p = *p + <span class="number">1</span>;  <span class="comment">// 直接修改原变量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">5</span>;</span><br><span class="line">    add_one(&amp;x);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, x);  <span class="comment">// 输出: 6</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-动态内存分配">2. 动态内存分配</h4>
+<p>指针配合 <code>malloc</code> / <code>free</code>，可以在<strong>运行时</strong>灵活申请和释放内存：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n = <span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> *arr = (<span class="type">int</span>*)<span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="type">int</span>));  <span class="comment">// 动态分配数组</span></span><br><span class="line"><span class="comment">// ... 使用 arr ...</span></span><br><span class="line"><span class="built_in">free</span>(arr);  <span class="comment">// 释放内存</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-高效处理大型数据">3. 高效处理大型数据</h4>
+<p>传递一个大型结构体时，拷贝整个对象代价很高。传指针只需传一个地址（通常4或8字节），<strong>效率更高</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">process</span><span class="params">(BigStruct *s)</span> &#123; ... &#125;  <span class="comment">// 只传地址，不拷贝整个结构体</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-构建复杂数据结构">4. 构建复杂数据结构</h4>
+<p>链表、树、图等数据结构依赖指针来连接节点：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">next</span>;</span>  <span class="comment">// 指向下一个节点的指针</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="5-操作数组和字符串">5. 操作数组和字符串</h4>
+<p>数组名本身就是指向首元素的指针，指针可以高效遍历数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="type">int</span> *p = arr;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, *(p + i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项">注意事项</h4>
+<p>使用指针时要特别小心以下几类常见错误：</p>
+<ul>
+<li><strong>野指针</strong>：指针未初始化就使用，<code>int *p; *p = 10;</code> ❌</li>
+<li><strong>空指针解引用</strong>：<code>int *p = NULL; *p = 10;</code> ❌</li>
+<li><strong>内存泄漏</strong>：<code>malloc</code> 之后忘记 <code>free</code> ❌</li>
+<li><strong>悬空指针</strong>：指针指向的内存已被释放，仍继续使用 ❌</li>
+</ul>
+<h3 id="8-1-3-野指针（未初始化指针）">8.1.3 野指针（未初始化指针）</h3>
+<p>空指针指未初始化的指针：<code>int *p; *p = 10;</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;      <span class="comment">// p 里存的是什么？随机的垃圾地址！</span></span><br><span class="line">*p = <span class="number">10</span>;     <span class="comment">// 往这个垃圾地址写入 10 —— 灾难！</span></span><br></pre></td></tr></table></figure>
+<h4 id="发生了什么？">发生了什么？</h4>
+<p>声明 <code>int *p</code> 时，系统只分配了<strong>存放地址的空间</strong>，但没有给它赋任何值。此时 <code>p</code> 里存的是内存中的<strong>随机垃圾值</strong>，比如 <code>0x7fff4a2b</code>。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">内存示意图：</span><br><span class="line"></span><br><span class="line">p [ 0x7fff4a2b ]  ←── 随机垃圾地址，不知道指向哪里</span><br><span class="line">         │</span><br><span class="line">         ↓</span><br><span class="line">   ??? 未知内存区域</span><br></pre></td></tr></table></figure>
+<p>执行 <code>*p = 10</code> 就是往这个不知道是什么的地址写入数据，可能会：</p>
+<ul>
+<li>覆盖<strong>其他变量</strong>的数据，导致程序行为异常</li>
+<li>覆盖<strong>操作系统</strong>保护的内存区域，导致程序直接崩溃（Segmentation Fault）</li>
+<li>在某些情况下&quot;看起来没问题&quot;，但埋下隐患，<strong>最难排查</strong></li>
+</ul>
+<p><strong>正确做法：声明后立即初始化</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x;</span><br><span class="line"><span class="type">int</span> *p = &amp;x;  <span class="comment">// 指向一个合法变量</span></span><br><span class="line">*p = <span class="number">10</span>;      <span class="comment">// ✅ 安全</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-1-4-空指针解引用">8.1.4 空指针解引用</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p = <span class="literal">NULL</span>;  <span class="comment">// p 明确指向地址 0x0</span></span><br><span class="line">*p = <span class="number">10</span>;        <span class="comment">// 往地址 0 写入数据 —— 操作系统直接拒绝！</span></span><br></pre></td></tr></table></figure>
+<h4 id="发生了什么？-2">发生了什么？</h4>
+<p><code>NULL</code> 本质上是地址 <code>0</code>（即 <code>0x00000000</code>）。操作系统<strong>故意</strong>将地址 0 附近的内存设为不可访问的&quot;禁区&quot;，任何程序试图读写这块区域，都会被立即终止。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">内存地址示意图：</span><br><span class="line"></span><br><span class="line">地址 <span class="number">0x0000</span> ┌─────────────────┐</span><br><span class="line">            │   禁止访问区域   │ ← <span class="literal">NULL</span> 指向这里</span><br><span class="line">地址 <span class="number">0x1000</span> ├─────────────────┤</span><br><span class="line">            │   操作系统内核   │</span><br><span class="line">            ├─────────────────┤</span><br><span class="line">            │   你的程序内存   │ ← 合法区域</span><br><span class="line">            └─────────────────┘</span><br><span class="line"></span><br><span class="line">*p = <span class="number">10</span>  →  试图写入禁区  →  操作系统：❌ Segmentation Fault！</span><br></pre></td></tr></table></figure>
+<p>程序会立刻崩溃，报 <strong>Segmentation Fault（段错误）</strong>。</p>
+<blockquote>
+<p>虽然崩溃让人烦恼，但其实比野指针<strong>更安全</strong>——至少错误是立即可见的，而不是悄悄破坏数据。</p>
+</blockquote>
+<h4 id="两者的对比">两者的对比</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>未初始化指针</th>
+<th>空指针</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指向哪里</td>
+<td>随机垃圾地址</td>
+<td>固定的地址 0</td>
+</tr>
+<tr>
+<td>解引用后果</td>
+<td>不确定，可能崩溃或静默破坏数据</td>
+<td>必然立即崩溃</td>
+</tr>
+<tr>
+<td>危险程度</td>
+<td>⚠️ <strong>更危险</strong>（行为不可预测）</td>
+<td>相对可控（必然崩溃）</td>
+</tr>
+<tr>
+<td>排查难度</td>
+<td>极难（bug 可能随机出现）</td>
+<td>容易（必然复现）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="一句话总结">一句话总结</h4>
+<ul>
+<li><strong>野指针</strong>：拿着一张不知道写着哪里的藏宝图去挖宝，可能挖到别人家的地基</li>
+<li><strong>空指针</strong>：拿着一张明确写着&quot;此路不通&quot;的地图还硬要进去，门卫直接把你赶走</li>
+</ul>
+<p>所以写指针时，<strong>始终让指针指向一个合法的内存地址</strong>，或者在不用时将其置为 <code>NULL</code> 以便排查错误。</p>
+<h2 id="8-2-指针基础">8.2 指针基础</h2>
+<p>略。</p>
+<h2 id="8-3-malloc-和-free函数">8.3 malloc 和 free函数</h2>
+<p><code>malloc</code> 和 <code>free</code> 是C语言中用于<strong>动态内存管理</strong>的核心函数，它们允许程序在运行时按需分配和释放内存。</p>
+<h3 id="8-3-1-malloc（Memory-Allocation）">8.3.1 <code>malloc</code>（Memory Allocation）</h3>
+<p><code>malloc</code> 用于在**堆（heap）**上动态分配指定字节数的内存，返回一个指向该内存块的 <code>void *</code> 指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> *<span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>参数：需要分配的字节数</li>
+<li>返回值：成功时返回指向分配内存的指针，失败时返回 <code>NULL</code></li>
+</ul>
+<h4 id="示例：">示例：</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *arr = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="number">5</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));  <span class="comment">// 分配5个int的空间</span></span><br><span class="line"><span class="keyword">if</span> (arr == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="comment">// 分配失败处理</span></span><br><span class="line">&#125;</span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>注意事项：</strong></p>
+<ul>
+<li>分配的内存<strong>未初始化</strong>，内容是随机的</li>
+<li>若分配失败，返回 <code>NULL</code>，必须检查</li>
+<li>需要 <code>#include &lt;stdlib.h&gt;</code></li>
+</ul>
+<h3 id="8-3-2-free">8.3.2 free</h3>
+<p><code>free</code> 用于<strong>释放</strong>之前由 <code>malloc</code>（或 <code>calloc</code>、<code>realloc</code>）分配的内存，归还给系统。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">free</span><span class="params">(<span class="type">void</span> *ptr)</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>关键规则</strong>：</p>
+<ul>
+<li>只能释放动态分配的内存</li>
+<li>不能重复释放同一块内存</li>
+<li>释放后建议将指针设为 <code>NULL</code></li>
+</ul>
+<h4 id="示例：-2">示例：</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">free</span>(arr);   <span class="comment">// 释放之前分配的内存</span></span><br><span class="line">arr = <span class="literal">NULL</span>;  <span class="comment">// 推荐：避免悬空指针</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-3-3-完整使用流程">8.3.3 完整使用流程</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 分配内存</span></span><br><span class="line">    <span class="type">int</span> *p = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="number">3</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 使用内存</span></span><br><span class="line">    p[<span class="number">0</span>] = <span class="number">1</span>; p[<span class="number">1</span>] = <span class="number">2</span>; p[<span class="number">2</span>] = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 释放内存</span></span><br><span class="line">    <span class="built_in">free</span>(p);</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-3-4-为什么需要动态内存分配？">8.3.4 为什么需要动态内存分配？</h3>
+<p>与栈上的局部变量相比，动态内存有几个优势：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">栈内存</th>
+<th style="text-align:left">堆内存（malloc/free）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">生命周期</td>
+<td style="text-align:left">函数返回时自动释放</td>
+<td style="text-align:left">手动控制，跨函数存在</td>
+</tr>
+<tr>
+<td style="text-align:left">大小限制</td>
+<td style="text-align:left">较小（通常几MB）</td>
+<td style="text-align:left">受系统可用内存限制</td>
+</tr>
+<tr>
+<td style="text-align:left">大小确定时机</td>
+<td style="text-align:left">编译时决定</td>
+<td style="text-align:left">运行时动态决定</td>
+</tr>
+</tbody>
+</table>
+<h4 id="常见错误">常见错误</h4>
+<table>
+<thead>
+<tr>
+<th>错误</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>内存泄漏</strong></td>
+<td><code>malloc</code> 后忘记 <code>free</code></td>
+</tr>
+<tr>
+<td><strong>重复释放</strong></td>
+<td>对同一指针调用两次 <code>free</code></td>
+</tr>
+<tr>
+<td><strong>悬空指针</strong></td>
+<td><code>free</code> 后继续使用该指针</td>
+</tr>
+<tr>
+<td><strong>越界访问</strong></td>
+<td>访问分配范围之外的内存</td>
+</tr>
+</tbody>
+</table>
+<h4 id="相关函数">相关函数</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>calloc(n, size)</code></td>
+<td>分配并<strong>初始化为0</strong></td>
+</tr>
+<tr>
+<td><code>realloc(ptr, size)</code></td>
+<td><strong>重新调整</strong>已分配内存的大小</td>
+</tr>
+<tr>
+<td><code>free(ptr)</code></td>
+<td>释放内存</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-4-指针和结构体">8.4 指针和结构体</h2>
+<p>指针和结构体的结合是C语言中最强大的特性之一，掌握后可以实现链表、树等复杂数据结构。</p>
+<h3 id="8-4-1-基础概念">8.4.1 基础概念</h3>
+<h4 id="结构体指针">结构体指针</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> <span class="title">stu1</span> =</span> &#123;<span class="string">&quot;张三&quot;</span>, <span class="number">20</span>, <span class="number">85.5</span>&#125;;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> *<span class="title">p</span> =</span> &amp;stu1;  <span class="comment">// 结构体指针</span></span><br></pre></td></tr></table></figure>
+<h4 id="访问成员的两种方式">访问成员的两种方式</h4>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>语法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>点运算符</td>
+<td><code>stu.age</code></td>
+<td>通过变量直接访问</td>
+</tr>
+<tr>
+<td>箭头运算符</td>
+<td><code>p-&gt;age</code></td>
+<td>通过指针访问（推荐）</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用结构体变量直接访问</span></span><br><span class="line">stu1.age = <span class="number">21</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用指针访问（两种写法等价）</span></span><br><span class="line">(*p).age = <span class="number">21</span>;    <span class="comment">// 解引用后访问</span></span><br><span class="line">p-&gt;age = <span class="number">21</span>;      <span class="comment">// 使用箭头运算符，推荐</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-4-2-动态分配结构体">8.4.2 动态分配结构体</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 动态分配一个 Student</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Student</span> *<span class="title">p</span> =</span> (<span class="keyword">struct</span> Student *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Student));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Bob&quot;</span>);</span><br><span class="line">    p-&gt;age = <span class="number">21</span>;</span><br><span class="line">    p-&gt;score = <span class="number">88.0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;姓名: %s, 年龄: %d, 成绩: %.1f\n&quot;</span>, p-&gt;name, p-&gt;age, p-&gt;score);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(p);  <span class="comment">// 记得释放内存</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-3-传递结构体指针的优势">8.4.3 传递结构体指针的优势</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不好的做法：传递整个结构体（复制开销大）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printStudent</span><span class="params">(<span class="keyword">struct</span> Student s)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, s.name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 推荐：传递指针（只传地址，高效）</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printStudent</span><span class="params">(<span class="type">const</span> <span class="keyword">struct</span> Student *p)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p-&gt;name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改结构体内容必须传指针</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">updateScore</span><span class="params">(<span class="keyword">struct</span> Student *p, <span class="type">float</span> newScore)</span> &#123;</span><br><span class="line">    p-&gt;score = newScore;  <span class="comment">// 直接修改原数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-4-4-结构体内嵌指针（链表）">8.4.4 结构体内嵌指针（链表）</h3>
+<p>指针与结构体结合最典型的应用——<strong>单链表</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">    <span class="type">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line">    <span class="type">float</span> score;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 动态分配一个 Student</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Student</span> *<span class="title">p</span> =</span> (<span class="keyword">struct</span> Student *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Student));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">strcpy</span>(p-&gt;name, <span class="string">&quot;Bob&quot;</span>);</span><br><span class="line">    p-&gt;age = <span class="number">21</span>;</span><br><span class="line">    p-&gt;score = <span class="number">88.0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;姓名: %s, 年龄: %d, 成绩: %.1f\n&quot;</span>, p-&gt;name, p-&gt;age, p-&gt;score);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(p);  <span class="comment">// 记得释放内存</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">四、结构体内嵌指针（链表）</span><br><span class="line">指针与结构体结合最典型的应用——单链表：</span><br><span class="line">c<span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义链表节点</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">next</span>;</span>  <span class="comment">// 指向下一个节点的指针</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建新节点</span></span><br><span class="line"><span class="keyword">struct</span> Node* <span class="title function_">createNode</span><span class="params">(<span class="type">int</span> val)</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">newNode</span> =</span> (<span class="keyword">struct</span> Node *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> Node));</span><br><span class="line">    newNode-&gt;data = val;</span><br><span class="line">    newNode-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> newNode;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印链表</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printList</span><span class="params">(<span class="keyword">struct</span> Node *head)</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">cur</span> =</span> head;</span><br><span class="line">    <span class="keyword">while</span> (cur != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d -&gt; &quot;</span>, cur-&gt;data);</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;NULL\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 构建链表: 1 -&gt; 2 -&gt; 3 -&gt; NULL</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">head</span> =</span> createNode(<span class="number">1</span>);</span><br><span class="line">    head-&gt;next = createNode(<span class="number">2</span>);</span><br><span class="line">    head-&gt;next-&gt;next = createNode(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    printList(head);  <span class="comment">// 输出: 1 -&gt; 2 -&gt; 3 -&gt; NULL</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常见注意事项">常见注意事项</h4>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>野指针</td>
+<td>使用前必须初始化指针</td>
+</tr>
+<tr>
+<td>内存泄漏</td>
+<td><code>malloc</code> 后必须 <code>free</code></td>
+</tr>
+<tr>
+<td>空指针解引用</td>
+<td>访问前检查 <code>p != NULL</code></td>
+</tr>
+<tr>
+<td>箭头 vs 点</td>
+<td>指针用 <code>-&gt;</code>，变量用 <code>.</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="总结">总结</h4>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">结构体变量  →  用 .  访问成员</span><br><span class="line">结构体指针  →  用 -&gt; 访问成员</span><br><span class="line">动态结构体  →  malloc + free</span><br><span class="line">链表/树等   →  结构体内嵌自身指针</span><br></pre></td></tr></table></figure>
+<h2 id="8-5-带指针的字符串函数">8.5 带指针的字符串函数</h2>
+<p>在C语言中，字符串本质上是<strong>字符数组</strong>，通过指针来操作。以下是常用的字符串函数及其指针用法：</p>
+<h3 id="8-5-1-标准库函数（-string-h-）">8.5.1 标准库函数（<code>&lt;string.h&gt;</code>）</h3>
+<h4 id="strlen-—-字符串长度"><code>strlen</code> — 字符串长度</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">strlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%zu\n&quot;</span>, <span class="built_in">strlen</span>(str)); <span class="comment">// 输出 5</span></span><br></pre></td></tr></table></figure>
+<h4 id="strcpy-strncpy-—-字符串复制"><code>strcpy</code> / <code>strncpy</code> — 字符串复制</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strcpy</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src)</span>;</span><br><span class="line"><span class="type">char</span> *<span class="title function_">strncpy</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src, <span class="type">size_t</span> n)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> src[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> dest[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(dest, src); <span class="comment">// dest = &quot;Hello&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="strcat-strncat-—-字符串拼接"><code>strcat</code> / <code>strncat</code> — 字符串拼接</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strcat</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> dest[<span class="number">20</span>] = <span class="string">&quot;Hello, &quot;</span>;</span><br><span class="line"><span class="built_in">strcat</span>(dest, <span class="string">&quot;World!&quot;</span>); <span class="comment">// dest = &quot;Hello, World!&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="strcmp-strncmp-—-字符串比较"><code>strcmp</code> / <code>strncmp</code> — 字符串比较</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">strcmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s1, <span class="type">const</span> <span class="type">char</span> *s2)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">strcmp</span>(<span class="string">&quot;abc&quot;</span>, <span class="string">&quot;abc&quot;</span>) == <span class="number">0</span>) <span class="comment">// 相等时返回 0</span></span><br></pre></td></tr></table></figure>
+<h4 id="strchr-strrchr-—-查找字符"><code>strchr</code> / <code>strrchr</code> — 查找字符</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strchr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s, <span class="type">int</span> c)</span>;   <span class="comment">// 第一次出现</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">strrchr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s, <span class="type">int</span> c)</span>;  <span class="comment">// 最后一次出现</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *p = <span class="built_in">strchr</span>(<span class="string">&quot;Hello&quot;</span>, <span class="string">&#x27;l&#x27;</span>); <span class="comment">// p 指向第一个 &#x27;l&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="strstr-—-查找子串"><code>strstr</code> — 查找子串</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strstr</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *haystack, <span class="type">const</span> <span class="type">char</span> *needle)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *p = <span class="built_in">strstr</span>(<span class="string">&quot;Hello World&quot;</span>, <span class="string">&quot;World&quot;</span>); <span class="comment">// p 指向 &quot;World&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="strtok-—-字符串分割"><code>strtok</code> — 字符串分割</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strtok</span><span class="params">(<span class="type">char</span> *str, <span class="type">const</span> <span class="type">char</span> *delim)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;a,b,c&quot;</span>;</span><br><span class="line"><span class="type">char</span> *token = strtok(str, <span class="string">&quot;,&quot;</span>); <span class="comment">// 依次得到 &quot;a&quot;, &quot;b&quot;, &quot;c&quot;</span></span><br><span class="line"><span class="keyword">while</span> (token) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, token);</span><br><span class="line">    token = strtok(<span class="literal">NULL</span>, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结-2">总结</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">作用</th>
+<th style="text-align:left">指针相关要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>char *strcpy(char *dest, const char *src)</code></td>
+<td style="text-align:left">复制字符串</td>
+<td style="text-align:left"><code>dest</code> 和 <code>src</code> 都是指针，返回值也是指向 <code>dest</code> 的指针</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>char *strcat(char *dest, const char *src)</code></td>
+<td style="text-align:left">拼接字符串</td>
+<td style="text-align:left">返回指向 <code>dest</code> 的指针，方便链式调用</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>int strcmp(const char *s1, const char *s2)</code></td>
+<td style="text-align:left">比较字符串</td>
+<td style="text-align:left">用指针遍历比较每个字符</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>size_t strlen(const char *s)</code></td>
+<td style="text-align:left">求字符串长度</td>
+<td style="text-align:left">从指针位置开始计数直到 <code>'\0'</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>char *strchr(const char *s, int c)</code></td>
+<td style="text-align:left">查找字符</td>
+<td style="text-align:left">返回指向第一次出现位置的指针</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>char *strstr(const char *haystack, const char *needle)</code></td>
+<td style="text-align:left">查找子串</td>
+<td style="text-align:left">返回指向子串首次出现位置的指针</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-5-2-指针操作字符串的常见模式">8.5.2 指针操作字符串的常见模式</h3>
+<h4 id="遍历字符串">遍历字符串</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *p = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="keyword">while</span> (*p != <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, *p);</span><br><span class="line">    p++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="手写-strlen">手写 <code>strlen</code></h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">my_strlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s)</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *p = s;</span><br><span class="line">    <span class="keyword">while</span> (*p) p++;</span><br><span class="line">    <span class="keyword">return</span> p - s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="手写-strcpy">手写 <code>strcpy</code></h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">my_strcpy</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src)</span> &#123;</span><br><span class="line">    <span class="type">char</span> *d = dest;</span><br><span class="line">    <span class="keyword">while</span> ((*d++ = *src++));</span><br><span class="line">    <span class="keyword">return</span> dest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关键注意事项">关键注意事项</h4>
+<table>
+<thead>
+<tr>
+<th>注意点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>空终止符</strong></td>
+<td>C字符串以 <code>\0</code> 结尾，指针操作时必须处理</td>
+</tr>
+<tr>
+<td><strong>缓冲区溢出</strong></td>
+<td><code>strcpy</code>、<code>strcat</code> 不检查长度，推荐用 <code>strncpy</code>、<code>strncat</code></td>
+</tr>
+<tr>
+<td><strong>常量字符串</strong></td>
+<td><code>char *p = &quot;Hello&quot;</code> 指向只读内存，不可修改</td>
+</tr>
+<tr>
+<td><strong><code>strtok</code> 修改原串</strong></td>
+<td>它会修改原字符串，使用时需注意</td>
+</tr>
+<tr>
+<td><strong>返回值是指针</strong></td>
+<td>很多函数返回 <code>char *</code>，可链式操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-5-3-stdio-h-中的相关函数">8.5.3 <code>&lt;stdio.h&gt;</code> 中的相关函数</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 格式化写入字符串</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sprintf</span><span class="params">(<span class="type">char</span> *str, <span class="type">const</span> <span class="type">char</span> *format, ...)</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从字符串读取</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sscanf</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str, <span class="type">const</span> <span class="type">char</span> *format, ...)</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="8-6-用于数组和字符串的-malloc-函数">8.6 用于数组和字符串的 malloc 函数</h2>
+<p><code>malloc</code>（memory allocation）是C语言中用于<strong>动态分配内存</strong>的函数，定义在 <code>&lt;stdlib.h&gt;</code> 头文件中。</p>
+<h4 id="函数原型">函数原型</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span>* <span class="title function_">malloc</span><span class="params">(<span class="type">size_t</span> size)</span>;</span><br></pre></td></tr></table></figure>
+<p>参数 <code>size</code>：要分配的字节数</p>
+<p>返回值：指向分配内存的指针（失败时返回 <code>NULL</code>）</p>
+<h3 id="8-6-1-为数组动态分配内存">8.6.1 为数组动态分配内存</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为 n 个 int 分配内存</span></span><br><span class="line">    <span class="type">int</span> *arr = (<span class="type">int</span>*) <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;内存分配失败\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        arr[i] = i * <span class="number">10</span>;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;arr[%d] = %d\n&quot;</span>, i, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放内存（非常重要！）</span></span><br><span class="line">    <span class="built_in">free</span>(arr);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>关键点：</strong></p>
+<ul>
+<li>分配大小 = <code>元素个数 × sizeof(类型)</code></li>
+<li>使用完毕后必须调用 <code>free()</code> 释放内存，否则会造成<strong>内存泄漏</strong></li>
+</ul>
+<h3 id="8-6-2-为字符串动态分配内存">8.6.2 为字符串动态分配内存</h3>
+<p>字符串本质上是字符数组，需要额外分配 <strong>1个字节</strong> 来存储字符串结束符 <code>'\0'</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为字符串分配内存（+1 是为了 &#x27;\0&#x27;）</span></span><br><span class="line">    <span class="type">char</span> *str = (<span class="type">char</span>*) <span class="built_in">malloc</span>((len + <span class="number">1</span>) * <span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (str == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;内存分配失败\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用字符串</span></span><br><span class="line">    <span class="built_in">strcpy</span>(str, <span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;字符串：%s\n&quot;</span>, str);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 释放内存</span></span><br><span class="line">    <span class="built_in">free</span>(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-6-3-malloc-vs-静态数组对比">8.6.3 <code>malloc</code> vs 静态数组对比</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>静态数组</th>
+<th>malloc 动态分配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大小</td>
+<td>编译时确定</td>
+<td>运行时确定</td>
+</tr>
+<tr>
+<td>存储位置</td>
+<td>栈（Stack）</td>
+<td>堆（Heap）</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>自动管理</td>
+<td>手动管理（需 <code>free</code>）</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>低</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<h4 id="常见注意事项-2">常见注意事项</h4>
+<ol>
+<li><strong>检查返回值</strong>：始终判断 <code>malloc</code> 是否返回 <code>NULL</code></li>
+<li><strong>配对使用 <code>free</code></strong>：每次 <code>malloc</code> 都要对应一个 <code>free</code></li>
+<li><strong>不要越界访问</strong>：只能访问已分配范围内的内存</li>
+<li><strong>避免重复释放</strong>：<code>free</code> 同一指针两次会导致未定义行为</li>
+<li><strong>释放后置空</strong>：<code>free(ptr); ptr = NULL;</code> 防止悬空指针</li>
+</ol>
+<h3 id="8-6-4-相关函数">8.6.4 相关函数</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>malloc(size)</code></td>
+<td>分配内存，不初始化</td>
+</tr>
+<tr>
+<td><code>calloc(n, size)</code></td>
+<td>分配内存，并初始化为 0</td>
+</tr>
+<tr>
+<td><code>realloc(ptr, size)</code></td>
+<td>调整已分配内存的大小</td>
+</tr>
+<tr>
+<td><code>free(ptr)</code></td>
+<td>释放内存</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-7-realloc函数">8.7 realloc函数</h2>
+<p><code>realloc</code> 是 C 标准库中用于<strong>重新分配内存</strong>的函数，它用来<strong>重新调整之前分配的内存块的大小</strong>。</p>
+<h3 id="8-7-1-函数原型">8.7.1 函数原型</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *<span class="title function_">realloc</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">size_t</span> new_size)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="参数说明">参数说明</h4>
+<ul>
+<li><strong><code>ptr</code></strong>：指向之前通过 <code>malloc</code>、<code>calloc</code> 或 <code>realloc</code> 分配的内存块的指针
+<ul>
+<li>如果为 <code>NULL</code>，<code>realloc</code> 的行为等同于 <code>malloc(new_size)</code></li>
+</ul>
+</li>
+<li><strong><code>new_size</code></strong>：需要的新内存大小（以字节为单位）
+<ul>
+<li>如果为 0，行为是实现定义的（通常等同于 <code>free(ptr)</code>，但不绝对）</li>
+</ul>
+</li>
+</ul>
+<h4 id="返回值">返回值</h4>
+<ul>
+<li>成功时，返回指向重新分配的内存块的指针（可能与原指针相同，也可能不同）</li>
+<li>失败时，返回 <code>NULL</code>，且<strong>原内存块保持不变</strong></li>
+</ul>
+<h4 id="工作原理">工作原理</h4>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">原内存块: [  data  ]</span><br><span class="line">               ↓ realloc 扩大</span><br><span class="line">新内存块: [  data  |  新增空间  ]   ← 可能在原地扩展，也可能移动到新地址</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>若当前位置<strong>有足够的连续空间</strong>，直接在原地扩展，返回原指针</p>
+</li>
+<li>
+<p>若没有，<strong>重新分配</strong>一块更大的内存，将原数据<strong>复制</strong>过去，释放原内存，返回新指针</p>
+</li>
+<li>
+<p>若是<strong>缩小</strong>，多余部分被截断</p>
+</li>
+</ul>
+<h4 id="作用">作用</h4>
+<p>对已经通过 <code>malloc</code>、<code>calloc</code> 或 <code>realloc</code> 分配的内存块，<strong>调整其大小</strong>（扩大或缩小）。</p>
+<h3 id="8-7-2-典型用法">8.7.2 典型用法</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 初始分配 5 个 int</span></span><br><span class="line">    <span class="type">int</span> *arr = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="number">5</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 扩展为 10 个 int</span></span><br><span class="line">    <span class="type">int</span> *tmp = (<span class="type">int</span> *)<span class="built_in">realloc</span>(arr, <span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">if</span> (tmp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="comment">// 分配失败，arr 仍然有效，需手动释放</span></span><br><span class="line">        <span class="built_in">free</span>(arr);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    arr = tmp;  <span class="comment">// 更新指针</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(arr);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-7-3-常见注意事项">8.7.3 常见注意事项</h3>
+<p><strong>1.不要直接赋值给原指针</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 危险：若失败，原指针丢失，造成内存泄漏</span></span><br><span class="line">arr = <span class="built_in">realloc</span>(arr, new_size);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确：先用临时指针接收</span></span><br><span class="line">tmp = <span class="built_in">realloc</span>(arr, new_size);</span><br><span class="line"><span class="keyword">if</span> (tmp) arr = tmp;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 扩大的新空间未初始化</strong>（不像 <code>calloc</code>，新增部分是垃圾值）</p>
+<p><strong>3. 原指针可能失效</strong>：<code>realloc</code> 成功后，不要再使用旧的 <code>ptr</code>，因为内存可能已被移动并释放</p>
+<p><strong>4. <code>realloc(NULL, size)</code> == <code>malloc(size)</code></strong>，这是合法的用法</p>
+<h3 id=""></h3>
+<h4 id="与相关函数对比">与相关函数对比</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>malloc</code></td>
+<td>分配内存（未初始化）</td>
+</tr>
+<tr>
+<td><code>calloc</code></td>
+<td>分配内存（初始化为 0）</td>
+</tr>
+<tr>
+<td><code>realloc</code></td>
+<td>调整已分配内存的大小</td>
+</tr>
+<tr>
+<td><code>free</code></td>
+<td>释放内存</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-8-向量ADT">8.8 向量ADT</h2>
+<p><strong>向量（Vector）ADT</strong> 是一种动态数组的抽象数据类型，它在C语言中模拟了类似C++ <code>std::vector</code> 的功能——即一个<strong>可以动态调整大小的顺序容器</strong>。</p>
+<h4 id="核心概念">核心概念</h4>
+<p>C语言本身没有内置的动态数组，所以向量ADT通过结构体 + 函数的方式来实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> *data;      <span class="comment">// 指向堆内存的指针</span></span><br><span class="line">    <span class="type">int</span> size;       <span class="comment">// 当前元素个数</span></span><br><span class="line">    <span class="type">int</span> capacity;   <span class="comment">// 当前分配的容量</span></span><br><span class="line">&#125; Vector;</span><br></pre></td></tr></table></figure>
+<h4 id="主要操作（接口）">主要操作（接口）</h4>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>vector_init()</code></td>
+<td>初始化向量</td>
+</tr>
+<tr>
+<td><code>vector_push_back()</code></td>
+<td>在末尾添加元素</td>
+</tr>
+<tr>
+<td><code>vector_pop_back()</code></td>
+<td>删除末尾元素</td>
+</tr>
+<tr>
+<td><code>vector_get()</code></td>
+<td>按下标访问元素</td>
+</tr>
+<tr>
+<td><code>vector_set()</code></td>
+<td>按下标修改元素</td>
+</tr>
+<tr>
+<td><code>vector_size()</code></td>
+<td>返回当前大小</td>
+</tr>
+<tr>
+<td><code>vector_free()</code></td>
+<td>释放内存</td>
+</tr>
+</tbody>
+</table>
+<h4 id="关键特性">关键特性</h4>
+<ol>
+<li><strong>动态扩容</strong>：当元素满时，通常将容量翻倍（均摊时间复杂度 O(1)）</li>
+<li><strong>随机访问</strong>：通过下标访问，时间复杂度 O(1)</li>
+<li><strong>封装性</strong>：将数据和操作分离，体现ADT思想</li>
+<li><strong>内存管理</strong>：使用 <code>malloc</code> / <code>realloc</code> / <code>free</code> 手动管理堆内存</li>
+</ol>
+<h4 id="与数组的对比">与数组的对比</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>普通数组</th>
+<th>向量ADT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大小</td>
+<td>固定</td>
+<td>动态调整</td>
+</tr>
+<tr>
+<td>内存</td>
+<td>栈或静态</td>
+<td>堆</td>
+</tr>
+<tr>
+<td>越界检查</td>
+<td>无</td>
+<td>可自定义</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>低</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-9-为什么需要指针：以数组为例实现向量操作">8.9 为什么需要指针：以数组为例实现向量操作</h2>
+<h4 id="核心问题：函数无法直接修改外部变量">核心问题：函数无法直接修改外部变量</h4>
+<p>在 C 语言中，函数调用是<strong>值传递</strong>（pass by value）——函数拿到的只是变量的<strong>副本</strong>，无法修改调用方的原始数据。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">set_to_zero</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    x = <span class="number">0</span>;  <span class="comment">// 只修改了副本，调用方的变量不变</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">    set_to_zero(a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, a);  <span class="comment">// 仍然是 5！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-9-1-数组作为例子：向量操作">8.9.1 数组作为例子：向量操作</h3>
+<p>假设我们要实现一个<strong>向量加法</strong>：<code>result = a + b</code></p>
+<h4 id="不用指针（行不通）">不用指针（行不通）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组不能作为返回值，也不能直接赋值</span></span><br><span class="line"><span class="type">int</span>[] vector_add(<span class="type">int</span> a[], <span class="type">int</span> b[], <span class="type">int</span> n) &#123;  <span class="comment">// ❌ 语法错误</span></span><br><span class="line">    <span class="type">int</span> result[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        result[i] = a[i] + b[i];</span><br><span class="line">    <span class="keyword">return</span> result;  <span class="comment">// ❌ 返回局部数组，内存已释放</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>C 不允许返回数组</p>
+</li>
+<li>
+<p>局部数组在函数返回后<strong>栈内存被释放</strong>，返回它是未定义行为</p>
+</li>
+</ul>
+<h4 id="用指针（正确做法）">用指针（正确做法）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 向量加法：result[i] = a[i] + b[i]</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">vector_add</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> *b, <span class="type">int</span> *result, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        result[i] = a[i] + b[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向量数乘：a[i] *= scalar</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">vector_scale</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> n, <span class="type">int</span> scalar)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        a[i] *= scalar;  <span class="comment">// 直接修改原数组</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向量点积：返回 sum(a[i] * b[i])</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">vector_dot</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> *b, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        sum += a[i] * b[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    <span class="type">int</span> b[] = &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;;</span><br><span class="line">    <span class="type">int</span> result[<span class="number">3</span>];</span><br><span class="line">    <span class="type">int</span> n = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    vector_add(a, b, result, n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a + b = [%d, %d, %d]\n&quot;</span>, result[<span class="number">0</span>], result[<span class="number">1</span>], result[<span class="number">2</span>]);</span><br><span class="line">    <span class="comment">// 输出：a + b = [5, 7, 9]</span></span><br><span class="line"></span><br><span class="line">    vector_scale(a, n, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;2a = [%d, %d, %d]\n&quot;</span>, a[<span class="number">0</span>], a[<span class="number">1</span>], a[<span class="number">2</span>]);</span><br><span class="line">    <span class="comment">// 输出：2a = [2, 4, 6]</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a · b = %d\n&quot;</span>, vector_dot(a, b, n));</span><br><span class="line">    <span class="comment">// 输出：a · b = 56  (2*4 + 4*5 + 6*6)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-9-2-指针与数组的关系">8.9.2 指针与数组的关系</h3>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int a[] = &#123;1, 2, 3&#125;;</span><br><span class="line"></span><br><span class="line">内存布局：</span><br><span class="line">地址:  0x100  0x104  0x108</span><br><span class="line">值:      1      2      3</span><br><span class="line">         ↑</span><br><span class="line">         a（数组名就是首元素的指针）</span><br><span class="line"></span><br><span class="line">a    == &amp;a[0]  == 0x100</span><br><span class="line">a+1  == &amp;a[1]  == 0x104</span><br><span class="line">a+2  == &amp;a[2]  == 0x108</span><br><span class="line"></span><br><span class="line">*(a+1) == a[1] == 2   ← 两种写法完全等价</span><br></pre></td></tr></table></figure>
+<p>当你把数组传给函数时，<strong>传递的是首元素的地址</strong>，函数通过这个地址直接操作原始内存：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">vector_scale</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> n, <span class="type">int</span> scalar)</span></span><br><span class="line"><span class="comment">//                    ↑</span></span><br><span class="line"><span class="comment">//           接收的是 a[0] 的地址</span></span><br><span class="line"><span class="comment">//           操作的是调用方的真实内存</span></span><br></pre></td></tr></table></figure>
+<h3 id="总结-3">总结</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>不用指针</th>
+<th>用指针</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>修改数组元素</td>
+<td>❌ 只能改副本</td>
+<td>✅ 直接改原始内存</td>
+</tr>
+<tr>
+<td>传递大数组</td>
+<td>❌ 复制整个数组，浪费内存</td>
+<td>✅ 只传一个地址（8字节）</td>
+</tr>
+<tr>
+<td>返回数组结果</td>
+<td>❌ 无法安全返回</td>
+<td>✅ 通过参数传入结果数组</td>
+</tr>
+<tr>
+<td>处理动态大小</td>
+<td>❌ 受限</td>
+<td>✅ 配合 <code>malloc</code> 灵活分配</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-10-C语言中的链表">8.10 C语言中的链表</h2>
+<h4 id="指针回顾">指针回顾</h4>
+<p>指针是存储内存地址的变量。在链表中，指针用于连接各个节点。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;        <span class="comment">// 指向int的指针</span></span><br><span class="line"><span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line">p = &amp;x;        <span class="comment">// p存储x的地址</span></span><br></pre></td></tr></table></figure>
+<h4 id="链表的结构">链表的结构</h4>
+<p>链表是由**节点（Node）**组成的动态数据结构，每个节点包含：</p>
+<ul>
+<li><strong>数据域</strong>：存储实际数据</li>
+<li><strong>指针域</strong>：指向下一个节点的指针</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义链表节点</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> data;           <span class="comment">// 数据域</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">next</span>;</span>  <span class="comment">// 指针域（指向下一个节点）</span></span><br><span class="line">&#125; Node;</span><br></pre></td></tr></table></figure>
+<h3 id="8-10-1-常见操作">8.10.1 常见操作</h3>
+<h4 id="1-创建节点">1. 创建节点</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Node* <span class="title function_">createNode</span><span class="params">(<span class="type">int</span> value)</span> &#123;</span><br><span class="line">    Node *newNode = (Node*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Node));  <span class="comment">// 动态分配内存</span></span><br><span class="line">    newNode-&gt;data = value;</span><br><span class="line">    newNode-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> newNode;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-在头部插入节点">2. 在头部插入节点</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">insertAtHead</span><span class="params">(Node **head, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">    Node *newNode = createNode(value);</span><br><span class="line">    newNode-&gt;next = *head;  <span class="comment">// 新节点指向原头节点</span></span><br><span class="line">    *head = newNode;        <span class="comment">// 头指针更新为新节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-遍历链表">3. 遍历链表</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printList</span><span class="params">(Node *head)</span> &#123;</span><br><span class="line">    Node *current = head;</span><br><span class="line">    <span class="keyword">while</span> (current != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d -&gt; &quot;</span>, current-&gt;data);</span><br><span class="line">        current = current-&gt;next;  <span class="comment">// 指针移动到下一个节点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;NULL\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-删除节点">4. 删除节点</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">deleteNode</span><span class="params">(Node **head, <span class="type">int</span> value)</span> &#123;</span><br><span class="line">    Node *current = *head;</span><br><span class="line">    Node *prev = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (current != <span class="literal">NULL</span> &amp;&amp; current-&gt;data != value) &#123;</span><br><span class="line">        prev = current;</span><br><span class="line">        current = current-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (current == <span class="literal">NULL</span>) <span class="keyword">return</span>; <span class="comment">// 未找到</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (prev == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        *head = current-&gt;next;   <span class="comment">// 删除头节点</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        prev-&gt;next = current-&gt;next; <span class="comment">// 跳过当前节点</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">free</span>(current);  <span class="comment">// 释放内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="内存示意图">内存示意图</h4>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">head</span><br><span class="line"> |</span><br><span class="line"> ▼</span><br><span class="line">[30 | *]  →  [20 | *]  →  [10 | NULL]</span><br></pre></td></tr></table></figure>
+<h4 id="关键注意事项-2">关键注意事项</h4>
+<table>
+<thead>
+<tr>
+<th>注意点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>malloc</code> 与 <code>free</code></td>
+<td>动态分配的内存必须手动释放，防止内存泄漏</td>
+</tr>
+<tr>
+<td>二级指针 <code>**head</code></td>
+<td>修改头指针本身时需要传指针的指针</td>
+</tr>
+<tr>
+<td><code>NULL</code> 检查</td>
+<td>操作前检查指针是否为空，防止段错误</td>
+</tr>
+<tr>
+<td><code>-&gt;</code> 操作符</td>
+<td>通过指针访问结构体成员用 <code>-&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="链表的变种">链表的变种</h4>
+<ul>
+<li><strong>双向链表</strong>：每个节点有 <code>prev</code> 和 <code>next</code> 两个指针</li>
+<li><strong>循环链表</strong>：尾节点的 <code>next</code> 指向头节点</li>
+<li><strong>双向循环链表</strong>：结合以上两种特性</li>
+</ul>
+<h2 id="8-11-堆内存和栈内存">8.11 堆内存和栈内存</h2>
+<p>略。</p>
+<h2 id="8-12-内存泄漏">8.12 内存泄漏</h2>
+<p>**内存泄露（Memory Leak）**是指程序动态分配了一块内存，但在使用完毕后没有释放它，导致这块内存无法被程序或操作系统重新使用。</p>
+<h4 id="产生原因">产生原因</h4>
+<p>在C语言中，内存管理是手动的。使用 <code>malloc()</code>、<code>calloc()</code>、<code>realloc()</code> 分配的堆内存，必须由程序员显式调用 <code>free()</code> 来释放。如果忘记释放，就会发生内存泄露。</p>
+<h4 id="典型示例">典型示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">leak_example</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> *p = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="number">100</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>)); <span class="comment">// 分配内存</span></span><br><span class="line">    p[<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">    <span class="comment">// 忘记调用 free(p)！</span></span><br><span class="line">    <span class="comment">// 函数结束后，指针 p 消失，但那块内存仍然被占用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;</span><br><span class="line">        leak_example(); <span class="comment">// 每次调用都泄露内存</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="正确写法">正确写法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">no_leak_example</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> *p = (<span class="type">int</span> *)<span class="built_in">malloc</span>(<span class="number">100</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">if</span> (p == <span class="literal">NULL</span>) <span class="keyword">return</span>; <span class="comment">// 分配失败检查</span></span><br><span class="line"></span><br><span class="line">    p[<span class="number">0</span>] = <span class="number">42</span>;</span><br><span class="line">    <span class="comment">// ... 使用内存 ...</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(p);   <span class="comment">// 使用完毕，释放内存</span></span><br><span class="line">    p = <span class="literal">NULL</span>;  <span class="comment">// 置空，防止悬空指针</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常见场景">常见场景</h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>忘记调用 <code>free()</code></td>
+<td>最基本的泄露原因</td>
+</tr>
+<tr>
+<td>指针被覆盖</td>
+<td><code>p = malloc(...); p = malloc(...);</code> 第一块内存地址丢失</td>
+</tr>
+<tr>
+<td>提前 <code>return</code></td>
+<td>在释放内存前就返回了函数</td>
+</tr>
+<tr>
+<td>异常/错误路径</td>
+<td>只在正常路径释放，错误路径忘记释放</td>
+</tr>
+<tr>
+<td>循环引用</td>
+<td>链表等数据结构节点未逐一释放</td>
+</tr>
+</tbody>
+</table>
+<h4 id="如何避免">如何避免</h4>
+<ol>
+<li><strong>配对原则</strong>：<code>malloc</code> 和 <code>free</code> 成对出现</li>
+<li><strong>释放后置空</strong>：<code>free(p); p = NULL;</code>，防止悬空指针</li>
+<li><strong>统一出口</strong>：函数只有一个返回点，确保资源在返回前被释放</li>
+<li><strong>使用工具检测</strong>：可以检测程序运行时的内存泄露</li>
+</ol>
 
     </div>
 
