@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="分支">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2026/05/21/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module3-%E5%88%86%E6%94%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="分支">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-21T04:24:57.000Z">
+<meta property="article:modified_time" content="2026-06-03T10:54:10.672Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="System Programming">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/05/21/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module3-%E5%88%86%E6%94%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/05/21/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module3-%E5%88%86%E6%94%AF/","path":"2026/05/21/系统编程/System-Programming-Module3-分支/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">分支</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-If-else%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">3.1 If-else分支简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E5%88%86%E6%94%AF-else-if"><span class="nav-number">1.1.2.</span> <span class="nav-text">多重分支:else if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%A0%E4%B8%AA%E5%AE%B9%E6%98%93%E8%B8%A9%E7%9A%84%E5%9D%91"><span class="nav-number">1.1.3.</span> <span class="nav-text">几个容易踩的坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF%E6%A3%80%E6%B5%8B%E7%9B%B8%E7%AD%89%E5%80%BC"><span class="nav-number">1.2.</span> <span class="nav-text">3.2 使用分支检测相等值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF%E8%BF%9B%E8%A1%8C%E8%8C%83%E5%9B%B4%E6%A3%80%E6%B5%8B%EF%BC%88%E7%AE%80%E4%BB%8B%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3.3 使用分支进行范围检测（简介）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF%E8%BF%9B%E8%A1%8C%E8%8C%83%E5%9B%B4%E6%A3%80%E6%B5%8B"><span class="nav-number">1.4.</span> <span class="nav-text">3.4 使用分支进行范围检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-%E4%BD%BF%E7%94%A8%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E6%A3%80%E6%B5%8B%E8%8C%83%E5%9B%B4"><span class="nav-number">1.5.</span> <span class="nav-text">3.5 使用逻辑运算符检测范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.5.1.</span> <span class="nav-text">3.5.1 C语言中的逻辑运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E4%B8%8E"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">逻辑与 &amp;&amp;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E6%88%96"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">逻辑或 ||</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E9%9D%9E"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">逻辑非 !</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-%E7%9F%AD%E8%B7%AF%E6%B1%82%E5%80%BC"><span class="nav-number">1.5.2.</span> <span class="nav-text">3.5.2 短路求值</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%9E%E9%9B%B6%E5%8D%B3%E7%9C%9F"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">非零即真</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9C%9F%E5%80%BC%E5%AF%B9%E7%85%A7%E8%A1%A8"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">真值对照表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-%E6%A3%80%E6%B5%8Bif-else%E5%A4%9A%E6%9D%A1%E4%BB%B6%E5%88%86%E6%94%AF%E4%B8%AD%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%B4%E9%9A%99"><span class="nav-number">1.6.</span> <span class="nav-text">3.6 检测if-else多条件分支中存在的间隙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-%E4%BD%BF%E7%94%A8%E5%88%86%E6%94%AF%E8%AF%AD%E5%8F%A5%E6%A3%80%E6%B5%8B%E5%A4%9A%E4%B8%AA%E7%89%B9%E5%BE%81"><span class="nav-number">1.7.</span> <span class="nav-text">3.7 使用分支语句检测多个特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-%E5%B8%B8%E8%A7%81%E5%88%86%E6%94%AF%E9%94%99%E8%AF%AF"><span class="nav-number">1.8.</span> <span class="nav-text">3.8 常见分支错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%94%A8-%E4%BB%A3%E6%9B%BF-%EF%BC%88%E8%B5%8B%E5%80%BC%E8%AF%AF%E4%BD%9C%E6%AF%94%E8%BE%83%EF%BC%89"><span class="nav-number">1.8.1.</span> <span class="nav-text">1. 用 &#x3D; 代替 &#x3D;&#x3D;（赋值误作比较）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%82%AC%E7%A9%BA-else%EF%BC%88Dangling-Else%EF%BC%89"><span class="nav-number">1.8.2.</span> <span class="nav-text">2. 悬空 else（Dangling Else）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%BC%BA%E5%B0%91%E8%8A%B1%E6%8B%AC%E5%8F%B7%E5%AF%BC%E8%87%B4%E9%80%BB%E8%BE%91%E9%94%99%E8%AF%AF"><span class="nav-number">1.8.3.</span> <span class="nav-text">3. 缺少花括号导致逻辑错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%94%A8-%E6%AF%94%E8%BE%83"><span class="nav-number">1.8.4.</span> <span class="nav-text">4. 浮点数用 &#x3D;&#x3D; 比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%88%86%E5%8F%B7%E8%AF%AF%E6%94%BE%E5%9C%A8-if-%E5%90%8E"><span class="nav-number">1.8.5.</span> <span class="nav-text">5. 分号误放在 if 后</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%9D%A1%E4%BB%B6%E4%B8%AD%E5%BF%BD%E7%95%A5%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">1.8.6.</span> <span class="nav-text">6. 条件中忽略运算符优先级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-else-if-%E9%93%BE%E6%9D%A1%E4%BB%B6%E9%87%8D%E5%8F%A0%E6%88%96%E9%81%97%E6%BC%8F"><span class="nav-number">1.8.7.</span> <span class="nav-text">7. else if 链条件重叠或遗漏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E5%AF%B9%E6%8C%87%E9%92%88-%E5%B8%83%E5%B0%94%E5%80%BC%E7%9A%84%E9%94%99%E8%AF%AF%E6%AF%94%E8%BE%83"><span class="nav-number">1.8.8.</span> <span class="nav-text">8. 对指针&#x2F;布尔值的错误比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-%E7%A4%BA%E4%BE%8B%EF%BC%9A%E9%80%9A%E8%A1%8C%E8%B4%B9%E8%AE%A1%E7%AE%97"><span class="nav-number">1.9.</span> <span class="nav-text">3.9 示例：通行费计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-10-%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E8%A7%84%E5%88%99"><span class="nav-number">1.10.</span> <span class="nav-text">3.10 运算符优先级规则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E8%A1%A8"><span class="nav-number">1.10.1.</span> <span class="nav-text">优先级表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A7%84%E5%88%99"><span class="nav-number">1.10.2.</span> <span class="nav-text">核心规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%98%93%E9%94%99%E7%82%B9"><span class="nav-number">1.10.3.</span> <span class="nav-text">常见易错点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%B0%E5%BF%86%E5%8F%A3%E8%AF%80"><span class="nav-number">1.10.4.</span> <span class="nav-text">记忆口诀</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-11-Switch-%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.11.</span> <span class="nav-text">3.11 Switch 语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95-2"><span class="nav-number">1.11.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">1.11.2.</span> <span class="nav-text">关键组成部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.11.3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch-vs-if-else"><span class="nav-number">1.11.4.</span> <span class="nav-text">switch vs if-else</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-12-%E5%B8%83%E5%B0%94%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.12.</span> <span class="nav-text">3.12 布尔数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-12-1-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B%E6%BC%94%E5%8F%98"><span class="nav-number">1.12.1.</span> <span class="nav-text">3.12.1 C语言中的布尔类型演变</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%97%A9%E6%9C%9FC%E8%AF%AD%E8%A8%80%EF%BC%88C89-C90%EF%BC%89"><span class="nav-number">1.12.1.1.</span> <span class="nav-text">1. 早期C语言（C89&#x2F;C90）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-C99-%E5%BC%95%E5%85%A5-Bool"><span class="nav-number">1.12.1.2.</span> <span class="nav-text">2. C99 引入 _Bool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-stdbool-h-%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">1.12.1.3.</span> <span class="nav-text">3. &lt;stdbool.h&gt; 头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-C23-%E7%9A%84%E6%94%B9%E8%BF%9B"><span class="nav-number">1.12.1.4.</span> <span class="nav-text">4. C23 的改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%BB%BA%E8%AE%AE"><span class="nav-number">1.12.1.5.</span> <span class="nav-text">总结建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-13-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="nav-number">1.13.</span> <span class="nav-text">3.13 字符串比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E8%A6%81%E7%82%B9"><span class="nav-number">1.13.1.</span> <span class="nav-text">核心要点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-13-1-%E6%A0%87%E5%87%86%E5%BA%93%E5%87%BD%E6%95%B0%EF%BC%9Astrcmp"><span class="nav-number">1.13.2.</span> <span class="nav-text">3.13.1 标准库函数：strcmp</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.13.2.1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="nav-number">1.13.2.2.</span> <span class="nav-text">其他相关函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%EF%BC%9A%E7%94%A8-%E6%AF%94%E8%BE%83%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.13.2.3.</span> <span class="nav-text">常见错误：用 &#x3D;&#x3D; 比较字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strcmp-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.13.2.4.</span> <span class="nav-text">strcmp 的工作原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-14-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%BF%E9%97%AE%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95"><span class="nav-number">1.14.</span> <span class="nav-text">3.14 字符串访问操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-14-1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="nav-number">1.14.1.</span> <span class="nav-text">3.14.1 字符串的本质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-14-2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%96%B9%E5%BC%8F"><span class="nav-number">1.14.2.</span> <span class="nav-text">3.14.2 字符串的访问方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%8B%E6%A0%87%E8%AE%BF%E9%97%AE"><span class="nav-number">1.14.2.1.</span> <span class="nav-text">1. 下标访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8C%87%E9%92%88%E8%AE%BF%E9%97%AE"><span class="nav-number">1.14.2.2.</span> <span class="nav-text">2. 指针访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%81%8D%E5%8E%86%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.14.2.3.</span> <span class="nav-text">3. 遍历字符串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-14-3-%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C%E5%87%BD%E6%95%B0%EF%BC%88-string-h-%EF%BC%89"><span class="nav-number">1.14.3.</span> <span class="nav-text">3.14.3 常用字符串操作函数（&lt;string.h&gt;）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.14.3.1.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="nav-number">1.14.3.2.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-15-%E5%AD%97%E7%AC%A6%E8%BF%90%E7%AE%97"><span class="nav-number">1.15.</span> <span class="nav-text">3.15 字符运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97"><span class="nav-number">1.15.1.</span> <span class="nav-text">1. 算术运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%EF%BC%88%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%EF%BC%89"><span class="nav-number">1.15.2.</span> <span class="nav-text">2. 关系运算（比较运算）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97"><span class="nav-number">1.15.3.</span> <span class="nav-text">3. 赋值运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">1.15.4.</span> <span class="nav-text">4. 逻辑运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">1.15.5.</span> <span class="nav-text">5. 位运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.15.6.</span> <span class="nav-text">6. 类型转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AD%97%E7%AC%A6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%EF%BC%88-ctype-h-%EF%BC%89"><span class="nav-number">1.15.7.</span> <span class="nav-text">7. 常用的字符处理函数（&lt;ctype.h&gt;）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%A6%81%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">1.15.8.</span> <span class="nav-text">关键要点总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-16-%E6%9D%A1%E4%BB%B6%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.16.</span> <span class="nav-text">3.16 条件表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">1.16.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%9B%BF%E4%BB%A3-if-else"><span class="nav-number">1.16.2.</span> <span class="nav-text">示例：替代 if-else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-3"><span class="nav-number">1.16.3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E-if-else-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.16.4.</span> <span class="nav-text">与 if-else 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-17-%E6%B5%AE%E7%82%B9%E6%95%B0%E6%AF%94%E8%BE%83"><span class="nav-number">1.17.</span> <span class="nav-text">3.17 浮点数比较</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-17-1-%E6%B5%AE%E7%82%B9%E6%95%B0%E6%AF%94%E8%BE%83%E7%9A%84%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-number">1.17.1.</span> <span class="nav-text">3.17.1 浮点数比较的核心问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-17-2-%E6%AD%A3%E7%A1%AE%E7%9A%84%E6%AF%94%E8%BE%83%E6%96%B9%E6%B3%95"><span class="nav-number">1.17.2.</span> <span class="nav-text">3.17.2 正确的比较方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%AF%E5%B7%AE%E8%8C%83%E5%9B%B4%E6%AF%94%E8%BE%83%EF%BC%88epsilon-%E6%AF%94%E8%BE%83%EF%BC%89"><span class="nav-number">1.17.2.1.</span> <span class="nav-text">使用误差范围比较（epsilon 比较）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E8%AF%AF%E5%B7%AE%E6%AF%94%E8%BE%83%EF%BC%88%E6%9B%B4%E5%81%A5%E5%A3%AE%EF%BC%89"><span class="nav-number">1.17.2.2.</span> <span class="nav-text">相对误差比较（更健壮）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E6%AF%94%E8%BE%83%EF%BC%88-%EF%BC%89"><span class="nav-number">1.17.2.3.</span> <span class="nav-text">大小比较（&lt; &#x2F; &gt;）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">1.17.2.4.</span> <span class="nav-text">特殊值的处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86-2"><span class="nav-number">1.17.3.</span> <span class="nav-text">特殊值的处理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%BB%BA%E8%AE%AE-2"><span class="nav-number">1.17.3.1.</span> <span class="nav-text">总结建议</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-18-%E7%9F%AD%E8%B7%AF%E8%AF%84%E4%BC%B0"><span class="nav-number">1.18.</span> <span class="nav-text">3.18 短路评估</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-18-1-%EF%BC%88%E9%80%BB%E8%BE%91%E4%B8%8E%EF%BC%89%E7%9A%84%E7%9F%AD%E8%B7%AF"><span class="nav-number">1.18.1.</span> <span class="nav-text">3.18.1 &amp;&amp;（逻辑与）的短路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-18-2-%EF%BC%88%E9%80%BB%E8%BE%91%E6%88%96%EF%BC%89%E7%9A%84%E7%9F%AD%E8%B7%AF"><span class="nav-number">1.18.2.</span> <span class="nav-text">3.18.2 ||（逻辑或）的短路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-18-3-%E7%9F%AD%E8%B7%AF%E7%9A%84%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94"><span class="nav-number">1.18.3.</span> <span class="nav-text">3.18.3 短路的常见用途</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%98%B2%E6%AD%A2%E7%A9%BA%E6%8C%87%E9%92%88%E8%A7%A3%E5%BC%95%E7%94%A8"><span class="nav-number">1.18.3.1.</span> <span class="nav-text">1. 防止空指针解引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD"><span class="nav-number">1.18.3.2.</span> <span class="nav-text">2. 提高性能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%89%AF%E4%BD%9C%E7%94%A8%E6%8E%A7%E5%88%B6"><span class="nav-number">1.18.3.3.</span> <span class="nav-text">3. 副作用控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-4"><span class="nav-number">1.18.3.4.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/21/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module3-%E5%88%86%E6%94%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-05-21 12:24:57" itemprop="dateCreated datePublished" datetime="2026-05-21T12:24:57+08:00">2026-05-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-03 18:54:10" itemprop="dateModified" datetime="2026-06-03T18:54:10+08:00">2026-06-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/System-Programming/" itemprop="url" rel="index"><span itemprop="name">System Programming</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>分支<span id="more"></span></h1>
+<h2 id="3-1-If-else分支简介">3.1 If-else分支简介</h2>
+<p>if-else 是C语言中最基本的<strong>条件分支结构</strong>,它根据某个条件是否成立来决定执行哪一段代码。</p>
+<p>C语言中没有真正的布尔类型概念(C99之前),判断的核心规则是:<strong>条件表达式的值为 0 视为&quot;假&quot;,非 0 视为&quot;真&quot;</strong>。</p>
+<h4 id="基本语法">基本语法</h4>
+<p>最简单的 if 语句，加上 else 后,可以处理&quot;条件不成立&quot;的情况:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (条件表达式) &#123;</span><br><span class="line">    <span class="comment">// 条件为真时执行</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 条件为假时执行</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="多重分支-else-if">多重分支:else if</h4>
+<p>当有多个互斥的情况时,可以用 <code>else if</code> 串联:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> score = <span class="number">75</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (score &gt;= <span class="number">90</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;优秀\n&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;及格\n&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;不及格\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="几个容易踩的坑">几个容易踩的坑</h4>
+<ul>
+<li>
+<p><strong>不要把 <code>==</code>(判断相等)写成 <code>=</code>(赋值)</strong></p>
+</li>
+<li>
+<p><strong>单条语句可以省略花括号,但建议始终保留</strong></p>
+</li>
+<li>
+<p><strong>注意悬空 else 问题</strong>——else 总是与最近的、未匹配的 if 配对,用花括号可以避免歧义。</p>
+</li>
+</ul>
+<h2 id="3-2-使用分支检测相等值">3.2 使用分支检测相等值</h2>
+<p>略。</p>
+<h2 id="3-3-使用分支进行范围检测（简介）">3.3 使用分支进行范围检测（简介）</h2>
+<p>略。</p>
+<h2 id="3-4-使用分支进行范围检测">3.4 使用分支进行范围检测</h2>
+<p>略。</p>
+<h2 id="3-5-使用逻辑运算符检测范围">3.5 使用逻辑运算符检测范围</h2>
+<p>C语言中的逻辑运算符用于对布尔表达式（真/假）进行逻辑组合或取反，运算结果只有两种：真（用整数 1 表示）或假（用整数 0 表示）。</p>
+<h3 id="3-5-1-C语言中的逻辑运算符">3.5.1 C语言中的逻辑运算符</h3>
+<h4 id="逻辑与"><strong>逻辑与 <code>&amp;&amp;</code></strong></h4>
+<p>只有当两个操作数都为真时，结果才为真，否则为假。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">5</span>, b = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">if</span> (a &gt; <span class="number">0</span> &amp;&amp; b &gt; <span class="number">0</span>)   <span class="comment">// 两个条件都成立，结果为真</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;都是正数\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="逻辑或">逻辑或 <code>||</code></h4>
+<p>只要有一个操作数为真，结果就为真；只有当两个都为假时，结果才为假。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> score = <span class="number">45</span>;</span><br><span class="line"><span class="keyword">if</span> (score &lt; <span class="number">60</span> || score &gt; <span class="number">100</span>)  <span class="comment">// 满足任一条件即为真</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;成绩异常\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="逻辑非">逻辑非 <code>!</code></h4>
+<p>单目运算符，对操作数取反：真变假，假变真。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> flag = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (!flag)   <span class="comment">// flag 为 0（假），取反后为真</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;flag 是假\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-2-短路求值">3.5.2 <strong>短路求值</strong></h3>
+<p>这是逻辑运算符很关键的特性。对于 <code>&amp;&amp;</code>，如果左侧为假，右侧就不再计算（因为结果必定为假）；对于 <code>||</code>，如果左侧为真，右侧也不再计算（结果必定为真）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (x != <span class="number">0</span> &amp;&amp; <span class="number">10</span> / x &gt; <span class="number">1</span>);  <span class="comment">// x==0 时左侧为假，不会执行除法，避免了除零错误</span></span><br></pre></td></tr></table></figure>
+<h4 id="非零即真"><strong>非零即真</strong></h4>
+<p>在C语言中，任何非零值都被视为真，只有 0 被视为假。所以 <code>if (a)</code> 等价于 <code>if (a != 0)</code>。</p>
+<h4 id="真值对照表">真值对照表</h4>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a &amp;&amp; b</th>
+<th>a || b</th>
+<th>!a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>真</td>
+<td>真</td>
+<td>真</td>
+<td>真</td>
+<td>假</td>
+</tr>
+<tr>
+<td>真</td>
+<td>假</td>
+<td>假</td>
+<td>真</td>
+<td>假</td>
+</tr>
+<tr>
+<td>假</td>
+<td>真</td>
+<td>假</td>
+<td>真</td>
+<td>真</td>
+</tr>
+<tr>
+<td>假</td>
+<td>假</td>
+<td>假</td>
+<td>假</td>
+<td>真</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>需要注意区分逻辑运算符（<code>&amp;&amp;</code>、<code>||</code>、<code>!</code>）和位运算符（<code>&amp;</code>、<code>|</code>、<code>~</code>）——前者处理整体的真假逻辑，后者按二进制位逐位运算，两者用途完全不同。</li>
+</ul>
+<h2 id="3-6-检测if-else多条件分支中存在的间隙">3.6 检测if-else多条件分支中存在的间隙</h2>
+<p>略。</p>
+<h2 id="3-7-使用分支语句检测多个特征">3.7 使用分支语句检测多个特征</h2>
+<p>略。</p>
+<h2 id="3-8-常见分支错误">3.8 常见分支错误</h2>
+<h4 id="1-用-代替-（赋值误作比较）">1. 用 <code>=</code> 代替 <code>==</code>（赋值误作比较）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误：始终为真（非零赋值）</span></span><br><span class="line"><span class="keyword">if</span> (x = <span class="number">5</span>) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">if</span> (x == <span class="number">5</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-悬空-else（Dangling-Else）">2. 悬空 <code>else</code>（Dangling Else）</h4>
+<p><code>else</code> 会自动匹配<strong>最近的</strong> <code>if</code>，可能与预期不符：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 看起来 else 属于外层 if，实际属于内层 if</span></span><br><span class="line"><span class="keyword">if</span> (a &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span> (b &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;both positive&quot;</span>);</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a not positive&quot;</span>); <span class="comment">// 实际是 b &lt;= 0 时执行！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确：用花括号明确</span></span><br><span class="line"><span class="keyword">if</span> (a &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (b &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;both positive&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a not positive&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-缺少花括号导致逻辑错误">3. 缺少花括号导致逻辑错误</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 看起来两行都在 if 内，实际只有第一行受控</span></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;positive\n&quot;</span>);</span><br><span class="line">    x = <span class="number">0</span>;        <span class="comment">// 始终执行！</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;positive\n&quot;</span>);</span><br><span class="line">    x = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-浮点数用-比较">4. 浮点数用 <code>==</code> 比较</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> x = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误：浮点精度问题，可能永远不等于 0.3</span></span><br><span class="line"><span class="keyword">if</span> (x == <span class="number">0.3</span>) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确：使用误差范围</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">fabs</span>(x - <span class="number">0.3</span>) &lt; <span class="number">1e-9</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-分号误放在-if-后">5. 分号误放在 <code>if</code> 后</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误：分号让 if 的 body 为空，花括号内始终执行</span></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">0</span>);</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;positive\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;positive\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-条件中忽略运算符优先级">6. 条件中忽略运算符优先级</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误：&amp; 优先级低于 ==，实际是 a &amp; (b == 1)</span></span><br><span class="line"><span class="keyword">if</span> (a &amp; b == <span class="number">1</span>) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确：加括号</span></span><br><span class="line"><span class="keyword">if</span> ((a &amp; b) == <span class="number">1</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="7-else-if-链条件重叠或遗漏">7. <code>else if</code> 链条件重叠或遗漏</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误：条件有遗漏（x == 0 时没有分支）</span></span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;positive&quot;</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (x &lt; <span class="number">-1</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;very negative&quot;</span>);</span><br><span class="line"><span class="comment">// x 为 0 或 -1 时无任何输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确：加上 else 兜底</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;zero or -1&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="8-对指针-布尔值的错误比较">8. 对指针/布尔值的错误比较</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不推荐（虽然合法，但可读性差）</span></span><br><span class="line"><span class="keyword">if</span> (ptr == <span class="literal">true</span>) &#123; ... &#125;  <span class="comment">// ptr 是指针</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 更清晰</span></span><br><span class="line"><span class="keyword">if</span> (ptr != <span class="literal">NULL</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>错误类型</th>
+<th>关键词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>=</code> vs <code>==</code></td>
+<td>赋值误作比较</td>
+</tr>
+<tr>
+<td>悬空 else</td>
+<td>匹配最近 if</td>
+</tr>
+<tr>
+<td>缺花括号</td>
+<td>单语句陷阱</td>
+</tr>
+<tr>
+<td>浮点比较</td>
+<td>精度问题</td>
+</tr>
+<tr>
+<td>多余分号</td>
+<td>空 body</td>
+</tr>
+<tr>
+<td>运算符优先级</td>
+<td>需加括号</td>
+</tr>
+<tr>
+<td>条件遗漏</td>
+<td>缺 else 兜底</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-9-示例：通行费计算">3.9 示例：通行费计算</h2>
+<p>略。</p>
+<h2 id="3-10-运算符优先级规则">3.10 运算符优先级规则</h2>
+<h4 id="优先级表">优先级表</h4>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>运算符</th>
+<th>说明</th>
+<th>结合性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1（最高）</td>
+<td><code>()</code> <code>[]</code> <code>-&gt;</code> <code>.</code></td>
+<td>括号、下标、成员访问</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>!</code> <code>~</code> <code>++</code> <code>--</code> <code>+</code> <code>-</code> <code>*</code> <code>&amp;</code> <code>(type)</code> <code>sizeof</code></td>
+<td>单目运算符</td>
+<td><strong>右→左</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>*</code> <code>/</code> <code>%</code></td>
+<td>乘、除、取模</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>+</code> <code>-</code></td>
+<td>加、减</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>&lt;&lt;</code> <code>&gt;&gt;</code></td>
+<td>位移</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td>关系比较</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>==</code> <code>!=</code></td>
+<td>相等/不等</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>&amp;</code></td>
+<td>按位与</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>^</code></td>
+<td>按位异或</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>10</td>
+<td>`</td>
+<td>`</td>
+<td>按位或</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>&amp;&amp;</code></td>
+<td>逻辑与</td>
+<td>左→右</td>
+</tr>
+<tr>
+<td>12</td>
+<td>`</td>
+<td></td>
+<td>`</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>?:</code></td>
+<td>条件运算符</td>
+<td><strong>右→左</strong></td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> 等</td>
+<td>赋值运算符</td>
+<td><strong>右→左</strong></td>
+</tr>
+<tr>
+<td>15（最低）</td>
+<td><code>,</code></td>
+<td>逗号运算符</td>
+<td>左→右</td>
+</tr>
+</tbody>
+</table>
+<h4 id="核心规则">核心规则</h4>
+<p><strong>1. 优先级高的先计算</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> + <span class="number">3</span> * <span class="number">4</span> = <span class="number">14</span>  <span class="comment">// 先算 3*4，再加2</span></span><br></pre></td></tr></table></figure>
+<p><strong>2. 同级运算符看结合性</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a - b - c = (a - b) - c  <span class="comment">// 左结合</span></span><br><span class="line">a = b = c    <span class="comment">// 右结合，等价于 a = (b = c)</span></span><br></pre></td></tr></table></figure>
+<p><strong>3. 括号优先级最高，可改变顺序</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">2</span> + <span class="number">3</span>) * <span class="number">4</span> = <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h4 id="常见易错点">常见易错点</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 逻辑与 &amp;&amp; 优先于 逻辑或 ||</span></span><br><span class="line">a || b &amp;&amp; c  →  a || (b &amp;&amp; c)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 位运算优先级低于比较运算符</span></span><br><span class="line">a &amp; b == <span class="number">0</span>   →  a &amp; (b == <span class="number">0</span>)  ⚠️ 常见陷阱！</span><br><span class="line"><span class="comment">// 应写为：(a &amp; b) == 0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. ++/-- 前缀与后缀的区别</span></span><br><span class="line"><span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="type">int</span> b = a++;  <span class="comment">// b=5, a=6（后缀：先用后加）</span></span><br><span class="line"><span class="type">int</span> c = ++a;  <span class="comment">// c=7, a=7（前缀：先加后用）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 赋值运算符优先级很低</span></span><br><span class="line"><span class="keyword">if</span> (x = <span class="number">5</span>)   <span class="comment">// 这是赋值，不是比较！应用 ==</span></span><br></pre></td></tr></table></figure>
+<h4 id="记忆口诀">记忆口诀</h4>
+<ul>
+<li>
+<p><strong>括号、单目最优先；乘除模次之，加减再其后；</strong> <strong>移位比大小，等与不等判；位与、异或、位或；</strong> <strong>逻辑与、逻辑或；条件、赋值、逗号末。</strong></p>
+</li>
+<li>
+<p>实际编程中，<strong>遇到复杂表达式建议主动加括号</strong>，既避免出错，也提高可读性。</p>
+</li>
+</ul>
+<h2 id="3-11-Switch-语句">3.11 Switch 语句</h2>
+<p><code>switch</code> 语句是一种<strong>多分支选择结构</strong>，用于根据一个表达式的值，从多个代码块中选择一个执行。它是 <code>if-else if</code> 链的一种更清晰的替代方式。</p>
+<h4 id="基本语法-2">基本语法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (表达式) &#123;</span><br><span class="line">    <span class="keyword">case</span> 值<span class="number">1</span>:</span><br><span class="line">        <span class="comment">// 代码块1</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> 值<span class="number">2</span>:</span><br><span class="line">        <span class="comment">// 代码块2</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="comment">// 默认代码块</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关键组成部分">关键组成部分</h4>
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>switch</code></td>
+<td>后面跟一个<strong>整型或字符型</strong>表达式</td>
+</tr>
+<tr>
+<td><code>case</code></td>
+<td>每个分支的入口，匹配一个常量值</td>
+</tr>
+<tr>
+<td><code>break</code></td>
+<td>跳出 <code>switch</code>，防止&quot;贯穿&quot;到下一个 <code>case</code></td>
+</tr>
+<tr>
+<td><code>default</code></td>
+<td>可选，当所有 <code>case</code> 都不匹配时执行</td>
+</tr>
+</tbody>
+</table>
+<h4 id="注意事项">注意事项</h4>
+<ul>
+<li><strong><code>break</code> 很重要</strong>：如果省略 <code>break</code>，程序会继续执行下一个 <code>case</code>（称为&quot;贯穿&quot; fall-through）。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (x) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;一\n&quot;</span>);</span><br><span class="line">        <span class="comment">// 没有 break，会继续执行 case 2</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;二\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 若 x=1，会同时打印&quot;一&quot;和&quot;二&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>只支持整型/字符型</strong>：<code>switch</code> 的表达式必须是整数类型（<code>int</code>, <code>char</code> 等），<strong>不能用浮点数或字符串</strong>。</p>
+</li>
+<li>
+<p><strong><code>default</code> 是可选的</strong>：但建议加上，用于处理意外情况。</p>
+</li>
+<li>
+<p><strong>多个 <code>case</code> 共用一段代码</strong>：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (ch) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;a&#x27;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;e&#x27;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;i&#x27;</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;元音字母\n&quot;</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;辅音字母\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="switch-vs-if-else"><code>switch</code> vs <code>if-else</code></h4>
+<ul>
+<li>当判断条件是<strong>一个变量与多个固定值比较</strong>时，<code>switch</code> 更清晰易读。</li>
+<li>当条件是<strong>范围判断</strong>（如 <code>x &gt; 10</code>）时，应使用 <code>if-else</code>。</li>
+</ul>
+<h2 id="3-12-布尔数据类型">3.12 布尔数据类型</h2>
+<h3 id="3-12-1-C语言中的布尔类型演变">3.12.1 C语言中的布尔类型演变</h3>
+<h4 id="1-早期C语言（C89-C90）">1. 早期C语言（C89/C90）</h4>
+<p>早期C语言<strong>没有内置的布尔类型</strong>。通常用 <code>int</code> 来代替：</p>
+<ul>
+<li><code>0</code> 表示 <strong>假（false）</strong></li>
+<li>非零值（通常是 <code>1</code>）表示 <strong>真（true）</strong></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> flag = <span class="number">1</span>;  <span class="comment">// 真</span></span><br><span class="line"><span class="type">int</span> done = <span class="number">0</span>;  <span class="comment">// 假</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-C99-引入-Bool">2. C99 引入 <code>_Bool</code></h4>
+<p>C99 标准正式引入了内置布尔类型 <strong><code>_Bool</code></strong>：</p>
+<ul>
+<li>只能存储 <code>0</code> 或 <code>1</code></li>
+<li>赋任何非零值都会自动转换为 <code>1</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">_Bool</span> flag = <span class="number">1</span>;  <span class="comment">// 真</span></span><br><span class="line"><span class="type">_Bool</span> done = <span class="number">0</span>;  <span class="comment">// 假</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-stdbool-h-头文件">3. <code>&lt;stdbool.h&gt;</code> 头文件</h4>
+<p>C99 同时提供了 <code>&lt;stdbool.h&gt;</code> 头文件，定义了更易读的宏：</p>
+<table>
+<thead>
+<tr>
+<th>宏名</th>
+<th>实际值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td><code>_Bool</code></td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td><code>0</code></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdbool.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> isReady = <span class="literal">true</span>;</span><br><span class="line"><span class="type">bool</span> isFinished = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (isReady) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;已准备好！\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-C23-的改进">4. C23 的改进</h4>
+<p>C23 标准将 <code>bool</code>、<code>true</code>、<code>false</code> 升级为<strong>正式关键字</strong>，不再需要包含头文件。</p>
+<h4 id="总结建议">总结建议</h4>
+<ul>
+<li>使用 <strong>C99 或更高标准</strong>时，推荐引入 <code>&lt;stdbool.h&gt;</code> 并使用 <code>bool</code> / <code>true</code> / <code>false</code>，代码可读性更好。</li>
+<li>如需兼容旧代码，可以用 <code>int</code> 配合 <code>0</code>/<code>1</code> 来表示布尔值。</li>
+</ul>
+<h2 id="3-13-字符串比较">3.13 字符串比较</h2>
+<p>在C语言中，<strong>字符串比较</strong>是指比较两个字符串的内容是否相同，或判断它们的字典序大小关系。</p>
+<h4 id="核心要点">核心要点</h4>
+<p>C语言中的字符串本质上是<strong>字符数组</strong>，以 <code>\0</code>（空字符）结尾。因此，<strong>不能直接用 <code>==</code> 来比较两个字符串</strong>，因为 <code>==</code> 比较的是指针地址，而不是内容。</p>
+<h3 id="3-13-1-标准库函数：strcmp">3.13.1 标准库函数：<code>strcmp</code></h3>
+<p>最常用的方式是使用 <code>&lt;string.h&gt;</code> 中的 <code>strcmp</code> 函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">strcmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s1, <span class="type">const</span> <span class="type">char</span> *s2)</span>;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>两个字符串<strong>相等</strong></td>
+</tr>
+<tr>
+<td><code>&lt; 0</code></td>
+<td><code>s1</code> 字典序<strong>小于</strong> <code>s2</code></td>
+</tr>
+<tr>
+<td><code>&gt; 0</code></td>
+<td><code>s1</code> 字典序<strong>大于</strong> <code>s2</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例">示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> a[] = <span class="string">&quot;apple&quot;</span>;</span><br><span class="line">    <span class="type">char</span> b[] = <span class="string">&quot;apple&quot;</span>;</span><br><span class="line">    <span class="type">char</span> c[] = <span class="string">&quot;banana&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(a, b) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;a 和 b 相等\n&quot;</span>);       <span class="comment">// 输出这行</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(a, c) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;apple 在 banana 之前\n&quot;</span>); <span class="comment">// 输出这行</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="其他相关函数">其他相关函数</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strncmp(s1, s2, n)</code></td>
+<td>只比较前 <code>n</code> 个字符</td>
+</tr>
+<tr>
+<td><code>strcasecmp(s1, s2)</code></td>
+<td>忽略大小写比较（POSIX）</td>
+</tr>
+<tr>
+<td><code>strncasecmp(s1, s2, n)</code></td>
+<td>忽略大小写，只比较前 <code>n</code> 个字符</td>
+</tr>
+</tbody>
+</table>
+<h4 id="常见错误：用-比较字符串">常见错误：用 <code>==</code> 比较字符串</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> a[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> b[] = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误：比较的是地址，不是内容</span></span><br><span class="line"><span class="keyword">if</span> (a == b) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">strcmp</span>(a, b) == <span class="number">0</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="strcmp-的工作原理">strcmp 的工作原理</h4>
+<p><code>strcmp</code> 逐字符比较两个字符串，直到：</p>
+<ol>
+<li>找到不同的字符 → 返回它们的 ASCII 差值</li>
+<li>同时到达 <code>\0</code> → 返回 <code>0</code>（相等）</li>
+</ol>
+<h2 id="3-14-字符串访问操作方法">3.14 字符串访问操作方法</h2>
+<h3 id="3-14-1-字符串的本质">3.14.1 字符串的本质</h3>
+<p>在C语言中，字符串本质上是以 <strong>空字符 <code>'\0'</code></strong> 结尾的字符数组。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="comment">// 实际存储：[&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x27;, &#x27;\0&#x27;]</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-14-2-字符串的访问方式">3.14.2 字符串的访问方式</h3>
+<h4 id="1-下标访问">1. 下标访问</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> c = str[<span class="number">1</span>];  <span class="comment">// &#x27;e&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-指针访问">2. 指针访问</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"><span class="type">char</span> *p = str;</span><br><span class="line"><span class="type">char</span> c = *(p + <span class="number">1</span>);  <span class="comment">// &#x27;e&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-遍历字符串">3. 遍历字符串</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> str[] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式一：下标遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; str[i] != <span class="string">&#x27;\0&#x27;</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, str[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 方式二：指针遍历</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">char</span> *p = str; *p != <span class="string">&#x27;\0&#x27;</span>; p++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, *p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-14-3-常用字符串操作函数（-string-h-）">3.14.3 常用字符串操作函数（<code>&lt;string.h&gt;</code>）</h3>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>原型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strlen</code></td>
+<td><code>size_t strlen(const char *s)</code></td>
+<td>返回字符串长度（不含<code>\0</code>）</td>
+</tr>
+<tr>
+<td><code>strcpy</code></td>
+<td><code>char *strcpy(char *dest, const char *src)</code></td>
+<td>复制字符串</td>
+</tr>
+<tr>
+<td><code>strncpy</code></td>
+<td><code>char *strncpy(char *dest, const char *src, size_t n)</code></td>
+<td>复制最多n个字符</td>
+</tr>
+<tr>
+<td><code>strcat</code></td>
+<td><code>char *strcat(char *dest, const char *src)</code></td>
+<td>拼接字符串</td>
+</tr>
+<tr>
+<td><code>strncat</code></td>
+<td><code>char *strncat(char *dest, const char *src, size_t n)</code></td>
+<td>拼接最多n个字符</td>
+</tr>
+<tr>
+<td><code>strcmp</code></td>
+<td><code>int strcmp(const char *s1, const char *s2)</code></td>
+<td>比较字符串（字典序）</td>
+</tr>
+<tr>
+<td><code>strncmp</code></td>
+<td><code>int strncmp(const char *s1, const char *s2, size_t n)</code></td>
+<td>比较前n个字符</td>
+</tr>
+<tr>
+<td><code>strchr</code></td>
+<td><code>char *strchr(const char *s, int c)</code></td>
+<td>查找字符第一次出现的位置</td>
+</tr>
+<tr>
+<td><code>strrchr</code></td>
+<td><code>char *strrchr(const char *s, int c)</code></td>
+<td>查找字符最后一次出现的位置</td>
+</tr>
+<tr>
+<td><code>strstr</code></td>
+<td><code>char *strstr(const char *s1, const char *s2)</code></td>
+<td>查找子串</td>
+</tr>
+<tr>
+<td><code>strtok</code></td>
+<td><code>char *strtok(char *s, const char *delim)</code></td>
+<td>按分隔符切割字符串</td>
+</tr>
+<tr>
+<td><code>sprintf</code></td>
+<td><code>int sprintf(char *buf, const char *fmt, ...)</code></td>
+<td>格式化写入字符串</td>
+</tr>
+</tbody>
+</table>
+<h4 id="示例代码">示例代码</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> s1[<span class="number">50</span>] = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">    <span class="type">char</span> s2[] = <span class="string">&quot; World&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 长度</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;长度: %zu\n&quot;</span>, <span class="built_in">strlen</span>(s1));       <span class="comment">// 5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 拼接</span></span><br><span class="line">    <span class="built_in">strcat</span>(s1, s2);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;拼接: %s\n&quot;</span>, s1);               <span class="comment">// Hello World</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 比较</span></span><br><span class="line">    <span class="type">int</span> cmp = <span class="built_in">strcmp</span>(<span class="string">&quot;abc&quot;</span>, <span class="string">&quot;abd&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;比较: %d\n&quot;</span>, cmp);              <span class="comment">// 负数（&#x27;c&#x27; &lt; &#x27;d&#x27;）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 查找子串</span></span><br><span class="line">    <span class="type">char</span> *pos = <span class="built_in">strstr</span>(s1, <span class="string">&quot;World&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (pos) <span class="built_in">printf</span>(<span class="string">&quot;找到: %s\n&quot;</span>, pos);     <span class="comment">// World</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 切割</span></span><br><span class="line">    <span class="type">char</span> csv[] = <span class="string">&quot;a,b,c,d&quot;</span>;</span><br><span class="line">    <span class="type">char</span> *token = strtok(csv, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span> (token) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, token);             <span class="comment">// a b c d（逐行）</span></span><br><span class="line">        token = strtok(<span class="literal">NULL</span>, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项-2">注意事项</h4>
+<ul>
+<li><strong>缓冲区溢出</strong>：<code>strcpy</code>、<code>strcat</code> 不检查目标长度，推荐使用 <code>strncpy</code>、<code>strncat</code> 或更安全的 <code>strlcpy</code>（部分平台支持）。</li>
+<li><strong><code>strtok</code> 会修改原字符串</strong>，且不可重入，多线程场景用 <code>strtok_r</code>。</li>
+<li><strong>字符串字面量是只读的</strong>：<code>char *p = &quot;hello&quot;; p[0] = 'H';</code> 是未定义行为，应使用 <code>char arr[] = &quot;hello&quot;;</code>。</li>
+<li>始终确保目标数组有足够空间容纳字符串及末尾的 <code>'\0'</code>。</li>
+</ul>
+<h2 id="3-15-字符运算">3.15 字符运算</h2>
+<p>在C语言中，字符（<code>char</code>）本质上是一个<strong>整数</strong>（通常为8位），存储的是字符的ASCII码值。因此，字符可以直接参与各种运算。</p>
+<h4 id="1-算术运算">1. 算术运算</h4>
+<p>字符可以直接进行加减运算：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c = <span class="string">&#x27;A&#x27;</span>;       <span class="comment">// ASCII值为65</span></span><br><span class="line"><span class="type">char</span> next = c + <span class="number">1</span>;  <span class="comment">// &#x27;B&#x27;，ASCII值为66</span></span><br><span class="line"><span class="type">int</span> diff = <span class="string">&#x27;z&#x27;</span> - <span class="string">&#x27;a&#x27;</span>; <span class="comment">// 25，两字符之差</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 大小写转换</span></span><br><span class="line"><span class="type">char</span> lower = <span class="string">&#x27;A&#x27;</span> + <span class="number">32</span>; <span class="comment">// &#x27;a&#x27;</span></span><br><span class="line"><span class="type">char</span> upper = <span class="string">&#x27;a&#x27;</span> - <span class="number">32</span>; <span class="comment">// &#x27;A&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-关系运算（比较运算）">2. 关系运算（比较运算）</h4>
+<p>字符比较实际上是比较其ASCII值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;a&#x27;</span> &gt; <span class="string">&#x27;A&#x27;</span>   <span class="comment">// 真，因为97 &gt; 65</span></span><br><span class="line"><span class="string">&#x27;0&#x27;</span> &lt; <span class="string">&#x27;9&#x27;</span>   <span class="comment">// 真，因为48 &lt; 57</span></span><br><span class="line"><span class="string">&#x27;A&#x27;</span> == <span class="number">65</span>   <span class="comment">// 真</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-赋值运算">3. 赋值运算</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c1 = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="type">char</span> c2 = <span class="number">65</span>;   <span class="comment">// 等价于 &#x27;A&#x27;</span></span><br><span class="line"><span class="type">char</span> c3 = c1;</span><br></pre></td></tr></table></figure>
+<h4 id="4-逻辑运算">4. 逻辑运算</h4>
+<p>字符可以用作逻辑条件（非零为真）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span> (c) &#123; ... &#125;      <span class="comment">// 非&#x27;\0&#x27;即为真</span></span><br><span class="line"><span class="keyword">if</span> (c != <span class="string">&#x27;\0&#x27;</span>) &#123; &#125;  <span class="comment">// 等价写法</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-位运算">5. 位运算</h4>
+<p>可以对字符的二进制位进行操作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c = <span class="string">&#x27;A&#x27;</span>;       <span class="comment">// 二进制：01000001</span></span><br><span class="line"><span class="type">char</span> lower = c | <span class="number">0x20</span>; <span class="comment">// 转为小写 &#x27;a&#x27;：01100001</span></span><br><span class="line"><span class="type">char</span> upper = c &amp; <span class="number">0xDF</span>; <span class="comment">// 转为大写（已是大写）</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-类型转换">6. 类型转换</h4>
+<p>字符与整数可以自由转换：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> c = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line"><span class="type">int</span> n = c;          <span class="comment">// n = 65（隐式转换）</span></span><br><span class="line"><span class="type">char</span> c2 = (<span class="type">char</span>)<span class="number">66</span>; <span class="comment">// c2 = &#x27;B&#x27;（显式转换）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 数字字符与数值互转</span></span><br><span class="line"><span class="type">char</span> digit = <span class="string">&#x27;5&#x27;</span>;</span><br><span class="line"><span class="type">int</span> val = digit - <span class="string">&#x27;0&#x27;</span>; <span class="comment">// val = 5</span></span><br><span class="line"><span class="type">char</span> back = val + <span class="string">&#x27;0&#x27;</span>; <span class="comment">// back = &#x27;5&#x27;</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-常用的字符处理函数（-ctype-h-）">7. 常用的字符处理函数（<code>&lt;ctype.h&gt;</code>）</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>isalpha(c)</code></td>
+<td>是否为字母</td>
+</tr>
+<tr>
+<td><code>isdigit(c)</code></td>
+<td>是否为数字字符</td>
+</tr>
+<tr>
+<td><code>isspace(c)</code></td>
+<td>是否为空白字符</td>
+</tr>
+<tr>
+<td><code>isupper(c)</code></td>
+<td>是否为大写字母</td>
+</tr>
+<tr>
+<td><code>islower(c)</code></td>
+<td>是否为小写字母</td>
+</tr>
+<tr>
+<td><code>toupper(c)</code></td>
+<td>转为大写</td>
+</tr>
+<tr>
+<td><code>tolower(c)</code></td>
+<td>转为小写</td>
+</tr>
+</tbody>
+</table>
+<h4 id="关键要点总结">关键要点总结</h4>
+<ul>
+<li><code>char</code> 本质是小整数，可以参与一切整数运算</li>
+<li>字符比较即 ASCII 值比较</li>
+<li>利用 ASCII 规律可以方便地做大小写转换、数字字符转整数等操作</li>
+<li>推荐使用 <code>&lt;ctype.h&gt;</code> 中的函数处理字符，更安全可读</li>
+</ul>
+<h2 id="3-16-条件表达式">3.16 条件表达式</h2>
+<p>条件表达式（也叫<strong>三元运算符</strong>）是C语言中一种简洁的条件判断语法，用于根据条件返回两个值之一。</p>
+<h4 id="语法">语法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">条件 ? 表达式<span class="number">1</span> : 表达式<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>若<strong>条件</strong>为真（非零），则整个表达式的值为<strong>表达式1</strong></p>
+<p>若<strong>条件</strong>为假（零），则整个表达式的值为<strong>表达式2</strong></p>
+<h4 id="示例：替代-if-else">示例：替代 if-else</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 if-else</span></span><br><span class="line"><span class="keyword">if</span> (score &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;及格&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;不及格&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用条件表达式（等价）</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, (score &gt;= <span class="number">60</span>) ? <span class="string">&quot;及格&quot;</span> : <span class="string">&quot;不及格&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项-3">注意事项</h4>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运算符优先级</td>
+<td>条件表达式的优先级较低，建议用括号明确</td>
+</tr>
+<tr>
+<td>类型一致性</td>
+<td>两个表达式的类型应兼容，否则会发生隐式转换</td>
+</tr>
+<tr>
+<td>可读性</td>
+<td>简单判断用三元运算符更简洁，复杂逻辑用 if-else 更清晰</td>
+</tr>
+</tbody>
+</table>
+<h4 id="与-if-else-的区别">与 if-else 的区别</h4>
+<ul>
+<li><code>if-else</code> 是<strong>语句</strong>，不能直接用于赋值或函数参数</li>
+<li>条件表达式是<strong>表达式</strong>，可以嵌入到任何需要值的地方（如赋值、函数调用等）</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接用在函数参数中</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Result: %d\n&quot;</span>, (x &gt; <span class="number">0</span>) ? x : -x);  <span class="comment">// 输出绝对值</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+<h2 id="3-17-浮点数比较">3.17 浮点数比较</h2>
+<p>在C语言中，浮点数比较是一个需要特别注意的话题，因为浮点数的存储方式决定了直接用 <code>==</code> 比较往往不可靠。</p>
+<h3 id="3-17-1-浮点数比较的核心问题">3.17.1 浮点数比较的核心问题</h3>
+<p>浮点数（<code>float</code>、<code>double</code>）在计算机中以二进制近似表示，无法精确表示所有十进制小数。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> a = <span class="number">0.1</span> + <span class="number">0.2</span>;</span><br><span class="line"><span class="type">double</span> b = <span class="number">0.3</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (a == b) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;相等\n&quot;</span>);  <span class="comment">// 实际上不会打印！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>a</code> 的实际值可能是 <code>0.30000000000000004</code>，而不是 <code>0.3</code>。</li>
+</ul>
+<h3 id="3-17-2-正确的比较方法">3.17.2 正确的比较方法</h3>
+<h4 id="使用误差范围比较（epsilon-比较）">使用误差范围比较（epsilon 比较）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> EPSILON 1e-9</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">float_equal</span><span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">fabs</span>(a - b) &lt; EPSILON;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>绝对误差</strong>适用于数值较小的场景。</li>
+</ul>
+<h4 id="相对误差比较（更健壮）">相对误差比较（更健壮）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cint float_rel_equal(double a, double b) &#123;</span><br><span class="line">    if (a == b) return 1;  // 处理无穷大等特殊情况</span><br><span class="line">    double diff = fabs(a - b);</span><br><span class="line">    double larger = fmax(fabs(a), fabs(b));</span><br><span class="line">    return (diff / larger) &lt; 1e-9;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>相对误差</strong>在数值很大或很小时更合适。</p>
+<h4 id="大小比较（-）">大小比较（<code>&lt;</code> / <code>&gt;</code>）</h4>
+<p>大小比较通常是安全的，但也需注意 NaN：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> x = <span class="built_in">sqrt</span>(<span class="number">-1.0</span>);  <span class="comment">// NaN</span></span><br><span class="line"><span class="keyword">if</span> (x &lt; <span class="number">0</span> || x &gt; <span class="number">0</span> || x == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 三个分支都不会执行！NaN 与任何值比较都返回 false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="特殊值的处理">特殊值的处理</h4>
+<h3 id="特殊值的处理-2">特殊值的处理</h3>
+<table>
+<thead>
+<tr>
+<th>特殊值</th>
+<th>检测方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NaN</td>
+<td><code>isnan(x)</code></td>
+</tr>
+<tr>
+<td>无穷大</td>
+<td><code>isinf(x)</code></td>
+</tr>
+<tr>
+<td>有限数</td>
+<td><code>isfinite(x)</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="总结建议-2">总结建议</h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>判断相等</td>
+<td>用 <code>fabs(a-b) &lt; epsilon</code>，<strong>不要用</strong> <code>==</code></td>
+</tr>
+<tr>
+<td>判断大小</td>
+<td><code>&lt;</code> / <code>&gt;</code> 通常可以，但注意 NaN</td>
+</tr>
+<tr>
+<td>涉及特殊值</td>
+<td>用 <code>isnan()</code>、<code>isinf()</code> 先检测</td>
+</tr>
+<tr>
+<td>高精度需求</td>
+<td>考虑使用整数定点运算或专用库</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-18-短路评估">3.18 短路评估</h2>
+<p>短路评估（Short-circuit Evaluation）是C语言中逻辑运算符 <code>&amp;&amp;</code> 和 <code>||</code> 的一种求值机制：<strong>当表达式的结果已经可以确定时，停止继续求值后面的操作数。</strong></p>
+<h3 id="3-18-1-（逻辑与）的短路">3.18.1 <code>&amp;&amp;</code>（逻辑与）的短路</h3>
+<p>只要左边的操作数为 <strong>假（0）</strong>，整个表达式必然为假，右边<strong>不会被执行</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (a != <span class="number">0</span> &amp;&amp; <span class="number">10</span> / a &gt; <span class="number">1</span>) &#123;  <span class="comment">// a != 0 为假，右边不执行，避免了除以零</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;yes\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-18-2-（逻辑或）的短路">3.18.2 <code>||</code>（逻辑或）的短路</h3>
+<p>只要左边的操作数为 <strong>真（非0）</strong>，整个表达式必然为真，右边<strong>不会被执行</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">if</span> (x &gt; <span class="number">0</span> || someExpensiveFunction()) &#123;  <span class="comment">// x &gt; 0 为真，函数不会被调用</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;yes\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-18-3-短路的常见用途">3.18.3 短路的常见用途</h3>
+<h4 id="1-防止空指针解引用">1. 防止空指针解引用</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ptr != <span class="literal">NULL</span> &amp;&amp; ptr-&gt;value &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 若 ptr 为 NULL，右边不会执行，安全</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-提高性能">2. 提高性能</h4>
+<p>将<strong>代价低</strong>或<strong>最可能确定结果</strong>的条件放在左边，避免不必要的计算。</p>
+<h4 id="3-副作用控制">3. 副作用控制</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">if</span> (<span class="number">0</span> &amp;&amp; (i = <span class="number">5</span>)) &#123;  <span class="comment">// i = 5 永远不会执行</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// i 仍然是 0</span></span><br></pre></td></tr></table></figure>
+<h4 id="注意事项-4">注意事项</h4>
+<ul>
+<li><strong>不要依赖短路的副作用</strong>来改变程序状态，这会使代码难以阅读和维护。</li>
+<li>短路评估只适用于 <code>&amp;&amp;</code> 和 <code>||</code>，<strong>位运算符 <code>&amp;</code> 和 <code>|</code> 不具备短路特性</strong>，两边都会被求值。</li>
+<li><code>&amp;&amp;</code> 左边为假则停，<code>||</code> 左边为真则停。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 位运算：两边都执行</span></span><br><span class="line"><span class="keyword">if</span> (a &amp; b)  &#123; ... &#125;   <span class="comment">// a 和 b 都会被求值</span></span><br><span class="line"><span class="keyword">if</span> (a | b)  &#123; ... &#125;   <span class="comment">// a 和 b 都会被求值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 逻辑运算：可能短路</span></span><br><span class="line"><span class="keyword">if</span> (a &amp;&amp; b) &#123; ... &#125;   <span class="comment">// b 可能不被求值</span></span><br><span class="line"><span class="keyword">if</span> (a || b) &#123; ... &#125;   <span class="comment">// b 可能不被求值</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/System-Programming/" rel="tag"># System Programming</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/05/19/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module2-%E5%8F%98%E9%87%8F%E5%92%8C%E8%B5%8B%E5%80%BC/" rel="prev" title="System-Programming-Module2">
+                  <i class="fa fa-angle-left"></i> System-Programming-Module2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/05/22/System-Programming-Module4-%E5%BE%AA%E7%8E%AF/" rel="next" title="System-Programming-Module4">
+                  System-Programming-Module4 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
