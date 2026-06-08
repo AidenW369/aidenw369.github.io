@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="循环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System-Programming-Module4">
+<meta property="og:url" content="http://example.com/2026/05/22/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module4-%E5%BE%AA%E7%8E%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="循环">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-22T02:24:57.000Z">
+<meta property="article:modified_time" content="2026-06-08T09:38:15.715Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="System Programming">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/05/22/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module4-%E5%BE%AA%E7%8E%AF/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/05/22/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module4-%E5%BE%AA%E7%8E%AF/","path":"2026/05/22/系统编程/System-Programming-Module4-循环/","title":"System-Programming-Module4"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>System-Programming-Module4 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%BE%AA%E7%8E%AF%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">4.1 循环简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-while%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.2.</span> <span class="nav-text">4.2 while循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">简单示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.2.3.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%BB%E5%BE%AA%E7%8E%AF%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9C%80%E8%B0%A8%E6%85%8E%EF%BC%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">死循环示例（需谨慎）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8E-do-while-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.5.</span> <span class="nav-text">与 do-while 的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E6%9B%B4%E5%A4%9Awhile%E5%BE%AA%E7%8E%AF%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.</span> <span class="nav-text">4.3 更多while循环示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-for%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.4.</span> <span class="nav-text">4.4 for循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95-2"><span class="nav-number">1.4.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">执行流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.4.3.</span> <span class="nav-text">基本示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95"><span class="nav-number">1.4.4.</span> <span class="nav-text">常见用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.4.5.</span> <span class="nav-text">特殊形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E6%9B%B4%E5%A4%9Afor%E5%BE%AA%E7%8E%AF%E6%A1%88%E4%BE%8B"><span class="nav-number">1.5.</span> <span class="nav-text">4.5 更多for循环案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-%E5%BE%AA%E7%8E%AF%E8%AF%BB%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.6.</span> <span class="nav-text">4.6 循环读取字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%94%A8-getchar-%E9%80%90%E5%AD%97%E7%AC%A6%E8%AF%BB%E5%8F%96"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 用 getchar() 逐字符读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%94%A8-scanf-%E5%BE%AA%E7%8E%AF%E8%AF%BB%E5%8F%96%E5%A4%9A%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 用 scanf() 循环读取多个字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%94%A8-fgets-%E5%BE%AA%E7%8E%AF%E8%AF%BB%E5%8F%96%E6%95%B4%E8%A1%8C"><span class="nav-number">1.6.3.</span> <span class="nav-text">3. 用 fgets() 循环读取整行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E9%80%90%E5%AD%97%E7%AC%A6%E6%9E%84%E5%BB%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88%E6%89%8B%E5%8A%A8%E5%AE%9E%E7%8E%B0%EF%BC%89"><span class="nav-number">1.6.4.</span> <span class="nav-text">4. 逐字符构建字符串（手动实现）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%AF%B9%E6%AF%94"><span class="nav-number">1.6.5.</span> <span class="nav-text">常见使用场景对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-7-%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.7.</span> <span class="nav-text">4.7 嵌套循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.7.1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.7.2.</span> <span class="nav-text">执行顺序示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%BA%94%E7%94%A8%EF%BC%9A%E6%89%93%E5%8D%B0%E4%B9%9D%E4%B9%9D%E4%B9%98%E6%B3%95%E8%A1%A8"><span class="nav-number">1.7.3.</span> <span class="nav-text">经典应用：打印九九乘法表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%BA%94%E7%94%A8%EF%BC%9A%E6%89%93%E5%8D%B0%E6%98%9F%E5%8F%B7%E4%B8%89%E8%A7%92%E5%BD%A2"><span class="nav-number">1.7.4.</span> <span class="nav-text">经典应用：打印星号三角形</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="nav-number">1.7.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-%E9%80%90%E6%AD%A5%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.8.</span> <span class="nav-text">4.8 逐步开发程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-9-break-%E5%92%8C-continue"><span class="nav-number">1.9.</span> <span class="nav-text">4.9 break 和 continue</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#break-%E2%80%94-%E8%B7%B3%E5%87%BA%E5%BE%AA%E7%8E%AF"><span class="nav-number">1.9.1.</span> <span class="nav-text">break — 跳出循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#continue-%E2%80%94-%E8%B7%B3%E8%BF%87%E6%9C%AC%E6%AC%A1%E8%BF%AD%E4%BB%A3"><span class="nav-number">1.9.2.</span> <span class="nav-text">continue — 跳过本次迭代</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.9.3.</span> <span class="nav-text">对比总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E4%B8%AD%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.9.4.</span> <span class="nav-text">嵌套循环中的注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-10-%E5%8F%98%E9%87%8F%E5%90%8D%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.10.</span> <span class="nav-text">4.10 变量名作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Block-Scope%EF%BC%89"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 块作用域（Block Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Function-Scope%EF%BC%89"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 函数作用域（Function Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%96%87%E4%BB%B6%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88File-Scope%EF%BC%89"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 文件作用域（File Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Function-Prototype-Scope%EF%BC%89"><span class="nav-number">1.10.4.</span> <span class="nav-text">4. 函数原型作用域（Function Prototype Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E9%81%AE%E8%94%BD%EF%BC%88Shadowing%EF%BC%89"><span class="nav-number">1.10.5.</span> <span class="nav-text">变量遮蔽（Shadowing）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#static-%E5%85%B3%E9%94%AE%E5%AD%97%E5%AF%B9%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.10.6.</span> <span class="nav-text">static 关键字对作用域的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94"><span class="nav-number">1.10.7.</span> <span class="nav-text">总结对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-11-%E6%9E%9A%E4%B8%BE"><span class="nav-number">1.11.</span> <span class="nav-text">4.11 枚举</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95-3"><span class="nav-number">1.11.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.11.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E7%89%B9%E6%80%A7"><span class="nav-number">1.11.3.</span> <span class="nav-text">核心特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8-typedef-%E7%AE%80%E5%8C%96%E4%BD%BF%E7%94%A8"><span class="nav-number">1.11.4.</span> <span class="nav-text">用 typedef 简化使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E5%90%88-switch-%E4%BD%BF%E7%94%A8%EF%BC%88%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.11.5.</span> <span class="nav-text">配合 switch 使用（推荐）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%94%A8%E9%80%94"><span class="nav-number">1.11.6.</span> <span class="nav-text">常见用途</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.11.7.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/22/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module4-%E5%BE%AA%E7%8E%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="System-Programming-Module4 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          System-Programming-Module4
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-05-22 10:24:57" itemprop="dateCreated datePublished" datetime="2026-05-22T10:24:57+08:00">2026-05-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-08 17:38:15" itemprop="dateModified" datetime="2026-06-08T17:38:15+08:00">2026-06-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/System-Programming/" itemprop="url" rel="index"><span itemprop="name">System Programming</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>循环<span id="more"></span></h1>
+<h2 id="4-1-循环简介">4.1 循环简介</h2>
+<p>略。</p>
+<h2 id="4-2-while循环">4.2 while循环</h2>
+<p><code>while</code> 循环是C语言中最基本的循环结构之一，用于<strong>在某个条件为真时反复执行一段代码</strong>。</p>
+<h4 id="基本语法">基本语法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (条件表达式) &#123;</span><br><span class="line">    <span class="comment">// 循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>执行流程：</p>
+<ol>
+<li>先判断<strong>条件表达式</strong>是否为真（非零）</li>
+<li>若为真，执行循环体</li>
+<li>执行完毕后，再次判断条件</li>
+<li>若为假，退出循环</li>
+</ol>
+<h4 id="简单示例">简单示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>, i);</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项">注意事项</h4>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>先判断后执行</strong></td>
+<td>如果初始条件为假，循环体一次都不会执行</td>
+</tr>
+<tr>
+<td><strong>避免死循环</strong></td>
+<td>循环体内必须有能使条件变为假的语句</td>
+</tr>
+<tr>
+<td><strong>条件为非零即真</strong></td>
+<td>C语言中，任何非零值都被视为&quot;真&quot;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="死循环示例（需谨慎）">死循环示例（需谨慎）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="comment">// 永远执行，需用 break 退出</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="与-do-while-的区别">与 <code>do-while</code> 的区别</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// while：先判断，可能一次都不执行</span></span><br><span class="line"><span class="keyword">while</span> (条件) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// do-while：先执行一次，再判断</span></span><br><span class="line"><span class="keyword">do</span> &#123; ... &#125; <span class="keyword">while</span> (条件);</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-更多while循环示例">4.3 更多while循环示例</h2>
+<p>略。</p>
+<h2 id="4-4-for循环">4.4 for循环</h2>
+<p><code>for</code> 循环是C语言中最常用的循环结构，用于在已知循环次数的情况下重复执行一段代码。</p>
+<h4 id="基本语法-2">基本语法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (初始化; 条件判断; 更新) &#123;</span><br><span class="line">    <span class="comment">// 循环体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>三个部分的含义：</p>
+<ul>
+<li><strong>初始化</strong>：循环开始前执行一次，通常用于定义计数变量</li>
+<li><strong>条件判断</strong>：每次循环前检查，为真则继续，为假则退出</li>
+<li><strong>更新</strong>：每次循环体执行完后运行，通常用于递增/递减计数器</li>
+</ul>
+<h4 id="执行流程">执行流程</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">初始化 → 判断条件 → 执行循环体 → 更新 → 判断条件 → ...</span><br></pre></td></tr></table></figure>
+<h4 id="基本示例">基本示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;i = %d\n&quot;</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常见用法">常见用法</h4>
+<p><strong>倒序循环：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">10</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>步长不为1：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">100</span>; i += <span class="number">10</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, i);  <span class="comment">// 0 10 20 ... 100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>遍历数组：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="type">int</span> len = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>嵌套循环（打印乘法表）：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d×%d=%d &quot;</span>, j, i, i * j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="特殊形式">特殊形式</h4>
+<table>
+<thead>
+<tr>
+<th>形式</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>省略初始化</td>
+<td><code>for (; i &lt; 10; i++)</code></td>
+<td>变量在外部已定义</td>
+</tr>
+<tr>
+<td>省略条件</td>
+<td><code>for (int i = 0; ; i++)</code></td>
+<td>需要在内部 <code>break</code></td>
+</tr>
+<tr>
+<td>省略更新</td>
+<td><code>for (int i = 0; i &lt; 10;)</code></td>
+<td>在循环体内手动更新</td>
+</tr>
+<tr>
+<td>无限循环</td>
+<td><code>for (;;)</code></td>
+<td>三部分全省略，等价于 <code>while(1)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-5-更多for循环案例">4.5 更多for循环案例</h2>
+<p>略。</p>
+<h2 id="4-6-循环读取字符串">4.6 循环读取字符串</h2>
+<h4 id="1-用-getchar-逐字符读取">1. 用 <code>getchar()</code> 逐字符读取</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="keyword">while</span> ((c = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; c != EOF) &#123;</span><br><span class="line">        <span class="built_in">putchar</span>(c);  <span class="comment">// 处理每个字符</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>原理：</strong> 每次循环读一个字符，直到遇到换行或文件结束。</p>
+<h4 id="2-用-scanf-循环读取多个字符串">2. 用 <code>scanf()</code> 循环读取多个字符串</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, str) == <span class="number">1</span>) &#123;  <span class="comment">// 读取成功返回1</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;读到：%s\n&quot;</span>, str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> <code>scanf(&quot;%s&quot;)</code> 遇到空格会停止，适合读取单词。</p>
+<h4 id="3-用-fgets-循环读取整行">3. 用 <code>fgets()</code> 循环读取整行</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> line[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">while</span> (fgets(line, <span class="keyword">sizeof</span>(line), <span class="built_in">stdin</span>) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;读到一行：%s&quot;</span>, line);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>推荐！</strong> <code>fgets()</code> 可以读取含空格的整行，更安全，不会溢出缓冲区。</p>
+<h4 id="4-逐字符构建字符串（手动实现）">4. 逐字符构建字符串（手动实现）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> str[<span class="number">100</span>];</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> c;</span><br><span class="line">    <span class="keyword">while</span> ((c = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; c != EOF &amp;&amp; i &lt; <span class="number">99</span>) &#123;</span><br><span class="line">        str[i++] = c;</span><br><span class="line">    &#125;</span><br><span class="line">    str[i] = <span class="string">&#x27;\0&#x27;</span>;  <span class="comment">// 加上字符串结束符</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;结果：%s\n&quot;</span>, str);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常见使用场景对比">常见使用场景对比</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>能否含空格</th>
+<th>安全性</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getchar()</code></td>
+<td>✅</td>
+<td>✅</td>
+<td>逐字符处理</td>
+</tr>
+<tr>
+<td><code>scanf(&quot;%s&quot;)</code></td>
+<td>❌</td>
+<td>⚠️ 易溢出</td>
+<td>读单词</td>
+</tr>
+<tr>
+<td><code>fgets()</code></td>
+<td>✅</td>
+<td>✅</td>
+<td>读整行（推荐）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-7-嵌套循环">4.7 嵌套循环</h2>
+<p>嵌套循环（Nested Loop）是指在一个循环体内部再包含一个或多个循环。在C语言中，任何类型的循环（<code>for</code>、<code>while</code>、<code>do-while</code>）都可以相互嵌套。</p>
+<h4 id="基本结构">基本结构</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (外层初始化; 外层条件; 外层更新) &#123;</span><br><span class="line">    <span class="comment">// 外层循环体</span></span><br><span class="line">    <span class="keyword">for</span> (内层初始化; 内层条件; 内层更新) &#123;</span><br><span class="line">        <span class="comment">// 内层循环体</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>执行规则：</strong> 外层循环每执行 <strong>一次</strong>，内层循环就会<strong>完整执行一遍</strong>。</p>
+<h4 id="执行顺序示例">执行顺序示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;        <span class="comment">// 外层循环</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">3</span>; j++) &#123;    <span class="comment">// 内层循环</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;i=%d, j=%d\n&quot;</span>, i, j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="经典应用：打印九九乘法表">经典应用：打印九九乘法表</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d×%d=%-3d&quot;</span>, j, i, i * j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="经典应用：打印星号三角形">经典应用：打印星号三角形</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= i; j++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;* &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项-2">注意事项</h3>
+<table>
+<thead>
+<tr>
+<th>注意点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>变量命名</strong></td>
+<td>内外层循环变量不能同名，通常用 <code>i</code>、<code>j</code>、<code>k</code></td>
+</tr>
+<tr>
+<td><strong>时间复杂度</strong></td>
+<td>两层嵌套为 O(n²)，层数越多性能越差</td>
+</tr>
+<tr>
+<td><strong>break 的作用域</strong></td>
+<td><code>break</code> 只能跳出<strong>当前层</strong>循环，不能直接跳出外层</td>
+</tr>
+<tr>
+<td><strong>避免死循环</strong></td>
+<td>确保每层循环的终止条件正确</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-8-逐步开发程序">4.8 逐步开发程序</h2>
+<p>略。</p>
+<h2 id="4-9-break-和-continue">4.9 break 和 continue</h2>
+<p>这两个都是 C 语言中用于控制循环流程的关键字，但作用不同：</p>
+<h4 id="break-—-跳出循环"><code>break</code> — 跳出循环</h4>
+<p><code>break</code> 会<strong>立即终止</strong>当前所在的循环（或 <code>switch</code> 语句），跳到循环体之后的代码继续执行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">break</span>;  <span class="comment">// i 等于 5 时，直接退出循环</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, i);  <span class="comment">// 只打印 0, 1, 2, 3, 4</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;循环结束\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="continue-—-跳过本次迭代"><code>continue</code> — 跳过本次迭代</h4>
+<p><code>continue</code> 会<strong>跳过当前这一次</strong>循环体中剩余的代码，直接进入下一次迭代。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i == <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="keyword">continue</span>;  <span class="comment">// i 等于 5 时，跳过 printf，继续下一次循环</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, i);  <span class="comment">// 打印 0, 1, 2, 3, 4, 6, 7, 8, 9（跳过 5）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="对比总结">对比总结</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>break</code></th>
+<th><code>continue</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>作用</strong></td>
+<td>终止整个循环</td>
+<td>跳过本次迭代</td>
+</tr>
+<tr>
+<td><strong>执行后</strong></td>
+<td>跳到循环<strong>之后</strong></td>
+<td>跳到循环<strong>下一次</strong></td>
+</tr>
+<tr>
+<td><strong>适用范围</strong></td>
+<td><code>for</code> / <code>while</code> / <code>do-while</code> / <code>switch</code></td>
+<td><code>for</code> / <code>while</code> / <code>do-while</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="嵌套循环中的注意事项">嵌套循环中的注意事项</h4>
+<p><code>break</code> 和 <code>continue</code> <strong>只对最内层的循环</strong>有效：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">1</span>) <span class="keyword">break</span>;  <span class="comment">// 只跳出内层循环，外层继续</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// 0 0</span></span><br><span class="line"><span class="comment">// 1 0</span></span><br><span class="line"><span class="comment">// 2 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-10-变量名作用域">4.10 变量名作用域</h2>
+<p>作用域（Scope）指的是变量在程序中<strong>可以被访问的范围</strong>。C语言中主要有以下几种作用域：</p>
+<h4 id="1-块作用域（Block-Scope）">1. 块作用域（Block Scope）</h4>
+<p>在 <code>{}</code> 花括号内声明的变量，只在该块内有效。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">10</span>;  <span class="comment">// x 只在这个函数块内有效</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">int</span> y = <span class="number">20</span>;  <span class="comment">// y 只在这个 if 块内有效</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, x);  <span class="comment">// ✅ 可以访问 x</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, y);  // ❌ 错误！y 已超出作用域</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-函数作用域（Function-Scope）">2. 函数作用域（Function Scope）</h4>
+<p>仅适用于 <strong><code>goto</code> 语句的标签</strong>，标签在整个函数内可见。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">goto</span> end;   <span class="comment">// ✅ 可以跳转到函数内任意位置的标签</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">end:</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;done\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-文件作用域（File-Scope）">3. 文件作用域（File Scope）</h4>
+<p>在所有函数外部声明的变量（即<strong>全局变量</strong>），从声明处到文件结尾都可访问。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> globalVar = <span class="number">100</span>;  <span class="comment">// 文件作用域</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func1</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, globalVar);  <span class="comment">// ✅ 可以访问</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func2</span><span class="params">()</span> &#123;</span><br><span class="line">    globalVar = <span class="number">200</span>;            <span class="comment">// ✅ 可以访问</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-函数原型作用域（Function-Prototype-Scope）">4. 函数原型作用域（Function Prototype Scope）</h4>
+<p>函数声明（原型）中的参数名，作用域仅限于该原型本身，可以省略或与定义时不同。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> a, <span class="type">float</span> b)</span>;  <span class="comment">// a、b 仅在这一行有意义</span></span><br></pre></td></tr></table></figure>
+<h4 id="变量遮蔽（Shadowing）">变量遮蔽（Shadowing）</h4>
+<p>内层作用域的变量可以<strong>遮蔽</strong>外层同名变量：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = <span class="number">1</span>;          <span class="comment">// 外层 x</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">2</span>;      <span class="comment">// 内层 x，遮蔽了外层的 x</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, x);  <span class="comment">// 输出 2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="static-关键字对作用域的影响"><code>static</code> 关键字对作用域的影响</h4>
+<table>
+<thead>
+<tr>
+<th>声明位置</th>
+<th>加 <code>static</code> 的效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数内部</td>
+<td>作用域不变，但生命周期延长到程序结束</td>
+</tr>
+<tr>
+<td>函数外部</td>
+<td>作用域限制在当前文件，其他文件无法访问</td>
+</tr>
+</tbody>
+</table>
+<h4 id="总结对比">总结对比</h4>
+<table>
+<thead>
+<tr>
+<th>作用域类型</th>
+<th>声明位置</th>
+<th>可见范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>块作用域</td>
+<td><code>{}</code> 内</td>
+<td>当前块及嵌套块</td>
+</tr>
+<tr>
+<td>函数作用域</td>
+<td>函数内（仅标签）</td>
+<td>整个函数</td>
+</tr>
+<tr>
+<td>文件作用域</td>
+<td>所有函数之外</td>
+<td>从声明处到文件末尾</td>
+</tr>
+<tr>
+<td>函数原型作用域</td>
+<td>函数原型参数</td>
+<td>仅该原型声明行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-11-枚举">4.11 枚举</h2>
+<p>枚举（<code>enum</code>）是C语言中一种用户自定义的数据类型，用来定义一组具有名称的整数常量，使代码更具可读性和可维护性。</p>
+<h4 id="基本语法-3">基本语法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> 枚举名 &#123;</span></span><br><span class="line">    常量<span class="number">1</span>,</span><br><span class="line">    常量<span class="number">2</span>,</span><br><span class="line">    常量<span class="number">3</span>,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="示例">示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Weekday</span> &#123;</span></span><br><span class="line">    MON,  <span class="comment">// 默认值为 0</span></span><br><span class="line">    TUE,  <span class="comment">// 1</span></span><br><span class="line">    WED,  <span class="comment">// 2</span></span><br><span class="line">    THU,  <span class="comment">// 3</span></span><br><span class="line">    FRI,  <span class="comment">// 4</span></span><br><span class="line">    SAT,  <span class="comment">// 5</span></span><br><span class="line">    SUN   <span class="comment">// 6</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="class"><span class="keyword">enum</span> <span class="title">Weekday</span> <span class="title">today</span> =</span> WED;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;今天是星期：%d\n&quot;</span>, today);  <span class="comment">// 输出：2</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="核心特性">核心特性</h4>
+<p><strong>1. 默认从 0 开始编号</strong> 枚举成员默认从 <code>0</code> 开始，依次递增 1。</p>
+<p><strong>2. 可以自定义值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Color</span> &#123;</span></span><br><span class="line">    RED = <span class="number">1</span>,</span><br><span class="line">    GREEN = <span class="number">5</span>,</span><br><span class="line">    BLUE = <span class="number">10</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>3. 后续成员自动递增</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Level</span> &#123;</span></span><br><span class="line">    LOW = <span class="number">10</span>,</span><br><span class="line">    MID,   <span class="comment">// 自动为 11</span></span><br><span class="line">    HIGH   <span class="comment">// 自动为 12</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>4. 本质是整数</strong> 枚举值本质上是 <code>int</code> 类型，可以与整数进行比较和运算。</p>
+<h4 id="用-typedef-简化使用">用 <code>typedef</code> 简化使用</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span></span><br><span class="line">    CIRCLE,</span><br><span class="line">    SQUARE,</span><br><span class="line">    TRIANGLE</span><br><span class="line">&#125; Shape;</span><br><span class="line"></span><br><span class="line">Shape s = CIRCLE;  <span class="comment">// 不需要写 &quot;enum Shape&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="配合-switch-使用（推荐）">配合 <code>switch</code> 使用（推荐）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Season</span> &#123;</span> SPRING, SUMMER, AUTUMN, WINTER &#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Season</span> <span class="title">s</span> =</span> SUMMER;</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> (s) &#123;</span><br><span class="line">    <span class="keyword">case</span> SPRING:  <span class="built_in">printf</span>(<span class="string">&quot;春天\n&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> SUMMER:  <span class="built_in">printf</span>(<span class="string">&quot;夏天\n&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> AUTUMN:  <span class="built_in">printf</span>(<span class="string">&quot;秋天\n&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> WINTER:  <span class="built_in">printf</span>(<span class="string">&quot;冬天\n&quot;</span>); <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="常见用途">常见用途</h4>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表示状态</td>
+<td><code>enum State { IDLE, RUNNING, STOPPED }</code></td>
+</tr>
+<tr>
+<td>表示方向</td>
+<td><code>enum Dir { NORTH, SOUTH, EAST, WEST }</code></td>
+</tr>
+<tr>
+<td>替代魔法数字</td>
+<td>用 <code>RED</code> 替代 <code>0</code>，提高可读性</td>
+</tr>
+<tr>
+<td>配合 <code>switch</code> 使用</td>
+<td>对枚举值做分支判断</td>
+</tr>
+</tbody>
+</table>
+<h4 id="总结">总结</h4>
+<ul>
+<li>枚举让代码中的&quot;魔法数字&quot;有了意义，提升可读性</li>
+<li>本质是 <code>int</code>，但语义上表示一组离散的命名状态</li>
+<li>配合 <code>switch</code> 语句使用效果最佳</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/System-Programming/" rel="tag"># System Programming</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/05/21/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module3-%E5%88%86%E6%94%AF/" rel="prev" title="System-Programming-Module3">
+                  <i class="fa fa-angle-left"></i> System-Programming-Module3
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/05/25/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module5-%E6%95%B0%E7%BB%84/" rel="next" title="System-Programming-Module5">
+                  System-Programming-Module5 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
