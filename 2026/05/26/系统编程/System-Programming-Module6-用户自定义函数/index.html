@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="用户自定义函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System-Programming-Module6">
+<meta property="og:url" content="http://example.com/2026/05/26/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module6-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="用户自定义函数">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-05-26T03:22:57.000Z">
+<meta property="article:modified_time" content="2026-06-09T10:57:20.235Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="System Programming">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/05/26/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module6-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/05/26/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module6-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0/","path":"2026/05/26/系统编程/System-Programming-Module6-用户自定义函数/","title":"System-Programming-Module6"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>System-Programming-Module6 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">用户自定义函数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">6.1 用户自定义函数基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0"><span class="nav-number">1.1.2.</span> <span class="nav-text">四个核心要素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%EF%BC%88%E5%8E%9F%E5%9E%8B%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">函数声明（原型）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.4.</span> <span class="nav-text">完整示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%A0%E7%A7%8D%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.5.</span> <span class="nav-text">几种常见类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">1.1.6.</span> <span class="nav-text">使用用户自定义函数的优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-printf%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">6.2 printf函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">简单示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%BC%E5%BC%8F%E8%AF%B4%E6%98%8E%E7%AC%A6"><span class="nav-number">1.2.3.</span> <span class="nav-text">常用格式说明符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="nav-number">1.2.4.</span> <span class="nav-text">常用转义字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-number">1.2.5.</span> <span class="nav-text">返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.2.6.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.3.</span> <span class="nav-text">6.3 定义函数的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">6.4 数学函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-1-%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0%E5%88%86%E7%B1%BB"><span class="nav-number">1.4.1.</span> <span class="nav-text">6.4.1 常用数学函数分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">1. 基本运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B9%82%E4%B8%8E%E5%AF%B9%E6%95%B0"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">2. 幂与对数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%EF%BC%88%E5%8F%82%E6%95%B0%E5%8D%95%E4%BD%8D%EF%BC%9A%E5%BC%A7%E5%BA%A6%EF%BC%89"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">3. 三角函数（参数单位：弧度）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8F%8C%E6%9B%B2%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">4. 双曲函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E5%B8%B8%E9%87%8F%EF%BC%88-math-h-%E4%B8%AD%E5%AE%9A%E4%B9%89%EF%BC%89"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">5. 常用数学常量（&lt;math.h&gt; 中定义）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.1.6.</span> <span class="nav-text">示例程序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.4.1.7.</span> <span class="nav-text">编译注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-%E5%B8%A6%E5%88%86%E6%94%AF%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">6.5 带分支的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-1-%E5%B8%B8%E7%94%A8%E7%9A%84%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.1.</span> <span class="nav-text">6.5.1 常用的分支结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-if-else-if-else"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">1. if &#x2F; else if &#x2F; else</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-switch-case"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">2. switch &#x2F; case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">1.5.1.3.</span> <span class="nav-text">3. 三目运算符 ? :</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">1.5.1.4.</span> <span class="nav-text">分支函数的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.5.1.5.</span> <span class="nav-text">综合示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="nav-number">1.5.1.6.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-%E5%B8%A6%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">6.6 带循环的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BD%BF%E7%94%A8-for-%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 使用 for 循环的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8-while-%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 使用 while 循环的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8-do-while-%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.3.</span> <span class="nav-text">3. 使用 do-while 循环的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%BE%AA%E7%8E%AF%E5%AF%B9%E6%AF%94"><span class="nav-number">1.6.4.</span> <span class="nav-text">三种循环对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%82%B9"><span class="nav-number">1.6.5.</span> <span class="nav-text">关键点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="nav-number">1.7.</span> <span class="nav-text">6.7 单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.7.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">1.7.2.</span> <span class="nav-text">简单示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8-C-%E8%AF%AD%E8%A8%80%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6"><span class="nav-number">1.7.3.</span> <span class="nav-text">常用 C 语言测试框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8-Unity-%E6%A1%86%E6%9E%B6%E7%9A%84%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.7.4.</span> <span class="nav-text">用 Unity 框架的示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">1.7.5.</span> <span class="nav-text">单元测试的意义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5"><span class="nav-number">1.7.6.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-8-%E5%87%BD%E6%95%B0%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84"><span class="nav-number">1.8.</span> <span class="nav-text">6.8 函数是如何工作的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E6%A0%88%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-number">1.8.1.</span> <span class="nav-text">调用栈的工作方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F"><span class="nav-number">1.8.2.</span> <span class="nav-text">参数传递方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%88Pass-by-Value%EF%BC%89"><span class="nav-number">1.8.3.</span> <span class="nav-text">值传递（Pass by Value）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%BC%A0%E9%80%92%EF%BC%88Pass-by-Pointer%EF%BC%89"><span class="nav-number">1.8.4.</span> <span class="nav-text">指针传递（Pass by Pointer）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">1.8.5.</span> <span class="nav-text">完整示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.8.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-9-%E5%87%BD%E6%95%B0%EF%BC%9A%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="nav-number">1.9.</span> <span class="nav-text">6.9 函数：常见错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E9%94%99%E8%AF%AF"><span class="nav-number">1.9.1.</span> <span class="nav-text">一、内存相关错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC%E9%94%99%E8%AF%AF"><span class="nav-number">1.9.2.</span> <span class="nav-text">二、函数返回值错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92%E9%94%99%E8%AF%AF"><span class="nav-number">1.9.3.</span> <span class="nav-text">三、参数传递错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%B1%BB%E5%9E%8B%E4%B8%8E%E8%BF%90%E7%AE%97%E9%94%99%E8%AF%AF"><span class="nav-number">1.9.4.</span> <span class="nav-text">四、类型与运算错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86%E9%94%99%E8%AF%AF"><span class="nav-number">1.9.5.</span> <span class="nav-text">五、字符串处理错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%80%BB%E8%BE%91%E4%B8%8E%E7%BB%93%E6%9E%84%E9%94%99%E8%AF%AF"><span class="nav-number">1.9.6.</span> <span class="nav-text">六、逻辑与结构错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%B9%B6%E5%8F%91%E7%9B%B8%E5%85%B3%EF%BC%88%E5%A4%9A%E7%BA%BF%E7%A8%8B%EF%BC%89"><span class="nav-number">1.9.7.</span> <span class="nav-text">七、并发相关（多线程）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.9.8.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-10-%E6%8C%89%E6%8C%87%E9%92%88%E4%BC%A0%E9%80%92"><span class="nav-number">1.10.</span> <span class="nav-text">6.10 按指针传递</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.10.1.</span> <span class="nav-text">基本示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5-2"><span class="nav-number">1.10.2.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.10.3.</span> <span class="nav-text">常见使用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="nav-number">1.10.4.</span> <span class="nav-text">内存示意图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-3"><span class="nav-number">1.10.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-11-%E5%B8%A6%E6%95%B0%E7%BB%84%E5%8F%82%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.11.</span> <span class="nav-text">6.11 带数组参数的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9A%E6%95%B0%E7%BB%84%E9%80%80%E5%8C%96%E4%B8%BA%E6%8C%87%E9%92%88"><span class="nav-number">1.11.1.</span> <span class="nav-text">核心概念：数组退化为指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E5%8F%82%E6%95%B0"><span class="nav-number">1.11.2.</span> <span class="nav-text">一、一维数组参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%8F%82%E6%95%B0"><span class="nav-number">1.11.3.</span> <span class="nav-text">二、二维数组参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BC%A0%E9%80%92%E6%95%B0%E7%BB%84%E5%B9%B6%E4%BF%AE%E6%94%B9%E5%86%85%E5%AE%B9"><span class="nav-number">1.11.4.</span> <span class="nav-text">三、传递数组并修改内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%BF%94%E5%9B%9E%E6%95%B0%E7%BB%84%EF%BC%88%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%89"><span class="nav-number">1.11.5.</span> <span class="nav-text">四、返回数组（注意事项）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94"><span class="nav-number">1.11.6.</span> <span class="nav-text">总结对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-12-%E5%B8%A6C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%82%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.12.</span> <span class="nav-text">6.12 带C字符串参数的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95-2"><span class="nav-number">1.12.1.</span> <span class="nav-text">基本语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%BA%93%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E5%B8%A6C%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%82%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0"><span class="nav-number">1.12.2.</span> <span class="nav-text">标准库中常见的带C字符串参数的函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.12.3.</span> <span class="nav-text">自定义函数示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-4"><span class="nav-number">1.12.4.</span> <span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94"><span class="nav-number">1.12.5.</span> <span class="nav-text">传递方式对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-13-%E5%B8%A6%E6%95%B0%E7%BB%84%E5%8F%82%E6%95%B0%E7%9A%84%E5%87%BD%E6%95%B0%EF%BC%9A%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="nav-number">1.13.</span> <span class="nav-text">6.13 带数组参数的函数：常见错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BB%A5%E4%B8%BA%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87-sizeof-%E8%8E%B7%E5%8F%96%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6"><span class="nav-number">1.13.1.</span> <span class="nav-text">1. 以为可以通过 sizeof 获取数组长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%BF%98%E8%AE%B0%E4%BC%A0%E9%80%92%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6"><span class="nav-number">1.13.2.</span> <span class="nav-text">2. 忘记传递数组长度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%B6%8A%E7%95%8C%E8%AE%BF%E9%97%AE"><span class="nav-number">1.13.3.</span> <span class="nav-text">3. 越界访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BF%AE%E6%94%B9%E4%BA%86%E8%B0%83%E7%94%A8%E8%80%85%E7%9A%84%E6%95%B0%E7%BB%84%E5%8D%B4%E6%B2%A1%E6%9C%89%E5%A3%B0%E6%98%8E%E6%84%8F%E5%9B%BE"><span class="nav-number">1.13.4.</span> <span class="nav-text">4. 修改了调用者的数组却没有声明意图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%AF%B9%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%82%E6%95%B0%E5%A3%B0%E6%98%8E%E9%94%99%E8%AF%AF"><span class="nav-number">1.13.5.</span> <span class="nav-text">5. 对二维数组的参数声明错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E6%95%B0%E7%BB%84%EF%BC%88%E6%82%AC%E7%A9%BA%E6%8C%87%E9%92%88%EF%BC%89"><span class="nav-number">1.13.6.</span> <span class="nav-text">6. 返回局部数组（悬空指针）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E8%A1%A8"><span class="nav-number">1.13.7.</span> <span class="nav-text">总结表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-14-%E5%8F%98%E9%87%8F-%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.14.</span> <span class="nav-text">6.14 变量&#x2F;函数定义的作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9D%97%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Block-Scope%EF%BC%89"><span class="nav-number">1.14.1.</span> <span class="nav-text">1. 块作用域（Block Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88File-Scope%EF%BC%89"><span class="nav-number">1.14.2.</span> <span class="nav-text">2. 文件作用域（File Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%87%BD%E6%95%B0%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Function-Scope%EF%BC%89"><span class="nav-number">1.14.3.</span> <span class="nav-text">3. 函数作用域（Function Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E4%BD%9C%E7%94%A8%E5%9F%9F%EF%BC%88Function-Prototype-Scope%EF%BC%89"><span class="nav-number">1.14.4.</span> <span class="nav-text">4. 函数原型作用域（Function Prototype Scope）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6%E5%AF%B9%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">1.14.5.</span> <span class="nav-text">关键修饰符对作用域的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-2"><span class="nav-number">1.14.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-15-%E5%8F%82%E6%95%B0%E9%94%99%E8%AF%AF%E6%A3%80%E6%9F%A5"><span class="nav-number">1.15.</span> <span class="nav-text">6.15 参数错误检查</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8F%82%E6%95%B0%E6%A3%80%E6%9F%A5%EF%BC%9F"><span class="nav-number">1.15.1.</span> <span class="nav-text">为什么需要参数检查？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E5%8F%82%E6%95%B0%E6%A3%80%E6%9F%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">1.15.2.</span> <span class="nav-text">常见的参数检查方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E7%A9%BA%E6%8C%87%E9%92%88%E6%A3%80%E6%9F%A5"><span class="nav-number">1.15.2.1.</span> <span class="nav-text">1. 空指针检查</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%8C%83%E5%9B%B4%E6%A3%80%E6%9F%A5%EF%BC%88%E6%95%B0%E5%80%BC%E5%90%88%E6%B3%95%E6%80%A7%EF%BC%89"><span class="nav-number">1.15.2.2.</span> <span class="nav-text">2. 范围检查（数值合法性）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8-assert-%E5%AE%8F%EF%BC%88%E8%B0%83%E8%AF%95%E9%98%B6%E6%AE%B5%EF%BC%89"><span class="nav-number">1.15.2.3.</span> <span class="nav-text">3. 使用 assert() 宏（调试阶段）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E4%BD%BF%E7%94%A8-errno-%E6%8A%A5%E5%91%8A%E9%94%99%E8%AF%AF"><span class="nav-number">1.15.2.4.</span> <span class="nav-text">4. 使用 errno 报告错误</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E6%9E%9A%E4%B8%BE-%E7%8A%B6%E6%80%81%E7%A0%81%E8%BF%94%E5%9B%9E"><span class="nav-number">1.15.2.5.</span> <span class="nav-text">5. 枚举&#x2F;状态码返回</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E7%AD%96%E7%95%A5%E5%AF%B9%E6%AF%94"><span class="nav-number">1.15.3.</span> <span class="nav-text">检查策略对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-2"><span class="nav-number">1.15.4.</span> <span class="nav-text">最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-16-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E5%92%8C%E5%8C%85%E5%90%AB%E6%8C%87%E4%BB%A4"><span class="nav-number">1.16.</span> <span class="nav-text">6.16 预处理器和包含指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-16-1-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88Preprocessor%EF%BC%89"><span class="nav-number">1.16.1.</span> <span class="nav-text">6.16.1 预处理器（Preprocessor）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">1.16.1.1.</span> <span class="nav-text">常见预处理器指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-16-2-%E5%8C%85%E5%90%AB%E6%8C%87%E4%BB%A4%EF%BC%88-include%EF%BC%89"><span class="nav-number">1.16.2.</span> <span class="nav-text">6.16.2 包含指令（#include）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E8%AF%AD%E6%B3%95%E5%BD%A2%E5%BC%8F%EF%BC%9A"><span class="nav-number">1.16.2.1.</span> <span class="nav-text">两种语法形式：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-16-3-%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4%EF%BC%88%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB%EF%BC%89"><span class="nav-number">1.16.3.</span> <span class="nav-text">6.16.3 头文件保护（防止重复包含）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B-3"><span class="nav-number">1.16.3.1.</span> <span class="nav-text">完整示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93-3"><span class="nav-number">1.16.3.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-17-%E5%88%86%E7%A6%BB%E6%96%87%E4%BB%B6%E7%BC%96%E8%AF%91%EF%BC%88Separate-Files%EF%BC%89"><span class="nav-number">1.17.</span> <span class="nav-text">6.17 分离文件编译（Separate Files）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5-3"><span class="nav-number">1.17.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.17.2.</span> <span class="nav-text">基本结构示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-17-1-%E7%BC%96%E8%AF%91%E6%96%B9%E5%BC%8F"><span class="nav-number">1.17.3.</span> <span class="nav-text">6.17.1 编译方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80%EF%BC%9A%E4%B8%80%E6%AD%A5%E7%BC%96%E8%AF%91"><span class="nav-number">1.17.3.1.</span> <span class="nav-text">方式一：一步编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C%EF%BC%9A%E5%88%86%E6%AD%A5%E7%BC%96%E8%AF%91%EF%BC%88%E6%9B%B4%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="nav-number">1.17.3.2.</span> <span class="nav-text">方式二：分步编译（更常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%89%EF%BC%9A%E4%BD%BF%E7%94%A8-Makefile%EF%BC%88%E5%B7%A5%E7%A8%8B%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">1.17.3.3.</span> <span class="nav-text">方式三：使用 Makefile（工程项目推荐）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-17-2-%E5%85%B3%E9%94%AE%E6%9C%BA%E5%88%B6"><span class="nav-number">1.17.4.</span> <span class="nav-text">6.17.2 关键机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-include-%E4%B8%8E%E5%A4%B4%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.17.4.1.</span> <span class="nav-text">1. #include 与头文件保护</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-extern-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.17.4.2.</span> <span class="nav-text">2. extern 关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-static-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.17.4.3.</span> <span class="nav-text">3. static 关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-Separate-Files%EF%BC%9F"><span class="nav-number">1.17.4.4.</span> <span class="nav-text">为什么要用 Separate Files？</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/05/26/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module6-%E7%94%A8%E6%88%B7%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="System-Programming-Module6 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          System-Programming-Module6
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-05-26 11:22:57" itemprop="dateCreated datePublished" datetime="2026-05-26T11:22:57+08:00">2026-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-09 18:57:20" itemprop="dateModified" datetime="2026-06-09T18:57:20+08:00">2026-06-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/System-Programming/" itemprop="url" rel="index"><span itemprop="name">System Programming</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>用户自定义函数<span id="more"></span></h1>
+<h2 id="6-1-用户自定义函数基础">6.1 用户自定义函数基础</h2>
+<p>用户自定义函数（User-Defined Functions）是由程序员自己编写的函数，用于完成特定任务，与C语言内置的库函数（如 <code>printf</code>、<code>scanf</code>）相对应。</p>
+<h4 id="基本结构">基本结构</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">返回类型 函数名(参数列表) &#123;</span><br><span class="line">    <span class="comment">// 函数体</span></span><br><span class="line">    <span class="keyword">return</span> 返回值;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="四个核心要素">四个核心要素</h4>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>返回类型</strong></td>
+<td>函数返回值的数据类型</td>
+<td><code>int</code>, <code>float</code>, <code>void</code></td>
+</tr>
+<tr>
+<td><strong>函数名</strong></td>
+<td>自定义的标识符</td>
+<td><code>add</code>, <code>printHello</code></td>
+</tr>
+<tr>
+<td><strong>参数列表</strong></td>
+<td>传入函数的变量（可为空）</td>
+<td><code>int a, int b</code></td>
+</tr>
+<tr>
+<td><strong>函数体</strong></td>
+<td>实现具体功能的代码块</td>
+<td><code>return a + b;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="函数声明（原型）">函数声明（原型）</h4>
+<p>在使用函数之前，通常需要先<strong>声明</strong>（也叫函数原型），告诉编译器函数的存在：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;  <span class="comment">// 函数声明，放在 main() 之前</span></span><br></pre></td></tr></table></figure>
+<h4 id="完整示例">完整示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数声明</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">greet</span><span class="params">(<span class="type">char</span> name[])</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> result = add(<span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;3 + 5 = %d\n&quot;</span>, result);  <span class="comment">// 输出：3 + 5 = 8</span></span><br><span class="line">    greet(<span class="string">&quot;Alice&quot;</span>);                   <span class="comment">// 输出：Hello, Alice!</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数定义</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">greet</span><span class="params">(<span class="type">char</span> name[])</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, %s!\n&quot;</span>, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="几种常见类型">几种常见类型</h4>
+<p><strong>无参数无返回值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sayHello</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello!\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>有参数无返回值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printSquare</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, n * n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>有参数有返回值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">multiply</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>递归函数（自己调用自己）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用用户自定义函数的优点">使用用户自定义函数的优点</h4>
+<ul>
+<li><strong>代码复用</strong>：写一次，多处调用</li>
+<li><strong>模块化</strong>：将复杂问题拆分为小块</li>
+<li><strong>易于维护</strong>：修改只需改一处</li>
+<li><strong>提高可读性</strong>：函数名本身就是说明</li>
+</ul>
+<h2 id="6-2-printf函数">6.2 printf函数</h2>
+<p><code>printf</code> 是 C 语言中最常用的<strong>输出函数</strong>，定义在标准头文件 <code>&lt;stdio.h&gt;</code> 中，用于将格式化的数据输出到标准输出（通常是终端/屏幕）。</p>
+<h4 id="基本语法">基本语法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">printf</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *format, ...)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="简单示例">简单示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, World!\n&quot;</span>);         <span class="comment">// 输出字符串</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;年龄: %d\n&quot;</span>, <span class="number">25</span>);          <span class="comment">// 输出整数</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;身高: %.2f\n&quot;</span>, <span class="number">1.75</span>);      <span class="comment">// 输出浮点数</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;姓名: %s\n&quot;</span>, <span class="string">&quot;张三&quot;</span>);       <span class="comment">// 输出字符串变量</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常用格式说明符">常用格式说明符</h4>
+<table>
+<thead>
+<tr>
+<th>说明符</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%d</code></td>
+<td>十进制整数</td>
+<td><code>printf(&quot;%d&quot;, 42)</code></td>
+</tr>
+<tr>
+<td><code>%f</code></td>
+<td>浮点数</td>
+<td><code>printf(&quot;%f&quot;, 3.14)</code></td>
+</tr>
+<tr>
+<td><code>%.2f</code></td>
+<td>保留2位小数</td>
+<td><code>printf(&quot;%.2f&quot;, 3.14159)</code></td>
+</tr>
+<tr>
+<td><code>%s</code></td>
+<td>字符串</td>
+<td><code>printf(&quot;%s&quot;, &quot;hello&quot;)</code></td>
+</tr>
+<tr>
+<td><code>%c</code></td>
+<td>单个字符</td>
+<td><code>printf(&quot;%c&quot;, 'A')</code></td>
+</tr>
+<tr>
+<td><code>%x</code></td>
+<td>十六进制整数</td>
+<td><code>printf(&quot;%x&quot;, 255)</code></td>
+</tr>
+<tr>
+<td><code>%o</code></td>
+<td>八进制整数</td>
+<td><code>printf(&quot;%o&quot;, 8)</code></td>
+</tr>
+<tr>
+<td><code>%e</code></td>
+<td>科学计数法</td>
+<td><code>printf(&quot;%e&quot;, 1234.5)</code></td>
+</tr>
+<tr>
+<td><code>%%</code></td>
+<td>输出 <code>%</code> 本身</td>
+<td><code>printf(&quot;100%%&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="常用转义字符">常用转义字符</h4>
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\n</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>\t</code></td>
+<td>水平制表符（Tab）</td>
+</tr>
+<tr>
+<td><code>\\</code></td>
+<td>反斜杠</td>
+</tr>
+<tr>
+<td><code>\&quot;</code></td>
+<td>双引号</td>
+</tr>
+</tbody>
+</table>
+<h4 id="返回值">返回值</h4>
+<p><code>printf</code> 返回<strong>成功输出的字符数</strong>，如果发生错误则返回负数（通常可以忽略）。</p>
+<h4 id="注意事项">注意事项</h4>
+<ul>
+<li>使用前必须 <code>#include &lt;stdio.h&gt;</code></li>
+<li>格式说明符的<strong>类型必须与变量匹配</strong>，否则会出现未定义行为</li>
+<li><code>printf</code> 不会自动换行，需要手动加 <code>\n</code></li>
+</ul>
+<h2 id="6-3-定义函数的原因">6.3 定义函数的原因</h2>
+<p>略。</p>
+<h2 id="6-4-数学函数">6.4 数学函数</h2>
+<p>C语言的数学函数主要定义在 <code>&lt;math.h&gt;</code> 头文件中，使用时需要在程序开头包含它：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="6-4-1-常用数学函数分类">6.4.1 常用数学函数分类</h3>
+<h4 id="1-基本运算">1. 基本运算</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>abs(x)</code></td>
+<td>整数绝对值</td>
+<td><code>abs(-5)</code> → <code>5</code></td>
+</tr>
+<tr>
+<td><code>fabs(x)</code></td>
+<td>浮点数绝对值</td>
+<td><code>fabs(-3.14)</code> → <code>3.14</code></td>
+</tr>
+<tr>
+<td><code>ceil(x)</code></td>
+<td>向上取整</td>
+<td><code>ceil(2.3)</code> → <code>3.0</code></td>
+</tr>
+<tr>
+<td><code>floor(x)</code></td>
+<td>向下取整</td>
+<td><code>floor(2.7)</code> → <code>2.0</code></td>
+</tr>
+<tr>
+<td><code>round(x)</code></td>
+<td>四舍五入</td>
+<td><code>round(2.5)</code> → <code>3.0</code></td>
+</tr>
+<tr>
+<td><code>fmod(x, y)</code></td>
+<td>浮点取余</td>
+<td><code>fmod(5.0, 2.0)</code> → <code>1.0</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-幂与对数">2. 幂与对数</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sqrt(x)</code></td>
+<td>平方根</td>
+<td><code>sqrt(9.0)</code> → <code>3.0</code></td>
+</tr>
+<tr>
+<td><code>pow(x, y)</code></td>
+<td>x 的 y 次方</td>
+<td><code>pow(2.0, 3.0)</code> → <code>8.0</code></td>
+</tr>
+<tr>
+<td><code>exp(x)</code></td>
+<td>e 的 x 次方</td>
+<td><code>exp(1.0)</code> → <code>2.718...</code></td>
+</tr>
+<tr>
+<td><code>log(x)</code></td>
+<td>自然对数（ln）</td>
+<td><code>log(M_E)</code> → <code>1.0</code></td>
+</tr>
+<tr>
+<td><code>log2(x)</code></td>
+<td>以 2 为底的对数</td>
+<td><code>log2(8.0)</code> → <code>3.0</code></td>
+</tr>
+<tr>
+<td><code>log10(x)</code></td>
+<td>以 10 为底的对数</td>
+<td><code>log10(100.0)</code> → <code>2.0</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-三角函数（参数单位：弧度）">3. 三角函数（参数单位：弧度）</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sin(x)</code></td>
+<td>正弦</td>
+</tr>
+<tr>
+<td><code>cos(x)</code></td>
+<td>余弦</td>
+</tr>
+<tr>
+<td><code>tan(x)</code></td>
+<td>正切</td>
+</tr>
+<tr>
+<td><code>asin(x)</code></td>
+<td>反正弦</td>
+</tr>
+<tr>
+<td><code>acos(x)</code></td>
+<td>反余弦</td>
+</tr>
+<tr>
+<td><code>atan(x)</code></td>
+<td>反正切</td>
+</tr>
+<tr>
+<td><code>atan2(y, x)</code></td>
+<td>两参数反正切（更精确）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-双曲函数">4. 双曲函数</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sinh(x)</code></td>
+<td>双曲正弦</td>
+</tr>
+<tr>
+<td><code>cosh(x)</code></td>
+<td>双曲余弦</td>
+</tr>
+<tr>
+<td><code>tanh(x)</code></td>
+<td>双曲正切</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-常用数学常量（-math-h-中定义）">5. 常用数学常量（<code>&lt;math.h&gt;</code> 中定义）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">M_PI    <span class="comment">// π ≈ 3.14159265358979</span></span><br><span class="line">M_E     <span class="comment">// e ≈ 2.71828182845905</span></span><br></pre></td></tr></table></figure>
+<h4 id="示例程序">示例程序</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;math.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">double</span> x = <span class="number">2.0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sqrt(2) = %f\n&quot;</span>, <span class="built_in">sqrt</span>(x));       <span class="comment">// 1.414214</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pow(2,10) = %f\n&quot;</span>, <span class="built_in">pow</span>(x, <span class="number">10</span>));  <span class="comment">// 1024.000000</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;sin(π/2) = %f\n&quot;</span>, <span class="built_in">sin</span>(M_PI/<span class="number">2</span>)); <span class="comment">// 1.000000</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;log(e) = %f\n&quot;</span>, <span class="built_in">log</span>(M_E));       <span class="comment">// 1.000000</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="编译注意事项">编译注意事项</h4>
+<p>在 Linux/GCC 环境下，编译时需要链接数学库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc program.c -o program -lm</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Windows（MSVC）通常不需要额外链接 <code>-lm</code>。</li>
+</ul>
+<h2 id="6-5-带分支的函数">6.5 带分支的函数</h2>
+<p>在C语言中，<strong>带分支的函数</strong>是指函数内部包含<strong>条件判断语句</strong>，根据不同的条件执行不同的代码路径。这是程序控制流的核心概念。</p>
+<h3 id="6-5-1-常用的分支结构">6.5.1 常用的分支结构</h3>
+<h4 id="1-if-else-if-else">1. <code>if</code> / <code>else if</code> / <code>else</code></h4>
+<p>最基本的分支结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">classify</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;   <span class="comment">// 正数</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (x &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;  <span class="comment">// 负数</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;   <span class="comment">// 零</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-switch-case">2. <code>switch</code> / <code>case</code></h4>
+<p>适合对<strong>离散值</strong>进行多路分支：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printDay</span><span class="params">(<span class="type">int</span> day)</span> &#123;</span><br><span class="line">    <span class="keyword">switch</span> (day) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>: <span class="built_in">printf</span>(<span class="string">&quot;Monday\n&quot;</span>);    <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>: <span class="built_in">printf</span>(<span class="string">&quot;Tuesday\n&quot;</span>);   <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>: <span class="built_in">printf</span>(<span class="string">&quot;Wednesday\n&quot;</span>); <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>: <span class="built_in">printf</span>(<span class="string">&quot;Other\n&quot;</span>);    <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-三目运算符">3. 三目运算符 <code>? :</code></h4>
+<p>用于简单的条件赋值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">max</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (a &gt; b) ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="分支函数的特点">分支函数的特点</h4>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多出口</strong></td>
+<td>函数可以在不同分支处 <code>return</code></td>
+</tr>
+<tr>
+<td><strong>条件执行</strong></td>
+<td>不同输入触发不同逻辑</td>
+</tr>
+<tr>
+<td><strong>嵌套分支</strong></td>
+<td><code>if</code> 内部可以再嵌套 <code>if</code> 或 <code>switch</code></td>
+</tr>
+<tr>
+<td><strong>短路求值</strong></td>
+<td><code>&amp;&amp;</code> 和 `</td>
+</tr>
+</tbody>
+</table>
+<h4 id="综合示例">综合示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据分数返回等级</span></span><br><span class="line"><span class="type">char</span> <span class="title function_">getGrade</span><span class="params">(<span class="type">int</span> score)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (score &gt;= <span class="number">90</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt;= <span class="number">80</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;B&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (score &gt;= <span class="number">60</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;C&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;F&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Score 95 -&gt; Grade: %c\n&quot;</span>, getGrade(<span class="number">95</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Score 72 -&gt; Grade: %c\n&quot;</span>, getGrade(<span class="number">72</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Score 50 -&gt; Grade: %c\n&quot;</span>, getGrade(<span class="number">50</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>输出：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Score 95 -&gt; Grade: A</span><br><span class="line">Score 72 -&gt; Grade: C</span><br><span class="line">Score 50 -&gt; Grade: F</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项-2">注意事项</h4>
+<ul>
+<li><strong>避免遗漏 <code>default</code></strong>：<code>switch</code> 语句最好总是加上 <code>default</code> 分支。</li>
+<li><strong>避免遗漏 <code>break</code></strong>：否则会发生&quot;fall-through&quot;（穿透到下一个 <code>case</code>）。</li>
+<li><strong>分支不宜过深</strong>：嵌套层次太多会降低代码可读性，可考虑拆分为多个函数。</li>
+</ul>
+<h2 id="6-6-带循环的函数">6.6 带循环的函数</h2>
+<p>在C语言中，<strong>带循环的函数</strong>就是在函数体内包含循环结构（<code>for</code>、<code>while</code> 或 <code>do-while</code>）的函数，用于重复执行某段逻辑。</p>
+<h4 id="1-使用-for-循环的函数">1. 使用 <code>for</code> 循环的函数</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算1到n的累加和</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        result += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sum = %d\n&quot;</span>, sum(<span class="number">10</span>)); <span class="comment">// 输出: Sum = 55</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-使用-while-循环的函数">2. 使用 <code>while</code> 循环的函数</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 计算一个数的各位数字之和</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">digitSum</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        sum += n % <span class="number">10</span>;</span><br><span class="line">        n /= <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Digit Sum = %d\n&quot;</span>, digitSum(<span class="number">1234</span>)); <span class="comment">// 输出: Digit Sum = 10</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-使用-do-while-循环的函数">3. 使用 <code>do-while</code> 循环的函数</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 至少执行一次，打印n次消息</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printMessage</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Hello, World! (%d)\n&quot;</span>, i + <span class="number">1</span>);</span><br><span class="line">        i++;</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt; n);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    printMessage(<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="三种循环对比">三种循环对比</h4>
+<table>
+<thead>
+<tr>
+<th>循环类型</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>for</code></td>
+<td>次数明确</td>
+<td>已知迭代次数</td>
+</tr>
+<tr>
+<td><code>while</code></td>
+<td>先判断后执行</td>
+<td>条件不确定，可能不执行</td>
+</tr>
+<tr>
+<td><code>do-while</code></td>
+<td>先执行后判断</td>
+<td>至少执行一次</td>
+</tr>
+</tbody>
+</table>
+<h4 id="关键点">关键点</h4>
+<ul>
+<li>函数可以包含<strong>多个循环</strong>或<strong>嵌套循环</strong>。</li>
+<li>循环中可以使用 <code>break</code>（跳出循环）和 <code>continue</code>（跳过当前迭代）。</li>
+<li>注意避免<strong>死循环</strong>（循环条件永远为真）。</li>
+</ul>
+<h2 id="6-7-单元测试">6.7 单元测试</h2>
+<p>单元测试（Unit Testing）是一种软件测试方法，<strong>对代码中最小的可测试单元（通常是函数）进行独立验证</strong>，确保其行为符合预期。</p>
+<hr>
+<h4 id="核心概念">核心概念</h4>
+<ul>
+<li><strong>测试用例（Test Case）</strong>：针对某个函数的一组输入和预期输出</li>
+<li><strong>断言（Assertion）</strong>：验证实际结果是否与预期一致，不一致则报错</li>
+<li><strong>测试套件（Test Suite）</strong>：多个测试用例的集合</li>
+<li><strong>测试框架（Test Framework）</strong>：提供运行测试、统计结果的基础设施</li>
+</ul>
+<h4 id="简单示例-2">简单示例</h4>
+<p><strong>假设有一个加法函数：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// add.c</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>对应的单元测试：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// test_add.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test_add_positive</span><span class="params">()</span> &#123;</span><br><span class="line">    assert(add(<span class="number">2</span>, <span class="number">3</span>) == <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test_add_positive passed\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test_add_negative</span><span class="params">()</span> &#123;</span><br><span class="line">    assert(add(<span class="number">-1</span>, <span class="number">-2</span>) == <span class="number">-3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test_add_negative passed\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test_add_zero</span><span class="params">()</span> &#123;</span><br><span class="line">    assert(add(<span class="number">0</span>, <span class="number">0</span>) == <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test_add_zero passed\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    test_add_positive();</span><br><span class="line">    test_add_negative();</span><br><span class="line">    test_add_zero();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;All tests passed!\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="常用-C-语言测试框架">常用 C 语言测试框架</h4>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Unity</strong></td>
+<td>轻量级，嵌入式开发常用</td>
+</tr>
+<tr>
+<td><strong>CUnit</strong></td>
+<td>结构化，支持多种输出格式</td>
+</tr>
+<tr>
+<td><strong>Check</strong></td>
+<td>支持 fork 隔离，适合 Linux</td>
+</tr>
+<tr>
+<td><strong>CMocka</strong></td>
+<td>支持 Mock，适合复杂依赖</td>
+</tr>
+<tr>
+<td><strong>Google Test</strong></td>
+<td>功能强大（C++ 框架，可测 C）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="用-Unity-框架的示例">用 Unity 框架的示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;unity.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;add.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">setUp</span><span class="params">(<span class="type">void</span>)</span> &#123;&#125;    <span class="comment">// 每个测试前执行</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">tearDown</span><span class="params">(<span class="type">void</span>)</span> &#123;&#125; <span class="comment">// 每个测试后执行</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test_add_should_return_sum</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    TEST_ASSERT_EQUAL_INT(<span class="number">5</span>, add(<span class="number">2</span>, <span class="number">3</span>));</span><br><span class="line">    TEST_ASSERT_EQUAL_INT(<span class="number">-3</span>, add(<span class="number">-1</span>, <span class="number">-2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    UNITY_BEGIN();</span><br><span class="line">    RUN_TEST(test_add_should_return_sum);</span><br><span class="line">    <span class="keyword">return</span> UNITY_END();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="单元测试的意义">单元测试的意义</h4>
+<ol>
+<li><strong>尽早发现 Bug</strong>，降低修复成本</li>
+<li><strong>安全重构</strong>，改动后可快速验证</li>
+<li><strong>代码文档化</strong>，测试即使用示例</li>
+<li><strong>提升设计质量</strong>，促使函数职责单一</li>
+</ol>
+<h4 id="最佳实践">最佳实践</h4>
+<ul>
+<li>每个测试只测一件事</li>
+<li>测试命名要清晰（<code>test_函数名_场景_预期结果</code>）</li>
+<li>覆盖正常值、边界值、异常值</li>
+<li>测试应独立，互不依赖</li>
+<li>配合 CI/CD 自动运行</li>
+</ul>
+<h2 id="6-8-函数是如何工作的">6.8 函数是如何工作的</h2>
+<h4 id="调用栈的工作方式">调用栈的工作方式</h4>
+<p>当函数被调用时，系统会在<strong>调用栈（Call Stack）**上创建一个**栈帧（Stack Frame）</strong>，其中包含：</p>
+<ul>
+<li>函数的<strong>局部变量</strong></li>
+<li><strong>参数</strong>的副本</li>
+<li><strong>返回地址</strong>（函数执行完后跳回的位置）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">main() 调用 add(3, 5)</span><br><span class="line">┌─────────────────┐</span><br><span class="line">│  add 的栈帧      │  ← 当前执行</span><br><span class="line">│  a = 3, b = 5   │</span><br><span class="line">│  返回地址 → main │</span><br><span class="line">├─────────────────┤</span><br><span class="line">│  main 的栈帧     │</span><br><span class="line">│  result = ?     │</span><br><span class="line">└─────────────────┘</span><br></pre></td></tr></table></figure>
+<p>函数返回后，栈帧被销毁，控制权回到 <code>main</code>。</p>
+<h4 id="参数传递方式">参数传递方式</h4>
+<h4 id="值传递（Pass-by-Value）">值传递（Pass by Value）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">increment</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    x++;  <span class="comment">// 只修改副本，不影响原变量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="指针传递（Pass-by-Pointer）">指针传递（Pass by Pointer）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">increment</span><span class="params">(<span class="type">int</span> *x)</span> &#123;</span><br><span class="line">    (*x)++;  <span class="comment">// 修改原变量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="完整示例-2">完整示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数声明</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">greet</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> sum = add(<span class="number">10</span>, <span class="number">20</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sum = %d\n&quot;</span>, sum);  <span class="comment">// 输出：Sum = 30</span></span><br><span class="line">    greet(<span class="string">&quot;Alice&quot;</span>);              <span class="comment">// 输出：Hello, Alice!</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">greet</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello, %s!\n&quot;</span>, name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结">总结</h4>
+<ol>
+<li><strong>声明</strong> → 告诉编译器函数的签名</li>
+<li><strong>定义</strong> → 实现函数的具体逻辑</li>
+<li><strong>调用</strong> → 执行函数，传入参数，获取返回值</li>
+<li><strong>栈帧</strong> → 每次调用都在栈上分配独立的内存空间</li>
+<li><strong>返回</strong> → 将结果传回调用者，栈帧销毁</li>
+</ol>
+<h2 id="6-9-函数：常见错误">6.9 函数：常见错误</h2>
+<h4 id="一、内存相关错误">一、内存相关错误</h4>
+<p><strong>1. 内存泄漏</strong> 分配了堆内存但忘记释放：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="number">100</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="comment">// 忘记 free(p)，导致内存泄漏</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 野指针 / 悬空指针</strong> 使用已释放或未初始化的指针：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p = <span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line"><span class="built_in">free</span>(p);</span><br><span class="line">*p = <span class="number">10</span>;  <span class="comment">// 错误！访问已释放内存</span></span><br></pre></td></tr></table></figure>
+<p><strong>3. 缓冲区溢出</strong> 写入超出数组边界：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> buf[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(buf, <span class="string">&quot;This string is too long!&quot;</span>);  <span class="comment">// 溢出！</span></span><br></pre></td></tr></table></figure>
+<h4 id="二、函数返回值错误">二、函数返回值错误</h4>
+<p><strong>4. 返回局部变量的地址</strong> 局部变量在函数返回后被销毁：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">getVal</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">42</span>;</span><br><span class="line">    <span class="keyword">return</span> &amp;x;  <span class="comment">// 错误！x 已出栈</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>5. 忽略返回值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fopen(<span class="string">&quot;file.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);  <span class="comment">// 没有检查是否返回 NULL</span></span><br></pre></td></tr></table></figure>
+<h4 id="三、参数传递错误">三、参数传递错误</h4>
+<p><strong>6. 值传递误以为引用传递</strong> C 默认传值，修改不影响原变量：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> tmp = a; a = b; b = tmp;  <span class="comment">// 无效！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应传指针：<code>swap(int *a, int *b)</code></p>
+<p><strong>7. 未检查指针参数是否为 NULL</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">process</span><span class="params">(<span class="type">int</span> *p)</span> &#123;</span><br><span class="line">    *p = <span class="number">10</span>;  <span class="comment">// 若 p 为 NULL，直接崩溃</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="四、类型与运算错误">四、类型与运算错误</h4>
+<p><strong>8. 整数溢出</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">2147483647</span>;</span><br><span class="line"><span class="type">int</span> b = a + <span class="number">1</span>;  <span class="comment">// 溢出，结果未定义</span></span><br></pre></td></tr></table></figure>
+<p><strong>9. 有符号/无符号混用</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> len = <span class="number">-1</span>;</span><br><span class="line"><span class="keyword">if</span> (len &lt; <span class="keyword">sizeof</span>(<span class="type">int</span>)) &#123; ... &#125;  <span class="comment">// sizeof 返回无符号，比较出错</span></span><br></pre></td></tr></table></figure>
+<p><strong>10. 误用 <code>=</code> 代替 <code>==</code></strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (x = <span class="number">0</span>) &#123; ... &#125;  <span class="comment">// 赋值而非比较，条件永远为假</span></span><br></pre></td></tr></table></figure>
+<h4 id="五、字符串处理错误">五、字符串处理错误</h4>
+<p><strong>11. 字符串未以 <code>\0</code> 结尾</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> s[<span class="number">3</span>] = &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;;  <span class="comment">// 没有 \0，printf 会越界读取</span></span><br></pre></td></tr></table></figure>
+<p><strong>12. 使用不安全函数</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gets(buf);      <span class="comment">// 危险，无长度限制，应用 fgets</span></span><br><span class="line"><span class="built_in">sprintf</span>(buf, fmt, ...);  <span class="comment">// 应用 snprintf</span></span><br></pre></td></tr></table></figure>
+<h4 id="六、逻辑与结构错误">六、逻辑与结构错误</h4>
+<p><strong>13. 递归缺少终止条件</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">f</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> n * f(n - <span class="number">1</span>);  <span class="comment">// 忘记 if (n == 0) return 1;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>14. 函数声明与定义不匹配</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>)</span>;       <span class="comment">// 声明</span></span><br><span class="line"><span class="type">float</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123; ... &#125;  <span class="comment">// 定义类型不一致</span></span><br></pre></td></tr></table></figure>
+<h4 id="七、并发相关（多线程）">七、并发相关（多线程）</h4>
+<p><strong>15. 全局变量竞争</strong> 多线程同时修改全局变量，未加锁保护，导致数据竞争（Data Race）。</p>
+<h4 id="小结">小结</h4>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>典型错误</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内存</td>
+<td>泄漏、野指针、溢出</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回局部地址、忽略错误码</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>值/指针混淆、NULL 未检查</td>
+</tr>
+<tr>
+<td>类型</td>
+<td>溢出、符号混用</td>
+</tr>
+<tr>
+<td>字符串</td>
+<td>无终止符、不安全函数</td>
+</tr>
+<tr>
+<td>逻辑</td>
+<td>递归无终止、声明不匹配</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-10-按指针传递">6.10 按指针传递</h2>
+<p>在C语言中，函数参数的传递默认是<strong>按值传递</strong>（pass by value）——即函数接收的是变量的<strong>副本</strong>，对副本的修改不会影响原始变量。</p>
+<p><strong>按指针传递</strong>则是将变量的<strong>内存地址</strong>传给函数，函数通过该地址直接操作原始变量。</p>
+<h4 id="基本示例">基本示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 按值传递 —— 无法修改原始值</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">addOne_byValue</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    x = x + <span class="number">1</span>;  <span class="comment">// 只修改了副本</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 按指针传递 —— 可以修改原始值</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">addOne_byPointer</span><span class="params">(<span class="type">int</span> *x)</span> &#123;</span><br><span class="line">    *x = *x + <span class="number">1</span>;  <span class="comment">// 通过解引用修改原始变量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">    addOne_byValue(a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;按值传递后: %d\n&quot;</span>, a);    <span class="comment">// 输出: 5（未改变）</span></span><br><span class="line"></span><br><span class="line">    addOne_byPointer(&amp;a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;按指针传递后: %d\n&quot;</span>, a);  <span class="comment">// 输出: 6（已改变）</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="核心概念-2">核心概念</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&amp;a</code></td>
+<td>取变量 <code>a</code> 的地址（传递给函数）</td>
+</tr>
+<tr>
+<td><code>int *x</code></td>
+<td>函数参数声明为指针类型</td>
+</tr>
+<tr>
+<td><code>*x</code></td>
+<td>解引用指针，访问/修改原始变量的值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="常见使用场景">常见使用场景</h4>
+<p><strong>1. 让函数返回多个值</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">minMax</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n, <span class="type">int</span> *min, <span class="type">int</span> *max)</span> &#123;</span><br><span class="line">    *min = *max = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; *min) *min = arr[i];</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &gt; *max) *max = arr[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 交换两个变量（经典例子）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> *a, <span class="type">int</span> *b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> temp = *a;</span><br><span class="line">    *a = *b;</span><br><span class="line">    *b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3. 传递大型结构体（避免复制开销）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">process</span><span class="params">(<span class="keyword">struct</span> BigData *data)</span> &#123;</span><br><span class="line">    <span class="comment">// 直接操作原始数据，无需复制整个结构体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="内存示意图">内存示意图</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">main() 中:          函数内:</span><br><span class="line">┌─────────┐        ┌─────────┐</span><br><span class="line">│  a = 5  │◄───────│  x（指针）│</span><br><span class="line">│ 地址:100 │        │ 值: 100  │</span><br><span class="line">└─────────┘        └─────────┘</span><br><span class="line">    ↑</span><br><span class="line">  *x 指向这里，修改 *x 就是修改 a</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项-3">注意事项</h4>
+<ul>
+<li>传入前用 <code>&amp;</code> 取地址，函数内用 <code>*</code> 解引用</li>
+<li>要确保指针不为 <code>NULL</code>，否则解引用会导致程序崩溃</li>
+<li>C++ 中还有<strong>按引用传递</strong>（<code>&amp;</code>），更简洁，但C语言没有这个特性，只能用指针模拟</li>
+</ul>
+<h2 id="6-11-带数组参数的函数">6.11 带数组参数的函数</h2>
+<h4 id="核心概念：数组退化为指针">核心概念：数组退化为指针</h4>
+<p>当数组作为函数参数传递时，<strong>数组名会自动退化为指向其首元素的指针</strong>。因此，函数内部无法直接通过 <code>sizeof</code> 获取数组长度，通常需要额外传入长度参数。</p>
+<h4 id="一、一维数组参数">一、一维数组参数</h4>
+<p>以下三种写法<strong>完全等价</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n)</span>;       <span class="comment">// 写法1：推荐，语义清晰</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> *arr, <span class="type">int</span> n)</span>;        <span class="comment">// 写法2：指针形式</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> arr[<span class="number">10</span>], <span class="type">int</span> n)</span>;     <span class="comment">// 写法3：编译器忽略数组大小</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">printArray</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> a[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">    printArray(a, <span class="number">5</span>);  <span class="comment">// 传递数组名和长度</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="二、二维数组参数">二、二维数组参数</h4>
+<p>二维数组必须<strong>指定列数</strong>（第二维不能省略）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> arr[][<span class="number">4</span>], <span class="type">int</span> rows)</span>;     <span class="comment">// 写法1：常用</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">func</span><span class="params">(<span class="type">int</span> (*arr)[<span class="number">4</span>], <span class="type">int</span> rows)</span>;    <span class="comment">// 写法2：指针形式</span></span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">print2D</span><span class="params">(<span class="type">int</span> arr[][<span class="number">3</span>], <span class="type">int</span> rows)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; rows; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> matrix[<span class="number">2</span>][<span class="number">3</span>] = &#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>&#125;&#125;;</span><br><span class="line">    print2D(matrix, <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="三、传递数组并修改内容">三、传递数组并修改内容</h4>
+<p>由于传的是指针，函数内<strong>可以直接修改原数组</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">doubleAll</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        arr[i] *= <span class="number">2</span>;  <span class="comment">// 修改的是原数组</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不希望函数修改数组，可以加 <code>const</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">printArray</span><span class="params">(<span class="type">const</span> <span class="type">int</span> arr[], <span class="type">int</span> n)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="四、返回数组（注意事项）">四、返回数组（注意事项）</h4>
+<p>C语言<strong>不能直接返回数组</strong>，但可以返回指针：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ❌ 错误：不能返回局部数组的指针</span></span><br><span class="line"><span class="type">int</span>* <span class="title function_">badFunc</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> arr[<span class="number">5</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">    <span class="keyword">return</span> arr;  <span class="comment">// 局部变量，函数结束后销毁！</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ✅ 正确：返回动态分配的数组</span></span><br><span class="line"><span class="type">int</span>* <span class="title function_">goodFunc</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="type">int</span> *arr = <span class="built_in">malloc</span>(n * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">return</span> arr;  <span class="comment">// 调用者负责 free()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结对比">总结对比</h4>
+<table>
+<thead>
+<tr>
+<th>情形</th>
+<th>写法要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一维数组</td>
+<td>传数组名 + 长度n</td>
+</tr>
+<tr>
+<td>二维数组</td>
+<td>必须指定列数</td>
+</tr>
+<tr>
+<td>只读数组</td>
+<td>加 <code>const</code> 修饰</td>
+</tr>
+<tr>
+<td>修改数组</td>
+<td>直接通过指针修改</td>
+</tr>
+<tr>
+<td>返回数组</td>
+<td>用动态内存（<code>malloc</code>）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-12-带C字符串参数的函数">6.12 带C字符串参数的函数</h2>
+<p><strong>C字符串</strong>是以空字符 <code>'\0'</code> 结尾的字符数组。传递给函数时，通常使用 <code>char *</code> 或 <code>const char *</code> 作为参数类型。</p>
+<h4 id="基本语法-2">基本语法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">myFunction</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str)</span> &#123;</span><br><span class="line">    <span class="comment">// 使用字符串</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>用 <code>const char *</code> 表示函数不会修改字符串（推荐）</li>
+<li>用 <code>char *</code> 表示函数可能会修改字符串内容</li>
+</ul>
+<h4 id="标准库中常见的带C字符串参数的函数">标准库中常见的带C字符串参数的函数</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>原型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strlen</code></td>
+<td><code>size_t strlen(const char *s)</code></td>
+<td>返回字符串长度</td>
+</tr>
+<tr>
+<td><code>strcpy</code></td>
+<td><code>char *strcpy(char *dest, const char *src)</code></td>
+<td>复制字符串</td>
+</tr>
+<tr>
+<td><code>strcat</code></td>
+<td><code>char *strcat(char *dest, const char *src)</code></td>
+<td>拼接字符串</td>
+</tr>
+<tr>
+<td><code>strcmp</code></td>
+<td><code>int strcmp(const char *s1, const char *s2)</code></td>
+<td>比较字符串</td>
+</tr>
+<tr>
+<td><code>strstr</code></td>
+<td><code>char *strstr(const char *hay, const char *needle)</code></td>
+<td>查找子串</td>
+</tr>
+<tr>
+<td><code>printf</code></td>
+<td><code>int printf(const char *format, ...)</code></td>
+<td>格式化输出</td>
+</tr>
+</tbody>
+</table>
+<h4 id="自定义函数示例">自定义函数示例</h4>
+<p><strong>1. 只读字符串（不修改内容）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">printString</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str)</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;字符串: %s\n&quot;</span>, str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    printString(<span class="string">&quot;Hello, World!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 修改字符串内容</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctype.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">toUpperCase</span><span class="params">(<span class="type">char</span> *str)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (*str) &#123;</span><br><span class="line">        *str = <span class="built_in">toupper</span>(*str);</span><br><span class="line">        str++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3. 返回字符串长度（手动实现）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">myStrlen</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str)</span> &#123;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (*str != <span class="string">&#x27;\0&#x27;</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        str++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项-4">注意事项</h4>
+<ol>
+<li><strong>总是检查空指针</strong>：调用前确认 <code>str != NULL</code></li>
+<li><strong>注意缓冲区溢出</strong>：使用 <code>strncpy</code>、<code>strncat</code> 等安全版本</li>
+<li><strong>字符串字面量是只读的</strong>：<code>char *s = &quot;hello&quot;</code> 不能修改内容，应用 <code>const char *</code></li>
+<li><strong>数组传递会退化为指针</strong>：<code>char arr[]</code> 作为参数等价于 <code>char *arr</code></li>
+</ol>
+<h4 id="传递方式对比">传递方式对比</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下三种声明在函数参数中等价：</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">f1</span><span class="params">(<span class="type">char</span> *str)</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">f2</span><span class="params">(<span class="type">char</span> str[])</span>;</span><br><span class="line"><span class="type">void</span> <span class="title function_">f3</span><span class="params">(<span class="type">char</span> str[<span class="number">100</span>])</span>;  <span class="comment">// 数组大小会被忽略</span></span><br></pre></td></tr></table></figure>
+<p>如需获取字符串长度，通常需要额外传入长度参数（尤其是处理二进制数据时）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">processData</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *data, <span class="type">size_t</span> length)</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="6-13-带数组参数的函数：常见错误">6.13 带数组参数的函数：常见错误</h2>
+<p>在C语言中，使用数组作为函数参数时，有几个经典且容易犯的错误：</p>
+<h4 id="1-以为可以通过-sizeof-获取数组长度">1. 以为可以通过 <code>sizeof</code> 获取数组长度</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> arr[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> len = <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(arr[<span class="number">0</span>]); <span class="comment">// ❌ 错误！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>原因</strong>：数组传入函数时会<strong>退化为指针</strong>（decay to pointer），<code>sizeof(arr)</code> 返回的是指针的大小（通常是 4 或 8 字节），而不是数组的总大小。</p>
+<p><strong>正确做法</strong>：显式传入长度。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> len)</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-忘记传递数组长度">2. 忘记传递数组长度</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">print</span><span class="params">(<span class="type">int</span> arr[])</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; ???; i++) <span class="comment">// ❌ 不知道长度</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, arr[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>函数内部无法知道数组有多长，必须额外传一个 <code>len</code> 参数，或者使用哨兵值（如字符串的 <code>\0</code>）。</p>
+<h4 id="3-越界访问">3. 越界访问</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> len)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= len; i++) <span class="comment">// ❌ 应该是 i &lt; len</span></span><br><span class="line">        arr[i] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用 <code>&lt;=</code> 而不是 <code>&lt;</code>，导致访问 <code>arr[len]</code>，这是未定义行为（UB）。</p>
+<h4 id="4-修改了调用者的数组却没有声明意图">4. 修改了调用者的数组却没有声明意图</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> len)</span> &#123;</span><br><span class="line">    arr[<span class="number">0</span>] = <span class="number">99</span>; <span class="comment">// 会修改原数组！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>原因</strong>：C 中数组是按引用（传指针）传递的，函数内修改会影响原始数据。</p>
+<p><strong>正确做法</strong>：如果不想修改，加 <code>const</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">const</span> <span class="type">int</span> arr[], <span class="type">int</span> len)</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="5-对二维数组的参数声明错误">5. 对二维数组的参数声明错误</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> arr[][])</span> &#123; ... &#125; <span class="comment">// ❌ 编译错误</span></span><br></pre></td></tr></table></figure>
+<p>二维数组作为参数时，<strong>第一维可以省略，但第二维必须指定</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> arr[][<span class="number">4</span>], <span class="type">int</span> rows)</span> &#123; ... &#125; <span class="comment">// ✅</span></span><br></pre></td></tr></table></figure>
+<p>或者使用指针形式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> *arr, <span class="type">int</span> rows, <span class="type">int</span> cols)</span> &#123;</span><br><span class="line">    arr[i * cols + j]; <span class="comment">// 手动计算偏移</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="6-返回局部数组（悬空指针）">6. 返回局部数组（悬空指针）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> arr[<span class="number">10</span>]; <span class="comment">// 局部变量</span></span><br><span class="line">    <span class="keyword">return</span> arr;  <span class="comment">// ❌ 函数返回后 arr 被销毁！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回的指针指向已失效的栈内存，属于未定义行为。</p>
+<p><strong>正确做法</strong>：使用 <code>malloc</code> 动态分配，或让调用者传入缓冲区。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> *arr = <span class="built_in">malloc</span>(<span class="number">10</span> * <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="keyword">return</span> arr; <span class="comment">// ✅ 调用者负责 free</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结表">总结表</h3>
+<table>
+<thead>
+<tr>
+<th>错误</th>
+<th>根本原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sizeof</code> 获取长度失败</td>
+<td>数组退化为指针</td>
+</tr>
+<tr>
+<td>越界访问</td>
+<td>循环条件写错</td>
+</tr>
+<tr>
+<td>意外修改原数组</td>
+<td>没加 <code>const</code></td>
+</tr>
+<tr>
+<td>二维数组参数写法错误</td>
+<td>必须指定列数</td>
+</tr>
+<tr>
+<td>返回局部数组</td>
+<td>栈内存生命周期问题</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-14-变量-函数定义的作用域">6.14 变量/函数定义的作用域</h2>
+<p>作用域是指程序中<strong>变量或函数名字可被访问的范围</strong>。C语言中主要有以下几种作用域：</p>
+<h4 id="1-块作用域（Block-Scope）">1. 块作用域（Block Scope）</h4>
+<p>在 <code>{}</code> 大括号内声明的变量，只在该块内有效。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">10</span>;  <span class="comment">// 只在 foo() 内有效</span></span><br><span class="line">    <span class="keyword">if</span> (x &gt; <span class="number">5</span>) &#123;</span><br><span class="line">        <span class="type">int</span> y = <span class="number">20</span>;  <span class="comment">// 只在 if 块内有效</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// printf(&quot;%d\n&quot;, y);  // 错误！y 在此不可见</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-文件作用域（File-Scope）">2. 文件作用域（File Scope）</h4>
+<p>在所有函数外部声明的变量/函数，从声明处到文件末尾都可访问，即<strong>全局变量</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> global = <span class="number">100</span>;  <span class="comment">// 文件作用域</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, global);  <span class="comment">// 可以访问</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">bar</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, global);  <span class="comment">// 也可以访问</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-函数作用域（Function-Scope）">3. 函数作用域（Function Scope）</h4>
+<p>仅适用于 <strong><code>goto</code> 语句的标签（label）</strong>，标签在整个函数内可见。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="keyword">goto</span> end;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    end:  <span class="comment">// 整个函数内都可跳转到此</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;done\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-函数原型作用域（Function-Prototype-Scope）">4. 函数原型作用域（Function Prototype Scope）</h4>
+<p>函数声明（原型）中的参数名，其作用域仅限于该原型声明本身，实际意义不大。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span>;  <span class="comment">// x, y 只在这一行有意义</span></span><br></pre></td></tr></table></figure>
+<h4 id="关键修饰符对作用域的影响">关键修饰符对作用域的影响</h4>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>static</code>（局部）</td>
+<td>变量只在本块可见，但生命周期延长到程序结束</td>
+</tr>
+<tr>
+<td><code>static</code>（全局/函数）</td>
+<td>限制为<strong>文件内可见</strong>，不能被其他文件用 <code>extern</code> 访问</td>
+</tr>
+<tr>
+<td><code>extern</code></td>
+<td>声明变量/函数定义在<strong>其他文件</strong>，扩展可见性</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file1.c</span></span><br><span class="line"><span class="type">int</span> shared = <span class="number">42</span>;          <span class="comment">// 全局，可被其他文件访问</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> hidden = <span class="number">99</span>;   <span class="comment">// 仅本文件可见</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// file2.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> shared;        <span class="comment">// 合法，访问 file1.c 的 shared</span></span><br><span class="line"><span class="comment">// extern int hidden;     // 错误！hidden 是 static 的</span></span><br></pre></td></tr></table></figure>
+<h4 id="总结-2">总结</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">全局变量（文件作用域）</span><br><span class="line">└── 函数</span><br><span class="line">    └── 块（if / for / while / &#123;&#125;）</span><br><span class="line">        └── 嵌套块（更小的作用域）</span><br></pre></td></tr></table></figure>
+<p>作用域遵循<strong>就近原则</strong>：内层的同名变量会&quot;遮蔽&quot;（shadow）外层变量，但不会修改外层变量的值。</p>
+<h2 id="6-15-参数错误检查">6.15 参数错误检查</h2>
+<p>参数错误检查（Parameter Error Checking）是指在函数执行实际逻辑之前，验证传入参数是否合法、有效的编程实践。这是编写健壮 C 程序的重要组成部分。</p>
+<h4 id="为什么需要参数检查？">为什么需要参数检查？</h4>
+<p>C 语言本身不提供异常机制，也不会自动检查指针是否为空、数组是否越界等问题。一旦传入非法参数，可能导致：</p>
+<ul>
+<li>程序崩溃（段错误）</li>
+<li>数据损坏</li>
+<li>安全漏洞（如缓冲区溢出）</li>
+</ul>
+<h4 id="常见的参数检查方式">常见的参数检查方式</h4>
+<h5 id="1-空指针检查">1. 空指针检查</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">process</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (str == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>; <span class="comment">// 或使用错误码</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 正常逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-范围检查（数值合法性）">2. 范围检查（数值合法性）</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">set_age</span><span class="params">(<span class="type">int</span> age)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (age &lt; <span class="number">0</span> || age &gt; <span class="number">150</span>) &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Invalid age: %d\n&quot;</span>, age);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 正常逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-使用-assert-宏（调试阶段）">3. 使用 <code>assert()</code> 宏（调试阶段）</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">divide</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    assert(b != <span class="number">0</span>); <span class="comment">// 仅在 Debug 模式下生效</span></span><br><span class="line">    <span class="keyword">return</span> a / b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ <code>assert</code> 在 Release 模式（定义了 <code>NDEBUG</code>）下会被禁用，不适合生产环境的错误处理。</p>
+</blockquote>
+<h5 id="4-使用-errno-报告错误">4. 使用 <code>errno</code> 报告错误</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">open_file</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *path)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (path == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        errno = EINVAL; <span class="comment">// 设置标准错误码</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 打开文件逻辑</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="5-枚举-状态码返回">5. 枚举/状态码返回</h5>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">enum</span> &#123;</span></span><br><span class="line">    ERR_OK = <span class="number">0</span>,</span><br><span class="line">    ERR_NULL_PTR,</span><br><span class="line">    ERR_OUT_OF_RANGE</span><br><span class="line">&#125; ErrorCode;</span><br><span class="line"></span><br><span class="line">ErrorCode <span class="title function_">safe_copy</span><span class="params">(<span class="type">char</span> *dst, <span class="type">const</span> <span class="type">char</span> *src, <span class="type">size_t</span> size)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!dst || !src) <span class="keyword">return</span> ERR_NULL_PTR;</span><br><span class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>)    <span class="keyword">return</span> ERR_OUT_OF_RANGE;</span><br><span class="line">    <span class="comment">// 拷贝逻辑</span></span><br><span class="line">    <span class="keyword">return</span> ERR_OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="检查策略对比">检查策略对比</h4>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>适用场景</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if</code> 判断 + 返回值</td>
+<td>生产代码</td>
+<td>灵活，可控</td>
+<td>需手动处理</td>
+</tr>
+<tr>
+<td><code>assert()</code></td>
+<td>调试阶段</td>
+<td>简洁</td>
+<td>Release 下失效</td>
+</tr>
+<tr>
+<td><code>errno</code></td>
+<td>系统/库函数风格</td>
+<td>标准化</td>
+<td>全局状态，线程不安全</td>
+</tr>
+<tr>
+<td>错误码枚举</td>
+<td>模块化开发</td>
+<td>语义清晰</td>
+<td>调用方需检查返回值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="最佳实践-2">最佳实践</h4>
+<ol>
+<li><strong>在函数入口集中检查所有参数</strong>，避免逻辑分散。</li>
+<li><strong>区分调试断言和运行时检查</strong>：<code>assert</code> 用于&quot;不可能发生&quot;的错误，<code>if</code> 用于&quot;可能发生&quot;的错误。</li>
+<li><strong>文档化参数约束</strong>，告知调用者哪些值是合法的。</li>
+<li><strong>嵌入式/安全关键系统</strong>中，通常要求对所有外部输入进行严格验证。</li>
+</ol>
+<h2 id="6-16-预处理器和包含指令">6.16 预处理器和包含指令</h2>
+<h3 id="6-16-1-预处理器（Preprocessor）">6.16.1 预处理器（Preprocessor）</h3>
+<p>预处理器是C编译过程的第一个阶段。在实际编译代码之前，预处理器会对源代码进行文本处理，执行以下操作：</p>
+<ul>
+<li><strong>处理所有以 <code>#</code> 开头的指令</strong></li>
+<li>不理解C语法，只做纯文本替换/操作</li>
+<li>输出一个&quot;纯净&quot;的C代码，再交给编译器</li>
+</ul>
+<p>编译流程如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">源代码(.c) → [预处理器] → 展开后的代码 → [编译器] → 目标文件(.o) → [链接器] → 可执行文件</span><br></pre></td></tr></table></figure>
+<h4 id="常见预处理器指令">常见预处理器指令</h4>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>#include</code></td>
+<td>包含头文件</td>
+</tr>
+<tr>
+<td><code>#define</code></td>
+<td>定义宏</td>
+</tr>
+<tr>
+<td><code>#ifdef / #ifndef</code></td>
+<td>条件编译</td>
+</tr>
+<tr>
+<td><code>#endif</code></td>
+<td>结束条件块</td>
+</tr>
+<tr>
+<td><code>#pragma</code></td>
+<td>编译器特定指令</td>
+</tr>
+<tr>
+<td><code>#undef</code></td>
+<td>取消宏定义</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-16-2-包含指令（-include）">6.16.2 包含指令（<code>#include</code>）</h3>
+<p><code>#include</code> 指令告诉预处理器<strong>将另一个文件的内容插入到当前位置</strong>。</p>
+<h5 id="两种语法形式：">两种语法形式：</h5>
+<p><strong>1. 尖括号形式（系统头文件）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>从<strong>系统/标准库目录</strong>中搜索文件</li>
+<li>用于标准库或第三方库的头文件</li>
+</ul>
+<p><strong>2. 引号形式（自定义头文件）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;myheader.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;utils/helper.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>先从<strong>当前目录</strong>搜索，再搜索系统目录</li>
+<li>用于你自己编写的头文件</li>
+</ul>
+<h3 id="6-16-3-头文件保护（防止重复包含）">6.16.3 头文件保护（防止重复包含）</h3>
+<p>如果同一个头文件被多次包含，会导致重复定义错误。解决方法：</p>
+<p><strong>方法一：<code>#ifndef</code> 守卫</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// myheader.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MYHEADER_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MYHEADER_H</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 头文件内容</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">myFunction</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>方法二：<code>#pragma once</code>（现代写法）</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 头文件内容</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">myFunction</span><span class="params">()</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="完整示例-3">完整示例</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.c</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span>      <span class="comment">// 系统头文件：提供 printf</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mymath.h&quot;</span>     <span class="comment">// 自定义头文件：提供 add 函数</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14159      <span class="comment">// 宏定义</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;PI = %f\n&quot;</span>, PI);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;3 + 4 = %d\n&quot;</span>, add(<span class="number">3</span>, <span class="number">4</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结-3">总结</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预处理器</td>
+<td>编译前的文本处理阶段</td>
+</tr>
+<tr>
+<td><code>#include &lt;...&gt;</code></td>
+<td>包含系统/标准库头文件</td>
+</tr>
+<tr>
+<td><code>#include &quot;...&quot;</code></td>
+<td>包含自定义头文件</td>
+</tr>
+<tr>
+<td>头文件保护</td>
+<td>防止同一头文件被重复包含</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-17-分离文件编译（Separate-Files）">6.17 分离文件编译（Separate Files）</h2>
+<p>在C语言中，<strong>Separate Files</strong>（分离文件 / 多文件编译）是指将一个程序拆分成多个源文件来组织和管理代码的方式。</p>
+<h4 id="核心概念-3">核心概念</h4>
+<p>一个典型的C多文件项目由以下几类文件组成：</p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>扩展名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>源文件</td>
+<td><code>.c</code></td>
+<td>包含函数的具体实现</td>
+</tr>
+<tr>
+<td>头文件</td>
+<td><code>.h</code></td>
+<td>包含函数声明、宏定义、类型定义</td>
+</tr>
+<tr>
+<td>主文件</td>
+<td><code>main.c</code></td>
+<td>程序入口，包含 <code>main()</code> 函数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="基本结构示例">基本结构示例</h4>
+<p><strong><code>math_utils.h</code></strong>（头文件 — 声明）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MATH_UTILS_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MATH_UTILS_H</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">multiply</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p><strong><code>math_utils.c</code></strong>（源文件 — 实现）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;math_utils.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">multiply</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> a * b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><code>main.c</code></strong>（主文件）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;math_utils.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, add(<span class="number">3</span>, <span class="number">4</span>));       <span class="comment">// 输出 7</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, multiply(<span class="number">3</span>, <span class="number">4</span>));  <span class="comment">// 输出 12</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-17-1-编译方式">6.17.1 编译方式</h3>
+<h4 id="方式一：一步编译">方式一：一步编译</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc main.c math_utils.c -o program</span><br></pre></td></tr></table></figure>
+<h4 id="方式二：分步编译（更常用）">方式二：分步编译（更常用）</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 各自编译成目标文件 (.o)</span></span><br><span class="line">gcc -c main.c -o main.o</span><br><span class="line">gcc -c math_utils.c -o math_utils.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 链接成可执行文件</span></span><br><span class="line">gcc main.o math_utils.o -o program</span><br></pre></td></tr></table></figure>
+<h4 id="方式三：使用-Makefile（工程项目推荐）">方式三：使用 Makefile（工程项目推荐）</h4>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">program: main.o math_utils.o</span></span><br><span class="line">    gcc main.o math_utils.o -o program</span><br><span class="line"></span><br><span class="line"><span class="section">main.o: main.c math_utils.h</span></span><br><span class="line">    gcc -c main.c</span><br><span class="line"></span><br><span class="line"><span class="section">math_utils.o: math_utils.c math_utils.h</span></span><br><span class="line">    gcc -c math_utils.c</span><br></pre></td></tr></table></figure>
+<h3 id="6-17-2-关键机制">6.17.2 关键机制</h3>
+<h4 id="1-include-与头文件保护">1. <code>#include</code> 与头文件保护</h4>
+<ul>
+<li><code>#include &quot;xxx.h&quot;</code> 引入自定义头文件</li>
+<li><code>#ifndef / #define / #endif</code> 防止头文件被重复包含</li>
+</ul>
+<h4 id="2-extern-关键字">2. <code>extern</code> 关键字</h4>
+<p>用于声明在其他文件中定义的全局变量：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file_a.c</span></span><br><span class="line"><span class="type">int</span> counter = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// file_b.c</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> counter;  <span class="comment">// 告诉编译器这个变量在别处定义</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-static-关键字">3. <code>static</code> 关键字</h4>
+<p>限制函数或变量只在<strong>当前文件</strong>内可见（文件作用域）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> <span class="title function_">helper</span><span class="params">()</span> &#123;  <span class="comment">// 其他文件无法访问</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">42</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="为什么要用-Separate-Files？">为什么要用 Separate Files？</h4>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>可维护性</strong></td>
+<td>代码按功能模块拆分，更易阅读和修改</td>
+</tr>
+<tr>
+<td><strong>复用性</strong></td>
+<td>模块可以在多个项目中重用</td>
+</tr>
+<tr>
+<td><strong>编译效率</strong></td>
+<td>只需重新编译修改过的文件</td>
+</tr>
+<tr>
+<td><strong>团队协作</strong></td>
+<td>不同开发者可以并行开发不同模块</td>
+</tr>
+<tr>
+<td><strong>封装性</strong></td>
+<td>用 <code>static</code> 隐藏内部实现细节</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/System-Programming/" rel="tag"># System Programming</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/05/25/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module5-%E6%95%B0%E7%BB%84/" rel="prev" title="System-Programming-Module5">
+                  <i class="fa fa-angle-left"></i> System-Programming-Module5
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/05/26/%E7%AE%97%E6%B3%95/Algorithm-Moudle1-%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" rel="next" title="Algorithm-Module1">
+                  Algorithm-Module1 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
