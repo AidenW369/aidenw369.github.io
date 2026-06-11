@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="递归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System-Programming-Module9">
+<meta property="og:url" content="http://example.com/2026/06/10/%E7%AE%97%E6%B3%95/System-Programming-Module9-%E9%80%92%E5%BD%92/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="递归">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-06-10T10:23:44.000Z">
+<meta property="article:modified_time" content="2026-06-11T09:51:48.207Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="System Programming">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/06/10/%E7%AE%97%E6%B3%95/System-Programming-Module9-%E9%80%92%E5%BD%92/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/06/10/%E7%AE%97%E6%B3%95/System-Programming-Module9-%E9%80%92%E5%BD%92/","path":"2026/06/10/算法/System-Programming-Module9-递归/","title":"System-Programming-Module9"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>System-Programming-Module9 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">递归</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#9-1-%E9%80%92%E5%BD%92%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">9.1 递归简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-2-%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">9.2 递归函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%A6%81%E7%B4%A0"><span class="nav-number">1.2.1.</span> <span class="nav-text">递归函数的两个核心要素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E7%A4%BA%E4%BE%8B%EF%BC%9A%E9%98%B6%E4%B9%98"><span class="nav-number">1.2.2.</span> <span class="nav-text">经典示例：阶乘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%A6%E4%B8%80%E4%B8%AA%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97"><span class="nav-number">1.2.3.</span> <span class="nav-text">另一个示例：斐波那契数列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.2.4.</span> <span class="nav-text">递归的优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.2.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-3-%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%EF%BC%9A%E6%90%9C%E7%B4%A2"><span class="nav-number">1.3.</span> <span class="nav-text">9.3 递归算法：搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.3.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-3-1-%E5%B8%B8%E8%A7%81%E9%80%92%E5%BD%92%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">9.3.1 常见递归搜索算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%BA%BF%E6%80%A7%E9%80%92%E5%BD%92%E6%90%9C%E7%B4%A2%EF%BC%88Linear-Search%EF%BC%89"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1. 线性递归搜索（Linear Search）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BA%8C%E5%88%86%E9%80%92%E5%BD%92%E6%90%9C%E7%B4%A2%EF%BC%88Binary-Search%EF%BC%89"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2. 二分递归搜索（Binary Search）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%A0%91-%E5%9B%BE%E7%9A%84%E9%80%92%E5%BD%92%E6%90%9C%E7%B4%A2%EF%BC%88DFS-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%89"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3. 树&#x2F;图的递归搜索（DFS 深度优先搜索）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%AF%B9%E6%AF%94"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">复杂度对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-2"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-4-%E6%B7%BB%E5%8A%A0%E7%94%A8%E4%BA%8E%E8%B0%83%E8%AF%95%E7%9A%84%E8%BE%93%E5%87%BA%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.4.</span> <span class="nav-text">9.4 添加用于调试的输出语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-printf-%E8%AF%AD%E5%8F%A5%EF%BC%88%E6%9C%80%E5%B8%B8%E7%94%A8%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. printf 语句（最常用）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-fprintf-stderr-%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. fprintf(stderr, ...) 语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E5%AE%8F%E5%AE%9A%E4%B9%89%E8%B0%83%E8%AF%95%E5%BC%80%E5%85%B3"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 使用宏定义调试开关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-assert-%E8%AF%AD%E5%8F%A5%EF%BC%88%E9%AA%8C%E8%AF%81%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. assert 语句（验证边界条件）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%AF%B9%E6%AF%94"><span class="nav-number">1.4.5.</span> <span class="nav-text">总结对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-5-%E5%88%9B%E5%BB%BA%E9%80%92%E5%BD%92%E5%87%BD%E6%95%B0"><span class="nav-number">1.5.</span> <span class="nav-text">9.5 创建递归函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-6-%E9%80%92%E5%BD%92%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.</span> <span class="nav-text">9.6 递归数学函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.6.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-6-1-%E7%BB%8F%E5%85%B8%E6%95%B0%E5%AD%A6%E9%80%92%E5%BD%92%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.6.2.</span> <span class="nav-text">9.6.1 经典数学递归示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%98%B6%E4%B9%98%EF%BC%88Factorial%EF%BC%89"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">1. 阶乘（Factorial）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%EF%BC%88Fibonacci%EF%BC%89"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">2. 斐波那契数列（Fibonacci）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B9%82%E8%BF%90%E7%AE%97%EF%BC%88Power%EF%BC%89"><span class="nav-number">1.6.2.3.</span> <span class="nav-text">3. 幂运算（Power）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%EF%BC%88GCD%EF%BC%8C%E8%BE%97%E8%BD%AC%E7%9B%B8%E9%99%A4%E6%B3%95%EF%BC%89"><span class="nav-number">1.6.2.4.</span> <span class="nav-text">4. 最大公约数（GCD，辗转相除法）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-3"><span class="nav-number">1.6.2.5.</span> <span class="nav-text">注意事项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-7-%E4%BD%BF%E7%94%A8%E9%80%92%E5%BD%92%E6%8E%A2%E7%B4%A2%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E6%80%A7"><span class="nav-number">1.7.</span> <span class="nav-text">9.7 使用递归探索所有可能性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3-2"><span class="nav-number">1.7.1.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A8%A1%E6%9D%BF"><span class="nav-number">1.7.2.</span> <span class="nav-text">基本模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E4%BE%8B%E5%AD%90%E4%B8%80%EF%BC%9A%E5%85%A8%E6%8E%92%E5%88%97"><span class="nav-number">1.7.3.</span> <span class="nav-text">经典例子一：全排列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E4%BE%8B%E5%AD%90%E4%BA%8C%EF%BC%9A%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.4.</span> <span class="nav-text">经典例子二：八皇后问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E8%A6%81%E7%82%B9%E6%80%BB%E7%BB%93"><span class="nav-number">1.7.5.</span> <span class="nav-text">关键要点总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.7.6.</span> <span class="nav-text">适用场景</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/06/10/%E7%AE%97%E6%B3%95/System-Programming-Module9-%E9%80%92%E5%BD%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="System-Programming-Module9 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          System-Programming-Module9
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-06-10 18:23:44" itemprop="dateCreated datePublished" datetime="2026-06-10T18:23:44+08:00">2026-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-06-11 17:51:48" itemprop="dateModified" datetime="2026-06-11T17:51:48+08:00">2026-06-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/System-Programming/" itemprop="url" rel="index"><span itemprop="name">System Programming</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>递归<span id="more"></span></h1>
+<h2 id="9-1-递归简介">9.1 递归简介</h2>
+<p>略。</p>
+<h2 id="9-2-递归函数">9.2 递归函数</h2>
+<p>递归函数是C语言中一个函数<strong>调用自身</strong>的编程技术。它将复杂问题分解为更小的同类子问题，直到达到一个&quot;基本情况&quot;（base case）为止。</p>
+<h4 id="递归函数的两个核心要素">递归函数的两个核心要素</h4>
+<p><strong>基本情况（Base Case）</strong>：终止递归的条件，防止无限循环。</p>
+<p><strong>递归情况（Recursive Case）</strong>：函数调用自身，每次调用使问题规模缩小。</p>
+<h4 id="经典示例：阶乘">经典示例：阶乘</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="comment">// 基本情况</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span> || n == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 递归情况：n! = n × (n-1)!</span></span><br><span class="line">    <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, factorial(<span class="number">5</span>)); <span class="comment">// 输出 120</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="另一个示例：斐波那契数列">另一个示例：斐波那契数列</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">fibonacci</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;           <span class="comment">// 基本情况</span></span><br><span class="line">    <span class="keyword">return</span> fibonacci(n<span class="number">-1</span>) + fibonacci(n<span class="number">-2</span>); <span class="comment">// 递归情况</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="递归的优缺点">递归的优缺点</h4>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码简洁，逻辑清晰</td>
+<td>每次调用消耗栈内存</td>
+</tr>
+<tr>
+<td>非常适合树、图等结构</td>
+<td>深度过大可能导致<strong>栈溢出</strong></td>
+</tr>
+<tr>
+<td>分治算法的自然表达</td>
+<td>可能存在重复计算（如斐波那契）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="注意事项">注意事项</h4>
+<ul>
+<li><strong>必须有终止条件</strong>，否则会无限递归导致程序崩溃。</li>
+<li>递归深度过大时，考虑改用**迭代（循环）*<em>或*<em>尾递归优化</em></em>。</li>
+<li>对于斐波那契等重复子问题，可以用<strong>动态规划</strong>提升效率。</li>
+</ul>
+<h2 id="9-3-递归算法：搜索">9.3 递归算法：搜索</h2>
+<p>递归搜索算法是指函数<strong>调用自身</strong>来解决问题的算法。它将一个大问题分解为若干个相同结构的小问题，直到达到**基本情况（base case）**为止。</p>
+<h4 id="核心思想">核心思想</h4>
+<p>每个递归函数包含两部分：</p>
+<ol>
+<li><strong>基本情况（Base Case）</strong>：递归终止的条件，防止无限循环。</li>
+<li><strong>递归情况（Recursive Case）</strong>：调用自身，缩小问题规模。</li>
+</ol>
+<h3 id="9-3-1-常见递归搜索算法">9.3.1 常见递归搜索算法</h3>
+<h4 id="1-线性递归搜索（Linear-Search）">1. 线性递归搜索（Linear Search）</h4>
+<p>在数组中逐个查找目标值：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">linearSearch</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> size, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="comment">// 基本情况：数组为空，未找到</span></span><br><span class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 找到目标</span></span><br><span class="line">    <span class="keyword">if</span> (arr[<span class="number">0</span>] == target) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 递归搜索剩余部分</span></span><br><span class="line">    <span class="type">int</span> result = linearSearch(arr + <span class="number">1</span>, size - <span class="number">1</span>, target);</span><br><span class="line">    <span class="keyword">return</span> (result == <span class="number">-1</span>) ? <span class="number">-1</span> : result + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> arr[] = &#123;<span class="number">3</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="type">int</span> idx = linearSearch(arr, <span class="number">5</span>, <span class="number">9</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;找到位置: %d\n&quot;</span>, idx); <span class="comment">// 输出: 3</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-二分递归搜索（Binary-Search）">2. 二分递归搜索（Binary Search）</h4>
+<p>在<strong>有序数组</strong>中使用，每次将搜索范围缩小一半，效率更高：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">binarySearch</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> target)</span> &#123;</span><br><span class="line">    <span class="comment">// 基本情况：范围无效</span></span><br><span class="line">    <span class="keyword">if</span> (left &gt; right) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (arr[mid] == target) <span class="keyword">return</span> mid;         <span class="comment">// 找到</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; target)</span><br><span class="line">        <span class="keyword">return</span> binarySearch(arr, left, mid - <span class="number">1</span>, target);  <span class="comment">// 搜索左半部分</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> binarySearch(arr, mid + <span class="number">1</span>, right, target); <span class="comment">// 搜索右半部分</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">11</span>&#125;;</span><br><span class="line">    <span class="type">int</span> idx = binarySearch(arr, <span class="number">0</span>, <span class="number">5</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;找到位置: %d\n&quot;</span>, idx); <span class="comment">// 输出: 3</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-树-图的递归搜索（DFS-深度优先搜索）">3. 树/图的递归搜索（DFS 深度优先搜索）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAX 5</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> graph[MAX][MAX] = &#123;</span><br><span class="line">    &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">    &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>&#125;,</span><br><span class="line">    &#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,</span><br><span class="line">    &#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;,</span><br><span class="line">    &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">int</span> visited[MAX] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span> node)</span> &#123;</span><br><span class="line">    visited[node] = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;访问节点: %d\n&quot;</span>, node);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; MAX; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (graph[node][i] == <span class="number">1</span> &amp;&amp; !visited[i]) &#123;</span><br><span class="line">            dfs(i); <span class="comment">// 递归访问邻居节点</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    dfs(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="复杂度对比">复杂度对比</h4>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线性搜索</td>
+<td>O(n)</td>
+<td>O(n)</td>
+<td>无序数组</td>
+</tr>
+<tr>
+<td>二分搜索</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+<td>有序数组</td>
+</tr>
+<tr>
+<td>DFS</td>
+<td>O(V+E)</td>
+<td>O(V)</td>
+<td>树/图结构</td>
+</tr>
+</tbody>
+</table>
+<h4 id="注意事项-2">注意事项</h4>
+<ul>
+<li><strong>必须有终止条件</strong>，否则会导致<strong>栈溢出（Stack Overflow）</strong></li>
+<li>递归深度过大时，考虑改用**迭代（循环）**实现</li>
+<li>每次递归调用都会消耗<strong>栈内存</strong>，注意效率</li>
+</ul>
+<h2 id="9-4-添加用于调试的输出语句">9.4 添加用于调试的输出语句</h2>
+<p>在C语言中，调试递归函数常用以下几种方法：</p>
+<h4 id="1-printf-语句（最常用）">1. <code>printf</code> 语句（最常用）</h4>
+<p>最直接的方式，在递归函数的关键位置插入打印语句：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> depth)</span> &#123;</span><br><span class="line">    <span class="comment">// 打印缩进，直观展示递归深度</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; depth; i++) <span class="built_in">printf</span>(<span class="string">&quot;  &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;→ factorial(%d) 被调用\n&quot;</span>, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; depth; i++) <span class="built_in">printf</span>(<span class="string">&quot;  &quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;← 返回 1\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> result = n * factorial(n - <span class="number">1</span>, depth + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; depth; i++) <span class="built_in">printf</span>(<span class="string">&quot;  &quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;← factorial(%d) 返回 %d\n&quot;</span>, n, result);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">→ factorial(4) 被调用</span><br><span class="line">  → factorial(3) 被调用</span><br><span class="line">    → factorial(2) 被调用</span><br><span class="line">      → factorial(1) 被调用</span><br><span class="line">      ← 返回 1</span><br><span class="line">    ← factorial(2) 返回 2</span><br><span class="line">  ← factorial(3) 返回 6</span><br><span class="line">← factorial(4) 返回 24</span><br></pre></td></tr></table></figure>
+<h4 id="2-fprintf-stderr-语句">2. <code>fprintf(stderr, ...)</code> 语句</h4>
+<p>将调试信息输出到标准错误流，与正常输出分离：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;[DEBUG] n=%d\n&quot;</span>, n);</span><br></pre></td></tr></table></figure>
+<p>好处是调试信息和程序正常输出不会混在一起。</p>
+<h4 id="3-使用宏定义调试开关">3. 使用宏定义调试开关</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> DEBUG 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DBG(fmt, ...) \</span></span><br><span class="line"><span class="meta">    <span class="keyword">if</span> (DEBUG) fprintf(stderr, <span class="string">&quot;[DEBUG] &quot;</span> fmt <span class="string">&quot;\n&quot;</span>, ##__VA_ARGS__)</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">fib</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    DBG(<span class="string">&quot;fib(%d) 调用&quot;</span>, n);</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">return</span> fib(n<span class="number">-1</span>) + fib(n<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当不需要调试时，只需将 <code>#define DEBUG 0</code> 即可关闭所有输出。</p>
+<h4 id="4-assert-语句（验证边界条件）">4. <code>assert</code> 语句（验证边界条件）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    assert(n &gt;= <span class="number">0</span>);  <span class="comment">// 确保输入合法</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="总结对比">总结对比</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用途</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>printf</code></td>
+<td>追踪调用过程</td>
+<td>简单直接</td>
+</tr>
+<tr>
+<td><code>fprintf(stderr)</code></td>
+<td>分离调试输出</td>
+<td>不干扰正常输出</td>
+</tr>
+<tr>
+<td>宏 <code>DEBUG</code></td>
+<td>批量开关调试</td>
+<td>便于发布时关闭</td>
+</tr>
+<tr>
+<td><code>assert</code></td>
+<td>验证前置条件</td>
+<td>违反时自动终止</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>最推荐的方式是结合<strong>缩进层级</strong>和 <code>fprintf(stderr)</code> 来可视化递归的调用栈，这样能最清晰地看出递归的展开与回溯过程。</li>
+</ul>
+<h2 id="9-5-创建递归函数">9.5 创建递归函数</h2>
+<p>略。</p>
+<h2 id="9-6-递归数学函数">9.6 递归数学函数</h2>
+<p>递归数学函数是指<strong>函数调用自身</strong>来解决问题的编程方式。在C语言中，递归函数通常对应数学上的递推定义。</p>
+<h4 id="基本概念">基本概念</h4>
+<p>一个递归函数由两部分组成：</p>
+<ol>
+<li><strong>基础情况（Base Case）</strong>：终止递归的条件，防止无限循环。</li>
+<li><strong>递归情况（Recursive Case）</strong>：函数调用自身，每次向基础情况靠近。</li>
+</ol>
+<h3 id="9-6-1-经典数学递归示例">9.6.1 经典数学递归示例</h3>
+<h4 id="1-阶乘（Factorial）">1. 阶乘（Factorial）</h4>
+<p>数学定义：</p>
+<ul>
+<li><code>0! = 1</code></li>
+<li><code>n! = n × (n-1)!</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;       <span class="comment">// 基础情况</span></span><br><span class="line">    <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>); <span class="comment">// 递归情况</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-斐波那契数列（Fibonacci）">2. 斐波那契数列（Fibonacci）</h4>
+<p>数学定义：</p>
+<ul>
+<li><code>F(0) = 0, F(1) = 1</code></li>
+<li><code>F(n) = F(n-1) + F(n-2)</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">fibonacci</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="3-幂运算（Power）">3. 幂运算（Power）</h4>
+<p>数学定义：</p>
+<ul>
+<li><code>x⁰ = 1</code></li>
+<li><code>xⁿ = x × xⁿ⁻¹</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="title function_">power</span><span class="params">(<span class="type">double</span> x, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> x * power(x, n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-最大公约数（GCD，辗转相除法）">4. 最大公约数（GCD，辗转相除法）</h4>
+<p>数学定义（欧几里得算法）：</p>
+<ul>
+<li><code>gcd(a, 0) = a</code></li>
+<li><code>gcd(a, b) = gcd(b, a % b)</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">gcd</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="number">0</span>) <span class="keyword">return</span> a;</span><br><span class="line">    <span class="keyword">return</span> gcd(b, a % b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="注意事项-3">注意事项</h4>
+<table>
+<thead>
+<tr>
+<th>注意点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>必须有基础情况</strong></td>
+<td>否则会无限递归，导致栈溢出</td>
+</tr>
+<tr>
+<td><strong>每次递归需向基础情况靠近</strong></td>
+<td>否则永远无法终止</td>
+</tr>
+<tr>
+<td><strong>性能问题</strong></td>
+<td>如斐波那契，存在大量重复计算，可用<strong>记忆化</strong>或<strong>迭代</strong>优化</td>
+</tr>
+<tr>
+<td><strong>栈空间有限</strong></td>
+<td>递归深度过大会导致 Stack Overflow</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-7-使用递归探索所有可能性">9.7 使用递归探索所有可能性</h2>
+<p>递归探索所有可能性，也叫<strong>递归枚举</strong>或<strong>回溯法（Backtracking）</strong>，是一种通过递归函数系统地遍历所有可能状态的算法思想。</p>
+<h4 id="核心思想-2">核心思想</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">从初始状态出发</span><br><span class="line">    → 做一个选择</span><br><span class="line">        → 递归进入下一层</span><br><span class="line">            → 撤销选择（回溯）</span><br><span class="line">    → 尝试下一个选择</span><br><span class="line">直到找到解 / 遍历完所有可能</span><br></pre></td></tr></table></figure>
+<h4 id="基本模板">基本模板</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">backtrack</span><span class="params">(<span class="type">int</span> step, <span class="comment">/* 其他参数 */</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 1. 终止条件（边界）</span></span><br><span class="line">    <span class="keyword">if</span> (step == 目标) &#123;</span><br><span class="line">        记录或输出结果;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 遍历所有选择</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; 选择数; i++) &#123;</span><br><span class="line">        做选择(i);           <span class="comment">// 修改状态</span></span><br><span class="line">        backtrack(step + <span class="number">1</span>); <span class="comment">// 递归下一层</span></span><br><span class="line">        撤销选择(i);         <span class="comment">// 恢复状态（回溯）</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="经典例子一：全排列">经典例子一：全排列</h4>
+<p>将 <code>{1, 2, 3}</code> 的所有排列打印出来：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> arr[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="type">int</span> used[<span class="number">3</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">int</span> result[<span class="number">3</span>];</span><br><span class="line"><span class="type">int</span> n = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">permute</span><span class="params">(<span class="type">int</span> step)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (step == n) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, result[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!used[i]) &#123;</span><br><span class="line">            used[i] = <span class="number">1</span>;          <span class="comment">// 做选择</span></span><br><span class="line">            result[step] = arr[i];</span><br><span class="line">            permute(step + <span class="number">1</span>);    <span class="comment">// 递归</span></span><br><span class="line">            used[i] = <span class="number">0</span>;          <span class="comment">// 撤销选择</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    permute(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="经典例子二：八皇后问题">经典例子二：八皇后问题</h4>
+<p>在 8×8 棋盘上放置 8 个皇后，使其互不攻击：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> N 8</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> board[N]; <span class="comment">// board[i] 表示第i行皇后在第几列</span></span><br><span class="line"><span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">isSafe</span><span class="params">(<span class="type">int</span> row, <span class="type">int</span> col)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; row; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (board[i] == col) <span class="keyword">return</span> <span class="number">0</span>;              <span class="comment">// 同列</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">abs</span>(board[i] - col) == <span class="built_in">abs</span>(i - row)) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">// 同对角线</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">solve</span><span class="params">(<span class="type">int</span> row)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (row == N) &#123;</span><br><span class="line">        count++;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> col = <span class="number">0</span>; col &lt; N; col++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isSafe(row, col)) &#123;</span><br><span class="line">            board[row] = col;   <span class="comment">// 做选择</span></span><br><span class="line">            solve(row + <span class="number">1</span>);     <span class="comment">// 递归</span></span><br><span class="line">            <span class="comment">// 无需显式撤销，下次循环会覆盖</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    solve(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;共有 %d 种解法\n&quot;</span>, count); <span class="comment">// 输出：92</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关键要点总结">关键要点总结</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>递归边界</strong></td>
+<td>何时停止递归（找到解 / 越界）</td>
+</tr>
+<tr>
+<td><strong>做选择</strong></td>
+<td>修改状态，进入下一层</td>
+</tr>
+<tr>
+<td><strong>撤销选择</strong></td>
+<td>回溯，恢复到上一层状态</td>
+</tr>
+<tr>
+<td><strong>剪枝</strong></td>
+<td>提前排除不可能的分支，提高效率</td>
+</tr>
+</tbody>
+</table>
+<h4 id="适用场景">适用场景</h4>
+<ul>
+<li>排列 / 组合问题</li>
+<li>迷宫路径搜索</li>
+<li>数独、八皇后</li>
+<li>子集枚举</li>
+<li>图的深度优先搜索（DFS）</li>
+</ul>
+<p>递归穷举的时间复杂度通常较高（指数级），因此<strong>剪枝优化</strong>非常重要。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/System-Programming/" rel="tag"># System Programming</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/06/05/%E7%AE%97%E6%B3%95/Algorithm-Moudle4-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" rel="prev" title="Algorithm-Module4">
+                  <i class="fa fa-angle-left"></i> Algorithm-Module4
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/06/11/%E7%AE%97%E6%B3%95/System-Programming-Module10-%E6%90%9C%E7%B4%A2%E5%92%8C%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="next" title="System-Programming-Module10">
+                  System-Programming-Module10 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
