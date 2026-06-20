@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="输入&#x2F;输出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="System-Programming-Module11">
+<meta property="og:url" content="http://example.com/2026/06/20/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module11-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="输入&#x2F;输出">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-06-20T01:32:38.000Z">
+<meta property="article:modified_time" content="2026-06-20T02:46:23.542Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="System Programming">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/06/20/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module11-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/06/20/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module11-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/","path":"2026/06/20/系统编程/System-Programming-Module11-输入输出/","title":"System-Programming-Module11"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>System-Programming-Module11 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">输入&#x2F;输出</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%96%87%E4%BB%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.1.</span> <span class="nav-text">11.1 标准输入输出文件指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-1-C-%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84-stdout-%E5%92%8C-stdin-%E6%96%87%E4%BB%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.1.1.</span> <span class="nav-text">11.1.1 C 语言中的 stdout 和 stdin 文件指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E6%A0%87%E5%87%86%E6%B5%81"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">三个标准流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-2-stdin%EF%BC%88%E6%A0%87%E5%87%86%E8%BE%93%E5%85%A5%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">11.1.2 stdin（标准输入）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-3-stdout%EF%BC%88%E6%A0%87%E5%87%86%E8%BE%93%E5%87%BA%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">11.1.3 stdout（标准输出）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%AB%EF%BC%9Astdout-vs-stderr"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">一个关键区别：stdout vs stderr</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-1-4-%E9%87%8D%E5%AE%9A%E5%90%91%EF%BC%88Redirection%EF%BC%89"><span class="nav-number">1.1.4.</span> <span class="nav-text">11.1.4 重定向（Redirection）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%83%E4%BB%AC%E6%9C%AC%E8%B4%A8%E4%B8%8A%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">它们本质上是什么？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">11.2 输出格式化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%A0%BC%E5%BC%8F%E8%AF%B4%E6%98%8E%E7%AC%A6"><span class="nav-number">1.2.2.</span> <span class="nav-text">常用格式说明符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B2%BE%E7%BB%86%E6%8E%A7%E5%88%B6-%E5%AE%BD%E5%BA%A6%E3%80%81%E7%B2%BE%E5%BA%A6%E3%80%81%E5%AF%B9%E9%BD%90"><span class="nav-number">1.2.3.</span> <span class="nav-text">精细控制(宽度、精度、对齐)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="nav-number">1.2.4.</span> <span class="nav-text">实际应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90"><span class="nav-number">1.3.</span> <span class="nav-text">11.3 输入解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E8%A7%A3%E6%9E%90%EF%BC%9F"><span class="nav-number">1.3.1.</span> <span class="nav-text">11.3.1 为什么需要输入解析？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-2-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E5%B8%B8%E7%94%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">11.3.2 C语言中常用的解析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-scanf-fscanf-sscanf%EF%BC%88%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%85%A5%EF%BC%89"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1. scanf &#x2F; fscanf &#x2F; sscanf（格式化输入）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-fgets-%E6%89%8B%E5%8A%A8%E8%A7%A3%E6%9E%90%EF%BC%88%E6%9B%B4%E5%AE%89%E5%85%A8%E3%80%81%E6%9B%B4%E5%8F%AF%E6%8E%A7%EF%BC%89"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2. fgets + 手动解析（更安全、更可控）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3. 字符串转换函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-strtok%EF%BC%88%E6%8C%89%E5%88%86%E9%9A%94%E7%AC%A6%E5%88%87%E5%88%86%EF%BC%89"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">4. strtok（按分隔符切分）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-3-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.3.3.</span> <span class="nav-text">11.3.3 完整示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E5%92%8C%E8%BE%93%E5%87%BA"><span class="nav-number">1.4.</span> <span class="nav-text">11.4 文件输入和输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5%EF%BC%9A%E6%96%87%E4%BB%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.4.1.</span> <span class="nav-text">核心概念：文件指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-1-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">11.4.1 基本操作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6-fopen"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">1. 打开文件 fopen()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AF%BB%E5%86%99%E6%95%B0%E6%8D%AE"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">2. 读写数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%85%B3%E9%97%AD%E6%96%87%E4%BB%B6-fclose"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">3. 关闭文件 fclose()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-4-2-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.4.3.</span> <span class="nav-text">11.4.2 完整示例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A5%E5%85%85%E8%A6%81%E7%82%B9"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">补充要点</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/06/20/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module11-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="System-Programming-Module11 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          System-Programming-Module11
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-06-20 09:32:38 / Modified: 10:46:23" itemprop="dateCreated datePublished" datetime="2026-06-20T09:32:38+08:00">2026-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/System-Programming/" itemprop="url" rel="index"><span itemprop="name">System Programming</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>输入/输出<span id="more"></span></h1>
+<h2 id="11-1-标准输入输出文件指针">11.1 标准输入输出文件指针</h2>
+<h3 id="11-1-1-C-语言中的-stdout-和-stdin-文件指针">11.1.1 C 语言中的 stdout 和 stdin 文件指针</h3>
+<p>在 C 语言中，<code>stdin</code>、<code>stdout</code> 和 <code>stderr</code> 是三个标准的<strong>文件指针</strong>（类型为 <code>FILE *</code>），它们定义在 <code>&lt;stdio.h&gt;</code> 头文件中。当程序启动时，这三个流会被自动打开，不需要你手动调用 <code>fopen</code>。</p>
+<h4 id="三个标准流">三个标准流</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>全称</th>
+<th>默认指向</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stdin</code></td>
+<td>standard input</td>
+<td>键盘</td>
+<td>标准输入</td>
+</tr>
+<tr>
+<td><code>stdout</code></td>
+<td>standard output</td>
+<td>屏幕（终端）</td>
+<td>标准输出</td>
+</tr>
+<tr>
+<td><code>stderr</code></td>
+<td>standard error</td>
+<td>屏幕（终端）</td>
+<td>标准错误输出</td>
+</tr>
+</tbody>
+</table>
+<h3 id="11-1-2-stdin（标准输入）">11.1.2 stdin（标准输入）</h3>
+<p><code>stdin</code> 是程序读取输入数据的来源，默认连接到键盘。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;请输入你的名字: &quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 下面两种写法是等价的</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>, name);           <span class="comment">// 隐式从 stdin 读取</span></span><br><span class="line">    <span class="built_in">fscanf</span>(<span class="built_in">stdin</span>, <span class="string">&quot;%s&quot;</span>, name);   <span class="comment">// 显式从 stdin 读取</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>像 <code>scanf</code>、<code>getchar</code>、<code>gets</code> 这类函数，本质上都是从 <code>stdin</code> 读取数据。</p>
+<h3 id="11-1-3-stdout（标准输出）">11.1.3 stdout（标准输出）</h3>
+<p><code>stdout</code> 是程序输出正常结果的目标，默认连接到屏幕。它通常是<strong>带缓冲的</strong>（行缓冲或全缓冲）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="comment">// 下面两种写法是等价的</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Hello\n&quot;</span>);                  <span class="comment">// 隐式输出到 stdout</span></span><br><span class="line">    <span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">&quot;Hello\n&quot;</span>);         <span class="comment">// 显式输出到 stdout</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">fputs</span>(<span class="string">&quot;World\n&quot;</span>, <span class="built_in">stdout</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>printf</code>、<code>putchar</code>、<code>puts</code> 实际上都是把数据写入 <code>stdout</code>。</p>
+<h4 id="一个关键区别：stdout-vs-stderr">一个关键区别：stdout vs stderr</h4>
+<ul>
+<li><strong><code>stdout</code></strong> 用于程序的正常输出，通常<strong>带缓冲</strong>（数据可能先存在缓冲区，等满了或遇到换行才真正显示）。</li>
+<li><strong><code>stderr</code></strong> 用于错误信息，通常<strong>不带缓冲</strong>（立即输出），这样即使程序崩溃，错误信息也不会丢失。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stdout</span>, <span class="string">&quot;正常信息\n&quot;</span>);   <span class="comment">// 可能被缓冲</span></span><br><span class="line"><span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;错误信息\n&quot;</span>);   <span class="comment">// 立即输出</span></span><br></pre></td></tr></table></figure>
+<h3 id="11-1-4-重定向（Redirection）">11.1.4 重定向（Redirection）</h3>
+<p>这三个流的强大之处在于它们可以被<strong>重定向</strong>。在命令行中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./program &lt; input.txt      <span class="comment"># 把 stdin 重定向为读取文件</span></span><br><span class="line">./program &gt; output.txt     <span class="comment"># 把 stdout 重定向写入文件</span></span><br><span class="line">./program 2&gt; error.txt     <span class="comment"># 把 stderr（文件描述符 2）重定向</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>程序代码不需要任何改动，就能从文件读取或写入文件，因为流的&quot;目标&quot;在程序外部被改变了。</li>
+</ul>
+<h4 id="它们本质上是什么？">它们本质上是什么？</h4>
+<p>它们是指向 <code>FILE</code> 结构体的指针。在标准库内部，通常这样实现（简化示意）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> FILE *<span class="built_in">stdin</span>;    <span class="comment">// 文件描述符 0</span></span><br><span class="line"><span class="keyword">extern</span> FILE *<span class="built_in">stdout</span>;   <span class="comment">// 文件描述符 1</span></span><br><span class="line"><span class="keyword">extern</span> FILE *<span class="built_in">stderr</span>;   <span class="comment">// 文件描述符 2</span></span><br></pre></td></tr></table></figure>
+<p>底层对应着操作系统的三个标准<strong>文件描述符</strong>（0、1、2），而 <code>FILE *</code> 是 C 标准库在它们之上封装的、带缓冲管理的高层抽象。</p>
+<h2 id="11-2-输出格式化">11.2 输出格式化</h2>
+<p>C语言的 Output formatting(输出格式化)指的是控制数据如何显示到屏幕或文件中的方式。它主要通过 <code>printf</code> 系列函数和**格式说明符(format specifier)**来实现。</p>
+<h4 id="核心概念">核心概念</h4>
+<p>格式化输出的核心是 <code>printf</code> 函数,它的工作方式是:在字符串中放入以 <code>%</code> 开头的&quot;占位符&quot;,然后把后面的参数按指定格式填进去。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> age = <span class="number">25</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;我今年 %d 岁\n&quot;</span>, age);   <span class="comment">// 输出:我今年 25 岁</span></span><br></pre></td></tr></table></figure>
+<p>这里的 <code>%d</code> 就是格式说明符,表示&quot;在这个位置放一个十进制整数&quot;。</p>
+<h4 id="常用格式说明符">常用格式说明符</h4>
+<table>
+<thead>
+<tr>
+<th>说明符</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>%d</code> / <code>%i</code></td>
+<td>十进制整数</td>
+<td><code>printf(&quot;%d&quot;, 42)</code> → <code>42</code></td>
+</tr>
+<tr>
+<td><code>%f</code></td>
+<td>浮点数(小数)</td>
+<td><code>printf(&quot;%f&quot;, 3.14)</code> → <code>3.140000</code></td>
+</tr>
+<tr>
+<td><code>%c</code></td>
+<td>单个字符</td>
+<td><code>printf(&quot;%c&quot;, 'A')</code> → <code>A</code></td>
+</tr>
+<tr>
+<td><code>%s</code></td>
+<td>字符串</td>
+<td><code>printf(&quot;%s&quot;, &quot;hi&quot;)</code> → <code>hi</code></td>
+</tr>
+<tr>
+<td><code>%x</code></td>
+<td>十六进制</td>
+<td><code>printf(&quot;%x&quot;, 255)</code> → <code>ff</code></td>
+</tr>
+<tr>
+<td><code>%o</code></td>
+<td>八进制</td>
+<td><code>printf(&quot;%o&quot;, 8)</code> → <code>10</code></td>
+</tr>
+<tr>
+<td><code>%e</code></td>
+<td>科学计数法</td>
+<td><code>printf(&quot;%e&quot;, 1234.0)</code> → <code>1.234000e+03</code></td>
+</tr>
+<tr>
+<td><code>%%</code></td>
+<td>输出百分号本身</td>
+<td><code>printf(&quot;%%&quot;)</code> → <code>%</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="精细控制-宽度、精度、对齐">精细控制(宽度、精度、对齐)</h4>
+<p>格式说明符还可以加上修饰来控制具体样式,完整结构是:<code>%[标志][宽度][.精度][长度]类型</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 控制小数位数</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%.2f\n&quot;</span>, <span class="number">3.14159</span>);    <span class="comment">// 输出:3.14(保留2位小数)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 控制宽度(右对齐,默认)</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%5d\n&quot;</span>, <span class="number">42</span>);          <span class="comment">// 输出:   42(总宽5,前面补空格)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 左对齐(用负号)</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%-5d|\n&quot;</span>, <span class="number">42</span>);        <span class="comment">// 输出:42   |</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 用0填充</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%05d\n&quot;</span>, <span class="number">42</span>);         <span class="comment">// 输出:00042</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 组合使用</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%8.2f\n&quot;</span>, <span class="number">3.14159</span>);   <span class="comment">// 输出:    3.14(总宽8,2位小数)</span></span><br></pre></td></tr></table></figure>
+<h4 id="实际应用">实际应用</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">char</span> name[] = <span class="string">&quot;小明&quot;</span>;</span><br><span class="line">    <span class="type">int</span> score = <span class="number">95</span>;</span><br><span class="line">    <span class="type">double</span> avg = <span class="number">88.6666</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;姓名:%s\n&quot;</span>, name);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;分数:%d\n&quot;</span>, score);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;平均分:%.1f\n&quot;</span>, avg);   <span class="comment">// 88.7</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="11-3-输入解析">11.3 输入解析</h2>
+<p><strong>Input parsing（输入解析）</strong> 指的是程序读取输入数据，并把它从原始的文本/字节流，转换成程序可以使用的、有意义的数据结构（如整数、浮点数、字符串、字段等）的过程。</p>
+<p>简单说就是：<strong>把&quot;一堆字符&quot; → 解析成&quot;有用的数据&quot;</strong>。</p>
+<h3 id="11-3-1-为什么需要输入解析？">11.3.1 为什么需要输入解析？</h3>
+<p>程序从键盘、文件或网络读到的数据，本质上都是 <strong>字符序列（文本）</strong>。例如用户输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">25 3.14 hello</span><br></pre></td></tr></table></figure>
+<p>这只是一串字符 <code>'2','5',' ','3',...</code>。程序需要把它解析成：</p>
+<ul>
+<li>整数 <code>25</code></li>
+<li>浮点数 <code>3.14</code></li>
+<li>字符串 <code>&quot;hello&quot;</code></li>
+</ul>
+<p>这个转换过程就是 input parsing。</p>
+<h3 id="11-3-2-C语言中常用的解析方法">11.3.2 C语言中常用的解析方法</h3>
+<h4 id="1-scanf-fscanf-sscanf（格式化输入）">1. <code>scanf</code> / <code>fscanf</code> / <code>sscanf</code>（格式化输入）</h4>
+<p>最常用的方式，用格式说明符自动解析：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> age;</span><br><span class="line"><span class="type">float</span> pi;</span><br><span class="line"><span class="type">char</span> name[<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d %f %s&quot;</span>, &amp;age, &amp;pi, name);</span><br><span class="line"><span class="comment">// 输入 &quot;25 3.14 hello&quot;</span></span><br><span class="line"><span class="comment">// age=25, pi=3.14, name=&quot;hello&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>sscanf</code> 特别有用，它从<strong>字符串</strong>中解析（而非直接从输入流）：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> line[] = <span class="string">&quot;25 3.14 hello&quot;</span>;</span><br><span class="line"><span class="built_in">sscanf</span>(line, <span class="string">&quot;%d %f %s&quot;</span>, &amp;age, &amp;pi, name);</span><br></pre></td></tr></table></figure>
+<h4 id="2-fgets-手动解析（更安全、更可控）">2. <code>fgets</code> + 手动解析（更安全、更可控）</h4>
+<p>实际工程中，常先用 <code>fgets</code> 读一整行，再解析。这样能避免 <code>scanf</code> 的很多坑：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> buffer[<span class="number">256</span>];</span><br><span class="line">fgets(buffer, <span class="keyword">sizeof</span>(buffer), <span class="built_in">stdin</span>);</span><br><span class="line"><span class="comment">// 然后对 buffer 进行解析</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-字符串转换函数">3. 字符串转换函数</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>atoi</code></td>
+<td>字符串 → int（不推荐，无错误检测）</td>
+</tr>
+<tr>
+<td><code>strtol</code></td>
+<td>字符串 → long（<strong>推荐</strong>，可检测错误）</td>
+</tr>
+<tr>
+<td><code>strtod</code></td>
+<td>字符串 → double</td>
+</tr>
+<tr>
+<td><code>strtoul</code></td>
+<td>字符串 → unsigned long</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *str = <span class="string">&quot;123abc&quot;</span>;</span><br><span class="line"><span class="type">char</span> *end;</span><br><span class="line"><span class="type">long</span> num = strtol(str, &amp;end, <span class="number">10</span>);</span><br><span class="line"><span class="comment">// num = 123，end 指向 &quot;abc&quot;，可用于检测解析到哪里</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-strtok（按分隔符切分）">4. <code>strtok</code>（按分隔符切分）</h4>
+<p>把一行拆成多个字段（如解析 CSV）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> data[] = <span class="string">&quot;apple,banana,cherry&quot;</span>;</span><br><span class="line"><span class="type">char</span> *token = strtok(data, <span class="string">&quot;,&quot;</span>);</span><br><span class="line"><span class="keyword">while</span> (token != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, token);</span><br><span class="line">    token = strtok(<span class="literal">NULL</span>, <span class="string">&quot;,&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="11-3-3-完整示例">11.3.3 完整示例</h3>
+<p>解析一行 <code>name:age</code> 格式的输入：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">    <span class="type">char</span> line[<span class="number">100</span>];</span><br><span class="line">    fgets(line, <span class="keyword">sizeof</span>(line), <span class="built_in">stdin</span>);   <span class="comment">// 读一行</span></span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> name[<span class="number">50</span>];</span><br><span class="line">    <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 用 sscanf 解析，%[^:] 表示读到冒号为止</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">sscanf</span>(line, <span class="string">&quot;%49[^:]:%d&quot;</span>, name, &amp;age) == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;姓名: %s, 年龄: %d\n&quot;</span>, name, age);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;输入格式错误\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入 <code>Tom:25</code>，输出 <code>姓名: Tom, 年龄: 25</code>。</p>
+<h4 id="注意">注意</h4>
+<ol>
+<li><strong>检查返回值</strong>：<code>scanf</code>/<code>sscanf</code> 返回成功解析的项数，一定要检查它来判断解析是否成功。</li>
+<li><strong>缓冲区溢出</strong>：<code>%s</code> 要限定宽度（如 <code>%49s</code>），否则可能溢出。</li>
+<li><strong><code>scanf</code> 残留换行符</strong>：<code>%d</code> 后接 <code>%c</code> 容易读到残留的 <code>\n</code>，这是新手常见 bug。</li>
+<li><strong>优先用 <code>strtol</code> 而非 <code>atoi</code></strong>：因为 <code>atoi</code> 无法区分&quot;解析失败&quot;和&quot;输入就是0&quot;。</li>
+</ol>
+<h2 id="11-4-文件输入和输出">11.4 文件输入和输出</h2>
+<p>文件输入输出指的是程序与磁盘文件之间进行数据读写的操作。它让程序可以把数据<strong>永久保存</strong>到文件中（输出），或者从文件中<strong>读取</strong>已有的数据（输入），而不像变量那样在程序结束后就丢失。</p>
+<h4 id="核心概念：文件指针">核心概念：文件指针</h4>
+<p>在C语言中，对文件的所有操作都通过一个特殊的指针来完成，它的类型是 <code>FILE *</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FILE *fp;  <span class="comment">// 声明一个文件指针</span></span><br></pre></td></tr></table></figure>
+<p>这个指针指向一个包含文件信息的结构体（位置、状态等），相关定义都在 <code>&lt;stdio.h&gt;</code> 头文件中。</p>
+<h3 id="11-4-1-基本操作流程">11.4.1 基本操作流程</h3>
+<p>文件操作通常遵循三个步骤：<strong>打开 → 读/写 → 关闭</strong>。</p>
+<h4 id="1-打开文件-fopen">1. 打开文件 <code>fopen()</code></h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FILE *fp = fopen(<span class="string">&quot;data.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (fp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;无法打开文件\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;  <span class="comment">// 打开失败要做检查</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>常用的打开模式：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;r&quot;</code></td>
+<td>只读（文件必须已存在）</td>
+</tr>
+<tr>
+<td><code>&quot;w&quot;</code></td>
+<td>只写（清空原内容，不存在则创建）</td>
+</tr>
+<tr>
+<td><code>&quot;a&quot;</code></td>
+<td>追加（在末尾添加，不存在则创建）</td>
+</tr>
+<tr>
+<td><code>&quot;r+&quot;</code></td>
+<td>读写（文件必须存在）</td>
+</tr>
+<tr>
+<td><code>&quot;w+&quot;</code></td>
+<td>读写（清空原内容）</td>
+</tr>
+<tr>
+<td><code>&quot;rb&quot;</code>、<code>&quot;wb&quot;</code> 等</td>
+<td>加 <code>b</code> 表示二进制模式</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-读写数据">2. 读写数据</h4>
+<p>常用的函数有几类：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符级</span></span><br><span class="line"><span class="type">int</span>  <span class="title function_">fgetc</span><span class="params">(FILE *fp)</span>;                  <span class="comment">// 读一个字符</span></span><br><span class="line"><span class="type">int</span>  <span class="title function_">fputc</span><span class="params">(<span class="type">int</span> c, FILE *fp)</span>;           <span class="comment">// 写一个字符</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 字符串/行级</span></span><br><span class="line"><span class="type">char</span> *<span class="title function_">fgets</span><span class="params">(<span class="type">char</span> *str, <span class="type">int</span> n, FILE *fp)</span>;   <span class="comment">// 读一行</span></span><br><span class="line"><span class="type">int</span>   <span class="title function_">fputs</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *str, FILE *fp)</span>;    <span class="comment">// 写字符串</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 格式化（类似 printf/scanf）</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fprintf</span><span class="params">(FILE *fp, <span class="type">const</span> <span class="type">char</span> *format, ...)</span>;  <span class="comment">// 格式化写入</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">fscanf</span><span class="params">(FILE *fp, <span class="type">const</span> <span class="type">char</span> *format, ...)</span>;   <span class="comment">// 格式化读取</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 二进制块（适合结构体、数组）</span></span><br><span class="line"><span class="type">size_t</span> <span class="title function_">fread</span><span class="params">(<span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> n, FILE *fp)</span>;</span><br><span class="line"><span class="type">size_t</span> <span class="title function_">fwrite</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *ptr, <span class="type">size_t</span> size, <span class="type">size_t</span> n, FILE *fp)</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="3-关闭文件-fclose">3. 关闭文件 <code>fclose()</code></h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fclose(fp);  <span class="comment">// 释放资源，并把缓冲区数据真正写入磁盘</span></span><br></pre></td></tr></table></figure>
+<p>关闭很重要，因为写入的数据常常先存在缓冲区里，<code>fclose</code> 会确保它们被刷新（flush）到文件中。</p>
+<h3 id="11-4-2-完整示例">11.4.2 完整示例</h3>
+<p><strong>写入文件：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;hello.txt&quot;</span>, <span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;你好，文件！\n&quot;</span>);</span><br><span class="line">    <span class="built_in">fprintf</span>(fp, <span class="string">&quot;数字是 %d\n&quot;</span>, <span class="number">42</span>);</span><br><span class="line"></span><br><span class="line">    fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>读取文件：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    FILE *fp = fopen(<span class="string">&quot;hello.txt&quot;</span>, <span class="string">&quot;r&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span> line[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">while</span> (fgets(line, <span class="keyword">sizeof</span>(line), fp) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, line);  <span class="comment">// 逐行打印</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    fclose(fp);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="补充要点">补充要点</h4>
+<ul>
+<li><strong>EOF</strong>：读到文件末尾时，读取函数会返回 <code>EOF</code>（或 <code>fgets</code> 返回 <code>NULL</code>），常用来作为循环结束的判断条件。</li>
+<li><strong>文本模式 vs 二进制模式</strong>：文本模式会对换行符做转换（尤其在 Windows 上），二进制模式则原样读写，适合图片、结构体等数据。</li>
+<li><strong>标准流</strong>：<code>stdin</code>（标准输入）、<code>stdout</code>（标准输出）、<code>stderr</code>（标准错误）本身就是预先打开的 <code>FILE *</code>，所以 <code>printf</code> 其实等价于 <code>fprintf(stdout, ...)</code>。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/System-Programming/" rel="tag"># System Programming</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/06/15/%E7%AE%97%E6%B3%95/Algorithm-Moudle6-%E5%93%88%E5%B8%8C%E8%A1%A8/" rel="prev" title="Algorithm-Moudle6">
+                  <i class="fa fa-angle-left"></i> Algorithm-Moudle6
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/06/20/%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/System-Programming-Module12-%E8%A1%A5%E5%85%85%E5%86%85%E5%AE%B9/" rel="next" title="System-Programming-Module12">
+                  System-Programming-Module12 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
