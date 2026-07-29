@@ -131,7 +131,7 @@
             <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">并归排序和快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E4%B8%8E%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">8.1 归并排序与快速排序简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-1-%E6%8E%92%E5%BA%8F%E9%97%AE%E9%A2%98%EF%BC%88Sorting-Problem%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">8.1.1 排序问题（Sorting Problem）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-2-%E5%BA%94%E7%94%A8%E8%83%8C%E6%99%AF%EF%BC%9A%E5%80%92%E6%8E%92%E6%96%87%E4%BB%B6%EF%BC%88Inverted-File%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">8.1.2 应用背景：倒排文件（Inverted File）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E5%80%92%E6%8E%92%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1. 什么是倒排文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E5%BD%A2%E6%80%81"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">2. 原始数据形态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BB%8E-k-d-%E5%AF%B9%E5%88%B0%E5%80%92%E6%8E%92%E6%96%87%E4%BB%B6-%E2%80%94%E2%80%94-%E6%8E%92%E5%BA%8F%E7%99%BB%E5%9C%BA"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">3. 从 (k, d) 对到倒排文件 —— 排序登场</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AE%9E%E9%99%85%E5%B7%A5%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%94%B9%E8%BF%9B%EF%BC%9A%E5%AD%97%E5%85%B8%E5%BA%8F%EF%BC%88lexicographic%EF%BC%89%E6%8E%92%E5%BA%8F"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">4. 实际工程中的改进：字典序（lexicographic）排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-3-%E6%9C%AC%E7%AB%A0%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-number">1.1.3.</span> <span class="nav-text">8.1.3 本章的两个排序算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-4-%E9%85%8D%E5%9B%BE%E8%AF%B4%E6%98%8E"><span class="nav-number">1.1.4.</span> <span class="nav-text">8.1.4 配图说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">1.2.</span> <span class="nav-text">8.2 归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-1-%E5%88%86%E6%B2%BB%E8%8C%83%E5%BC%8F%EF%BC%88Divide-and-Conquer%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">8.2.1 分治范式（Divide-and-Conquer）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-2-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E7%9A%84%E4%B8%89%E6%AD%A5"><span class="nav-number">1.2.2.</span> <span class="nav-text">8.2.2 归并排序的三步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-3-merge-%E7%AE%97%E6%B3%95%EF%BC%88%E6%95%B0%E7%BB%84%E7%89%88%EF%BC%8C%E4%B8%8B%E6%A0%87%E4%BB%8E-1-%E5%BC%80%E5%A7%8B%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">8.2.3 merge 算法（数组版，下标从 1 开始）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-4-%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">1.2.4.</span> <span class="nav-text">8.2.4 复杂度分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-merge-%E7%9A%84%E6%97%B6%E9%97%B4"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">1. merge 的时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%A0%91%E7%9A%84%E5%88%86%E6%9E%90%EF%BC%88%E8%AE%BE-n-%E4%B8%BA-2-%E7%9A%84%E5%B9%82%EF%BC%89"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">2. 归并排序树的分析（设 n 为 2 的幂）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-5-%E9%80%92%E6%8E%A8%E6%96%B9%E7%A8%8B%EF%BC%88%E5%8F%A6%E4%B8%80%E7%A7%8D%E8%AF%81%E6%98%8E%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">8.2.5 递推方程（另一种证明）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-6-%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%EF%BC%88%E9%9D%9E%E9%80%92%E5%BD%92%EF%BC%89%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F"><span class="nav-number">1.2.6.</span> <span class="nav-text">8.2.6 自底向上（非递归）归并排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-3-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="nav-number">1.3.</span> <span class="nav-text">8.3 快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-1-%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3%EF%BC%9A%E5%88%86%E6%B2%BB%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">8.3.1 算法思想：分治法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-2-%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%E5%88%86%E6%9E%90"><span class="nav-number">1.3.2.</span> <span class="nav-text">8.3.2 运行时间分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">1. 分析框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%80%E5%9D%8F%E6%83%85%E5%86%B5%EF%BC%9AO-n-2"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">2. 最坏情况：
     
       
-      #mjx-7f965e88{
+      #mjx-b10f85e{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -292,7 +292,7 @@ g[data-mml-node&#x3D;&quot;xypic&quot;] path {
   </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9C%80%E5%A5%BD%E6%83%85%E5%86%B5%EF%BC%9AO-n-log-n"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3. 最好情况：
     
       
-      #mjx-4702e228{
+      #mjx-e2a387b{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -704,9 +704,9 @@ g[data-mml-node&#x3D;&quot;xypic&quot;] path {
 <h3 id="8-2-5-递推方程（另一种证明）">8.2.5 递推方程（另一种证明）</h3>
 <p>设 t(n) 为规模 n 的最坏情况运行时间：</p>
 <p>​		
-    <span id="mjx-5e8c9d3">
+    <span id="mjx-a03af0c">
       <style>
-      #mjx-5e8c9d3{
+      #mjx-a03af0c{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -876,9 +876,9 @@ g[data-mml-node="xypic"] path {
 </ul>
 <p><strong>何时停止</strong>：当 n/2ⁱ = 1，即 2ⁱ = n，即 <strong>i = log n</strong>。代入：</p>
 <p>​		
-    <span id="mjx-bce166f8">
+    <span id="mjx-1067039">
       <style>
-      #mjx-bce166f8{
+      #mjx-1067039{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1085,9 +1085,9 @@ g[data-mml-node="xypic"] path {
 <li>每个节点 v 的时间正比于其<strong>输入规模</strong> s(v)（divide 与 conquer 都是线性时间）。</li>
 <li>因为 E 至少含 1 个元素（枢轴），所以 v 的<strong>子节点输入规模之和 ≤s(v)−1</strong>——枢轴不再向下传递。</li>
 <li>记 
-    <span id="mjx-c4c324b8">
+    <span id="mjx-c917a5f8">
       <style>
-      #mjx-c4c324b8{
+      #mjx-c917a5f8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1248,9 +1248,9 @@ g[data-mml-node="xypic"] path {
    = 深度 i 处所有节点的输入规模之和：
 <ul>
 <li>
-    <span id="mjx-f08345e8">
+    <span id="mjx-39446108">
       <style>
-      #mjx-f08345e8{
+      #mjx-39446108{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1410,9 +1410,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </li>
 <li>
-    <span id="mjx-26a3063">
+    <span id="mjx-6d6e0c98">
       <style>
-      #mjx-26a3063{
+      #mjx-6d6e0c98{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1572,9 +1572,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </li>
 <li>
-    <span id="mjx-0503c21">
+    <span id="mjx-bae796b8">
       <style>
-      #mjx-0503c21{
+      #mjx-bae796b8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1738,9 +1738,9 @@ g[data-mml-node="xypic"] path {
 </li>
 </ul>
 <h4 id="2-最坏情况：O-n-2">2. 最坏情况：
-    <span id="mjx-7f965e88">
+    <span id="mjx-b10f85e">
       <style>
-      #mjx-7f965e88{
+      #mjx-b10f85e{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1904,9 +1904,9 @@ g[data-mml-node="xypic"] path {
 <li><strong>触发条件</strong>：n 个互异元素且<strong>序列已排好序</strong> → 取最后一个（最大）元素作枢轴 → ∣L∣=n−1, ∣E∣=1, ∣G∣=0，每层只减少一个元素。</li>
 <li>总时间：<br>
 
-    <span id="mjx-43c846a">
+    <span id="mjx-06c2bdc8">
       <style>
-      #mjx-43c846a{
+      #mjx-06c2bdc8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2068,9 +2068,9 @@ g[data-mml-node="xypic"] path {
 <li>⚠️ <strong>悖论</strong>：排序&quot;最该轻松&quot;的输入（已有序）反而是最坏情况。</li>
 </ul>
 <h4 id="3-最好情况：O-n-log-n">3. 最好情况：
-    <span id="mjx-4702e228">
+    <span id="mjx-e2a387b">
       <style>
-      #mjx-4702e228{
+      #mjx-e2a387b{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2232,9 +2232,9 @@ g[data-mml-node="xypic"] path {
 <ul>
 <li>当 L 与 G 每次大小<strong>大致相等</strong>时达到。</li>
 <li>每层&quot;省掉&quot;的枢轴数：根 1 个、第 1 层 2 个、第 2 层 
-    <span id="mjx-392d604">
+    <span id="mjx-0fecf35">
       <style>
-      #mjx-392d604{
+      #mjx-0fecf35{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2394,9 +2394,9 @@ g[data-mml-node="xypic"] path {
     </span>
    个……<br>
 
-    <span id="mjx-ac7afe58">
+    <span id="mjx-94636788">
       <style>
-      #mjx-ac7afe58{
+      #mjx-94636788{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2556,9 +2556,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </li>
 <li>树高 
-    <span id="mjx-0edf267">
+    <span id="mjx-a78d966">
       <style>
-      #mjx-0edf267{
+      #mjx-a78d966{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2717,9 +2717,9 @@ g[data-mml-node="xypic"] path {
       <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="8.112ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 3585.7 1000" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(278,0)"></path><path data-c="67" d="M329 409Q373 453 429 453Q459 453 472 434T485 396Q485 382 476 371T449 360Q416 360 412 390Q410 404 415 411Q415 412 416 414V415Q388 412 363 393Q355 388 355 386Q355 385 359 381T368 369T379 351T388 325T392 292Q392 230 343 187T222 143Q172 143 123 171Q112 153 112 133Q112 98 138 81Q147 75 155 75T227 73Q311 72 335 67Q396 58 431 26Q470 -13 470 -72Q470 -139 392 -175Q332 -206 250 -206Q167 -206 107 -175Q29 -140 29 -75Q29 -39 50 -15T92 18L103 24Q67 55 67 108Q67 155 96 193Q52 237 52 292Q52 355 102 398T223 442Q274 442 318 416L329 409ZM299 343Q294 371 273 387T221 404Q192 404 171 388T145 343Q142 326 142 292Q142 248 149 227T179 192Q196 182 222 182Q244 182 260 189T283 207T294 227T299 242Q302 258 302 292T299 343ZM403 -75Q403 -50 389 -34T348 -11T299 -2T245 0H218Q151 0 138 -6Q118 -15 107 -34T95 -74Q95 -84 101 -97T122 -127T170 -155T250 -167Q319 -167 361 -139T403 -75Z" transform="translate(778,0)"></path></g><g data-mml-node="mo" transform="translate(2430,0)"><path data-c="2061" d=""></path></g><g data-mml-node="mi" transform="translate(2596.7,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3196.7,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>log</mi><mo data-mjx-texclass="NONE">⁡</mo><mi>n</mi><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container>
     </span>
    → 总时间 
-    <span id="mjx-6cbb923">
+    <span id="mjx-4f73864">
       <style>
-      #mjx-6cbb923{
+      #mjx-4f73864{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -2881,9 +2881,9 @@ g[data-mml-node="xypic"] path {
 </ul>
 <h4 id="4-平均情况">4. 平均情况</h4>
 <p>直觉：枢轴大概率把序列分得比较均匀 → 平均时间接近最好情况 
-    <span id="mjx-a8e54c5">
+    <span id="mjx-61dfa9d8">
       <style>
-      #mjx-a8e54c5{
+      #mjx-61dfa9d8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3052,9 +3052,9 @@ g[data-mml-node="xypic"] path {
 <h4 id="Theorem-8-3-1">Theorem 8.3.1</h4>
 <blockquote>
 <p>随机化快排在规模为 nn n 的序列上的<strong>期望运行时间为 
-    <span id="mjx-f2c2d24">
+    <span id="mjx-69c9a5f">
       <style>
-      #mjx-f2c2d24{
+      #mjx-69c9a5f{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3220,9 +3220,9 @@ g[data-mml-node="xypic"] path {
 <li><strong>定义&quot;好&quot;调用</strong>：设本次调用输入规模为 m，若枢轴使 ∣L∣,∣G∣ 都落在 [m/4, 3m/4]，称这次调用是&quot;好&quot;的。</li>
 <li>有 m/2 个枢轴候选能让调用变&quot;好&quot; → <strong>好调用的概率 = 1/2</strong>（等价于抛硬币出正面）。</li>
 <li>一次好调用使子问题规模 $\le \tfrac{3}{4}s(v) = s(v)/(4/3) $ → 只需 
-    <span id="mjx-e47a15f8">
+    <span id="mjx-1106759">
       <style>
-      #mjx-e47a15f8{
+      #mjx-1106759{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3382,9 +3382,9 @@ g[data-mml-node="xypic"] path {
     </span>
    次好调用即可到达叶子。</li>
 <li>由概率事实，期望需 
-    <span id="mjx-81ab8ea">
+    <span id="mjx-f1834fe8">
       <style>
-      #mjx-81ab8ea{
+      #mjx-f1834fe8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3543,9 +3543,9 @@ g[data-mml-node="xypic"] path {
       <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.946ex;" xmlns="http://www.w3.org/2000/svg" width="8.722ex" height="2.516ex" role="img" focusable="false" viewBox="0 -694 3855 1112.1" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="msub" transform="translate(666.7,0)"><g data-mml-node="mi"><path data-c="6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(278,0)"></path><path data-c="67" d="M329 409Q373 453 429 453Q459 453 472 434T485 396Q485 382 476 371T449 360Q416 360 412 390Q410 404 415 411Q415 412 416 414V415Q388 412 363 393Q355 388 355 386Q355 385 359 381T368 369T379 351T388 325T392 292Q392 230 343 187T222 143Q172 143 123 171Q112 153 112 133Q112 98 138 81Q147 75 155 75T227 73Q311 72 335 67Q396 58 431 26Q470 -13 470 -72Q470 -139 392 -175Q332 -206 250 -206Q167 -206 107 -175Q29 -140 29 -75Q29 -39 50 -15T92 18L103 24Q67 55 67 108Q67 155 96 193Q52 237 52 292Q52 355 102 398T223 442Q274 442 318 416L329 409ZM299 343Q294 371 273 387T221 404Q192 404 171 388T145 343Q142 326 142 292Q142 248 149 227T179 192Q196 182 222 182Q244 182 260 189T283 207T294 227T299 242Q302 258 302 292T299 343ZM403 -75Q403 -50 389 -34T348 -11T299 -2T245 0H218Q151 0 138 -6Q118 -15 107 -34T95 -74Q95 -84 101 -97T122 -127T170 -155T250 -167Q319 -167 361 -139T403 -75Z" transform="translate(778,0)"></path></g><g data-mml-node="TeXAtom" transform="translate(1311,-241.4) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(500,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mn" transform="translate(1000,0)"><path data-c="33" d="M127 463Q100 463 85 480T69 524Q69 579 117 622T233 665Q268 665 277 664Q351 652 390 611T430 522Q430 470 396 421T302 350L299 348Q299 347 308 345T337 336T375 315Q457 262 457 175Q457 96 395 37T238 -22Q158 -22 100 21T42 130Q42 158 60 175T105 193Q133 193 151 175T169 130Q169 119 166 110T159 94T148 82T136 74T126 70T118 67L114 66Q165 21 238 21Q293 21 321 74Q338 107 338 175V195Q338 290 274 322Q259 328 213 329L171 330L168 332Q166 335 166 348Q166 366 174 366Q202 366 232 371Q266 376 294 413T322 525V533Q322 590 287 612Q265 626 240 626Q208 626 181 615T143 592T132 580H135Q138 579 143 578T153 573T165 566T175 555T183 540T186 520Q186 498 172 481T127 463Z"></path></g></g></g><g data-mml-node="mo" transform="translate(3088.3,0)"><path data-c="2061" d=""></path></g><g data-mml-node="mi" transform="translate(3255,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>2</mn><msub><mi>log</mi><mrow data-mjx-texclass="ORD"><mn>4</mn><mrow data-mjx-texclass="ORD"><mo>/</mo></mrow><mn>3</mn></mrow></msub><mo data-mjx-texclass="NONE">⁡</mo><mi>n</mi></math></mjx-assistive-mml></mjx-container>
     </span>
    次调用 → <strong>根到外部节点的期望路径长 = 
-    <span id="mjx-ce748e9">
+    <span id="mjx-ed20fd78">
       <style>
-      #mjx-ce748e9{
+      #mjx-ed20fd78{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3705,9 +3705,9 @@ g[data-mml-node="xypic"] path {
     </span>
   </strong>。</li>
 <li>每层时间 O(n) ⟹ 期望总时间 
-    <span id="mjx-2c26231">
+    <span id="mjx-45ddb9">
       <style>
-      #mjx-2c26231{
+      #mjx-45ddb9{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3868,9 +3868,9 @@ g[data-mml-node="xypic"] path {
   。</li>
 </ol>
 <p><strong>注意</strong>：这里的期望是对<strong>算法自身的随机选择</strong>取的，<strong>与输入分布无关</strong>。进一步还可证明其运行时间<strong>以高概率</strong>为 
-    <span id="mjx-7108e05">
+    <span id="mjx-84fa94a">
       <style>
-      #mjx-7108e05{
+      #mjx-84fa94a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4046,9 +4046,9 @@ g[data-mml-node="xypic"] path {
 <h3 id="8-2-5-递归栈的空间问题">8.2.5 递归栈的空间问题</h3>
 <h4 id="问题">问题</h4>
 <p>上面的版本<strong>并非真正原地</strong>：局部变量只占 O(1)，但<strong>递归栈</strong>深度等于递归树深度，坏枢轴连续出现时可达 <strong>
-    <span id="mjx-8bd8718">
+    <span id="mjx-0d5db66">
       <style>
-      #mjx-8bd8718{
+      #mjx-0d5db66{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4213,9 +4213,9 @@ g[data-mml-node="xypic"] path {
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">while a &lt; b do</span><br><span class="line">    l ← inPlacePartition(S, a, b)</span><br><span class="line">    if l - a &lt; b - l then      // 前半段更小</span><br><span class="line">        CorrectInPlaceQuickSort(S, a, l-1)</span><br><span class="line">        a ← l + 1              // 用循环处理后半段</span><br><span class="line">    else</span><br><span class="line">        CorrectInPlaceQuickSort(S, l+1, b)</span><br><span class="line">        b ← l - 1              // 用循环处理前半段</span><br></pre></td></tr></table></figure>
 <h4 id="空间分析">空间分析</h4>
 <p>因为每次递归调用的都是较小子问题，<strong>其规模必然 ≤ 调用者规模的一半</strong> ⟹ 递归深度 
-    <span id="mjx-2e8de65">
+    <span id="mjx-b7c819e8">
       <style>
-      #mjx-2e8de65{
+      #mjx-b7c819e8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4386,9 +4386,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>最好时间</td>
 <td>
-    <span id="mjx-7f502bf">
+    <span id="mjx-488d22e8">
       <style>
-      #mjx-7f502bf{
+      #mjx-488d22e8{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4555,9 +4555,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>最坏时间</td>
 <td>
-    <span id="mjx-c92636a">
+    <span id="mjx-79b8242">
       <style>
-      #mjx-c92636a{
+      #mjx-79b8242{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4720,9 +4720,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>树高（最坏）</td>
 <td>
-    <span id="mjx-ab226a8">
+    <span id="mjx-93b70de">
       <style>
-      #mjx-ab226a8{
+      #mjx-93b70de{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -4885,9 +4885,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>树高（期望/最好）</td>
 <td>
-    <span id="mjx-27531288">
+    <span id="mjx-b8ee0408">
       <style>
-      #mjx-27531288{
+      #mjx-b8ee0408{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -5050,9 +5050,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>每层时间</td>
 <td>
-    <span id="mjx-923886f">
+    <span id="mjx-29727d88">
       <style>
-      #mjx-923886f{
+      #mjx-29727d88{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -5215,9 +5215,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>额外空间（朴素递归）</td>
 <td>最坏 
-    <span id="mjx-425537b">
+    <span id="mjx-4d057c58">
       <style>
-      #mjx-425537b{
+      #mjx-4d057c58{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -5380,9 +5380,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>额外空间（尾递归优化）</td>
 <td>
-    <span id="mjx-5319a3f">
+    <span id="mjx-9e0233b">
       <style>
-      #mjx-5319a3f{
+      #mjx-9e0233b{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -5604,9 +5604,9 @@ g[data-mml-node="xypic"] path {
 <li>放缩 n!：在 n·(n−1)···2·1 中，至少有 n/2 个因子 ≥ n/2，故</li>
 </ol>
 <p>​		
-    <span id="mjx-39ef0408">
+    <span id="mjx-196b419">
       <style>
-      #mjx-39ef0408{
+      #mjx-196b419{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
