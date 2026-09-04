@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="操作系统导论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Operating Systems-Module1">
+<meta property="og:url" content="http://example.com/2026/09/04/Introduction-to-Operating-Systems-Module1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="操作系统导论">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-04T03:31:28.000Z">
+<meta property="article:modified_time" content="2026-09-04T03:57:15.623Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/09/04/Introduction-to-Operating-Systems-Module1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/09/04/Introduction-to-Operating-Systems-Module1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/","path":"2026/09/04/Introduction-to-Operating-Systems-Module1-操作系统导论/","title":"Introduction to Operating Systems-Module1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction to Operating Systems-Module1 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">操作系统导论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.1.</span> <span class="nav-text">一、操作系统是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9B%9B%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%88%E5%AF%B9%E5%BA%94-%E6%8A%BD%E8%B1%A1%E8%A7%86%E5%9B%BE-%E5%9B%BE%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">二、计算机系统的四层结构（对应&quot;抽象视图&quot;图）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81-OS-%E5%81%9A%E4%BB%80%E4%B9%88-%E5%8F%96%E5%86%B3%E4%BA%8E%E7%AB%8B%E5%9C%BA"><span class="nav-number">1.3.</span> <span class="nav-text">三、&quot;OS 做什么&quot;取决于立场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%88%90%EF%BC%88%E7%A1%AC%E4%BB%B6%E5%B1%82%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">四、计算机系统组成（硬件层）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%B8%AD%E6%96%AD%EF%BC%88Interrupt%EF%BC%89%E2%98%85-%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="nav-number">1.5.</span> <span class="nav-text">五、中断（Interrupt）★ 核心机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 基本流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%AD%E6%96%AD%E5%A4%84%E7%90%86%E6%97%B6-OS-%E5%81%9A%E7%9A%84%E4%BA%8B"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 中断处理时 OS 做的事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%99%B7%E9%98%B1-%E5%BC%82%E5%B8%B8%EF%BC%88trap-exception%EF%BC%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. 陷阱 &#x2F; 异常（trap &#x2F; exception）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%B8%AD%E6%96%AD%E9%A9%B1%E5%8A%A8-I-O-%E5%91%A8%E6%9C%9F%EF%BC%887-%E6%AD%A5%EF%BC%8C%E5%AF%B9%E5%BA%94%E6%B5%81%E7%A8%8B%E5%9B%BE%EF%BC%89"><span class="nav-number">1.5.4.</span> <span class="nav-text">4. 中断驱动 I&#x2F;O 周期（7 步，对应流程图）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E4%B8%AD%E6%96%AD%E6%97%B6%E9%97%B4%E7%BA%BF"><span class="nav-number">1.5.5.</span> <span class="nav-text">5. 中断时间线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81I-O-%E7%BB%93%E6%9E%84%EF%BC%9A%E4%B8%A4%E7%A7%8D%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="nav-number">1.6.</span> <span class="nav-text">六、I&#x2F;O 结构：两种处理方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%EF%BC%88Computer-Startup%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">七、系统启动（Computer Startup）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%9C%AC%E7%AB%A0%E7%9B%AE%E6%A0%87%E5%9B%9E%E9%A1%BE%EF%BC%88%E8%87%AA%E6%A3%80%E6%B8%85%E5%8D%95%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、本章目标回顾（自检清单）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84%EF%BC%88Storage-Structure%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">九、存储结构（Storage Structure）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BB%E5%AD%98-vs-%E8%BE%85%E5%AD%98"><span class="nav-number">1.9.1.</span> <span class="nav-text">1. 主存 vs 辅存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E7%B1%BB%E8%BE%85%E5%AD%98%E4%BB%8B%E8%B4%A8"><span class="nav-number">1.9.2.</span> <span class="nav-text">2. 两类辅存介质</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.9.3.</span> <span class="nav-text">3. 存储单位复习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%AD%98%E5%82%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%EF%BC%88Storage-Hierarchy%EF%BC%89%E2%98%85"><span class="nav-number">1.10.</span> <span class="nav-text">十、存储层次结构（Storage Hierarchy）★</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%B1%82%E6%AC%A1%E9%87%91%E5%AD%97%E5%A1%94%EF%BC%88%E5%AF%B9%E5%BA%94-Storage-Device-Hierarchy-%E5%9B%BE%EF%BC%89"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 层次金字塔（对应 Storage-Device Hierarchy 图）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%90%84%E7%BA%A7%E5%AD%98%E5%82%A8%E7%89%B9%E6%80%A7%E5%AF%B9%E7%85%A7%EF%BC%88%E9%87%8D%E8%A6%81%E6%95%B0%E6%8D%AE%E6%84%9F%E8%A7%89%EF%BC%89"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 各级存储特性对照（重要数据感觉）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%BC%93%E5%AD%98%EF%BC%88Caching%EF%BC%89%E2%80%94%E2%80%94%E8%B4%AF%E7%A9%BF%E5%85%A8%E6%9C%BA%E7%9A%84%E9%80%9A%E7%94%A8%E5%8E%9F%E7%90%86"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 缓存（Caching）——贯穿全机的通用原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E9%97%AE%E9%A2%98%EF%BC%88Migration-of-%E2%80%9CA%E2%80%9D%EF%BC%89"><span class="nav-number">1.10.4.</span> <span class="nav-text">4. 缓存一致性问题（Migration of “A”）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E7%8E%B0%E4%BB%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%EF%BC%88von-Neumann-%E4%BD%93%E7%B3%BB%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、现代计算机如何工作（von Neumann 体系）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DMA%EF%BC%88%E7%9B%B4%E6%8E%A5%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89"><span class="nav-number">1.11.1.</span> <span class="nav-text">DMA（直接内存访问）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.11.2.</span> <span class="nav-text">设备驱动程序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BF%90%E8%A1%8C%EF%BC%88Operating-System-Operations%EF%BC%89"><span class="nav-number">1.12.</span> <span class="nav-text">十二、操作系统的运行（Operating-System Operations）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%93%BE%E6%9D%A1"><span class="nav-number">1.12.1.</span> <span class="nav-text">启动链条</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E6%98%AF%E4%B8%AD%E6%96%AD%E9%A9%B1%E5%8A%A8%E7%9A%84%EF%BC%88%E7%A1%AC%E4%BB%B6-%E8%BD%AF%E4%BB%B6%E4%B8%A4%E7%B1%BB%EF%BC%89"><span class="nav-number">1.12.2.</span> <span class="nav-text">内核是中断驱动的（硬件 + 软件两类）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E4%B8%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.13.</span> <span class="nav-text">十三、多道程序与多任务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-Multiprogramming%EF%BC%88%E6%89%B9%E5%A4%84%E7%90%86%EF%BC%89"><span class="nav-number">1.13.1.</span> <span class="nav-text">1. 多道程序设计 Multiprogramming（批处理）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A4%9A%E4%BB%BB%E5%8A%A1-%E5%88%86%E6%97%B6-Multitasking-Timesharing"><span class="nav-number">1.13.2.</span> <span class="nav-text">2. 多任务 &#x2F; 分时 Multitasking (Timesharing)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%A4%9A%E9%81%93%E7%A8%8B%E5%BA%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="nav-number">1.13.3.</span> <span class="nav-text">3. 多道程序系统的内存布局</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%8F%8C%E6%A8%A1%E5%BC%8F%E6%93%8D%E4%BD%9C%E4%B8%8E%E5%AE%9A%E6%97%B6%E5%99%A8%EF%BC%88%E4%BF%9D%E6%8A%A4%E7%9A%84%E4%B8%A4%E5%A4%A7%E5%9F%BA%E7%9F%B3%EF%BC%89%E2%98%85"><span class="nav-number">1.14.</span> <span class="nav-text">十四、双模式操作与定时器（保护的两大基石）★</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%8C%E6%A8%A1%E5%BC%8F%E6%93%8D%E4%BD%9C-Dual-mode-Operation"><span class="nav-number">1.14.1.</span> <span class="nav-text">1. 双模式操作 Dual-mode Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%94%A8%E6%88%B7%E6%80%81%E2%86%92%E5%86%85%E6%A0%B8%E6%80%81%E7%9A%84%E8%BD%AC%E6%8D%A2%EF%BC%88%E5%AF%B9%E5%BA%94%E6%B5%81%E7%A8%8B%E5%9B%BE%EF%BC%89"><span class="nav-number">1.14.2.</span> <span class="nav-text">2. 用户态→内核态的转换（对应流程图）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%9A%E6%97%B6%E5%99%A8-Timer"><span class="nav-number">1.14.3.</span> <span class="nav-text">3. 定时器 Timer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81OS-%E7%9A%84%E4%BA%94%E5%A4%A7%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E8%81%8C%E8%B4%A3"><span class="nav-number">1.15.</span> <span class="nav-text">十五、OS 的五大资源管理职责</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86-Process-Management"><span class="nav-number">1.15.1.</span> <span class="nav-text">1. 进程管理 Process Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86-Memory-Management"><span class="nav-number">1.15.2.</span> <span class="nav-text">2. 内存管理 Memory Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86-File-System-Management"><span class="nav-number">1.15.3.</span> <span class="nav-text">3. 文件系统管理 File-System Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%A4%A7%E5%AE%B9%E9%87%8F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86-Mass-Storage-Management"><span class="nav-number">1.15.4.</span> <span class="nav-text">4. 大容量存储管理 Mass-Storage Management</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-I-O-%E5%AD%90%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.15.5.</span> <span class="nav-text">5. I&#x2F;O 子系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E4%BF%9D%E6%8A%A4%E4%B8%8E%E5%AE%89%E5%85%A8"><span class="nav-number">1.16.</span> <span class="nav-text">十六、保护与安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E8%99%9A%E6%8B%9F%E5%8C%96-Virtualization"><span class="nav-number">1.17.</span> <span class="nav-text">十七、虚拟化 Virtualization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%89%E7%A7%8D-%E5%9C%A8%E5%BC%82%E6%9E%84%E7%8E%AF%E5%A2%83%E8%B7%91%E7%A8%8B%E5%BA%8F-%E7%9A%84%E6%8A%80%E6%9C%AF%E5%AF%B9%E6%AF%94"><span class="nav-number">1.17.1.</span> <span class="nav-text">1. 三种&quot;在异构环境跑程序&quot;的技术对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94%EF%BC%88%E5%AF%B9%E5%BA%94%E5%9B%BE%EF%BC%89"><span class="nav-number">1.17.2.</span> <span class="nav-text">2. 结构对比（对应图）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">1.17.3.</span> <span class="nav-text">3. 使用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-VMM-%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%BD%A2%E6%80%81"><span class="nav-number">1.17.4.</span> <span class="nav-text">4. VMM 的两种形态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F-Distributed-Systems"><span class="nav-number">1.18.</span> <span class="nav-text">十八、分布式系统 Distributed Systems</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88Computer-System-Architecture%EF%BC%89"><span class="nav-number">1.19.</span> <span class="nav-text">十九、计算机系统体系结构（Computer System Architecture）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%80%BB%E4%BD%93%E6%A0%BC%E5%B1%80"><span class="nav-number">1.19.1.</span> <span class="nav-text">1. 总体格局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E7%B3%BB%E7%BB%9F%EF%BC%88Multiprocessor-Systems%EF%BC%89"><span class="nav-number">1.19.2.</span> <span class="nav-text">2. 多处理器系统（Multiprocessor Systems）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-SMP-%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%88%E5%9B%BE%E8%A7%A3%EF%BC%89"><span class="nav-number">1.19.3.</span> <span class="nav-text">3. SMP 体系结构（图解）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8F%8C%E6%A0%B8-%E5%A4%9A%E6%A0%B8%E8%AE%BE%E8%AE%A1%EF%BC%88Multicore%EF%BC%89"><span class="nav-number">1.19.4.</span> <span class="nav-text">4. 双核 &#x2F; 多核设计（Multicore）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-NUMA%EF%BC%88%E9%9D%9E%E4%B8%80%E8%87%B4%E5%86%85%E5%AD%98%E8%AE%BF%E9%97%AE%EF%BC%89"><span class="nav-number">1.19.5.</span> <span class="nav-text">5. NUMA（非一致内存访问）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E4%B8%89%E5%B1%82%E5%B9%B6%E8%A1%8C%E7%BB%93%E6%9E%84%E6%80%BB%E7%BB%93%EF%BC%88%E6%98%93%E6%B7%B7%EF%BC%8C%E5%8A%A1%E5%BF%85%E5%88%86%E6%B8%85%EF%BC%89"><span class="nav-number">1.19.6.</span> <span class="nav-text">6. 三层并行结构总结（易混，务必分清）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E9%9B%86%E7%BE%A4%E7%B3%BB%E7%BB%9F%EF%BC%88Clustered-Systems%EF%BC%89"><span class="nav-number">1.20.</span> <span class="nav-text">二十、集群系统（Clustered Systems）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%EF%BC%88Computing-Environments%EF%BC%89%E5%85%AD%E7%A7%8D"><span class="nav-number">1.21.</span> <span class="nav-text">二十一、计算环境（Computing Environments）六种</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BC%A0%E7%BB%9F%EF%BC%88Traditional%EF%BC%89"><span class="nav-number">1.21.1.</span> <span class="nav-text">1. 传统（Traditional）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A7%BB%E5%8A%A8%EF%BC%88Mobile%EF%BC%89"><span class="nav-number">1.21.2.</span> <span class="nav-text">2. 移动（Mobile）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%AE%A2%E6%88%B7%E6%9C%BA-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88Client-Server%EF%BC%89"><span class="nav-number">1.21.3.</span> <span class="nav-text">3. 客户机-服务器（Client-Server）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%AF%B9%E7%AD%89%EF%BC%88Peer-to-Peer-P2P%EF%BC%89"><span class="nav-number">1.21.4.</span> <span class="nav-text">4. 对等（Peer-to-Peer, P2P）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E4%BA%91%E8%AE%A1%E7%AE%97%EF%BC%88Cloud-Computing%EF%BC%89%E2%98%85"><span class="nav-number">1.21.5.</span> <span class="nav-text">5. 云计算（Cloud Computing）★</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%AE%9E%E6%97%B6%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F%EF%BC%88Real-Time-Embedded-Systems%EF%BC%89"><span class="nav-number">1.21.6.</span> <span class="nav-text">6. 实时嵌入式系统（Real-Time Embedded Systems）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E8%87%AA%E7%94%B1%E4%B8%8E%E5%BC%80%E6%BA%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.22.</span> <span class="nav-text">二十二、自由与开源操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.22.1.</span> <span class="nav-text">1. 基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E2%9A%A0%EF%B8%8F-%E9%87%8D%E8%A6%81%E8%BE%A8%E6%9E%90%EF%BC%9AFree-%E2%89%A0-Open-Source"><span class="nav-number">1.22.2.</span> <span class="nav-text">2. ⚠️ 重要辨析：Free ≠ Open Source</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BE%8B%E5%AD%90%E4%B8%8E%E5%AE%9E%E8%B7%B5%E5%B7%A5%E5%85%B7"><span class="nav-number">1.22.3.</span> <span class="nav-text">3. 例子与实践工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%B0%E5%9C%A8%E6%98%AF%E5%AD%A6-OS-%E7%9A%84%E6%9C%80%E5%A5%BD%E6%97%B6%E4%BB%A3%EF%BC%88%E6%95%99%E6%9D%90%E8%A7%82%E7%82%B9%E5%BD%92%E7%BA%B3%EF%BC%89"><span class="nav-number">1.22.4.</span> <span class="nav-text">4. 为什么现在是学 OS 的最好时代（教材观点归纳）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81%E5%86%85%E6%A0%B8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88Kernel-Data-Structures%EF%BC%89"><span class="nav-number">1.23.</span> <span class="nav-text">二十三、内核数据结构（Kernel Data Structures）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%93%BE%E8%A1%A8%EF%BC%88%E4%B8%89%E7%A7%8D%EF%BC%89"><span class="nav-number">1.23.1.</span> <span class="nav-text">1. 链表（三种）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%EF%BC%88Binary-Search-Tree%EF%BC%89"><span class="nav-number">1.23.2.</span> <span class="nav-text">2. 二叉搜索树（Binary Search Tree）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%93%88%E5%B8%8C%E8%A1%A8-%E5%93%88%E5%B8%8C%E6%98%A0%E5%B0%84%EF%BC%88Hash-Map%EF%BC%89"><span class="nav-number">1.23.3.</span> <span class="nav-text">3. 哈希表 &#x2F; 哈希映射（Hash Map）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BD%8D%E5%9B%BE%EF%BC%88Bitmap%EF%BC%89"><span class="nav-number">1.23.4.</span> <span class="nav-text">4. 位图（Bitmap）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-Linux-%E4%B8%AD%E7%9A%84%E5%AE%9A%E4%B9%89%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.23.5.</span> <span class="nav-text">5. Linux 中的定义位置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E7%AB%A0%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE%EF%BC%88%E7%AC%AC-1-%E7%AB%A0%E6%80%BB%E8%A7%88%EF%BC%89"><span class="nav-number">1.24.</span> <span class="nav-text">全章知识地图（第 1 章总览）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E7%AB%A0%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%E8%87%AA%E6%B5%8B"><span class="nav-number">1.25.</span> <span class="nav-text">本章高频考点自测</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">54</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/09/04/Introduction-to-Operating-Systems-Module1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction to Operating Systems-Module1 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction to Operating Systems-Module1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-09-04 11:31:28 / Modified: 11:57:15" itemprop="dateCreated datePublished" datetime="2026-09-04T11:31:28+08:00">2026-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>操作系统导论<span id="more"></span></h1>
+<h3 id="一、操作系统是什么">一、操作系统是什么</h3>
+<p><strong>定义困境</strong>：操作系统没有公认的严格定义。两种常见说法：</p>
+<table>
+<thead>
+<tr>
+<th>说法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“厂商发货时打包的所有东西”</td>
+<td>近似描述，但各系统差异极大</td>
+</tr>
+<tr>
+<td>“始终运行在计算机上的那一个程序”</td>
+<td>指<strong>内核（kernel）</strong></td>
+</tr>
+</tbody>
+</table>
+<p>除内核外的软件分为两类：</p>
+<ul>
+<li><strong>系统程序</strong>：随 OS 一起发布，但不属于内核</li>
+<li><strong>应用程序</strong>：与 OS 无关的所有程序</li>
+<li><strong>中间件（middleware）</strong>：现代通用/移动 OS 还包含的一层软件框架，为开发者提供数据库、多媒体、图形等附加服务</li>
+</ul>
+<p><strong>本质角色</strong>：OS 是用户与硬件之间的<strong>中介</strong>。三大目标：</p>
+<ol>
+<li>执行用户程序、方便用户解决问题</li>
+<li>让系统易于使用</li>
+<li>高效利用硬件资源</li>
+</ol>
+<h3 id="二、计算机系统的四层结构（对应-抽象视图-图）">二、计算机系统的四层结构（对应&quot;抽象视图&quot;图）</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">     用户 (人 / 机器 / 其他计算机)</span><br><span class="line">           ↕</span><br><span class="line"> 应用程序 (编译器、浏览器、开发工具…)</span><br><span class="line">           ↕</span><br><span class="line">      操作系统  ← 协调、控制</span><br><span class="line">           ↕</span><br><span class="line">计算机硬件 (CPU、内存、I/O 设备)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>硬件</strong>：提供基本计算资源</li>
+<li><strong>操作系统</strong>：在各应用与用户之间协调、控制硬件的使用</li>
+<li><strong>应用程序</strong>：定义如何用系统资源解决具体问题</li>
+<li><strong>用户</strong>：不只是人，也可以是机器或其他计算机</li>
+</ul>
+<blockquote>
+<p>注意图中箭头都是<strong>双向</strong>的，且应用程序与 OS 之间有多条通路——多个程序并发地向 OS 请求服务。</p>
+</blockquote>
+<h3 id="三、-OS-做什么-取决于立场">三、&quot;OS 做什么&quot;取决于立场</h3>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>关注点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通用户</td>
+<td>方便、易用、性能好；<strong>不关心</strong>资源利用率</td>
+</tr>
+<tr>
+<td>共享主机（大型机/小型机）</td>
+<td>必须让所有用户都满意 → OS 是<strong>资源分配器 + 控制程序</strong></td>
+</tr>
+<tr>
+<td>工作站等专用系统</td>
+<td>有专属资源，但常使用服务器的共享资源</td>
+</tr>
+<tr>
+<td>移动设备（手机、平板）</td>
+<td>资源匮乏，为<strong>可用性与续航</strong>优化；触屏、语音等交互方式</td>
+</tr>
+<tr>
+<td>嵌入式（汽车、家电）</td>
+<td>几乎无用户界面，基本<strong>无人干预</strong>运行</td>
+</tr>
+</tbody>
+</table>
+<p><strong>历史来由</strong>：当军用的固定用途计算机转向通用用途后，产生了资源管理和程序控制的需求，OS 由此诞生。如今从烤面包机到航天器、游戏机、工业控制系统都有 OS。</p>
+<h3 id="四、计算机系统组成（硬件层）">四、计算机系统组成（硬件层）</h3>
+<p>对应&quot;Computer System Organization&quot;图：</p>
+<ul>
+<li>一个或多个 <strong>CPU</strong> 与各类<strong>设备控制器</strong>（磁盘控制器、USB 控制器、图形适配器…）通过公共的**系统总线（bus）*<em>相连，共享访问*<em>内存</em></em></li>
+<li>CPU 与设备<strong>并发执行</strong>，彼此<strong>竞争内存周期</strong></li>
+</ul>
+<p><strong>设备控制器要点</strong>：</p>
+<ul>
+<li>每个控制器负责一类特定设备，并拥有<strong>本地缓冲区（local buffer）</strong></li>
+<li>每类控制器都有对应的 OS <strong>设备驱动程序</strong>来管理</li>
+<li>数据流向：I/O 设备 ↔ 控制器本地缓冲区 ↔（由 CPU 搬运）↔ 主存</li>
+<li>控制器完成操作后，通过<strong>产生中断</strong>通知 CPU</li>
+</ul>
+<h3 id="五、中断（Interrupt）★-核心机制">五、中断（Interrupt）★ 核心机制</h3>
+<blockquote>
+<p><strong>操作系统是中断驱动（interrupt-driven）的。</strong></p>
+</blockquote>
+<h4 id="1-基本流程">1. 基本流程</h4>
+<ul>
+<li>中断通过**中断向量（interrupt vector）*<em>把控制权转交给*<em>中断服务例程</em></em>；中断向量表中存放着所有服务例程的地址</li>
+<li>中断体系结构必须<strong>保存被中断指令的地址</strong>，以便返回</li>
+</ul>
+<h4 id="2-中断处理时-OS-做的事">2. 中断处理时 OS 做的事</h4>
+<ul>
+<li>保存 CPU 状态：<strong>保存寄存器和程序计数器（PC）</strong></li>
+<li>判定发生了哪种类型的中断</li>
+<li>由各自独立的代码段决定该类型中断应采取的动作</li>
+</ul>
+<h4 id="3-陷阱-异常（trap-exception）">3. 陷阱 / 异常（trap / exception）</h4>
+<p><strong>软件产生的中断</strong>，来源有两类：</p>
+<ul>
+<li>程序<strong>错误</strong>（如除零、非法访问）</li>
+<li>用户<strong>主动请求</strong>（如系统调用）</li>
+</ul>
+<h4 id="4-中断驱动-I-O-周期（7-步，对应流程图）">4. 中断驱动 I/O 周期（7 步，对应流程图）</h4>
+<table>
+<thead>
+<tr>
+<th>步</th>
+<th>动作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>设备驱动程序发起 I/O</td>
+</tr>
+<tr>
+<td>2</td>
+<td>请求送到 I/O 控制器</td>
+</tr>
+<tr>
+<td>3</td>
+<td>控制器启动 I/O 操作</td>
+</tr>
+<tr>
+<td>4</td>
+<td>输入就绪 / 输出完成 / 出错 → 产生<strong>中断信号</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td>CPU（在<strong>指令之间</strong>检查中断）接收中断，把控制转给<strong>中断处理程序</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>中断处理程序处理数据，然后从中断返回</td>
+</tr>
+<tr>
+<td>7</td>
+<td>CPU 恢复执行被中断的任务</td>
+</tr>
+</tbody>
+</table>
+<p>关键细节：<strong>CPU 是在每条指令执行完之后、下一条指令开始前检查有无中断</strong>。</p>
+<h4 id="5-中断时间线">5. 中断时间线</h4>
+<p>从时间线图可读出：CPU 大部分时间跑用户程序，I/O 设备并行地传输数据；只有在&quot;传输完成 → 中断发出 → 中断处理&quot;这一小段，CPU 才短暂切去做 I/O 中断处理，随后回到用户程序。这直观体现了<strong>CPU 与 I/O 的并发</strong>。</p>
+<h3 id="六、I-O-结构：两种处理方式">六、I/O 结构：两种处理方式</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>同步（阻塞）</strong></th>
+<th><strong>异步（非阻塞）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>控制返回时机</td>
+<td>I/O <strong>完成后</strong>才返回用户程序</td>
+<td>立即返回，<strong>不等待</strong>完成</td>
+</tr>
+<tr>
+<td>实现</td>
+<td>wait 指令让 CPU 空转直到下次中断；或用 wait 循环（会争用内存访问）</td>
+<td>通过<strong>系统调用</strong>请求 OS，让用户在需要时再等待 I/O 完成</td>
+</tr>
+<tr>
+<td>并发度</td>
+<td>同一时刻<strong>最多一个</strong> I/O 请求未完成，无法并行 I/O</td>
+<td>可同时处理多个 I/O 请求</td>
+</tr>
+<tr>
+<td>所需数据结构</td>
+<td>—</td>
+<td><strong>设备状态表</strong>：每个设备一个表项，记录类型、地址、状态；OS 通过索引该表查询设备状态、并修改表项以关联中断</td>
+</tr>
+</tbody>
+</table>
+<h3 id="七、系统启动（Computer-Startup）">七、系统启动（Computer Startup）</h3>
+<ol>
+<li>加电或重启时加载<strong>引导程序（bootstrap program）</strong></li>
+<li>它通常存放在 <strong>ROM / EPROM</strong> 中，即所谓<strong>固件（firmware）</strong></li>
+<li>初始化系统的各个方面（寄存器、设备控制器、内存内容等）</li>
+<li><strong>加载 OS 内核并启动其执行</strong></li>
+</ol>
+<h3 id="八、本章目标回顾（自检清单）">八、本章目标回顾（自检清单）</h3>
+<ul>
+<li>能描述计算机系统的总体组织，以及中断在其中的作用</li>
+<li>能说清现代多处理器系统的组成部件</li>
+<li>能说明用户态 → 内核态的转换过程</li>
+<li>知道 OS 在不同计算环境（服务器、移动、嵌入式、分布式）中的差异</li>
+<li>能举出自由/开源操作系统的例子（如 GNU/Linux、BSD 系列）</li>
+</ul>
+<h3 id="九、存储结构（Storage-Structure）">九、存储结构（Storage Structure）</h3>
+<h4 id="1-主存-vs-辅存">1. 主存 vs 辅存</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>主存 Main Memory</strong></th>
+<th><strong>辅存 Secondary Storage</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU 能否直接访问</td>
+<td>✅ 唯一能被 CPU <strong>直接访问</strong>的大容量存储</td>
+<td>❌ 必须先调入主存</td>
+</tr>
+<tr>
+<td>访问方式</td>
+<td>随机访问（random access）</td>
+<td>视介质而定</td>
+</tr>
+<tr>
+<td>易失性</td>
+<td>通常<strong>易失</strong>（volatile，断电丢失）</td>
+<td><strong>非易失</strong>（nonvolatile）</td>
+</tr>
+<tr>
+<td>典型实现</td>
+<td>DRAM（动态随机访问存储器）</td>
+<td>HDD、NVM</td>
+</tr>
+<tr>
+<td>定位</td>
+<td>—</td>
+<td>主存的扩展，提供大容量持久存储</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>扩展</strong>：CPU 只能直接寻址主存和寄存器，这是&quot;程序必须装入内存才能执行&quot;这一根本约束的来源，也是后面内存管理、虚拟内存章节存在的理由。</p>
+</blockquote>
+<h4 id="2-两类辅存介质">2. 两类辅存介质</h4>
+<p><strong>HDD（硬盘驱动器）</strong></p>
+<ul>
+<li>刚性金属或玻璃<strong>盘片</strong>，表面覆盖磁性记录материал</li>
+<li>盘面逻辑上划分为<strong>磁道（track）</strong>，磁道再细分为<strong>扇区（sector）</strong></li>
+<li><strong>磁盘控制器</strong>决定设备与计算机之间的逻辑交互</li>
+</ul>
+<p><strong>NVM（非易失性存储器，如 SSD/闪存）</strong></p>
+<ul>
+<li>比硬盘<strong>快</strong>，且非易失</li>
+<li>技术路线多样；随着容量和性能提升、价格下降而日益普及</li>
+<li>无机械运动部件 → 无寻道时间</li>
+</ul>
+<h4 id="3-存储单位复习">3. 存储单位复习</h4>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bit（位）</td>
+<td>最基本单位，取值 0 或 1</td>
+</tr>
+<tr>
+<td>byte（字节）</td>
+<td>8 bit；多数计算机上<strong>最小的方便存储块</strong>（有移动字节的指令，但没有移动单个位的指令）</td>
+</tr>
+<tr>
+<td>word（字）</td>
+<td>某体系结构的<strong>本地数据单元</strong>，由一个或多个字节组成。64 位寄存器 + 64 位寻址的机器通常是 64 位（8 字节）字</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>计算机以<strong>本地字长</strong>执行大量操作，而非一次一个字节</li>
+<li>容量换算：1 KB = 1,024 B，MB = 1024²，GB = 1024³，TB = 1024⁴，PB = 1024⁵</li>
+<li>⚠️ 两个例外：
+<ul>
+<li>厂商常按 10 的幂取整（1 MB ≈ 100 万字节，1 GB ≈ 10 亿字节）→ 这就是&quot;买的 1TB 硬盘只有 931GB&quot;的原因</li>
+<li><strong>网络速率用 bit 计量</strong>（因为网络逐位传输），如 100 Mbps ≈ 12.5 MB/s</li>
+</ul>
+</li>
+</ul>
+<h3 id="十、存储层次结构（Storage-Hierarchy）★">十、存储层次结构（Storage Hierarchy）★</h3>
+<h4 id="1-层次金字塔（对应-Storage-Device-Hierarchy-图）">1. 层次金字塔（对应 Storage-Device Hierarchy 图）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">容量小 ↑ 速度快、单价高</span><br><span class="line">  ┌──────────────┐</span><br><span class="line">  │  registers   │ ┐</span><br><span class="line">  ├──────────────┤ │ 主存储 primary</span><br><span class="line">  │    cache     │ │ (易失 volatile)</span><br><span class="line">  ├──────────────┤ │</span><br><span class="line">  │ main memory  │ ┘</span><br><span class="line">  ├ ─ ─ ─ ─ ─ ─ ─┤ ←—— 易失 / 非易失分界线</span><br><span class="line">  │ nonvolatile  │ ┐ 辅助存储 secondary</span><br><span class="line">  │    memory    │ │ (非易失)</span><br><span class="line">  ├──────────────┤ │</span><br><span class="line">  │  hard disks  │ ┘</span><br><span class="line">  ├──────────────┤ ┐</span><br><span class="line">  │ optical disk │ │ 三级存储 tertiary</span><br><span class="line">  ├──────────────┤ │</span><br><span class="line">  │magnetic tapes│ ┘</span><br><span class="line">  └──────────────┘</span><br><span class="line">容量大 ↓ 速度慢、单价低</span><br></pre></td></tr></table></figure>
+<p>三条排序原则贯穿始终：<strong>速度、成本、易失性</strong>。</p>
+<h4 id="2-各级存储特性对照（重要数据感觉）">2. 各级存储特性对照（重要数据感觉）</h4>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>1 寄存器</th>
+<th>2 高速缓存</th>
+<th>3 主存</th>
+<th>4 SSD</th>
+<th>5 磁盘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>典型容量</td>
+<td>&lt; 1 KB</td>
+<td>&lt; 16 MB</td>
+<td>&lt; 64 GB</td>
+<td>&lt; 1 TB</td>
+<td>&lt; 10 TB</td>
+</tr>
+<tr>
+<td>实现技术</td>
+<td>多端口 CMOS 定制存储</td>
+<td>片上/片外 CMOS SRAM</td>
+<td>CMOS SRAM*</td>
+<td>闪存</td>
+<td>磁盘</td>
+</tr>
+<tr>
+<td>访问时间(ns)</td>
+<td>0.25–0.5</td>
+<td>0.5–25</td>
+<td>80–250</td>
+<td>25,000–50,000</td>
+<td>5,000,000</td>
+</tr>
+<tr>
+<td>带宽(MB/s)</td>
+<td>20,000–100,000</td>
+<td>5,000–10,000</td>
+<td>1,000–5,000</td>
+<td>500</td>
+<td>20–150</td>
+</tr>
+<tr>
+<td><strong>由谁管理</strong></td>
+<td><strong>编译器</strong></td>
+<td><strong>硬件</strong></td>
+<td><strong>操作系统</strong></td>
+<td><strong>操作系统</strong></td>
+<td><strong>操作系统</strong></td>
+</tr>
+<tr>
+<td>后备存储</td>
+<td>cache</td>
+<td>主存</td>
+<td>磁盘</td>
+<td>磁盘</td>
+<td>磁盘/磁带</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>最该记住的一行是&quot;由谁管理&quot;</strong>：寄存器分配是编译器的事，Cache 由硬件自动完成对软件透明，而从主存往下<strong>全部由操作系统负责</strong>——这正好界定了本课程的管辖范围。</p>
+<p>另外注意访问时间跨越了<strong>7 个数量级</strong>（0.25 ns → 5 ms），这就是为什么缓存与并发如此重要：一次磁盘访问，CPU 可以执行上千万条指令。</p>
+</blockquote>
+<p>层次间的数据移动<strong>可以是显式的，也可以是隐式的</strong>（如寄存器由程序显式装载，Cache 填充则隐式发生）。</p>
+<h4 id="3-缓存（Caching）——贯穿全机的通用原理">3. 缓存（Caching）——贯穿全机的通用原理</h4>
+<p><strong>在硬件、操作系统、软件的许多层次上都会执行</strong>。</p>
+<p>工作流程：</p>
+<ol>
+<li>把正在使用的信息从较慢存储<strong>临时复制</strong>到较快存储</li>
+<li>访问时<strong>先查 cache</strong></li>
+<li>命中 → 直接使用（快）</li>
+<li>未命中 → 把数据复制进 cache，再从 cache 使用</li>
+</ol>
+<p>设计要点：</p>
+<ul>
+<li>Cache 必然<strong>小于</strong>被缓存的存储 → 缓存管理是重要设计问题</li>
+<li>两个核心参数：<strong>缓存大小</strong> 与 <strong>替换策略</strong></li>
+<li>主存本身可以看作辅存的 cache（同理：TLB 是页表的 cache，浏览器缓存是网页的 cache）</li>
+</ul>
+<h4 id="4-缓存一致性问题（Migration-of-“A”）">4. 缓存一致性问题（Migration of “A”）</h4>
+<p>数据 A 从磁盘迁移到寄存器要经过：<code>磁盘 → 主存 → cache → 硬件寄存器</code>，于是同一份数据在多处存在副本。</p>
+<table>
+<thead>
+<tr>
+<th>环境</th>
+<th>问题与解决</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多任务</strong></td>
+<td>必须保证用到的是<strong>最新值</strong>，无论它此刻在层次的哪一层</td>
+</tr>
+<tr>
+<td><strong>多处理器</strong></td>
+<td>必须由<strong>硬件提供缓存一致性（cache coherency）</strong>，使所有 CPU 的 cache 中都是最新值</td>
+</tr>
+<tr>
+<td><strong>分布式</strong></td>
+<td>情况更复杂，同一数据可能存在多个副本（解决方案见第 19 章）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="十一、现代计算机如何工作（von-Neumann-体系）">十一、现代计算机如何工作（von Neumann 体系）</h3>
+<p>对应 “How a Modern Computer Works” 图：</p>
+<ul>
+<li>CPU（可有 N 个）内含<strong>执行线程</strong>与 <strong>cache</strong>，与内存之间有两条主线：<strong>指令执行周期</strong>、<strong>数据移动</strong></li>
+<li>设备（可有 M 个）与 CPU 之间三条线：<strong>I/O 请求</strong>（CPU→设备）、<strong>数据</strong>、<strong>中断</strong>（设备→CPU）</li>
+<li>设备与内存之间还有一条<strong>直连箭头：DMA</strong></li>
+</ul>
+<h4 id="DMA（直接内存访问）">DMA（直接内存访问）</h4>
+<ul>
+<li>用于能以<strong>接近内存速度</strong>传输的<strong>高速 I/O 设备</strong></li>
+<li>设备控制器把<strong>整块数据</strong>从缓冲区<strong>直接传到主存，无需 CPU 干预</strong></li>
+<li>中断次数：<strong>每块产生一个中断</strong>，而不是每字节一个中断</li>
+</ul>
+<blockquote>
+<p>💡 <strong>扩展</strong>：这是&quot;用中断次数换 CPU 时间&quot;的经典优化。若无 DMA，1 MB 数据要触发 100 万次中断，CPU 将被中断处理淹没。DMA 期间 CPU 可执行其他任务，只在传输完成时被打断一次。</p>
+</blockquote>
+<h4 id="设备驱动程序">设备驱动程序</h4>
+<p>每个设备控制器都有对应驱动，<strong>在控制器与内核之间提供统一接口</strong>——这正是&quot;OS 隐藏硬件特性&quot;的具体落地。</p>
+<h3 id="十二、操作系统的运行（Operating-System-Operations）">十二、操作系统的运行（Operating-System Operations）</h3>
+<h4 id="启动链条">启动链条</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">引导程序(bootstrap) → 初始化系统、加载内核 → 内核运行 → 启动系统守护进程(daemons，内核之外提供的服务)</span><br></pre></td></tr></table></figure>
+<h4 id="内核是中断驱动的（硬件-软件两类）">内核是中断驱动的（硬件 + 软件两类）</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>来源</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>硬件中断</strong></td>
+<td>某个设备发出</td>
+<td>键盘输入、磁盘传输完成</td>
+</tr>
+<tr>
+<td><strong>软件中断（异常/陷阱）</strong></td>
+<td>① 软件错误</td>
+<td>除零</td>
+</tr>
+<tr>
+<td></td>
+<td>② 请求 OS 服务</td>
+<td><strong>系统调用（system call）</strong></td>
+</tr>
+</tbody>
+</table>
+<p>其他需要 OS 应对的进程问题：<strong>死循环、进程互相修改或修改操作系统</strong>。<br>
+→ 这三类威胁分别引出了后面的 <strong>定时器</strong>、<strong>双模式</strong>、<strong>内存保护</strong> 三大机制。</p>
+<h3 id="十三、多道程序与多任务">十三、多道程序与多任务</h3>
+<h4 id="1-多道程序设计-Multiprogramming（批处理）">1. 多道程序设计 Multiprogramming（批处理）</h4>
+<p><strong>动因</strong>：单个用户/单个作业无法始终让 CPU 和 I/O 设备都忙碌（跑 I/O 时 CPU 空转）。</p>
+<p>机制：</p>
+<ul>
+<li>组织多个<strong>作业（代码+数据）</strong>，使 CPU 总有事可做</li>
+<li>系统中全部作业的一个<strong>子集</strong>保存在内存里</li>
+<li>通过**作业调度（job scheduling）**选出一个来运行</li>
+<li>该作业需要等待（如等 I/O）时，OS <strong>切换到另一个作业</strong></li>
+</ul>
+<p><strong>目标：最大化 CPU 利用率（吞吐量）。</strong></p>
+<h4 id="2-多任务-分时-Multitasking-Timesharing">2. 多任务 / 分时 Multitasking (Timesharing)</h4>
+<p>批处理的<strong>逻辑延伸</strong>：CPU 切换作业<strong>足够频繁</strong>，使用户能在程序运行时与之交互 → <strong>交互式计算</strong>。</p>
+<p>要点：</p>
+<ul>
+<li><strong>响应时间应 &lt; 1 秒</strong></li>
+<li>每个用户至少有一个程序在内存中执行 → 这就是<strong>进程（process）</strong></li>
+<li>多个作业同时就绪 → 需要 <strong>CPU 调度</strong></li>
+<li>进程装不下内存 → <strong>交换（swapping）</strong>：换入换出以运行</li>
+<li><strong>虚拟内存</strong>：允许执行<strong>并未完全装入内存</strong>的进程</li>
+</ul>
+<p><strong>目标：最小化响应时间（用户体验）。</strong></p>
+<h4 id="3-多道程序系统的内存布局">3. 多道程序系统的内存布局</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">max ┌──────────────┐</span><br><span class="line">    │ operating system │  ← OS 常驻（图中在高地址端）</span><br><span class="line">    ├──────────────┤</span><br><span class="line">    │   process 1  │</span><br><span class="line">    ├──────────────┤</span><br><span class="line">    │   process 2  │</span><br><span class="line">    ├──────────────┤</span><br><span class="line">    │   process 3  │</span><br><span class="line">    ├──────────────┤</span><br><span class="line">    │   process 4  │</span><br><span class="line">  0 └──────────────┘</span><br></pre></td></tr></table></figure>
+<p>内存中同时驻留 OS 与多个进程 → 引出<strong>保护</strong>需求：谁来阻止 process 2 去改写 OS 或 process 3？答案见下节。</p>
+<h3 id="十四、双模式操作与定时器（保护的两大基石）★">十四、双模式操作与定时器（保护的两大基石）★</h3>
+<h4 id="1-双模式操作-Dual-mode-Operation">1. 双模式操作 Dual-mode Operation</h4>
+<p><strong>目的</strong>：让 OS 能保护自身和其他系统组件。</p>
+<ul>
+<li>两种模式：<strong>用户态（user mode）</strong> 与 <strong>内核态（kernel mode）</strong></li>
+<li>由**硬件提供模式位（mode bit）**来区分当前执行的是用户代码还是内核代码
+<ul>
+<li>用户运行 → mode bit = <strong>1（user）</strong></li>
+<li>内核代码执行 → mode bit = <strong>0（kernel）</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>如何保证用户不能自己把模式位设成内核？</strong></p>
+<ul>
+<li><strong>只有系统调用能把模式改为内核态，调用返回时重置为用户态</strong></li>
+<li>部分指令被指定为<strong>特权指令（privileged instruction）</strong>，只能在内核态执行（如设置定时器、I/O 指令、修改模式位、加载内存管理寄存器）</li>
+</ul>
+<h4 id="2-用户态→内核态的转换（对应流程图）">2. 用户态→内核态的转换（对应流程图）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">用户进程执行</span><br><span class="line">     ↓</span><br><span class="line">调用系统调用 ──trap──→ [mode bit = 0]  内核态</span><br><span class="line">                          执行系统调用</span><br><span class="line">     ↑                        ↓</span><br><span class="line">返回系统调用 ←──return── [mode bit = 1]</span><br><span class="line">     ↓</span><br><span class="line">用户进程继续执行</span><br></pre></td></tr></table></figure>
+<p>关键：<strong>入口只有一个（trap），且由硬件把模式位置 0</strong>，用户程序无法绕过。</p>
+<h4 id="3-定时器-Timer">3. 定时器 Timer</h4>
+<p><strong>目的</strong>：防止死循环，或某进程霸占资源不放。</p>
+<p>机制：</p>
+<ol>
+<li>设置定时器，在<strong>一段时间后中断计算机</strong></li>
+<li>维护一个计数器，由<strong>物理时钟递减</strong></li>
+<li><strong>由 OS 设置该计数器（特权指令）</strong></li>
+<li>计数器<strong>归零时产生中断</strong></li>
+<li>在调度进程前先设好 → 超出分配时限就<strong>重获控制权或终止程序</strong></li>
+</ol>
+<blockquote>
+<p>💡 <strong>扩展</strong>：定时器是抢占式调度（preemptive scheduling）能够存在的硬件前提。没有定时器，OS 一旦把 CPU 交给用户程序就再也拿不回来——这正是早期协作式多任务系统（如 Win 3.x）容易被单个程序卡死的原因。</p>
+</blockquote>
+<h3 id="十五、OS-的五大资源管理职责">十五、OS 的五大资源管理职责</h3>
+<h4 id="1-进程管理-Process-Management">1. 进程管理 Process Management</h4>
+<p><strong>核心概念辨析</strong>：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>程序 Program</th>
+<th>进程 Process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>性质</td>
+<td><strong>被动实体</strong>（passive）</td>
+<td><strong>主动实体</strong>（active）</td>
+</tr>
+<tr>
+<td>形态</td>
+<td>磁盘上的文件</td>
+<td><strong>执行中的程序</strong>，系统内的工作单元</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>进程需要资源完成任务：<strong>CPU、内存、I/O、文件</strong>，以及<strong>初始化数据</strong></li>
+<li>进程终止时须<strong>回收所有可重用资源</strong></li>
+<li><strong>单线程进程</strong>：一个 PC（程序计数器）指示下一条指令位置，顺序执行至完成</li>
+<li><strong>多线程进程</strong>：<strong>每个线程一个 PC</strong></li>
+<li>系统中通常有许多进程（用户的 + OS 的）在一个或多个 CPU 上并发运行</li>
+<li><strong>并发</strong>通过在进程/线程间<strong>多路复用 CPU</strong> 实现</li>
+</ul>
+<p><strong>OS 的进程管理活动（5 条）</strong>：</p>
+<ol>
+<li>创建与删除用户进程和系统进程</li>
+<li>挂起与恢复进程</li>
+<li>提供进程<strong>同步</strong>机制</li>
+<li>提供进程<strong>通信</strong>机制</li>
+<li>提供<strong>死锁处理</strong>机制</li>
+</ol>
+<h4 id="2-内存管理-Memory-Management">2. 内存管理 Memory Management</h4>
+<p>前提：要执行程序，其指令（全部或部分）必须在内存中；所需数据（全部或部分）也必须在内存中。</p>
+<p>内存管理决定<strong>什么内容在内存中、何时在</strong>，以优化 <strong>CPU 利用率</strong>和<strong>对用户的响应</strong>。</p>
+<p>活动：</p>
+<ul>
+<li>跟踪内存哪些部分正被使用、被谁使用</li>
+<li>决定把哪些进程（或其部分）和数据换入换出</li>
+<li>按需<strong>分配与回收</strong>内存空间</li>
+</ul>
+<h4 id="3-文件系统管理-File-System-Management">3. 文件系统管理 File-System Management</h4>
+<ul>
+<li>OS 提供<strong>统一的、逻辑的</strong>信息存储视图</li>
+<li>把物理属性抽象为逻辑存储单位——<strong>文件</strong></li>
+<li>每种介质由设备控制（磁盘驱动器、磁带机等），属性各异：<strong>访问速度、容量、数据传输率、访问方法（顺序 or 随机）</strong></li>
+<li>文件通常组织成<strong>目录</strong>；多数系统有<strong>访问控制</strong>决定谁能访问什么</li>
+</ul>
+<p>活动：创建/删除文件与目录；提供操作文件目录的原语；把文件<strong>映射到辅存</strong>；把文件<strong>备份</strong>到稳定（非易失）介质。</p>
+<h4 id="4-大容量存储管理-Mass-Storage-Management">4. 大容量存储管理 Mass-Storage Management</h4>
+<ul>
+<li>磁盘用于存放装不下主存的数据、或需长期保存的数据</li>
+<li><strong>整机运行速度取决于磁盘子系统及其算法</strong> → 管理至关重要</li>
+</ul>
+<p>活动：<strong>挂载/卸载、空闲空间管理、存储分配、磁盘调度、分区、保护</strong>。</p>
+<h4 id="5-I-O-子系统">5. I/O 子系统</h4>
+<p>OS 的目的之一是<strong>向用户隐藏硬件设备的特殊性</strong>。I/O 子系统负责：</p>
+<ul>
+<li><strong>I/O 的内存管理</strong>，包含三个易混概念：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>术语</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>缓冲 buffering</strong></td>
+<td>数据传输过程中<strong>临时存储</strong></td>
+</tr>
+<tr>
+<td><strong>缓存 caching</strong></td>
+<td>把部分数据存于<strong>更快</strong>存储以提升性能</td>
+</tr>
+<tr>
+<td><strong>假脱机 spooling</strong></td>
+<td>一个作业的<strong>输出</strong>与其他作业的<strong>输入相重叠</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>通用<strong>设备驱动接口</strong></li>
+<li>针对特定硬件的<strong>驱动程序</strong></li>
+</ul>
+<h3 id="十六、保护与安全">十六、保护与安全</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>保护 Protection</strong></th>
+<th><strong>安全 Security</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定义</td>
+<td>控制进程或用户对 <strong>OS 所定义资源</strong>的访问的<strong>任何机制</strong></td>
+<td><strong>防御系统</strong>免受<strong>内部与外部攻击</strong></td>
+</tr>
+<tr>
+<td>面向</td>
+<td>内部（机制层面）</td>
+<td>内外部威胁</td>
+</tr>
+<tr>
+<td>例子</td>
+<td>读写权限、内存越界检查</td>
+<td>拒绝服务、蠕虫、病毒、身份窃取、服务盗用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>用户标识体系</strong>：</p>
+<ul>
+<li>系统首先<strong>区分用户</strong>，以决定谁能做什么</li>
+<li><strong>用户 ID（user ID / security ID）</strong>：包含名字和关联的数字，每用户一个</li>
+<li>用户 ID 与该用户的<strong>所有文件和进程</strong>关联，用于访问控制</li>
+<li><strong>组 ID（group ID）</strong>：定义一组用户并统一管理权限，同样关联到每个进程和文件</li>
+<li><strong>权限提升（privilege escalation）</strong>：允许用户切换到拥有更多权限的有效 ID（如 Unix 的 setuid、sudo）</li>
+</ul>
+<h3 id="十七、虚拟化-Virtualization">十七、虚拟化 Virtualization</h3>
+<h4 id="1-三种-在异构环境跑程序-的技术对比">1. 三种&quot;在异构环境跑程序&quot;的技术对比</h4>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>条件</th>
+<th>性能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>仿真 Emulation</strong></td>
+<td>源 CPU 类型与目标类型<strong>不同</strong>（如 PowerPC → Intel x86）</td>
+<td><strong>通常最慢</strong></td>
+</tr>
+<tr>
+<td><strong>解释 Interpretation</strong></td>
+<td>语言未编译成本地代码</td>
+<td>中</td>
+</tr>
+<tr>
+<td><strong>虚拟化 Virtualization</strong></td>
+<td>OS 为该 CPU <strong>本地编译</strong>，运行的客户机 OS <strong>也是本地编译</strong>的</td>
+<td>快</td>
+</tr>
+</tbody>
+</table>
+<p>典型例子：VMware 在本地 WinXP 宿主 OS 上运行多个 WinXP 客户机，每个客户机再跑自己的应用。<strong>VMM（虚拟机管理器）提供虚拟化服务</strong>。</p>
+<h4 id="2-结构对比（对应图）">2. 结构对比（对应图）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">(a) 非虚拟化               (b) 虚拟化</span><br><span class="line">┌───────────┐        ┌────────┬────────┬────────┐</span><br><span class="line">│ processes │        │processes│processes│processes│</span><br><span class="line">├───────────┤ ←编程接口→ ├────────┼────────┼────────┤</span><br><span class="line">│  kernel   │        │ kernel │ kernel │ kernel │</span><br><span class="line">├───────────┤        │  VM1   │  VM2   │  VM3   │</span><br><span class="line">│ hardware  │        ├────────┴────────┴────────┤</span><br><span class="line">└───────────┘        │  virtual machine manager  │</span><br><span class="line">                     ├──────────────────────────┤</span><br><span class="line">                     │        hardware          │</span><br><span class="line">                     └──────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p>关键：VMM 向上层每个 VM 提供与裸硬件<strong>相同的编程接口</strong>，所以客户机内核以为自己独占硬件。</p>
+<h4 id="3-使用场景">3. 使用场景</h4>
+<ul>
+<li>笔记本/台式机上跑多个 OS 用于探索或兼容（如 Mac OS X 宿主 + Windows 客户机）</li>
+<li>为多个 OS 开发应用，而不必备多台机器</li>
+<li>多平台 QA 测试，同样不必多机</li>
+<li>在<strong>数据中心</strong>内执行和管理计算环境（云计算的技术基础）</li>
+</ul>
+<h4 id="4-VMM-的两种形态">4. VMM 的两种形态</h4>
+<ul>
+<li>运行在宿主 OS 之上（如上文 VMware Workstation）</li>
+<li><strong>本地运行（此时 VMM 本身就是宿主）</strong>，不存在通用宿主 OS —— 如 <strong>VMware ESX、Citrix XenServer</strong></li>
+</ul>
+<blockquote>
+<p>💡 补充术语：前者称 <strong>Type-2（寄居型）</strong>，后者称 <strong>Type-1（裸金属型）</strong>。数据中心几乎都用 Type-1，因为少一层 OS 意味着更低开销和更小攻击面。</p>
+</blockquote>
+<h3 id="十八、分布式系统-Distributed-Systems">十八、分布式系统 Distributed Systems</h3>
+<ul>
+<li>定义：把<strong>独立的、可能异构的</strong>系统通过网络连接起来的集合</li>
+<li><strong>网络是通信路径，TCP/IP 最常用</strong></li>
+<li>按覆盖范围分类：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>缩写</th>
+<th>全称</th>
+<th>大致范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PAN</strong></td>
+<td>个域网</td>
+<td>身边几米（蓝牙）</td>
+</tr>
+<tr>
+<td><strong>LAN</strong></td>
+<td>局域网</td>
+<td>一栋楼/一个园区</td>
+</tr>
+<tr>
+<td><strong>MAN</strong></td>
+<td>城域网</td>
+<td>一座城市</td>
+</tr>
+<tr>
+<td><strong>WAN</strong></td>
+<td>广域网</td>
+<td>跨城市/国家</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>网络操作系统</strong>在跨网络的系统间提供功能</li>
+<li>通信方案使各系统能<strong>交换消息</strong></li>
+<li>最终目标：营造<strong>单一系统的假象</strong>（single system illusion）</li>
+</ul>
+<h3 id="十九、计算机系统体系结构（Computer-System-Architecture）">十九、计算机系统体系结构（Computer System Architecture）</h3>
+<h4 id="1-总体格局">1. 总体格局</h4>
+<ul>
+<li>多数系统使用<strong>单个通用处理器</strong></li>
+<li>多数系统<strong>同时还有专用处理器</strong>（如磁盘控制器上的微处理器、GPU、键盘控制器）</li>
+<li><strong>多处理器系统</strong>的使用与重要性正在增长</li>
+</ul>
+<h4 id="2-多处理器系统（Multiprocessor-Systems）">2. 多处理器系统（Multiprocessor Systems）</h4>
+<p>别名：<strong>并行系统（parallel systems）</strong>、<strong>紧耦合系统（tightly-coupled systems）</strong></p>
+<p><strong>三大优势</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>含义</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>提高吞吐量</strong> Increased throughput</td>
+<td>处理器多 → 单位时间完成更多工作</td>
+<td>⚠️ N 个处理器<strong>不等于</strong> N 倍加速，协调开销和共享资源竞争会带来损耗</td>
+</tr>
+<tr>
+<td><strong>规模经济</strong> Economy of scale</td>
+<td>共享外设、存储、电源、机箱，比 N 台独立机器便宜</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>提高可靠性</strong> Increased reliability</td>
+<td>一个处理器故障不导致系统停机，只是变慢</td>
+<td>关键词：<strong>优雅降级（graceful degradation）</strong>、<strong>容错（fault tolerance）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>两种类型</strong>：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>非对称多处理 AMP</strong></th>
+<th><strong>对称多处理 SMP</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分工</td>
+<td>每个处理器被<strong>指派特定任务</strong></td>
+<td>每个处理器<strong>执行所有任务</strong></td>
+</tr>
+<tr>
+<td>结构</td>
+<td>主-从关系（boss/worker）</td>
+<td>各处理器地位平等</td>
+</tr>
+<tr>
+<td>现状</td>
+<td>早期方案</td>
+<td><strong>现代主流</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-SMP-体系结构（图解）">3. SMP 体系结构（图解）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">┌────processor₀────┐   ┌────processor₁────┐</span><br><span class="line">│  ┌──CPU₀────┐    │   │  ┌──CPU₁────┐    │</span><br><span class="line">│  │ registers│    │   │  │ registers│    │</span><br><span class="line">│  │  cache   │    │   │  │  cache   │    │</span><br><span class="line">│  └──────────┘    │   │  └──────────┘    │</span><br><span class="line">└───────┬──────────┘   └────────┬─────────┘</span><br><span class="line">        └───────────┬───────────┘</span><br><span class="line">              ┌─────┴──────┐</span><br><span class="line">              │ main memory│   ← 共享</span><br><span class="line">              └────────────┘</span><br></pre></td></tr></table></figure>
+<p>要点：每个处理器<strong>自带寄存器和私有 cache</strong>，但<strong>共享主存</strong>。<br>
+→ 这正是前面讲的**缓存一致性（cache coherency）**必须由硬件保证的原因：两个 cache 里可能各有一份同名数据的副本。</p>
+<h4 id="4-双核-多核设计（Multicore）">4. 双核 / 多核设计（Multicore）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┌──────────── processor₀ ────────────┐</span><br><span class="line">│ ┌─CPU core₀─┐      ┌─CPU core₁─┐   │</span><br><span class="line">│ │ registers │      │ registers │   │</span><br><span class="line">│ │ L1 cache  │      │ L1 cache  │   │</span><br><span class="line">│ └─────┬─────┘      └─────┬─────┘   │</span><br><span class="line">│       └────────┬─────────┘         │</span><br><span class="line">│           ┌────┴─────┐             │</span><br><span class="line">│           │ L2 cache │  ← 核间共享  │</span><br><span class="line">│           └────┬─────┘             │</span><br><span class="line">└────────────────┼───────────────────┘</span><br><span class="line">            ┌────┴──────┐</span><br><span class="line">            │main memory│</span><br><span class="line">            └───────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>关键区别</strong>：</p>
+<ul>
+<li><strong>多芯片（multi-chip）</strong>：多个物理处理器芯片</li>
+<li><strong>多核（multicore）</strong>：<strong>单个芯片内</strong>包含多个计算核心</li>
+<li>系统可以包含所有芯片；<strong>机箱可容纳多个独立系统</strong>（刀片服务器）</li>
+</ul>
+<blockquote>
+<p>💡 <strong>扩展：为什么多核胜过多芯片？</strong></p>
+<ol>
+<li><strong>片内通信远快于片间通信</strong>，功耗也低得多</li>
+<li>共享 L2/L3 使核间数据交换不必绕到主存</li>
+<li>从 OS 视角，<strong>N 核 = N 个可调度的 CPU</strong>，调度器不必区分它们是不是同一块芯片——但为了性能，现代调度器实际上<strong>是</strong>关心的（亲和性 affinity）</li>
+</ol>
+</blockquote>
+<h4 id="5-NUMA（非一致内存访问）">5. NUMA（非一致内存访问）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">memory₀        memory₁</span><br><span class="line">   │              │</span><br><span class="line"> CPU₀ ──interconnect── CPU₁</span><br><span class="line">   │  ╲          ╱  │</span><br><span class="line">   │    ╲      ╱    │</span><br><span class="line">   │      ╲  ╱      │</span><br><span class="line"> CPU₂ ──────────── CPU₃</span><br><span class="line">   │              │</span><br><span class="line">memory₂        memory₃</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每个 CPU 挂载<strong>自己的本地内存</strong>，通过<strong>互连网络</strong>访问其他 CPU 的内存</li>
+<li><strong>访问本地内存快，访问远程内存慢</strong> → 所以叫&quot;非一致&quot;</li>
+<li><strong>优点</strong>：随 CPU 数增加可扩展，避免了 SMP 中共享总线成为瓶颈</li>
+<li><strong>代价</strong>：OS 必须<strong>感知拓扑</strong>，尽量把进程调度到其内存所在的节点上（NUMA-aware 调度与内存分配）</li>
+</ul>
+<blockquote>
+<p>从主板视角看：一块主板就是一台完整计算机（处理器插槽 + DRAM 插槽 + PCIe 总线插槽 + 各类 I/O 与电源接口）。<strong>即使最低端的通用 CPU 也含多个核心</strong>；有的主板含<strong>多个处理器插槽</strong>；更高级的计算机允许<strong>多块系统板</strong>，从而构成 <strong>NUMA 系统</strong>。</p>
+</blockquote>
+<h4 id="6-三层并行结构总结（易混，务必分清）">6. 三层并行结构总结（易混，务必分清）</h4>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>名称</th>
+<th>共享什么</th>
+<th>耦合度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>芯片内</td>
+<td>多核 multicore</td>
+<td>L2/L3 cache + 内存</td>
+<td>最紧</td>
+</tr>
+<tr>
+<td>单机内</td>
+<td>SMP / 多芯片</td>
+<td>主存（共享总线）</td>
+<td>紧</td>
+</tr>
+<tr>
+<td>单机内</td>
+<td>NUMA</td>
+<td>内存（但有远近之分）</td>
+<td>较紧</td>
+</tr>
+<tr>
+<td>多机</td>
+<td><strong>集群 cluster</strong></td>
+<td><strong>存储（经 SAN）</strong></td>
+<td>松</td>
+</tr>
+<tr>
+<td>多机</td>
+<td><strong>分布式系统</strong></td>
+<td>仅靠<strong>消息</strong>通信</td>
+<td>最松</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十、集群系统（Clustered-Systems）">二十、集群系统（Clustered Systems）</h3>
+<p><strong>定义</strong>：类似多处理器系统，但是<strong>多个独立的系统协同工作</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">computer ──interconnect── computer ──interconnect── computer</span><br><span class="line">    │                         │                        │</span><br><span class="line">    └─────────────┬───────────┴────────────────────────┘</span><br><span class="line">            ┌─────┴──────┐</span><br><span class="line">            │ storage-area│   ← SAN 共享存储</span><br><span class="line">            │   network   │</span><br><span class="line">            └─────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>核心特征</strong>：</p>
+<ul>
+<li>通常通过<strong>存储区域网络（SAN）共享存储</strong></li>
+<li>提供<strong>高可用（high-availability）服务</strong>，能在故障后继续存活</li>
+</ul>
+<p><strong>两种模式</strong>：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>非对称集群 Asymmetric</strong></th>
+<th><strong>对称集群 Symmetric</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结构</td>
+<td>一台机器处于**热备（hot-standby）**状态</td>
+<td><strong>多个节点都运行应用</strong>，并互相监控</td>
+</tr>
+<tr>
+<td>备机状态</td>
+<td>平时不干活，只等主机故障</td>
+<td>都在干活</td>
+</tr>
+<tr>
+<td>资源利用</td>
+<td>低（一半机器闲置）</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>高性能计算（HPC）集群</strong>：</p>
+<ul>
+<li>应用程序必须<strong>专门为并行化编写</strong>才能利用集群（不是把单机程序丢上去就快了）</li>
+<li>部分集群带<strong>分布式锁管理器（DLM）</strong>，避免多节点对共享数据的<strong>冲突操作</strong></li>
+</ul>
+<h3 id="二十一、计算环境（Computing-Environments）六种">二十一、计算环境（Computing Environments）六种</h3>
+<h4 id="1-传统（Traditional）">1. 传统（Traditional）</h4>
+<ul>
+<li>独立的通用机器</li>
+<li>但界限已<strong>模糊</strong>——大多数系统都与其他系统互连（如 Internet）</li>
+<li>**门户（portal）**提供对内部系统的 Web 访问</li>
+<li>**网络计算机（瘦客户端 thin client）**类似 Web 终端</li>
+<li>移动计算机通过<strong>无线网络</strong>互连</li>
+<li>网络无处不在——<strong>连家庭系统也要用防火墙</strong>抵御来自 Internet 的攻击</li>
+</ul>
+<h4 id="2-移动（Mobile）">2. 移动（Mobile）</h4>
+<ul>
+<li>手持智能手机、平板等</li>
+<li>与传统笔记本的功能差异？
+<ul>
+<li><strong>额外特性</strong>：更多 OS 功能，如 <strong>GPS、陀螺仪</strong></li>
+<li>由此催生新型应用，如<strong>增强现实（AR）</strong></li>
+</ul>
+</li>
+<li>连接方式：<strong>IEEE 802.11 无线</strong>或<strong>蜂窝数据网络</strong></li>
+<li>领导者：<strong>Apple iOS 与 Google Android</strong></li>
+</ul>
+<h4 id="3-客户机-服务器（Client-Server）">3. 客户机-服务器（Client-Server）</h4>
+<ul>
+<li><strong>哑终端已被智能 PC 取代</strong></li>
+<li>许多系统现在是<strong>服务器</strong>，响应<strong>客户机</strong>发起的请求</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>提供什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>计算服务器 Compute-server</strong></td>
+<td>向客户机提供<strong>请求服务的接口</strong>（如数据库）</td>
+</tr>
+<tr>
+<td><strong>文件服务器 File-server</strong></td>
+<td>向客户机提供<strong>存储和检索文件</strong>的接口</td>
+</tr>
+</tbody>
+</table>
+<p>图中：一个 Server 通过 Network 连接 client desktop / laptop / smartphone。</p>
+<h4 id="4-对等（Peer-to-Peer-P2P）">4. 对等（Peer-to-Peer, P2P）</h4>
+<ul>
+<li>
+<p>分布式系统的另一种模型</p>
+</li>
+<li>
+<p><strong>不区分客户机与服务器</strong>，所有节点都是<strong>对等体（peer）</strong>，可<strong>同时充当客户机、服务器或两者</strong></p>
+</li>
+<li>
+<p>节点必须</p>
+<p>加入 P2P 网络</p>
+<p>，两种方式：</p>
+<ol>
+<li>向网络上的<strong>中央查找服务</strong>注册自己的服务</li>
+<li><strong>广播</strong>服务请求，并通过<strong>发现协议</strong>响应他人的请求</li>
+</ol>
+</li>
+<li>
+<p>例子：<strong>Napster（中央索引式）、Gnutella（广播式）、VoIP 如 Skype</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>💡 对比：Napster 有中央目录服务器 → 因此可被法律&quot;一刀切断&quot;；Gnutella 纯广播 → 无单点，但<strong>查询开销随网络规模爆炸增长</strong>。这是集中式与去中心化的经典权衡。</p>
+</blockquote>
+<h4 id="5-云计算（Cloud-Computing）★">5. 云计算（Cloud Computing）★</h4>
+<p><strong>定义</strong>：跨网络把<strong>计算、存储、甚至应用</strong>作为<strong>服务</strong>交付。</p>
+<p><strong>与虚拟化的关系</strong>：云计算是<strong>虚拟化的逻辑延伸</strong>，因为它以虚拟化作为其功能的基础。</p>
+<p><strong>例子</strong>：Amazon EC2 拥有数千台服务器、数百万台虚拟机、数 PB 存储，通过 Internet 提供，<strong>按使用量付费</strong>。</p>
+<p><strong>按部署模式分类</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>公有云 Public</strong></td>
+<td>通过 Internet 向<strong>任何愿意付费者</strong>开放</td>
+</tr>
+<tr>
+<td><strong>私有云 Private</strong></td>
+<td>由公司<strong>为自己使用</strong>而运行</td>
+</tr>
+<tr>
+<td><strong>混合云 Hybrid</strong></td>
+<td>同时包含公有和私有云组件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>按服务层次分类（记忆：软件→平台→设施，抽象层次由高到低）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>提供什么</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SaaS</strong> 软件即服务</td>
+<td>通过 Internet 提供一个或多个<strong>应用</strong></td>
+<td>在线字处理器</td>
+</tr>
+<tr>
+<td><strong>PaaS</strong> 平台即服务</td>
+<td>通过 Internet 提供<strong>可供应用使用的软件栈</strong></td>
+<td>数据库服务器</td>
+</tr>
+<tr>
+<td><strong>IaaS</strong> 基础设施即服务</td>
+<td>通过 Internet 提供<strong>服务器或存储</strong></td>
+<td>供备份用的存储</td>
+</tr>
+</tbody>
+</table>
+<p><strong>云环境的组成 = 传统 OS + VMM + 云管理工具</strong></p>
+<p>架构图解读（自上而下）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">      Internet ──────customer requests──→ 云客户接口</span><br><span class="line">         │                                      │</span><br><span class="line">    ┌────┴────┐                        cloud management</span><br><span class="line">    │ firewall│  ← Internet 连接需要防火墙等安全措施   commands</span><br><span class="line">    └────┬────┘                                  │</span><br><span class="line"> ┌───────┴──────┐                                ↓</span><br><span class="line"> │ load balancer│ ← 负载均衡器把流量分散到多个应用</span><br><span class="line"> └───────┬──────┘</span><br><span class="line">╭────────┴─────────────────────────────────╮</span><br><span class="line">│ [VMs][VMs]  [storage]  [cloud mgmt svcs] │  云</span><br><span class="line">│ servers servers                          │</span><br><span class="line">╰──────────────────────────────────────────╯</span><br></pre></td></tr></table></figure>
+<h4 id="6-实时嵌入式系统（Real-Time-Embedded-Systems）">6. 实时嵌入式系统（Real-Time Embedded Systems）</h4>
+<ul>
+<li><strong>是最普遍的一种计算机形态</strong>（数量上远超 PC 和服务器）</li>
+<li>差异极大：<strong>专用、功能受限的 OS</strong>，或<strong>实时 OS</strong></li>
+<li>用途仍在<strong>扩展</strong>；还有许多其他特殊计算环境</li>
+<li><strong>有些有 OS，有些没有 OS 就执行任务</strong></li>
+</ul>
+<p><strong>实时 OS 的定义特征</strong>：</p>
+<ul>
+<li>具有<strong>明确定义的固定时间约束</strong></li>
+<li>处理<strong>必须在约束内完成</strong></li>
+<li><strong>只有满足时间约束，操作才算正确</strong> ← 这是与普通 OS 最本质的区别</li>
+</ul>
+<blockquote>
+<p>💡 <strong>扩展</strong>：普通 OS 追求&quot;平均快&quot;（吞吐量、平均响应时间），实时 OS 追求&quot;<strong>最坏情况可预测</strong>&quot;。一个平均 1 ms、偶尔 500 ms 的系统在桌面上很优秀，在汽车安全气囊控制器上是致命缺陷。</p>
+<ul>
+<li><strong>硬实时（hard real-time）</strong>：错过截止期 = 系统失败（气囊、飞控）</li>
+<li><strong>软实时（soft real-time）</strong>：错过截止期只是质量下降（视频播放丢帧）</li>
+</ul>
+</blockquote>
+<h3 id="二十二、自由与开源操作系统">二十二、自由与开源操作系统</h3>
+<h4 id="1-基本概念">1. 基本概念</h4>
+<ul>
+<li><strong>以源代码形式</strong>提供的操作系统，而非只有二进制的<strong>闭源专有</strong>形式</li>
+<li>是对<strong>拷贝保护与数字版权管理（DRM）运动</strong>的一种<strong>反制</strong></li>
+<li>由**自由软件基金会（FSF）**发起，其 **GNU 通用公共许可证（GPL）**采用 <strong>“copyleft”</strong> 机制</li>
+</ul>
+<h4 id="2-⚠️-重要辨析：Free-≠-Open-Source">2. ⚠️ 重要辨析：Free ≠ Open Source</h4>
+<p><strong>自由软件（free software）与开源软件（open-source software）是由不同群体倡导的两种不同理念。</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>自由软件（FSF）</th>
+<th>开源软件（OSI）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出发点</td>
+<td><strong>伦理/自由</strong>：用户应有运行、研究、修改、分发的自由</td>
+<td><strong>实用/工程</strong>：开放源码能产生更好的软件</td>
+</tr>
+<tr>
+<td>关键词</td>
+<td>copyleft、GPL、“free as in freedom”</td>
+<td>协作开发、宽松许可（MIT/BSD/Apache）</td>
+</tr>
+</tbody>
+</table>
+<p>（延伸阅读：<a target="_blank" rel="noopener" href="http://gnu.org">gnu.org</a> 的 “Open Source Misses the Point”）</p>
+<blockquote>
+<p>💡 <strong>copyleft 的巧妙之处</strong>：它反用版权法——利用版权授予许可，但要求<strong>衍生作品必须以同样条款发布</strong>，从而让自由&quot;传染&quot;下去。这正是 Linux 内核（GPLv2）的法律基础。</p>
+</blockquote>
+<h4 id="3-例子与实践工具">3. 例子与实践工具</h4>
+<ul>
+<li>例子：**GNU/Linux、BSD UNIX（含 Mac OS X 的核心）**等</li>
+<li>可用 VMM 运行客户机 OS 进行探索：
+<ul>
+<li><strong>VMware Player</strong>（Windows 上免费）</li>
+<li><strong>VirtualBox</strong>（多平台，开源且免费）</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-为什么现在是学-OS-的最好时代（教材观点归纳）">4. 为什么现在是学 OS 的最好时代（教材观点归纳）</h4>
+<p>三条理由：</p>
+<ol>
+<li><strong>源码可得</strong> —— Linux、BSD UNIX、Solaris、部分 macOS 都同时提供源码和二进制形式。过去只能靠文档或观察行为回答的问题，现在可以<strong>直接查看代码</strong>来回答，实现&quot;由内而外&quot;地研究 OS</li>
+<li><strong>历史系统也开源了</strong> —— 不再有商业价值的 OS 被开放源码，让我们能研究<strong>在 CPU、内存、存储资源都稀缺的年代</strong>系统是如何运作的</li>
+<li><strong>虚拟化成为主流且常常免费</strong> —— 学生可在一个核心系统上运行<strong>数百个 OS 而无需专用硬件</strong>（VMware 免费 player + 大量免费&quot;虚拟设备&quot;；VirtualBox 跨平台开源 VMM）</li>
+</ol>
+<p>结果：<strong>从学生到 OS 开发者的门槛大幅降低</strong>——只需一些知识、努力和网络连接，学生甚至能创建一个新的 OS 发行版。以前获取源码困难甚至不可能，<strong>如今唯一的限制只是兴趣、时间和磁盘空间</strong>。</p>
+<h3 id="二十三、内核数据结构（Kernel-Data-Structures）">二十三、内核数据结构（Kernel Data Structures）</h3>
+<p><strong>总原则</strong>：许多内核数据结构与标准编程数据结构相似——OS 并不需要发明新数据结构，而是在<strong>极端约束下</strong>（无法动态分配失败、需在中断上下文使用、需极致性能）复用经典结构。</p>
+<h4 id="1-链表（三种）">1. 链表（三种）</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>结构</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>单链表 Singly linked</strong></td>
+<td>每节点一个 next 指针，末节点指向 <strong>null</strong></td>
+<td>只能单向遍历</td>
+</tr>
+<tr>
+<td><strong>双链表 Doubly linked</strong></td>
+<td>每节点有 prev 和 next，<strong>首节点 prev = null，末节点 next = null</strong></td>
+<td>可双向遍历，删除节点 O(1)</td>
+</tr>
+<tr>
+<td><strong>循环链表 Circular</strong></td>
+<td>末节点指回<strong>首节点</strong>，无 null</td>
+<td>适合轮转遍历（如<strong>轮转调度队列</strong>）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>共同代价</strong>：查找是 <strong>O(n)</strong> 顺序遍历。<br>
+<strong>用途</strong>：链表常作为更复杂结构（栈、队列）的<strong>底层实现</strong>。</p>
+<h4 id="2-二叉搜索树（Binary-Search-Tree）">2. 二叉搜索树（Binary Search Tree）</h4>
+<p>规则：<strong>left ≤ right</strong>（左子树 ≤ 节点 ≤ 右子树）</p>
+<p>示例树：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      17</span><br><span class="line">    /    \</span><br><span class="line">  12      35</span><br><span class="line"> /  \    /  \</span><br><span class="line">6   14  32   40</span><br></pre></td></tr></table></figure>
+<p><strong>性能对比（重点）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>查找复杂度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通二叉搜索树</td>
+<td><strong>O(n)</strong>（最坏情况退化成链表）</td>
+</tr>
+<tr>
+<td><strong>平衡二叉搜索树</strong></td>
+<td><strong>O(lg n)</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>扩展</strong>：Linux 内核大量使用**红黑树（red-black tree）**这一平衡 BST，头文件 <code>&lt;linux/rbtree.h&gt;</code>。例如 CFS 完全公平调度器就用红黑树按虚拟运行时间组织可运行进程，取最左节点即为下一个要跑的进程。</p>
+</blockquote>
+<h4 id="3-哈希表-哈希映射（Hash-Map）">3. 哈希表 / 哈希映射（Hash Map）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">       hash_function(key)</span><br><span class="line">             ↓</span><br><span class="line">┌────┬────┬────┬────┬────┬────┐</span><br><span class="line">│  0 │  1 │ .. │ ██ │ .. │  n │   hash map</span><br><span class="line">└────┴────┴────┴─┬──┴────┴────┘</span><br><span class="line">                 ↓</span><br><span class="line">             [ value ]</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>哈希函数</strong>把 key 映射到表中的位置，从而创建哈希映射</li>
+<li>平均查找 <strong>O(1)</strong> —— 这是它相对链表和树的最大优势</li>
+<li>代价：需处理<strong>冲突</strong>；Linux 中环形缓冲区见 <code>&lt;linux/kfifo.h&gt;</code></li>
+</ul>
+<h4 id="4-位图（Bitmap）">4. 位图（Bitmap）</h4>
+<p><strong>定义</strong>：由 <strong>n 个二进制位组成的串，表示 n 个项目的状态</strong>。</p>
+<ul>
+<li>空间效率极高：n 个对象的状态只需 n bit</li>
+<li>典型用途：<strong>磁盘空闲块管理、内存帧分配表、进程 ID 分配</strong></li>
+<li>例：<code>001011101</code> 表示第 0、1、3、5 号资源空闲，第 2、4、6、7、8 号被占用</li>
+</ul>
+<h4 id="5-Linux-中的定义位置">5. Linux 中的定义位置</h4>
+<table>
+<thead>
+<tr>
+<th>头文件</th>
+<th>数据结构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;linux/list.h&gt;</code></td>
+<td>链表</td>
+</tr>
+<tr>
+<td><code>&lt;linux/kfifo.h&gt;</code></td>
+<td>FIFO 队列 / 环形缓冲区</td>
+</tr>
+<tr>
+<td><code>&lt;linux/rbtree.h&gt;</code></td>
+<td>红黑树</td>
+</tr>
+</tbody>
+</table>
+<h3 id="全章知识地图（第-1-章总览）">全章知识地图（第 1 章总览）</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">操作系统</span><br><span class="line">├─ 是什么：用户↔硬件的中介；内核 + 系统程序 + 中间件</span><br><span class="line">├─ 硬件基础</span><br><span class="line">│   ├─ 中断（硬件中断 / 陷阱）—— OS 是中断驱动的</span><br><span class="line">│   ├─ I/O 结构：同步 / 异步、设备状态表、DMA</span><br><span class="line">│   └─ 存储层次：寄存器→cache→主存→NVM→HDD→光盘→磁带</span><br><span class="line">│       └─ 缓存原理、缓存一致性</span><br><span class="line">├─ 体系结构</span><br><span class="line">│   ├─ 单处理器 / 多处理器（AMP vs SMP）</span><br><span class="line">│   ├─ 多核、NUMA</span><br><span class="line">│   └─ 集群（对称 / 非对称、SAN、HPC、DLM）</span><br><span class="line">├─ OS 运行机制</span><br><span class="line">│   ├─ 多道程序（提吞吐） / 分时（降响应时间）</span><br><span class="line">│   ├─ 双模式 + 特权指令 + 系统调用（保护）</span><br><span class="line">│   └─ 定时器（防死循环，抢占式调度的前提）</span><br><span class="line">├─ 资源管理：进程 / 内存 / 文件系统 / 大容量存储 / I/O 子系统</span><br><span class="line">├─ 保护与安全：用户ID、组ID、权限提升</span><br><span class="line">├─ 虚拟化：仿真 vs 解释 vs 虚拟化；VMM 两种形态</span><br><span class="line">├─ 计算环境：传统 / 移动 / C-S / P2P / 云 / 实时嵌入式</span><br><span class="line">├─ 内核数据结构：链表、BST、哈希表、位图</span><br><span class="line">└─ 开源 OS：FSF、GPL、copyleft；free ≠ open source</span><br></pre></td></tr></table></figure>
+<h3 id="本章高频考点自测">本章高频考点自测</h3>
+<ol>
+<li>SMP 与 AMP 的根本区别？多处理器的三大优势中，为什么加速比达不到线性？</li>
+<li>多核与多芯片在结构和性能上的差别？画出双核 cache 层次。</li>
+<li>NUMA 为什么会出现？它给 OS 带来了什么新的调度要求？</li>
+<li>集群系统与多处理器系统的区别？对称集群与非对称集群各自的资源利用率如何？</li>
+<li>云计算的三种服务模型（SaaS/PaaS/IaaS）和三种部署模型（公有/私有/混合）分别举一例。</li>
+<li>云计算为什么被称为&quot;虚拟化的逻辑延伸&quot;？</li>
+<li>实时 OS 的&quot;正确性&quot;定义与普通 OS 有何不同？硬实时与软实时的区别？</li>
+<li>Napster 与 Gnutella 在 P2P 节点加入方式上的区别？</li>
+<li>自由软件与开源软件的理念区别是什么？copyleft 如何运作？</li>
+<li>普通 BST 与平衡 BST 的查找复杂度分别是多少？为什么内核偏爱红黑树？</li>
+<li>位图适合表达什么类型的信息？相比链表节省在哪里？</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/08/10/%E7%AE%97%E6%B3%95/Algorithm-Moudle15-%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" rel="prev" title="Algorithm-Moudle15">
+                  <i class="fa fa-angle-left"></i> Algorithm-Moudle15
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
