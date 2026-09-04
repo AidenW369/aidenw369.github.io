@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="操作系统服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction to Operating Systems-Chapter2">
+<meta property="og:url" content="http://example.com/2026/09/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="操作系统服务">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-04T05:26:56.000Z">
+<meta property="article:modified_time" content="2026-09-04T06:17:53.042Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/09/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/09/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/","path":"2026/09/04/操作系统/Introduction-to-Operating-Systems-Chapter2-操作系统服务/","title":"Introduction to Operating Systems-Chapter2"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction to Operating Systems-Chapter2 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">操作系统服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AC%E7%AB%A0%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">一、本章目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%EF%BC%88OS-Services%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">二、操作系统服务（OS Services）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-%E9%9D%A2%E5%90%91%E7%94%A8%E6%88%B7%E7%9A%84%E6%9C%8D%E5%8A%A1%EF%BC%88%E6%96%B9%E4%BE%BF%E7%94%A8%E6%88%B7%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 面向用户的服务（方便用户）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-%E9%9D%A2%E5%90%91%E7%B3%BB%E7%BB%9F%E8%87%AA%E8%BA%AB%E7%9A%84%E6%9C%8D%E5%8A%A1%EF%BC%88%E4%BF%9D%E8%AF%81%E7%B3%BB%E7%BB%9F%E9%AB%98%E6%95%88%E8%BF%90%E8%A1%8C%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 面向系统自身的服务（保证系统高效运行）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-%E6%9C%8D%E5%8A%A1%E5%85%A8%E6%99%AF%E5%9B%BE%EF%BC%88%E5%AF%B9%E5%BA%94%E6%88%AA%E5%9B%BE-1%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 服务全景图（对应截图 1）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%94%A8%E6%88%B7%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.3.</span> <span class="nav-text">三、用户与操作系统的接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A7%A3%E9%87%8A%E5%99%A8%EF%BC%88CLI-Shell%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 命令行解释器（CLI &#x2F; Shell）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%EF%BC%88GUI%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 图形用户界面（GUI）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-%E8%A7%A6%E5%B1%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 触屏接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%EF%BC%88System-Calls%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">四、系统调用（System Calls）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-%E4%B8%89%E4%B8%AA%E6%A6%82%E5%BF%B5%E7%9A%84%E5%8C%BA%E5%88%86%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%8C%E6%98%93%E8%80%83%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 三个概念的区分（重点，易考）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%A4%BA%E4%BE%8B%EF%BC%88%E6%88%AA%E5%9B%BE-3%EF%BC%89%EF%BC%9A%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 系统调用示例（截图 3）：复制文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-%E6%A0%87%E5%87%86-API-%E7%A4%BA%E4%BE%8B%EF%BC%88%E6%88%AA%E5%9B%BE-4%EF%BC%89%EF%BC%9Aread"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 标准 API 示例（截图 4）：read()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.5.</span> <span class="nav-text">4.5 系统调用的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-6-API%E2%80%93%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E2%80%93OS-%E5%85%B3%E7%B3%BB%EF%BC%88%E6%88%AA%E5%9B%BE-5%EF%BC%89"><span class="nav-number">1.4.6.</span> <span class="nav-text">4.6 API–系统调用–OS 关系（截图 5）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-7-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-number">1.4.7.</span> <span class="nav-text">4.7 系统调用参数传递</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-8-%E9%80%9A%E8%BF%87%E8%A1%A8%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0%EF%BC%88%E6%88%AA%E5%9B%BE-6%EF%BC%89"><span class="nav-number">1.4.8.</span> <span class="nav-text">4.8 通过表传递参数（截图 6）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95%EF%BC%9A%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.5.</span> <span class="nav-text">五、知识扩展：系统调用的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%EF%BC%9A%E4%BA%B2%E7%9C%BC%E7%9C%8B%E8%A7%81%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">实用工具：亲眼看见系统调用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E5%85%AD%E5%A4%A7%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.6.</span> <span class="nav-text">六、系统调用的六大类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-1-%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%EF%BC%88Process-Control%EF%BC%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 进程控制（Process Control）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-2-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%EF%BC%88File-Management%EF%BC%89"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 文件管理（File Management）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%EF%BC%88Device-Management%EF%BC%89"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 设备管理（Device Management）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-4-%E4%BF%A1%E6%81%AF%E7%BB%B4%E6%8A%A4%EF%BC%88Information-Maintenance%EF%BC%89"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4 信息维护（Information Maintenance）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-5-%E9%80%9A%E4%BF%A1%EF%BC%88Communications%EF%BC%89"><span class="nav-number">1.6.5.</span> <span class="nav-text">6.5 通信（Communications）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-6-%E4%BF%9D%E6%8A%A4%EF%BC%88Protection%EF%BC%89"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.6 保护（Protection）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81Windows-%E4%B8%8E-UNIX-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%AF%B9%E7%85%A7%EF%BC%88%E6%88%AA%E5%9B%BE-1%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">七、Windows 与 UNIX 系统调用对照（截图 1）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%A0%87%E5%87%86-C-%E5%BA%93%E7%A4%BA%E4%BE%8B%EF%BC%88%E6%88%AA%E5%9B%BE-2%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、标准 C 库示例（截图 2）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E4%B8%A4%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B"><span class="nav-number">1.9.</span> <span class="nav-text">九、两个完整的系统实例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#9-1-Arduino%EF%BC%88%E6%88%AA%E5%9B%BE-3%EF%BC%89%E2%80%94%E2%80%94%E6%B2%A1%E6%9C%89-OS-%E7%9A%84%E6%9E%81%E7%AE%80%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.9.1.</span> <span class="nav-text">9.1 Arduino（截图 3）——没有 OS 的极简系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-2-FreeBSD%EF%BC%88%E6%88%AA%E5%9B%BE-4%EF%BC%89%E2%80%94%E2%80%94%E5%85%B8%E5%9E%8B%E5%A4%9A%E4%BB%BB%E5%8A%A1-UNIX"><span class="nav-number">1.9.2.</span> <span class="nav-text">9.2 FreeBSD（截图 4）——典型多任务 UNIX</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E7%B3%BB%E7%BB%9F%E7%A8%8B%E5%BA%8F-%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%EF%BC%88System-Services%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">十、系统程序 &#x2F; 系统服务（System Services）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#10-1-%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.10.1.</span> <span class="nav-text">10.1 定位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-2-%E5%88%86%E7%B1%BB"><span class="nav-number">1.10.2.</span> <span class="nav-text">10.2 分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-3-%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%EF%BC%88Background-Services%EF%BC%89"><span class="nav-number">1.10.3.</span> <span class="nav-text">10.3 后台服务（Background Services）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-4-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%EF%BC%88Application-Programs%EF%BC%89"><span class="nav-number">1.10.4.</span> <span class="nav-text">10.4 应用程序（Application Programs）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E9%93%BE%E6%8E%A5%E5%99%A8%E4%B8%8E%E8%A3%85%E5%85%A5%E5%99%A8%EF%BC%88Linkers-and-Loaders%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、链接器与装入器（Linkers and Loaders）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#11-1-%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B%EF%BC%88%E6%88%AA%E5%9B%BE-5%EF%BC%89"><span class="nav-number">1.11.1.</span> <span class="nav-text">11.1 完整流程（截图 5）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-2-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5"><span class="nav-number">1.11.2.</span> <span class="nav-text">11.2 关键概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-3-%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5-vs-%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%EF%BC%88%E6%89%A9%E5%B1%95%EF%BC%89"><span class="nav-number">1.11.3.</span> <span class="nav-text">11.3 静态链接 vs 动态链接（扩展）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%98%AF%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9B%B8%E5%85%B3%E7%9A%84"><span class="nav-number">1.12.</span> <span class="nav-text">十二、为什么应用程序是操作系统相关的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A9%E5%BA%94%E7%94%A8%E8%B7%A8%E5%A4%9A%E4%B8%AA-OS-%E7%9A%84%E4%B8%89%E7%A7%8D%E9%80%94%E5%BE%84"><span class="nav-number">1.12.1.</span> <span class="nav-text">让应用跨多个 OS 的三种途径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ABI%EF%BC%88Application-Binary-Interface%EF%BC%89"><span class="nav-number">1.12.2.</span> <span class="nav-text">ABI（Application Binary Interface）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.13.</span> <span class="nav-text">十三、操作系统的设计与实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-1-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-number">1.13.1.</span> <span class="nav-text">13.1 设计原则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2-%E7%AD%96%E7%95%A5%E4%B8%8E%E6%9C%BA%E5%88%B6%EF%BC%88Policy-and-Mechanism%EF%BC%89%E2%AD%90"><span class="nav-number">1.13.2.</span> <span class="nav-text">13.2 策略与机制（Policy and Mechanism）⭐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-3-%E5%AE%9E%E7%8E%B0%E8%AF%AD%E8%A8%80%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="nav-number">1.13.3.</span> <span class="nav-text">13.3 实现语言的演进</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84"><span class="nav-number">1.14.</span> <span class="nav-text">十四、操作系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#14-1-%E5%AE%8F%E5%86%85%E6%A0%B8%E7%BB%93%E6%9E%84-%E2%80%94%E2%80%94-%E6%9C%80%E5%88%9D%E7%9A%84-UNIX"><span class="nav-number">1.14.1.</span> <span class="nav-text">14.1 宏内核结构 —— 最初的 UNIX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-2-%E4%BC%A0%E7%BB%9F-UNIX-%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%EF%BC%88%E6%88%AA%E5%9B%BE-6%EF%BC%89"><span class="nav-number">1.14.2.</span> <span class="nav-text">14.2 传统 UNIX 系统结构（截图 6）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-3-Linux-%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%EF%BC%88%E6%88%AA%E5%9B%BE-7%EF%BC%89"><span class="nav-number">1.14.3.</span> <span class="nav-text">14.3 Linux 系统结构（截图 7）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-4-%E5%AE%8F%E5%86%85%E6%A0%B8%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.14.4.</span> <span class="nav-text">14.4 宏内核的优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E5%88%86%E5%B1%82%E6%96%B9%E6%B3%95%EF%BC%88Layered-Approach%EF%BC%89"><span class="nav-number">1.15.</span> <span class="nav-text">十五、分层方法（Layered Approach）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#15-1-%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3%EF%BC%88%E6%88%AA%E5%9B%BE-1%EF%BC%89"><span class="nav-number">1.15.1.</span> <span class="nav-text">15.1 基本思想（截图 1）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-2-%E4%BC%98%E7%82%B9%E4%B8%8E%E5%9B%B0%E9%9A%BE"><span class="nav-number">1.15.2.</span> <span class="nav-text">15.2 优点与困难</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E5%BE%AE%E5%86%85%E6%A0%B8%EF%BC%88Microkernel%EF%BC%89"><span class="nav-number">1.16.</span> <span class="nav-text">十六、微内核（Microkernel）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#16-1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.16.1.</span> <span class="nav-text">16.1 核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-2-%E7%BB%93%E6%9E%84%E5%9B%BE%EF%BC%88%E6%88%AA%E5%9B%BE-2%EF%BC%89"><span class="nav-number">1.16.2.</span> <span class="nav-text">16.2 结构图（截图 2）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-3-%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%88%E9%87%8D%E7%82%B9%E5%AF%B9%E6%AF%94%E8%A1%A8%EF%BC%89"><span class="nav-number">1.16.3.</span> <span class="nav-text">16.3 优缺点（重点对比表）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E6%A8%A1%E5%9D%97%EF%BC%88Modules%EF%BC%89"><span class="nav-number">1.17.</span> <span class="nav-text">十七、模块（Modules）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9A%E4%BD%8D%E5%AF%B9%E6%AF%94-%E2%AD%90"><span class="nav-number">1.17.1.</span> <span class="nav-text">三种结构的定位对比 ⭐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E6%B7%B7%E5%90%88%E7%B3%BB%E7%BB%9F%EF%BC%88Hybrid-Systems%EF%BC%89"><span class="nav-number">1.18.</span> <span class="nav-text">十八、混合系统（Hybrid Systems）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81macOS-%E4%B8%8E-iOS-%E7%BB%93%E6%9E%84"><span class="nav-number">1.19.</span> <span class="nav-text">十九、macOS 与 iOS 结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#19-1-%E5%88%86%E5%B1%82%E8%A7%86%E5%9B%BE%EF%BC%88%E6%88%AA%E5%9B%BE-3%EF%BC%89"><span class="nav-number">1.19.1.</span> <span class="nav-text">19.1 分层视图（截图 3）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-2-Darwin-%E5%86%85%E6%A0%B8%EF%BC%88%E6%88%AA%E5%9B%BE-4%EF%BC%89"><span class="nav-number">1.19.2.</span> <span class="nav-text">19.2 Darwin 内核（截图 4）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-3-iOS"><span class="nav-number">1.19.3.</span> <span class="nav-text">19.3 iOS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81Android"><span class="nav-number">1.20.</span> <span class="nav-text">二十、Android</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#20-1-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.20.1.</span> <span class="nav-text">20.1 概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-2-%E6%9E%B6%E6%9E%84%E5%9B%BE%EF%BC%88%E6%88%AA%E5%9B%BE-5%EF%BC%89"><span class="nav-number">1.20.2.</span> <span class="nav-text">20.2 架构图（截图 5）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-3-iOS-vs-Android-%E5%AF%B9%E6%AF%94"><span class="nav-number">1.20.3.</span> <span class="nav-text">20.3 iOS vs Android 对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81%E6%9E%84%E5%BB%BA%E4%B8%8E%E5%90%AF%E5%8A%A8%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.21.</span> <span class="nav-text">二十一、构建与启动操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#21-1-%E4%B8%80%E8%88%AC%E6%B5%81%E7%A8%8B"><span class="nav-number">1.21.1.</span> <span class="nav-text">21.1 一般流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-2-%E6%9E%84%E5%BB%BA-Linux-%E7%9A%84%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4-%E2%AD%90"><span class="nav-number">1.21.2.</span> <span class="nav-text">21.2 构建 Linux 的具体步骤 ⭐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#21-3-%E7%B3%BB%E7%BB%9F%E5%BC%95%E5%AF%BC%EF%BC%88System-Boot%EF%BC%89%E2%AD%90-%E9%87%8D%E7%82%B9"><span class="nav-number">1.21.3.</span> <span class="nav-text">21.3 系统引导（System Boot）⭐ 重点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%B0%83%E8%AF%95%EF%BC%88OS-Debugging%EF%BC%89"><span class="nav-number">1.22.</span> <span class="nav-text">二十二、操作系统调试（OS Debugging）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#22-1-%E6%A6%82%E5%BF%B5"><span class="nav-number">1.22.1.</span> <span class="nav-text">22.1 概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-2-Kernighan-%E5%AE%9A%E5%BE%8B-%E2%AD%90"><span class="nav-number">1.22.2.</span> <span class="nav-text">22.2 Kernighan 定律 ⭐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98%EF%BC%88Performance-Tuning%EF%BC%89"><span class="nav-number">1.23.</span> <span class="nav-text">二十三、性能调优（Performance Tuning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E3%80%81%E8%B7%9F%E8%B8%AA%EF%BC%88Tracing%EF%BC%89"><span class="nav-number">1.24.</span> <span class="nav-text">二十四、跟踪（Tracing）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%94%E3%80%81BCC-%E4%B8%8E-BPF-%E8%B7%9F%E8%B8%AA%E5%B7%A5%E5%85%B7"><span class="nav-number">1.25.</span> <span class="nav-text">二十五、BCC 与 BPF 跟踪工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#25-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%EF%BC%88%E6%88%AA%E5%9B%BE-7%EF%BC%89"><span class="nav-number">1.25.1.</span> <span class="nav-text">25.1 为什么需要（截图 7）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-2-BPF-%E5%B7%A5%E5%85%B7%E5%85%A8%E6%99%AF%EF%BC%88%E6%88%AA%E5%9B%BE-8%EF%BC%89"><span class="nav-number">1.25.2.</span> <span class="nav-text">25.2 BPF 工具全景（截图 8）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AD%E3%80%81%E5%85%A8%E7%AB%A0%E7%BB%93%E6%9E%84%E6%80%BB%E8%A7%88"><span class="nav-number">1.26.</span> <span class="nav-text">二十六、全章结构总览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#26-1-%E4%BA%94%E7%A7%8D%E7%BB%93%E6%9E%84%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94-%E2%AD%90%EF%BC%88%E5%BF%85%E8%80%83%EF%BC%89"><span class="nav-number">1.26.1.</span> <span class="nav-text">26.1 五种结构横向对比 ⭐（必考）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#26-2-%E6%9C%AC%E7%AB%A0%E8%84%89%E7%BB%9C"><span class="nav-number">1.26.2.</span> <span class="nav-text">26.2 本章脉络</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%E3%80%81%E5%A4%8D%E4%B9%A0%E8%87%AA%E6%B5%8B"><span class="nav-number">1.27.</span> <span class="nav-text">二十七、复习自测</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/09/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction to Operating Systems-Chapter2 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction to Operating Systems-Chapter2
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-09-04 13:26:56 / Modified: 14:17:53" itemprop="dateCreated datePublished" datetime="2026-09-04T13:26:56+08:00">2026-09-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>操作系统服务<span id="more"></span></h1>
+<h3 id="一、本章目标">一、本章目标</h3>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>关键词</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>识别 OS 提供的服务</td>
+<td>用户视角 / 系统视角</td>
+</tr>
+<tr>
+<td>理解系统调用如何提供服务</td>
+<td>API → 系统调用接口 → 内核</td>
+</tr>
+<tr>
+<td>对比 OS 设计策略</td>
+<td>宏内核、分层、微内核、模块化、混合</td>
+</tr>
+<tr>
+<td>掌握启动流程</td>
+<td>BIOS/UEFI → bootloader → kernel</td>
+</tr>
+<tr>
+<td>使用性能监控工具</td>
+<td>top、strace、DTrace/eBPF</td>
+</tr>
+<tr>
+<td>编写 Linux 内核模块</td>
+<td>insmod / rmmod / printk</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二、操作系统服务（OS-Services）">二、操作系统服务（OS Services）</h3>
+<p>操作系统的本质：<strong>为程序的执行提供环境</strong>，并向用户和程序提供服务。服务分成两大类。</p>
+<h4 id="2-1-面向用户的服务（方便用户）">2.1 面向用户的服务（方便用户）</h4>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>用户界面 UI</strong></td>
+<td>CLI（命令行）、GUI（图形）、Touch-screen（触屏）、Batch（批处理）</td>
+</tr>
+<tr>
+<td><strong>程序执行</strong></td>
+<td>把程序装入内存并运行，能正常或异常结束（异常时指示错误）</td>
+</tr>
+<tr>
+<td><strong>I/O 操作</strong></td>
+<td>运行中的程序可能需要访问文件或 I/O 设备；用户程序<strong>不能</strong>直接操作 I/O，必须由 OS 代劳</td>
+</tr>
+<tr>
+<td><strong>文件系统操作</strong></td>
+<td>读/写/创建/删除文件与目录、搜索、列出文件信息、权限管理</td>
+</tr>
+<tr>
+<td><strong>通信</strong></td>
+<td>同一台机器内或跨网络的进程间信息交换。两种方式：<strong>共享内存</strong>（Shared Memory）与<strong>消息传递</strong>（Message Passing，由 OS 搬运数据包）</td>
+</tr>
+<tr>
+<td><strong>错误检测</strong></td>
+<td>持续感知 CPU、内存、I/O 设备、用户程序中的错误，并采取恰当动作以保证计算的正确性与一致性</td>
+</tr>
+<tr>
+<td><strong>调试设施</strong></td>
+<td>帮助用户和程序员更高效地使用系统</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>扩展：共享内存 vs 消息传递</strong></p>
+<ul>
+<li>共享内存：速度快（无内核介入的数据拷贝），但需要程序员自己做同步（信号量/互斥锁）。</li>
+<li>消息传递：适合分布式/跨机器，天然避免竞争，但每条消息都要经过内核，开销大。</li>
+<li>现代高性能场景（如 Redis、数据库）大量使用共享内存 + 无锁结构。</li>
+</ul>
+</blockquote>
+<h4 id="2-2-面向系统自身的服务（保证系统高效运行）">2.2 面向系统自身的服务（保证系统高效运行）</h4>
+<table>
+<thead>
+<tr>
+<th>服务</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>资源分配</strong></td>
+<td>多用户/多任务并发时，把 CPU 周期、主存、文件存储、I/O 设备分配给各方</td>
+</tr>
+<tr>
+<td><strong>记账/日志（Logging）</strong></td>
+<td>记录哪个用户使用了多少、何种资源（用于计费、审计、调优）</td>
+</tr>
+<tr>
+<td><strong>保护与安全</strong></td>
+<td><strong>保护</strong>：确保对系统资源的所有访问都受控，并发进程互不干扰；<strong>安全</strong>：抵御外部入侵，需要用户认证，并防止外部 I/O 设备的非法访问</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>保护（Protection）≠ 安全（Security）</strong></p>
+<ul>
+<li>保护是<strong>内部</strong>问题：控制已授权用户/进程的访问边界（如页表权限位、文件 rwx）。</li>
+<li>安全是<strong>外部</strong>问题：判断&quot;你是不是你说的那个人&quot;（认证、加密、防火墙）。</li>
+</ul>
+</blockquote>
+<h4 id="2-3-服务全景图（对应截图-1）">2.3 服务全景图（对应截图 1）</h4>
+<p>从上到下的分层视图：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">     user and other system programs          ← 用户程序 / 系统程序</span><br><span class="line">┌──────────────────────────────────────┐</span><br><span class="line">│   GUI  |  touch screen | command line │     ← 用户接口</span><br><span class="line">└──────────────────────────────────────┘</span><br><span class="line">             system calls                     ← 唯一的合法入口</span><br><span class="line">┌──────────────────────────────────────┐</span><br><span class="line">│ program  I/O   file  communi  resource│</span><br><span class="line">│execution ops  systems cation allocation accounting│</span><br><span class="line">│      error detection    protection &amp; security     │</span><br><span class="line">└──────────────────────────────────────┘</span><br><span class="line">           operating system</span><br><span class="line">              hardware</span><br></pre></td></tr></table></figure>
+<p><strong>核心要点</strong>：<code>system calls</code> 这一层是用户态与内核态之间<strong>唯一的窄腰（narrow waist）</strong>。上面所有界面（GUI/触屏/CLI）最终都要通过它才能触达下面的服务。</p>
+<h3 id="三、用户与操作系统的接口">三、用户与操作系统的接口</h3>
+<h4 id="3-1-命令行解释器（CLI-Shell）">3.1 命令行解释器（CLI / Shell）</h4>
+<ul>
+<li>
+<p>允许<strong>直接输入命令</strong>。</p>
+</li>
+<li>
+<p>实现位置：有时在<strong>内核</strong>中，有时作为<strong>系统程序</strong>（现代 UNIX/Linux 是后者）。</p>
+</li>
+<li>
+<p>可有多种&quot;风味&quot;（flavors）——即各种 <strong>shell</strong>：<code>sh</code>、<code>bash</code>、<code>zsh</code>、<code>csh</code>、<code>ksh</code>、<code>fish</code>。</p>
+</li>
+<li>
+<p>主要工作循环：<strong>取一条命令 → 执行它</strong>（read-parse-execute loop）。</p>
+</li>
+<li>
+<p>命令的两种实现方式：</p>
+<ol>
+<li>
+<p><strong>内建命令（built-in）</strong>：解释器代码里自带（如 <code>cd</code>、<code>exit</code>、<code>export</code>）。</p>
+</li>
+<li>
+<p>外部程序名</p>
+<p>：命令只是磁盘上可执行文件的名字，如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep</span><br></pre></td></tr></table></figure>
+<ul>
+<li>✅ 优势：<strong>新增功能不需要修改 shell</strong>，只要把新程序放进 <code>$PATH</code> 即可。</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>🔎 <strong>为什么 <code>cd</code> 必须是内建命令？</strong><br>
+因为子进程改变工作目录不会影响父进程（shell 自身）。<code>cd</code> 必须由 shell 进程自己调用 <code>chdir()</code> 系统调用才有效。</p>
+</blockquote>
+<p><strong>截图 2（Bourne Shell）中出现的命令解读</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+<th>背后的系统调用/机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ssh root@r6181-d5-us01</code></td>
+<td>远程登录</td>
+<td>socket / connect / read / write</td>
+</tr>
+<tr>
+<td><code>uptime</code></td>
+<td>显示运行时长、用户数、平均负载（129.52, 80.33, 56.55 = 1/5/15 分钟负载）</td>
+<td>读 <code>/proc/loadavg</code></td>
+</tr>
+<tr>
+<td><code>df -kh</code></td>
+<td>各文件系统容量与使用率</td>
+<td><code>statfs()</code></td>
+</tr>
+<tr>
+<td>`ps aux</td>
+<td>sort -nrk 3,3</td>
+<td>head -n 5`</td>
+</tr>
+<tr>
+<td><code>ls -l</code></td>
+<td>长格式列目录</td>
+<td><code>opendir/readdir/stat</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意 <code>df</code> 输出中的 <code>/mnt/orangefs</code>、<code>/mnt/gpfs</code>——这是并行分布式文件系统，说明这是一台 HPC 集群节点。负载 129 也印证了这是多核大机器。</p>
+</blockquote>
+<h4 id="3-2-图形用户界面（GUI）">3.2 图形用户界面（GUI）</h4>
+<ul>
+<li>
+<p>用户友好的<strong>桌面隐喻（desktop metaphor）</strong>。</p>
+</li>
+<li>
+<p>通常配合鼠标、键盘、显示器。</p>
+</li>
+<li>
+<p><strong>图标</strong>代表文件、程序、动作等；鼠标不同按键触发不同动作（显示信息、弹出选项、执行功能、打开目录=文件夹）。</p>
+</li>
+<li>
+<p><strong>诞生于 Xerox PARC</strong>（施乐帕洛阿尔托研究中心），后被 Apple Lisa/Macintosh 商业化。</p>
+</li>
+<li>
+<p>现代系统通常</p>
+<p>CLI + GUI 并存：</p>
+<ul>
+<li>Windows：GUI 为主 + <code>cmd</code>/PowerShell。</li>
+<li>macOS：<strong>Aqua</strong> GUI + UNIX(Darwin/XNU) 内核 + 各种 shell。</li>
+<li>Unix/Linux：CLI 为主 + 可选 GUI（CDE、KDE、GNOME）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-3-触屏接口">3.3 触屏接口</h4>
+<ul>
+<li>鼠标不可用或不适用。</li>
+<li>基于<strong>手势（gestures）</strong> 进行动作与选择：点按、长按、滑动、捏合。</li>
+<li>文本输入靠<strong>虚拟键盘</strong>。</li>
+<li>支持<strong>语音命令</strong>（Siri / Google Assistant）。</li>
+</ul>
+<blockquote>
+<p>🔎 <strong>CLI vs GUI 该选谁？</strong></p>
+<ul>
+<li>CLI：可脚本化、可组合（管道）、远程/低带宽友好、可重复可审计 → 服务器、运维、开发。</li>
+<li>GUI：学习曲线低、直观、适合空间型任务（绘图、排版） → 桌面终端用户。</li>
+</ul>
+</blockquote>
+<h3 id="四、系统调用（System-Calls）">四、系统调用（System Calls）</h3>
+<h4 id="4-1-基本概念">4.1 基本概念</h4>
+<ul>
+<li><strong>系统调用 = OS 所提供服务的编程接口</strong>。</li>
+<li>通常用<strong>高级语言</strong>编写（C/C++）。</li>
+<li>程序<strong>大多不直接使用系统调用</strong>，而是通过更高层的 <strong>API（应用程序编程接口）</strong> 访问。</li>
+<li>三大主流 API：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>适用平台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Win32 API</strong></td>
+<td>Windows</td>
+</tr>
+<tr>
+<td><strong>POSIX API</strong></td>
+<td>几乎所有 UNIX、Linux、macOS</td>
+</tr>
+<tr>
+<td><strong>Java API</strong></td>
+<td>Java 虚拟机（JVM）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>⚠️ 教材中的系统调用名字是<strong>泛化的（generic）</strong>，真实系统上名字可能不同。</li>
+</ul>
+<h4 id="4-2-三个概念的区分（重点，易考）">4.2 三个概念的区分（重点，易考）</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>API</strong></td>
+<td>程序员看到的函数签名与语义约定</td>
+<td><code>read(int fd, void *buf, size_t count)</code></td>
+</tr>
+<tr>
+<td><strong>System Call</strong></td>
+<td>真正进入内核的入口，靠<strong>调用号</strong>标识</td>
+<td>Linux x86-64 上 <code>read</code> = 0 号</td>
+</tr>
+<tr>
+<td><strong>ABI</strong></td>
+<td>二进制层面的约定（参数放哪个寄存器、栈如何对齐）</td>
+<td>System V AMD64 ABI</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>API 与系统调用不是一一对应的</strong>：</p>
+<ul>
+<li><code>printf()</code> → 内部可能多次调用 <code>write()</code>（带缓冲）。</li>
+<li><code>malloc()</code> → 平时只在用户态管理堆，只有堆不够时才调 <code>brk()</code>/<code>mmap()</code>。</li>
+<li><code>getpid()</code> 在 Linux 上可通过 <strong>vDSO</strong> 在用户态完成，根本不陷入内核。</li>
+</ul>
+</blockquote>
+<h4 id="4-3-系统调用示例（截图-3）：复制文件">4.3 系统调用示例（截图 3）：复制文件</h4>
+<p>把一个文件的内容复制到另一个文件，所需的系统调用序列：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">获取输入文件名     → 向屏幕写提示 (write) / 接受输入 (read)</span><br><span class="line">获取输出文件名     → 向屏幕写提示 (write) / 接受输入 (read)</span><br><span class="line">打开输入文件       → open()      若文件不存在 → 中止</span><br><span class="line">创建输出文件       → creat()     若文件已存在 → 中止</span><br><span class="line">循环:</span><br><span class="line">    从输入文件读   → read()</span><br><span class="line">    写入输出文件   → write()</span><br><span class="line">直到读取失败</span><br><span class="line">关闭输出文件       → close()</span><br><span class="line">向屏幕写完成消息   → write()</span><br><span class="line">正常终止           → exit()</span><br></pre></td></tr></table></figure>
+<p><strong>启示</strong>：一个看似简单的 <code>cp</code> 操作，背后是<strong>几十次</strong>用户态/内核态切换。这也解释了为什么 I/O 密集型程序要用大缓冲区——减少 <code>read/write</code> 次数就是减少陷入内核的次数。</p>
+<h4 id="4-4-标准-API-示例（截图-4）：read">4.4 标准 API 示例（截图 4）：<code>read()</code></h4>
+<p>通过 <code>man read</code> 查看 UNIX/Linux 的 <code>read()</code> 接口：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">read</span><span class="params">(<span class="type">int</span> fd, <span class="type">void</span> *buf, <span class="type">size_t</span> count)</span>;</span><br><span class="line"><span class="comment">/*  ↑返回值      ↑函数名  ↑------- 参数 -------↑  */</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int fd</code></td>
+<td>要读取的<strong>文件描述符</strong></td>
+</tr>
+<tr>
+<td><code>void *buf</code></td>
+<td>数据读入的<strong>缓冲区</strong></td>
+</tr>
+<tr>
+<td><code>size_t count</code></td>
+<td>最多读入的<strong>字节数</strong></td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>成功：实际读到的字节数；<strong>0 表示文件结束（EOF）</strong>；出错：返回 <strong>−1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>必须包含 <code>unistd.h</code>，因为该头文件定义了 <code>ssize_t</code> 和 <code>size_t</code> 等数据类型。</p>
+<blockquote>
+<p>🔎 <strong>为什么返回值是 <code>ssize_t</code> 而不是 <code>size_t</code>？</strong><br>
+<code>size_t</code> 是无符号的，无法表示 −1。<code>ssize_t</code> 是有符号版本，这样才能用 −1 报错。</p>
+<p>🔎 <strong>短读（short read）陷阱</strong>：<code>read()</code> 返回值可能<strong>小于</strong> <code>count</code> 而并非出错（管道、socket、信号打断）。正确写法必须循环读取，直到累计够数或返回 0/−1。</p>
+</blockquote>
+<h4 id="4-5-系统调用的实现">4.5 系统调用的实现</h4>
+<ul>
+<li>每个系统调用关联一个<strong>编号（number）</strong>。</li>
+<li>系统调用接口维护一张按编号索引的<strong>表</strong>（system call table）。</li>
+<li>接口负责：<strong>调用内核中对应的系统调用 → 返回状态与返回值</strong>。</li>
+<li><strong>调用者无需知道系统调用如何实现</strong>，只需遵守 API 并理解 OS 会做什么。</li>
+<li>大部分 OS 接口细节被 API 隐藏，由<strong>运行时支持库（run-time support library）</strong> 管理——即编译器附带的函数库（如 glibc）。</li>
+</ul>
+<h4 id="4-6-API–系统调用–OS-关系（截图-5）">4.6 API–系统调用–OS 关系（截图 5）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">                ┌──────────────────┐</span><br><span class="line">                │  user application │</span><br><span class="line">                └──┬────────────▲───┘</span><br><span class="line">          open()   │            │ 返回</span><br><span class="line">─ ─ ─ ─ ─ ─ ─ ─ ─ ─│─ ─ ─ ─ ─ ─ │─ ─ ─  user mode</span><br><span class="line">   ┌───────────────▼────────────┴──────┐  ────────</span><br><span class="line">   │        system call interface       │  kernel mode</span><br><span class="line">   └──┬────────────────────────────▲────┘</span><br><span class="line">      │  ┌───┐                     │</span><br><span class="line">      └─►│ i │──► open() 的实现代码 ─┘</span><br><span class="line">         │   │      ...</span><br><span class="line">         └───┘      return</span><br><span class="line">      系统调用表</span><br></pre></td></tr></table></figure>
+<p><strong>完整流程（以 <code>open()</code> 为例）</strong>：</p>
+<ol>
+<li>用户程序调用库函数 <code>open()</code>。</li>
+<li>库函数把<strong>系统调用号</strong>放入约定寄存器，把参数按 ABI 摆好。</li>
+<li>执行陷入指令（x86-64: <code>syscall</code>；ARM: <code>svc</code>），CPU <strong>切换到内核态</strong>。</li>
+<li>内核统一入口读取调用号 <code>i</code>，查系统调用表，跳转到 <code>sys_open()</code>。</li>
+<li>内核执行，检查权限与参数合法性。</li>
+<li>返回结果到寄存器，执行 <code>sysret</code>，<strong>切回用户态</strong>。</li>
+<li>库函数检查返回值，若为负则设置 <code>errno</code> 并返回 −1。</li>
+</ol>
+<blockquote>
+<p>🔎 <strong>为什么必须&quot;陷入&quot;而不是直接 <code>call</code>？</strong><br>
+因为内核代码运行在<strong>特权级 0（ring 0）</strong>，用户程序在 ring 3。普通跳转无法提升特权级。陷入指令是硬件提供的<strong>受控的、单一入口</strong>的提权通道，内核借此保证只能从合法入口进入并做完整的参数校验。</p>
+</blockquote>
+<h4 id="4-7-系统调用参数传递">4.7 系统调用参数传递</h4>
+<p>需要传递的信息往往不止&quot;调用号&quot;本身，具体类型和数量因 OS 和调用而异。三种通用方法：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 寄存器传参</strong></td>
+<td>最简单，参数直接放寄存器</td>
+<td>最快</td>
+<td><strong>参数可能比寄存器多</strong>，数量受限</td>
+</tr>
+<tr>
+<td><strong>② 块/表传参</strong></td>
+<td>参数存入内存中的一个<strong>块（block）或表（table）</strong>，把<strong>块的地址</strong>放进一个寄存器传给 OS</td>
+<td>不限参数数量和长度</td>
+<td>多一次内存访问</td>
+</tr>
+<tr>
+<td><strong>③ 栈传参</strong></td>
+<td>程序把参数<strong>压（push）</strong> 入栈，OS 从栈中<strong>弹出（pop）</strong></td>
+<td>不限参数数量和长度</td>
+<td>需要访问用户栈，需校验</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>考点</strong>：块方法与栈方法<strong>都不限制</strong>参数的数量和长度。<br>
+<strong>块/表方法被 Linux 和 Solaris 采用</strong>（用于参数超过寄存器数量时）。</p>
+</blockquote>
+<h4 id="4-8-通过表传递参数（截图-6）">4.8 通过表传递参数（截图 6）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   用户程序                   寄存器            操作系统</span><br><span class="line">┌──────────────┐            ┌─────┐       ┌────────────────┐</span><br><span class="line">│ X: 调用的参数 │            │  X  │──┐    │                │</span><br><span class="line">│              │      ┌────►└─────┘  │    │ ┌────────────┐ │</span><br><span class="line">│ load addr X ─┼──────┘               └───►│ │使用表 X 的  │ │ ┐</span><br><span class="line">│ system call 13───────────────────────────► │   参数      │ │ ├ 13号系统</span><br><span class="line">│              │                          │ └────────────┘ │ ┘ 调用的代码</span><br><span class="line">└──────────────┘                          └────────────────┘</span><br></pre></td></tr></table></figure>
+<p>流程：用户程序把参数集中放在内存地址 <code>X</code> 处 → 把 <strong>X 装入寄存器</strong> → 发起 13 号系统调用 → OS 跳到 13 号调用的代码 → 从寄存器拿到 X → <strong>从表 X 中取参数</strong>。</p>
+<blockquote>
+<p>🔎 <strong>真实的 Linux x86-64 约定</strong></p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>寄存器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统调用号</td>
+<td><code>rax</code></td>
+</tr>
+<tr>
+<td>第 1–6 个参数</td>
+<td><code>rdi, rsi, rdx, r10, r8, r9</code></td>
+</tr>
+<tr>
+<td>返回值</td>
+<td><code>rax</code></td>
+</tr>
+</tbody>
+</table>
+<p>注意第 4 个参数用 <code>r10</code> 而非普通函数调用的 <code>rcx</code>——因为 <code>syscall</code> 指令会用 <code>rcx</code> 保存返回地址。<br>
+参数超过 6 个的调用（如 <code>mmap</code> 早期版本）就用结构体指针，正是&quot;表传参&quot;的实践。</p>
+<p>⚠️ <strong>为什么内核必须校验用户传来的指针？</strong> 若不校验，用户可以传一个内核地址进来诱导内核读写自身内存——这是经典提权漏洞。Linux 用 <code>copy_from_user()</code> / <code>copy_to_user()</code> 做安全拷贝。</p>
+</blockquote>
+<h3 id="五、知识扩展：系统调用的分类">五、知识扩展：系统调用的分类</h3>
+<p>教材后续会展开，这里先系统化归类：</p>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>典型调用（UNIX/Linux）</th>
+<th>Windows 对应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>进程控制</strong></td>
+<td><code>fork, exec, exit, wait, kill</code></td>
+<td><code>CreateProcess, ExitProcess, WaitForSingleObject</code></td>
+</tr>
+<tr>
+<td><strong>文件管理</strong></td>
+<td><code>open, read, write, close, lseek</code></td>
+<td><code>CreateFile, ReadFile, WriteFile, CloseHandle</code></td>
+</tr>
+<tr>
+<td><strong>设备管理</strong></td>
+<td><code>ioctl, read, write</code></td>
+<td><code>SetConsoleMode, ReadConsole</code></td>
+</tr>
+<tr>
+<td><strong>信息维护</strong></td>
+<td><code>getpid, alarm, sleep, time</code></td>
+<td><code>GetCurrentProcessId, SetTimer, Sleep</code></td>
+</tr>
+<tr>
+<td><strong>通信</strong></td>
+<td><code>pipe, shmget, mmap, socket</code></td>
+<td><code>CreatePipe, MapViewOfFile, socket</code></td>
+</tr>
+<tr>
+<td><strong>保护</strong></td>
+<td><code>chmod, umask, chown</code></td>
+<td><code>SetFileSecurity</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="实用工具：亲眼看见系统调用">实用工具：亲眼看见系统调用</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">strace <span class="built_in">ls</span>                 <span class="comment"># Linux：追踪进程的全部系统调用</span></span><br><span class="line">strace -c <span class="built_in">ls</span>              <span class="comment"># 统计各系统调用次数与耗时</span></span><br><span class="line">ltrace ./a.out            <span class="comment"># 追踪库函数调用</span></span><br><span class="line">dtruss <span class="built_in">ls</span>                 <span class="comment"># macOS</span></span><br></pre></td></tr></table></figure>
+<p>用 <code>strace ls</code> 你会清楚看到 <code>execve → brk → mmap → openat → getdents64 → write → exit_group</code> 的完整链条，是理解本章最有效的实验。</p>
+<h3 id="六、系统调用的六大类型">六、系统调用的六大类型</h3>
+<p>系统调用按功能可分为 <strong>6 大类</strong>（考试常考的分类框架）。</p>
+<h4 id="6-1-进程控制（Process-Control）">6.1 进程控制（Process Control）</h4>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建进程、终止进程</td>
+<td><code>create process</code> / <code>terminate process</code></td>
+</tr>
+<tr>
+<td>结束、中止</td>
+<td><code>end</code>（正常结束）/ <code>abort</code>（异常中止）</td>
+</tr>
+<tr>
+<td>装入、执行</td>
+<td><code>load</code> / <code>execute</code></td>
+</tr>
+<tr>
+<td>获取/设置进程属性</td>
+<td>优先级、最大执行时间等</td>
+</tr>
+<tr>
+<td>等待时间</td>
+<td><code>wait for time</code></td>
+</tr>
+<tr>
+<td>等待事件、发出事件信号</td>
+<td><code>wait event</code> / <code>signal event</code></td>
+</tr>
+<tr>
+<td>分配与释放内存</td>
+<td><code>allocate</code> / <code>free memory</code></td>
+</tr>
+<tr>
+<td>出错时转储内存</td>
+<td><strong>Dump memory</strong>（core dump，用于事后分析）</td>
+</tr>
+<tr>
+<td>调试器</td>
+<td>定位 bug、<strong>单步执行</strong>（single step）</td>
+</tr>
+<tr>
+<td>锁</td>
+<td>管理进程间对<strong>共享数据</strong>的访问</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>end / abort 的区别</strong>：<code>end</code> 是程序自己认为完成了，正常退出；<code>abort</code> 是出错被迫终止，通常伴随 core dump。这对应 FreeBSD 例子里的退出码：<code>0</code> = 无错，<code>&gt;0</code> = 错误码。</p>
+</blockquote>
+<h4 id="6-2-文件管理（File-Management）">6.2 文件管理（File Management）</h4>
+<p><code>create file</code> / <code>delete file</code> / <code>open</code> / <code>close</code> / <code>read</code> / <code>write</code> / <code>reposition</code>（重定位读写指针，即 <code>lseek</code>）/ <code>get and set file attributes</code>（属性：名字、类型、权限、时间戳）</p>
+<h4 id="6-3-设备管理（Device-Management）">6.3 设备管理（Device Management）</h4>
+<p><code>request device</code>（请求，即独占）/ <code>release device</code>（释放）/ <code>read</code> / <code>write</code> / <code>reposition</code> / <code>get and set device attributes</code> / <strong>逻辑地挂载或卸载设备</strong>（attach / detach）</p>
+<blockquote>
+<p>🔎 <strong>UNIX 的哲学：一切皆文件</strong>。设备被抽象成 <code>/dev</code> 下的文件，所以文件管理与设备管理的系统调用<strong>高度重合</strong>（都用 <code>open/read/write/close</code>）。差异部分由万能接口 <code>ioctl()</code> 兜底。</p>
+</blockquote>
+<h4 id="6-4-信息维护（Information-Maintenance）">6.4 信息维护（Information Maintenance）</h4>
+<p><code>get/set time or date</code> / <code>get/set system data</code>（系统数据，如版本、可用内存、用户数）/ 获取与设置<strong>进程、文件或设备的属性</strong></p>
+<blockquote>
+<p>这一类本质上是<strong>在用户程序与 OS 之间传递信息</strong>，也包括调试与性能分析支持（<code>strace</code>、<code>ptrace</code>）。</p>
+</blockquote>
+<h4 id="6-5-通信（Communications）">6.5 通信（Communications）</h4>
+<ul>
+<li>创建、删除通信连接。</li>
+<li><strong>消息传递模型</strong>：向<strong>主机名或进程名</strong>发送/接收消息（客户端 → 服务器）。</li>
+<li><strong>共享内存模型</strong>：创建并获得内存区域的访问权。</li>
+<li>传输状态信息。</li>
+<li>挂接与断开远程设备。</li>
+</ul>
+<p><strong>两种模型对比（重点）</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>消息传递 Message Passing</th>
+<th>共享内存 Shared Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据交换方式</td>
+<td>通过内核复制消息</td>
+<td>直接读写同一块物理内存</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>慢（每次都陷入内核）</td>
+<td><strong>快</strong>（建立后无需内核介入）</td>
+</tr>
+<tr>
+<td>同步</td>
+<td>由 OS 保证</td>
+<td><strong>程序员自己负责</strong>（信号量/互斥锁）</td>
+</tr>
+<tr>
+<td>冲突风险</td>
+<td>低</td>
+<td>高（竞态条件）</td>
+</tr>
+<tr>
+<td>适用</td>
+<td>数据量小、跨机器、分布式</td>
+<td>数据量大、同机高性能</td>
+</tr>
+<tr>
+<td>系统调用</td>
+<td><code>pipe</code>, <code>socket</code>, <code>msgsnd</code></td>
+<td><code>shm_open</code>, <code>mmap</code>, <code>shmget</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="6-6-保护（Protection）">6.6 保护（Protection）</h4>
+<p>控制对资源的访问 / 获取与设置权限（<code>chmod</code>、<code>umask</code>）/ 允许与拒绝用户访问。</p>
+<blockquote>
+<p>保护最初只针对多用户分时系统，现在<strong>联网的单用户系统同样需要</strong>——因为任何一台联网机器都可能被外部访问。</p>
+</blockquote>
+<h3 id="七、Windows-与-UNIX-系统调用对照（截图-1）">七、Windows 与 UNIX 系统调用对照（截图 1）</h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>Windows</th>
+<th>UNIX/Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>进程控制</strong></td>
+<td><code>CreateProcess()</code> <code>ExitProcess()</code> <code>WaitForSingleObject()</code></td>
+<td><code>fork()</code> <code>exit()</code> <code>wait()</code></td>
+</tr>
+<tr>
+<td><strong>文件管理</strong></td>
+<td><code>CreateFile()</code> <code>ReadFile()</code> <code>WriteFile()</code> <code>CloseHandle()</code></td>
+<td><code>open()</code> <code>read()</code> <code>write()</code> <code>close()</code></td>
+</tr>
+<tr>
+<td><strong>设备管理</strong></td>
+<td><code>SetConsoleMode()</code> <code>ReadConsole()</code> <code>WriteConsole()</code></td>
+<td><code>ioctl()</code> <code>read()</code> <code>write()</code></td>
+</tr>
+<tr>
+<td><strong>信息维护</strong></td>
+<td><code>GetCurrentProcessID()</code> <code>SetTimer()</code> <code>Sleep()</code></td>
+<td><code>getpid()</code> <code>alarm()</code> <code>sleep()</code></td>
+</tr>
+<tr>
+<td><strong>通信</strong></td>
+<td><code>CreatePipe()</code> <code>CreateFileMapping()</code> <code>MapViewOfFile()</code></td>
+<td><code>pipe()</code> <code>shm_open()</code> <code>mmap()</code></td>
+</tr>
+<tr>
+<td><strong>保护</strong></td>
+<td><code>SetFileSecurity()</code> <code>InitializeSecurityDescriptor()</code> <code>SetSecurityDescriptorGroup()</code></td>
+<td><code>chmod()</code> <code>umask()</code> <code>chown()</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>注意一个深刻差异</strong>：Windows 用 <strong><code>CreateProcess()</code> 一步创建并加载</strong>新程序；UNIX 用 <strong><code>fork()</code> + <code>exec()</code> 两步</strong>。</p>
+<ul>
+<li><code>fork()</code> 复制当前进程得到子进程（父子分别返回子进程 PID 和 0）。</li>
+<li><code>exec()</code> 用新程序<strong>覆盖</strong>当前进程的内存映像。</li>
+<li>分开的好处：在 <code>fork()</code> 与 <code>exec()</code> 之间可以做重定向、改权限、设环境变量——这正是 shell 实现 <code>ls &gt; out.txt</code> 和管道的关键窗口。</li>
+<li>UNIX 中&quot;用户程序 → 系统程序&quot;这些<strong>功能上等价</strong>的调用，正说明&quot;系统调用名是泛化的&quot;这句话。</li>
+</ul>
+</blockquote>
+<h3 id="八、标准-C-库示例（截图-2）">八、标准 C 库示例（截图 2）</h3>
+<p><strong>C 程序调用 <code>printf()</code> 库函数，而 <code>printf()</code> 内部调用 <code>write()</code> 系统调用。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">        ┌──────────────────────┐</span><br><span class="line">        │ #include &lt;stdio.h&gt;   │</span><br><span class="line">        │ int main() &#123;         │</span><br><span class="line">        │   ...                │</span><br><span class="line">        │   printf(&quot;Greetings&quot;);│◄────┐  返回值层层上传</span><br><span class="line">        │   ...                │     │</span><br><span class="line">        │   return 0;          │     │</span><br><span class="line">        │ &#125;                    │     │</span><br><span class="line">        └────────┬─────────────┘     │</span><br><span class="line">   user mode     │                   │</span><br><span class="line">────────────┌────▼───────────────────┴───┐──────</span><br><span class="line">   kernel   │   standard C library (glibc)│</span><br><span class="line">   mode     └────┬───────────────────▲────┘</span><br><span class="line">                 │ write()           │</span><br><span class="line">              ┌──▼───────────────────┴──┐</span><br><span class="line">              │   write() system call   │</span><br><span class="line">              └─────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p>要点：</p>
+<ul>
+<li>标准 C 库为许多 UNIX/Linux 版本<strong>提供了系统调用接口的一部分</strong>。</li>
+<li>C 库<strong>拦截</strong>（intercepts）<code>printf()</code> 调用，转而发起必要的一个或多个系统调用。</li>
+<li>C 库拿到 <code>write()</code> 的返回值后，<strong>再传回给用户程序</strong>。</li>
+</ul>
+<blockquote>
+<p>🔎 <strong>为什么要多一层库？</strong></p>
+<ol>
+<li><strong>可移植性</strong>：同一份 C 源码在不同 OS 上链接不同的库即可。</li>
+<li><strong>性能</strong>：<code>printf</code> 有<strong>缓冲</strong>（stdout 连终端时行缓冲，连文件时全缓冲），把多次小写合并成一次 <code>write</code>，大幅减少陷入内核的次数。</li>
+<li><strong>易用</strong>：格式化、错误码转换（<code>errno</code>）等杂活由库完成。</li>
+</ol>
+<p>⚠️ 经典现象：<code>printf</code> 后程序崩溃，输出&quot;丢了&quot;——因为还在库的缓冲区里没 flush。解决：<code>fflush(stdout)</code> 或用 <code>write()</code> 直写。</p>
+</blockquote>
+<h3 id="九、两个完整的系统实例">九、两个完整的系统实例</h3>
+<h4 id="9-1-Arduino（截图-3）——没有-OS-的极简系统">9.1 Arduino（截图 3）——<strong>没有 OS 的极简系统</strong></h4>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>单任务</strong></td>
+<td>同一时刻只能运行一个程序</td>
+</tr>
+<tr>
+<td><strong>无操作系统</strong></td>
+<td>只有一个 boot loader</td>
+</tr>
+<tr>
+<td>程序（<strong>sketch</strong>）经 <strong>USB 装入 flash 存储器</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>单一内存空间</strong></td>
+<td>无内存保护，程序可访问任何地址</td>
+</tr>
+<tr>
+<td>boot loader 负责装入程序</td>
+<td></td>
+</tr>
+<tr>
+<td>程序退出 → <strong>重新装入 shell（boot loader）</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>内存布局：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(a) 系统启动时          (b) 运行程序时</span><br><span class="line">┌──────────────┐       ┌──────────────┐</span><br><span class="line">│              │       │  free memory │</span><br><span class="line">│  free memory │       ├──────────────┤</span><br><span class="line">│              │       │ user program │</span><br><span class="line">│              │       │   (sketch)   │</span><br><span class="line">├──────────────┤       ├──────────────┤</span><br><span class="line">│  boot loader │       │  boot loader │</span><br><span class="line">└──────────────┘       └──────────────┘</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🔎 这就是<strong>裸机编程 / 单道程序系统</strong>。没有进程概念、没有用户态/内核态之分、没有系统调用——想点亮一个 LED 就直接往寄存器地址写值。可以作为&quot;如果没有 OS 会怎样&quot;的反例。</p>
+</blockquote>
+<h4 id="9-2-FreeBSD（截图-4）——典型多任务-UNIX">9.2 FreeBSD（截图 4）——<strong>典型多任务 UNIX</strong></h4>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unix 变体、<strong>多任务</strong></td>
+<td>多个进程同时驻留内存</td>
+</tr>
+<tr>
+<td>用户登录 → 启动用户选择的 <strong>shell</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>shell 执行 <strong><code>fork()</code></strong> 系统调用创建进程</td>
+<td></td>
+</tr>
+<tr>
+<td>再执行 <strong><code>exec()</code></strong> 把程序装入该进程</td>
+<td></td>
+</tr>
+<tr>
+<td>shell <strong>等待</strong>进程终止，或继续接受用户命令</td>
+<td>对应前台 <code>cmd</code> 与后台 <code>cmd &amp;</code></td>
+</tr>
+<tr>
+<td>进程退出码：<code>0</code> = 无错误；<code>&gt;0</code> = 错误码</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>内存布局（从高到低）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">high memory ┌──────────────┐</span><br><span class="line">            │    kernel    │  ← 内核常驻高端内存</span><br><span class="line">            ├──────────────┤</span><br><span class="line">            │ free memory  │</span><br><span class="line">            ├──────────────┤</span><br><span class="line">            │  process C   │</span><br><span class="line">            ├──────────────┤</span><br><span class="line">            │ interpreter  │  ← 解释器也是一个进程</span><br><span class="line">            ├──────────────┤</span><br><span class="line">            │  process B   │</span><br><span class="line">            ├──────────────┤</span><br><span class="line">low  memory │  process D   │</span><br><span class="line">            └──────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>shell 执行一条命令的完整过程</strong>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pid = fork();               <span class="comment">// 1. 复制出子进程</span></span><br><span class="line"><span class="keyword">if</span> (pid == <span class="number">0</span>) &#123;             <span class="comment">// 2. 子进程分支</span></span><br><span class="line">    execvp(<span class="string">&quot;ls&quot;</span>, argv);     <span class="comment">//    用 ls 覆盖自身</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;                    <span class="comment">// 3. 父进程（shell）</span></span><br><span class="line">    wait(&amp;status);          <span class="comment">//    等待子进程结束，取回退出码</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🔎 <strong>退出码的实际用途</strong>：shell 里 <code>echo $?</code> 可查看上一条命令的退出码；<code>cmd1 &amp;&amp; cmd2</code> 就是靠退出码为 0 才执行 cmd2。</p>
+</blockquote>
+<p><strong>Arduino vs FreeBSD 对比总结</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Arduino</th>
+<th>FreeBSD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务数</td>
+<td>单任务</td>
+<td>多任务</td>
+</tr>
+<tr>
+<td>有无 OS</td>
+<td>无</td>
+<td>有</td>
+</tr>
+<tr>
+<td>内存空间</td>
+<td>单一，无保护</td>
+<td>每进程独立地址空间</td>
+</tr>
+<tr>
+<td>程序加载</td>
+<td>boot loader</td>
+<td>shell 的 <code>fork()</code> + <code>exec()</code></td>
+</tr>
+<tr>
+<td>程序结束后</td>
+<td>重载 boot loader</td>
+<td>shell 继续接受命令</td>
+</tr>
+</tbody>
+</table>
+<h3 id="十、系统程序-系统服务（System-Services）">十、系统程序 / 系统服务（System Services）</h3>
+<h4 id="10-1-定位">10.1 定位</h4>
+<p><strong>系统程序为程序开发与执行提供便利环境。</strong></p>
+<blockquote>
+<p>⭐ <strong>核心观点（易考）</strong>：<strong>大多数用户眼中的&quot;操作系统&quot;，是由系统程序定义的，而不是实际的系统调用。</strong><br>
+例如你觉得&quot;Windows 就是资源管理器 + 任务管理器 + 记事本&quot;，但这些都只是系统程序，不是内核。</p>
+</blockquote>
+<h4 id="10-2-分类">10.2 分类</h4>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>文件管理</strong></td>
+<td>创建、删除、复制、重命名、打印、转储、列表，以及一般性地操作文件和目录</td>
+</tr>
+<tr>
+<td><strong>状态信息</strong></td>
+<td>① 询问系统信息：日期、时间、可用内存量、磁盘空间、用户数 ② 提供详细的<strong>性能、日志和调试</strong>信息 ③ 通常把输出<strong>格式化后打印</strong>到终端或其他输出设备 ④ 有些系统实现<strong>注册表（registry）</strong> 来存取配置信息</td>
+</tr>
+<tr>
+<td><strong>文件修改</strong></td>
+<td>文本编辑器创建和修改文件；特殊命令用于<strong>搜索文件内容</strong>或<strong>对文本做变换</strong>（如 <code>grep</code>、<code>sed</code>、<code>awk</code>）</td>
+</tr>
+<tr>
+<td><strong>程序语言支持</strong></td>
+<td>编译器、汇编器、调试器、解释器</td>
+</tr>
+<tr>
+<td><strong>程序装入与执行</strong></td>
+<td>绝对装入程序、<strong>可重定位装入程序</strong>、链接编辑器、<strong>覆盖装入程序（overlay loader）</strong>，以及高级语言与机器语言的调试系统</td>
+</tr>
+<tr>
+<td><strong>通信</strong></td>
+<td>在进程、用户、计算机系统之间建立<strong>虚拟连接</strong>；支持互发消息到屏幕、浏览网页、收发电子邮件、远程登录、机器间传文件</td>
+</tr>
+<tr>
+<td><strong>后台服务</strong></td>
+<td>见下</td>
+</tr>
+<tr>
+<td><strong>应用程序</strong></td>
+<td>见下</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 有些系统程序<strong>只是系统调用的简单用户接口</strong>（如 <code>mkdir</code> ≈ 一次 <code>mkdir()</code> 系统调用），另一些则<strong>复杂得多</strong>（如编译器）。</p>
+</blockquote>
+<h4 id="10-3-后台服务（Background-Services）">10.3 后台服务（Background Services）</h4>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>启动时机</strong></td>
+<td>在<strong>引导时（boot time）</strong> 启动</td>
+</tr>
+<tr>
+<td><strong>生命周期</strong></td>
+<td>有的完成系统启动任务后就终止；有的<strong>从开机运行到关机</strong></td>
+</tr>
+<tr>
+<td><strong>提供功能</strong></td>
+<td>磁盘检查、进程调度、错误日志、打印</td>
+</tr>
+<tr>
+<td><strong>运行环境</strong></td>
+<td>⭐ 运行在<strong>用户上下文（user context）而非内核上下文</strong></td>
+</tr>
+<tr>
+<td><strong>别名</strong></td>
+<td>services（Windows）、subsystems、<strong>daemons</strong>（UNIX，守护进程）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>为什么守护进程跑在用户态？</strong><br>
+这是<strong>最小特权原则</strong>。让打印服务、日志服务这类复杂逻辑跑在用户态，即使被攻破或崩溃，也不会拖垮整个内核。这也正是<strong>微内核思想</strong>的雏形。</p>
+<p>Linux 中查看：<code>systemctl list-units --type=service</code>；进程名常以 <code>d</code> 结尾（<code>sshd</code>、<code>crond</code>、<code>httpd</code>）。</p>
+</blockquote>
+<h4 id="10-4-应用程序（Application-Programs）">10.4 应用程序（Application Programs）</h4>
+<ul>
+<li><strong>与系统本身无关</strong>，由用户运行。</li>
+<li><strong>通常不被视为 OS 的一部分</strong>。</li>
+<li>通过命令行、鼠标点击、手指触碰启动。</li>
+</ul>
+<blockquote>
+<p>三层区分：<strong>内核 ← 系统程序 ← 应用程序</strong>。Chrome 是应用程序，<code>ls</code> 是系统程序，进程调度器是内核。</p>
+</blockquote>
+<h3 id="十一、链接器与装入器（Linkers-and-Loaders）">十一、链接器与装入器（Linkers and Loaders）</h3>
+<h4 id="11-1-完整流程（截图-5）">11.1 完整流程（截图 5）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">  main.c              ← 源程序</span><br><span class="line">    │  gcc -c main.c</span><br><span class="line">    ▼</span><br><span class="line"> compiler</span><br><span class="line">    │  generates</span><br><span class="line">    ▼</span><br><span class="line">  main.o              ← 目标文件（可重定位）</span><br><span class="line">    │            ┌── other object files</span><br><span class="line">    │  linker  ◄─┘   gcc -o main main.o -lm</span><br><span class="line">    ▼  generates</span><br><span class="line">   main               ← 可执行文件（在二级存储上）</span><br><span class="line">    │            ┌── dynamically linked libraries</span><br><span class="line">    │  loader  ◄─┘   ./main</span><br><span class="line">    ▼</span><br><span class="line">program in memory     ← 内存中的程序</span><br></pre></td></tr></table></figure>
+<h4 id="11-2-关键概念">11.2 关键概念</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>可重定位目标文件</strong> (relocatable object file)</td>
+<td>源代码编译成的目标文件，<strong>设计成可装入任何物理内存位置</strong></td>
+</tr>
+<tr>
+<td><strong>链接器（Linker）</strong></td>
+<td>把多个目标文件合并为<strong>单个二进制可执行文件</strong>；同时<strong>引入库</strong></td>
+</tr>
+<tr>
+<td><strong>装入器（Loader）</strong></td>
+<td>程序以二进制可执行文件形式存放在<strong>二级存储</strong>上，必须由 loader <strong>搬进内存</strong>才能执行</td>
+</tr>
+<tr>
+<td><strong>重定位（Relocation）</strong></td>
+<td>为程序各部分<strong>指派最终地址</strong>，并调整程序中的代码和数据以匹配这些地址</td>
+</tr>
+<tr>
+<td><strong>动态链接库</strong></td>
+<td>现代通用系统<strong>不把库链接进可执行文件</strong>，而是按需装入<strong>动态链接库</strong>（Windows 中称 <strong>DLL</strong>，Linux 中为 <code>.so</code>）；使用<strong>同一版本同一库</strong>的所有程序<strong>共享</strong>它（只装入一次）</td>
+</tr>
+<tr>
+<td><strong>标准格式</strong></td>
+<td>目标文件、可执行文件有标准格式，因此 OS 知道如何装入并启动它们</td>
+</tr>
+</tbody>
+</table>
+<h4 id="11-3-静态链接-vs-动态链接（扩展）">11.3 静态链接 vs 动态链接（扩展）</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>静态链接</th>
+<th>动态链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>库代码位置</td>
+<td>复制进可执行文件</td>
+<td>运行时装入，内存中共享</td>
+</tr>
+<tr>
+<td>文件体积</td>
+<td>大</td>
+<td>小</td>
+</tr>
+<tr>
+<td>内存占用</td>
+<td>每个进程一份</td>
+<td><strong>多进程共享一份</strong></td>
+</tr>
+<tr>
+<td>库升级</td>
+<td>必须重新链接全部程序</td>
+<td><strong>换掉 .so 即可</strong>（安全补丁友好）</td>
+</tr>
+<tr>
+<td>启动速度</td>
+<td>快</td>
+<td>稍慢（需运行时解析符号）</td>
+</tr>
+<tr>
+<td>依赖问题</td>
+<td>无</td>
+<td>可能&quot;DLL 地狱&quot; / 版本冲突</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实用命令</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gcc -c main.c          <span class="comment"># 只编译，生成 main.o</span></span><br><span class="line">gcc -o main main.o -lm <span class="comment"># 链接数学库 libm</span></span><br><span class="line">ldd ./main             <span class="comment"># 查看依赖哪些动态库</span></span><br><span class="line">nm main.o              <span class="comment"># 查看符号表（U = 未定义，待链接器解析）</span></span><br><span class="line">readelf -h ./main      <span class="comment"># 查看 ELF 头</span></span><br><span class="line">file ./main            <span class="comment"># 查看文件格式</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🔎 <strong>常见可执行文件格式</strong></p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>平台</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ELF</strong> (Executable and Linkable Format)</td>
+<td>Linux / UNIX</td>
+</tr>
+<tr>
+<td><strong>PE</strong> (Portable Executable)</td>
+<td>Windows（.exe/.dll）</td>
+</tr>
+<tr>
+<td><strong>Mach-O</strong></td>
+<td>macOS / iOS</td>
+</tr>
+</tbody>
+</table>
+<p>这直接引出下一节：<strong>为什么应用是 OS 相关的</strong>。</p>
+</blockquote>
+<h3 id="十二、为什么应用程序是操作系统相关的">十二、为什么应用程序是操作系统相关的</h3>
+<p><strong>在一个系统上编译的应用，通常不能在另一个 OS 上执行。</strong> 三个根本原因：</p>
+<ol>
+<li><strong>系统调用不同</strong> —— 每个 OS 提供自己独有的系统调用（对比 <code>fork()</code> vs <code>CreateProcess()</code>）。</li>
+<li><strong>文件（二进制）格式不同</strong> —— ELF vs PE vs Mach-O。</li>
+<li><strong>CPU 指令集不同</strong> —— x86-64 vs ARM（教材在 ABI 处点出）。</li>
+</ol>
+<h4 id="让应用跨多个-OS-的三种途径">让应用跨多个 OS 的三种途径</h4>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>原理</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>解释型语言</strong></td>
+<td>用 Python、Ruby 等编写，只要目标平台有解释器即可</td>
+<td>Python 脚本</td>
+</tr>
+<tr>
+<td><strong>含虚拟机的语言</strong></td>
+<td>应用运行在 VM 之中</td>
+<td><strong>Java</strong>（JVM）、C#（CLR）</td>
+</tr>
+<tr>
+<td><strong>标准语言 + 分别编译</strong></td>
+<td>用标准语言（如 C）写，在<strong>每个 OS 上分别编译</strong></td>
+<td>跨平台 C/C++ 项目</td>
+</tr>
+</tbody>
+</table>
+<p>三种方案的代价：解释型和 VM 型<strong>牺牲性能</strong>；分别编译则要<strong>为每个平台维护构建</strong>并处理平台差异（<code>#ifdef _WIN32</code>）。</p>
+<h4 id="ABI（Application-Binary-Interface）">ABI（Application Binary Interface）</h4>
+<blockquote>
+<p><strong>ABI 是 API 在体系结构层面的等价物</strong>，它定义了在<strong>给定的 OS、给定的体系结构/CPU</strong> 上，二进制代码的不同组成部分<strong>如何互相接口</strong>。</p>
+</blockquote>
+<p>ABI 规定的内容：</p>
+<ul>
+<li>参数用哪些寄存器传递、多余的怎么压栈</li>
+<li>返回值放哪里</li>
+<li>栈帧布局与对齐要求</li>
+<li>基本数据类型的大小与字节序（<code>long</code> 是 4 还是 8 字节？）</li>
+<li>目标文件与可执行文件的二进制格式</li>
+</ul>
+<p><strong>API vs ABI 一句话区分</strong>：</p>
+<ul>
+<li><strong>API 保证源代码级兼容</strong>——源码不用改，重新编译即可。</li>
+<li><strong>ABI 保证二进制级兼容</strong>——编译好的 <code>.o</code>/<code>.so</code> 不用重编就能链接运行。</li>
+</ul>
+<h3 id="十三、操作系统的设计与实现">十三、操作系统的设计与实现</h3>
+<h4 id="13-1-设计原则">13.1 设计原则</h4>
+<ul>
+<li>OS 的设计与实现<strong>不是一个可&quot;求解&quot;的问题</strong>，但有些方法已被证明成功。</li>
+<li>不同 OS 的<strong>内部结构差异极大</strong>。</li>
+<li>设计从<strong>定义目标与规格说明</strong>开始，受<strong>硬件选择</strong>和<strong>系统类型</strong>影响。</li>
+</ul>
+<p><strong>两类目标（重点对比）</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>用户目标 (User goals)</th>
+<th>系统目标 (System goals)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提出者</td>
+<td>最终用户</td>
+<td>设计者、实现者、维护者</td>
+</tr>
+<tr>
+<td>内容</td>
+<td>使用<strong>方便</strong>、<strong>易学</strong>、<strong>可靠</strong>、<strong>安全</strong>、<strong>快速</strong></td>
+<td><strong>易于设计、实现、维护</strong>，以及<strong>灵活、可靠、无错、高效</strong></td>
+</tr>
+<tr>
+<td>性质</td>
+<td>模糊、难以量化</td>
+<td>相对具体，但同样无统一解</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>规格说明与设计 OS 是一项<strong>高度创造性的软件工程任务</strong>——没有教科书式的标准答案。</p>
+</blockquote>
+<h4 id="13-2-策略与机制（Policy-and-Mechanism）⭐">13.2 策略与机制（Policy and Mechanism）⭐</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>定义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>策略 Policy</strong></td>
+<td><strong>需要做什么？</strong></td>
+<td>每 100 秒中断一次</td>
+</tr>
+<tr>
+<td><strong>机制 Mechanism</strong></td>
+<td><strong>怎么做？</strong></td>
+<td>定时器（timer）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⭐ <strong>重要原则：策略与机制分离</strong>。<br>
+这样做<strong>在日后需要改变策略决定时提供最大的灵活性</strong>——例如把 100 改成 200，只需改参数，机制（定时器）完全不用动。</p>
+</blockquote>
+<p><strong>更多例子</strong></p>
+<table>
+<thead>
+<tr>
+<th>机制（不变）</th>
+<th>策略（可换）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>进程有优先级字段 + 调度器框架</td>
+<td>用 FCFS？SJF？轮转？多级反馈队列？</td>
+</tr>
+<tr>
+<td>页表 + 缺页中断处理</td>
+<td>用 FIFO？LRU？Clock 置换算法？</td>
+</tr>
+<tr>
+<td>文件有 rwx 权限位</td>
+<td>新建文件默认权限是多少（<code>umask</code>）</td>
+</tr>
+<tr>
+<td>Linux LSM 钩子</td>
+<td>装 SELinux 还是 AppArmor</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>两个极端</strong>：</p>
+<ul>
+<li><strong>Microkernel（如 Mach）</strong>：把机制做到极致通用，策略留给用户态服务器——分离最彻底。</li>
+<li><strong>Macintosh 早期系统</strong>：机制与策略深度绑定，改起来极难。</li>
+<li>Linux 的 <code>sysctl</code>、<code>/proc/sys/</code> 就是&quot;策略可调、机制固定&quot;的现实体现。</li>
+</ul>
+</blockquote>
+<h4 id="13-3-实现语言的演进">13.3 实现语言的演进</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">汇编语言 → 系统编程语言（Algol、PL/1）→ C、C++</span><br></pre></td></tr></table></figure>
+<p><strong>实际上通常是多种语言的混合</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>语言</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>最底层</strong></td>
+<td>汇编（中断入口、上下文切换、启动代码）</td>
+</tr>
+<tr>
+<td><strong>主体</strong></td>
+<td>C</td>
+</tr>
+<tr>
+<td><strong>系统程序</strong></td>
+<td>C、C++、脚本语言（PERL、Python、shell 脚本）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>权衡</strong>：</p>
+<ul>
+<li>语言层次越高 → <strong>越容易移植到其他硬件</strong>，但<strong>运行更慢</strong>。</li>
+<li><strong>仿真（Emulation）</strong> 可以让 OS 运行在非原生硬件上。</li>
+</ul>
+<blockquote>
+<p>🔎 <strong>补充现状</strong>：</p>
+<ul>
+<li>Linux 内核自 6.1 起<strong>正式引入 Rust</strong>，用于新驱动开发，兼顾内存安全与性能。</li>
+<li>Windows 内核也在用 Rust 重写部分组件。</li>
+<li>&quot;高级语言慢&quot;的说法在现代编译器优化下已大幅缓解，真正无法替代汇编的只剩极少数场景。</li>
+<li>仿真的现实例子：QEMU、Apple 的 Rosetta 2（x86 应用跑在 ARM Mac 上）。</li>
+</ul>
+</blockquote>
+<h3 id="十四、操作系统结构">十四、操作系统结构</h3>
+<p>通用 OS 是一个<strong>非常庞大的程序</strong>，有多种组织方式：</p>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>简单结构</strong></td>
+<td>MS-DOS</td>
+</tr>
+<tr>
+<td><strong>更复杂（宏内核）</strong></td>
+<td>UNIX</td>
+</tr>
+<tr>
+<td><strong>分层结构</strong></td>
+<td>一种抽象</td>
+</tr>
+<tr>
+<td><strong>微内核</strong></td>
+<td>Mach</td>
+</tr>
+<tr>
+<td>（后续）<strong>模块化 / 混合</strong></td>
+<td>Linux、macOS、Windows</td>
+</tr>
+</tbody>
+</table>
+<h4 id="14-1-宏内核结构-——-最初的-UNIX">14.1 宏内核结构 —— 最初的 UNIX</h4>
+<ul>
+<li>受<strong>硬件功能限制</strong>，最初的 UNIX 结构化程度很低。</li>
+<li>UNIX 由<strong>两个可分离的部分</strong>组成：<strong>系统程序</strong>与<strong>内核</strong>。</li>
+<li><strong>内核 = 系统调用接口以下、物理硬件以上的一切</strong>。</li>
+<li>内核提供文件系统、CPU 调度、内存管理及其他 OS 功能——<strong>在同一个层次上塞进了大量功能</strong>。</li>
+</ul>
+<h4 id="14-2-传统-UNIX-系统结构（截图-6）">14.2 传统 UNIX 系统结构（截图 6）</h4>
+<blockquote>
+<p>标注：<strong>“Beyond simple but not fully layered”</strong>（比简单结构强，但并非完全分层）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">┌────────────────────────────────────────────────────┐</span><br><span class="line">│                    (the users)                      │</span><br><span class="line">├────────────────────────────────────────────────────┤</span><br><span class="line">│        shells and commands                          │</span><br><span class="line">│        compilers and interpreters                   │</span><br><span class="line">│        system libraries                             │</span><br><span class="line">├════════════════════════════════════════════════════┤</span><br><span class="line">│        system-call interface to the kernel          │  ← 用户态/内核态分界</span><br><span class="line">├────────────────────────────────────────────────────┤</span><br><span class="line">│ signals terminal │  file system   │ CPU scheduling  │</span><br><span class="line">│ handling         │  swapping      │ page replacement│  ← 内核（一整块）</span><br><span class="line">│ character I/O    │  block I/O sys │ demand paging   │</span><br><span class="line">│ terminal drivers │ disk/tape drv  │ virtual memory  │</span><br><span class="line">├════════════════════════════════════════════════════┤</span><br><span class="line">│        kernel interface to the hardware             │</span><br><span class="line">├────────────────────────────────────────────────────┤</span><br><span class="line">│ terminal        │ device          │ memory          │</span><br><span class="line">│ controllers     │ controllers     │ controllers     │</span><br><span class="line">│ terminals       │ disks and tapes │ physical memory │</span><br><span class="line">└────────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>两个关键接口</strong>：</p>
+<ol>
+<li><strong>system-call interface to the kernel</strong> —— 用户程序进入内核的唯一门。</li>
+<li><strong>kernel interface to the hardware</strong> —— 内核操作硬件的抽象层（今天叫 HAL）。</li>
+</ol>
+<p>三大子系统横向并列：<strong>终端/信号处理</strong>、<strong>文件系统与块设备</strong>、<strong>CPU 调度与虚拟内存</strong>。它们<strong>互相之间可以任意调用</strong>——这正是&quot;宏内核&quot;的含义。</p>
+<h4 id="14-3-Linux-系统结构（截图-7）">14.3 Linux 系统结构（截图 7）</h4>
+<blockquote>
+<p>标注：<strong>“Monolithic plus modular design”</strong>（宏内核 + 模块化设计）</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">┌────────────────────────────────────┐</span><br><span class="line">│         applications               │</span><br><span class="line">│                ┌───────────────────┤</span><br><span class="line">│                │ glibc standard C  │</span><br><span class="line">└────────┬───────┴──────┬────────────┘</span><br><span class="line">         ▼              ▼</span><br><span class="line">┌────────────────────────────────────┐</span><br><span class="line">│      system-call interface         │</span><br><span class="line">└────────┬───────────────┬───────────┘</span><br><span class="line">         ▼               ▼</span><br><span class="line">┌──────────────────┬─────────────────┐</span><br><span class="line">│  file systems    │  CPU scheduler  │</span><br><span class="line">├──────────────────┼─────────────────┤</span><br><span class="line">│ networks (TCP/IP)│ memory manager  │</span><br><span class="line">├──────────────────┼─────────────────┤</span><br><span class="line">│  block devices   │ character devices│</span><br><span class="line">├──────────────────┴─────────────────┤</span><br><span class="line">│         device drivers             │</span><br><span class="line">└────────┬───────────────┬───────────┘</span><br><span class="line">         ▼               ▼</span><br><span class="line">┌────────────────────────────────────┐</span><br><span class="line">│           hardware                 │</span><br><span class="line">└────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>Linux 的巧妙之处</strong>：内核本身是一整块（宏内核，性能好），但支持 <strong>LKM（Loadable Kernel Module，可装载内核模块）</strong>——驱动、文件系统等可以在<strong>运行时动态加载/卸载</strong>，无需重新编译或重启内核。这兼具了宏内核的<strong>速度</strong>与微内核的<strong>灵活性</strong>。</p>
+<p>bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lsmod                  <span class="comment"># 列出已加载模块</span></span><br><span class="line"><span class="built_in">sudo</span> insmod hello.ko   <span class="comment"># 加载</span></span><br><span class="line"><span class="built_in">sudo</span> rmmod hello       <span class="comment"># 卸载</span></span><br><span class="line">modinfo hello.ko       <span class="comment"># 查看模块信息</span></span><br><span class="line">dmesg | <span class="built_in">tail</span>           <span class="comment"># 查看 printk 输出</span></span><br></pre></td></tr></table></figure>
+<h4 id="14-4-宏内核的优缺点">14.4 宏内核的优缺点</h4>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统调用开销小，<strong>性能高</strong></td>
+<td>内核庞大，<strong>难以实现、扩展和维护</strong></td>
+</tr>
+<tr>
+<td>内核内部通信就是函数调用，<strong>极快</strong></td>
+<td>任一模块出错（如一个驱动 bug）<strong>整个系统崩溃</strong></td>
+</tr>
+<tr>
+<td>结构简单直接</td>
+<td>各部分<strong>耦合紧密</strong>，修改牵一发动全身</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>这些缺点正是后面<strong>分层、微内核、模块化</strong>结构要解决的问题。</p>
+</blockquote>
+<h3 id="十五、分层方法（Layered-Approach）">十五、分层方法（Layered Approach）</h3>
+<h4 id="15-1-基本思想（截图-1）">15.1 基本思想（截图 1）</h4>
+<ul>
+<li>操作系统被划分成<strong>若干层（levels）</strong>，每一层建立在<strong>更低层之上</strong>。</li>
+<li><strong>最底层（layer 0）是硬件</strong>；<strong>最高层（layer N）是用户接口</strong>。</li>
+<li>借助模块化，层的划分要满足：<strong>每一层只使用更低层的功能（操作）和服务</strong>。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────┐</span><br><span class="line">│   layer N  用户接口      │</span><br><span class="line">│  ┌───────────────────┐  │</span><br><span class="line">│  │        ⋮          │  │</span><br><span class="line">│  │  ┌─────────────┐  │  │</span><br><span class="line">│  │  │   layer 1   │  │  │</span><br><span class="line">│  │  │  ┌───────┐  │  │  │</span><br><span class="line">│  │  │  │layer 0│  │  │  │</span><br><span class="line">│  │  │  │硬件   │  │  │  │</span><br><span class="line">│  │  │  └───────┘  │  │  │</span><br><span class="line">│  │  └─────────────┘  │  │</span><br><span class="line">│  └───────────────────┘  │</span><br><span class="line">└─────────────────────────┘</span><br></pre></td></tr></table></figure>
+<h4 id="15-2-优点与困难">15.2 优点与困难</h4>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>困难</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>构造与调试简单</strong>：调试第 N 层时，可假定 0~N−1 层已正确</td>
+<td><strong>层的定义困难</strong>：某层必须只用到更低层的服务，但依赖关系常有循环</td>
+</tr>
+<tr>
+<td><strong>信息隐藏</strong>：上层不必知道下层如何实现，只需知道接口</td>
+<td><strong>效率低</strong>：一个系统调用要<strong>穿透多层</strong>，每层都做参数检查与传递，累积开销大</td>
+</tr>
+<tr>
+<td>易于替换某一层的实现</td>
+<td>分层过细反而增加复杂度</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>经典的&quot;循环依赖&quot;难题</strong>：<br>
+虚拟内存层需要用磁盘驱动来做换页 → 磁盘驱动层应该在虚存层之下；<br>
+但磁盘驱动的缓冲区又想使用虚拟内存 → 虚存层又应在其下。这就无法分层了。</p>
+<p>因此<strong>纯分层 OS 在实践中很少见</strong>。真正成功的分层案例是 <strong>网络协议栈（TCP/IP 五层模型）</strong> 和 <strong>THE 系统（Dijkstra，1968）</strong>——后者是分层思想的鼻祖。</p>
+<p>现代趋势：<strong>层数变少但更粗</strong>（宏内核 + 少量抽象层），在效率与结构之间折中。</p>
+</blockquote>
+<h3 id="十六、微内核（Microkernel）">十六、微内核（Microkernel）</h3>
+<h4 id="16-1-核心思想">16.1 核心思想</h4>
+<p><strong>把尽可能多的东西从内核移到用户空间。</strong></p>
+<ul>
+<li><strong>Mach</strong> 是微内核的代表。</li>
+<li><strong>macOS 的内核（Darwin）部分基于 Mach</strong>。</li>
+<li>用户模块之间通过<strong>消息传递（message passing）</strong> 通信。</li>
+</ul>
+<h4 id="16-2-结构图（截图-2）">16.2 结构图（截图 2）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  user mode  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐</span><br><span class="line">             │ application  │ │ file system  │ │ device driver│</span><br><span class="line">             │   program    │ │              │ │              │</span><br><span class="line">             └───────▲──────┘ └───────▲──────┘ └───────▲──────┘</span><br><span class="line">                     ┊  messages      ┊     messages   ┊</span><br><span class="line">─────────────┌───────┴────────────────┴────────────────┴───────┐</span><br><span class="line">  kernel mode│  ⬭ interprocess   ⬭ memory      ⬭ CPU          │</span><br><span class="line">             │    communication    management    scheduling    │</span><br><span class="line">             │                  microkernel                    │</span><br><span class="line">             └───────▲─────────────────────────────▲───────────┘</span><br><span class="line">                     │                             │</span><br><span class="line">             ┌───────┴─────────────────────────────┴───────────┐</span><br><span class="line">             │                  hardware                       │</span><br><span class="line">             └─────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>关键观察</strong>：<strong>文件系统和设备驱动跑在用户态</strong>！内核里只剩三样最基本的东西：<strong>IPC、内存管理、CPU 调度</strong>。</p>
+<h4 id="16-3-优缺点（重点对比表）">16.3 优缺点（重点对比表）</h4>
+<table>
+<thead>
+<tr>
+<th>优点 (Benefits)</th>
+<th>缺点 (Detriments)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>更容易扩展微内核</strong>（加新服务只需在用户态加个进程，不动内核）</td>
+<td><strong>性能开销</strong>：用户空间与内核空间之间的通信代价高</td>
+</tr>
+<tr>
+<td><strong>更容易移植</strong>到新体系结构（与硬件相关的代码集中且少）</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>更可靠</strong>（在内核态运行的代码更少）</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>更安全</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>为什么微内核慢？</strong><br>
+宏内核中，应用调 <code>read()</code> → 陷入内核 → 文件系统函数调用 → 返回，共 <strong>2 次模式切换</strong>。<br>
+微内核中，应用 → 消息发给内核 → 内核转发给文件系统服务器 → 文件系统再发消息给磁盘驱动服务器 → 层层返回，可能需要 <strong>8 次以上模式切换 + 多次数据拷贝</strong>。</p>
+<p><strong>历史八卦</strong>：1992 年 Tanenbaum（MINIX，微内核）与 Linus Torvalds（Linux，宏内核）就此展开著名论战。Tanenbaum 说&quot;Linux 是过时的设计&quot;，Linus 说&quot;理论优雅比不上能跑得快&quot;。结果两者都对：Linux 赢得了通用计算，而微内核赢得了<strong>高可靠领域</strong>。</p>
+<p><strong>微内核的现实胜利</strong>：</p>
+<ul>
+<li><strong>QNX</strong>：汽车电子、核电站控制。</li>
+<li><strong>L4 / seL4</strong>：<strong>seL4 是世界上第一个经过形式化验证（数学证明无 bug）的 OS 内核</strong>，用于航空航天与军用。</li>
+<li><strong>Google Fuchsia</strong> 的 Zircon 内核。</li>
+<li>手机基带处理器普遍跑 L4。</li>
+</ul>
+</blockquote>
+<h3 id="十七、模块（Modules）">十七、模块（Modules）</h3>
+<p>许多现代 OS 实现<strong>可装载内核模块（LKM, Loadable Kernel Modules）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>采用<strong>面向对象</strong>的方法</td>
+<td>封装 + 已知接口</td>
+</tr>
+<tr>
+<td><strong>每个核心组件相互独立</strong></td>
+<td>文件系统、驱动、网络协议各成一块</td>
+</tr>
+<tr>
+<td><strong>各组件通过已知接口互相通信</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>可按需装入内核</strong></td>
+<td>运行时动态加载，无需重启</td>
+</tr>
+<tr>
+<td>总体上<strong>类似于层，但更灵活</strong></td>
+<td>任意模块可调用任意其他模块，不受&quot;只能调下层&quot;的限制</td>
+</tr>
+<tr>
+<td>代表系统</td>
+<td><strong>Linux、Solaris</strong> 等</td>
+</tr>
+</tbody>
+</table>
+<h4 id="三种结构的定位对比-⭐">三种结构的定位对比 ⭐</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>分层</th>
+<th>微内核</th>
+<th>模块</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>组件位置</td>
+<td>全在内核</td>
+<td>大量在<strong>用户态</strong></td>
+<td>全在<strong>内核态</strong></td>
+</tr>
+<tr>
+<td>通信方式</td>
+<td>只能调用下层</td>
+<td><strong>消息传递</strong>（慢）</td>
+<td><strong>直接函数调用</strong>（快）</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>低（层次固定）</td>
+<td>高</td>
+<td><strong>高</strong>（可动态装卸）</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>中</td>
+<td>低</td>
+<td><strong>高</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⭐ <strong>一句话记忆</strong>：模块化 = <strong>微内核的灵活性 + 宏内核的性能</strong>。它是分层的&quot;松绑版&quot;（不强制单向调用），是微内核的&quot;内核态版&quot;（不用消息传递）。</p>
+</blockquote>
+<p><strong>Linux 实践</strong></p>
+<p>bash</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lsmod                     <span class="comment"># 已加载模块列表</span></span><br><span class="line">modinfo ext4              <span class="comment"># 模块信息</span></span><br><span class="line"><span class="built_in">sudo</span> modprobe nvidia      <span class="comment"># 加载（自动处理依赖）</span></span><br><span class="line"><span class="built_in">sudo</span> rmmod nvidia         <span class="comment"># 卸载</span></span><br><span class="line"><span class="built_in">cat</span> /proc/modules</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ 注意：LKM 运行在<strong>内核态</strong>，一个模块崩溃<strong>照样能拖垮整个系统</strong>——这是模块化相对微内核的代价。</p>
+</blockquote>
+<h3 id="十八、混合系统（Hybrid-Systems）">十八、混合系统（Hybrid Systems）</h3>
+<blockquote>
+<p>⭐ <strong>核心结论：大多数现代操作系统都不是单一的纯粹模型。</strong> 混合方式组合多种方法，以同时满足<strong>性能、安全、可用性</strong>需求。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>混合方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Linux / Solaris</strong></td>
+<td>内核在<strong>内核地址空间</strong> → 属<strong>宏内核</strong>；<strong>加上模块化</strong>以动态装入功能</td>
+</tr>
+<tr>
+<td><strong>Windows</strong></td>
+<td><strong>大部分是宏内核</strong>；<strong>加上微内核</strong>思想支持不同的<strong>子系统&quot;人格&quot;（personalities）</strong></td>
+</tr>
+<tr>
+<td><strong>macOS</strong></td>
+<td><strong>混合 + 分层</strong>：Aqua 用户界面 + Cocoa 编程环境；下面的内核由 <strong>Mach 微内核 + BSD UNIX 部分</strong>组成，再加 <strong>I/O Kit</strong> 和可动态装载的模块（称为<strong>内核扩展 kernel extensions / kexts</strong>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>Windows 的&quot;子系统人格&quot;</strong>：早期 NT 通过用户态子系统同时支持 Win32、OS/2、POSIX 三套 API，用户程序像与不同 OS 对话。现代体现是 <strong>WSL1</strong>（在 NT 内核上翻译 Linux 系统调用）。不过 WSL2 已改为跑真正的 Linux 内核虚拟机。</p>
+</blockquote>
+<h3 id="十九、macOS-与-iOS-结构">十九、macOS 与 iOS 结构</h3>
+<h4 id="19-1-分层视图（截图-3）">19.1 分层视图（截图 3）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────────────────────────┐</span><br><span class="line">│           applications               │</span><br><span class="line">└──┬────────┬─────────┬────────┬───────┘</span><br><span class="line">   ▼        │         │        │</span><br><span class="line">┌──────────────────┐  │        │        ← 用户体验层（Aqua、Finder、Dock）</span><br><span class="line">│ user experience  │  │        │</span><br><span class="line">└──────────────────┘  ▼        │</span><br><span class="line">┌───────────────────────────┐  │        ← 应用框架（Cocoa / Cocoa Touch）</span><br><span class="line">│  application frameworks   │  │</span><br><span class="line">└───────────────────────────┘  │</span><br><span class="line">┌──────────────────────────────┴─────┐</span><br><span class="line">│        core frameworks             │   ← 核心框架（图形、媒体、数据库、云）</span><br><span class="line">└────────────────────────────────────┘</span><br><span class="line">┌────────────────────────────────────┐</span><br><span class="line">│    kernel environment (Darwin)     │   ← 内核环境</span><br><span class="line">└────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>注意箭头</strong>：应用可以<strong>跳过中间层直接访问更低层</strong>——这说明它<strong>不是严格分层</strong>，而是&quot;分层风格的混合系统&quot;。</p>
+<h4 id="19-2-Darwin-内核（截图-4）">19.2 Darwin 内核（截图 4）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────────────────────────┐</span><br><span class="line">│           applications               │</span><br><span class="line">└──────┬────────────────────┬──────────┘</span><br><span class="line">       ▼                    ▼</span><br><span class="line">┌──────────────────────────────────────┐</span><br><span class="line">│          library interface           │      ← libSystem</span><br><span class="line">└──────┬────────────────────┬──────────┘</span><br><span class="line">       ▼                    ▼</span><br><span class="line">┌─────────────────┬────────────────────┐</span><br><span class="line">│   Mach traps    │  BSD (POSIX)       │      ← ⭐ 两套系统调用接口</span><br><span class="line">│                 │  system calls      │</span><br><span class="line">└─────────────────┴─────────┬──────────┘</span><br><span class="line">┌────┬──────────┬─────┬─────▼──────────┐</span><br><span class="line">│    │scheduling│ IPC │   memory       │</span><br><span class="line">│    │          │     │  management    │</span><br><span class="line">├────┴──────────┴─────┴────────────────┤</span><br><span class="line">│ iokit │                              │</span><br><span class="line">├───────┤        Mach kernel           │</span><br><span class="line">│ kexts │                              │</span><br><span class="line">└───────┴──────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>要点</strong>：</p>
+<ul>
+<li>⭐ <strong>Darwin 提供两套系统调用接口</strong>：<strong>Mach traps</strong>（Mach 消息、端口）与 <strong>BSD (POSIX) system calls</strong>（<code>fork</code>、<code>open</code> 等）。这正是&quot;混合&quot;的直接证据。</li>
+<li><strong>Mach kernel</strong> 内含调度、IPC、内存管理。</li>
+<li><strong>iokit</strong>：I/O Kit，设备驱动框架（用受限 C++ 编写）。</li>
+<li><strong>kexts</strong>：内核扩展，即可动态装载模块。</li>
+</ul>
+<blockquote>
+<p>🔎 Darwin 是<strong>开源</strong>的（BSD 许可），但 Aqua、Cocoa 等上层是闭源的。所以&quot;macOS 是 UNIX&quot;这句话是有官方认证的——macOS 通过了 The Open Group 的 UNIX 03 认证。</p>
+<p>🔎 现代补充：macOS 10.15 起 Apple 开始弃用 kexts，推动驱动移到用户态的 <strong>DriverKit / System Extensions</strong>——这是<strong>向微内核方向回归</strong>。</p>
+</blockquote>
+<h4 id="19-3-iOS">19.3 iOS</h4>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apple 为 <strong>iPhone、iPad</strong> 开发的移动 OS</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>构建在 macOS 之上</strong>，增加了功能</td>
+<td></td>
+</tr>
+<tr>
+<td>⭐ <strong>不能原生运行 macOS 应用</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>⭐ 运行在<strong>不同的 CPU 架构</strong>上（<strong>ARM</strong> vs Intel）</td>
+<td>这正是&quot;应用为何 OS 相关&quot;的活例子</td>
+</tr>
+<tr>
+<td><strong>Cocoa Touch</strong></td>
+<td>Objective-C API，用于开发应用</td>
+</tr>
+<tr>
+<td><strong>Media services 层</strong></td>
+<td>图形、音频、视频</td>
+</tr>
+<tr>
+<td><strong>Core services</strong></td>
+<td>云计算、数据库</td>
+</tr>
+<tr>
+<td><strong>Core operating system</strong></td>
+<td>基于 macOS 内核（Darwin）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 时代注脚：教材写于 Intel Mac 时代。<strong>2020 年 Apple 转向自研 ARM 芯片（Apple Silicon）</strong>，macOS 与 iOS 现已是同一架构，因此 M 系列 Mac <strong>可以直接运行 iOS 应用</strong>。同时 <strong>Rosetta 2</strong> 通过二进制翻译（即前文的 Emulation）让 x86 应用在 ARM 上运行。这正好印证了教材那句&quot;仿真可以让 OS/应用运行在非原生硬件上&quot;。</p>
+</blockquote>
+<h3 id="二十、Android">二十、Android</h3>
+<h4 id="20-1-概述">20.1 概述</h4>
+<table>
+<thead>
+<tr>
+<th>特征</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>由 <strong>Open Handset Alliance</strong>（主要是 <strong>Google</strong>）开发</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>开源</strong></td>
+<td>AOSP</td>
+</tr>
+<tr>
+<td>与 <strong>iOS 有相似的栈结构</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>基于 Linux 内核，但做了修改</strong></td>
+<td>提供进程、内存、设备驱动管理；<strong>增加了电源管理</strong></td>
+</tr>
+<tr>
+<td><strong>运行时环境</strong>包含核心库集合与 <strong>Dalvik 虚拟机</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>应用用 <strong>Java + Android API</strong> 开发</td>
+<td></td>
+</tr>
+<tr>
+<td>编译链：<strong>Java 类文件 → Java 字节码 → 翻译成可执行文件 → 在 Dalvik VM 中运行</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>库包含：<strong>webkit</strong>（浏览器）、<strong>SQLite</strong>（数据库）、多媒体框架、<strong>更小的 libc</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>Android 对 Linux 内核的修改</strong>：<code>wakelocks</code>（电源锁）、<code>Binder</code>（IPC 机制）、<code>ashmem</code>（匿名共享内存）、<code>Low Memory Killer</code>。<br>
+🔎 <strong>为什么 Java 字节码要翻译？</strong> Dalvik 用 <strong>DEX 格式</strong>、<strong>基于寄存器</strong>的指令集（JVM 是基于栈的），更适合寄存器较多的 ARM，指令数更少、更省电。<br>
+🔎 <strong>更新</strong>：Android 5.0 起 Dalvik 已被 <strong>ART（Android Runtime）</strong> 取代——从 JIT（运行时编译）改为 <strong>AOT（安装时提前编译）</strong>，启动更快、更省电。截图 5 中显示的正是 <strong>ART VM</strong>。</p>
+</blockquote>
+<h4 id="20-2-架构图（截图-5）">20.2 架构图（截图 5）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────────────────────────────┐</span><br><span class="line">│              applications                │</span><br><span class="line">├───────┬──────────────────────┬───────────┤</span><br><span class="line">│  ART  │      Android         │    JNI    │  ← JNI：Java 调用本地 C/C++ 代码</span><br><span class="line">│  VM   │     frameworks       │           │</span><br><span class="line">├───────┴──────────────────────┴───────────┤</span><br><span class="line">│           native libraries               │</span><br><span class="line">│  ┌────────┐ ┌────────┐ ┌────────┐        │</span><br><span class="line">│  │ SQLite │ │ openGL │ │ webkit │        │</span><br><span class="line">│  └────────┘ └────────┘ └────────┘        │</span><br><span class="line">│  ┌──────────┐ ┌─────┐ ┌──────────┐       │</span><br><span class="line">│  │ surface  │ │ SSL │ │  media   │       │</span><br><span class="line">│  │ manager  │ │     │ │ framework│       │</span><br><span class="line">│  └──────────┘ └─────┘ └──────────┘       │</span><br><span class="line">├──────────────────────────────────────────┤</span><br><span class="line">│                  HAL                     │  ← 硬件抽象层</span><br><span class="line">├──────────────────────────────────────────┤</span><br><span class="line">│                 Bionic                   │  ← Android 精简版 libc</span><br><span class="line">├──────────────────────────────────────────┤</span><br><span class="line">│              Linux kernel                │</span><br><span class="line">├──────────────────────────────────────────┤</span><br><span class="line">│                hardware                  │</span><br><span class="line">└──────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>几个关键组件补充说明</strong>：</p>
+<ul>
+<li><strong>Bionic</strong>：Android 自己的 libc，比 glibc 小得多，且采用 <strong>BSD 许可</strong>（避开 glibc 的 LGPL，方便厂商闭源）。</li>
+<li><strong>HAL</strong>：硬件抽象层。<strong>让 Android 框架与厂商驱动解耦</strong>——厂商实现 HAL 接口即可，无需改 Android 框架。</li>
+<li><strong>JNI</strong>：Java Native Interface，让 Java 代码调用 C/C++（游戏引擎、编解码器）。</li>
+<li><strong>surface manager</strong>：管理屏幕合成（多窗口叠加）。</li>
+</ul>
+<h4 id="20-3-iOS-vs-Android-对比">20.3 iOS vs Android 对比</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>iOS</th>
+<th>Android</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内核</td>
+<td>Darwin（Mach + BSD，混合）</td>
+<td>修改版 Linux（宏内核 + 模块）</td>
+</tr>
+<tr>
+<td>开源</td>
+<td>部分（Darwin）</td>
+<td><strong>是</strong>（AOSP）</td>
+</tr>
+<tr>
+<td>开发语言</td>
+<td>Objective-C / Swift</td>
+<td>Java / Kotlin (+ NDK 的 C/C++)</td>
+</tr>
+<tr>
+<td>运行方式</td>
+<td><strong>原生编译</strong></td>
+<td><strong>VM（ART）+ AOT 编译</strong></td>
+</tr>
+<tr>
+<td>生态</td>
+<td>封闭、统一硬件</td>
+<td>开放、碎片化</td>
+</tr>
+<tr>
+<td>抽象层</td>
+<td>Cocoa Touch</td>
+<td>Android Frameworks + HAL</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十一、构建与启动操作系统">二十一、构建与启动操作系统</h3>
+<h4 id="21-1-一般流程">21.1 一般流程</h4>
+<ul>
+<li>OS 一般设计为运行在<strong>一类系统</strong>上，外设种类繁多。</li>
+<li>通常买来的电脑<strong>已预装 OS</strong>，但也可以自己构建安装其他 OS。</li>
+</ul>
+<p><strong>从零生成一个 OS 的五步</strong>：</p>
+<ol>
+<li><strong>编写</strong> OS 源代码</li>
+<li><strong>配置</strong> OS，使之适配将要运行的系统</li>
+<li><strong>编译</strong> OS</li>
+<li><strong>安装</strong> OS</li>
+<li><strong>启动</strong>计算机和新的 OS</li>
+</ol>
+<h4 id="21-2-构建-Linux-的具体步骤-⭐">21.2 构建 Linux 的具体步骤 ⭐</h4>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 下载源码</td>
+<td><code>git clone</code> / <a target="_blank" rel="noopener" href="http://www.kernel.org">http://www.kernel.org</a></td>
+<td></td>
+</tr>
+<tr>
+<td>② <strong>配置</strong>内核</td>
+<td><code>make menuconfig</code></td>
+<td>选择启用哪些功能/驱动，生成 <code>.config</code></td>
+</tr>
+<tr>
+<td>③ <strong>编译</strong>内核</td>
+<td><code>make</code></td>
+<td>产生 <strong><code>vmlinuz</code></strong>，即<strong>内核映像</strong></td>
+</tr>
+<tr>
+<td>④ 编译内核<strong>模块</strong></td>
+<td><code>make modules</code></td>
+<td>生成 <code>.ko</code> 文件</td>
+</tr>
+<tr>
+<td>⑤ <strong>安装</strong>模块</td>
+<td><code>make modules_install</code></td>
+<td>装入 <code>vmlinuz</code> 体系（实际装到 <code>/lib/modules/</code>）</td>
+</tr>
+<tr>
+<td>⑥ <strong>安装</strong>新内核</td>
+<td><code>make install</code></td>
+<td>拷贝到 <code>/boot</code> 并更新引导配置</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <code>vmlinuz</code> 命名解释：<strong>vm</strong> = 支持虚拟内存，<strong>linu</strong> = Linux，<strong>z</strong> = 已用 gzip <strong>压缩</strong>（未压缩版叫 <code>vmlinux</code>）。<br>
+🔎 <code>make menuconfig</code> 中每一项有三种选择：<strong><code>\*</code></strong>（编译进内核）、<strong><code>M</code></strong>（编译成模块）、<strong>空</strong>（不编译）——这正是&quot;宏内核 + 模块化&quot;的配置界面体现。<br>
+🔎 实用加速：<code>make -j$(nproc)</code> 多核并行编译。</p>
+</blockquote>
+<h4 id="21-3-系统引导（System-Boot）⭐-重点">21.3 系统引导（System Boot）⭐ 重点</h4>
+<p><strong>完整流程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">① 加电 → CPU 从固定内存位置开始执行</span><br><span class="line">        ↓</span><br><span class="line">② ROM/EEPROM 中的一小段代码（bootstrap loader / BIOS）</span><br><span class="line">        ↓</span><br><span class="line">   [有时是两步：ROM 代码先装入固定位置的 boot block，</span><br><span class="line">    boot block 再从磁盘装入完整的 bootstrap loader]</span><br><span class="line">        ↓</span><br><span class="line">③ bootstrap loader 定位内核 → 装入内存 → 启动它</span><br><span class="line">        ↓</span><br><span class="line">④ 内核装入完成，系统开始运行</span><br></pre></td></tr></table></figure>
+<p><strong>逐条要点</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>要点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加电时，执行从<strong>固定内存位置</strong>开始</td>
+<td>硬件设计决定，如 x86 的 <code>0xFFFFFFF0</code></td>
+</tr>
+<tr>
+<td>OS 必须对硬件可用，硬件才能启动它</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>bootstrap loader / BIOS</strong> 存放在 <strong>ROM 或 EEPROM</strong> 中</td>
+<td>掉电不丢失、开机即可执行</td>
+</tr>
+<tr>
+<td>它的三件事：<strong>定位内核 → 装入内存 → 启动内核</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>有时是<strong>两步过程</strong>：ROM 代码装入固定位置的 <strong>boot block</strong>，再由它从磁盘装入 bootstrap loader</td>
+<td>因为 ROM 空间太小放不下完整装入程序</td>
+</tr>
+<tr>
+<td>现代系统用 <strong>UEFI（Unified Extensible Firmware Interface）</strong> 取代 BIOS</td>
+<td></td>
+</tr>
+<tr>
+<td>常见 bootstrap loader：<strong>GRUB</strong></td>
+<td>允许从<strong>多个磁盘、多个版本</strong>中选择内核，并指定<strong>内核选项</strong></td>
+</tr>
+<tr>
+<td>Boot loader 常允许多种<strong>引导状态</strong></td>
+<td>如<strong>单用户模式（single user mode）</strong>，用于救援与修复</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>BIOS vs UEFI</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>BIOS</th>
+<th>UEFI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年代</td>
+<td>1975</td>
+<td>2005 后普及</td>
+</tr>
+<tr>
+<td>运行模式</td>
+<td>16 位实模式</td>
+<td>32/64 位</td>
+</tr>
+<tr>
+<td>分区表</td>
+<td>MBR，磁盘上限 <strong>2TB</strong>，最多 4 主分区</td>
+<td><strong>GPT</strong>，上限 9.4 ZB</td>
+</tr>
+<tr>
+<td>引导方式</td>
+<td>读 MBR 前 446 字节的代码</td>
+<td>读 <strong>ESP 分区</strong>上的 <code>.efi</code> 可执行文件</td>
+</tr>
+<tr>
+<td>安全</td>
+<td>无</td>
+<td><strong>Secure Boot</strong>（验证签名，防 bootkit）</td>
+</tr>
+<tr>
+<td>启动速度</td>
+<td>慢</td>
+<td>快</td>
+</tr>
+</tbody>
+</table>
+<p>🔎 <strong>Linux 完整启动链</strong>（可与教材对照）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">加电 → UEFI/BIOS → GRUB → vmlinuz + initramfs</span><br><span class="line">     → 内核初始化（挂载根文件系统）</span><br><span class="line">     → PID 1 (systemd / init) → 各种 daemon → 登录界面</span><br></pre></td></tr></table></figure>
+<p><code>initramfs</code> 是内存中的临时根文件系统，里面放着挂载真正根分区所需的驱动（如 RAID、加密盘），解决&quot;要读磁盘却先要有磁盘驱动&quot;的鸡生蛋问题。</p>
+</blockquote>
+<h3 id="二十二、操作系统调试（OS-Debugging）">二十二、操作系统调试（OS Debugging）</h3>
+<h4 id="22-1-概念">22.1 概念</h4>
+<p><strong>调试 = 发现并修复错误（bug）</strong>，同时也包括<strong>性能调优（performance tuning）</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>手段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>日志文件（log files）</strong></td>
+<td>OS 生成，包含错误信息</td>
+</tr>
+<tr>
+<td><strong>核心转储（core dump）</strong></td>
+<td><strong>应用程序</strong>失败时生成，捕获该<strong>进程的内存</strong></td>
+</tr>
+<tr>
+<td><strong>崩溃转储（crash dump）</strong></td>
+<td><strong>操作系统</strong>失败时生成，包含<strong>内核内存</strong></td>
+</tr>
+<tr>
+<td><strong>跟踪列表（trace listings）</strong></td>
+<td>记录活动供事后分析</td>
+</tr>
+<tr>
+<td><strong>剖析（Profiling）</strong></td>
+<td><strong>周期性采样指令指针（IP）</strong>，寻找<strong>统计趋势</strong>（哪段代码最耗时）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⭐ <strong>考点：core dump vs crash dump</strong></p>
+<ul>
+<li>core dump = 用户进程崩溃 = 进程内存</li>
+<li>crash dump = 内核/系统崩溃 = 内核内存（Windows 上就是&quot;蓝屏&quot;时写的 <code>MEMORY.DMP</code>）</li>
+</ul>
+</blockquote>
+<h4 id="22-2-Kernighan-定律-⭐">22.2 Kernighan 定律 ⭐</h4>
+<blockquote>
+<p><strong>“调试的难度是最初写代码的两倍。因此，如果你写代码时用尽了聪明才智，那么按定义，你就不够聪明去调试它。”</strong><br>
+——Brian Kernighan</p>
+</blockquote>
+<p><strong>启示</strong>：写内核代码要<strong>追求清晰而非炫技</strong>。过度优化和&quot;聪明&quot;的技巧会让日后（尤其是别人）无法维护。这也呼应了前面的&quot;系统目标：易于设计、实现、维护&quot;。</p>
+<h3 id="二十三、性能调优（Performance-Tuning）">二十三、性能调优（Performance Tuning）</h3>
+<ul>
+<li>通过<strong>消除瓶颈（bottlenecks）</strong> 来提升性能。</li>
+<li><strong>OS 必须提供计算和显示系统行为度量的手段</strong>。</li>
+<li>例如：<strong><code>top</code></strong> 程序或 <strong>Windows 任务管理器</strong>（截图 6）。</li>
+</ul>
+<p><strong>任务管理器/top 能看到什么</strong>（对照截图 6）：</p>
+<ul>
+<li>CPU 利用率曲线、当前频率、逻辑处理器数、虚拟化是否启用、L1/L2/L3 缓存大小</li>
+<li>进程数、线程数、句柄数、系统正常运行时间（Up time）</li>
+<li>内存、磁盘、以太网、Wi-Fi、蓝牙各项使用情况</li>
+</ul>
+<p><strong>常用性能工具速查</strong></p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>观察对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>top</code> / <code>htop</code></td>
+<td>CPU、内存、进程总览</td>
+</tr>
+<tr>
+<td><code>vmstat</code></td>
+<td>虚拟内存、上下文切换、中断</td>
+</tr>
+<tr>
+<td><code>iostat</code></td>
+<td>磁盘 I/O</td>
+</tr>
+<tr>
+<td><code>free -h</code></td>
+<td>内存与缓存</td>
+</tr>
+<tr>
+<td><code>sar</code></td>
+<td>历史性能数据</td>
+</tr>
+<tr>
+<td><code>netstat</code> / <code>ss</code></td>
+<td>网络连接</td>
+</tr>
+<tr>
+<td>Windows 任务管理器 / 资源监视器 / PerfMon</td>
+<td>Windows 全套</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔎 <strong>瓶颈定位的思维顺序</strong>：CPU → 内存 → 磁盘 I/O → 网络。先确定系统是 <strong>CPU-bound</strong> 还是 <strong>I/O-bound</strong>，方向搞反了再怎么优化都无效。<br>
+例如 <code>top</code> 中 CPU 的 <strong><code>wa</code>（iowait）</strong> 很高，说明 CPU 在等磁盘 → 该换 SSD 或优化 I/O，而不是换更快的 CPU。</p>
+</blockquote>
+<h3 id="二十四、跟踪（Tracing）">二十四、跟踪（Tracing）</h3>
+<p><strong>跟踪 = 为特定事件收集数据</strong>，例如一次系统调用调用过程中涉及的各个步骤。</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>strace</code></strong></td>
+<td>跟踪某进程调用的<strong>系统调用</strong></td>
+</tr>
+<tr>
+<td><strong><code>gdb</code></strong></td>
+<td><strong>源代码级</strong>调试器</td>
+</tr>
+<tr>
+<td><strong><code>perf</code></strong></td>
+<td>Linux <strong>性能工具集合</strong></td>
+</tr>
+<tr>
+<td><strong><code>tcpdump</code></strong></td>
+<td>采集<strong>网络数据包</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>实用命令示例</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">strace -c <span class="built_in">ls</span>                 <span class="comment"># 统计各系统调用次数与耗时</span></span><br><span class="line">strace -p 1234               <span class="comment"># 附加到运行中的进程</span></span><br><span class="line">ltrace ./a.out               <span class="comment"># 跟踪库函数调用（对比 strace）</span></span><br><span class="line">gdb ./a.out; (gdb) bt        <span class="comment"># 崩溃后看调用栈</span></span><br><span class="line">perf top                     <span class="comment"># 实时热点函数</span></span><br><span class="line">perf record ./a.out; perf report</span><br><span class="line">tcpdump -i eth0 port 80</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🔎 <strong>strace 与 profiling 的区别</strong>：strace 是<strong>事件级</strong>（每一次调用都记），精确但<strong>开销大</strong>（会让程序慢数倍）；profiling 是<strong>统计采样</strong>，开销小但只反映趋势。生产环境优先用采样类工具。</p>
+</blockquote>
+<h3 id="二十五、BCC-与-BPF-跟踪工具">二十五、BCC 与 BPF 跟踪工具</h3>
+<h4 id="25-1-为什么需要（截图-7）">25.1 为什么需要（截图 7）</h4>
+<blockquote>
+<p><strong>如果没有一套同时理解用户级代码和内核代码、并能对二者行为进行插桩（instrument）的工具集，调试用户态与内核态之间的交互几乎是不可能的。</strong></p>
+</blockquote>
+<ul>
+<li><strong>BCC（BPF Compiler Collection）</strong> 是 Linux 上功能丰富的<strong>跟踪工具包</strong>。</li>
+<li>另见其鼻祖 <strong>DTrace</strong>（源自 Solaris）。</li>
+<li>例如 <strong><code>disksnoop.py</code></strong> 跟踪磁盘 I/O 活动：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TIME(s)          T      BYTES     LAT(ms)</span><br><span class="line">1946.29186700    R          8        0.27      ← R=读</span><br><span class="line">1946.33965000    R          8        0.26</span><br><span class="line">1948.34585000    W       8192        0.96      ← W=写</span><br><span class="line">1950.43251000    R       4096        0.56</span><br><span class="line">1951.74121000    R       4096        0.35</span><br></pre></td></tr></table></figure>
+<p>输出四列：<strong>时间戳、类型（读/写）、字节数、延迟（毫秒）</strong>。</p>
+<h4 id="25-2-BPF-工具全景（截图-8）">25.2 BPF 工具全景（截图 8）</h4>
+<p>截图 8 是著名的 <strong>Brendan Gregg 的 bcc/BPF 工具地图</strong>，把工具按<strong>观测的内核子系统</strong>摆放：</p>
+<table>
+<thead>
+<tr>
+<th>观测层次</th>
+<th>代表工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>应用程序</strong></td>
+<td><code>ucalls</code> <code>uflow</code> <code>ugc</code> <code>uobjnew</code> <code>ustat</code> <code>uthreads</code>（Java/Python/Ruby/PHP/Node 等运行时）</td>
+</tr>
+<tr>
+<td><strong>数据库/Shell</strong></td>
+<td><code>mysqld_qslower</code>、<code>bashreadline</code></td>
+</tr>
+<tr>
+<td><strong>系统库</strong></td>
+<td><code>gethostlatency</code>、<code>memleak</code>、<code>sslsniff</code></td>
+</tr>
+<tr>
+<td><strong>系统调用接口</strong></td>
+<td><code>syscount</code>、<code>killsnoop</code>、<code>trace</code>、<code>argdist</code>、<code>funccount</code>、<code>funcslower</code>、<code>funclatency</code>、<code>stackcount</code>、<code>profile</code></td>
+</tr>
+<tr>
+<td><strong>VFS / 文件系统</strong></td>
+<td><code>filetop</code>、<code>filelife</code>、<code>fileslower</code>、<code>vfscount</code>、<code>vfsstat</code>、<code>opensnoop</code>、<code>statsnoop</code>、<code>syncsnoop</code>、<code>cachestat</code>、<code>dcstat</code>、<code>mountsnoop</code></td>
+</tr>
+<tr>
+<td><strong>具体文件系统</strong></td>
+<td><code>ext4dist/ext4slower</code>、<code>xfsdist/xfsslower</code>、<code>btrfsdist</code>、<code>zfsdist</code></td>
+</tr>
+<tr>
+<td><strong>块设备</strong></td>
+<td><code>biotop</code>、<code>biosnoop</code>、<code>biolatency</code>、<code>bitesize</code></td>
+</tr>
+<tr>
+<td><strong>网络（TCP/UDP/IP）</strong></td>
+<td><code>tcptop</code>、<code>tcplife</code>、<code>tcptracer</code>、<code>tcpconnect</code>、<code>tcpaccept</code>、<code>tcpconnlat</code>、<code>tcpretrans</code></td>
+</tr>
+<tr>
+<td><strong>调度器 / CPU</strong></td>
+<td><code>cpudist</code>、<code>runqlat</code>、<code>runqlen</code>、<code>deadlock_detector</code>、<code>offcputime</code>、<code>wakeuptime</code>、<code>offwaketime</code>、<code>softirqs</code></td>
+</tr>
+<tr>
+<td><strong>虚拟内存</strong></td>
+<td><code>oomkill</code>、<code>memleak</code>、<code>slabratetop</code></td>
+</tr>
+<tr>
+<td><strong>CPU 缓存 / DRAM</strong></td>
+<td><code>llcstat</code>、<code>profile</code></td>
+</tr>
+<tr>
+<td><strong>进程</strong></td>
+<td><code>execsnoop</code>、<code>pidpersec</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>命名规律（便于记忆）</strong>：</p>
+<ul>
+<li><strong><code>\*snoop</code></strong> = 监听某类事件的每一次发生（<code>opensnoop</code> 监听所有 <code>open()</code>）</li>
+<li><strong><code>\*top</code></strong> = 类似 <code>top</code> 的实时排行（<code>filetop</code> = 文件版 top）</li>
+<li><strong><code>\*dist</code></strong> = 延迟<strong>分布直方图</strong></li>
+<li><strong><code>\*slower</code></strong> = 只显示<strong>超过阈值</strong>的慢操作</li>
+<li><strong><code>\*latency</code> / <code>\*lat</code></strong> = 延迟测量</li>
+</ul>
+<blockquote>
+<p>🔎 <strong>eBPF 是什么？为什么革命性？</strong><br>
+eBPF 允许把一段<strong>经过验证器安全检查</strong>的小程序<strong>装入运行中的内核</strong>，挂到内核任意探测点上，安全地采集数据——<strong>无需修改内核源码、无需加载模块、无需重启</strong>。</p>
+<ul>
+<li><strong>安全</strong>：验证器保证程序<strong>必然终止</strong>（无无限循环）、不越界访问，因此不会让内核崩溃。</li>
+<li><strong>高效</strong>：JIT 编译成本地机器码，开销极低，可用于生产环境。</li>
+<li><strong>通用</strong>：如今已远超观测领域——网络（Cilium 的 XDP 高速转发）、安全（Falco 运行时检测）、负载均衡（Facebook Katran）都基于 eBPF。</li>
+</ul>
+<p>有人称 eBPF 是&quot;<strong>Linux 内核里的 JavaScript</strong>&quot;——它让内核变得<strong>可编程</strong>，某种意义上实现了微内核追求的<strong>可扩展性</strong>，却不牺牲宏内核的性能。这可以看作本章&quot;OS 结构演进&quot;的一个当代结局。</p>
+</blockquote>
+<h3 id="二十六、全章结构总览">二十六、全章结构总览</h3>
+<h4 id="26-1-五种结构横向对比-⭐（必考）">26.1 五种结构横向对比 ⭐（必考）</h4>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>核心思想</th>
+<th>代表系统</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>简单 / 无结构</strong></td>
+<td>功能不分层，接口与实现混杂</td>
+<td>MS-DOS</td>
+<td>小、快</td>
+<td>无保护，易崩溃</td>
+</tr>
+<tr>
+<td><strong>宏内核 (Monolithic)</strong></td>
+<td>所有功能在一个内核地址空间</td>
+<td>传统 UNIX、Linux</td>
+<td><strong>性能高</strong>，函数直接调用</td>
+<td>庞大难维护；一处出错全盘崩</td>
+</tr>
+<tr>
+<td><strong>分层 (Layered)</strong></td>
+<td>每层只用下层服务</td>
+<td>THE、网络协议栈</td>
+<td>易构造、易调试、信息隐藏</td>
+<td><strong>层难定义</strong>；穿层<strong>效率低</strong></td>
+</tr>
+<tr>
+<td><strong>微内核 (Microkernel)</strong></td>
+<td>内核只留 IPC/内存/调度，其余移到用户态</td>
+<td>Mach、QNX、L4</td>
+<td>易扩展、易移植、<strong>可靠、安全</strong></td>
+<td><strong>消息传递性能开销大</strong></td>
+</tr>
+<tr>
+<td><strong>模块 (Modules)</strong></td>
+<td>面向对象组件，按需动态装入内核</td>
+<td>Linux、Solaris</td>
+<td><strong>兼具灵活与高性能</strong></td>
+<td>仍在内核态，错误仍可致崩</td>
+</tr>
+<tr>
+<td><strong>混合 (Hybrid)</strong></td>
+<td>组合以上多种</td>
+<td>Windows、macOS、Linux</td>
+<td>平衡性能/安全/可用性</td>
+<td>结构复杂</td>
+</tr>
+</tbody>
+</table>
+<h4 id="26-2-本章脉络">26.2 本章脉络</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">OS 结构演进</span><br><span class="line">  简单 → 宏内核 → 分层(过于理想) → 微内核(太慢) → 模块化(折中) → 混合(现实)</span><br><span class="line">                                                                    │</span><br><span class="line">真实系统  ┌──────────────┬───────────────┬────────────────┐</span><br><span class="line">          │ Windows      │ macOS/iOS     │ Android        │</span><br><span class="line">          │ 宏内核+微内核│ Mach+BSD+kext │ Linux+ART+HAL  │</span><br><span class="line">          └──────────────┴───────────────┴────────────────┘</span><br><span class="line">                                │</span><br><span class="line">构建与启动</span><br><span class="line">  写源码 → 配置(menuconfig) → 编译(make→vmlinuz) → 装模块 → 安装 → 引导</span><br><span class="line">  引导链：加电 → BIOS/UEFI → GRUB → 内核 → init/systemd</span><br><span class="line">                                │</span><br><span class="line">调试与调优</span><br><span class="line">  ├─ 出错：日志 / core dump(进程) / crash dump(内核)</span><br><span class="line">  ├─ 调优：找瓶颈 → top / 任务管理器</span><br><span class="line">  ├─ 跟踪：strace / gdb / perf / tcpdump</span><br><span class="line">  └─ 深度：BCC / BPF / DTrace —— 打通用户态与内核态</span><br></pre></td></tr></table></figure>
+<h3 id="二十七、复习自测">二十七、复习自测</h3>
+<ol>
+<li>分层方法的两条基本规则是什么？它有哪两个主要困难？为什么纯分层 OS 很少见？</li>
+<li>微内核里通常保留哪三类功能？其余的去了哪里？模块间如何通信？</li>
+<li>微内核的四个优点和一个缺点分别是什么？为什么会有这个缺点？</li>
+<li>模块（LKM）与分层、微内核相比，各自在&quot;组件位置&quot;“通信方式”&quot;性能&quot;上有何不同？</li>
+<li>Windows、Linux、macOS 各自属于哪种混合方式？</li>
+<li>Darwin 为什么提供两套系统调用接口？分别是什么？</li>
+<li>iOS 为什么不能原生运行 macOS 应用？（结合上一章&quot;应用为何 OS 相关&quot;回答）</li>
+<li>Android 基于什么内核？做了哪些修改？Java 代码是如何最终运行起来的？</li>
+<li>从零构建 Linux 内核的完整命令序列是什么？<code>vmlinuz</code> 是什么？</li>
+<li>描述系统引导的完整过程。为什么有时需要&quot;两步引导&quot;？GRUB 的作用是什么？</li>
+<li>core dump 与 crash dump 有何区别？profiling 的原理是什么？</li>
+<li>Kernighan 定律说了什么？它对写内核代码有什么启示？</li>
+<li><code>strace</code>、<code>perf</code>、<code>tcpdump</code>、<code>gdb</code> 分别用于什么场景？</li>
+<li>BCC/BPF 解决了什么传统工具解决不了的问题？</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AF%BC%E8%AE%BA/" rel="prev" title="Introduction to Operating Systems-Chapter1">
+                  <i class="fa fa-angle-left"></i> Introduction to Operating Systems-Chapter1
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
