@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="进程（Processes）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction-to-Operating-Systems-Chapter3">
+<meta property="og:url" content="http://example.com/2026/09/07/Introduction-to-Operating-Systems-Chapter3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="进程（Processes）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-07T09:45:14.000Z">
+<meta property="article:modified_time" content="2026-09-07T10:14:14.406Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/09/07/Introduction-to-Operating-Systems-Chapter3/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/09/07/Introduction-to-Operating-Systems-Chapter3/","path":"2026/09/07/Introduction-to-Operating-Systems-Chapter3/","title":"Introduction-to-Operating-Systems-Chapter3"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction-to-Operating-Systems-Chapter3 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">进程（Processes）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AC%E7%AB%A0%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">一、本章目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">二、进程的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F-vs-%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">程序 vs 进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="nav-number">1.2.2.</span> <span class="nav-text">进程的组成部分</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80"><span class="nav-number">1.3.</span> <span class="nav-text">三、进程在内存中的布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="nav-number">1.4.</span> <span class="nav-text">四、进程状态</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE%EF%BC%88%E5%AF%B9%E5%BA%94%E6%88%AA%E5%9B%BE3%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">状态转换图（对应截图3）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97-PCB%EF%BC%88Process-Control-Block%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">五、进程控制块 PCB（Process Control Block）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%BA%BF%E7%A8%8B%EF%BC%88%E9%A2%84%E5%91%8A%EF%BC%8C%E7%AC%AC4%E7%AB%A0%E8%AF%A6%E8%BF%B0%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">六、线程（预告，第4章详述）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81Linux-%E4%B8%AD%E7%9A%84%E8%BF%9B%E7%A8%8B%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.7.</span> <span class="nav-text">七、Linux 中的进程表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6"><span class="nav-number">1.8.</span> <span class="nav-text">八、进程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E7%B1%BB%E9%98%9F%E5%88%97%EF%BC%88%E5%AF%B9%E5%BA%94%E6%88%AA%E5%9B%BE5%EF%BC%89"><span class="nav-number">1.8.1.</span> <span class="nav-text">两类队列（对应截图5）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%9A%84%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%EF%BC%88%E5%AF%B9%E5%BA%94%E6%88%AA%E5%9B%BE6%EF%BC%89"><span class="nav-number">1.8.2.</span> <span class="nav-text">调度的整体流程（对应截图6）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%EF%BC%88Context-Switch%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">九、上下文切换（Context Switch）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B%EF%BC%88%E5%AF%B9%E5%BA%94%E6%88%AA%E5%9B%BE7%EF%BC%89"><span class="nav-number">1.9.1.</span> <span class="nav-text">流程（对应截图7）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E7%BB%93%E8%AE%BA"><span class="nav-number">1.9.2.</span> <span class="nav-text">关键结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E7%A7%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%A4%9A%E4%BB%BB%E5%8A%A1"><span class="nav-number">1.10.</span> <span class="nav-text">十、移动系统中的多任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E8%BF%9B%E7%A8%8B%E6%93%8D%E4%BD%9C%EF%BC%88Operations-on-Processes%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、进程操作（Operations on Processes）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E5%88%9B%E5%BB%BA%EF%BC%88Process-Creation%EF%BC%89"><span class="nav-number">1.12.</span> <span class="nav-text">十二、进程创建（Process Creation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#12-1-%E8%BF%9B%E7%A8%8B%E6%A0%91"><span class="nav-number">1.12.1.</span> <span class="nav-text">12.1 进程树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-2-%E4%B8%89%E4%B8%AA%E8%AE%BE%E8%AE%A1%E7%BB%B4%E5%BA%A6"><span class="nav-number">1.12.2.</span> <span class="nav-text">12.2 三个设计维度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-3-UNIX-%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.12.3.</span> <span class="nav-text">12.3 UNIX 的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-4-C-%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B%EF%BC%88%E6%88%AA%E5%9B%BE3%EF%BC%89"><span class="nav-number">1.12.4.</span> <span class="nav-text">12.4 C 程序示例（截图3）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-5-Windows-API-%E7%A4%BA%E4%BE%8B%EF%BC%88%E6%88%AA%E5%9B%BE4%EF%BC%89"><span class="nav-number">1.12.5.</span> <span class="nav-text">12.5 Windows API 示例（截图4）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2%EF%BC%88Process-Termination%EF%BC%89"><span class="nav-number">1.13.</span> <span class="nav-text">十三、进程终止（Process Termination）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#13-1-%E6%AD%A3%E5%B8%B8%E7%BB%88%E6%AD%A2"><span class="nav-number">1.13.1.</span> <span class="nav-text">13.1 正常终止</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-2-%E7%88%B6%E8%BF%9B%E7%A8%8B%E5%BC%BA%E5%88%B6%E7%BB%88%E6%AD%A2%E5%AD%90%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.13.2.</span> <span class="nav-text">13.2 父进程强制终止子进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-3-%E7%BA%A7%E8%81%94%E7%BB%88%E6%AD%A2%EF%BC%88Cascading-Termination%EF%BC%89"><span class="nav-number">1.13.3.</span> <span class="nav-text">13.3 级联终止（Cascading Termination）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-4-wait-%E4%B8%8E%E4%B8%A4%E7%A7%8D-%E5%BC%82%E5%B8%B8-%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.13.4.</span> <span class="nav-text">13.4 wait() 与两种&quot;异常&quot;进程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81Android-%E8%BF%9B%E7%A8%8B%E9%87%8D%E8%A6%81%E6%80%A7%E5%B1%82%E6%AC%A1"><span class="nav-number">1.14.</span> <span class="nav-text">十四、Android 进程重要性层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9E%B6%E6%9E%84-%E2%80%94%E2%80%94-Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-number">1.15.</span> <span class="nav-text">十五、多进程架构 —— Chrome 浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%EF%BC%88IPC%EF%BC%89"><span class="nav-number">1.16.</span> <span class="nav-text">十六、进程间通信（IPC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#16-1-%E7%8B%AC%E7%AB%8B%E8%BF%9B%E7%A8%8B-vs-%E5%8D%8F%E4%BD%9C%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.16.1.</span> <span class="nav-text">16.1 独立进程 vs 协作进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8D%8F%E4%BD%9C%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.16.2.</span> <span class="nav-text">16.2 为什么需要协作进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-3-%E4%B8%A4%E7%A7%8D%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B%E5%AF%B9%E6%AF%94%EF%BC%88%E6%88%AA%E5%9B%BE5%EF%BC%89"><span class="nav-number">1.16.3.</span> <span class="nav-text">16.3 两种通信模型对比（截图5）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E7%94%9F%E4%BA%A7%E8%80%85%E2%80%93%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="nav-number">1.17.</span> <span class="nav-text">十七、生产者–消费者问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#17-1-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98%E8%A7%A3%E6%B3%95%EF%BC%9A%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE%EF%BC%88%E6%88%AA%E5%9B%BE6%EF%BC%89"><span class="nav-number">1.17.1.</span> <span class="nav-text">17.1 共享内存解法：共享数据（截图6）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-2-%E7%94%9F%E4%BA%A7%E8%80%85%EF%BC%88%E6%88%AA%E5%9B%BE7%EF%BC%89"><span class="nav-number">1.17.2.</span> <span class="nav-text">17.2 生产者（截图7）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#17-3-%E6%B6%88%E8%B4%B9%E8%80%85%EF%BC%88%E6%88%AA%E5%9B%BE8%EF%BC%89"><span class="nav-number">1.17.3.</span> <span class="nav-text">17.3 消费者（截图8）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%A1%AB%E6%BB%A1%E6%89%80%E6%9C%89%E7%BC%93%E5%86%B2%E5%8C%BA-%E2%86%92-%E7%AB%9E%E4%BA%89%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.18.</span> <span class="nav-text">十八、填满所有缓冲区 → 竞争条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#18-1-%E5%BC%95%E5%85%A5-counter"><span class="nav-number">1.18.1.</span> <span class="nav-text">18.1 引入 counter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#18-2-%E7%AB%9E%E4%BA%89%E6%9D%A1%E4%BB%B6%EF%BC%88Race-Condition%EF%BC%89"><span class="nav-number">1.18.2.</span> <span class="nav-text">18.2 竞争条件（Race Condition）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81IPC-%E2%80%94%E2%80%94-%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%EF%BC%88Message-Passing%EF%BC%89"><span class="nav-number">1.19.</span> <span class="nav-text">十九、IPC —— 消息传递（Message Passing）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#19-1-%E9%80%9A%E4%BF%A1%E5%89%8D%E6%8F%90"><span class="nav-number">1.19.1.</span> <span class="nav-text">19.1 通信前提</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-2-%E5%AE%9E%E7%8E%B0%E6%97%B6%E9%9C%80%E5%9B%9E%E7%AD%94%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.19.2.</span> <span class="nav-text">19.2 实现时需回答的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#19-3-%E9%93%BE%E8%B7%AF%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%B1%82%E6%AC%A1"><span class="nav-number">1.19.3.</span> <span class="nav-text">19.3 链路的实现层次</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E7%9B%B4%E6%8E%A5%E9%80%9A%E4%BF%A1-vs-%E9%97%B4%E6%8E%A5%E9%80%9A%E4%BF%A1"><span class="nav-number">1.20.</span> <span class="nav-text">二十、直接通信 vs 间接通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#20-1-%E7%9B%B4%E6%8E%A5%E9%80%9A%E4%BF%A1%EF%BC%88Direct-Communication%EF%BC%89"><span class="nav-number">1.20.1.</span> <span class="nav-text">20.1 直接通信（Direct Communication）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-2-%E9%97%B4%E6%8E%A5%E9%80%9A%E4%BF%A1%EF%BC%88Indirect-Communication%EF%BC%89"><span class="nav-number">1.20.2.</span> <span class="nav-text">20.2 间接通信（Indirect Communication）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#20-3-%E9%82%AE%E7%AE%B1%E5%85%B1%E4%BA%AB%E9%97%AE%E9%A2%98"><span class="nav-number">1.20.3.</span> <span class="nav-text">20.3 邮箱共享问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81%E5%90%8C%E6%AD%A5%EF%BC%88Synchronization%EF%BC%89"><span class="nav-number">1.21.</span> <span class="nav-text">二十一、同步（Synchronization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E7%BC%93%E5%86%B2%EF%BC%88Buffering%EF%BC%89"><span class="nav-number">1.22.</span> <span class="nav-text">二十二、缓冲（Buffering）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPC-%E5%AE%9E%E4%BE%8B-%E2%80%94%E2%80%94-POSIX-%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="nav-number">1.23.</span> <span class="nav-text">IPC 实例 —— POSIX 共享内存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#22-1-%E6%A0%87%E5%87%86%E6%B5%81%E7%A8%8B%EF%BC%88%E5%9B%9B%E6%AD%A5%EF%BC%89"><span class="nav-number">1.23.1.</span> <span class="nav-text">22.1 标准流程（四步）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-2-%E7%94%9F%E4%BA%A7%E8%80%85%E4%BB%A3%E7%A0%81%EF%BC%88%E6%88%AA%E5%9B%BE1%EF%BC%89"><span class="nav-number">1.23.2.</span> <span class="nav-text">22.2 生产者代码（截图1）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#22-3-%E6%B6%88%E8%B4%B9%E8%80%85%E4%BB%A3%E7%A0%81%EF%BC%88%E6%88%AA%E5%9B%BE2%EF%BC%89"><span class="nav-number">1.23.3.</span> <span class="nav-text">22.3 消费者代码（截图2）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81IPC-%E5%AE%9E%E4%BE%8B-%E2%80%94%E2%80%94-Mach"><span class="nav-number">1.24.</span> <span class="nav-text">二十三、IPC 实例 —— Mach</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#23-1-%E6%A0%B8%E5%BF%83%E7%89%B9%E5%BE%81"><span class="nav-number">1.24.1.</span> <span class="nav-text">23.1 核心特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-2-%E7%81%B5%E6%B4%BB%E7%9A%84%E5%8F%91%E9%80%81-%E6%8E%A5%E6%94%B6%E8%AF%AD%E4%B9%89"><span class="nav-number">1.24.2.</span> <span class="nav-text">23.2 灵活的发送&#x2F;接收语义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-3-%E6%B6%88%E6%81%AF%E7%BB%93%E6%9E%84%EF%BC%88%E6%88%AA%E5%9B%BE3%EF%BC%89"><span class="nav-number">1.24.3.</span> <span class="nav-text">23.3 消息结构（截图3）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-4-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E9%80%81%EF%BC%88%E6%88%AA%E5%9B%BE4%EF%BC%89"><span class="nav-number">1.24.4.</span> <span class="nav-text">23.4 客户端发送（截图4）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#23-5-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%8E%A5%E6%94%B6%EF%BC%88%E6%88%AA%E5%9B%BE5%EF%BC%89"><span class="nav-number">1.24.5.</span> <span class="nav-text">23.5 服务端接收（截图5）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E3%80%81IPC-%E5%AE%9E%E4%BE%8B-%E2%80%94%E2%80%94-Windows"><span class="nav-number">1.25.</span> <span class="nav-text">二十四、IPC 实例 —— Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#24-1-%E5%BB%BA%E7%AB%8B%E9%80%9A%E4%BF%A1%E7%9A%84%E5%9B%9B%E6%AD%A5%EF%BC%88%E5%AF%B9%E5%BA%94%E6%88%AA%E5%9B%BE6%EF%BC%89"><span class="nav-number">1.25.1.</span> <span class="nav-text">24.1 建立通信的四步（对应截图6）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#24-2-%E4%B8%89%E7%A7%8D%E6%B6%88%E6%81%AF%E4%BC%A0%E9%80%92%E6%8A%80%E6%9C%AF%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.25.2.</span> <span class="nav-text">24.2 三种消息传递技术（补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%94%E3%80%81%E7%AE%A1%E9%81%93%EF%BC%88Pipes%EF%BC%89"><span class="nav-number">1.26.</span> <span class="nav-text">二十五、管道（Pipes）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#25-1-%E8%AE%BE%E8%AE%A1%E7%AE%A1%E9%81%93%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">1.26.1.</span> <span class="nav-text">25.1 设计管道要考虑的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-2-%E4%B8%A4%E7%B1%BB%E7%AE%A1%E9%81%93"><span class="nav-number">1.26.2.</span> <span class="nav-text">25.2 两类管道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#25-3-%E6%99%AE%E9%80%9A%E7%AE%A1%E9%81%93%EF%BC%88%E6%88%AA%E5%9B%BE7%EF%BC%89"><span class="nav-number">1.26.3.</span> <span class="nav-text">25.3 普通管道（截图7）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AD%E3%80%81%E5%AE%A2%E6%88%B7%E2%80%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-number">1.27.</span> <span class="nav-text">二十六、客户–服务器系统中的通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%E3%80%81%E5%A5%97%E6%8E%A5%E5%AD%97%EF%BC%88Sockets%EF%BC%89"><span class="nav-number">1.28.</span> <span class="nav-text">二十七、套接字（Sockets）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#27-1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.28.1.</span> <span class="nav-text">27.1 基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-2-%E9%80%9A%E4%BF%A1%E7%A4%BA%E6%84%8F%EF%BC%88%E6%88%AA%E5%9B%BE8%EF%BC%89"><span class="nav-number">1.28.2.</span> <span class="nav-text">27.2 通信示意（截图8）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-3-Java-%E4%B8%AD%E7%9A%84%E4%B8%89%E7%B1%BB%E5%A5%97%E6%8E%A5%E5%AD%97"><span class="nav-number">1.28.3.</span> <span class="nav-text">27.3 Java 中的三类套接字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-4-Date-%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B%EF%BC%88%E6%88%AA%E5%9B%BE9%EF%BC%89"><span class="nav-number">1.28.4.</span> <span class="nav-text">27.4 Date 服务器示例（截图9）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#27-5-%E5%AF%B9%E5%BA%94%E7%9A%84-Date-%E5%AE%A2%E6%88%B7%E7%AB%AF%EF%BC%88%E6%88%AA%E5%9B%BE10%EF%BC%89"><span class="nav-number">1.28.5.</span> <span class="nav-text">27.5 对应的 Date 客户端（截图10）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AB%E3%80%81%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%EF%BC%88RPC%EF%BC%89"><span class="nav-number">1.29.</span> <span class="nav-text">二十八、远程过程调用（RPC）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#28-1-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.29.1.</span> <span class="nav-text">28.1 核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-2-%E5%AD%98%E6%A0%B9%EF%BC%88Stub%EF%BC%89"><span class="nav-number">1.29.2.</span> <span class="nav-text">28.2 存根（Stub）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-3-%E4%B8%A4%E5%A4%A7%E6%8A%80%E6%9C%AF%E9%9A%BE%E9%A2%98"><span class="nav-number">1.29.3.</span> <span class="nav-text">28.3 两大技术难题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-4-RPC-%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B%EF%BC%88%E6%88%AA%E5%9B%BE11%EF%BC%89"><span class="nav-number">1.29.4.</span> <span class="nav-text">28.4 RPC 执行流程（截图11）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#28-5-Socket-%E4%B8%8E-RPC-%E5%AF%B9%E6%AF%94%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.29.5.</span> <span class="nav-text">28.5 Socket 与 RPC 对比（补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B9%9D%E3%80%81%E6%9C%AC%E7%AB%A0-IPC-%E6%9C%BA%E5%88%B6%E6%80%BB%E8%A7%88"><span class="nav-number">1.30.</span> <span class="nav-text">二十九、本章 IPC 机制总览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9%E8%87%AA%E6%B5%8B"><span class="nav-number">1.31.</span> <span class="nav-text">复习要点自测</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/09/07/Introduction-to-Operating-Systems-Chapter3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction-to-Operating-Systems-Chapter3 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction-to-Operating-Systems-Chapter3
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-09-07 17:45:14 / Modified: 18:14:14" itemprop="dateCreated datePublished" datetime="2026-09-07T17:45:14+08:00">2026-09-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>进程（Processes）<span id="more"></span></h1>
+<h3 id="一、本章目标">一、本章目标</h3>
+<ul>
+<li>认识进程的组成部分，理解它在操作系统中如何被表示和调度</li>
+<li>掌握进程的创建与终止（及对应的系统调用）</li>
+<li>对比两种进程间通信（IPC）方式：共享内存 vs 消息传递</li>
+<li>会用管道和 POSIX 共享内存编程</li>
+<li>理解客户–服务器通信：套接字（socket）与远程过程调用（RPC）</li>
+</ul>
+<h3 id="二、进程的概念">二、进程的概念</h3>
+<p><strong>进程 = 执行中的程序</strong>。单个进程内部的指令按顺序执行，不存在并行执行。</p>
+<h4 id="程序-vs-进程">程序 vs 进程</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>程序（Program）</th>
+<th>进程（Process）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>性质</td>
+<td>被动实体（passive）</td>
+<td>主动实体（active）</td>
+</tr>
+<tr>
+<td>存放位置</td>
+<td>磁盘上的可执行文件</td>
+<td>内存中，拥有 PC、寄存器等资源</td>
+</tr>
+<tr>
+<td>数量关系</td>
+<td>一个程序</td>
+<td>可对应多个进程（如多个用户同时运行同一程序）</td>
+</tr>
+</tbody>
+</table>
+<p>可执行文件被<strong>加载进内存</strong>时，程序就变成了进程。启动方式包括：GUI 点击、命令行输入程序名等。</p>
+<h4 id="进程的组成部分">进程的组成部分</h4>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>text（代码段）</strong></td>
+<td>程序指令</td>
+</tr>
+<tr>
+<td><strong>data（数据段）</strong></td>
+<td>全局变量、静态变量</td>
+</tr>
+<tr>
+<td><strong>heap（堆）</strong></td>
+<td>运行期动态分配的内存（<code>malloc</code>/<code>new</code>）</td>
+</tr>
+<tr>
+<td><strong>stack（栈）</strong></td>
+<td>临时数据：函数参数、返回地址、局部变量</td>
+</tr>
+<tr>
+<td><strong>当前活动状态</strong></td>
+<td>程序计数器 PC、处理器寄存器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="三、进程在内存中的布局">三、进程在内存中的布局</h3>
+<p>对应截图《Process in Memory》与《Memory Layout of a C Program》：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">高地址 max ┌──────────────┐</span><br><span class="line">           │ argc, argv、环境变量  │   ← 命令行参数</span><br><span class="line">           ├──────────────┤</span><br><span class="line">           │    stack     │   ↓ 向低地址增长</span><br><span class="line">           ├──────────────┤</span><br><span class="line">           │  （空闲区）   │   ← 栈和堆相向增长，共享这块空间</span><br><span class="line">           ├──────────────┤</span><br><span class="line">           │    heap      │   ↑ 向高地址增长</span><br><span class="line">           ├──────────────┤</span><br><span class="line">           │ uninitialized data (BSS) │  ← int x;</span><br><span class="line">           ├──────────────┤</span><br><span class="line">           │ initialized data │        ← int y = 15;</span><br><span class="line">低地址  0  ├──────────────┤</span><br><span class="line">           │    text      │   ← 代码，通常只读</span><br><span class="line">           └──────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>结合 C 代码理解（第2张图）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>代码</th>
+<th>所在区域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int x;</code>（未初始化全局）</td>
+<td>uninitialized data / BSS</td>
+</tr>
+<tr>
+<td><code>int y = 15;</code>（已初始化全局）</td>
+<td>initialized data</td>
+</tr>
+<tr>
+<td><code>int main(int argc, char *argv[])</code></td>
+<td>argc/argv 在栈顶上方区域</td>
+</tr>
+<tr>
+<td><code>int *values; int i;</code>（局部变量）</td>
+<td>stack</td>
+</tr>
+<tr>
+<td><code>malloc(sizeof(int)*5)</code> 申请的空间</td>
+<td>heap</td>
+</tr>
+<tr>
+<td>函数体机器码</td>
+<td>text</td>
+</tr>
+</tbody>
+</table>
+<p><strong>补充要点：</strong></p>
+<ul>
+<li>指针变量 <code>values</code> 本身在栈上，它指向的那 5 个 int 在堆上——这是考试常考的区分点。</li>
+<li>BSS 段在可执行文件中不占空间，加载时由系统清零，所以未初始化全局变量默认为 0。</li>
+<li>栈与堆之间的空白区域是&quot;缓冲带&quot;；两者相撞就是栈溢出/堆耗尽。</li>
+</ul>
+<h3 id="四、进程状态">四、进程状态</h3>
+<p>进程执行过程中会不断改变状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>New（新建）</strong></td>
+<td>进程正在被创建</td>
+</tr>
+<tr>
+<td><strong>Ready（就绪）</strong></td>
+<td>已具备运行条件，等待被分配到 CPU</td>
+</tr>
+<tr>
+<td><strong>Running（运行）</strong></td>
+<td>指令正在 CPU 上执行</td>
+</tr>
+<tr>
+<td><strong>Waiting（等待/阻塞）</strong></td>
+<td>等待某事件发生（如 I/O 完成）</td>
+</tr>
+<tr>
+<td><strong>Terminated（终止）</strong></td>
+<td>执行结束</td>
+</tr>
+</tbody>
+</table>
+<h4 id="状态转换图（对应截图3）">状态转换图（对应截图3）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">new ──admitted──► ready ◄──────────────┐</span><br><span class="line">                    │  ▲                │</span><br><span class="line">       scheduler dispatch │ interrupt   │ I/O or event completion</span><br><span class="line">                    ▼  │                │</span><br><span class="line">                 running ──exit──► terminated</span><br><span class="line">                    │                   │</span><br><span class="line">                    └── I/O or event wait ──► waiting</span><br></pre></td></tr></table></figure>
+<p><strong>五条转换边要记牢：</strong></p>
+<ol>
+<li><code>new → ready</code>：admitted（被接纳）</li>
+<li><code>ready → running</code>：scheduler dispatch（调度器分派）</li>
+<li><code>running → ready</code>：interrupt（时间片用完或被抢占）</li>
+<li><code>running → waiting</code>：发起 I/O 或等待事件</li>
+<li><code>waiting → ready</code>：I/O 或事件完成</li>
+<li><code>running → terminated</code>：exit</li>
+</ol>
+<p>⚠️ 注意：<strong>没有</strong> <code>waiting → running</code> 这条边——阻塞结束后必须先回到就绪队列排队。同一时刻，一个 CPU 核心上只有一个进程处于 running。</p>
+<h3 id="五、进程控制块-PCB（Process-Control-Block）">五、进程控制块 PCB（Process Control Block）</h3>
+<p>又称<strong>任务控制块（task control block）</strong>，是操作系统为每个进程维护的数据结构，进程的&quot;身份证 + 档案&quot;。</p>
+<p>对应截图4中的结构：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>process state</strong></td>
+<td>运行、等待、就绪等</td>
+</tr>
+<tr>
+<td><strong>process number（PID）</strong></td>
+<td>进程标识符</td>
+</tr>
+<tr>
+<td><strong>program counter</strong></td>
+<td>下一条要执行的指令地址</td>
+</tr>
+<tr>
+<td><strong>CPU registers</strong></td>
+<td>所有与该进程相关的寄存器内容</td>
+</tr>
+<tr>
+<td><strong>CPU 调度信息</strong></td>
+<td>优先级、调度队列指针</td>
+</tr>
+<tr>
+<td><strong>内存管理信息</strong></td>
+<td>分配给该进程的内存（基址/界限寄存器、页表等）</td>
+</tr>
+<tr>
+<td><strong>记账信息</strong></td>
+<td>已用 CPU 时间、启动至今的时钟时间、时限</td>
+</tr>
+<tr>
+<td><strong>I/O 状态信息</strong></td>
+<td>分配的 I/O 设备、打开文件列表</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>PCB 是上下文切换时<strong>保存和恢复</strong>的对象，也是内核识别和管理进程的唯一依据。</p>
+</blockquote>
+<h3 id="六、线程（预告，第4章详述）">六、线程（预告，第4章详述）</h3>
+<ul>
+<li>目前讨论的进程只有<strong>单一执行流</strong></li>
+<li>若一个进程拥有<strong>多个程序计数器</strong>，就能同时在多个位置执行 → 这就是<strong>线程</strong></li>
+<li>需要在 PCB 中为每个线程存储各自的寄存器、程序计数器等细节</li>
+</ul>
+<h3 id="七、Linux-中的进程表示">七、Linux 中的进程表示</h3>
+<p>Linux 用 C 结构体 <code>task_struct</code>（定义在 <code>&lt;linux/sched.h&gt;</code>）表示进程：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">pid_t</span> pid;                     <span class="comment">/* 进程标识符 */</span></span><br><span class="line"><span class="type">long</span> state;                    <span class="comment">/* 进程状态 */</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">int</span> time_slice;       <span class="comment">/* 调度信息：时间片 */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">task_struct</span> *<span class="title">parent</span>;</span>    <span class="comment">/* 父进程 */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">list_head</span> <span class="title">children</span>;</span>     <span class="comment">/* 子进程链表 */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">files_struct</span> *<span class="title">files</span>;</span>    <span class="comment">/* 打开文件列表 */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mm_struct</span> *<span class="title">mm</span>;</span>          <span class="comment">/* 该进程的地址空间 */</span></span><br></pre></td></tr></table></figure>
+<p><strong>补充：</strong> 所有 <code>task_struct</code> 通过双向链表串联，内核用宏 <code>current</code> 指向当前正在运行的进程的 <code>task_struct</code>。</p>
+<h3 id="八、进程调度">八、进程调度</h3>
+<p><strong>进程调度器（process scheduler）</strong> 从可用进程中挑选下一个上 CPU 核心执行的进程。</p>
+<ul>
+<li><strong>目标</strong>：最大化 CPU 利用率，快速完成进程切换</li>
+<li><strong>手段</strong>：维护若干<strong>调度队列</strong></li>
+</ul>
+<h4 id="两类队列（对应截图5）">两类队列（对应截图5）</h4>
+<table>
+<thead>
+<tr>
+<th>队列</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>就绪队列 ready queue</strong></td>
+<td>驻留在主存中、已就绪等待执行的所有进程</td>
+</tr>
+<tr>
+<td><strong>等待队列 wait queue</strong></td>
+<td>等待某个事件（如 I/O）的进程集合</td>
+</tr>
+</tbody>
+</table>
+<p>实现方式：队列头保存 <strong>head</strong> 和 <strong>tail</strong> 两个指针，把各个 PCB 通过指针串成<strong>链表</strong>（如 ready queue: PCB₇ → PCB₂；wait queue: PCB₃ → PCB₁₄ → PCB₆）。进程在各队列之间迁移。</p>
+<h4 id="调度的整体流程（对应截图6）">调度的整体流程（对应截图6）</h4>
+<p>进程从 <strong>ready queue</strong> 被分派到 <strong>CPU</strong> 后，可能发生四种情况，之后都回到就绪队列：</p>
+<ol>
+<li>发出 <strong>I/O 请求</strong> → 进入 I/O 等待队列 → I/O 完成后回到就绪队列</li>
+<li><strong>时间片到期</strong> → 直接回到就绪队列</li>
+<li><strong>创建子进程</strong> → 进入&quot;子进程终止等待队列&quot; → 子进程结束后回到就绪队列（对应 <code>wait()</code>）</li>
+<li><strong>等待中断</strong> → 进入中断等待队列 → 中断发生后回到就绪队列</li>
+</ol>
+<h3 id="九、上下文切换（Context-Switch）">九、上下文切换（Context Switch）</h3>
+<p>当 CPU 切换到另一个进程时，系统必须<strong>保存旧进程的状态</strong>并<strong>加载新进程已保存的状态</strong>，这个过程称为上下文切换。</p>
+<h4 id="流程（对应截图7）">流程（对应截图7）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">P0 executing</span><br><span class="line">    ↓ 中断或系统调用</span><br><span class="line">    save state into PCB0     ← P0 idle 开始</span><br><span class="line">    reload state from PCB1</span><br><span class="line">    ↓</span><br><span class="line">P1 executing                 ← P1 恢复运行</span><br><span class="line">    ↓ 中断或系统调用</span><br><span class="line">    save state into PCB1</span><br><span class="line">    reload state from PCB0</span><br><span class="line">    ↓</span><br><span class="line">P0 executing</span><br></pre></td></tr></table></figure>
+<h4 id="关键结论">关键结论</h4>
+<ul>
+<li>进程的&quot;上下文&quot;就存放在它的 <strong>PCB</strong> 中</li>
+<li>上下文切换时间是<strong>纯粹的开销（pure overhead）</strong>——切换期间系统不做任何有用工作</li>
+<li><strong>操作系统和 PCB 越复杂，切换耗时越长</strong></li>
+<li>耗时还取决于<strong>硬件支持</strong>：有些硬件为每个 CPU 提供<strong>多组寄存器</strong>，可同时装载多个上下文，切换时只需改变寄存器组指针，速度极快</li>
+</ul>
+<blockquote>
+<p>补充：现代 CPU 上下文切换通常在微秒量级，但间接开销（TLB、Cache 失效导致的&quot;缓存污染&quot;）往往比直接的寄存器保存/恢复更昂贵。</p>
+</blockquote>
+<h3 id="十、移动系统中的多任务">十、移动系统中的多任务</h3>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>iOS（早期版本）</strong></td>
+<td>只允许一个进程运行，其他挂起。受屏幕尺寸和 UI 限制： • <strong>单一前台进程</strong>——由用户界面控制 • <strong>多个后台进程</strong>——在内存中运行但不显示，且受限制 • 限制：只能执行单个短任务、接收事件通知、或特定长任务（如音频播放）</td>
+</tr>
+<tr>
+<td><strong>Android</strong></td>
+<td>前台与后台都可运行，限制更少。后台进程用 <strong>service</strong> 执行任务： • 即使后台进程被挂起，service 仍可继续运行 • service 没有用户界面，内存占用小</td>
+</tr>
+</tbody>
+</table>
+<h3 id="十一、进程操作（Operations-on-Processes）">十一、进程操作（Operations on Processes）</h3>
+<p>操作系统必须提供两类机制：<strong>进程创建</strong>与<strong>进程终止</strong>。</p>
+<h3 id="十二、进程创建（Process-Creation）">十二、进程创建（Process Creation）</h3>
+<h4 id="12-1-进程树">12.1 进程树</h4>
+<p>父进程创建子进程，子进程又可创建自己的子进程，从而形成<strong>进程树（tree of processes）</strong>。进程通过<strong>进程标识符 pid</strong> 被识别和管理。</p>
+<p><strong>Linux 进程树示例（截图2）：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">               systemd (pid=1)</span><br><span class="line">       ┌───────────┼───────────┐</span><br><span class="line">   logind        python       sshd</span><br><span class="line">  (8415)        (2808)       (3028)</span><br><span class="line">     │                          │</span><br><span class="line">   bash                       sshd</span><br><span class="line">  (8416)                     (3610)</span><br><span class="line">   ┌─┴─┐                        │</span><br><span class="line">  ps   vim                    tcsh</span><br><span class="line">(9298)(9204)                 (4005)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>systemd（pid = 1）</strong> 是所有用户态进程的祖先，在系统启动时创建（传统 UNIX 中叫 <code>init</code>）</li>
+<li>Linux 下可用 <code>ps -el</code>、<code>pstree</code> 查看进程树</li>
+<li>补充：<code>getpid()</code> 取自身 pid，<code>getppid()</code> 取父进程 pid</li>
+</ul>
+<h4 id="12-2-三个设计维度">12.2 三个设计维度</h4>
+<p><strong>① 资源共享（Resource sharing）</strong></p>
+<ul>
+<li>父子共享<strong>全部</strong>资源</li>
+<li>子进程共享父进程资源的<strong>一个子集</strong></li>
+<li>父子<strong>不共享</strong>任何资源</li>
+</ul>
+<p><strong>② 执行方式（Execution）</strong></p>
+<ul>
+<li>父子<strong>并发执行</strong></li>
+<li>父进程<strong>等待</strong>子进程终止后再继续</li>
+</ul>
+<p><strong>③ 地址空间（Address space）</strong></p>
+<ul>
+<li>子进程是父进程的<strong>副本</strong>（duplicate，如 <code>fork()</code>）</li>
+<li>子进程<strong>装入一个新程序</strong>（如 <code>exec()</code>）</li>
+</ul>
+<h4 id="12-3-UNIX-的实现">12.3 UNIX 的实现</h4>
+<table>
+<thead>
+<tr>
+<th>系统调用</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fork()</code></td>
+<td>创建新进程，子进程是父进程地址空间的副本</td>
+</tr>
+<tr>
+<td><code>exec()</code></td>
+<td>在 <code>fork()</code> 之后使用，用<strong>新程序</strong>替换进程的内存空间</td>
+</tr>
+<tr>
+<td><code>wait()</code></td>
+<td>父进程调用，等待子进程终止</td>
+</tr>
+<tr>
+<td><code>exit()</code></td>
+<td>进程终止自己</td>
+</tr>
+</tbody>
+</table>
+<p><strong>fork/exec/wait 的流程（截图1）：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">parent ──► pid = fork()</span><br><span class="line">              ├── pid &gt; 0 (父) ──► wait() ──► parent resumes</span><br><span class="line">              └── pid = 0 (子) ──► exec() ──► exit() ──┘</span><br><span class="line">                                                （唤醒父进程的 wait）</span><br></pre></td></tr></table></figure>
+<p><strong>⚠️ <code>fork()</code> 返回值是核心考点：</strong></p>
+<table>
+<thead>
+<tr>
+<th>返回值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt; 0</code></td>
+<td>创建失败</td>
+</tr>
+<tr>
+<td><code>== 0</code></td>
+<td>当前是<strong>子进程</strong></td>
+</tr>
+<tr>
+<td><code>&gt; 0</code></td>
+<td>当前是<strong>父进程</strong>，返回值就是子进程的 pid</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>fork()</code> 被调用<strong>一次，返回两次</strong>——父子进程从同一行代码继续执行，靠返回值区分身份。</p>
+</blockquote>
+<h4 id="12-4-C-程序示例（截图3）">12.4 C 程序示例（截图3）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">pid_t</span> pid;</span><br><span class="line">    pid = fork();                              <span class="comment">/* 创建子进程 */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pid &lt; <span class="number">0</span>) &#123;                             <span class="comment">/* 出错 */</span></span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Fork Failed&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>) &#123;                       <span class="comment">/* 子进程 */</span></span><br><span class="line">        execlp(<span class="string">&quot;/bin/ls&quot;</span>, <span class="string">&quot;ls&quot;</span>, <span class="literal">NULL</span>);         <span class="comment">/* 用 ls 覆盖自身 */</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;                                     <span class="comment">/* 父进程 */</span></span><br><span class="line">        wait(<span class="literal">NULL</span>);                            <span class="comment">/* 等子进程结束 */</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Child Complete&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong></p>
+<ul>
+<li><code>execlp()</code> 成功后<strong>不会返回</strong>——原来的代码段已被 <code>ls</code> 完全替换</li>
+<li>父进程 <code>wait(NULL)</code> 阻塞，直到子进程终止后才打印 “Child Complete”</li>
+<li>若去掉 <code>wait()</code>，父子输出顺序不确定</li>
+</ul>
+<h4 id="12-5-Windows-API-示例（截图4）">12.5 Windows API 示例（截图4）</h4>
+<p>Windows 用<strong>一个</strong> <code>CreateProcess()</code> 完成 UNIX 中 <code>fork()+exec()</code> 两步的工作：</p>
+<p>c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">STARTUPINFO si;            <span class="comment">/* 指定新进程的窗口属性等 */</span></span><br><span class="line">PROCESS_INFORMATION pi;    <span class="comment">/* 返回新进程的句柄和 ID */</span></span><br><span class="line"></span><br><span class="line">ZeroMemory(&amp;si, <span class="keyword">sizeof</span>(si));  si.cb = <span class="keyword">sizeof</span>(si);</span><br><span class="line">ZeroMemory(&amp;pi, <span class="keyword">sizeof</span>(pi));</span><br><span class="line"></span><br><span class="line">CreateProcess(<span class="literal">NULL</span>,</span><br><span class="line">    <span class="string">&quot;C:\\WINDOWS\\system32\\mspaint.exe&quot;</span>,  <span class="comment">/* 要运行的程序 */</span></span><br><span class="line">    <span class="literal">NULL</span>, <span class="literal">NULL</span>,      <span class="comment">/* 不继承进程/线程句柄 */</span></span><br><span class="line">    FALSE,           <span class="comment">/* 禁用句柄继承 */</span></span><br><span class="line">    <span class="number">0</span>,               <span class="comment">/* 无创建标志 */</span></span><br><span class="line">    <span class="literal">NULL</span>,            <span class="comment">/* 用父进程环境块 */</span></span><br><span class="line">    <span class="literal">NULL</span>,            <span class="comment">/* 用父进程当前目录 */</span></span><br><span class="line">    &amp;si, &amp;pi);</span><br><span class="line"></span><br><span class="line">WaitForSingleObject(pi.hProcess, INFINITE);  <span class="comment">/* 相当于 wait() */</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;Child Complete&quot;</span>);</span><br><span class="line">CloseHandle(pi.hProcess);  CloseHandle(pi.hThread);</span><br></pre></td></tr></table></figure>
+<p><strong>对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>UNIX</th>
+<th>Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td><code>fork()</code> + <code>exec()</code>（两步）</td>
+<td><code>CreateProcess()</code>（一步，必须指定程序）</td>
+</tr>
+<tr>
+<td>等待</td>
+<td><code>wait()</code></td>
+<td><code>WaitForSingleObject()</code></td>
+</tr>
+<tr>
+<td>参数</td>
+<td>简洁</td>
+<td>10 个参数，需先初始化 <code>si</code>、<code>pi</code></td>
+</tr>
+<tr>
+<td>收尾</td>
+<td>—</td>
+<td>必须 <code>CloseHandle()</code> 释放句柄</td>
+</tr>
+</tbody>
+</table>
+<h3 id="十三、进程终止（Process-Termination）">十三、进程终止（Process Termination）</h3>
+<h4 id="13-1-正常终止">13.1 正常终止</h4>
+<ul>
+<li>进程执行完最后一条语句后，调用 <code>exit()</code> 请求操作系统删除自己</li>
+<li>通过 <code>wait()</code> 把<strong>状态数据（status）返回给父进程</strong></li>
+<li>操作系统**回收（deallocate）**进程占用的所有资源</li>
+</ul>
+<h4 id="13-2-父进程强制终止子进程">13.2 父进程强制终止子进程</h4>
+<p>父进程可用 <code>abort()</code> 终止子进程，常见原因：</p>
+<ol>
+<li>子进程<strong>超出分配的资源</strong></li>
+<li>分配给子进程的<strong>任务不再需要</strong></li>
+<li><strong>父进程正在退出</strong>，而操作系统不允许子进程在父进程终止后继续存在</li>
+</ol>
+<h4 id="13-3-级联终止（Cascading-Termination）">13.3 级联终止（Cascading Termination）</h4>
+<p>某些操作系统不允许子进程在父进程终止后存活。此时一个进程终止，其<strong>所有子进程、孙进程……都必须被终止</strong>，这一过程由<strong>操作系统发起</strong>。</p>
+<h4 id="13-4-wait-与两种-异常-进程">13.4 wait() 与两种&quot;异常&quot;进程</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pid = wait(&amp;status);   <span class="comment">/* 返回终止子进程的 pid 和状态信息 */</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>子进程已终止，但<strong>父进程没有调用 <code>wait()</code></strong></td>
+<td><strong>僵尸进程（zombie）</strong></td>
+<td>进程已结束，但 PCB 仍保留在系统中（保存退出状态），占用进程表项</td>
+</tr>
+<tr>
+<td><strong>父进程先终止</strong>且未调用 <code>wait()</code></td>
+<td><strong>孤儿进程（orphan）</strong></td>
+<td>子进程失去父亲</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>补充：</strong> Linux 中孤儿进程会被 <code>systemd</code>/<code>init</code> (pid=1) <strong>收养</strong>，由它定期调用 <code>wait()</code> 回收，因此孤儿最终不会变成永久僵尸。真正危险的是父进程长期运行却不 <code>wait()</code>，僵尸会持续堆积耗尽进程表。</p>
+</blockquote>
+<h3 id="十四、Android-进程重要性层次">十四、Android 进程重要性层次</h3>
+<p>移动操作系统常需<strong>终止进程以回收内存等系统资源</strong>。Android 按重要性由高到低排序：</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>类型</th>
+<th>典型含义（补充）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1（最重要）</td>
+<td><strong>Foreground process 前台进程</strong></td>
+<td>用户当前正在交互的进程</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Visible process 可见进程</strong></td>
+<td>界面可见但不在前台（如被对话框遮挡）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Service process 服务进程</strong></td>
+<td>运行 service，如后台播放音乐</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Background process 后台进程</strong></td>
+<td>界面不可见，被缓存</td>
+</tr>
+<tr>
+<td>5（最不重要）</td>
+<td><strong>Empty process 空进程</strong></td>
+<td>不含任何活动组件，仅作缓存加速重启</td>
+</tr>
+</tbody>
+</table>
+<p>Android 从<strong>最不重要</strong>的开始终止进程。</p>
+<h3 id="十五、多进程架构-——-Chrome-浏览器">十五、多进程架构 —— Chrome 浏览器</h3>
+<p><strong>单进程浏览器的问题：</strong> 一个网站出问题，<strong>整个浏览器可能挂起或崩溃</strong>。</p>
+<p><strong>Chrome 采用多进程架构，共 3 类进程：</strong></p>
+<table>
+<thead>
+<tr>
+<th>进程类型</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Browser 进程</strong></td>
+<td>管理用户界面、磁盘与网络 I/O（只有一个）</td>
+</tr>
+<tr>
+<td><strong>Renderer 进程</strong></td>
+<td>渲染网页，处理 HTML、JavaScript。<strong>每打开一个网站创建一个新的 renderer</strong>，运行在**沙箱（sandbox）**中，限制磁盘和网络 I/O，把安全漏洞的影响降到最小</td>
+</tr>
+<tr>
+<td><strong>Plug-in 进程</strong></td>
+<td>每种插件一个进程</td>
+</tr>
+</tbody>
+</table>
+<p><strong>优点：</strong> 隔离性好、崩溃互不影响、安全性高。<strong>代价：</strong> 内存开销大（这也是 Chrome&quot;吃内存&quot;的原因）。</p>
+<h3 id="十六、进程间通信（IPC）">十六、进程间通信（IPC）</h3>
+<h4 id="16-1-独立进程-vs-协作进程">16.1 独立进程 vs 协作进程</h4>
+<ul>
+<li><strong>独立进程（independent）</strong>：不影响其他进程，也不被影响</li>
+<li><strong>协作进程（cooperating）</strong>：可以影响其他进程或被其影响，包括<strong>共享数据</strong></li>
+</ul>
+<h4 id="16-2-为什么需要协作进程">16.2 为什么需要协作进程</h4>
+<ol>
+<li><strong>信息共享（Information sharing）</strong></li>
+<li><strong>计算加速（Computation speedup）</strong>——任务拆分并行执行</li>
+<li><strong>模块化（Modularity）</strong></li>
+<li><strong>便利性（Convenience）</strong></li>
+</ol>
+<p>协作进程需要 <strong>IPC</strong>，共有<strong>两种模型</strong>：<strong>共享内存</strong> 与 <strong>消息传递</strong>。</p>
+<h4 id="16-3-两种通信模型对比（截图5）">16.3 两种通信模型对比（截图5）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(a) 共享内存                    (b) 消息传递</span><br><span class="line">┌──────────────┐              ┌──────────────┐</span><br><span class="line">│  process A   │──┐           │  process A   │──┐</span><br><span class="line">├──────────────┤  │           ├──────────────┤  │</span><br><span class="line">│ shared memory│◄─┘           │  process B   │◄┐│</span><br><span class="line">├──────────────┤◄─┐           ├──────────────┤ ││</span><br><span class="line">│  process B   │──┘           │              │ ││</span><br><span class="line">├──────────────┤              ├──────────────┤ ││</span><br><span class="line">│    kernel    │              │ message queue│ ││</span><br><span class="line">└──────────────┘              │ m0 m1 m2 ... │◄┘│</span><br><span class="line">                              │    kernel    │◄─┘</span><br><span class="line">                              └──────────────┘</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>共享内存</th>
+<th>消息传递</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据存放</td>
+<td>用户进程地址空间中的共享区</td>
+<td>内核中的消息队列</td>
+</tr>
+<tr>
+<td>内核参与</td>
+<td>仅在<strong>建立</strong>共享区时参与，之后<strong>由用户进程控制</strong></td>
+<td><strong>每次收发都要经过内核</strong>（系统调用）</td>
+</tr>
+<tr>
+<td>速度</td>
+<td><strong>快</strong>（无系统调用开销）</td>
+<td>慢（每条消息需两次上下文切换/拷贝）</td>
+</tr>
+<tr>
+<td>同步</td>
+<td>需<strong>程序员自己</strong>保证同步</td>
+<td>由系统提供，<strong>天然避免冲突</strong></td>
+</tr>
+<tr>
+<td>适用</td>
+<td>大量数据、单机</td>
+<td>少量数据、<strong>分布式系统</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>共享内存的主要难题是：<strong>提供机制让用户进程在访问共享内存时同步各自的动作</strong>（详见第6、7章）。</p>
+</blockquote>
+<h3 id="十七、生产者–消费者问题">十七、生产者–消费者问题</h3>
+<p><strong>协作进程的经典范式：</strong> 生产者进程产生信息，消费者进程消费这些信息（如编译器产生汇编代码 → 汇编器消费）。</p>
+<p><strong>两种变体：</strong></p>
+<table>
+<thead>
+<tr>
+<th>变体</th>
+<th>生产者</th>
+<th>消费者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>无界缓冲区（unbounded-buffer）</strong></td>
+<td><strong>永不等待</strong></td>
+<td>缓冲区空时等待</td>
+</tr>
+<tr>
+<td><strong>有界缓冲区（bounded-buffer）</strong></td>
+<td>缓冲区<strong>满时必须等待</strong></td>
+<td>缓冲区空时等待</td>
+</tr>
+</tbody>
+</table>
+<h4 id="17-1-共享内存解法：共享数据（截图6）">17.1 共享内存解法：共享数据（截图6）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> BUFFER_SIZE 10</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span> ... &#125; item;</span><br><span class="line"></span><br><span class="line">item buffer[BUFFER_SIZE];</span><br><span class="line"><span class="type">int</span> in  = <span class="number">0</span>;    <span class="comment">/* 下一个空位置 */</span></span><br><span class="line"><span class="type">int</span> out = <span class="number">0</span>;    <span class="comment">/* 下一个满位置 */</span></span><br></pre></td></tr></table></figure>
+<p>⚠️ <strong>该方案正确，但最多只能使用 BUFFER_SIZE − 1 个元素。</strong></p>
+<p>原因：<code>in == out</code> 表示<strong>空</strong>，<code>(in+1) % BUFFER_SIZE == out</code> 表示<strong>满</strong>。必须牺牲一个格子来区分&quot;空&quot;和&quot;满&quot;两种状态，否则两者都表现为 <code>in == out</code>。</p>
+<h4 id="17-2-生产者（截图7）">17.2 生产者（截图7）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">item next_produced;</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">/* produce an item in next_produced */</span></span><br><span class="line">    <span class="keyword">while</span> (((in + <span class="number">1</span>) % BUFFER_SIZE) == out)</span><br><span class="line">        ;                              <span class="comment">/* 缓冲区满，忙等 */</span></span><br><span class="line">    buffer[in] = next_produced;</span><br><span class="line">    in = (in + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="17-3-消费者（截图8）">17.3 消费者（截图8）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">item next_consumed;</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">while</span> (in == out)</span><br><span class="line">        ;                              <span class="comment">/* 缓冲区空，忙等 */</span></span><br><span class="line">    next_consumed = buffer[out];</span><br><span class="line">    out = (out + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line">    <span class="comment">/* consume the item in next_consumed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>环形缓冲区（circular buffer）通过 <code>% BUFFER_SIZE</code> 实现下标回绕。</p>
+</blockquote>
+<h3 id="十八、填满所有缓冲区-→-竞争条件">十八、填满所有缓冲区 → 竞争条件</h3>
+<h4 id="18-1-引入-counter">18.1 引入 counter</h4>
+<p>若想用满全部 BUFFER_SIZE 个格子，可增加一个整型 <strong>counter</strong> 记录已满缓冲区的数量：初值 0，生产者产出后 <code>counter++</code>，消费者消费后 <code>counter--</code>。</p>
+<p><strong>生产者：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">/* produce an item in next_produced */</span></span><br><span class="line">    <span class="keyword">while</span> (counter == BUFFER_SIZE)</span><br><span class="line">        ;                       <span class="comment">/* do nothing */</span></span><br><span class="line">    buffer[in] = next_produced;</span><br><span class="line">    in = (in + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line">    counter++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>消费者：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">while</span> (counter == <span class="number">0</span>)</span><br><span class="line">        ;                       <span class="comment">/* do nothing */</span></span><br><span class="line">    next_consumed = buffer[out];</span><br><span class="line">    out = (out + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line">    counter--;</span><br><span class="line">    <span class="comment">/* consume the item in next_consumed */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="18-2-竞争条件（Race-Condition）">18.2 竞争条件（Race Condition）</h4>
+<p><code>counter++</code> 和 <code>counter--</code> 在机器指令层面<strong>不是原子操作</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">counter++              counter--</span><br><span class="line">register1 = counter    register2 = counter</span><br><span class="line">register1 = register1+1  register2 = register2-1</span><br><span class="line">counter = register1    counter = register2</span><br></pre></td></tr></table></figure>
+<p><strong>交错执行示例（初始 counter = 5）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>执行者</th>
+<th>指令</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0</td>
+<td>生产者</td>
+<td><code>register1 = counter</code></td>
+<td>register1 = 5</td>
+</tr>
+<tr>
+<td>S1</td>
+<td>生产者</td>
+<td><code>register1 = register1 + 1</code></td>
+<td>register1 = 6</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>消费者</td>
+<td><code>register2 = counter</code></td>
+<td>register2 = 5</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>消费者</td>
+<td><code>register2 = register2 − 1</code></td>
+<td>register2 = 4</td>
+</tr>
+<tr>
+<td>S4</td>
+<td>生产者</td>
+<td><code>counter = register1</code></td>
+<td><strong>counter = 6</strong></td>
+</tr>
+<tr>
+<td>S5</td>
+<td>消费者</td>
+<td><code>counter = register2</code></td>
+<td><strong>counter = 4</strong></td>
+</tr>
+</tbody>
+</table>
+<p>正确结果应是 <strong>5</strong>（一增一减），却得到 4（或换个顺序得到 6）。</p>
+<blockquote>
+<p><strong>竞争条件定义：</strong> 多个进程并发访问和操纵同一数据，最终结果取决于访问发生的<strong>具体顺序</strong>。</p>
+</blockquote>
+<p><strong>思考题：</strong> 为什么第一个解法（最多填 N−1 个）没有竞争条件？</p>
+<blockquote>
+<p>因为生产者<strong>只写 <code>in</code>、只读 <code>out</code></strong>，消费者<strong>只写 <code>out</code>、只读 <code>in</code></strong>——不存在两方同时修改同一变量的情况。而 counter 被双方共同修改，才产生竞争。（详见第6章）</p>
+</blockquote>
+<h3 id="十九、IPC-——-消息传递（Message-Passing）">十九、IPC —— 消息传递（Message Passing）</h3>
+<p>进程之间通信<strong>不借助共享变量</strong>。IPC 设施提供两个基本操作：</p>
+<ul>
+<li><code>send(message)</code></li>
+<li><code>receive(message)</code></li>
+</ul>
+<p>消息长度可以是<strong>定长</strong>或<strong>变长</strong>（定长实现简单但编程不便，变长反之）。</p>
+<h4 id="19-1-通信前提">19.1 通信前提</h4>
+<p>进程 P 与 Q 要通信，必须：</p>
+<ol>
+<li>在两者之间<strong>建立通信链路（communication link）</strong></li>
+<li>通过 <code>send</code> / <code>receive</code> 交换消息</li>
+</ol>
+<h4 id="19-2-实现时需回答的问题">19.2 实现时需回答的问题</h4>
+<ul>
+<li>链路如何建立？</li>
+<li>一条链路能否关联<strong>两个以上</strong>进程？</li>
+<li>每对进程之间可以有多少条链路？</li>
+<li>链路的<strong>容量</strong>是多少？</li>
+<li>链路能容纳的消息大小是定长还是变长？</li>
+<li>链路是<strong>单向</strong>还是<strong>双向</strong>？</li>
+</ul>
+<h4 id="19-3-链路的实现层次">19.3 链路的实现层次</h4>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>物理（Physical）</strong></td>
+<td>共享内存、硬件总线、网络</td>
+</tr>
+<tr>
+<td><strong>逻辑（Logical）</strong></td>
+<td>直接 / 间接；同步 / 异步；自动 / 显式缓冲</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十、直接通信-vs-间接通信">二十、直接通信 vs 间接通信</h3>
+<h4 id="20-1-直接通信（Direct-Communication）">20.1 直接通信（Direct Communication）</h4>
+<p>进程必须<strong>显式命名对方</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">send(P, message)      /* 发送消息给进程 P */</span><br><span class="line">receive(Q, message)   /* 从进程 Q 接收消息 */</span><br></pre></td></tr></table></figure>
+<p><strong>链路性质：</strong></p>
+<ul>
+<li>链路<strong>自动建立</strong></li>
+<li>一条链路<strong>恰好关联一对</strong>通信进程</li>
+<li>每对进程之间<strong>恰好只有一条</strong>链路</li>
+<li>链路可以是单向的，但<strong>通常是双向的</strong></li>
+</ul>
+<blockquote>
+<p>缺点：硬编码进程名，<strong>模块性差</strong>——进程标识改变时所有引用都要修改。</p>
+</blockquote>
+<h4 id="20-2-间接通信（Indirect-Communication）">20.2 间接通信（Indirect Communication）</h4>
+<p>消息发送到<strong>邮箱（mailbox）</strong>、也叫<strong>端口（port）</strong>，并从邮箱接收：</p>
+<ul>
+<li>每个邮箱有<strong>唯一 id</strong></li>
+<li>进程只有<strong>共享同一个邮箱</strong>时才能通信</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">send(A, message)      /* 发送消息到邮箱 A */</span><br><span class="line">receive(A, message)   /* 从邮箱 A 接收消息 */</span><br></pre></td></tr></table></figure>
+<p><strong>操作：</strong> 创建新邮箱 → 通过邮箱收发消息 → 删除邮箱</p>
+<p><strong>链路性质：</strong></p>
+<ul>
+<li>只有进程<strong>共享公共邮箱</strong>时链路才建立</li>
+<li>一条链路可关联<strong>多个进程</strong></li>
+<li>每对进程可共享<strong>多条</strong>链路</li>
+<li>链路可单向或双向</li>
+</ul>
+<h4 id="20-3-邮箱共享问题">20.3 邮箱共享问题</h4>
+<p><strong>场景：</strong> P₁、P₂、P₃ 共享邮箱 A，P₁ 发送，P₂ 和 P₃ 都在接收 —— <strong>谁收到消息？</strong></p>
+<p><strong>三种解决方案：</strong></p>
+<ol>
+<li>限制一条链路最多关联<strong>两个</strong>进程</li>
+<li>同一时刻只允许<strong>一个</strong>进程执行 <code>receive</code></li>
+<li>由<strong>系统任意选择</strong>接收者，并<strong>通知发送者</strong>是谁接收了</li>
+</ol>
+<h3 id="二十一、同步（Synchronization）">二十一、同步（Synchronization）</h3>
+<p>消息传递可以是<strong>阻塞（blocking）**或**非阻塞（non-blocking）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>操作</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阻塞 = 同步</strong></td>
+<td>Blocking send</td>
+<td>发送者阻塞，直到消息被接收</td>
+</tr>
+<tr>
+<td></td>
+<td>Blocking receive</td>
+<td>接收者阻塞，直到有消息可用</td>
+</tr>
+<tr>
+<td><strong>非阻塞 = 异步</strong></td>
+<td>Non-blocking send</td>
+<td>发送后立即继续执行</td>
+</tr>
+<tr>
+<td></td>
+<td>Non-blocking receive</td>
+<td>收到一条<strong>有效消息</strong>或一个<strong>空消息（null）</strong></td>
+</tr>
+</tbody>
+</table>
+<p>四种组合均可能。<strong>若 send 和 receive 都是阻塞的，则构成&quot;会合&quot;（rendezvous）</strong>。</p>
+<p><strong>生产者–消费者的消息传递版本</strong>（因阻塞语义而天然同步，无需额外变量）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Producer */</span>                    <span class="comment">/* Consumer */</span></span><br><span class="line">message next_produced;            message next_consumed;</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;                    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">/* produce an item */</span>             receive(next_consumed);</span><br><span class="line">    send(next_produced);              <span class="comment">/* consume the item */</span></span><br><span class="line">&#125;                                 &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二十二、缓冲（Buffering）">二十二、缓冲（Buffering）</h3>
+<p>链路上附有一个<strong>消息队列</strong>，有三种实现方式：</p>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>容量</th>
+<th>发送者行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>零容量（Zero capacity）</strong></td>
+<td>队列长度 0，链路上不排队消息</td>
+<td>必须等待接收者取走 → <strong>rendezvous</strong></td>
+</tr>
+<tr>
+<td><strong>有界容量（Bounded capacity）</strong></td>
+<td>有限长度 n</td>
+<td>队列<strong>满时必须等待</strong>；未满则立即返回</td>
+</tr>
+<tr>
+<td><strong>无界容量（Unbounded capacity）</strong></td>
+<td>无限长度</td>
+<td><strong>永不等待</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="IPC-实例-——-POSIX-共享内存">IPC 实例 —— POSIX 共享内存</h3>
+<p>POSIX 共享内存以**内存映射文件（memory-mapped file）**的方式实现：共享内存对象被表示为一个文件，进程把它映射进自己的地址空间后，像操作普通内存一样读写。</p>
+<h4 id="22-1-标准流程（四步）">22.1 标准流程（四步）</h4>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>系统调用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 创建/打开共享内存段</td>
+<td>`shm_fd = shm_open(name, O_CREAT</td>
+<td>O_RDWR, 0666);`</td>
+</tr>
+<tr>
+<td>② 设置对象大小</td>
+<td><code>ftruncate(shm_fd, 4096);</code></td>
+<td>把共享对象截断/扩展为指定字节数</td>
+</tr>
+<tr>
+<td>③ 内存映射</td>
+<td><code>ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, 0);</code></td>
+<td>把文件描述符映射成一个<strong>指针</strong></td>
+</tr>
+<tr>
+<td>④ 读写</td>
+<td>直接用 <code>mmap()</code> 返回的<strong>指针</strong></td>
+<td>无需系统调用，速度快</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>补充：<code>MAP_SHARED</code> 表示对该映射区的修改对其他进程可见；若用 <code>MAP_PRIVATE</code> 则是写时复制的私有副本，无法通信。编译时需链接 <code>-lrt</code>。</p>
+</blockquote>
+<h4 id="22-2-生产者代码（截图1）">22.2 生产者代码（截图1）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/shm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/stat.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> SIZE = <span class="number">4096</span>;                 <span class="comment">/* 共享内存对象大小（字节） */</span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *name = <span class="string">&quot;OS&quot;</span>;               <span class="comment">/* 共享内存对象的名字 */</span></span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *message_0 = <span class="string">&quot;Hello&quot;</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *message_1 = <span class="string">&quot;World!&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> shm_fd;                            <span class="comment">/* 共享内存文件描述符 */</span></span><br><span class="line">    <span class="type">void</span> *ptr;                             <span class="comment">/* 指向共享内存对象的指针 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 创建共享内存对象 */</span></span><br><span class="line">    shm_fd = shm_open(name, O_CREAT | O_RDWR, <span class="number">0666</span>);</span><br><span class="line">    <span class="comment">/* 配置大小 */</span></span><br><span class="line">    ftruncate(shm_fd, SIZE);</span><br><span class="line">    <span class="comment">/* 内存映射 */</span></span><br><span class="line">    ptr = mmap(<span class="number">0</span>, SIZE, PROT_WRITE, MAP_SHARED, shm_fd, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 写入共享内存 */</span></span><br><span class="line">    <span class="built_in">sprintf</span>(ptr, <span class="string">&quot;%s&quot;</span>, message_0);</span><br><span class="line">    ptr += <span class="built_in">strlen</span>(message_0);              <span class="comment">/* 指针后移，避免覆盖 */</span></span><br><span class="line">    <span class="built_in">sprintf</span>(ptr, <span class="string">&quot;%s&quot;</span>, message_1);</span><br><span class="line">    ptr += <span class="built_in">strlen</span>(message_1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>关键点：</strong> 每次 <code>sprintf()</code> 后必须把 <code>ptr</code> 前移 <code>strlen()</code> 个字节，否则第二条消息会覆盖第一条。最终共享区内容为 <code>&quot;HelloWorld!&quot;</code>。</p>
+<h4 id="22-3-消费者代码（截图2）">22.3 消费者代码（截图2）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> SIZE = <span class="number">4096</span>;</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span> *name = <span class="string">&quot;OS&quot;</span>;</span><br><span class="line">    <span class="type">int</span> shm_fd;</span><br><span class="line">    <span class="type">void</span> *ptr;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 打开（不是创建）共享内存对象，只读 */</span></span><br><span class="line">    shm_fd = shm_open(name, O_RDONLY, <span class="number">0666</span>);</span><br><span class="line">    <span class="comment">/* 以只读方式映射 */</span></span><br><span class="line">    ptr = mmap(<span class="number">0</span>, SIZE, PROT_READ, MAP_SHARED, shm_fd, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 读取 */</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>, (<span class="type">char</span> *)ptr);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 删除共享内存对象 */</span></span><br><span class="line">    shm_unlink(name);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>生产者 vs 消费者对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>生产者</th>
+<th>消费者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>shm_open</code> 标志</td>
+<td>`O_CREAT</td>
+<td>O_RDWR`</td>
+</tr>
+<tr>
+<td><code>ftruncate</code></td>
+<td>需要</td>
+<td>不需要（段已存在）</td>
+</tr>
+<tr>
+<td><code>mmap</code> 保护位</td>
+<td><code>PROT_WRITE</code></td>
+<td><code>PROT_READ</code></td>
+</tr>
+<tr>
+<td>结束时</td>
+<td>—</td>
+<td><code>shm_unlink(name)</code> 删除对象</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 该示例<strong>没有做同步</strong>——若消费者先于生产者运行会读到空数据。真实程序需用信号量等机制（第6、7章）。共享内存对象不会随进程退出自动消失，必须显式 <code>shm_unlink()</code>，否则残留在 <code>/dev/shm/</code> 下。</p>
+</blockquote>
+<h3 id="二十三、IPC-实例-——-Mach">二十三、IPC 实例 —— Mach</h3>
+<p>Mach 是<strong>微内核</strong>操作系统（macOS / iOS 内核 XNU 的基础）。</p>
+<h4 id="23-1-核心特征">23.1 核心特征</h4>
+<ul>
+<li>通信<strong>完全基于消息</strong>，<strong>连系统调用也是消息</strong></li>
+<li>每个**任务（task）**创建时自动获得两个端口：
+<ul>
+<li><strong>Kernel port（内核端口）</strong>——与内核通信</li>
+<li><strong>Notify port（通知端口）</strong>——接收事件通知</li>
+</ul>
+</li>
+<li>收发消息统一使用 <strong><code>mach_msg()</code></strong> 函数</li>
+<li>通信所需的端口由 <strong><code>mach_port_allocate()</code></strong> 创建</li>
+</ul>
+<h4 id="23-2-灵活的发送-接收语义">23.2 灵活的发送/接收语义</h4>
+<p>当邮箱已满时，发送方有<strong>四种选择</strong>：</p>
+<ol>
+<li><strong>无限期等待</strong></li>
+<li><strong>最多等待 n 毫秒</strong>（超时）</li>
+<li><strong>立即返回</strong></li>
+<li><strong>临时缓存一条消息</strong>（系统代为暂存，每个发送者最多一条）</li>
+</ol>
+<h4 id="23-3-消息结构（截图3）">23.3 消息结构（截图3）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mach/mach.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">message</span> &#123;</span></span><br><span class="line">    <span class="type">mach_msg_header_t</span> header;   <span class="comment">/* 消息头：固定格式 */</span></span><br><span class="line">    <span class="type">int</span> data;                   <span class="comment">/* 消息体：用户数据 */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">mach_port_t</span> client;</span><br><span class="line"><span class="type">mach_port_t</span> server;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Mach 消息 = <strong>消息头 + 消息体</strong>。消息头中包含目的端口、本地（回复）端口、消息大小等。</p>
+</blockquote>
+<h4 id="23-4-客户端发送（截图4）">23.4 客户端发送（截图4）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">message</span> <span class="title">message</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 构造消息头 */</span></span><br><span class="line">message.header.msgh_size        = <span class="keyword">sizeof</span>(message);</span><br><span class="line">message.header.msgh_remote_port = server;   <span class="comment">/* 目的端口 */</span></span><br><span class="line">message.header.msgh_local_port  = client;   <span class="comment">/* 本地/回复端口 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 发送消息 */</span></span><br><span class="line">mach_msg(&amp;message.header,      <span class="comment">/* 消息头指针 */</span></span><br><span class="line">    MACH_SEND_MSG,             <span class="comment">/* 操作：发送 */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(message),           <span class="comment">/* 发送消息大小 */</span></span><br><span class="line">    <span class="number">0</span>,                         <span class="comment">/* 接收消息最大大小——发送时无用 */</span></span><br><span class="line">    MACH_PORT_NULL,            <span class="comment">/* 接收端口名——发送时无用 */</span></span><br><span class="line">    MACH_MSG_TIMEOUT_NONE,     <span class="comment">/* 不设超时 */</span></span><br><span class="line">    MACH_PORT_NULL);           <span class="comment">/* 无通知端口 */</span></span><br></pre></td></tr></table></figure>
+<h4 id="23-5-服务端接收（截图5）">23.5 服务端接收（截图5）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">message</span> <span class="title">message</span>;</span></span><br><span class="line"></span><br><span class="line">mach_msg(&amp;message.header,</span><br><span class="line">    MACH_RCV_MSG,              <span class="comment">/* 操作：接收 */</span></span><br><span class="line">    <span class="number">0</span>,                         <span class="comment">/* 发送消息大小——接收时无用 */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(message),           <span class="comment">/* 可接收的最大消息大小 */</span></span><br><span class="line">    server,                    <span class="comment">/* 接收端口 */</span></span><br><span class="line">    MACH_MSG_TIMEOUT_NONE,     <span class="comment">/* 不设超时 */</span></span><br><span class="line">    MACH_PORT_NULL);           <span class="comment">/* 无通知端口 */</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>记忆技巧：</strong> <code>mach_msg()</code> 用<strong>同一个函数</strong>完成收发，靠第二个参数（<code>MACH_SEND_MSG</code> / <code>MACH_RCV_MSG</code>）区分；第 3、4 个参数分别是&quot;发送大小&quot;和&quot;接收上限&quot;，用哪个取决于操作类型，另一个填 0。</p>
+</blockquote>
+<h3 id="二十四、IPC-实例-——-Windows">二十四、IPC 实例 —— Windows</h3>
+<p>Windows 以<strong>消息传递为核心</strong>，通过**高级本地过程调用（Advanced Local Procedure Call, LPC/ALPC）**设施实现。</p>
+<ul>
+<li><strong>只能用于同一台机器上的进程之间</strong>（跨机器要用 RPC）</li>
+<li>使用<strong>端口（port）</strong>（类似邮箱）建立和维护通信通道</li>
+</ul>
+<h4 id="24-1-建立通信的四步（对应截图6）">24.1 建立通信的四步（对应截图6）</h4>
+<ol>
+<li>客户端打开子系统**连接端口（Connection Port）**对象的句柄</li>
+<li>客户端发送<strong>连接请求（connection request）</strong></li>
+<li>服务器创建<strong>两个私有通信端口</strong>（Client Communication Port 和 Server Communication Port），并把其中一个的句柄返回给客户端</li>
+<li>客户端与服务器使用各自对应的端口句柄<strong>发送消息或回调，并监听回复</strong></li>
+</ol>
+<h4 id="24-2-三种消息传递技术（补充）">24.2 三种消息传递技术（补充）</h4>
+<table>
+<thead>
+<tr>
+<th>消息大小</th>
+<th>方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≤ 256 字节</td>
+<td>直接把消息拷贝到端口的消息队列中</td>
+</tr>
+<tr>
+<td><strong>&gt; 256 字节</strong></td>
+<td>通过**共享区对象（Shared Section Object）**传递——避免大数据拷贝（截图中的下方通道）</td>
+</tr>
+<tr>
+<td>超大数据</td>
+<td>服务器直接读写客户端地址空间的 API</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十五、管道（Pipes）">二十五、管道（Pipes）</h3>
+<p>管道是一根<strong>管道/导管（conduit）</strong>，允许两个进程通信。</p>
+<h4 id="25-1-设计管道要考虑的问题">25.1 设计管道要考虑的问题</h4>
+<ol>
+<li>通信是<strong>单向还是双向</strong>？</li>
+<li>若是双向，是<strong>半双工还是全双工</strong>？</li>
+<li>通信进程之间是否必须存在<strong>关系（如父子）</strong>？</li>
+<li>管道能否<strong>跨网络</strong>使用？</li>
+</ol>
+<h4 id="25-2-两类管道">25.2 两类管道</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>普通管道 Ordinary Pipe</strong></th>
+<th><strong>命名管道 Named Pipe</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方向</td>
+<td><strong>单向</strong>（unidirectional）</td>
+<td><strong>双向</strong>（bidirectional）</td>
+</tr>
+<tr>
+<td>进程关系</td>
+<td><strong>必须有父子关系</strong></td>
+<td><strong>不需要</strong>任何关系</td>
+</tr>
+<tr>
+<td>参与进程数</td>
+<td>2 个</td>
+<td><strong>多个进程</strong>可同时使用</td>
+</tr>
+<tr>
+<td>生命周期</td>
+<td>随创建它的进程结束而消失</td>
+<td>独立存在于文件系统中</td>
+</tr>
+<tr>
+<td>外部可访问</td>
+<td>否，无法从创建它的进程之外访问</td>
+<td>是（有名字）</td>
+</tr>
+<tr>
+<td>Windows 叫法</td>
+<td><strong>匿名管道（anonymous pipe）</strong></td>
+<td>Named Pipe</td>
+</tr>
+<tr>
+<td>支持平台</td>
+<td>UNIX、Windows</td>
+<td><strong>UNIX 和 Windows 均提供</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="25-3-普通管道（截图7）">25.3 普通管道（截图7）</h4>
+<ul>
+<li>以标准的<strong>生产者–消费者</strong>方式通信</li>
+<li>生产者写入<strong>写端（write-end）</strong>，消费者从**读端（read-end）**读取</li>
+<li>因此普通管道是<strong>单向的</strong></li>
+</ul>
+<p><strong>UNIX 实现：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> fd[<span class="number">2</span>];</span><br><span class="line">pipe(fd);      <span class="comment">/* fd[0] = 读端，fd[1] = 写端 */</span></span><br></pre></td></tr></table></figure>
+<p>父进程调用 <code>pipe()</code> 后再 <code>fork()</code>，子进程<strong>继承文件描述符</strong>，于是父子共享同一管道。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Parent                        Child</span><br><span class="line">fd[0] ◄──┐              ┌──► fd[0]</span><br><span class="line">fd[1] ───┼─── pipe ─────┤    fd[1]</span><br><span class="line">         └──────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>使用规范：</strong> 每个进程必须<strong>关闭不用的那一端</strong>（如父写子读：父关 <code>fd[0]</code>，子关 <code>fd[1]</code>），否则读端永远读不到 EOF。</p>
+<blockquote>
+<p>补充：Shell 中的 <code>ls | more</code> 正是普通管道；UNIX 中命名管道用 <code>mkfifo()</code> 创建，也称 <strong>FIFO</strong>，在文件系统中表现为一个特殊文件。UNIX 的命名管道是<strong>半双工</strong>的，需要全双工要开两条。</p>
+</blockquote>
+<h3 id="二十六、客户–服务器系统中的通信">二十六、客户–服务器系统中的通信</h3>
+<p>两种主要机制：<strong>套接字（Sockets）</strong> 与 <strong>远程过程调用（RPC）</strong>。</p>
+<h3 id="二十七、套接字（Sockets）">二十七、套接字（Sockets）</h3>
+<h4 id="27-1-基本概念">27.1 基本概念</h4>
+<ul>
+<li><strong>套接字 = 通信的端点（endpoint for communication）</strong></li>
+<li>由 <strong>IP 地址 + 端口号</strong>拼接而成。端口号是包含在数据包开头的一个数字，用于<strong>区分主机上的不同网络服务</strong></li>
+<li>例：<code>161.25.19.8:1625</code> 指主机 <code>161.25.19.8</code> 上的 1625 端口</li>
+<li>通信发生在<strong>一对套接字之间</strong></li>
+<li><strong>1024 以下的端口是&quot;知名端口（well-known）&quot;</strong>，用于标准服务（HTTP 80、SSH 22、FTP 21…）</li>
+<li>特殊 IP **<code>127.0.0.1</code>（loopback，回环地址）**指进程所在的本机</li>
+</ul>
+<h4 id="27-2-通信示意（截图8）">27.2 通信示意（截图8）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">host X (146.86.5.20)                    web server (161.25.19.8)</span><br><span class="line">socket (146.86.5.20:1625) ◄──────────► socket (161.25.19.8:80)</span><br></pre></td></tr></table></figure>
+<p>客户端端口 1625 由系统自动分配（&gt; 1024），服务器端口 80 是知名端口。</p>
+<h4 id="27-3-Java-中的三类套接字">27.3 Java 中的三类套接字</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>协议</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>面向连接（Connection-oriented）</strong></td>
+<td><strong>TCP</strong></td>
+<td>可靠、有序、需建立连接（<code>Socket</code> / <code>ServerSocket</code>）</td>
+</tr>
+<tr>
+<td><strong>无连接（Connectionless）</strong></td>
+<td><strong>UDP</strong></td>
+<td>不可靠、无序、开销小（<code>DatagramSocket</code>）</td>
+</tr>
+<tr>
+<td><strong><code>MulticastSocket</code> 类</strong></td>
+<td>UDP 组播</td>
+<td>数据可发送给<strong>多个接收者</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="27-4-Date-服务器示例（截图9）">27.4 Date 服务器示例（截图9）</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DateServer</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">ServerSocket</span> <span class="variable">sock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerSocket</span>(<span class="number">6013</span>);   <span class="comment">/* 绑定端口 6013 */</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 循环监听连接 */</span></span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">                <span class="type">Socket</span> <span class="variable">client</span> <span class="operator">=</span> sock.accept();            <span class="comment">/* 阻塞等待客户端 */</span></span><br><span class="line"></span><br><span class="line">                <span class="type">PrintWriter</span> <span class="variable">pout</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(client.getOutputStream(), <span class="literal">true</span>);</span><br><span class="line">                <span class="comment">/* 把日期写入套接字 */</span></span><br><span class="line">                pout.println(<span class="keyword">new</span> <span class="title class_">java</span>.util.Date().toString());</span><br><span class="line"></span><br><span class="line">                <span class="comment">/* 关闭该客户端连接，继续监听 */</span></span><br><span class="line">                client.close();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ioe) &#123;</span><br><span class="line">            System.err.println(ioe);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="27-5-对应的-Date-客户端（截图10）">27.5 对应的 Date 客户端（截图10）</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DateClient</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/* 连接服务器套接字 */</span></span><br><span class="line">            <span class="type">Socket</span> <span class="variable">sock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Socket</span>(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">6013</span>);</span><br><span class="line"></span><br><span class="line">            <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> sock.getInputStream();</span><br><span class="line">            <span class="type">BufferedReader</span> <span class="variable">bin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(in));</span><br><span class="line"></span><br><span class="line">            <span class="comment">/* 从套接字读取日期 */</span></span><br><span class="line">            String line;</span><br><span class="line">            <span class="keyword">while</span> ((line = bin.readLine()) != <span class="literal">null</span>)</span><br><span class="line">                System.out.println(line);</span><br><span class="line"></span><br><span class="line">            sock.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ioe) &#123;</span><br><span class="line">            System.err.println(ioe);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong></p>
+<ul>
+<li>端口 6013 &gt; 1024，属于用户可自由使用的范围</li>
+<li><code>accept()</code> 是<strong>阻塞调用</strong>；服务器处理完一个客户端后 <code>client.close()</code>，<code>ServerSocket</code> 本身不关，继续循环</li>
+<li>客户端连 <code>127.0.0.1</code> 表示服务器就在本机</li>
+<li><strong>套接字通信是&quot;非结构化&quot;的</strong>：传输的只是<strong>字节流</strong>，双方必须自行约定并解析数据格式——这是它相比 RPC 的主要缺点</li>
+</ul>
+<h3 id="二十八、远程过程调用（RPC）">二十八、远程过程调用（RPC）</h3>
+<h4 id="28-1-核心思想">28.1 核心思想</h4>
+<p>RPC 把网络上不同机器的进程之间的<strong>过程调用抽象化</strong>——让远程调用<strong>看起来像本地函数调用</strong>一样。同样<strong>使用端口来区分服务</strong>。</p>
+<h4 id="28-2-存根（Stub）">28.2 存根（Stub）</h4>
+<p><strong>Stub 是客户端对服务器上实际过程的代理（proxy）。</strong></p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>客户端 stub</strong></td>
+<td>定位服务器，并<strong>打包（marshall）参数</strong></td>
+</tr>
+<tr>
+<td><strong>服务器端 stub</strong></td>
+<td>接收消息，**解包（unmarshall）*<em>参数，在服务器上*<em>执行该过程</em></em></td>
+</tr>
+</tbody>
+</table>
+<p>在 Windows 上，stub 代码由用 **MIDL（Microsoft Interface Definition Language，微软接口定义语言）*<em>编写的规范*<em>编译生成</em></em>。</p>
+<h4 id="28-3-两大技术难题">28.3 两大技术难题</h4>
+<p><strong>① 数据表示差异</strong><br>
+不同体系结构的字节序不同——<strong>大端（big-endian）**与**小端（little-endian）</strong>。因此参数用 **XDR（External Data Representation，外部数据表示）**格式统一编码，屏蔽机器差异。</p>
+<blockquote>
+<p>讲义中写作 “XDL”，标准名称应为 <strong>XDR</strong>。</p>
+</blockquote>
+<p><strong>② 故障语义</strong><br>
+远程通信比本地调用有<strong>更多的失败场景</strong>（网络丢包、服务器宕机、消息重复）。因此系统需保证消息**“恰好一次（exactly once）”**送达，而不仅仅是&quot;最多一次（at most once）&quot;。</p>
+<ul>
+<li><strong>至多一次</strong>：给每条消息附加时间戳，服务器记录已处理的时间戳，重复消息直接丢弃</li>
+<li><strong>恰好一次</strong>：在&quot;至多一次&quot;基础上，要求客户端<strong>重传直到收到 ACK</strong></li>
+</ul>
+<p><strong>③ 绑定问题</strong><br>
+操作系统通常提供 <strong>rendezvous（会合）服务</strong>，也叫 <strong>matchmaker（媒人）服务</strong>，把客户端和服务器连接起来——即根据过程名动态查询其端口号。</p>
+<h4 id="28-4-RPC-执行流程（截图11）">28.4 RPC 执行流程（截图11）</h4>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>客户端</th>
+<th>消息</th>
+<th>服务器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>用户调用内核，请求向过程 X 发送 RPC 消息</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>内核发消息给 <strong>matchmaker</strong> 查询端口号</td>
+<td>From: client → To: server, Port: matchmaker, Re: 查询 RPC X 的地址</td>
+<td>matchmaker 收到消息，查表</td>
+</tr>
+<tr>
+<td>3</td>
+<td>内核把返回的<strong>端口 P</strong> 放入用户 RPC 消息中</td>
+<td>From: server → To: client, Port: kernel, Re: RPC X, <strong>Port: P</strong></td>
+<td>matchmaker 回复客户端端口 P</td>
+</tr>
+<tr>
+<td>4</td>
+<td>内核发送真正的 RPC</td>
+<td>From: client → To: server, <strong>Port: P</strong>, <contents></td>
+<td>监听端口 P 的守护进程收到消息</td>
+</tr>
+<tr>
+<td>5</td>
+<td>内核收到回复，交给用户</td>
+<td>From: RPC, Port: P → To: client, Port: kernel, <output></td>
+<td>守护进程处理请求并发送输出</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>简化记忆：<strong>“两轮消息”</strong> —— 第一轮问 matchmaker 要端口，第二轮才是真正的远程调用。</p>
+</blockquote>
+<h4 id="28-5-Socket-与-RPC-对比（补充）">28.5 Socket 与 RPC 对比（补充）</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Socket</th>
+<th>RPC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抽象层次</td>
+<td>低——收发<strong>原始字节流</strong></td>
+<td>高——像调用<strong>本地函数</strong></td>
+</tr>
+<tr>
+<td>数据格式</td>
+<td>程序员自行定义和解析</td>
+<td>由 stub 自动 marshall/unmarshall</td>
+</tr>
+<tr>
+<td>编程复杂度</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>灵活性/性能控制</td>
+<td>高</td>
+<td>较低</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十九、本章-IPC-机制总览">二十九、本章 IPC 机制总览</h3>
+<table>
+<thead>
+<tr>
+<th>机制</th>
+<th>模型</th>
+<th>范围</th>
+<th>关键特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POSIX 共享内存</td>
+<td>共享内存</td>
+<td>同机</td>
+<td><code>shm_open</code>+<code>ftruncate</code>+<code>mmap</code>，最快，需自行同步</td>
+</tr>
+<tr>
+<td>Mach 消息</td>
+<td>消息传递</td>
+<td>同机（微内核）</td>
+<td><code>mach_msg()</code> 统一收发，端口</td>
+</tr>
+<tr>
+<td>Windows LPC</td>
+<td>消息传递</td>
+<td><strong>仅同机</strong></td>
+<td>端口 + 共享区对象（&gt;256B）</td>
+</tr>
+<tr>
+<td>普通管道</td>
+<td>消息传递</td>
+<td>同机、父子进程</td>
+<td>单向、随进程消亡</td>
+</tr>
+<tr>
+<td>命名管道</td>
+<td>消息传递</td>
+<td>同机、任意进程</td>
+<td>双向、多进程、持久</td>
+</tr>
+<tr>
+<td>Socket</td>
+<td>消息传递</td>
+<td><strong>跨网络</strong></td>
+<td>字节流、IP:Port</td>
+</tr>
+<tr>
+<td>RPC</td>
+<td>消息传递</td>
+<td><strong>跨网络</strong></td>
+<td>stub、XDR、matchmaker</td>
+</tr>
+</tbody>
+</table>
+<h3 id="复习要点自测">复习要点自测</h3>
+<ol>
+<li>写出 POSIX 共享内存的四个步骤及对应系统调用；生产者与消费者的参数差异在哪里？</li>
+<li>为什么生产者示例中每次 <code>sprintf</code> 之后必须移动 <code>ptr</code>？</li>
+<li>Mach 中每个任务创建时获得哪两个端口？邮箱满时发送方有哪四种选择？</li>
+<li>Windows LPC 建立通信的四个步骤是什么？大于 256 字节的消息如何传递？</li>
+<li>普通管道与命名管道在方向性、进程关系、生命周期上有何不同？</li>
+<li>套接字由什么组成？1024 以下端口和 127.0.0.1 分别有什么特殊含义？</li>
+<li>客户端 stub 和服务器端 stub 各做什么？为什么需要 XDR？</li>
+<li>画出 RPC 的执行流程，说明 matchmaker 的作用。</li>
+<li>为什么远程调用要追求&quot;exactly once&quot;而不是&quot;at most once&quot;？</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter2-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1/" rel="prev" title="Introduction to Operating Systems-Chapter2">
+                  <i class="fa fa-angle-left"></i> Introduction to Operating Systems-Chapter2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/09/07/Introduction-to-Operating-Systems-Chapter4/" rel="next" title="Introduction-to-Operating-Systems-Chapter4">
+                  Introduction-to-Operating-Systems-Chapter4 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
