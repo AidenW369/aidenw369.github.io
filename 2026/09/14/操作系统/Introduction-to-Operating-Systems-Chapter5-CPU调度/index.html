@@ -1,0 +1,3061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="CPU调度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction-to-Operating-Systems-Chapter5">
+<meta property="og:url" content="http://example.com/2026/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter5-CPU%E8%B0%83%E5%BA%A6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CPU调度">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-14T07:07:40.000Z">
+<meta property="article:modified_time" content="2026-09-14T08:20:58.256Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter5-CPU%E8%B0%83%E5%BA%A6/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter5-CPU%E8%B0%83%E5%BA%A6/","path":"2026/09/14/操作系统/Introduction-to-Operating-Systems-Chapter5-CPU调度/","title":"Introduction-to-Operating-Systems-Chapter5"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction-to-Operating-Systems-Chapter5 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">CPU调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AC%E7%AB%A0%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">一、本章目标与框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">二、基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CPU%E2%80%93I-O-%E7%AA%81%E5%8F%91%E5%91%A8%E6%9C%9F%EF%BC%88CPU%E2%80%93I-O-Burst-Cycle%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. CPU–I&#x2F;O 突发周期（CPU–I&#x2F;O Burst Cycle）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-CPU-%E7%AA%81%E5%8F%91%E6%97%B6%E9%97%B4%E7%9A%84%E5%88%86%E5%B8%83"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. CPU 突发时间的分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CPU-%E8%B0%83%E5%BA%A6%E7%A8%8B%E5%BA%8F%EF%BC%88CPU-Scheduler-%E7%9F%AD%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. CPU 调度程序（CPU Scheduler &#x2F; 短程调度器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%8A%A2%E5%8D%A0%E5%BC%8F-vs-%E9%9D%9E%E6%8A%A2%E5%8D%A0%E5%BC%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 抢占式 vs 非抢占式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%8A%A2%E5%8D%A0%E5%BC%8F%E8%B0%83%E5%BA%A6%E4%B8%8E%E7%AB%9E%E4%BA%89%E6%9D%A1%E4%BB%B6%EF%BC%88Race-Condition%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 抢占式调度与竞争条件（Race Condition）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%86%E6%B4%BE%E7%A8%8B%E5%BA%8F%EF%BC%88Dispatcher%EF%BC%89"><span class="nav-number">1.2.6.</span> <span class="nav-text">6. 分派程序（Dispatcher）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%B0%83%E5%BA%A6%E5%87%86%E5%88%99%EF%BC%88Scheduling-Criteria%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">三、调度准则（Scheduling Criteria）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">四、调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1-FCFS%EF%BC%88First-Come-First-Served%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 先来先服务 FCFS（First-Come, First-Served）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%80%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88-SJF%EF%BC%88Shortest-Job-First%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 最短作业优先 SJF（Shortest-Job-First）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%B9%B3%E5%9D%87%EF%BC%88Exponential-Averaging%EF%BC%89"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">指数平均（Exponential Averaging）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9C%80%E7%9F%AD%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E4%BC%98%E5%85%88-SRTF%EF%BC%88Shortest-Remaining-Time-First%EF%BC%89"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 最短剩余时间优先 SRTF（Shortest-Remaining-Time-First）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6-RR%EF%BC%88Round-Robin%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 轮转调度 RR（Round Robin）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">五、算法对比总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E4%B8%8E%E8%80%83%E7%82%B9%E6%8F%90%E9%86%92"><span class="nav-number">1.6.</span> <span class="nav-text">六、易错点与考点提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6-RR-%E7%9A%84%E5%AE%9E%E4%BE%8B%E4%B8%8E%E6%97%B6%E9%97%B4%E7%89%87%E9%80%89%E6%8B%A9"><span class="nav-number">1.7.</span> <span class="nav-text">七、轮转调度 RR 的实例与时间片选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B%EF%BC%9Aq-4"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. 完整示例：q &#x3D; 4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%97%B6%E9%97%B4%E7%89%87%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E5%BC%80%E9%94%80"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. 时间片与上下文切换开销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%91%A8%E8%BD%AC%E6%97%B6%E9%97%B4%E9%9A%8F%E6%97%B6%E9%97%B4%E7%89%87%E5%8F%98%E5%8C%96%EF%BC%88%E9%9D%9E%E5%8D%95%E8%B0%83%EF%BC%81%EF%BC%89"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. 周转时间随时间片变化（非单调！）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88Priority-Scheduling%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、优先级调度（Priority Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="nav-number">1.8.1.</span> <span class="nav-text">1. 基本规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%8E-SJF-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.8.2.</span> <span class="nav-text">2. 与 SJF 的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9D%9E%E6%8A%A2%E5%8D%A0%EF%BC%89"><span class="nav-number">1.8.3.</span> <span class="nav-text">3. 示例（非抢占）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E6%B3%95"><span class="nav-number">1.8.4.</span> <span class="nav-text">4. 核心问题与解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6-%E8%BD%AE%E8%BD%AC%EF%BC%88Priority-Scheduling-w-RR%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">九、优先级调度 + 轮转（Priority Scheduling w&#x2F; RR）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%88q-2%EF%BC%89"><span class="nav-number">1.9.1.</span> <span class="nav-text">示例（q &#x3D; 2）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%A4%9A%E7%BA%A7%E9%98%9F%E5%88%97%EF%BC%88Multilevel-Queue%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">十、多级队列（Multilevel Queue）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 动机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%93%E6%9E%84"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%8C%89%E8%BF%9B%E7%A8%8B%E7%B1%BB%E5%9E%8B%E5%88%86%E5%B1%82%EF%BC%88%E6%9B%B4%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BD%A2%E5%BC%8F%EF%BC%89"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 按进程类型分层（更常见的形式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%9A4-%E4%B8%AA%EF%BC%89"><span class="nav-number">1.10.4.</span> <span class="nav-text">4. 调度器的定义参数（考点：4 个）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E7%BC%BA%E7%82%B9"><span class="nav-number">1.10.5.</span> <span class="nav-text">5. 缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%EF%BC%88Multilevel-Feedback-Queue-MLFQ%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、多级反馈队列（Multilevel Feedback Queue, MLFQ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%94%B9%E8%BF%9B"><span class="nav-number">1.11.1.</span> <span class="nav-text">1. 核心改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%9A5-%E4%B8%AA%EF%BC%89"><span class="nav-number">1.11.2.</span> <span class="nav-text">2. 调度器的定义参数（考点：5 个）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%BB%8F%E5%85%B8%E7%A4%BA%E4%BE%8B%EF%BC%88%E4%B8%89%E7%BA%A7%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.11.3.</span> <span class="nav-text">3. 经典示例（三级队列）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%EF%BC%88Thread-Scheduling%EF%BC%89"><span class="nav-number">1.12.</span> <span class="nav-text">十二、线程调度（Thread Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%86"><span class="nav-number">1.12.1.</span> <span class="nav-text">1. 关键区分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E7%A7%8D%E7%AB%9E%E4%BA%89%E8%8C%83%E5%9B%B4%EF%BC%88Contention-Scope%EF%BC%89"><span class="nav-number">1.12.2.</span> <span class="nav-text">2. 两种竞争范围（Contention Scope）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81Pthread-%E8%B0%83%E5%BA%A6-API"><span class="nav-number">1.13.</span> <span class="nav-text">十三、Pthread 调度 API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%A4%E4%B8%AA%E5%B8%B8%E9%87%8F"><span class="nav-number">1.13.1.</span> <span class="nav-text">1. 两个常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B3%E9%94%AE-API"><span class="nav-number">1.13.2.</span> <span class="nav-text">2. 关键 API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E8%A6%81%E7%82%B9"><span class="nav-number">1.13.3.</span> <span class="nav-text">3. 示例代码要点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6%EF%BC%88%E5%BC%95%E5%85%A5%EF%BC%89"><span class="nav-number">1.14.</span> <span class="nav-text">十四、多处理器调度（引入）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E6%9C%AC%E8%8A%82%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E8%A1%A8"><span class="nav-number">1.15.</span> <span class="nav-text">十五、本节算法对比总表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6%EF%BC%9ASMP-%E4%B8%8E%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97%E7%BB%84%E7%BB%87"><span class="nav-number">1.16.</span> <span class="nav-text">十六、多处理器调度：SMP 与就绪队列组织</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AF%B9%E7%A7%B0%E5%A4%9A%E5%A4%84%E7%90%86%EF%BC%88SMP%EF%BC%89"><span class="nav-number">1.16.1.</span> <span class="nav-text">1. 对称多处理（SMP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="nav-number">1.16.2.</span> <span class="nav-text">2. 就绪队列的两种组织方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E5%A4%9A%E6%A0%B8%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88Multicore-Processors%EF%BC%89"><span class="nav-number">1.17.</span> <span class="nav-text">十七、多核处理器（Multicore Processors）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="nav-number">1.17.1.</span> <span class="nav-text">1. 发展趋势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AD%98%E5%81%9C%E9%A1%BF%EF%BC%88Memory-Stall%EF%BC%89%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E7%9A%84%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.17.2.</span> <span class="nav-text">2. 内存停顿（Memory Stall）——多线程核的动机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E6%A0%B8%E7%B3%BB%E7%BB%9F%EF%BC%88Multithreaded-Multicore-System%EF%BC%89"><span class="nav-number">1.18.</span> <span class="nav-text">十八、多线程多核系统（Multithreaded Multicore System）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%8C%E7%A1%AC%E4%BB%B6%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BA%A4%E9%94%99%E6%89%A7%E8%A1%8C"><span class="nav-number">1.18.1.</span> <span class="nav-text">1. 双硬件线程的交错执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%8A%AF%E7%89%87%E5%A4%9A%E7%BA%BF%E7%A8%8B-CMT%EF%BC%88Chip-Multithreading%EF%BC%89"><span class="nav-number">1.18.2.</span> <span class="nav-text">2. 芯片多线程 CMT（Chip-Multithreading）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%A4%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88Two-Levels-of-Scheduling%EF%BC%89"><span class="nav-number">1.18.3.</span> <span class="nav-text">3. 两级调度（Two Levels of Scheduling）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%88Load-Balancing%EF%BC%89"><span class="nav-number">1.19.</span> <span class="nav-text">十九、负载均衡（Load Balancing）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81"><span class="nav-number">1.19.1.</span> <span class="nav-text">1. 为什么需要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E7%A7%8D%E8%BF%81%E7%A7%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.19.2.</span> <span class="nav-text">2. 两种迁移方式（考点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%9D%87%E8%A1%A1-%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%AE%9A%E4%B9%89"><span class="nav-number">1.19.3.</span> <span class="nav-text">3. &quot;均衡&quot;的两种定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E5%A4%84%E7%90%86%E5%99%A8%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88Processor-Affinity%EF%BC%89"><span class="nav-number">1.20.</span> <span class="nav-text">二十、处理器亲和性（Processor Affinity）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5%E6%9D%A5%E6%BA%90%EF%BC%9A%E7%BC%93%E5%AD%98"><span class="nav-number">1.20.1.</span> <span class="nav-text">1. 概念来源：缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E2%9A%A0%EF%B8%8F-%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E6%A0%B9%E6%9C%AC%E7%9F%9B%E7%9B%BE"><span class="nav-number">1.20.2.</span> <span class="nav-text">2. ⚠️ 与负载均衡的根本矛盾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%A4%E7%A7%8D%E4%BA%B2%E5%92%8C%E6%80%A7"><span class="nav-number">1.20.3.</span> <span class="nav-text">3. 两种亲和性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81NUMA-%E4%B8%8E-CPU-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.21.</span> <span class="nav-text">二十一、NUMA 与 CPU 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-NUMA-%E6%9E%B6%E6%9E%84"><span class="nav-number">1.21.1.</span> <span class="nav-text">1. NUMA 架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-NUMA-%E6%84%9F%E7%9F%A5%E8%B0%83%E5%BA%A6"><span class="nav-number">1.21.2.</span> <span class="nav-text">2. NUMA 感知调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E5%AE%9E%E6%97%B6-CPU-%E8%B0%83%E5%BA%A6%EF%BC%88Real-Time-CPU-Scheduling%EF%BC%89"><span class="nav-number">1.22.</span> <span class="nav-text">二十二、实时 CPU 调度（Real-Time CPU Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%A4%E7%B1%BB%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%86%EF%BC%89"><span class="nav-number">1.22.1.</span> <span class="nav-text">1. 两类实时系统（核心区分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BA%8B%E4%BB%B6%E5%BB%B6%E8%BF%9F%EF%BC%88Event-Latency%EF%BC%89"><span class="nav-number">1.22.2.</span> <span class="nav-text">2. 事件延迟（Event Latency）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81%E4%B8%AD%E6%96%AD%E5%BB%B6%E8%BF%9F%EF%BC%88Interrupt-Latency%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.23.</span> <span class="nav-text">二十三、中断延迟（Interrupt Latency）详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E3%80%81%E5%88%86%E6%B4%BE%E5%BB%B6%E8%BF%9F%EF%BC%88Dispatch-Latency%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.24.</span> <span class="nav-text">二十四、分派延迟（Dispatch Latency）详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B2%E7%AA%81%E9%98%B6%E6%AE%B5%EF%BC%88Conflict-Phase%EF%BC%89%E2%80%94%E2%80%94%E5%88%86%E6%B4%BE%E5%BB%B6%E8%BF%9F%E4%B8%AD%E6%9C%80%E8%80%97%E6%97%B6%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-number">1.24.1.</span> <span class="nav-text">冲突阶段（Conflict Phase）——分派延迟中最耗时的部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%92%A1-%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%B2%E7%AA%81%E9%98%B6%E6%AE%B5%E6%98%AF%E5%85%B3%E9%94%AE"><span class="nav-number">1.24.2.</span> <span class="nav-text">💡 补充：为什么冲突阶段是关键</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.25.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%EF%BC%88Priority-based-Scheduling%EF%BC%89"><span class="nav-number">1.26.</span> <span class="nav-text">二十五、基于优先级的实时调度（Priority-based Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B1%82%E6%AC%A1%E8%A6%81%E6%B1%82"><span class="nav-number">1.26.1.</span> <span class="nav-text">1. 实时调度的两个层次要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1%EF%BC%88Periodic-Task%EF%BC%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.26.2.</span> <span class="nav-text">2. 周期性任务（Periodic Task）模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CPU-%E5%88%A9%E7%94%A8%E7%8E%87%E4%B8%8E%E5%8F%AF%E8%B0%83%E5%BA%A6%E6%80%A7%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.26.3.</span> <span class="nav-text">3. CPU 利用率与可调度性（补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AD%E3%80%81%E9%80%9F%E7%8E%87%E5%8D%95%E8%B0%83%E8%B0%83%E5%BA%A6%EF%BC%88Rate-Monotonic-Scheduling-RMS%EF%BC%89"><span class="nav-number">1.27.</span> <span class="nav-text">二十六、速率单调调度（Rate Monotonic Scheduling, RMS）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%A7%84%E5%88%99"><span class="nav-number">1.27.1.</span> <span class="nav-text">1. 规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%88%90%E5%8A%9F%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.27.2.</span> <span class="nav-text">2. 成功示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%94%99%E8%BF%87%E6%88%AA%E6%AD%A2%E6%9C%9F%E9%99%90%E7%9A%84%E7%A4%BA%E4%BE%8B%EF%BC%88RMS-%E7%9A%84%E5%B1%80%E9%99%90%EF%BC%89"><span class="nav-number">1.27.3.</span> <span class="nav-text">3. 错过截止期限的示例（RMS 的局限）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-RMS-%E7%9A%84%E7%90%86%E8%AE%BA%E7%BB%93%E8%AE%BA%EF%BC%88%E9%87%8D%E8%A6%81%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.27.4.</span> <span class="nav-text">4. RMS 的理论结论（重要补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%E3%80%81%E6%9C%80%E6%97%A9%E6%88%AA%E6%AD%A2%E6%9C%9F%E9%99%90%E4%BC%98%E5%85%88%EF%BC%88Earliest-Deadline-First-EDF%EF%BC%89"><span class="nav-number">1.28.</span> <span class="nav-text">二十七、最早截止期限优先（Earliest-Deadline-First, EDF）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%A7%84%E5%88%99-2"><span class="nav-number">1.28.1.</span> <span class="nav-text">1. 规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.28.2.</span> <span class="nav-text">2. 示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-EDF-%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%88%E9%87%8D%E8%A6%81%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.28.3.</span> <span class="nav-text">3. EDF 的特点（重要补充）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%93%8A-RMS-vs-EDF-%E5%AF%B9%E6%AF%94%EF%BC%88%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.28.4.</span> <span class="nav-text">📊 RMS vs EDF 对比（高频考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AB%E3%80%81%E6%AF%94%E4%BE%8B%E5%88%86%E4%BA%AB%E8%B0%83%E5%BA%A6%EF%BC%88Proportional-Share-Scheduling%EF%BC%89"><span class="nav-number">1.29.</span> <span class="nav-text">二十八、比例分享调度（Proportional Share Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%84%E5%88%99"><span class="nav-number">1.29.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B9%9D%E3%80%81POSIX-%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6"><span class="nav-number">1.30.</span> <span class="nav-text">二十九、POSIX 实时调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-POSIX-1b-%E6%A0%87%E5%87%86"><span class="nav-number">1.30.1.</span> <span class="nav-text">1. POSIX.1b 标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E4%B8%AA%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="nav-number">1.30.2.</span> <span class="nav-text">2. 两个核心函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.30.3.</span> <span class="nav-text">3. 示例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%B8%80%EF%BC%9ALinux-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.31.</span> <span class="nav-text">三十、操作系统实例之一：Linux 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-%E7%89%88%E6%9C%AC%E4%B9%8B%E5%89%8D"><span class="nav-number">1.31.1.</span> <span class="nav-text">1. 2.5 版本之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%89%88%E6%9C%AC-2-5%EF%BC%9AO-1-%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="nav-number">1.31.2.</span> <span class="nav-text">2. 版本 2.5：O(1) 调度器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%89%88%E6%9C%AC-2-6-23-%E8%B5%B7%EF%BC%9A%E5%AE%8C%E5%85%A8%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88CFS%EF%BC%89"><span class="nav-number">1.31.3.</span> <span class="nav-text">3. 版本 2.6.23 起：完全公平调度器（CFS）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%B0%83%E5%BA%A6%E7%B1%BB%EF%BC%88Scheduling-Classes%EF%BC%89"><span class="nav-number">1.31.3.1.</span> <span class="nav-text">(1) 调度类（Scheduling Classes）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A%E6%8C%89%E6%AF%94%E4%BE%8B%E8%80%8C%E9%9D%9E%E5%9B%BA%E5%AE%9A%E6%97%B6%E9%97%B4%E7%89%87"><span class="nav-number">1.31.3.2.</span> <span class="nav-text">(2) 核心思想：按比例而非固定时间片</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E8%99%9A%E6%8B%9F%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%EF%BC%88vruntime%EF%BC%89%E2%80%94%E2%80%94-CFS-%E7%9A%84%E7%81%B5%E9%AD%82"><span class="nav-number">1.31.3.3.</span> <span class="nav-text">(3) 虚拟运行时间（vruntime）—— CFS 的灵魂</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-CFS-%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">1.31.3.4.</span> <span class="nav-text">(4) CFS 的实现：红黑树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-Linux-%E7%9A%84%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6"><span class="nav-number">1.31.3.5.</span> <span class="nav-text">(5) Linux 的实时调度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8E-NUMA-%E6%84%9F%E7%9F%A5"><span class="nav-number">1.31.3.6.</span> <span class="nav-text">(6) 负载均衡与 NUMA 感知</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%BA%8C%EF%BC%9AWindows-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.32.</span> <span class="nav-text">三十一、操作系统实例之二：Windows 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="nav-number">1.32.1.</span> <span class="nav-text">1. 基本机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-32-%E7%BA%A7%E4%BC%98%E5%85%88%E7%BA%A7%E6%96%B9%E6%A1%88"><span class="nav-number">1.32.2.</span> <span class="nav-text">2. 32 级优先级方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Win32-%E4%BC%98%E5%85%88%E7%BA%A7%E7%B1%BB%EF%BC%88Priority-Classes%EF%BC%89"><span class="nav-number">1.32.3.</span> <span class="nav-text">3. Win32 优先级类（Priority Classes）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8A%A8%E6%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%99%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.32.4.</span> <span class="nav-text">4. 动态优先级调整规则（考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%BA%8C%E3%80%81Windows-%E4%BC%98%E5%85%88%E7%BA%A7%E6%95%B0%E5%80%BC%E8%A1%A8"><span class="nav-number">1.33.</span> <span class="nav-text">三十二、Windows 优先级数值表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%8C%E6%95%B4%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E8%A1%8C-%E7%9B%B8%E5%AF%B9%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%8C%E5%88%97-%E4%BC%98%E5%85%88%E7%BA%A7%E7%B1%BB%EF%BC%89"><span class="nav-number">1.33.1.</span> <span class="nav-text">1. 完整对照表（行 &#x3D; 相对优先级，列 &#x3D; 优先级类）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AF%BB%E8%A1%A8%E8%A6%81%E7%82%B9%EF%BC%88%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.33.2.</span> <span class="nav-text">2. 读表要点（高频考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%89%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%B8%89%EF%BC%9ASolaris-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.34.</span> <span class="nav-text">三十三、操作系统实例之三：Solaris 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81"><span class="nav-number">1.34.1.</span> <span class="nav-text">1. 基本特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Solaris-%E5%88%86%E6%B4%BE%E8%A1%A8%EF%BC%88TS-IA-%E7%B1%BB%E4%B8%93%E7%94%A8%EF%BC%89"><span class="nav-number">1.34.2.</span> <span class="nav-text">2. Solaris 分派表（TS &#x2F; IA 类专用）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E5%88%97%E7%9A%84%E5%90%AB%E4%B9%89%EF%BC%88%E6%A0%B8%E5%BF%83%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.34.2.1.</span> <span class="nav-text">三列的含义（核心考点）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E6%9D%A1%E8%A7%84%E5%BE%8B%EF%BC%88%E5%BF%85%E9%A1%BB%E7%90%86%E8%A7%A3%EF%BC%89"><span class="nav-number">1.34.2.2.</span> <span class="nav-text">三条规律（必须理解）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Solaris-%E5%85%A8%E5%B1%80%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="nav-number">1.34.3.</span> <span class="nav-text">3. Solaris 全局优先级结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B"><span class="nav-number">1.34.4.</span> <span class="nav-text">4. 调度流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%9B%9B%E3%80%81%E7%AE%97%E6%B3%95%E8%AF%84%E4%BC%B0%EF%BC%88Algorithm-Evaluation%EF%BC%89"><span class="nav-number">1.35.</span> <span class="nav-text">三十四、算法评估（Algorithm Evaluation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-number">1.35.1.</span> <span class="nav-text">核心问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%BA%94%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BB%BA%E6%A8%A1%EF%BC%88Deterministic-Modeling%EF%BC%89"><span class="nav-number">1.36.</span> <span class="nav-text">三十五、方法一：确定性建模（Deterministic Modeling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="nav-number">1.36.1.</span> <span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A4%BA%E4%BE%8B%EF%BC%9A5-%E4%B8%AA%E8%BF%9B%E7%A8%8B%EF%BC%8C%E5%9D%87%E5%9C%A8%E6%97%B6%E5%88%BB-0-%E5%88%B0%E8%BE%BE"><span class="nav-number">1.36.2.</span> <span class="nav-text">2. 示例：5 个进程，均在时刻 0 到达</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.36.3.</span> <span class="nav-text">3. 优缺点（考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%85%AD%E3%80%81%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%8E%92%E9%98%9F%E6%A8%A1%E5%9E%8B%EF%BC%88Queueing-Models%EF%BC%89"><span class="nav-number">1.37.</span> <span class="nav-text">三十六、方法二：排队模型（Queueing Models）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">1.37.1.</span> <span class="nav-text">1. 基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Little-%E5%85%AC%E5%BC%8F%EF%BC%88Little%E2%80%99s-Law%EF%BC%89%E2%98%85-%E5%BF%85%E8%80%83"><span class="nav-number">1.37.2.</span> <span class="nav-text">2. Little 公式（Little’s Law）★ 必考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B1%80%E9%99%90"><span class="nav-number">1.37.3.</span> <span class="nav-text">3. 局限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%83%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E4%BB%BF%E7%9C%9F%EF%BC%88Simulations%EF%BC%89"><span class="nav-number">1.38.</span> <span class="nav-text">三十七、方法三：仿真（Simulations）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-2"><span class="nav-number">1.38.1.</span> <span class="nav-text">1. 为什么需要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%81%9A%E6%B3%95"><span class="nav-number">1.38.2.</span> <span class="nav-text">2. 做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%A9%B1%E5%8A%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%89%E7%A7%8D%E6%9D%A5%E6%BA%90"><span class="nav-number">1.38.3.</span> <span class="nav-text">3. 驱动数据的三种来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BB%BF%E7%9C%9F%E8%AF%84%E4%BC%B0%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.38.4.</span> <span class="nav-text">4. 仿真评估流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%B1%80%E9%99%90"><span class="nav-number">1.38.5.</span> <span class="nav-text">5. 局限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%85%AB%E3%80%81%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9A%E5%AE%9E%E9%99%85%E5%AE%9E%E7%8E%B0%EF%BC%88Implementation%EF%BC%89"><span class="nav-number">1.39.</span> <span class="nav-text">三十八、方法四：实际实现（Implementation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%81%9A%E6%B3%95"><span class="nav-number">1.39.1.</span> <span class="nav-text">1. 做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BB%A3%E4%BB%B7"><span class="nav-number">1.39.2.</span> <span class="nav-text">2. 代价</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%BA%94%E5%AF%B9%EF%BC%9A%E5%8F%AF%E9%85%8D%E7%BD%AE%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="nav-number">1.39.3.</span> <span class="nav-text">3. 应对：可配置的调度器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B9%9D%E3%80%81%E5%9B%9B%E7%A7%8D%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E8%A1%A8"><span class="nav-number">1.40.</span> <span class="nav-text">三十九、四种评估方法对比总表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%8D%81%E3%80%81%E4%B8%89%E5%A4%A7-OS-%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94"><span class="nav-number">1.41.</span> <span class="nav-text">四十、三大 OS 调度机制横向对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%8D%81%E4%B8%80%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E4%B8%8E%E8%80%83%E7%82%B9%E6%8F%90%E9%86%92"><span class="nav-number">1.42.</span> <span class="nav-text">四十一、易错点与考点提醒</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/09/14/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter5-CPU%E8%B0%83%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction-to-Operating-Systems-Chapter5 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction-to-Operating-Systems-Chapter5
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-09-14 15:07:40 / Modified: 16:20:58" itemprop="dateCreated datePublished" datetime="2026-09-14T15:07:40+08:00">2026-09-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>CPU调度<span id="more"></span></h1>
+<h3 id="一、本章目标与框架">一、本章目标与框架</h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>核心问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本概念</td>
+<td>为什么需要调度？调度的时机是什么？</td>
+</tr>
+<tr>
+<td>调度准则</td>
+<td>怎样算&quot;调度得好&quot;？</td>
+</tr>
+<tr>
+<td>调度算法</td>
+<td>FCFS、SJF、SRTF、RR（本节重点）</td>
+</tr>
+<tr>
+<td>后续扩展</td>
+<td>线程调度、多处理器调度、实时调度、各 OS 实例、算法评估</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二、基本概念">二、基本概念</h3>
+<h4 id="1-CPU–I-O-突发周期（CPU–I-O-Burst-Cycle）">1. CPU–I/O 突发周期（CPU–I/O Burst Cycle）</h4>
+<p>进程的执行过程本质上是 <strong>CPU 突发（CPU burst）与 I/O 突发（I/O burst）交替循环</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">load / store / add / read from file   ← CPU burst</span><br><span class="line">        wait for I/O                  ← I/O burst</span><br><span class="line">store increment index / write to file ← CPU burst</span><br><span class="line">        wait for I/O                  ← I/O burst</span><br><span class="line">              ……</span><br></pre></td></tr></table></figure>
+<p>进程最终以一次 CPU burst 结束（执行系统终止调用）。</p>
+<p><strong>多道程序设计（multiprogramming）的意义</strong>：当一个进程在等待 I/O 时，把 CPU 交给另一个进程，从而获得最大的 CPU 利用率。</p>
+<h4 id="2-CPU-突发时间的分布">2. CPU 突发时间的分布</h4>
+<p>实测统计呈现<strong>指数/超指数分布</strong>的形状：</p>
+<ul>
+<li><strong>短突发数量极多</strong>（曲线在左侧出现高峰）</li>
+<li><strong>长突发数量很少</strong>（右侧长长的低尾巴）</li>
+</ul>
+<blockquote>
+<p>📌 <strong>这个分布是本章最重要的&quot;事实前提&quot;</strong>：它解释了为什么 SJF 之类&quot;优待短作业&quot;的算法能显著降低平均等待时间，也解释了 I/O 密集型进程（短突发）和 CPU 密集型进程（长突发）需要被区别对待。</p>
+</blockquote>
+<h4 id="3-CPU-调度程序（CPU-Scheduler-短程调度器）">3. CPU 调度程序（CPU Scheduler / 短程调度器）</h4>
+<ul>
+<li>职责：从**就绪队列（ready queue）**中挑选一个进程，把 <strong>CPU 核心</strong>分配给它。</li>
+<li>就绪队列不一定是 FIFO，可以是优先队列、树、无序链表等。</li>
+</ul>
+<p><strong>调度发生的四个时机</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>状态转换</th>
+<th>触发原因举例</th>
+<th>是否有选择余地</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>运行 → 等待</td>
+<td>发起 I/O、wait() 等子进程</td>
+<td>❌ 无（必须换）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>运行 → 就绪</td>
+<td>时钟中断、被抢占</td>
+<td>✅ 有</td>
+</tr>
+<tr>
+<td>3</td>
+<td>等待 → 就绪</td>
+<td>I/O 完成</td>
+<td>✅ 有</td>
+</tr>
+<tr>
+<td>4</td>
+<td>终止</td>
+<td>进程结束</td>
+<td>❌ 无（必须换）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-抢占式-vs-非抢占式">4. 抢占式 vs 非抢占式</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>非抢占式（Nonpreemptive / 协作式）</th>
+<th>抢占式（Preemptive）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>触发时机</td>
+<td>仅 1 和 4</td>
+<td>还包括 2 和 3</td>
+</tr>
+<tr>
+<td>特点</td>
+<td>进程一旦获得 CPU，就一直占用，直到自己终止或主动进入等待状态</td>
+<td>可以被强行剥夺 CPU</td>
+</tr>
+<tr>
+<td>响应性</td>
+<td>差，长进程会拖垮交互性</td>
+<td>好</td>
+</tr>
+<tr>
+<td>实现开销</td>
+<td>小</td>
+<td>需要定时器、更多上下文切换</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>现代操作系统（Windows、macOS、Linux、UNIX）<strong>几乎全部使用抢占式调度</strong>。</p>
+</blockquote>
+<h4 id="5-抢占式调度与竞争条件（Race-Condition）">5. 抢占式调度与竞争条件（Race Condition）</h4>
+<p>抢占带来的代价：<strong>当多个进程共享数据时，可能产生竞争条件</strong>。</p>
+<p>典型场景：</p>
+<ol>
+<li>进程 A 正在更新共享数据，写到一半；</li>
+<li>A 被抢占，进程 B 被调度运行；</li>
+<li>B 读取该数据 → 读到<strong>不一致的中间状态</strong>。</li>
+</ol>
+<blockquote>
+<p>补充：这个问题还会波及<strong>内核数据结构</strong>（如就绪队列、打开文件表）。解决办法是第 6 章的进程同步（互斥锁、信号量等）。另外，中断处理期间也必须保证关键代码段不被打断。</p>
+</blockquote>
+<h4 id="6-分派程序（Dispatcher）">6. 分派程序（Dispatcher）</h4>
+<p>调度器负责&quot;<strong>选谁</strong>&quot;，分派程序负责&quot;<strong>怎么交接</strong>&quot;。其工作包括：</p>
+<ol>
+<li><strong>切换上下文</strong>（保存旧进程 PCB，恢复新进程 PCB）</li>
+<li><strong>切换到用户模式</strong></li>
+<li><strong>跳转到用户程序中合适的位置</strong>，重新启动该程序</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">P0 executing → save state into PCB0 → restore state from PCB1 → P1 executing</span><br><span class="line">                └──────────── dispatch latency（分派延迟）────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>分派延迟（dispatch latency）</strong>：停止一个进程并启动另一个进程所需的时间。它是纯开销，必须尽可能小（可用 Linux 的 <code>vmstat</code>、<code>/proc/[pid]/status</code> 查看上下文切换次数）。</p>
+<h3 id="三、调度准则（Scheduling-Criteria）">三、调度准则（Scheduling Criteria）</h3>
+<table>
+<thead>
+<tr>
+<th>准则</th>
+<th>含义</th>
+<th>优化方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU 利用率</strong></td>
+<td>让 CPU 尽可能忙</td>
+<td>最大化（实际 40%~90%）</td>
+</tr>
+<tr>
+<td><strong>吞吐量 Throughput</strong></td>
+<td>单位时间内完成的进程数</td>
+<td>最大化</td>
+</tr>
+<tr>
+<td><strong>周转时间 Turnaround</strong></td>
+<td>从提交到完成的总时间 = 等待 + 执行 + I/O</td>
+<td>最小化</td>
+</tr>
+<tr>
+<td><strong>等待时间 Waiting</strong></td>
+<td>在就绪队列中等待的总时长</td>
+<td>最小化</td>
+</tr>
+<tr>
+<td><strong>响应时间 Response</strong></td>
+<td>从提交请求到<strong>产生第一次响应</strong>的时间</td>
+<td>最小化</td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键区分</strong>：</p>
+<ul>
+<li>周转时间关注&quot;整件事什么时候做完&quot;→ 批处理系统关心。</li>
+<li>响应时间关注&quot;多久有动静&quot;→ 交互式/分时系统关心。</li>
+<li>调度算法通常优化<strong>平均值</strong>，但有时更应优化<strong>最坏情况</strong>或<strong>方差</strong>（响应时间可预测比平均值小更重要）。</li>
+</ul>
+<h3 id="四、调度算法">四、调度算法</h3>
+<h4 id="1-先来先服务-FCFS（First-Come-First-Served）">1. 先来先服务 FCFS（First-Come, First-Served）</h4>
+<p>非抢占，用 FIFO 队列实现，最简单。</p>
+<p><strong>例：P1=24, P2=3, P3=3</strong></p>
+<p><strong>情形 A：到达顺序 P1, P2, P3</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|          P1          | P2 | P3 |</span><br><span class="line">0                     24   27   30</span><br></pre></td></tr></table></figure>
+<p>等待时间：P1=0, P2=24, P3=27 → <strong>平均 = (0+24+27)/3 = 17</strong></p>
+<p><strong>情形 B：到达顺序 P2, P3, P1</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">| P2 | P3 |         P1          |</span><br><span class="line">0    3    6                    30</span><br></pre></td></tr></table></figure>
+<p>等待时间：P1=6, P2=0, P3=3 → <strong>平均 = (6+0+3)/3 = 3</strong></p>
+<p><strong>结论与问题</strong>：</p>
+<ul>
+<li>平均等待时间<strong>严重依赖到达顺序</strong>，很不稳定。</li>
+<li><strong>护航效应（Convoy effect）</strong>：短进程排在长进程后面被迫干等。</li>
+<li>典型恶化场景：<strong>一个 CPU 密集型进程 + 多个 I/O 密集型进程</strong>。CPU 型进程长期霸占 CPU，I/O 型进程全部堵在就绪队列；等它终于让出 CPU 后，I/O 型进程飞快跑完又全部涌向 I/O 设备，导致 <strong>CPU 和 I/O 设备双双出现利用率低谷</strong>。</li>
+<li>不适合分时系统（无抢占，无法保证响应时间）。</li>
+</ul>
+<h4 id="2-最短作业优先-SJF（Shortest-Job-First）">2. 最短作业优先 SJF（Shortest-Job-First）</h4>
+<p>更准确的名称是 <strong>SNBF（Shortest-Next-CPU-Burst-First）</strong>：比较的是<strong>下一次 CPU 突发的长度</strong>，不是进程总长度。</p>
+<p><strong>例：P1=6, P2=8, P3=7, P4=3</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">| P4 |   P1   |    P3   |    P2    |</span><br><span class="line">0    3        9        16         24</span><br></pre></td></tr></table></figure>
+<p>等待时间：P4=0, P1=3, P3=9, P2=16 → <strong>平均 = (3+16+9+0)/4 = 7</strong><br>
+（对比：同一组数据用 FCFS 平均等待为 10.25）</p>
+<p><strong>性质</strong>：</p>
+<ul>
+<li>✅ SJF 是最优的——对给定的一组进程，它给出最小的平均等待时间
+<ul>
+<li>直觉证明：把短作业挪到长作业前面，短作业减少的等待 &gt; 长作业增加的等待。</li>
+</ul>
+</li>
+<li>❌ <strong>难以实现</strong>：无法预知下一次 CPU 突发的长度。</li>
+<li>❌ 可能导致长作业<strong>饥饿（starvation）</strong>。</li>
+</ul>
+<p><strong>如何获得突发长度？</strong></p>
+<ul>
+<li>直接问用户（批处理系统中让用户申报时限，但用户会谎报）</li>
+<li><strong>估计</strong>——基于&quot;下一次突发应该和前几次相似&quot;的假设</li>
+</ul>
+<h5 id="指数平均（Exponential-Averaging）">指数平均（Exponential Averaging）</h5>
+<p>设：</p>
+<ul>
+<li>tnt_n tn = 第 n 次 CPU 突发的<strong>实际</strong>长度</li>
+<li>τn+1\tau_{n+1} τn+1 = 对下一次突发的<strong>预测</strong>值</li>
+<li>α\alpha α，0≤α≤10 \le \alpha \le 1 0≤α≤1</li>
+</ul>
+<p>τn+1=α tn+(1−α) τn\boxed{\tau_{n+1} = \alpha, t_n + (1-\alpha),\tau_n}τn+1=αtn+(1−α)τn</p>
+<p>通常取 <strong>α = 1/2</strong>（历史与近期各占一半权重）。</p>
+<p><strong>特例分析</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>α 取值</th>
+<th>公式退化为</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>α = 0</td>
+<td>τn+1=τn\tau_{n+1} = \tau_n τn+1=τn</td>
+<td>最近的历史完全不算，预测值恒定</td>
+</tr>
+<tr>
+<td>α = 1</td>
+<td>τn+1=tn\tau_{n+1} = t_n τn+1=tn</td>
+<td>只看上一次实际突发，历史全部丢弃</td>
+</tr>
+</tbody>
+</table>
+<p><strong>展开式</strong>：</p>
+<p>τn+1=αtn+(1−α)αtn−1+⋯+(1−α)jα tn−j+⋯+(1−α)n+1τ0\tau_{n+1} = \alpha t_n + (1-\alpha)\alpha t_{n-1} + \cdots + (1-\alpha)^j \alpha, t_{n-j} + \cdots + (1-\alpha)^{n+1}\tau_0τn+1=αtn+(1−α)αtn−1+⋯+(1−α)jαtn−j+⋯+(1−α)n+1τ0</p>
+<p>由于 α 和 (1−α) 都 ≤ 1，<strong>越久远的项权重越小</strong>（呈指数衰减），这正是&quot;指数平均&quot;名称的由来。</p>
+<p><strong>预测曲线示例（教材图）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>实际 tit_i ti</th>
+<th>6</th>
+<th>4</th>
+<th>6</th>
+<th>4</th>
+<th>13</th>
+<th>13</th>
+<th>13</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>预测 τi\tau_i τi</td>
+<td>10</td>
+<td>8</td>
+<td>6</td>
+<td>6</td>
+<td>5</td>
+<td>9</td>
+<td>11</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<p>验证（α=1/2）：τ₂ = 0.5×6 + 0.5×10 = 8 ✓；τ₃ = 0.5×4 + 0.5×8 = 6 ✓<br>
+可见预测值<strong>平滑地追随</strong>实际值，但对突变（4 → 13）存在<strong>滞后</strong>，需要几个周期才能跟上。</p>
+<h4 id="3-最短剩余时间优先-SRTF（Shortest-Remaining-Time-First）">3. 最短剩余时间优先 SRTF（Shortest-Remaining-Time-First）</h4>
+<p>SJF 的<strong>抢占版本</strong>。核心规则：</p>
+<blockquote>
+<p><strong>每当有新进程进入就绪队列</strong>，就重新执行一次 SJF 决策；若新进程的突发时间 &lt; 当前运行进程的<strong>剩余</strong>时间，则抢占之。</p>
+</blockquote>
+<p><strong>例（引入到达时间与抢占）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>到达时间</th>
+<th>突发时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>0</td>
+<td>8</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>9</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>3</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">| P1 |   P2   |    P4    |     P1     |      P3      |</span><br><span class="line">0    1        5         10           17             26</span><br></pre></td></tr></table></figure>
+<p><strong>逐步推演</strong>：</p>
+<ul>
+<li>t=0：只有 P1，运行。</li>
+<li>t=1：P2 到达（4）＜ P1 剩余（7）→ <strong>抢占</strong>，P2 运行。</li>
+<li>t=2：P3 到达（9）＞ P2 剩余（3）→ 不抢占。</li>
+<li>t=3：P4 到达（5）＞ P2 剩余（2）→ 不抢占。</li>
+<li>t=5：P2 结束。就绪者剩余：P1=7, P3=9, P4=5 → 选 <strong>P4</strong>。</li>
+<li>t=10：P4 结束。P1=7 &lt; P3=9 → 选 <strong>P1</strong>。</li>
+<li>t=17：P1 结束 → <strong>P3</strong> 运行至 26。</li>
+</ul>
+<p><strong>等待时间 = 完成时间 − 到达时间 − 突发时间</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>计算</th>
+<th>等待时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>17 − 0 − 8</td>
+<td>9</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>5 − 1 − 4</td>
+<td>0</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>26 − 2 − 9</td>
+<td>15</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>10 − 3 − 5</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>平均等待时间 = [(10−1)+(1−1)+(17−2)+(5−3)]/4 = 26/4 = 6.5</strong></p>
+<p><strong>思考题：SRTF 比 SJF 更&quot;最优&quot;吗？</strong></p>
+<blockquote>
+<p><strong>是的</strong>——在允许进程陆续到达的情形下，SRTF 给出的平均等待时间不劣于非抢占 SJF（同一组数据用非抢占 SJF 计算为 7.75）。但代价是<strong>更多的上下文切换开销</strong>，而这个开销在理论分析中通常被忽略。SJF 的&quot;最优性&quot;严格来说只在&quot;所有进程同时到达&quot;的前提下成立。</p>
+</blockquote>
+<h4 id="4-轮转调度-RR（Round-Robin）">4. 轮转调度 RR（Round Robin）</h4>
+<p>专为<strong>分时系统</strong>设计，是 FCFS + 抢占。</p>
+<p><strong>规则</strong>：</p>
+<ul>
+<li>每个进程获得一小段 CPU 时间，称为<strong>时间片/时间量子（time quantum, q）</strong>，通常 <strong>10–100 ms</strong>。</li>
+<li>时间片用完后，进程被抢占，<strong>插入就绪队列尾部</strong>。</li>
+<li>通过<strong>定时器中断</strong>在每个时间片结束时触发调度。</li>
+</ul>
+<p><strong>性能保证</strong>：<br>
+若就绪队列中有 n 个进程，时间片为 q，则：</p>
+<ul>
+<li>每个进程获得约 <strong>1/n 的 CPU 时间</strong>，每次最多连续使用 q；</li>
+<li><strong>任何进程的等待时间不超过 (n−1)q</strong> ← 这是 RR 最重要的性质：<strong>响应时间有上界</strong>。</li>
+</ul>
+<p><strong>时间片大小的权衡</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>q 的取值</th>
+<th>退化/后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q → ∞（很大）</td>
+<td>退化为 <strong>FCFS</strong></td>
+</tr>
+<tr>
+<td>q 很小</td>
+<td>接近&quot;处理器共享&quot;，但<strong>上下文切换过于频繁，开销占比过高</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>q 必须远大于上下文切换时间</strong>（经验法则：80% 的 CPU 突发应短于时间片）。<br>
+例：若上下文切换耗时 10 μs，q = 100 ms，则开销仅约 0.01%；若 q = 1 ms，开销升至约 1%。</p>
+</blockquote>
+<p><strong>补充例：P1=24, P2=3, P3=3，q = 4</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">| P1 | P2 | P3 | P1 | P1 | P1 | P1 | P1 |</span><br><span class="line">0    4    7   10   14   18   22   26   30</span><br></pre></td></tr></table></figure>
+<p>等待时间：P1 = 10−4 = 6，P2 = 4，P3 = 7 → 平均 ≈ <strong>5.66</strong></p>
+<p><strong>RR 的特点</strong>：</p>
+<ul>
+<li>平均周转时间通常<strong>比 SJF 长</strong>，但<strong>响应时间更好</strong>——这正是交互系统需要的。</li>
+<li><strong>无饥饿</strong>，公平性好。</li>
+<li>经验规律：如果<strong>80% 的 CPU 突发能在一个时间片内完成</strong>，平均周转时间会明显改善。</li>
+</ul>
+<h3 id="五、算法对比总结">五、算法对比总结</h3>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>抢占</th>
+<th>平均等待时间</th>
+<th>响应时间</th>
+<th>饥饿</th>
+<th>实现难度</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>FCFS</strong></td>
+<td>否</td>
+<td>差（受顺序影响大）</td>
+<td>差</td>
+<td>无</td>
+<td>极简单</td>
+<td>批处理</td>
+</tr>
+<tr>
+<td><strong>SJF</strong></td>
+<td>否</td>
+<td><strong>最优</strong>（同时到达）</td>
+<td>一般</td>
+<td>长作业可能饥饿</td>
+<td>需预测</td>
+<td>批处理（长程调度）</td>
+</tr>
+<tr>
+<td><strong>SRTF</strong></td>
+<td>是</td>
+<td>更优（有到达时间时）</td>
+<td>较好</td>
+<td>长作业易饥饿</td>
+<td>需预测+抢占</td>
+<td>理论基准</td>
+</tr>
+<tr>
+<td><strong>RR</strong></td>
+<td>是</td>
+<td>较差</td>
+<td><strong>好（有上界）</strong></td>
+<td>无</td>
+<td>简单</td>
+<td>分时/交互系统</td>
+</tr>
+</tbody>
+</table>
+<h3 id="六、易错点与考点提醒">六、易错点与考点提醒</h3>
+<ol>
+<li>等待时间 vs 周转时间
+<ul>
+<li>周转时间 = 完成时间 − 到达时间</li>
+<li>等待时间 = 周转时间 − 突发时间（无 I/O 时）</li>
+<li>画完 Gantt 图后用这两个公式核对，比数格子可靠。</li>
+</ul>
+</li>
+<li><strong>SJF 比较的是&quot;下一次 CPU 突发&quot;</strong>，不是进程总运行时间。</li>
+<li><strong>抢占时机</strong>：SRTF 只在<strong>新进程到达</strong>或<strong>当前进程结束</strong>时重新决策，不是每个时钟滴答都比较。</li>
+<li><strong>RR 中新到达进程与被抢占进程的入队顺序</strong>：教材默认新到达进程先入队，被时间片用完的进程后入队——不同题目可能约定不同，做题前先确认。</li>
+<li><strong>指数平均的 α</strong>：α 越大 → 越看重近期；α 越小 → 越平滑、越迟钝。</li>
+<li><strong>护航效应</strong>是 FCFS 的专有名词，考试常考其定义与产生条件。</li>
+</ol>
+<h3 id="七、轮转调度-RR-的实例与时间片选择">七、轮转调度 RR 的实例与时间片选择</h3>
+<h4 id="1-完整示例：q-4">1. 完整示例：q = 4</h4>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>突发时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>24</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gantt 图</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">| P1 | P2 | P3 | P1 | P1 | P1 | P1 | P1 |</span><br><span class="line">0    4    7   10   14   18   22   26   30</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意 P2、P3 只用了 3 个单位就主动让出（<strong>没用完时间片也会切换</strong>），P1 则被反复切成 4+4+4+4+4+4。</p>
+</blockquote>
+<p><strong>指标计算</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>完成时间</th>
+<th>周转时间</th>
+<th>等待时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>30</td>
+<td>30</td>
+<td>30−24 = <strong>6</strong></td>
+</tr>
+<tr>
+<td>P2</td>
+<td>7</td>
+<td>7</td>
+<td>7−3 = <strong>4</strong></td>
+</tr>
+<tr>
+<td>P3</td>
+<td>10</td>
+<td>10</td>
+<td>10−3 = <strong>7</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>平均等待时间 = (6+4+7)/3 ≈ <strong>5.67</strong></li>
+<li>平均周转时间 = (30+7+10)/3 ≈ <strong>15.67</strong></li>
+</ul>
+<p><strong>与 SJF 对比</strong>（同组数据 SJF：P2→P3→P1，平均周转 = (3+6+30)/3 = 13）：</p>
+<blockquote>
+<p>📌 <strong>RR 的平均周转时间通常高于 SJF，但响应时间（response time）更好。</strong><br>
+这是一个<strong>刻意的取舍</strong>：交互式系统宁可让每个人都&quot;稍微慢一点完成&quot;，也不能让某个人&quot;等很久才有第一次反应&quot;。</p>
+</blockquote>
+<h4 id="2-时间片与上下文切换开销">2. 时间片与上下文切换开销</h4>
+<p><strong>经验数值</strong>：</p>
+<ul>
+<li>时间片 q 通常为 <strong>10 ms ~ 100 ms</strong></li>
+<li>上下文切换时间 <strong>&lt; 10 μs</strong>（约占 q 的 0.01% ~ 0.1%）</li>
+</ul>
+<p><strong>核心原则：q 必须远大于上下文切换时间。</strong></p>
+<p><strong>教材示例（进程总时间 = 10）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>时间片 q</th>
+<th>上下文切换次数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td><strong>0</strong></td>
+<td>q &gt; 总时间，一次跑完（退化为 FCFS）</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>1</strong></td>
+<td>在 t=6 处切一刀</td>
+</tr>
+<tr>
+<td>1</td>
+<td><strong>9</strong></td>
+<td>切成 10 段，开销占比极高</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>可见：<strong>q 越小 → 切换次数越多 → 纯开销越大</strong>；q 越大 → 越接近 FCFS → 响应性越差。这是 RR 参数选择的根本矛盾。</p>
+</blockquote>
+<h4 id="3-周转时间随时间片变化（非单调！）">3. 周转时间随时间片变化（非单调！）</h4>
+<p><strong>数据</strong>：P1=6, P2=3, P3=1, P4=7（总计 17，均在 t=0 到达）</p>
+<table>
+<thead>
+<tr>
+<th>时间片 q</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平均周转时间</td>
+<td>11.0</td>
+<td>11.5</td>
+<td>10.8</td>
+<td>11.5</td>
+<td>12.25</td>
+<td><strong>10.5</strong></td>
+<td><strong>10.5</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>关键观察</strong>：</p>
+<ol>
+<li><strong>曲线上下波动，不是单调下降</strong>——增大 q 不一定改善周转时间。</li>
+<li>当 q 大到足以让<strong>多数进程在一个时间片内完成</strong>时，周转时间才会明显下降（q=6 时 P1/P2/P3 都能一次跑完）。</li>
+<li>q ≥ 7 后曲线变平——此时已完全退化为 FCFS，再增大无意义。</li>
+</ol>
+<blockquote>
+<p>🎯 <strong>经验法则（考点）</strong>：<strong>80% 的 CPU 突发应当短于时间片 q。</strong><br>
+结合第一部分学的&quot;CPU 突发分布&quot;图（短突发极多）——这条法则就是要把 q 设在分布主峰的右侧。</p>
+</blockquote>
+<h3 id="八、优先级调度（Priority-Scheduling）">八、优先级调度（Priority Scheduling）</h3>
+<h4 id="1-基本规则">1. 基本规则</h4>
+<ul>
+<li>每个进程关联一个<strong>优先级数字（整数）</strong>。</li>
+<li>CPU 分配给<strong>优先级最高</strong>的进程。</li>
+<li>⚠️ <strong>约定：数字越小，优先级越高</strong>（Unix 传统；但不同教材/系统约定相反，做题前务必确认）。</li>
+<li>有<strong>抢占式</strong>和<strong>非抢占式</strong>两个版本。</li>
+</ul>
+<h4 id="2-与-SJF-的关系">2. 与 SJF 的关系</h4>
+<blockquote>
+<p><strong>SJF 是优先级调度的特例</strong>：其优先级 = 预测的下次 CPU 突发时间的<strong>倒数</strong>（突发越短 → 优先级越高）。</p>
+</blockquote>
+<p>优先级的来源：</p>
+<ul>
+<li><strong>内部</strong>：时间限制、内存需求、打开文件数、I/O 突发与 CPU 突发的比值</li>
+<li><strong>外部</strong>：进程重要性、付费金额、部门、政治因素</li>
+</ul>
+<h4 id="3-示例（非抢占）">3. 示例（非抢占）</h4>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>突发时间</th>
+<th>优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>10</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>1</td>
+<td><strong>1（最高）</strong></td>
+</tr>
+<tr>
+<td>P3</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>1</td>
+<td>5（最低）</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>5</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>执行顺序</strong>：P2 → P5 → P1 → P3 → P4</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">| P2 |   P5   |          P1          | P3 |P4|</span><br><span class="line">0    1        6                     16   18 19</span><br></pre></td></tr></table></figure>
+<p><strong>等待时间</strong>：P2=0, P5=1, P1=6, P3=16, P4=18<br>
+<strong>平均等待时间 = (0+1+6+16+18)/5 = 41/5 = 8.2</strong></p>
+<h4 id="4-核心问题与解法">4. 核心问题与解法</h4>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th><strong>饥饿 / 无限阻塞（Starvation / Indefinite Blocking）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>描述</td>
+<td>低优先级进程可能<strong>永远得不到执行</strong>——只要系统中不断有高优先级进程到来</td>
+</tr>
+<tr>
+<td>传闻</td>
+<td>1973 年 MIT 关闭 IBM 7094 时，发现一个 1967 年提交的低优先级作业<strong>还没运行</strong></td>
+</tr>
+<tr>
+<td><strong>解法</strong></td>
+<td><strong>老化（Aging）</strong>：随着等待时间增长，<strong>逐步提高</strong>进程的优先级</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>例：每等待 15 分钟，优先级数值减 1（提高一级）。一个优先级 127 的进程最多等 32 小时就能升到优先级 0。</p>
+</blockquote>
+<h3 id="九、优先级调度-轮转（Priority-Scheduling-w-RR）">九、优先级调度 + 轮转（Priority Scheduling w/ RR）</h3>
+<p><strong>这是最实用的组合</strong>，也是现实 OS 的常见做法：</p>
+<blockquote>
+<p><strong>规则</strong>：运行优先级最高的进程；<strong>优先级相同的进程之间用 RR 轮转</strong>。</p>
+</blockquote>
+<h4 id="示例（q-2）">示例（q = 2）</h4>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>突发时间</th>
+<th>优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>5</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>7</td>
+<td><strong>1</strong></td>
+</tr>
+<tr>
+<td>P5</td>
+<td>3</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gantt 图</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|      P4      | P2 | P3 | P2 | P3 |P2|   P3   |P1|P5|P1|P5|</span><br><span class="line">0              7    9   11   13   15 16       20 22 24 26 27</span><br></pre></td></tr></table></figure>
+<p><strong>逐段推演</strong>（关键在于&quot;分层&quot;思考）：</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>优先级 1</strong></td>
+<td>只有 P4，独占 CPU 连续跑完 0→7（<strong>同层只有一个进程时不切片</strong>）</td>
+</tr>
+<tr>
+<td><strong>优先级 2</strong></td>
+<td>P2、P3 轮转：P2(7-9)→P3(9-11)→P2(11-13)→P3(13-15)→P2(15-16，只剩 1)→P3 独占(16-20，剩余 4)</td>
+</tr>
+<tr>
+<td><strong>优先级 3</strong></td>
+<td>P1、P5 轮转：P1(20-22)→P5(22-24)→P1(24-26，完成)→P5(26-27，完成)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>理解要点</strong>：优先级决定&quot;哪一层先跑&quot;，RR 决定&quot;同一层内部怎么分&quot;。低优先级进程必须等高优先级层<strong>完全清空</strong>才能开始（因此仍需 aging 防饥饿）。</p>
+</blockquote>
+<hr>
+<h3 id="十、多级队列（Multilevel-Queue）">十、多级队列（Multilevel Queue）</h3>
+<h4 id="1-动机">1. 动机</h4>
+<p>上面的&quot;优先级 + RR&quot;若用单一队列，每次调度都要<strong>遍历查找最高优先级进程 O(n)</strong>。改进：<strong>按优先级拆成多个独立队列</strong>。</p>
+<h4 id="2-结构">2. 结构</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">priority = 0  →  [T0][T1][T2][T3][T4]     ← 最高，先调度</span><br><span class="line">priority = 1  →  [T5][T6][T7]</span><br><span class="line">priority = 2  →  [T8][T9][T10][T11]</span><br><span class="line">      ⋮</span><br><span class="line">priority = n  →  [Tx][Ty][Tz]             ← 最低</span><br></pre></td></tr></table></figure>
+<p><strong>调度方法</strong>：优先调度<strong>最高优先级非空队列</strong>中的进程；该队列为空才向下看。</p>
+<h4 id="3-按进程类型分层（更常见的形式）">3. 按进程类型分层（更常见的形式）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">最高优先级  ┌──────────────────────┐</span><br><span class="line">           │  real-time processes │  实时进程</span><br><span class="line">           ├──────────────────────┤</span><br><span class="line">           │  system processes    │  系统进程</span><br><span class="line">           ├──────────────────────┤</span><br><span class="line">           │ interactive processes│  交互进程</span><br><span class="line">           ├──────────────────────┤</span><br><span class="line">           │   batch processes    │  批处理进程</span><br><span class="line">最低优先级  └──────────────────────┘</span><br></pre></td></tr></table></figure>
+<h4 id="4-调度器的定义参数（考点：4-个）">4. 调度器的定义参数（考点：4 个）</h4>
+<ol>
+<li><strong>队列的数量</strong></li>
+<li><strong>每个队列各自的调度算法</strong>（如前台用 RR、后台用 FCFS）</li>
+<li><strong>进程进入系统时被放入哪个队列的判定方法</strong></li>
+<li><strong>队列之间的调度方法</strong></li>
+</ol>
+<p><strong>队列间调度的两种方式</strong>：</p>
+<ul>
+<li><strong>固定优先级抢占</strong>：高优先级队列非空时，低队列一律不运行 → 简单，但可能饥饿。</li>
+<li><strong>时间片分配</strong>：如前台队列占 80% CPU（内部 RR），后台占 20%（内部 FCFS）。</li>
+</ul>
+<h4 id="5-缺点">5. 缺点</h4>
+<p><strong>进程一旦被分配到某个队列，就永久固定在该队列中</strong>——缺乏灵活性（一个交互进程若被误判为批处理，将永远慢）。开销低，但不够灵活。</p>
+<h3 id="十一、多级反馈队列（Multilevel-Feedback-Queue-MLFQ）">十一、多级反馈队列（Multilevel Feedback Queue, MLFQ）</h3>
+<h4 id="1-核心改进">1. 核心改进</h4>
+<blockquote>
+<p><strong>进程可以在不同队列之间移动。</strong></p>
+</blockquote>
+<p>这就实现了&quot;<strong>根据实际行为动态分类</strong>&quot;：</p>
+<ul>
+<li>CPU 密集型进程（突发长）→ 自动<strong>下沉</strong>到低优先级队列</li>
+<li>I/O 密集型 / 交互式进程（突发短）→ 自动<strong>留在</strong>高优先级队列</li>
+<li>等待过久的进程 → 被<strong>上调</strong>（这正是 <strong>aging 的一种实现</strong>）</li>
+</ul>
+<h4 id="2-调度器的定义参数（考点：5-个）">2. 调度器的定义参数（考点：5 个）</h4>
+<ol>
+<li>队列的数量</li>
+<li>每个队列的调度算法</li>
+<li><strong>何时将进程升级（upgrade / promote）</strong> 的方法</li>
+<li><strong>何时将进程降级（demote）</strong> 的方法</li>
+<li>进程进入系统时放入哪个队列的方法</li>
+</ol>
+<h4 id="3-经典示例（三级队列）">3. 经典示例（三级队列）</h4>
+<table>
+<thead>
+<tr>
+<th>队列</th>
+<th>算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Q0</strong></td>
+<td>RR，时间片 <strong>8 ms</strong></td>
+</tr>
+<tr>
+<td><strong>Q1</strong></td>
+<td>RR，时间片 <strong>16 ms</strong></td>
+</tr>
+<tr>
+<td><strong>Q2</strong></td>
+<td><strong>FCFS</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>调度流程</strong>：</p>
+<ol>
+<li>新进程进入 <strong>Q0</strong>，按 RR 服务。</li>
+<li>获得 CPU 后运行 <strong>8 ms</strong>；若未完成 → <strong>降级到 Q1</strong>。</li>
+<li>在 Q1 再按 RR 获得 <strong>16 ms</strong>；若仍未完成 → 被抢占并<strong>降级到 Q2</strong>。</li>
+<li>在 Q2 按 FCFS 运行，仅在 Q0、Q1 都为空时才被调度。</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">        ┌─────────────────┐</span><br><span class="line">新进程 →│ Q0: RR, q = 8   │──未完成─┐</span><br><span class="line">        └─────────────────┘         ↓</span><br><span class="line">        ┌─────────────────┐</span><br><span class="line">        │ Q1: RR, q = 16  │──未完成─┐</span><br><span class="line">        └─────────────────┘         ↓</span><br><span class="line">        ┌─────────────────┐</span><br><span class="line">        │ Q2: FCFS        │</span><br><span class="line">        └─────────────────┘</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>💡 <strong>设计思想的精妙之处</strong>：</p>
+<ul>
+<li>短交互任务（如键盘响应）在 Q0 内就能完成 → <strong>响应极快</strong>（近似 SJF 的效果，却无需预知突发长度）。</li>
+<li>长计算任务逐级下沉 → <strong>获得更长的时间片</strong>，减少切换开销，同时不干扰交互任务。</li>
+<li>MLFQ 是<strong>最通用也最复杂</strong>的调度算法，是现代 OS（如早期 Windows、Solaris）的原型。</li>
+</ul>
+</blockquote>
+<h3 id="十二、线程调度（Thread-Scheduling）">十二、线程调度（Thread Scheduling）</h3>
+<h4 id="1-关键区分">1. 关键区分</h4>
+<blockquote>
+<p><strong>在支持线程的系统上，被调度的是内核级线程，而不是进程。</strong></p>
+</blockquote>
+<p>用户级线程本身不能直接被内核调度，必须映射到内核线程（LWP, Lightweight Process）上。</p>
+<h4 id="2-两种竞争范围（Contention-Scope）">2. 两种竞争范围（Contention Scope）</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>PCS（进程竞争范围）</strong></th>
+<th><strong>SCS（系统竞争范围）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全称</td>
+<td>Process-Contention Scope</td>
+<td>System-Contention Scope</td>
+</tr>
+<tr>
+<td>适用模型</td>
+<td><strong>多对一、多对多</strong></td>
+<td><strong>一对一</strong>（Windows、Linux）</td>
+</tr>
+<tr>
+<td>调度者</td>
+<td><strong>线程库</strong></td>
+<td><strong>内核</strong></td>
+</tr>
+<tr>
+<td>竞争范围</td>
+<td>竞争发生在<strong>同一进程内部</strong>的线程之间</td>
+<td>竞争发生在<strong>系统中所有线程</strong>之间</td>
+</tr>
+<tr>
+<td>决定依据</td>
+<td>通常由<strong>程序员设置的优先级</strong>决定</td>
+<td>由内核调度算法决定</td>
+</tr>
+<tr>
+<td>结果</td>
+<td>线程库把用户级线程调度到可用的 LWP 上</td>
+<td>内核线程被调度到可用 CPU 上</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>记忆：<strong>PCS 是&quot;内部选拔赛&quot;（选出代表去占用 LWP），SCS 是&quot;全国总决赛&quot;（所有线程抢 CPU）。</strong></p>
+</blockquote>
+<h3 id="十三、Pthread-调度-API">十三、Pthread 调度 API</h3>
+<h4 id="1-两个常量">1. 两个常量</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PTHREAD_SCOPE_PROCESS   <span class="comment">// 使用 PCS 调度</span></span><br><span class="line">PTHREAD_SCOPE_SYSTEM    <span class="comment">// 使用 SCS 调度</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ <strong>可被 OS 限制</strong>：<strong>Linux 和 macOS 只允许 <code>PTHREAD_SCOPE_SYSTEM</code></strong>（因为它们采用一对一模型），设置为 PROCESS 会失败。</p>
+</blockquote>
+<h4 id="2-关键-API">2. 关键 API</h4>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pthread_attr_init(&amp;attr)</code></td>
+<td>获取默认属性</td>
+</tr>
+<tr>
+<td><code>pthread_attr_getscope(&amp;attr, &amp;scope)</code></td>
+<td><strong>查询</strong>当前竞争范围</td>
+</tr>
+<tr>
+<td><code>pthread_attr_setscope(&amp;attr, SCOPE)</code></td>
+<td><strong>设置</strong>竞争范围</td>
+</tr>
+<tr>
+<td><code>pthread_create(&amp;tid[i], &amp;attr, runner, NULL)</code></td>
+<td>用指定属性创建线程</td>
+</tr>
+<tr>
+<td><code>pthread_join(tid[i], NULL)</code></td>
+<td>等待线程结束</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-示例代码要点">3. 示例代码要点</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NUM_THREADS 5</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> i, scope;</span><br><span class="line">    <span class="type">pthread_t</span> tid[NUM_THREADS];</span><br><span class="line">    <span class="type">pthread_attr_t</span> attr;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);                    <span class="comment">/* 1. 取默认属性 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 2. 先查询当前的 scope */</span></span><br><span class="line">    <span class="keyword">if</span> (pthread_attr_getscope(&amp;attr, &amp;scope) != <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Unable to get scheduling scope\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (scope == PTHREAD_SCOPE_PROCESS)      <span class="built_in">printf</span>(<span class="string">&quot;PTHREAD_SCOPE_PROCESS&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (scope == PTHREAD_SCOPE_SYSTEM)  <span class="built_in">printf</span>(<span class="string">&quot;PTHREAD_SCOPE_SYSTEM&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Illegal scope value.\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 3. 设置为 PCS 或 SCS */</span></span><br><span class="line">    pthread_attr_setscope(&amp;attr, PTHREAD_SCOPE_SYSTEM);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 4. 创建线程（attr 传入） */</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NUM_THREADS; i++)</span><br><span class="line">        pthread_create(&amp;tid[i], &amp;attr, runner, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 5. 等待全部结束 */</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NUM_THREADS; i++)</span><br><span class="line">        pthread_join(tid[i], <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> *<span class="title function_">runner</span><span class="params">(<span class="type">void</span> *param)</span> &#123;</span><br><span class="line">    <span class="comment">/* do some work ... */</span></span><br><span class="line">    pthread_exit(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>代码套路（三步走）</strong>：<code>attr_init</code> → <code>attr_setscope</code> → <code>create(带 attr)</code>。所有 pthread 函数<strong>成功返回 0</strong>，非 0 即出错。</p>
+<h3 id="十四、多处理器调度（引入）">十四、多处理器调度（引入）</h3>
+<blockquote>
+<p><strong>当有多个 CPU 可用时，CPU 调度变得复杂得多</strong>——不再只是&quot;选哪个进程&quot;，还要决定&quot;放到哪个 CPU 上&quot;。</p>
+</blockquote>
+<p>&quot;多处理器&quot;可能指以下任一架构：</p>
+<table>
+<thead>
+<tr>
+<th>架构</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多核 CPU（Multicore CPUs）</strong></td>
+<td>单芯片上集成多个计算核心，现今最常见</td>
+</tr>
+<tr>
+<td><strong>多线程核（Multithreaded cores）</strong></td>
+<td>每个核支持多硬件线程（超线程/CMT），核内可在某线程等内存时切换到另一线程</td>
+</tr>
+<tr>
+<td><strong>NUMA 系统</strong></td>
+<td>非一致内存访问——CPU 访问&quot;自己的&quot;内存快，访问远端内存慢，调度须考虑<strong>内存亲和性</strong></td>
+</tr>
+<tr>
+<td><strong>异构多处理（Heterogeneous Multiprocessing, HMP）</strong></td>
+<td>核心性能不同（如 ARM big.LITTLE：大核高性能 / 小核低功耗），按任务需求分配</td>
+</tr>
+</tbody>
+</table>
+<p><strong>后续将展开的问题</strong>：非对称 vs 对称多处理（SMP）、每 CPU 私有队列 vs 共享队列、<strong>负载均衡（push/pull migration）</strong>、<strong>处理器亲和性（soft/hard affinity）</strong>。</p>
+<h3 id="十五、本节算法对比总表">十五、本节算法对比总表</h3>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>抢占</th>
+<th>复杂度</th>
+<th>饥饿</th>
+<th>响应时间</th>
+<th>特点 / 适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RR</strong></td>
+<td>是</td>
+<td>低</td>
+<td>无</td>
+<td><strong>好（有上界）</strong></td>
+<td>分时系统；q 的选择是关键</td>
+</tr>
+<tr>
+<td><strong>优先级（非抢占）</strong></td>
+<td>否</td>
+<td>低</td>
+<td><strong>有</strong></td>
+<td>高优先级好</td>
+<td>需配合 aging</td>
+</tr>
+<tr>
+<td><strong>优先级（抢占）</strong></td>
+<td>是</td>
+<td>低</td>
+<td><strong>有</strong></td>
+<td>高优先级很好</td>
+<td>实时/系统任务</td>
+</tr>
+<tr>
+<td><strong>优先级 + RR</strong></td>
+<td>是</td>
+<td>中</td>
+<td>有</td>
+<td>好</td>
+<td>实用组合</td>
+</tr>
+<tr>
+<td><strong>多级队列</strong></td>
+<td>是</td>
+<td>中</td>
+<td>可能有</td>
+<td>按队列分化</td>
+<td>开销低，<strong>不灵活</strong>（不能换队列）</td>
+</tr>
+<tr>
+<td><strong>多级反馈队列</strong></td>
+<td>是</td>
+<td><strong>高</strong></td>
+<td>可用 aging 消除</td>
+<td><strong>最好</strong></td>
+<td><strong>最通用</strong>，自适应进程行为</td>
+</tr>
+</tbody>
+</table>
+<h3 id="十六、多处理器调度：SMP-与就绪队列组织">十六、多处理器调度：SMP 与就绪队列组织</h3>
+<h4 id="1-对称多处理（SMP）">1. 对称多处理（SMP）</h4>
+<blockquote>
+<p><strong>SMP（Symmetric Multiprocessing）：每个处理器都是&quot;自调度的&quot;（self-scheduling）。</strong></p>
+</blockquote>
+<p>即：不存在一个&quot;主控 CPU&quot;统一发号施令，每个处理器各自运行调度程序，从就绪队列中挑选线程来执行。这是现代系统的标准做法。</p>
+<blockquote>
+<p>📌 补充对照：<strong>非对称多处理（AMP）</strong> 是让<strong>一个主处理器</strong>负责所有调度决策、I/O 和其他系统活动，其余处理器只执行用户代码。优点是简单（只有一个核访问系统数据结构，无需同步），缺点是主处理器成为<strong>性能瓶颈</strong>。现已基本被 SMP 取代。</p>
+</blockquote>
+<h4 id="2-就绪队列的两种组织方式">2. 就绪队列的两种组织方式</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(a) 共享就绪队列                    (b) 每核私有运行队列</span><br><span class="line">   [T0][T1][T2]…[Tn]           [T0]      [T0]      [T0]</span><br><span class="line">     ↓    ↓      ↓             [T1]      [T1]      [T1]</span><br><span class="line">                                [T2]                [T2]</span><br><span class="line">  core0 core1 … coren           [T3]</span><br><span class="line">                                 ↓         ↓         ↓</span><br><span class="line">  common ready queue           core0     core1  …  coren</span><br><span class="line">                                    per-core run queues</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>(a) 共享队列</strong></th>
+<th><strong>(b) 每核私有队列</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>结构</td>
+<td>所有线程放在<strong>一个公共就绪队列</strong></td>
+<td>每个处理器有<strong>自己的私有队列</strong></td>
+</tr>
+<tr>
+<td>负载均衡</td>
+<td>天然均衡（谁空闲谁来取）</td>
+<td>可能不均衡，<strong>需要额外的负载均衡机制</strong></td>
+</tr>
+<tr>
+<td>竞争问题</td>
+<td><strong>严重</strong>：多个 CPU 同时访问同一队列，需要加锁 → 成为瓶颈；还可能两个 CPU 选中同一线程，或线程丢失</td>
+<td>无竞争，<strong>无锁开销</strong></td>
+</tr>
+<tr>
+<td>缓存亲和性</td>
+<td>差（线程每次可能落到不同核）</td>
+<td><strong>好</strong>（线程倾向留在同一核）</td>
+</tr>
+<tr>
+<td>实际采用</td>
+<td>较少</td>
+<td>✅ <strong>绝大多数现代 SMP 系统（Linux、Windows、Solaris）</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>权衡本质</strong>：(b) 用&quot;可能不均衡&quot;换取&quot;无锁 + 高缓存命中&quot;，再通过负载均衡算法补上短板。</p>
+</blockquote>
+<h3 id="十七、多核处理器（Multicore-Processors）">十七、多核处理器（Multicore Processors）</h3>
+<h4 id="1-发展趋势">1. 发展趋势</h4>
+<blockquote>
+<p><strong>把多个处理器核心放在同一块物理芯片上。</strong></p>
+</blockquote>
+<p>优势：</p>
+<ul>
+<li><strong>更快</strong>（核间通信走片上互连，远快于跨芯片总线）</li>
+<li><strong>功耗更低</strong>（共享缓存、更短的信号路径）</li>
+</ul>
+<h4 id="2-内存停顿（Memory-Stall）——多线程核的动机">2. 内存停顿（Memory Stall）——多线程核的动机</h4>
+<p>处理器访问内存时，常常要等待数据从内存取回（<strong>cache miss</strong>、内存访问速度远慢于 CPU）。这段等待就是 <strong>memory stall（内存停顿）</strong>。</p>
+<p><strong>单线程核的执行图</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thread →  [ C ][ M ][ C ][ M ][ C ][ M ][ C ][ M ]  → time</span><br><span class="line">          C = compute cycle（计算周期）</span><br><span class="line">          M = memory stall cycle（内存停顿周期）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ <strong>关键观察</strong>：在 M 阶段，<strong>CPU 核心完全空转</strong>，可能浪费高达 50% 的时间。</p>
+</blockquote>
+<p><strong>解决思路</strong>：给每个核配多个硬件线程——<strong>当一个线程发生内存停顿时，立刻切换到另一个线程执行</strong>，用别的线程的 C 填补这个线程的 M。</p>
+<h3 id="十八、多线程多核系统（Multithreaded-Multicore-System）">十八、多线程多核系统（Multithreaded Multicore System）</h3>
+<h4 id="1-双硬件线程的交错执行">1. 双硬件线程的交错执行</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">thread1 →     [ C ][ M ][ C ][ M ][ C ][ M ][ C ]</span><br><span class="line">thread0 →  [ C ][ M ][ C ][ M ][ C ][ M ][ C ]</span><br><span class="line">                          time →</span><br></pre></td></tr></table></figure>
+<p>两个线程<strong>交错（interleave）</strong>：thread0 停顿时 thread1 计算，反之亦然，<strong>物理核心的利用率大幅提升</strong>。</p>
+<blockquote>
+<p>注意：这<strong>不增加实际计算能力</strong>（C 的总量没变），只是<strong>填补空隙</strong>，因此加速比通常在 1.2~1.3 倍，而非 2 倍。</p>
+</blockquote>
+<h4 id="2-芯片多线程-CMT（Chip-Multithreading）">2. 芯片多线程 CMT（Chip-Multithreading）</h4>
+<blockquote>
+<p><strong>CMT 为每个核分配多个硬件线程。Intel 称之为超线程（hyperthreading），学名 SMT（同步多线程）。</strong></p>
+</blockquote>
+<p><strong>架构与 OS 视图</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">        物理硬件                        操作系统看到的</span><br><span class="line">┌─────────────────────────┐      ┌──────────────────────────┐</span><br><span class="line">│  core0        core1     │      │ CPU0  CPU1  CPU2  CPU3   │</span><br><span class="line">│  ├ hw thread ├ hw thread│  →   │ CPU4  CPU5  CPU6  CPU7   │</span><br><span class="line">│  └ hw thread └ hw thread│      └──────────────────────────┘</span><br><span class="line">│  core2        core3     │        8 个&quot;逻辑处理器&quot;</span><br><span class="line">│  ├ hw thread ├ hw thread│</span><br><span class="line">│  └ hw thread └ hw thread│</span><br><span class="line">└─────────────────────────┘</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>🎯 <strong>考点计算</strong>：<strong>4 核 × 每核 2 硬件线程 = 操作系统看到 8 个逻辑处理器（logical processors）。</strong><br>
+通式：逻辑 CPU 数 = 核数 × 每核硬件线程数。<br>
+（例：Oracle SPARC M7 为 8 核 × 8 线程 = 64 个逻辑 CPU）</p>
+</blockquote>
+<h4 id="3-两级调度（Two-Levels-of-Scheduling）">3. 两级调度（Two Levels of Scheduling）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">       软件线程（software threads）</span><br><span class="line">        ∫   ∫   ∫   ∫</span><br><span class="line">         ＼ │ │ ／</span><br><span class="line">level 1 ─── ● ─────────   ← 第 1 级：操作系统决定</span><br><span class="line">         ／     ＼</span><br><span class="line">       ∫           ∫       硬件线程（逻辑处理器）</span><br><span class="line">level 2 ─── ● ─────────   ← 第 2 级：核心自身决定</span><br><span class="line">             ↓</span><br><span class="line">       [ processing core ]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>决策者</th>
+<th>决策内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Level 1</strong></td>
+<td><strong>操作系统</strong></td>
+<td>选择哪个<strong>软件线程</strong>在哪个<strong>逻辑 CPU</strong> 上运行（即本章学的 RR、优先级、MLFQ 等算法）</td>
+</tr>
+<tr>
+<td><strong>Level 2</strong></td>
+<td><strong>每个物理核（硬件）</strong></td>
+<td>决定哪个<strong>硬件线程</strong>真正占用物理核心。常用策略：轮转，或基于&quot;紧迫度事件（urgency）&quot;的动态优先级</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>两级不必知道彼此</strong>：OS 层可以用任何调度算法；硬件层的切换开销极小（寄存器组是复制的，无需保存恢复）。但<strong>OS 若能感知处理器拓扑会调度得更好</strong>——例如两个计算密集线程应分到<strong>不同物理核</strong>，而不是同一个核的两个硬件线程。</p>
+</blockquote>
+<h3 id="十九、负载均衡（Load-Balancing）">十九、负载均衡（Load Balancing）</h3>
+<h4 id="1-为什么需要">1. 为什么需要</h4>
+<p>在 SMP 中，必须<strong>让所有 CPU 都保持有活干</strong>，否则效率浪费。负载均衡试图让工作负载<strong>均匀分布</strong>在所有处理器上。</p>
+<blockquote>
+<p>注意：负载均衡<strong>只对&quot;每核私有队列&quot;结构才有意义</strong>；共享队列结构天然均衡（CPU 空闲就来取）。</p>
+</blockquote>
+<h4 id="2-两种迁移方式（考点）">2. 两种迁移方式（考点）</h4>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>触发者</th>
+<th>机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>推迁移（Push migration）</strong></td>
+<td><strong>周期性任务</strong></td>
+<td>定期检查每个处理器的负载，发现某 CPU <strong>过载</strong>时，把任务<strong>推</strong>到负载较轻的 CPU 上</td>
+</tr>
+<tr>
+<td><strong>拉迁移（Pull migration）</strong></td>
+<td><strong>空闲处理器</strong></td>
+<td><strong>空闲</strong>的处理器主动从繁忙处理器的队列中<strong>拉</strong>取一个等待任务过来</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>二者<strong>并不互斥，常并行实现</strong>。例如 Linux CFS 和 FreeBSD 的 ULE 调度器都同时使用推、拉两种方式。</p>
+</blockquote>
+<h4 id="3-均衡-的两种定义">3. &quot;均衡&quot;的两种定义</h4>
+<ul>
+<li>每个队列中的<strong>线程数量</strong>大致相等；</li>
+<li>各处理器上<strong>优先级的总和</strong>大致相等（更合理，考虑了任务轻重）。</li>
+</ul>
+<h3 id="二十、处理器亲和性（Processor-Affinity）">二十、处理器亲和性（Processor Affinity）</h3>
+<h4 id="1-概念来源：缓存">1. 概念来源：缓存</h4>
+<blockquote>
+<p>当一个线程在某个处理器上运行过后，该处理器的<strong>缓存中就保存了这个线程访问过的内存内容</strong>（“缓存已被暖热”）。我们称该线程对这个处理器有<strong>亲和性（affinity）</strong>。</p>
+</blockquote>
+<p>若把线程迁移到另一个处理器：</p>
+<ol>
+<li>原处理器的缓存内容<strong>必须作废（invalidate）</strong>；</li>
+<li>新处理器的缓存必须<strong>重新填充（repopulate）</strong>；</li>
+<li>代价<strong>非常高昂</strong>。</li>
+</ol>
+<h4 id="2-⚠️-与负载均衡的根本矛盾">2. ⚠️ 与负载均衡的根本矛盾</h4>
+<blockquote>
+<p><strong>负载均衡会破坏处理器亲和性</strong>：为了均衡负载而迁移线程，该线程就丢失了原处理器缓存中的全部内容。</p>
+</blockquote>
+<p>这是多处理器调度中最经典的<strong>取舍（trade-off）</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 负载均衡  ←──── 相互冲突 ────→  处理器亲和性</span><br><span class="line">（让各核忙起来）              （让缓存保持有效）</span><br></pre></td></tr></table></figure>
+<p>现实中的调度器必须在两者之间取得平衡——<strong>只有当不均衡足够严重、收益超过缓存失效代价时，才执行迁移</strong>。</p>
+<h4 id="3-两种亲和性">3. 两种亲和性</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>软亲和性（Soft affinity）</strong></td>
+<td>操作系统<strong>尽量</strong>让线程保持在同一处理器上，但<strong>不做保证</strong>——线程仍可能因负载均衡被迁走。这是大多数系统的默认行为</td>
+</tr>
+<tr>
+<td><strong>硬亲和性（Hard affinity）</strong></td>
+<td>允许进程<strong>指定一组它可以运行的处理器</strong>，OS 必须遵守</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>补充：Linux 提供 <code>sched_setaffinity()</code> 系统调用（及命令 <code>taskset</code>）实现硬亲和性；Windows 有 <code>SetThreadAffinityMask()</code>。实时任务、高性能计算常用硬亲和性来避免迁移抖动。</p>
+</blockquote>
+<h3 id="二十一、NUMA-与-CPU-调度">二十一、NUMA 与 CPU 调度</h3>
+<h4 id="1-NUMA-架构">1. NUMA 架构</h4>
+<p><strong>NUMA = Non-Uniform Memory Access（非一致内存访问）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">┌──────────────────── computer ────────────────────┐</span><br><span class="line">│  ┌──────────┐                    ┌──────────┐    │</span><br><span class="line">│  │   CPU    │────  slow access ──┐│   CPU    │   │</span><br><span class="line">│  └────┬─────┘                   ↓└────┬─────┘    │</span><br><span class="line">│       │ fast access                   │ fast     │</span><br><span class="line">│  ┌────▼─────┐                    ┌────▼─────┐    │</span><br><span class="line">│  │  memory  │                    │  memory  │    │</span><br><span class="line">│  └──────────┘                    └──────────┘    │</span><br><span class="line">└──────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每个 CPU（或 CPU 组）有<strong>自己的本地内存</strong>，访问<strong>快（fast access）</strong>；</li>
+<li>访问<strong>其他 CPU 的内存</strong>要经过互连总线，<strong>慢（slow access）</strong>。</li>
+</ul>
+<h4 id="2-NUMA-感知调度">2. NUMA 感知调度</h4>
+<blockquote>
+<p><strong>如果操作系统是 NUMA 感知的（NUMA-aware），它会把内存分配在离线程运行的 CPU 最近的位置。</strong></p>
+</blockquote>
+<p>即 CPU 调度器与<strong>内存分配器必须协同工作</strong>：</p>
+<ul>
+<li>线程在哪个 CPU 上运行 → 它的内存就分配在那个 CPU 的本地内存；</li>
+<li>更进一步，调度器应<strong>尽量不要把线程迁移到&quot;远离其内存&quot;的 CPU</strong>。</li>
+</ul>
+<blockquote>
+<p>💡 <strong>NUMA 使亲和性问题升级</strong>：原先迁移只损失缓存（可重建），在 NUMA 上迁移还会让<strong>所有内存访问永久变慢</strong>（除非同时迁移页面）。因此 NUMA 系统上的负载均衡必须更保守。</p>
+</blockquote>
+<h3 id="二十二、实时-CPU-调度（Real-Time-CPU-Scheduling）">二十二、实时 CPU 调度（Real-Time CPU Scheduling）</h3>
+<h4 id="1-两类实时系统（核心区分）">1. 两类实时系统（核心区分）</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>软实时（Soft real-time）</strong></th>
+<th><strong>硬实时（Hard real-time）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>保证</td>
+<td>关键实时任务拥有<strong>最高优先级</strong>，但<strong>不保证何时被调度</strong></td>
+<td>任务<strong>必须在其截止期限（deadline）前</strong>被服务完成</td>
+</tr>
+<tr>
+<td>违约后果</td>
+<td>服务质量下降（如视频卡顿）</td>
+<td><strong>系统失败</strong>（等同于没有完成）</td>
+</tr>
+<tr>
+<td>举例</td>
+<td>多媒体播放、在线游戏</td>
+<td>汽车刹车系统、飞控、工业控制、心脏起搏器</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>📌 常见误解澄清：实时 ≠ 快，而是 <strong>可预测（predictable）</strong>。硬实时系统宁可慢但确定，也不要平均快而偶尔超时。</p>
+</blockquote>
+<h4 id="2-事件延迟（Event-Latency）">2. 事件延迟（Event Latency）</h4>
+<blockquote>
+<p><strong>事件延迟 = 从事件发生到事件被服务所经过的时间。</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">event E first occurs</span><br><span class="line">        ↓</span><br><span class="line">       t0 ──── event latency ──── t1</span><br><span class="line">                                   ↑</span><br><span class="line">                       real-time system responds to E</span><br><span class="line">        ─────────────────────────────────→ Time</span><br></pre></td></tr></table></figure>
+<p><strong>影响实时性能的两种延迟</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>延迟</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中断延迟（Interrupt latency）</strong></td>
+<td>从中断<strong>到达 CPU</strong> 到开始执行<strong>中断服务例程（ISR）</strong> 的时间</td>
+</tr>
+<tr>
+<td><strong>分派延迟（Dispatch latency）</strong></td>
+<td>调度程序把当前进程<strong>移出 CPU</strong> 并切换到另一个进程所需的时间</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>二者都必须<strong>有界且尽量小</strong>，硬实时系统通常要求微秒级。</p>
+</blockquote>
+<h3 id="二十三、中断延迟（Interrupt-Latency）详解">二十三、中断延迟（Interrupt Latency）详解</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">                  interrupt</span><br><span class="line">                      ↓</span><br><span class="line">[ task T running ]    │</span><br><span class="line">                    ┌─┴─┐ ←── determine interrupt type（判定中断类型）</span><br><span class="line">                    └─┬─┘</span><br><span class="line">                      ┌─────┐ ←── context switch（上下文切换）</span><br><span class="line">                      └──┬──┘</span><br><span class="line">                         ┌────────┐</span><br><span class="line">                         │  ISR   │ ←── 中断服务例程开始执行</span><br><span class="line">                         └────────┘</span><br><span class="line">         |←──── interrupt latency ────→|</span><br><span class="line">  ─────────────────────────────────────────→ time</span><br></pre></td></tr></table></figure>
+<p><strong>构成（三段）</strong>：</p>
+<ol>
+<li><strong>完成当前指令 / 内核临界区</strong>：若内核正在更新内核数据结构，可能<strong>关中断</strong>，必须等它开放中断；</li>
+<li><strong>判定中断类型</strong>：确定是哪个设备、跳转到哪个处理程序；</li>
+<li><strong>保存当前任务状态（上下文切换）</strong>。</li>
+</ol>
+<blockquote>
+<p>⚠️ <strong>实时系统的设计原则</strong>：<strong>必须最小化内核中禁止中断的时间</strong>。长时间关中断是硬实时的大敌。</p>
+</blockquote>
+<h3 id="二十四、分派延迟（Dispatch-Latency）详解">二十四、分派延迟（Dispatch Latency）详解</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">event                                              response to event</span><br><span class="line">  │←────────────── response interval ───────────────────→│</span><br><span class="line">  │  interrupt   │ process made                          │</span><br><span class="line">  │  processing  │ available                             │</span><br><span class="line">  │←────────────→│←──── dispatch latency ────→│          │</span><br><span class="line">  │              │                            │ real-time│</span><br><span class="line">  │              │←─ conflicts ─→│←─ dispatch─→│ process │</span><br><span class="line">  │              │               │            │ execution│</span><br><span class="line">  ─────────────────────────────────────────────────────────→ time</span><br></pre></td></tr></table></figure>
+<h4 id="冲突阶段（Conflict-Phase）——分派延迟中最耗时的部分">冲突阶段（Conflict Phase）——分派延迟中最耗时的部分</h4>
+<blockquote>
+<p>分派延迟主要由<strong>冲突阶段</strong>和<strong>分派阶段</strong>组成，其中冲突阶段包含两个工作：</p>
+</blockquote>
+<ol>
+<li><strong>抢占任何在内核态运行的进程</strong>（Preemption of any process running in kernel mode）</li>
+<li><strong>低优先级进程释放高优先级进程所需的资源</strong>（Release by low-priority process of resources needed by high-priority processes）</li>
+</ol>
+<p><strong>分派阶段（dispatch phase）</strong>：真正把高优先级实时进程调度上 CPU。</p>
+<h4 id="💡-补充：为什么冲突阶段是关键">💡 补充：为什么冲突阶段是关键</h4>
+<ul>
+<li>
+<p><strong>第 1 项</strong> 要求内核必须是<strong>可抢占的（preemptive kernel）</strong>。传统非抢占内核中，一个系统调用可能运行很久而无法被打断，导致实时任务无限期等待。因此实时 OS 必须提供<strong>抢占点</strong>或<strong>完全可抢占内核</strong>。</p>
+</li>
+<li>
+<p>第 2 项</p>
+<p>正是</p>
+<p>优先级反转（priority inversion）</p>
+<p>问题：高优先级进程 H 需要的锁被低优先级进程 L 持有，而 L 又被中等优先级进程 M 抢占，结果 H 被 M 间接阻塞。</p>
+<ul>
+<li><strong>解法：优先级继承协议（priority-inheritance protocol）</strong>——让持有资源的 L <strong>临时继承</strong> H 的高优先级，使其尽快跑完并释放资源。</li>
+<li>著名案例：1997 年 NASA &quot;火星探路者号&quot;探测器的系统反复重启，根因就是优先级反转。</li>
+</ul>
+</li>
+</ul>
+<h3 id=""></h3>
+<h3 id="二十五、基于优先级的实时调度（Priority-based-Scheduling）">二十五、基于优先级的实时调度（Priority-based Scheduling）</h3>
+<h4 id="1-实时调度的两个层次要求">1. 实时调度的两个层次要求</h4>
+<table>
+<thead>
+<tr>
+<th>要求</th>
+<th>能保证什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>调度器必须支持<strong>抢占式、基于优先级的调度</strong></td>
+<td>✅ 只能保证<strong>软实时（soft real-time）</strong></td>
+</tr>
+<tr>
+<td>还必须提供<strong>满足截止期限（deadline）的能力</strong></td>
+<td>✅ 才能实现<strong>硬实时（hard real-time）</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 关键理解：<strong>&quot;高优先级先跑&quot;只是必要条件，不是充分条件。</strong> 优先级能保证实时任务排在前面，但无法回答&quot;它能不能在 deadline 之前跑完&quot;。硬实时还需要<strong>可调度性分析（schedulability analysis）</strong>。</p>
+</blockquote>
+<h4 id="2-周期性任务（Periodic-Task）模型">2. 周期性任务（Periodic Task）模型</h4>
+<blockquote>
+<p><strong>周期性进程以恒定的时间间隔（constant intervals）反复请求 CPU。</strong></p>
+</blockquote>
+<p><strong>三个参数</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>t</strong></td>
+<td>处理时间（processing time）</td>
+<td>每个周期内需要占用 CPU 的时间</td>
+</tr>
+<tr>
+<td><strong>d</strong></td>
+<td>截止期限（deadline）</td>
+<td>本周期内必须完成的时刻</td>
+</tr>
+<tr>
+<td><strong>p</strong></td>
+<td>周期（period）</td>
+<td>两次任务请求之间的间隔</td>
+</tr>
+</tbody>
+</table>
+<p><strong>约束关系（考点）</strong>：</p>
+<p>0≤t≤d≤p\boxed{0 \le t \le d \le p}0≤t≤d≤p</p>
+<p><strong>任务速率（Rate）</strong>：</p>
+<p>rate=1p\boxed{\text{rate} = \frac{1}{p}}rate=p1</p>
+<p><strong>时间轴示意</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|←────── p ──────|←────── p ──────|←────── p ──────|</span><br><span class="line">|←── d ──|       |←── d ──|       |←── d ──|</span><br><span class="line">|← t →|          |← t →|          |← t →|</span><br><span class="line">[■■■■]           [■■■■]           [■■■■]           → Time</span><br><span class="line">   period₁          period₂          period₃</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>📌 教材中常假设 <strong>d = p</strong>（截止期限就是下一个周期的开始），后面 RMS 和 EDF 的例子都基于这一假设。</p>
+</blockquote>
+<blockquote>
+<p>补充：进程必须通过<strong>准入控制（admission-control）</strong> 算法向调度器&quot;声明&quot;自己的 deadline 需求；调度器要么<strong>接纳</strong>（保证按时完成），要么<strong>拒绝</strong>（无法保证时直接拒收）。</p>
+</blockquote>
+<h4 id="3-CPU-利用率与可调度性（补充）">3. CPU 利用率与可调度性（补充）</h4>
+<p>对 n 个周期任务：</p>
+<p>
+    <span id="mjx-5862ac1">
+      <style>
+      #mjx-5862ac1{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -1.091ex;" xmlns="http://www.w3.org/2000/svg" width="12.626ex" height="3.114ex" role="img" focusable="false" viewBox="0 -894.2 5580.7 1376.4" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D448" d="M107 637Q73 637 71 641Q70 643 70 649Q70 673 81 682Q83 683 98 683Q139 681 234 681Q268 681 297 681T342 682T362 682Q378 682 378 672Q378 670 376 658Q371 641 366 638H364Q362 638 359 638T352 638T343 637T334 637Q295 636 284 634T266 623Q265 621 238 518T184 302T154 169Q152 155 152 140Q152 86 183 55T269 24Q336 24 403 69T501 205L552 406Q599 598 599 606Q599 633 535 637Q511 637 511 648Q511 650 513 660Q517 676 519 679T529 683Q532 683 561 682T645 680Q696 680 723 681T752 682Q767 682 767 672Q767 650 759 642Q756 637 737 637Q666 633 648 597Q646 592 598 404Q557 235 548 205Q515 105 433 42T263 -22Q171 -22 116 34T60 167V183Q60 201 115 421Q164 622 164 628Q164 635 107 637Z"></path></g><g data-mml-node="mo" transform="translate(1044.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="munderover" transform="translate(2100.6,0)"><g data-mml-node="mo"><path data-c="2211" d="M61 748Q64 750 489 750H913L954 640Q965 609 976 579T993 533T999 516H979L959 517Q936 579 886 621T777 682Q724 700 655 705T436 710H319Q183 710 183 709Q186 706 348 484T511 259Q517 250 513 244L490 216Q466 188 420 134T330 27L149 -187Q149 -188 362 -188Q388 -188 436 -188T506 -189Q679 -189 778 -162T936 -43Q946 -27 959 6H999L913 -249L489 -250Q65 -250 62 -248Q56 -246 56 -239Q56 -234 118 -161Q186 -81 245 -11L428 206Q428 207 242 462L57 717L56 728Q56 744 61 748Z"></path></g><g data-mml-node="TeXAtom" transform="translate(1089,477.1) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="TeXAtom" transform="translate(1089,-285.4) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(345,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(1123,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g></g></g><g data-mml-node="mfrac" transform="translate(4553.9,0)"><g data-mml-node="msub" transform="translate(270.2,451.6) scale(0.707)"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(394,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><g data-mml-node="msub" transform="translate(220,-345) scale(0.707)"><g data-mml-node="mi"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></g><g data-mml-node="mi" transform="translate(536,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g><rect width="786.9" height="60" x="120" y="220"></rect></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>U</mi><mo>=</mo><munderover><mo data-mjx-texclass="OP">∑</mo><mrow data-mjx-texclass="ORD"><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mrow data-mjx-texclass="ORD"><mi>n</mi></mrow></munderover><mfrac><msub><mi>t</mi><mi>i</mi></msub><msub><mi>p</mi><mi>i</mi></msub></mfrac></math></mjx-assistive-mml></mjx-container>
+    </span>
+  </p>
+<ul>
+<li><strong>U &gt; 1</strong> → 无论用什么算法都<strong>不可调度</strong>。</li>
+<li><strong>U ≤ 1</strong> → 可能可调度，取决于具体算法。</li>
+</ul>
+<h3 id="二十六、速率单调调度（Rate-Monotonic-Scheduling-RMS）">二十六、速率单调调度（Rate Monotonic Scheduling, RMS）</h3>
+<h4 id="1-规则">1. 规则</h4>
+<blockquote>
+<p><strong>优先级按周期的倒数（即速率）分配：</strong></p>
+<ul>
+<li><strong>周期越短 → 速率越高 → 优先级越高</strong></li>
+<li><strong>周期越长 → 优先级越低</strong></li>
+</ul>
+</blockquote>
+<p>采用<strong>静态优先级 + 抢占式</strong>策略：优先级一旦分配就<strong>不再改变</strong>（static priority）。</p>
+<blockquote>
+<p>直觉：周期短的任务&quot;来得频繁、deadline 紧&quot;，理应优先。</p>
+</blockquote>
+<h4 id="2-成功示例">2. 成功示例</h4>
+<p><strong>参数</strong>：P1: p₁ = 50, t₁ = 20；P2: p₂ = 100, t₂ = 35<br>
+→ P1 周期更短，<strong>P1 优先级高于 P2</strong>。</p>
+<p><strong>CPU 利用率</strong>：U = 20/50 + 35/100 = 0.40 + 0.35 = <strong>0.75</strong></p>
+<p><strong>Gantt 图</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deadlines:       ↓P1          ↓P1,P2        ↓P1          ↓P1,P2</span><br><span class="line">           |  P1  |    P2    | P1 |P2|  | P1  |   P2   | P1 |P2|  |</span><br><span class="line">           0  20  25  40  50  70 75 80  100 120 125 140 150 170 175 190 200</span><br></pre></td></tr></table></figure>
+<p><strong>推演要点</strong>：</p>
+<ul>
+<li>t=0：P1、P2 同时到达，P1 优先 → P1 运行 0~20（完成，deadline 50 ✓）</li>
+<li>t=20：P2 运行 20~50，做了 30 个单位（还差 5）</li>
+<li>t=50：<strong>P1 的新周期到来，抢占 P2</strong> → P1 运行 50~70</li>
+<li>t=70：P2 恢复，跑完剩余 5 个单位，70~75（deadline 100 ✓）</li>
+<li>之后模式在 100 处重复。</li>
+</ul>
+<p>✅ 所有任务均满足截止期限。</p>
+<h4 id="3-错过截止期限的示例（RMS-的局限）">3. 错过截止期限的示例（RMS 的局限）</h4>
+<p><strong>参数</strong>：P1: p₁ = 50, t₁ = 25；P2: p₂ = 80, t₂ = 35<br>
+→ P1 周期短，仍是高优先级。</p>
+<p><strong>CPU 利用率</strong>：U = 25/50 + 35/80 = 0.50 + 0.4375 = <strong>0.9375</strong></p>
+<p><strong>Gantt 图</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deadlines:            ↓P1        ↓P2   ↓P1                 ↓P1  ↓P2</span><br><span class="line">           |   P1   |    P2    |   P1   | P2 |</span><br><span class="line">           0   25   30  50  55  60 75  80 85    100    150  160</span><br></pre></td></tr></table></figure>
+<p><strong>推演</strong>：</p>
+<ul>
+<li>t=0~25：P1 运行完成（deadline 50 ✓）</li>
+<li>t=25~50：P2 运行 25 个单位（还差 10）</li>
+<li>t=50：<strong>P1 新周期抢占</strong> → P1 运行 50~75</li>
+<li>t=75~80：P2 只跑了 5 个单位，<strong>到 t=80 时还差 5 个单位</strong></li>
+</ul>
+<blockquote>
+<p>❌ <strong>P2 在 t = 80 错过了它的截止期限。</strong></p>
+</blockquote>
+<h4 id="4-RMS-的理论结论（重要补充）">4. RMS 的理论结论（重要补充）</h4>
+<ul>
+<li>
+<p><strong>RMS 是静态优先级策略中的最优者</strong>：若 RMS 都无法调度，则<strong>任何静态优先级算法都不能</strong>。</p>
+</li>
+<li>
+<p>Liu &amp; Layland 界限</p>
+<p>：n 个周期任务，若</p>
+<p>U≤n(21/n−1)U \le n(2^{1/n} - 1)U≤n(21/n−1)</p>
+<p>则 RMS</p>
+<p>一定</p>
+<p>可调度。</p>
+<ul>
+<li>n=1：100%；n=2：<strong>82.83%</strong>；n=∞：收敛到 <strong>ln 2 ≈ 69.3%</strong></li>
+<li>上面失败例子中 U = 93.75% &gt; 82.83%，超出保证范围，故可能失败（注意：超出不代表一定失败，只是不保证）。</li>
+</ul>
+</li>
+<li>
+<p><strong>局限</strong>：CPU 利用率有上界，无法充分利用处理器。</p>
+</li>
+</ul>
+<h3 id="二十七、最早截止期限优先（Earliest-Deadline-First-EDF）">二十七、最早截止期限优先（Earliest-Deadline-First, EDF）</h3>
+<h4 id="1-规则-2">1. 规则</h4>
+<blockquote>
+<p><strong>按截止期限分配优先级：</strong></p>
+<ul>
+<li><strong>截止期限越早 → 优先级越高</strong></li>
+<li><strong>截止期限越晚 → 优先级越低</strong></li>
+</ul>
+</blockquote>
+<p>这是<strong>动态优先级（dynamic priority）</strong>：每当一个新进程变为可运行，它必须宣告其 deadline，调度器据此<strong>重新调整</strong>优先级。</p>
+<h4 id="2-示例">2. 示例</h4>
+<p><strong>参数</strong>：P1: p₁ = 50, t₁ = 25；P2: p₂ = 80, t₂ = 35（与 RMS 失败例子<strong>完全相同</strong>）</p>
+<p><strong>Gantt 图</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">deadlines:        ↓P1          ↓P2    ↓P1                 ↓P1  ↓P2</span><br><span class="line">          |   P1   |     P2     |  P1  |  P2  |    P1    |   P2   |</span><br><span class="line">          0   25   30   50   60  70  80 90 100 110  125 130  145 150 160</span><br></pre></td></tr></table></figure>
+<p><strong>关键推演</strong>：</p>
+<ul>
+<li>t=0：P1 的 deadline=50，P2 的 deadline=80 → <strong>P1 先跑</strong> 0~25</li>
+<li>t=25~60：P2 运行，完成全部 35 个单位（deadline 80 ✓）</li>
+<li>t=50：P1 第二周期到达，deadline=100；此时 P2 的 deadline=80 <strong>更早</strong>，<strong>P1 不抢占 P2</strong>（这是与 RMS 最本质的区别！）</li>
+<li>t=60~85：P1 运行 25 个单位（deadline 100 ✓）</li>
+<li>t=80：P2 第二周期到达，deadline=160</li>
+<li>继续交替……</li>
+</ul>
+<p>✅ <strong>所有截止期限都被满足</strong>——EDF 成功调度了 RMS 失败的场景。</p>
+<h4 id="3-EDF-的特点（重要补充）">3. EDF 的特点（重要补充）</h4>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>理论最优</strong></td>
+<td>只要 <strong>U ≤ 1（即 100%）</strong>，EDF 就<strong>一定</strong>能调度成功</td>
+</tr>
+<tr>
+<td>不要求周期性</td>
+<td>进程无需是周期性的，也不要求 CPU 时间恒定，只需在变为可运行时宣告 deadline</td>
+</tr>
+<tr>
+<td>CPU 利用率高</td>
+<td>可达 100%，远优于 RMS 的 69%~83%</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>缺点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开销大</td>
+<td>每次任务到达都要重新计算优先级并重排</td>
+</tr>
+<tr>
+<td>过载时崩溃</td>
+<td>一旦 U &gt; 1，EDF 表现会<strong>灾难性恶化</strong>（雪崩式连续错过 deadline），而 RMS 至少能保证高优先级任务正常</td>
+</tr>
+<tr>
+<td>理想化</td>
+<td>未考虑上下文切换开销</td>
+</tr>
+</tbody>
+</table>
+<h4 id="📊-RMS-vs-EDF-对比（高频考点）">📊 RMS vs EDF 对比（高频考点）</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>RMS</strong></th>
+<th><strong>EDF</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>优先级依据</td>
+<td><strong>周期</strong>（的倒数）</td>
+<td><strong>截止期限</strong></td>
+</tr>
+<tr>
+<td>优先级类型</td>
+<td><strong>静态</strong>（固定不变）</td>
+<td><strong>动态</strong>（每周期变化）</td>
+</tr>
+<tr>
+<td>最优性</td>
+<td>静态优先级算法中最优</td>
+<td><strong>理论上绝对最优</strong></td>
+</tr>
+<tr>
+<td>可调度上界</td>
+<td>≈ 69.3% ~ 82.8%</td>
+<td><strong>100%</strong></td>
+</tr>
+<tr>
+<td>实现开销</td>
+<td>小</td>
+<td>大</td>
+</tr>
+<tr>
+<td>过载行为</td>
+<td>优雅降级</td>
+<td>灾难性</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十八、比例分享调度（Proportional-Share-Scheduling）">二十八、比例分享调度（Proportional Share Scheduling）</h3>
+<h4 id="规则">规则</h4>
+<blockquote>
+<p>系统中共分配 <strong>T 份（shares）</strong>，某应用获得 <strong>N 份（N &lt; T）</strong>，这就保证该应用能得到 <strong>N / T</strong> 的总处理器时间。</p>
+</blockquote>
+<p><strong>示例</strong>：T = 100 份</p>
+<ul>
+<li>A 分得 50 份 → 50% CPU</li>
+<li>B 分得 15 份 → 15% CPU</li>
+<li>C 分得 20 份 → 20% CPU</li>
+<li>剩余 15 份可分配给新进程</li>
+</ul>
+<p><strong>必须配合准入控制</strong>：若新进程 D 申请 30 份，而只剩 15 份，则<strong>拒绝其进入系统</strong>——否则已有进程的保证就被破坏。</p>
+<blockquote>
+<p>💡 与 Linux CFS 的关系：CFS 本质上就是一种比例分享调度（按 nice 值确定权重份额）。</p>
+</blockquote>
+<h3 id="二十九、POSIX-实时调度">二十九、POSIX 实时调度</h3>
+<h4 id="1-POSIX-1b-标准">1. POSIX.1b 标准</h4>
+<p>提供管理实时线程的 API，定义<strong>两个实时调度类</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>调度类</th>
+<th>策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SCHED_FIFO</strong></td>
+<td>用 <strong>FCFS</strong> 策略调度，配 FIFO 队列。<strong>同优先级的线程之间不做时间片轮转</strong>——一个线程会一直跑到阻塞或结束</td>
+</tr>
+<tr>
+<td><strong>SCHED_RR</strong></td>
+<td>与 SCHED_FIFO 类似，但<strong>同优先级线程之间会时间片轮转</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>另有 <strong>SCHED_OTHER</strong>（非实时的默认策略），其实现由具体系统定义，不可移植。</p>
+</blockquote>
+<h4 id="2-两个核心函数">2. 两个核心函数</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pthread_attr_getsched_policy(<span class="type">pthread_attr_t</span> *attr, <span class="type">int</span> *policy)  <span class="comment">/* 获取 */</span></span><br><span class="line">pthread_attr_setsched_policy(<span class="type">pthread_attr_t</span> *attr, <span class="type">int</span> policy)   <span class="comment">/* 设置 */</span></span><br></pre></td></tr></table></figure>
+<p>（实际 API 名为 <code>pthread_attr_getschedpolicy</code> / <code>pthread_attr_setschedpolicy</code>）</p>
+<h4 id="3-示例代码">3. 示例代码</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> NUM_THREADS 5</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> &#123;</span><br><span class="line">    <span class="type">int</span> i, policy;</span><br><span class="line">    <span class="type">pthread_t</span> tid[NUM_THREADS];</span><br><span class="line">    <span class="type">pthread_attr_t</span> attr;</span><br><span class="line"></span><br><span class="line">    pthread_attr_init(&amp;attr);                     <span class="comment">/* 1. 取默认属性 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 2. 查询当前调度策略 */</span></span><br><span class="line">    <span class="keyword">if</span> (pthread_attr_getschedpolicy(&amp;attr, &amp;policy) != <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Unable to get policy.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (policy == SCHED_OTHER)     <span class="built_in">printf</span>(<span class="string">&quot;SCHED_OTHER\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (policy == SCHED_RR)   <span class="built_in">printf</span>(<span class="string">&quot;SCHED_RR\n&quot;</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (policy == SCHED_FIFO) <span class="built_in">printf</span>(<span class="string">&quot;SCHED_FIFO\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 3. 设置调度策略：FIFO / RR / OTHER */</span></span><br><span class="line">    <span class="keyword">if</span> (pthread_attr_setschedpolicy(&amp;attr, SCHED_FIFO) != <span class="number">0</span>)</span><br><span class="line">        <span class="built_in">fprintf</span>(<span class="built_in">stderr</span>, <span class="string">&quot;Unable to set policy.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 4. 创建线程（带 attr） */</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NUM_THREADS; i++)</span><br><span class="line">        pthread_create(&amp;tid[i], &amp;attr, runner, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 5. 等待全部结束 */</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; NUM_THREADS; i++)</span><br><span class="line">        pthread_join(tid[i], <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> *<span class="title function_">runner</span><span class="params">(<span class="type">void</span> *param)</span> &#123;</span><br><span class="line">    <span class="comment">/* do some work ... */</span></span><br><span class="line">    pthread_exit(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>📌 <strong>与前面 PCS/SCS 代码的对比记忆</strong>：</p>
+<ul>
+<li>竞争范围：<code>attr_getscope</code> / <code>attr_setscope</code> → <code>PTHREAD_SCOPE_PROCESS</code> / <code>PTHREAD_SCOPE_SYSTEM</code></li>
+<li>调度策略：<code>attr_getschedpolicy</code> / <code>attr_setschedpolicy</code> → <code>SCHED_FIFO</code> / <code>SCHED_RR</code> / <code>SCHED_OTHER</code></li>
+<li>套路完全一致：<code>attr_init</code> → <code>set...</code> → <code>pthread_create(带 attr)</code></li>
+<li>设置实时策略通常需要 <strong>root 权限</strong>。</li>
+</ul>
+</blockquote>
+<h3 id="三十、操作系统实例之一：Linux-调度">三十、操作系统实例之一：Linux 调度</h3>
+<h4 id="1-2-5-版本之前">1. 2.5 版本之前</h4>
+<p>运行标准 UNIX 调度算法的变体。<strong>问题</strong>：对 SMP 支持差，且<strong>随任务数增加而性能下降</strong>（O(n)）。</p>
+<h4 id="2-版本-2-5：O-1-调度器">2. 版本 2.5：O(1) 调度器</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>时间复杂度</strong></td>
+<td><strong>常数级 O(1)</strong> ——选择下一个任务的时间与任务数无关</td>
+</tr>
+<tr>
+<td>类型</td>
+<td><strong>抢占式、基于优先级</strong></td>
+</tr>
+<tr>
+<td><strong>两个优先级范围</strong></td>
+<td><strong>实时：0 ~ 99</strong>；<strong>nice 值：100 ~ 140</strong></td>
+</tr>
+<tr>
+<td>映射</td>
+<td>映射到<strong>全局优先级</strong>，<strong>数值越小优先级越高</strong></td>
+</tr>
+<tr>
+<td><strong>时间片</strong></td>
+<td><strong>优先级越高，时间片 q 越大</strong></td>
+</tr>
+<tr>
+<td>任务状态</td>
+<td>时间片有剩余 = <strong>active（可运行）</strong>；时间片耗尽 = <strong>expired（不可运行）</strong>，必须等所有其他任务都用完各自的时间片</td>
+</tr>
+<tr>
+<td>数据结构</td>
+<td><strong>每 CPU 一个 runqueue</strong>，内含<strong>两个优先级数组（active / expired）</strong>，任务按优先级索引</td>
+</tr>
+<tr>
+<td>数组交换</td>
+<td>当 active 数组为空时，<strong>两个数组直接交换指针</strong>（这正是 O(1) 的来源）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>❌ <strong>缺点：交互式进程的响应时间不佳</strong>——这是 O(1) 调度器最终被替换的直接原因。</p>
+</blockquote>
+<h4 id="3-版本-2-6-23-起：完全公平调度器（CFS）">3. 版本 2.6.23 起：完全公平调度器（CFS）</h4>
+<blockquote>
+<p><strong>CFS = Completely Fair Scheduler</strong></p>
+</blockquote>
+<h5 id="1-调度类（Scheduling-Classes）">(1) 调度类（Scheduling Classes）</h5>
+<ul>
+<li>每个调度类有<strong>特定的优先级</strong>；</li>
+<li>调度器从<strong>最高优先级的调度类</strong>中挑选<strong>最高优先级的任务</strong>；</li>
+<li>标准包含两个类：<strong>default（CFS 本身）</strong> 和 <strong>real-time</strong>，可自行添加其他类。</li>
+</ul>
+<h5 id="2-核心思想：按比例而非固定时间片">(2) 核心思想：按比例而非固定时间片</h5>
+<blockquote>
+<p><strong>时间片不再是固定的时间分配量，而是基于 CPU 时间的&quot;比例（proportion）&quot;。</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>比例由 <strong>nice 值（-20 ~ +19）</strong> 计算得出，<strong>数值越低优先级越高</strong>（默认 0）。</p>
+</li>
+<li>
+<p>目标延迟（target latency）</p>
+<p>：每个任务</p>
+<p>至少应运行一次</p>
+<p>的时间区间。</p>
+<ul>
+<li>活动任务数增加时，target latency 可<strong>相应增大</strong>（但有最小值下限，防止切换过频）。</li>
+<li>例：target latency = 10 ms，2 个任务各得 5 ms；10 个任务则各得 1 ms。</li>
+</ul>
+</li>
+</ul>
+<h5 id="3-虚拟运行时间（vruntime）——-CFS-的灵魂">(3) 虚拟运行时间（vruntime）—— CFS 的灵魂</h5>
+<blockquote>
+<p>CFS 为每个任务维护变量 <strong><code>vruntime</code>（虚拟运行时间）</strong>。</p>
+</blockquote>
+<ul>
+<li>
+<p>vruntime 关联一个基于优先级的</p>
+<p>衰减因子（decay factor）</p>
+<p>：</p>
+<ul>
+<li><strong>优先级越低 → 衰减率越高</strong>（vruntime 增长越快 → 越快被&quot;用完额度&quot;）</li>
+<li><strong>普通默认优先级（nice = 0）→ 虚拟运行时间 = 实际运行时间</strong></li>
+<li>高优先级（nice &lt; 0）→ vruntime 增长<strong>慢于</strong>实际时间</li>
+</ul>
+</li>
+<li>
+<p><strong>决策规则：选择 <code>vruntime</code> 最小的任务运行。</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>💡 <strong>精妙之处</strong>：CFS 用&quot;谁欠得最多就先还谁&quot;取代了&quot;谁优先级高谁先跑&quot;。优先级不再决定顺序，而是决定<strong>虚拟时钟走得快慢</strong>——高优先级任务的时钟走得慢，于是能获得更多真实 CPU 时间。</p>
+</blockquote>
+<h5 id="4-CFS-的实现：红黑树">(4) CFS 的实现：红黑树</h5>
+<blockquote>
+<p><strong>每个可运行任务被放入一棵红黑树（red-black tree）——以 <code>vruntime</code> 为键的平衡二叉搜索树。</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">               (T0)</span><br><span class="line">             /      \</span><br><span class="line">          (T1)      (T2)</span><br><span class="line">         /    \     /    \</span><br><span class="line">      (T3)  (T4) (T5)  (T6)</span><br><span class="line">      /       \      \</span><br><span class="line">   (T7)      (T8)   (T9)</span><br><span class="line">    ↑</span><br><span class="line">vruntime 最小 = 优先级最高</span><br><span class="line">←──── smaller    vruntime    larger ────→</span><br></pre></td></tr></table></figure>
+<ul>
+<li>任务变为可运行时<strong>加入树</strong>；被阻塞（如等待 I/O）时<strong>从树中移除</strong>。</li>
+<li><strong>左侧 = 获得 CPU 时间较少</strong>（vruntime 小）；<strong>右侧 = 已获得较多 CPU 时间</strong>。</li>
+<li>按二叉搜索树性质，<strong>最左节点（leftmost）的键值最小</strong>，即 CFS 认为优先级最高的任务。</li>
+<li>红黑树是平衡的，找最左节点需 <strong>O(lg N)</strong>；但 Linux 将该值<strong>缓存在变量 <code>rb_leftmost</code> 中</strong>，因此实际选择下一个任务只需<strong>读取缓存值 → O(1)</strong>。</li>
+</ul>
+<h5 id="5-Linux-的实时调度">(5) Linux 的实时调度</h5>
+<ul>
+<li>按 <strong>POSIX.1b</strong> 实现，<strong>实时任务使用静态优先级</strong>。</li>
+<li>实时与普通任务共同映射到<strong>全局优先级方案</strong>：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──────────── Real-Time ────────────┬────── Normal ──────┐</span><br><span class="line">0                                  99│100                139</span><br><span class="line">←── Higher                                      Lower ──→</span><br><span class="line">                    Priority</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>nice = −20 → 全局优先级 100</strong></li>
+<li><strong>nice = +19 → 全局优先级 139</strong></li>
+<li>数值越小优先级越高；实时任务（0~99）总是优先于所有普通任务（100~139）。</li>
+</ul>
+<h5 id="6-负载均衡与-NUMA-感知">(6) 负载均衡与 NUMA 感知</h5>
+<blockquote>
+<p><strong>Linux 支持负载均衡，同时也是 NUMA 感知的。</strong></p>
+</blockquote>
+<p><strong>调度域（Scheduling Domain）</strong>：</p>
+<blockquote>
+<p><strong>一组可以相互进行负载均衡的 CPU 核心。</strong></p>
+</blockquote>
+<ul>
+<li>调度域按<strong>共享的资源（如缓存）</strong> 来组织，形成<strong>层次结构</strong>；</li>
+<li><strong>目标：阻止线程在不同调度域之间迁移</strong>（跨域迁移代价最大）。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌────── physical processor domain (NUMA node) ──────┐</span><br><span class="line">│  ┌──── domain₀ ────┐    ┌──── domain₁ ────┐       │</span><br><span class="line">│  │ [core₀]         │    │ [core₂]         │       │</span><br><span class="line">│  │          [L2]   │    │          [L2]   │       │</span><br><span class="line">│  │ [core₁]         │    │ [core₃]         │       │</span><br><span class="line">│  └─────────────────┘    └─────────────────┘       │</span><br><span class="line">│              ┌───────── L3 ─────────┐             │</span><br><span class="line">└───────────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>domain₀</strong> 内 core₀、core₁ 共享 <strong>L2 缓存</strong> → 在此域内迁移代价<strong>最低</strong>，可频繁均衡；</li>
+<li>domain₀ 与 domain₁ 共享 <strong>L3 缓存</strong> → 上一级域，迁移代价<strong>中等</strong>，均衡频率较低；</li>
+<li>跨 <strong>NUMA 节点</strong>迁移 → 代价<strong>最高</strong>，只在严重不均衡时才做。</li>
+</ul>
+<blockquote>
+<p>💡 这正是&quot;<strong>负载均衡 vs 处理器亲和性</strong>&quot;矛盾的工程化解决方案：<strong>按共享层次分级，越共享越愿意迁移</strong>。</p>
+</blockquote>
+<h3 id="三十一、操作系统实例之二：Windows-调度">三十一、操作系统实例之二：Windows 调度</h3>
+<h4 id="1-基本机制">1. 基本机制</h4>
+<blockquote>
+<p><strong>Windows 使用基于优先级的抢占式调度。</strong></p>
+</blockquote>
+<ul>
+<li><strong>最高优先级的线程</strong>总是下一个运行；</li>
+<li>负责调度的模块称为<strong>分派程序（dispatcher）</strong>；</li>
+<li>线程会一直运行，直到发生以下三种情况之一：
+<ol>
+<li><strong>阻塞（blocks）</strong></li>
+<li><strong>用完时间片（uses time slice）</strong></li>
+<li><strong>被更高优先级的线程抢占（preempted）</strong></li>
+</ol>
+</li>
+<li><strong>实时线程可以抢占非实时线程</strong>；</li>
+<li>若没有可运行线程，则运行<strong>空闲线程（idle thread）</strong>。</li>
+</ul>
+<h4 id="2-32-级优先级方案">2. 32 级优先级方案</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">优先级  0    ← 内存管理线程（memory-management thread）专用</span><br><span class="line">        1 ─ 15   ← 可变类（variable class）</span><br><span class="line">       16 ─ 31   ← 实时类（real-time class）</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>每个优先级各有一个队列</strong>；</li>
+<li>分派程序从最高优先级的非空队列中取线程。</li>
+</ul>
+<h4 id="3-Win32-优先级类（Priority-Classes）">3. Win32 优先级类（Priority Classes）</h4>
+<p><strong>进程可属于的六个优先级类</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>优先级类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REALTIME_PRIORITY_CLASS</code></td>
+<td><strong>唯一的实时类，优先级固定不变</strong></td>
+</tr>
+<tr>
+<td><code>HIGH_PRIORITY_CLASS</code></td>
+<td>高</td>
+</tr>
+<tr>
+<td><code>ABOVE_NORMAL_PRIORITY_CLASS</code></td>
+<td>高于普通</td>
+</tr>
+<tr>
+<td><code>NORMAL_PRIORITY_CLASS</code></td>
+<td><strong>普通（默认）</strong></td>
+</tr>
+<tr>
+<td><code>BELOW_NORMAL_PRIORITY_CLASS</code></td>
+<td>低于普通</td>
+</tr>
+<tr>
+<td><code>IDLE_PRIORITY_CLASS</code></td>
+<td>空闲</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>除 REALTIME 外，其余全部是&quot;可变类（variable）&quot;</strong>——其优先级会被动态调整。</p>
+</blockquote>
+<p><strong>线程在类内的相对优先级（7 级）</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TIME_CRITICAL &gt; HIGHEST &gt; ABOVE_NORMAL &gt; NORMAL &gt; BELOW_NORMAL &gt; LOWEST &gt; IDLE</span><br><span class="line">                                          ↑</span><br><span class="line">                                    类内的基准优先级（base priority）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>数值优先级 = 优先级类 + 相对优先级</strong> 的组合。</p>
+</blockquote>
+<h4 id="4-动态优先级调整规则（考点）">4. 动态优先级调整规则（考点）</h4>
+<table>
+<thead>
+<tr>
+<th>情形</th>
+<th>调整</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>时间片用完（quantum expires）</strong></td>
+<td><strong>降低优先级</strong>，但<strong>绝不低于基准优先级（base priority）</strong></td>
+</tr>
+<tr>
+<td>从等待中释放（补充）</td>
+<td><strong>提升优先级</strong>，提升幅度取决于等待的对象（等键盘 I/O 提升多，等磁盘 I/O 提升少）</td>
+</tr>
+<tr>
+<td>前台窗口进程（补充）</td>
+<td>Windows 会给当前<strong>前台进程</strong>更大的时间片（通常 3 倍），改善交互体验</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>设计意图</strong>：I/O 密集型 / 交互式线程因频繁阻塞而获得提升 → 响应快；CPU 密集型线程因耗尽时间片而被降低 → 不影响交互。这与 MLFQ 的思想一脉相承。</p>
+</blockquote>
+<h3 id="三十二、Windows-优先级数值表">三十二、Windows 优先级数值表</h3>
+<h4 id="1-完整对照表（行-相对优先级，列-优先级类）">1. 完整对照表（行 = 相对优先级，列 = 优先级类）</h4>
+<table>
+<thead>
+<tr>
+<th>相对优先级 ＼ 优先级类</th>
+<th>real-time</th>
+<th>high</th>
+<th>above normal</th>
+<th>normal</th>
+<th>below normal</th>
+<th>idle priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>time-critical</strong></td>
+<td><strong>31</strong></td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+<td>15</td>
+</tr>
+<tr>
+<td><strong>highest</strong></td>
+<td>26</td>
+<td>15</td>
+<td>12</td>
+<td>10</td>
+<td>8</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>above normal</strong></td>
+<td>25</td>
+<td>14</td>
+<td>11</td>
+<td>9</td>
+<td>7</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>normal（基准）</strong></td>
+<td>24</td>
+<td><strong>13</strong></td>
+<td><strong>10</strong></td>
+<td><strong>8</strong></td>
+<td><strong>6</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td><strong>below normal</strong></td>
+<td>23</td>
+<td>12</td>
+<td>9</td>
+<td>7</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>lowest</strong></td>
+<td>22</td>
+<td>11</td>
+<td>8</td>
+<td>6</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>idle</strong></td>
+<td><strong>16</strong></td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-读表要点（高频考点）">2. 读表要点（高频考点）</h4>
+<ol>
+<li>
+<p><strong>数值优先级 = 优先级类（列）+ 相对优先级（行）</strong> 交叉决定。</p>
+</li>
+<li>
+<p><strong>基准优先级（base priority）= 该类中 NORMAL 行的值</strong>。<br>
+例：NORMAL 类的基准 = 8；HIGH 类的基准 = 13。<br>
+→ <strong>时间片耗尽时优先级下降，但绝不会低于这个基准值</strong>。</p>
+</li>
+<li>
+<p>time-critical 和 idle 两行是&quot;封顶/触底&quot;行</p>
+<p>，不遵循 ±1 的规律：</p>
+<ul>
+<li>非实时类的 <code>time-critical</code> <strong>一律为 15</strong>（可变类的最高值）</li>
+<li>非实时类的 <code>idle</code> <strong>一律为 1</strong>（优先级 0 保留给内存管理线程）</li>
+<li>实时类的 <code>time-critical</code> = <strong>31</strong>（系统最高），<code>idle</code> = <strong>16</strong>（实时类下限）</li>
+</ul>
+</li>
+<li>
+<p><strong>实时类占 16~31，可变类占 1~15</strong>，二者严格隔离——任何实时线程都高于任何可变线程。</p>
+</li>
+<li>
+<p>中间五行呈规律的 ±1 阶梯</p>
+<p>：以 normal 行为中心，向上 +1、+2，向下 −1、−2。</p>
+<ul>
+<li>例外：real-time 列的 highest = 26（不是 25+1=26 ✓，规律成立），但 time-critical 直接跳到 31。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>idle priority</code> 类的用途</strong>：屏幕保护程序、后台索引、统计分析等——只在系统完全空闲时才运行。</p>
+</li>
+</ol>
+<blockquote>
+<p>💡 <strong>动态调整回顾</strong>：只有可变类（1~15）会被动态调整。</p>
+<ul>
+<li>时间片耗尽 → 优先级 <strong>降低</strong>（不低于 base）</li>
+<li>从等待中唤醒 → 优先级 <strong>提升</strong>（等键盘 I/O 提升大，等磁盘 I/O 提升小）</li>
+<li>前台窗口进程 → 时间片 <strong>延长（通常 3 倍）</strong></li>
+</ul>
+</blockquote>
+<h3 id="三十三、操作系统实例之三：Solaris-调度">三十三、操作系统实例之三：Solaris 调度</h3>
+<h4 id="1-基本特征">1. 基本特征</h4>
+<blockquote>
+<p><strong>Solaris 采用基于优先级的调度</strong>，提供<strong>六个调度类</strong>，每个类有<strong>自己的调度算法</strong>。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>全称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TS</strong></td>
+<td><strong>Time Sharing（分时）</strong></td>
+<td><strong>默认类</strong>，使用<strong>多级反馈队列（MLFQ）</strong></td>
+</tr>
+<tr>
+<td><strong>IA</strong></td>
+<td>Interactive（交互）</td>
+<td>用于图形界面应用，与 TS 算法相同但会给窗口焦点进程优先级提升</td>
+</tr>
+<tr>
+<td><strong>RT</strong></td>
+<td>Real Time（实时）</td>
+<td>提供有保证的响应时间</td>
+</tr>
+<tr>
+<td><strong>SYS</strong></td>
+<td>System（系统）</td>
+<td>内核线程专用（调度程序、页面守护进程等），<strong>优先级固定不变</strong></td>
+</tr>
+<tr>
+<td><strong>FSS</strong></td>
+<td>Fair Share（公平分享）</td>
+<td>使用 <strong>CPU 份额（shares）</strong> 而非优先级，即比例分享调度</td>
+</tr>
+<tr>
+<td><strong>FP</strong></td>
+<td>Fixed Priority（固定优先级）</td>
+<td>优先级范围与 TS 相同，但<strong>不动态调整</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>一个线程在同一时刻只能属于一个类</strong>。</p>
+</blockquote>
+<p><strong>分派表（dispatch table）是&quot;可加载的（loadable）&quot;</strong>——系统管理员可以配置修改。</p>
+<h4 id="2-Solaris-分派表（TS-IA-类专用）">2. Solaris 分派表（TS / IA 类专用）</h4>
+<table>
+<thead>
+<tr>
+<th>priority</th>
+<th>time quantum</th>
+<th>time quantum expired</th>
+<th>return from sleep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>200</td>
+<td>0</td>
+<td>50</td>
+</tr>
+<tr>
+<td>5</td>
+<td>200</td>
+<td>0</td>
+<td>50</td>
+</tr>
+<tr>
+<td>10</td>
+<td>160</td>
+<td>0</td>
+<td>51</td>
+</tr>
+<tr>
+<td>15</td>
+<td>160</td>
+<td>5</td>
+<td>51</td>
+</tr>
+<tr>
+<td>20</td>
+<td>120</td>
+<td>10</td>
+<td>52</td>
+</tr>
+<tr>
+<td>25</td>
+<td>120</td>
+<td>15</td>
+<td>52</td>
+</tr>
+<tr>
+<td>30</td>
+<td>80</td>
+<td>20</td>
+<td>53</td>
+</tr>
+<tr>
+<td>35</td>
+<td>80</td>
+<td>25</td>
+<td>54</td>
+</tr>
+<tr>
+<td>40</td>
+<td>40</td>
+<td>30</td>
+<td>55</td>
+</tr>
+<tr>
+<td>45</td>
+<td>40</td>
+<td>35</td>
+<td>56</td>
+</tr>
+<tr>
+<td>50</td>
+<td>40</td>
+<td>40</td>
+<td>58</td>
+</tr>
+<tr>
+<td>55</td>
+<td>40</td>
+<td>45</td>
+<td>58</td>
+</tr>
+<tr>
+<td>59</td>
+<td>20</td>
+<td>49</td>
+<td>59</td>
+</tr>
+</tbody>
+</table>
+<h5 id="三列的含义（核心考点）">三列的含义（核心考点）</h5>
+<table>
+<thead>
+<tr>
+<th>列</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>priority</strong></td>
+<td>类内优先级，<strong>0 最低，59 最高</strong>（⚠️ 与 Linux/Windows 的&quot;小=高&quot;<strong>相反</strong>！）</td>
+</tr>
+<tr>
+<td><strong>time quantum</strong></td>
+<td>该优先级对应的<strong>时间片长度（ms）</strong></td>
+</tr>
+<tr>
+<td><strong>time quantum expired</strong></td>
+<td>线程<strong>用完整个时间片</strong>后，被<strong>降到</strong>的新优先级</td>
+</tr>
+<tr>
+<td><strong>return from sleep</strong></td>
+<td>线程<strong>从睡眠（I/O 等待）中返回</strong>后，被<strong>提升到</strong>的新优先级</td>
+</tr>
+</tbody>
+</table>
+<h5 id="三条规律（必须理解）">三条规律（必须理解）</h5>
+<p><strong>① 优先级越高 → 时间片越短</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">priority 0  → 200 ms   （最低优先级，最长时间片）</span><br><span class="line">priority 59 → 20 ms    （最高优先级，最短时间片）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>💡 <strong>为什么反直觉地&quot;高优先级给短时间片&quot;？</strong><br>
+因为高优先级在 Solaris 中意味着<strong>交互性强</strong>（频繁 I/O）。这类线程只需要很短的 CPU 时间就会主动阻塞，给长时间片没意义；而低优先级的 CPU 密集型线程给长时间片可以<strong>减少上下文切换开销</strong>。</p>
+</blockquote>
+<p><strong>② 用完时间片 → 优先级降低（惩罚 CPU 密集型）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">priority 50，用完 40 ms → 降到 priority 40</span><br><span class="line">priority 59，用完 20 ms → 降到 priority 49</span><br></pre></td></tr></table></figure>
+<p>（低优先级区间如 0、5、10，expired 后仍为 0——已经触底）</p>
+<p><strong>③ 从睡眠返回 → 优先级大幅提升（奖励 I/O 密集型 / 交互型）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">priority 0  从 I/O 返回 → 直接跃升到 priority 50</span><br><span class="line">priority 10 从 I/O 返回 → 跃升到 priority 51</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这保证了交互式线程（等键盘、等鼠标、等磁盘）一旦被唤醒就能<strong>立刻获得高优先级抢占 CPU</strong>，从而获得极佳的响应时间。</p>
+</blockquote>
+<blockquote>
+<p>🎯 <strong>这张表就是&quot;多级反馈队列&quot;的具体参数实例</strong>——完美对应 MLFQ 的两个关键参数：何时降级（expired 列）、何时升级（return from sleep 列）。</p>
+</blockquote>
+<h4 id="3-Solaris-全局优先级结构">3. Solaris 全局优先级结构</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"> global                                              scheduling</span><br><span class="line">priority                                                order</span><br><span class="line">  169  ┌────────────────────────────────────┐        ↑ first</span><br><span class="line">       │        interrupt threads           │        │</span><br><span class="line">  160  └────────────────────────────────────┘        │</span><br><span class="line">  159  ┌────────────────────────────────────┐        │</span><br><span class="line">       │                                    │        │</span><br><span class="line">       │        realtime (RT) threads       │        │</span><br><span class="line">       │                                    │        │</span><br><span class="line">  100  └────────────────────────────────────┘        │</span><br><span class="line">   99  ┌────────────────────────────────────┐        │</span><br><span class="line">       │        system (SYS) threads        │        │</span><br><span class="line">   60  └────────────────────────────────────┘        │</span><br><span class="line">   59  ┌────────────────────────────────────┐        │</span><br><span class="line">       │      fair share (FSS) threads      │        │</span><br><span class="line">       │    fixed priority (FX) threads     │        │</span><br><span class="line">       │     timeshare (TS) threads         │        │</span><br><span class="line">    0  │    interactive (IA) threads        │        ↓ last</span><br><span class="line">       └────────────────────────────────────┘</span><br><span class="line"> lowest</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>全局优先级区间</th>
+<th>类</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>160 – 169</strong></td>
+<td><strong>中断线程（interrupt threads）</strong> ← 最高</td>
+</tr>
+<tr>
+<td><strong>100 – 159</strong></td>
+<td>实时线程（RT）</td>
+</tr>
+<tr>
+<td><strong>60 – 99</strong></td>
+<td>系统线程（SYS）</td>
+</tr>
+<tr>
+<td><strong>0 – 59</strong></td>
+<td>FSS、FX、TS、IA（四类共享同一区间）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>Solaris 的全局优先级：数值越大 = 优先级越高</strong>（与 Linux、Windows 相反，注意区分！）</p>
+</blockquote>
+<h4 id="4-调度流程">4. 调度流程</h4>
+<blockquote>
+<p><strong>调度器把各类特有的优先级转换为&quot;每线程的全局优先级（global priority）&quot;</strong>，然后：</p>
+</blockquote>
+<ul>
+<li><strong>优先级最高的线程下一个运行</strong>；</li>
+<li>该线程一直运行，直到：
+<ol>
+<li><strong>阻塞（blocks）</strong></li>
+<li><strong>用完时间片（uses time slice）</strong></li>
+<li><strong>被更高优先级线程抢占（preempted）</strong></li>
+</ol>
+</li>
+<li><strong>同一优先级有多个线程时，用 RR（轮转）选择。</strong></li>
+</ul>
+<blockquote>
+<p>📌 <strong>与 Windows 的机制高度相似</strong>：都是&quot;全局优先级 + 抢占 + 同级 RR + 三种让出条件&quot;，区别只在优先级方向和类的划分。</p>
+</blockquote>
+<h3 id="三十四、算法评估（Algorithm-Evaluation）">三十四、算法评估（Algorithm Evaluation）</h3>
+<h4 id="核心问题">核心问题</h4>
+<blockquote>
+<p><strong>如何为一个操作系统选择 CPU 调度算法？</strong></p>
+<p>步骤：<strong>① 确定评价准则（criteria）→ ② 用准则评估各算法</strong>。</p>
+</blockquote>
+<p>准则示例：</p>
+<ul>
+<li>“在最大响应时间为 1 秒的约束下，最大化 CPU 利用率”</li>
+<li>“使周转时间与总执行时间成线性比例”</li>
+</ul>
+<p><strong>四种评估方法</strong>（由简到繁、由粗到精）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">确定性建模 → 排队模型 → 仿真 → 实际实现</span><br><span class="line"> 简单/粗糙  ←──────────────────────→  精确/昂贵</span><br></pre></td></tr></table></figure>
+<h3 id="三十五、方法一：确定性建模（Deterministic-Modeling）">三十五、方法一：确定性建模（Deterministic Modeling）</h3>
+<h4 id="1-定义">1. 定义</h4>
+<blockquote>
+<p>属于<strong>解析评估（analytic evaluation）</strong> 的一种：<br>
+<strong>取一个特定的、预先确定的工作负载，计算各算法在该负载下的性能表现。</strong></p>
+</blockquote>
+<h4 id="2-示例：5-个进程，均在时刻-0-到达">2. 示例：5 个进程，均在时刻 0 到达</h4>
+<table>
+<thead>
+<tr>
+<th>进程</th>
+<th>突发时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1</td>
+<td>10</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>29</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>7</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>12</td>
+</tr>
+</tbody>
+</table>
+<p><strong>① FCFS —— 平均等待时间 28 ms</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|    P1    |         P2          |P3| P4 |  P5  |</span><br><span class="line">0         10                    39 42   49     61</span><br></pre></td></tr></table></figure>
+<p>等待时间：0, 10, 39, 42, 49 → (0+10+39+42+49)/5 = <strong>28 ms</strong></p>
+<p><strong>② 非抢占 SJF —— 平均等待时间 13 ms</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|P3| P4 |   P1   |   P5   |        P2        |</span><br><span class="line">0  3   10       20       32                 61</span><br></pre></td></tr></table></figure>
+<p>执行顺序按突发时间排序：P3(3) → P4(7) → P1(10) → P5(12) → P2(29)<br>
+等待时间：P3=0, P4=3, P1=10, P5=20, P2=32 → (0+3+10+20+32)/5 = <strong>13 ms</strong></p>
+<p><strong>③ RR（q = 10）—— 平均等待时间 23 ms</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">|    P1    |    P2    |P3| P4 |   P5   |   P2   |P5|  P2  |</span><br><span class="line">0         10         20 23   30       40       50 52     61</span><br></pre></td></tr></table></figure>
+<p>等待时间：P1=0, P2=(10−0)+(40−20)… → 计算得平均 <strong>23 ms</strong></p>
+<p><strong>结论：SJF (13) &lt; RR (23) &lt; FCFS (28)</strong> —— 本例中 SJF 最优。</p>
+<h4 id="3-优缺点（考点）">3. 优缺点（考点）</h4>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>简单、快速</strong></td>
+<td><strong>需要精确的输入数字</strong></td>
+</tr>
+<tr>
+<td>给出明确的数值可供比较</td>
+<td><strong>结论只适用于这一组特定输入</strong>，不能推广</td>
+</tr>
+<tr>
+<td>适合描述算法、举例教学</td>
+<td>真实系统的负载是随机变化的，无法预先知道</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 若要有用，必须在<strong>大量样本</strong>上反复运行确定性建模，才能得出有普遍意义的趋势。</p>
+</blockquote>
+<h3 id="三十六、方法二：排队模型（Queueing-Models）">三十六、方法二：排队模型（Queueing Models）</h3>
+<h4 id="1-基本思想">1. 基本思想</h4>
+<blockquote>
+<p>用<strong>概率分布</strong>来描述进程的到达，以及 CPU 突发和 I/O 突发的分布。</p>
+</blockquote>
+<ul>
+<li>通常假设为<strong>指数分布（exponential）</strong>，用<strong>均值（mean）</strong> 来刻画；</li>
+<li>可计算出<strong>平均吞吐量、利用率、等待时间</strong>等。</li>
+</ul>
+<p><strong>排队网络分析（queueing-network analysis）</strong>：</p>
+<blockquote>
+<p>把计算机系统描述为<strong>一个服务器网络</strong>，每个服务器（CPU、磁盘等）都带有一个<strong>等待进程队列</strong>。<br>
+已知<strong>到达率（arrival rate）</strong> 和<strong>服务率（service rate）</strong>，即可计算出<strong>利用率、平均队列长度、平均等待时间</strong>等。</p>
+</blockquote>
+<h4 id="2-Little-公式（Little’s-Law）★-必考">2. Little 公式（Little’s Law）★ 必考</h4>
+<p><strong>符号定义</strong>：</p>
+<ul>
+<li><strong>n</strong> = 平均队列长度（average queue length）</li>
+<li><strong>W</strong> = 队列中的平均等待时间（average waiting time）</li>
+<li><strong>λ</strong> = 进入队列的平均到达率（average arrival rate）</li>
+</ul>
+<p><strong>推导直觉</strong>：在<strong>稳态（steady state）</strong> 下，<strong>离开队列的进程数必须等于到达队列的进程数</strong>，因此：</p>
+<p>n=λ×W\boxed{n = \lambda \times W}n=λ×W</p>
+<p><strong>通用性</strong>：<strong>对任何调度算法和任何到达分布都成立</strong>——这是 Little 公式最强大的地方。</p>
+<p><strong>教材例题</strong>：</p>
+<blockquote>
+<p>若平均每秒到达 <strong>7 个</strong>进程（λ = 7），队列中通常有 <strong>14 个</strong>进程（n = 14），则：</p>
+<p>W=nλ=147=2 秒W = \frac{n}{\lambda} = \frac{14}{7} = \textbf{2 秒}W=λn=714=2 秒</p>
+</blockquote>
+<blockquote>
+<p>📝 <strong>变式</strong>：三个量知其二即可求第三个。考试常给 λ 和 W 求 n，或给 n 和 W 求 λ。</p>
+</blockquote>
+<h4 id="3-局限">3. 局限</h4>
+<ul>
+<li>数学计算可能<strong>非常复杂</strong>；</li>
+<li>分布假设（如指数分布）<strong>可能不符合实际</strong>；</li>
+<li>为了让数学可解，往往要做<strong>不切实际的简化假设</strong>；</li>
+<li>结果<strong>只是近似</strong>，准确性存疑。</li>
+</ul>
+<h3 id="三十七、方法三：仿真（Simulations）">三十七、方法三：仿真（Simulations）</h3>
+<h4 id="1-为什么需要-2">1. 为什么需要</h4>
+<blockquote>
+<p><strong>排队模型有局限，仿真更为准确。</strong></p>
+</blockquote>
+<h4 id="2-做法">2. 做法</h4>
+<ul>
+<li>编写计算机系统的<strong>程序化模型（programmed model）</strong>；</li>
+<li><strong>时钟是一个变量（clock is a variable）</strong>——每次推进这个变量，修改系统状态；</li>
+<li>运行过程中<strong>收集统计数据</strong>，反映算法性能。</li>
+</ul>
+<h4 id="3-驱动数据的三种来源">3. 驱动数据的三种来源</h4>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>说明</th>
+<th>问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>随机数生成器</strong></td>
+<td>按照给定的概率分布生成进程到达、突发时间、I/O 等事件</td>
+<td>只给出事件的<strong>频率分布</strong>，<strong>丢失了事件发生的顺序关系</strong></td>
+</tr>
+<tr>
+<td><strong>数学/经验定义的分布</strong></td>
+<td>分布可由数学定义（均匀、指数、泊松），也可由实测经验数据定义</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>跟踪磁带 / 跟踪文件（Trace tapes / trace files）</strong></td>
+<td><strong>记录真实系统中真实事件的发生序列</strong></td>
+<td>最准确，但<strong>需要大量存储空间</strong>，且监视程序本身会影响系统</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-仿真评估流程图">4. 仿真评估流程图</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">                          ┌ CPU  10 ┐        ┌──────────────┐</span><br><span class="line">                          │ I/O 213 │   ───→ │ simulation   │ ──→ FCFS 的性能统计</span><br><span class="line">┌──────────────┐          │ CPU  12 │        │   [ FCFS ]   │</span><br><span class="line">│    actual    │          │ I/O 112 │        └──────────────┘</span><br><span class="line">│   process    │  ───→    │ CPU   2 │        ┌──────────────┐</span><br><span class="line">│  execution   │          │ I/O 147 │   ───→ │ simulation   │ ──→ SJF 的性能统计</span><br><span class="line">└──────────────┘          │ CPU 173 │        │   [ SJF  ]   │</span><br><span class="line">                          └─────────┘        └──────────────┘</span><br><span class="line">                          trace tape         ┌──────────────┐</span><br><span class="line">                                        ───→ │ simulation   │ ──→ RR(q=14) 的性能统计</span><br><span class="line">                                             │ [RR (q=14)]  │</span><br><span class="line">                                             └──────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>流程解读</strong>：</p>
+<ol>
+<li>从<strong>真实进程执行</strong>中采集事件序列，录成<strong>跟踪磁带</strong>（如 CPU 突发 10、I/O 213、CPU 12……）；</li>
+<li><strong>同一条跟踪磁带</strong>分别喂给多个仿真器；</li>
+<li>每个仿真器实现<strong>不同的调度算法</strong>（FCFS / SJF / RR q=14）；</li>
+<li>分别得到各自的<strong>性能统计数据</strong>，进行<strong>公平对比</strong>。</li>
+</ol>
+<blockquote>
+<p>💡 <strong>关键优势</strong>：使用<strong>同一份输入数据</strong>比较不同算法，排除了负载差异的干扰，结论具有可比性。</p>
+</blockquote>
+<h4 id="5-局限">5. 局限</h4>
+<ul>
+<li>仿真器本身可能<strong>设计复杂、开销大</strong>（数小时的 CPU 时间）；</li>
+<li>仿真越精细，编程工作量越大；</li>
+<li><strong>仍然只是模型，精度有限</strong>。</li>
+</ul>
+<h3 id="三十八、方法四：实际实现（Implementation）">三十八、方法四：实际实现（Implementation）</h3>
+<h4 id="1-做法">1. 做法</h4>
+<blockquote>
+<p><strong>即使仿真也只有有限的精度</strong>——唯一完全准确的方法就是：<br>
+<strong>把新调度器真正实现出来，放到真实系统中测试。</strong></p>
+</blockquote>
+<h4 id="2-代价">2. 代价</h4>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>高成本（high cost）</strong></td>
+<td>需要把算法写进操作系统内核，并修改依赖它的用户程序</td>
+</tr>
+<tr>
+<td><strong>高风险（high risk）</strong></td>
+<td>在生产系统上试验可能造成故障；用户也不喜欢系统频繁变动</td>
+</tr>
+<tr>
+<td><strong>环境各异（environments vary）</strong></td>
+<td>在 A 环境测出的结论未必适用于 B 环境</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-应对：可配置的调度器">3. 应对：可配置的调度器</h4>
+<blockquote>
+<p><strong>最灵活的调度器可以按站点（per-site）或按系统（per-system）进行修改</strong>，或提供 <strong>API 来调整优先级</strong>。</p>
+</blockquote>
+<p>例子：</p>
+<ul>
+<li>Solaris 的<strong>可加载分派表（loadable dispatch table）</strong>；</li>
+<li>Linux 的 <code>nice</code>、<code>sched_setscheduler()</code>；</li>
+<li>Windows 的 <code>SetPriorityClass()</code>；</li>
+<li>POSIX 的 <code>pthread_attr_setschedpolicy()</code>。</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>但仍然：环境各异（but again environments vary）</strong>。<br>
+而且另一个隐患：<strong>用户会针对调度器的行为&quot;调优&quot;自己的程序</strong>，导致算法在实验室的表现与真实部署后大相径庭（这是一种&quot;古德哈特定律&quot;效应）。</p>
+</blockquote>
+<h3 id="三十九、四种评估方法对比总表">三十九、四种评估方法对比总表</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>输入</th>
+<th>准确性</th>
+<th>成本</th>
+<th>主要局限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>确定性建模</strong></td>
+<td>一组具体数字</td>
+<td>低（仅对该输入）</td>
+<td><strong>极低</strong></td>
+<td>结论不可推广</td>
+</tr>
+<tr>
+<td><strong>排队模型</strong></td>
+<td>概率分布（λ、服务率）</td>
+<td>中（近似）</td>
+<td>低</td>
+<td>假设不切实际，数学复杂</td>
+</tr>
+<tr>
+<td><strong>仿真</strong></td>
+<td>随机数 / 跟踪磁带</td>
+<td><strong>较高</strong></td>
+<td>中~高</td>
+<td>编程复杂，仍是模型</td>
+</tr>
+<tr>
+<td><strong>实际实现</strong></td>
+<td>真实负载</td>
+<td><strong>最高</strong></td>
+<td><strong>最高</strong></td>
+<td>高风险，环境依赖</td>
+</tr>
+</tbody>
+</table>
+<h3 id="四十、三大-OS-调度机制横向对比">四十、三大 OS 调度机制横向对比</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Linux (CFS)</strong></th>
+<th><strong>Windows</strong></th>
+<th><strong>Solaris</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心机制</td>
+<td>虚拟运行时间 vruntime</td>
+<td>优先级 + 动态调整</td>
+<td>多类 + 全局优先级</td>
+</tr>
+<tr>
+<td>优先级方向</td>
+<td><strong>数值小 = 高</strong></td>
+<td><strong>数值大 = 高</strong></td>
+<td><strong>数值大 = 高</strong></td>
+</tr>
+<tr>
+<td>优先级范围</td>
+<td>实时 0–99，普通 100–139</td>
+<td>1–15 可变，16–31 实时</td>
+<td>0–169（中断最高）</td>
+</tr>
+<tr>
+<td>调度类</td>
+<td>default + real-time（可扩展）</td>
+<td>6 个优先级类</td>
+<td><strong>6 个调度类</strong>（TS/IA/RT/SYS/FSS/FP）</td>
+</tr>
+<tr>
+<td>数据结构</td>
+<td><strong>红黑树</strong>（rb_leftmost 缓存）</td>
+<td>每优先级一个队列</td>
+<td>分派表 + 每优先级队列</td>
+</tr>
+<tr>
+<td>时间片</td>
+<td><strong>按比例</strong>（target latency / n）</td>
+<td>固定（前台 ×3）</td>
+<td><strong>查分派表</strong>，高优先级→短时间片</td>
+</tr>
+<tr>
+<td>同级选择</td>
+<td>vruntime 最小</td>
+<td>FIFO/RR</td>
+<td><strong>RR</strong></td>
+</tr>
+<tr>
+<td>交互优化</td>
+<td>I/O 阻塞 → vruntime 落后 → 优先被选</td>
+<td>唤醒时提升优先级</td>
+<td><strong>return from sleep 跃升至 50+</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="四十一、易错点与考点提醒">四十一、易错点与考点提醒</h3>
+<ol>
+<li>优先级数值方向必须分清：
+<ul>
+<li>Linux：<strong>小 = 高</strong>（0 最高）</li>
+<li>Windows：<strong>大 = 高</strong>（31 最高）</li>
+<li>Solaris：<strong>大 = 高</strong>（169 最高）</li>
+</ul>
+</li>
+<li><strong>Windows 优先级表的两条&quot;异常行&quot;</strong>：time-critical 在非实时类恒为 15，idle 恒为 1。</li>
+<li><strong>Windows 的 base priority 就是 NORMAL 行的值</strong>，降级不得低于它。</li>
+<li><strong>Solaris 分派表的反直觉规律</strong>：<strong>优先级越高，时间片越短</strong>。常出选择题。</li>
+<li><strong>Solaris 的 return from sleep 跃升幅度极大</strong>（priority 0 → 50），体现对交互式线程的强力奖励。</li>
+<li><strong>Solaris 六个类的缩写</strong>要能对应：TS（默认，MLFQ）、IA、RT、SYS、FSS、FP。</li>
+<li><strong>Little 公式 n = λ × W</strong> 必须记牢，并能做三量互求的计算。注意 <strong>W 是在队列中等待的时间</strong>，不含服务时间。</li>
+<li><strong>Little 公式适用于任何调度算法和任何到达分布</strong>——这句话本身是判断题常客。</li>
+<li><strong>确定性建模的两大缺点</strong>：需精确输入 + 结论只对该输入有效。</li>
+<li><strong>跟踪磁带（trace tape）的价值</strong>：保留真实事件的<strong>顺序</strong>，而随机数生成器只保留<strong>频率分布</strong>。</li>
+<li><strong>仿真图的要点</strong>：同一条 trace tape 喂给多个不同算法的仿真器，从而公平比较。</li>
+<li><strong>实际实现的三大问题</strong>：高成本、高风险、环境各异。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/07/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter4-%E7%BA%BF%E7%A8%8B%E4%B8%8E%E5%B9%B6%E5%8F%91/" rel="prev" title="Introduction-to-Operating-Systems-Chapter4">
+                  <i class="fa fa-angle-left"></i> Introduction-to-Operating-Systems-Chapter4
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
