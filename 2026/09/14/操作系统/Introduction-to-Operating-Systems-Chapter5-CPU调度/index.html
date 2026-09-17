@@ -28,7 +28,7 @@
 <meta property="og:description" content="CPU调度">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-09-14T07:07:40.000Z">
-<meta property="article:modified_time" content="2026-09-16T09:11:14.022Z">
+<meta property="article:modified_time" content="2026-09-17T08:36:21.304Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Operating Systems">
 <meta name="twitter:card" content="summary">
@@ -128,7 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">CPU调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AC%E7%AB%A0%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">一、本章目标与框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">二、基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CPU%E2%80%93I-O-%E7%AA%81%E5%8F%91%E5%91%A8%E6%9C%9F%EF%BC%88CPU%E2%80%93I-O-Burst-Cycle%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. CPU–I&#x2F;O 突发周期（CPU–I&#x2F;O Burst Cycle）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-CPU-%E7%AA%81%E5%8F%91%E6%97%B6%E9%97%B4%E7%9A%84%E5%88%86%E5%B8%83"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. CPU 突发时间的分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CPU-%E8%B0%83%E5%BA%A6%E7%A8%8B%E5%BA%8F%EF%BC%88CPU-Scheduler-%E7%9F%AD%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. CPU 调度程序（CPU Scheduler &#x2F; 短程调度器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%8A%A2%E5%8D%A0%E5%BC%8F-vs-%E9%9D%9E%E6%8A%A2%E5%8D%A0%E5%BC%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 抢占式 vs 非抢占式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%8A%A2%E5%8D%A0%E5%BC%8F%E8%B0%83%E5%BA%A6%E4%B8%8E%E7%AB%9E%E4%BA%89%E6%9D%A1%E4%BB%B6%EF%BC%88Race-Condition%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 抢占式调度与竞争条件（Race Condition）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%86%E6%B4%BE%E7%A8%8B%E5%BA%8F%EF%BC%88Dispatcher%EF%BC%89"><span class="nav-number">1.2.6.</span> <span class="nav-text">6. 分派程序（Dispatcher）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%B0%83%E5%BA%A6%E5%87%86%E5%88%99%EF%BC%88Scheduling-Criteria%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">三、调度准则（Scheduling Criteria）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">四、调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1-FCFS%EF%BC%88First-Come-First-Served%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 先来先服务 FCFS（First-Come, First-Served）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%80%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88-SJF%EF%BC%88Shortest-Job-First%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 最短作业优先 SJF（Shortest-Job-First）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%B9%B3%E5%9D%87%EF%BC%88Exponential-Averaging%EF%BC%89"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">指数平均（Exponential Averaging）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9C%80%E7%9F%AD%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E4%BC%98%E5%85%88-SRTF%EF%BC%88Shortest-Remaining-Time-First%EF%BC%89"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 最短剩余时间优先 SRTF（Shortest-Remaining-Time-First）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6-RR%EF%BC%88Round-Robin%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 轮转调度 RR（Round Robin）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">五、算法对比总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E4%B8%8E%E8%80%83%E7%82%B9%E6%8F%90%E9%86%92"><span class="nav-number">1.6.</span> <span class="nav-text">六、易错点与考点提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6-RR-%E7%9A%84%E5%AE%9E%E4%BE%8B%E4%B8%8E%E6%97%B6%E9%97%B4%E7%89%87%E9%80%89%E6%8B%A9"><span class="nav-number">1.7.</span> <span class="nav-text">七、轮转调度 RR 的实例与时间片选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B%EF%BC%9Aq-4"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. 完整示例：q &#x3D; 4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%97%B6%E9%97%B4%E7%89%87%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E5%BC%80%E9%94%80"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. 时间片与上下文切换开销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%91%A8%E8%BD%AC%E6%97%B6%E9%97%B4%E9%9A%8F%E6%97%B6%E9%97%B4%E7%89%87%E5%8F%98%E5%8C%96%EF%BC%88%E9%9D%9E%E5%8D%95%E8%B0%83%EF%BC%81%EF%BC%89"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. 周转时间随时间片变化（非单调！）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88Priority-Scheduling%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、优先级调度（Priority Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="nav-number">1.8.1.</span> <span class="nav-text">1. 基本规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%8E-SJF-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.8.2.</span> <span class="nav-text">2. 与 SJF 的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9D%9E%E6%8A%A2%E5%8D%A0%EF%BC%89"><span class="nav-number">1.8.3.</span> <span class="nav-text">3. 示例（非抢占）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E6%B3%95"><span class="nav-number">1.8.4.</span> <span class="nav-text">4. 核心问题与解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6-%E8%BD%AE%E8%BD%AC%EF%BC%88Priority-Scheduling-w-RR%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">九、优先级调度 + 轮转（Priority Scheduling w&#x2F; RR）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%88q-2%EF%BC%89"><span class="nav-number">1.9.1.</span> <span class="nav-text">示例（q &#x3D; 2）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%A4%9A%E7%BA%A7%E9%98%9F%E5%88%97%EF%BC%88Multilevel-Queue%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">十、多级队列（Multilevel Queue）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 动机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%93%E6%9E%84"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%8C%89%E8%BF%9B%E7%A8%8B%E7%B1%BB%E5%9E%8B%E5%88%86%E5%B1%82%EF%BC%88%E6%9B%B4%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BD%A2%E5%BC%8F%EF%BC%89"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 按进程类型分层（更常见的形式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%9A4-%E4%B8%AA%EF%BC%89"><span class="nav-number">1.10.4.</span> <span class="nav-text">4. 调度器的定义参数（考点：4 个）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E7%BC%BA%E7%82%B9"><span class="nav-number">1.10.5.</span> <span class="nav-text">5. 缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%EF%BC%88Multilevel-Feedback-Queue-MLFQ%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、多级反馈队列（Multilevel Feedback Queue, MLFQ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%94%B9%E8%BF%9B"><span class="nav-number">1.11.1.</span> <span class="nav-text">1. 核心改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%9A5-%E4%B8%AA%EF%BC%89"><span class="nav-number">1.11.2.</span> <span class="nav-text">2. 调度器的定义参数（考点：5 个）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%BB%8F%E5%85%B8%E7%A4%BA%E4%BE%8B%EF%BC%88%E4%B8%89%E7%BA%A7%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.11.3.</span> <span class="nav-text">3. 经典示例（三级队列）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%EF%BC%88Thread-Scheduling%EF%BC%89"><span class="nav-number">1.12.</span> <span class="nav-text">十二、线程调度（Thread Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%86"><span class="nav-number">1.12.1.</span> <span class="nav-text">1. 关键区分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E7%A7%8D%E7%AB%9E%E4%BA%89%E8%8C%83%E5%9B%B4%EF%BC%88Contention-Scope%EF%BC%89"><span class="nav-number">1.12.2.</span> <span class="nav-text">2. 两种竞争范围（Contention Scope）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81Pthread-%E8%B0%83%E5%BA%A6-API"><span class="nav-number">1.13.</span> <span class="nav-text">十三、Pthread 调度 API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%A4%E4%B8%AA%E5%B8%B8%E9%87%8F"><span class="nav-number">1.13.1.</span> <span class="nav-text">1. 两个常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B3%E9%94%AE-API"><span class="nav-number">1.13.2.</span> <span class="nav-text">2. 关键 API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E8%A6%81%E7%82%B9"><span class="nav-number">1.13.3.</span> <span class="nav-text">3. 示例代码要点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6%EF%BC%88%E5%BC%95%E5%85%A5%EF%BC%89"><span class="nav-number">1.14.</span> <span class="nav-text">十四、多处理器调度（引入）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E6%9C%AC%E8%8A%82%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E8%A1%A8"><span class="nav-number">1.15.</span> <span class="nav-text">十五、本节算法对比总表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6%EF%BC%9ASMP-%E4%B8%8E%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97%E7%BB%84%E7%BB%87"><span class="nav-number">1.16.</span> <span class="nav-text">十六、多处理器调度：SMP 与就绪队列组织</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AF%B9%E7%A7%B0%E5%A4%9A%E5%A4%84%E7%90%86%EF%BC%88SMP%EF%BC%89"><span class="nav-number">1.16.1.</span> <span class="nav-text">1. 对称多处理（SMP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="nav-number">1.16.2.</span> <span class="nav-text">2. 就绪队列的两种组织方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E5%A4%9A%E6%A0%B8%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88Multicore-Processors%EF%BC%89"><span class="nav-number">1.17.</span> <span class="nav-text">十七、多核处理器（Multicore Processors）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="nav-number">1.17.1.</span> <span class="nav-text">1. 发展趋势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AD%98%E5%81%9C%E9%A1%BF%EF%BC%88Memory-Stall%EF%BC%89%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E7%9A%84%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.17.2.</span> <span class="nav-text">2. 内存停顿（Memory Stall）——多线程核的动机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E6%A0%B8%E7%B3%BB%E7%BB%9F%EF%BC%88Multithreaded-Multicore-System%EF%BC%89"><span class="nav-number">1.18.</span> <span class="nav-text">十八、多线程多核系统（Multithreaded Multicore System）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%8C%E7%A1%AC%E4%BB%B6%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BA%A4%E9%94%99%E6%89%A7%E8%A1%8C"><span class="nav-number">1.18.1.</span> <span class="nav-text">1. 双硬件线程的交错执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%8A%AF%E7%89%87%E5%A4%9A%E7%BA%BF%E7%A8%8B-CMT%EF%BC%88Chip-Multithreading%EF%BC%89"><span class="nav-number">1.18.2.</span> <span class="nav-text">2. 芯片多线程 CMT（Chip-Multithreading）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%A4%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88Two-Levels-of-Scheduling%EF%BC%89"><span class="nav-number">1.18.3.</span> <span class="nav-text">3. 两级调度（Two Levels of Scheduling）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%88Load-Balancing%EF%BC%89"><span class="nav-number">1.19.</span> <span class="nav-text">十九、负载均衡（Load Balancing）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81"><span class="nav-number">1.19.1.</span> <span class="nav-text">1. 为什么需要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E7%A7%8D%E8%BF%81%E7%A7%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.19.2.</span> <span class="nav-text">2. 两种迁移方式（考点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%9D%87%E8%A1%A1-%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%AE%9A%E4%B9%89"><span class="nav-number">1.19.3.</span> <span class="nav-text">3. &quot;均衡&quot;的两种定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E5%A4%84%E7%90%86%E5%99%A8%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88Processor-Affinity%EF%BC%89"><span class="nav-number">1.20.</span> <span class="nav-text">二十、处理器亲和性（Processor Affinity）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5%E6%9D%A5%E6%BA%90%EF%BC%9A%E7%BC%93%E5%AD%98"><span class="nav-number">1.20.1.</span> <span class="nav-text">1. 概念来源：缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E2%9A%A0%EF%B8%8F-%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E6%A0%B9%E6%9C%AC%E7%9F%9B%E7%9B%BE"><span class="nav-number">1.20.2.</span> <span class="nav-text">2. ⚠️ 与负载均衡的根本矛盾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%A4%E7%A7%8D%E4%BA%B2%E5%92%8C%E6%80%A7"><span class="nav-number">1.20.3.</span> <span class="nav-text">3. 两种亲和性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81NUMA-%E4%B8%8E-CPU-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.21.</span> <span class="nav-text">二十一、NUMA 与 CPU 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-NUMA-%E6%9E%B6%E6%9E%84"><span class="nav-number">1.21.1.</span> <span class="nav-text">1. NUMA 架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-NUMA-%E6%84%9F%E7%9F%A5%E8%B0%83%E5%BA%A6"><span class="nav-number">1.21.2.</span> <span class="nav-text">2. NUMA 感知调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E5%AE%9E%E6%97%B6-CPU-%E8%B0%83%E5%BA%A6%EF%BC%88Real-Time-CPU-Scheduling%EF%BC%89"><span class="nav-number">1.22.</span> <span class="nav-text">二十二、实时 CPU 调度（Real-Time CPU Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%A4%E7%B1%BB%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%86%EF%BC%89"><span class="nav-number">1.22.1.</span> <span class="nav-text">1. 两类实时系统（核心区分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BA%8B%E4%BB%B6%E5%BB%B6%E8%BF%9F%EF%BC%88Event-Latency%EF%BC%89"><span class="nav-number">1.22.2.</span> <span class="nav-text">2. 事件延迟（Event Latency）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81%E4%B8%AD%E6%96%AD%E5%BB%B6%E8%BF%9F%EF%BC%88Interrupt-Latency%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.23.</span> <span class="nav-text">二十三、中断延迟（Interrupt Latency）详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E3%80%81%E5%88%86%E6%B4%BE%E5%BB%B6%E8%BF%9F%EF%BC%88Dispatch-Latency%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.24.</span> <span class="nav-text">二十四、分派延迟（Dispatch Latency）详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B2%E7%AA%81%E9%98%B6%E6%AE%B5%EF%BC%88Conflict-Phase%EF%BC%89%E2%80%94%E2%80%94%E5%88%86%E6%B4%BE%E5%BB%B6%E8%BF%9F%E4%B8%AD%E6%9C%80%E8%80%97%E6%97%B6%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-number">1.24.1.</span> <span class="nav-text">冲突阶段（Conflict Phase）——分派延迟中最耗时的部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%92%A1-%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%B2%E7%AA%81%E9%98%B6%E6%AE%B5%E6%98%AF%E5%85%B3%E9%94%AE"><span class="nav-number">1.24.2.</span> <span class="nav-text">💡 补充：为什么冲突阶段是关键</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.25.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%EF%BC%88Priority-based-Scheduling%EF%BC%89"><span class="nav-number">1.26.</span> <span class="nav-text">二十五、基于优先级的实时调度（Priority-based Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B1%82%E6%AC%A1%E8%A6%81%E6%B1%82"><span class="nav-number">1.26.1.</span> <span class="nav-text">1. 实时调度的两个层次要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1%EF%BC%88Periodic-Task%EF%BC%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.26.2.</span> <span class="nav-text">2. 周期性任务（Periodic Task）模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CPU-%E5%88%A9%E7%94%A8%E7%8E%87%E4%B8%8E%E5%8F%AF%E8%B0%83%E5%BA%A6%E6%80%A7%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.26.3.</span> <span class="nav-text">3. CPU 利用率与可调度性（补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AD%E3%80%81%E9%80%9F%E7%8E%87%E5%8D%95%E8%B0%83%E8%B0%83%E5%BA%A6%EF%BC%88Rate-Monotonic-Scheduling-RMS%EF%BC%89"><span class="nav-number">1.27.</span> <span class="nav-text">二十六、速率单调调度（Rate Monotonic Scheduling, RMS）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%A7%84%E5%88%99"><span class="nav-number">1.27.1.</span> <span class="nav-text">1. 规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%88%90%E5%8A%9F%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.27.2.</span> <span class="nav-text">2. 成功示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%94%99%E8%BF%87%E6%88%AA%E6%AD%A2%E6%9C%9F%E9%99%90%E7%9A%84%E7%A4%BA%E4%BE%8B%EF%BC%88RMS-%E7%9A%84%E5%B1%80%E9%99%90%EF%BC%89"><span class="nav-number">1.27.3.</span> <span class="nav-text">3. 错过截止期限的示例（RMS 的局限）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-RMS-%E7%9A%84%E7%90%86%E8%AE%BA%E7%BB%93%E8%AE%BA%EF%BC%88%E9%87%8D%E8%A6%81%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.27.4.</span> <span class="nav-text">4. RMS 的理论结论（重要补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%E3%80%81%E6%9C%80%E6%97%A9%E6%88%AA%E6%AD%A2%E6%9C%9F%E9%99%90%E4%BC%98%E5%85%88%EF%BC%88Earliest-Deadline-First-EDF%EF%BC%89"><span class="nav-number">1.28.</span> <span class="nav-text">二十七、最早截止期限优先（Earliest-Deadline-First, EDF）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%A7%84%E5%88%99-2"><span class="nav-number">1.28.1.</span> <span class="nav-text">1. 规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.28.2.</span> <span class="nav-text">2. 示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-EDF-%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%88%E9%87%8D%E8%A6%81%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.28.3.</span> <span class="nav-text">3. EDF 的特点（重要补充）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%93%8A-RMS-vs-EDF-%E5%AF%B9%E6%AF%94%EF%BC%88%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.28.4.</span> <span class="nav-text">📊 RMS vs EDF 对比（高频考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AB%E3%80%81%E6%AF%94%E4%BE%8B%E5%88%86%E4%BA%AB%E8%B0%83%E5%BA%A6%EF%BC%88Proportional-Share-Scheduling%EF%BC%89"><span class="nav-number">1.29.</span> <span class="nav-text">二十八、比例分享调度（Proportional Share Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%84%E5%88%99"><span class="nav-number">1.29.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B9%9D%E3%80%81POSIX-%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6"><span class="nav-number">1.30.</span> <span class="nav-text">二十九、POSIX 实时调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-POSIX-1b-%E6%A0%87%E5%87%86"><span class="nav-number">1.30.1.</span> <span class="nav-text">1. POSIX.1b 标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E4%B8%AA%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="nav-number">1.30.2.</span> <span class="nav-text">2. 两个核心函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.30.3.</span> <span class="nav-text">3. 示例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%B8%80%EF%BC%9ALinux-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.31.</span> <span class="nav-text">三十、操作系统实例之一：Linux 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-%E7%89%88%E6%9C%AC%E4%B9%8B%E5%89%8D"><span class="nav-number">1.31.1.</span> <span class="nav-text">1. 2.5 版本之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%89%88%E6%9C%AC-2-5%EF%BC%9AO-1-%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="nav-number">1.31.2.</span> <span class="nav-text">2. 版本 2.5：O(1) 调度器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%89%88%E6%9C%AC-2-6-23-%E8%B5%B7%EF%BC%9A%E5%AE%8C%E5%85%A8%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88CFS%EF%BC%89"><span class="nav-number">1.31.3.</span> <span class="nav-text">3. 版本 2.6.23 起：完全公平调度器（CFS）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%B0%83%E5%BA%A6%E7%B1%BB%EF%BC%88Scheduling-Classes%EF%BC%89"><span class="nav-number">1.31.3.1.</span> <span class="nav-text">(1) 调度类（Scheduling Classes）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A%E6%8C%89%E6%AF%94%E4%BE%8B%E8%80%8C%E9%9D%9E%E5%9B%BA%E5%AE%9A%E6%97%B6%E9%97%B4%E7%89%87"><span class="nav-number">1.31.3.2.</span> <span class="nav-text">(2) 核心思想：按比例而非固定时间片</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E8%99%9A%E6%8B%9F%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%EF%BC%88vruntime%EF%BC%89%E2%80%94%E2%80%94-CFS-%E7%9A%84%E7%81%B5%E9%AD%82"><span class="nav-number">1.31.3.3.</span> <span class="nav-text">(3) 虚拟运行时间（vruntime）—— CFS 的灵魂</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-CFS-%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">1.31.3.4.</span> <span class="nav-text">(4) CFS 的实现：红黑树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-Linux-%E7%9A%84%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6"><span class="nav-number">1.31.3.5.</span> <span class="nav-text">(5) Linux 的实时调度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8E-NUMA-%E6%84%9F%E7%9F%A5"><span class="nav-number">1.31.3.6.</span> <span class="nav-text">(6) 负载均衡与 NUMA 感知</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%BA%8C%EF%BC%9AWindows-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.32.</span> <span class="nav-text">三十一、操作系统实例之二：Windows 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="nav-number">1.32.1.</span> <span class="nav-text">1. 基本机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-32-%E7%BA%A7%E4%BC%98%E5%85%88%E7%BA%A7%E6%96%B9%E6%A1%88"><span class="nav-number">1.32.2.</span> <span class="nav-text">2. 32 级优先级方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Win32-%E4%BC%98%E5%85%88%E7%BA%A7%E7%B1%BB%EF%BC%88Priority-Classes%EF%BC%89"><span class="nav-number">1.32.3.</span> <span class="nav-text">3. Win32 优先级类（Priority Classes）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8A%A8%E6%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%99%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.32.4.</span> <span class="nav-text">4. 动态优先级调整规则（考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%BA%8C%E3%80%81Windows-%E4%BC%98%E5%85%88%E7%BA%A7%E6%95%B0%E5%80%BC%E8%A1%A8"><span class="nav-number">1.33.</span> <span class="nav-text">三十二、Windows 优先级数值表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%8C%E6%95%B4%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E8%A1%8C-%E7%9B%B8%E5%AF%B9%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%8C%E5%88%97-%E4%BC%98%E5%85%88%E7%BA%A7%E7%B1%BB%EF%BC%89"><span class="nav-number">1.33.1.</span> <span class="nav-text">1. 完整对照表（行 &#x3D; 相对优先级，列 &#x3D; 优先级类）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AF%BB%E8%A1%A8%E8%A6%81%E7%82%B9%EF%BC%88%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.33.2.</span> <span class="nav-text">2. 读表要点（高频考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%89%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%B8%89%EF%BC%9ASolaris-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.34.</span> <span class="nav-text">三十三、操作系统实例之三：Solaris 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81"><span class="nav-number">1.34.1.</span> <span class="nav-text">1. 基本特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Solaris-%E5%88%86%E6%B4%BE%E8%A1%A8%EF%BC%88TS-IA-%E7%B1%BB%E4%B8%93%E7%94%A8%EF%BC%89"><span class="nav-number">1.34.2.</span> <span class="nav-text">2. Solaris 分派表（TS &#x2F; IA 类专用）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E5%88%97%E7%9A%84%E5%90%AB%E4%B9%89%EF%BC%88%E6%A0%B8%E5%BF%83%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.34.2.1.</span> <span class="nav-text">三列的含义（核心考点）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E6%9D%A1%E8%A7%84%E5%BE%8B%EF%BC%88%E5%BF%85%E9%A1%BB%E7%90%86%E8%A7%A3%EF%BC%89"><span class="nav-number">1.34.2.2.</span> <span class="nav-text">三条规律（必须理解）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Solaris-%E5%85%A8%E5%B1%80%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="nav-number">1.34.3.</span> <span class="nav-text">3. Solaris 全局优先级结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B"><span class="nav-number">1.34.4.</span> <span class="nav-text">4. 调度流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%9B%9B%E3%80%81%E7%AE%97%E6%B3%95%E8%AF%84%E4%BC%B0%EF%BC%88Algorithm-Evaluation%EF%BC%89"><span class="nav-number">1.35.</span> <span class="nav-text">三十四、算法评估（Algorithm Evaluation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-number">1.35.1.</span> <span class="nav-text">核心问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%BA%94%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BB%BA%E6%A8%A1%EF%BC%88Deterministic-Modeling%EF%BC%89"><span class="nav-number">1.36.</span> <span class="nav-text">三十五、方法一：确定性建模（Deterministic Modeling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="nav-number">1.36.1.</span> <span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A4%BA%E4%BE%8B%EF%BC%9A5-%E4%B8%AA%E8%BF%9B%E7%A8%8B%EF%BC%8C%E5%9D%87%E5%9C%A8%E6%97%B6%E5%88%BB-0-%E5%88%B0%E8%BE%BE"><span class="nav-number">1.36.2.</span> <span class="nav-text">2. 示例：5 个进程，均在时刻 0 到达</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.36.3.</span> <span class="nav-text">3. 优缺点（考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%85%AD%E3%80%81%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%8E%92%E9%98%9F%E6%A8%A1%E5%9E%8B%EF%BC%88Queueing-Models%EF%BC%89"><span class="nav-number">1.37.</span> <span class="nav-text">三十六、方法二：排队模型（Queueing Models）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">1.37.1.</span> <span class="nav-text">1. 基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Little-%E5%85%AC%E5%BC%8F%EF%BC%88Little%E2%80%99s-Law%EF%BC%89%E2%98%85-%E5%BF%85%E8%80%83"><span class="nav-number">1.37.2.</span> <span class="nav-text">2. Little 公式（Little’s Law）★ 必考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B1%80%E9%99%90"><span class="nav-number">1.37.3.</span> <span class="nav-text">3. 局限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%83%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E4%BB%BF%E7%9C%9F%EF%BC%88Simulations%EF%BC%89"><span class="nav-number">1.38.</span> <span class="nav-text">三十七、方法三：仿真（Simulations）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-2"><span class="nav-number">1.38.1.</span> <span class="nav-text">1. 为什么需要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%81%9A%E6%B3%95"><span class="nav-number">1.38.2.</span> <span class="nav-text">2. 做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%A9%B1%E5%8A%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%89%E7%A7%8D%E6%9D%A5%E6%BA%90"><span class="nav-number">1.38.3.</span> <span class="nav-text">3. 驱动数据的三种来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BB%BF%E7%9C%9F%E8%AF%84%E4%BC%B0%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.38.4.</span> <span class="nav-text">4. 仿真评估流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%B1%80%E9%99%90"><span class="nav-number">1.38.5.</span> <span class="nav-text">5. 局限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%85%AB%E3%80%81%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9A%E5%AE%9E%E9%99%85%E5%AE%9E%E7%8E%B0%EF%BC%88Implementation%EF%BC%89"><span class="nav-number">1.39.</span> <span class="nav-text">三十八、方法四：实际实现（Implementation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%81%9A%E6%B3%95"><span class="nav-number">1.39.1.</span> <span class="nav-text">1. 做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BB%A3%E4%BB%B7"><span class="nav-number">1.39.2.</span> <span class="nav-text">2. 代价</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%BA%94%E5%AF%B9%EF%BC%9A%E5%8F%AF%E9%85%8D%E7%BD%AE%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="nav-number">1.39.3.</span> <span class="nav-text">3. 应对：可配置的调度器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B9%9D%E3%80%81%E5%9B%9B%E7%A7%8D%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E8%A1%A8"><span class="nav-number">1.40.</span> <span class="nav-text">三十九、四种评估方法对比总表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%8D%81%E3%80%81%E4%B8%89%E5%A4%A7-OS-%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94"><span class="nav-number">1.41.</span> <span class="nav-text">四十、三大 OS 调度机制横向对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%8D%81%E4%B8%80%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E4%B8%8E%E8%80%83%E7%82%B9%E6%8F%90%E9%86%92"><span class="nav-number">1.42.</span> <span class="nav-text">四十一、易错点与考点提醒</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">CPU调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AC%E7%AB%A0%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">一、本章目标与框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.</span> <span class="nav-text">二、基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-CPU%E2%80%93I-O-%E7%AA%81%E5%8F%91%E5%91%A8%E6%9C%9F%EF%BC%88CPU%E2%80%93I-O-Burst-Cycle%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. CPU–I&#x2F;O 突发周期（CPU–I&#x2F;O Burst Cycle）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-CPU-%E7%AA%81%E5%8F%91%E6%97%B6%E9%97%B4%E7%9A%84%E5%88%86%E5%B8%83"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. CPU 突发时间的分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CPU-%E8%B0%83%E5%BA%A6%E7%A8%8B%E5%BA%8F%EF%BC%88CPU-Scheduler-%E7%9F%AD%E7%A8%8B%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. CPU 调度程序（CPU Scheduler &#x2F; 短程调度器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%8A%A2%E5%8D%A0%E5%BC%8F-vs-%E9%9D%9E%E6%8A%A2%E5%8D%A0%E5%BC%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 抢占式 vs 非抢占式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%8A%A2%E5%8D%A0%E5%BC%8F%E8%B0%83%E5%BA%A6%E4%B8%8E%E7%AB%9E%E4%BA%89%E6%9D%A1%E4%BB%B6%EF%BC%88Race-Condition%EF%BC%89"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 抢占式调度与竞争条件（Race Condition）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%86%E6%B4%BE%E7%A8%8B%E5%BA%8F%EF%BC%88Dispatcher%EF%BC%89"><span class="nav-number">1.2.6.</span> <span class="nav-text">6. 分派程序（Dispatcher）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%B0%83%E5%BA%A6%E5%87%86%E5%88%99%EF%BC%88Scheduling-Criteria%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">三、调度准则（Scheduling Criteria）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.4.</span> <span class="nav-text">四、调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%88%E6%9D%A5%E5%85%88%E6%9C%8D%E5%8A%A1-FCFS%EF%BC%88First-Come-First-Served%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">1. 先来先服务 FCFS（First-Come, First-Served）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9C%80%E7%9F%AD%E4%BD%9C%E4%B8%9A%E4%BC%98%E5%85%88-SJF%EF%BC%88Shortest-Job-First%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">2. 最短作业优先 SJF（Shortest-Job-First）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8C%87%E6%95%B0%E5%B9%B3%E5%9D%87%EF%BC%88Exponential-Averaging%EF%BC%89"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">指数平均（Exponential Averaging）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9C%80%E7%9F%AD%E5%89%A9%E4%BD%99%E6%97%B6%E9%97%B4%E4%BC%98%E5%85%88-SRTF%EF%BC%88Shortest-Remaining-Time-First%EF%BC%89"><span class="nav-number">1.4.3.</span> <span class="nav-text">3. 最短剩余时间优先 SRTF（Shortest-Remaining-Time-First）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6-RR%EF%BC%88Round-Robin%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">4. 轮转调度 RR（Round Robin）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.</span> <span class="nav-text">五、算法对比总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E4%B8%8E%E8%80%83%E7%82%B9%E6%8F%90%E9%86%92"><span class="nav-number">1.6.</span> <span class="nav-text">六、易错点与考点提醒</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%BD%AE%E8%BD%AC%E8%B0%83%E5%BA%A6-RR-%E7%9A%84%E5%AE%9E%E4%BE%8B%E4%B8%8E%E6%97%B6%E9%97%B4%E7%89%87%E9%80%89%E6%8B%A9"><span class="nav-number">1.7.</span> <span class="nav-text">七、轮转调度 RR 的实例与时间片选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B%EF%BC%9Aq-4"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. 完整示例：q &#x3D; 4</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%97%B6%E9%97%B4%E7%89%87%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E5%BC%80%E9%94%80"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. 时间片与上下文切换开销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%91%A8%E8%BD%AC%E6%97%B6%E9%97%B4%E9%9A%8F%E6%97%B6%E9%97%B4%E7%89%87%E5%8F%98%E5%8C%96%EF%BC%88%E9%9D%9E%E5%8D%95%E8%B0%83%EF%BC%81%EF%BC%89"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. 周转时间随时间片变化（非单调！）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88Priority-Scheduling%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、优先级调度（Priority Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%A7%84%E5%88%99"><span class="nav-number">1.8.1.</span> <span class="nav-text">1. 基本规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%8E-SJF-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.8.2.</span> <span class="nav-text">2. 与 SJF 的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%EF%BC%88%E9%9D%9E%E6%8A%A2%E5%8D%A0%EF%BC%89"><span class="nav-number">1.8.3.</span> <span class="nav-text">3. 示例（非抢占）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98%E4%B8%8E%E8%A7%A3%E6%B3%95"><span class="nav-number">1.8.4.</span> <span class="nav-text">4. 核心问题与解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E5%BA%A6-%E8%BD%AE%E8%BD%AC%EF%BC%88Priority-Scheduling-w-RR%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">九、优先级调度 + 轮转（Priority Scheduling w&#x2F; RR）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%88q-2%EF%BC%89"><span class="nav-number">1.9.1.</span> <span class="nav-text">示例（q &#x3D; 2）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%A4%9A%E7%BA%A7%E9%98%9F%E5%88%97%EF%BC%88Multilevel-Queue%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">十、多级队列（Multilevel Queue）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 动机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%BB%93%E6%9E%84"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%8C%89%E8%BF%9B%E7%A8%8B%E7%B1%BB%E5%9E%8B%E5%88%86%E5%B1%82%EF%BC%88%E6%9B%B4%E5%B8%B8%E8%A7%81%E7%9A%84%E5%BD%A2%E5%BC%8F%EF%BC%89"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 按进程类型分层（更常见的形式）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%9A4-%E4%B8%AA%EF%BC%89"><span class="nav-number">1.10.4.</span> <span class="nav-text">4. 调度器的定义参数（考点：4 个）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E7%BC%BA%E7%82%B9"><span class="nav-number">1.10.5.</span> <span class="nav-text">5. 缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%A4%9A%E7%BA%A7%E5%8F%8D%E9%A6%88%E9%98%9F%E5%88%97%EF%BC%88Multilevel-Feedback-Queue-MLFQ%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、多级反馈队列（Multilevel Feedback Queue, MLFQ）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A0%B8%E5%BF%83%E6%94%B9%E8%BF%9B"><span class="nav-number">1.11.1.</span> <span class="nav-text">1. 核心改进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%B0%83%E5%BA%A6%E5%99%A8%E7%9A%84%E5%AE%9A%E4%B9%89%E5%8F%82%E6%95%B0%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%9A5-%E4%B8%AA%EF%BC%89"><span class="nav-number">1.11.2.</span> <span class="nav-text">2. 调度器的定义参数（考点：5 个）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%BB%8F%E5%85%B8%E7%A4%BA%E4%BE%8B%EF%BC%88%E4%B8%89%E7%BA%A7%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-number">1.11.3.</span> <span class="nav-text">3. 经典示例（三级队列）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E7%BA%BF%E7%A8%8B%E8%B0%83%E5%BA%A6%EF%BC%88Thread-Scheduling%EF%BC%89"><span class="nav-number">1.12.</span> <span class="nav-text">十二、线程调度（Thread Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%85%B3%E9%94%AE%E5%8C%BA%E5%88%86"><span class="nav-number">1.12.1.</span> <span class="nav-text">1. 关键区分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E7%A7%8D%E7%AB%9E%E4%BA%89%E8%8C%83%E5%9B%B4%EF%BC%88Contention-Scope%EF%BC%89"><span class="nav-number">1.12.2.</span> <span class="nav-text">2. 两种竞争范围（Contention Scope）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81Pthread-%E8%B0%83%E5%BA%A6-API"><span class="nav-number">1.13.</span> <span class="nav-text">十三、Pthread 调度 API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%A4%E4%B8%AA%E5%B8%B8%E9%87%8F"><span class="nav-number">1.13.1.</span> <span class="nav-text">1. 两个常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B3%E9%94%AE-API"><span class="nav-number">1.13.2.</span> <span class="nav-text">2. 关键 API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E8%A6%81%E7%82%B9"><span class="nav-number">1.13.3.</span> <span class="nav-text">3. 示例代码要点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6%EF%BC%88%E5%BC%95%E5%85%A5%EF%BC%89"><span class="nav-number">1.14.</span> <span class="nav-text">十四、多处理器调度（引入）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E6%9C%AC%E8%8A%82%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E8%A1%A8"><span class="nav-number">1.15.</span> <span class="nav-text">十五、本节算法对比总表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E5%A4%9A%E5%A4%84%E7%90%86%E5%99%A8%E8%B0%83%E5%BA%A6%EF%BC%9ASMP-%E4%B8%8E%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97%E7%BB%84%E7%BB%87"><span class="nav-number">1.16.</span> <span class="nav-text">十六、多处理器调度：SMP 与就绪队列组织</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AF%B9%E7%A7%B0%E5%A4%9A%E5%A4%84%E7%90%86%EF%BC%88SMP%EF%BC%89"><span class="nav-number">1.16.1.</span> <span class="nav-text">1. 对称多处理（SMP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B0%B1%E7%BB%AA%E9%98%9F%E5%88%97%E7%9A%84%E4%B8%A4%E7%A7%8D%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F"><span class="nav-number">1.16.2.</span> <span class="nav-text">2. 就绪队列的两种组织方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E5%A4%9A%E6%A0%B8%E5%A4%84%E7%90%86%E5%99%A8%EF%BC%88Multicore-Processors%EF%BC%89"><span class="nav-number">1.17.</span> <span class="nav-text">十七、多核处理器（Multicore Processors）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="nav-number">1.17.1.</span> <span class="nav-text">1. 发展趋势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AD%98%E5%81%9C%E9%A1%BF%EF%BC%88Memory-Stall%EF%BC%89%E2%80%94%E2%80%94%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A0%B8%E7%9A%84%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.17.2.</span> <span class="nav-text">2. 内存停顿（Memory Stall）——多线程核的动机</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%A4%9A%E6%A0%B8%E7%B3%BB%E7%BB%9F%EF%BC%88Multithreaded-Multicore-System%EF%BC%89"><span class="nav-number">1.18.</span> <span class="nav-text">十八、多线程多核系统（Multithreaded Multicore System）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%8F%8C%E7%A1%AC%E4%BB%B6%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BA%A4%E9%94%99%E6%89%A7%E8%A1%8C"><span class="nav-number">1.18.1.</span> <span class="nav-text">1. 双硬件线程的交错执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%8A%AF%E7%89%87%E5%A4%9A%E7%BA%BF%E7%A8%8B-CMT%EF%BC%88Chip-Multithreading%EF%BC%89"><span class="nav-number">1.18.2.</span> <span class="nav-text">2. 芯片多线程 CMT（Chip-Multithreading）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%A4%E7%BA%A7%E8%B0%83%E5%BA%A6%EF%BC%88Two-Levels-of-Scheduling%EF%BC%89"><span class="nav-number">1.18.3.</span> <span class="nav-text">3. 两级调度（Two Levels of Scheduling）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%EF%BC%88Load-Balancing%EF%BC%89"><span class="nav-number">1.19.</span> <span class="nav-text">十九、负载均衡（Load Balancing）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81"><span class="nav-number">1.19.1.</span> <span class="nav-text">1. 为什么需要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E7%A7%8D%E8%BF%81%E7%A7%BB%E6%96%B9%E5%BC%8F%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.19.2.</span> <span class="nav-text">2. 两种迁移方式（考点）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%9D%87%E8%A1%A1-%E7%9A%84%E4%B8%A4%E7%A7%8D%E5%AE%9A%E4%B9%89"><span class="nav-number">1.19.3.</span> <span class="nav-text">3. &quot;均衡&quot;的两种定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E5%A4%84%E7%90%86%E5%99%A8%E4%BA%B2%E5%92%8C%E6%80%A7%EF%BC%88Processor-Affinity%EF%BC%89"><span class="nav-number">1.20.</span> <span class="nav-text">二十、处理器亲和性（Processor Affinity）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A6%82%E5%BF%B5%E6%9D%A5%E6%BA%90%EF%BC%9A%E7%BC%93%E5%AD%98"><span class="nav-number">1.20.1.</span> <span class="nav-text">1. 概念来源：缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E2%9A%A0%EF%B8%8F-%E4%B8%8E%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%9A%84%E6%A0%B9%E6%9C%AC%E7%9F%9B%E7%9B%BE"><span class="nav-number">1.20.2.</span> <span class="nav-text">2. ⚠️ 与负载均衡的根本矛盾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%B8%A4%E7%A7%8D%E4%BA%B2%E5%92%8C%E6%80%A7"><span class="nav-number">1.20.3.</span> <span class="nav-text">3. 两种亲和性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81NUMA-%E4%B8%8E-CPU-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.21.</span> <span class="nav-text">二十一、NUMA 与 CPU 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-NUMA-%E6%9E%B6%E6%9E%84"><span class="nav-number">1.21.1.</span> <span class="nav-text">1. NUMA 架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-NUMA-%E6%84%9F%E7%9F%A5%E8%B0%83%E5%BA%A6"><span class="nav-number">1.21.2.</span> <span class="nav-text">2. NUMA 感知调度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E5%AE%9E%E6%97%B6-CPU-%E8%B0%83%E5%BA%A6%EF%BC%88Real-Time-CPU-Scheduling%EF%BC%89"><span class="nav-number">1.22.</span> <span class="nav-text">二十二、实时 CPU 调度（Real-Time CPU Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%A4%E7%B1%BB%E5%AE%9E%E6%97%B6%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%86%EF%BC%89"><span class="nav-number">1.22.1.</span> <span class="nav-text">1. 两类实时系统（核心区分）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BA%8B%E4%BB%B6%E5%BB%B6%E8%BF%9F%EF%BC%88Event-Latency%EF%BC%89"><span class="nav-number">1.22.2.</span> <span class="nav-text">2. 事件延迟（Event Latency）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81%E4%B8%AD%E6%96%AD%E5%BB%B6%E8%BF%9F%EF%BC%88Interrupt-Latency%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.23.</span> <span class="nav-text">二十三、中断延迟（Interrupt Latency）详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E3%80%81%E5%88%86%E6%B4%BE%E5%BB%B6%E8%BF%9F%EF%BC%88Dispatch-Latency%EF%BC%89%E8%AF%A6%E8%A7%A3"><span class="nav-number">1.24.</span> <span class="nav-text">二十四、分派延迟（Dispatch Latency）详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B2%E7%AA%81%E9%98%B6%E6%AE%B5%EF%BC%88Conflict-Phase%EF%BC%89%E2%80%94%E2%80%94%E5%88%86%E6%B4%BE%E5%BB%B6%E8%BF%9F%E4%B8%AD%E6%9C%80%E8%80%97%E6%97%B6%E7%9A%84%E9%83%A8%E5%88%86"><span class="nav-number">1.24.1.</span> <span class="nav-text">冲突阶段（Conflict Phase）——分派延迟中最耗时的部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%92%A1-%E8%A1%A5%E5%85%85%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%86%B2%E7%AA%81%E9%98%B6%E6%AE%B5%E6%98%AF%E5%85%B3%E9%94%AE"><span class="nav-number">1.24.2.</span> <span class="nav-text">💡 补充：为什么冲突阶段是关键</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%94%E3%80%81%E5%9F%BA%E4%BA%8E%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%EF%BC%88Priority-based-Scheduling%EF%BC%89"><span class="nav-number">1.25.</span> <span class="nav-text">二十五、基于优先级的实时调度（Priority-based Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%B1%82%E6%AC%A1%E8%A6%81%E6%B1%82"><span class="nav-number">1.25.1.</span> <span class="nav-text">1. 实时调度的两个层次要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%91%A8%E6%9C%9F%E6%80%A7%E4%BB%BB%E5%8A%A1%EF%BC%88Periodic-Task%EF%BC%89%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.25.2.</span> <span class="nav-text">2. 周期性任务（Periodic Task）模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CPU-%E5%88%A9%E7%94%A8%E7%8E%87%E4%B8%8E%E5%8F%AF%E8%B0%83%E5%BA%A6%E6%80%A7%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.25.3.</span> <span class="nav-text">3. CPU 利用率与可调度性（补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AD%E3%80%81%E9%80%9F%E7%8E%87%E5%8D%95%E8%B0%83%E8%B0%83%E5%BA%A6%EF%BC%88Rate-Monotonic-Scheduling-RMS%EF%BC%89"><span class="nav-number">1.26.</span> <span class="nav-text">二十六、速率单调调度（Rate Monotonic Scheduling, RMS）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%A7%84%E5%88%99"><span class="nav-number">1.26.1.</span> <span class="nav-text">1. 规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%88%90%E5%8A%9F%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.26.2.</span> <span class="nav-text">2. 成功示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%94%99%E8%BF%87%E6%88%AA%E6%AD%A2%E6%9C%9F%E9%99%90%E7%9A%84%E7%A4%BA%E4%BE%8B%EF%BC%88RMS-%E7%9A%84%E5%B1%80%E9%99%90%EF%BC%89"><span class="nav-number">1.26.3.</span> <span class="nav-text">3. 错过截止期限的示例（RMS 的局限）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-RMS-%E7%9A%84%E7%90%86%E8%AE%BA%E7%BB%93%E8%AE%BA%EF%BC%88%E9%87%8D%E8%A6%81%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.26.4.</span> <span class="nav-text">4. RMS 的理论结论（重要补充）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%E3%80%81%E6%9C%80%E6%97%A9%E6%88%AA%E6%AD%A2%E6%9C%9F%E9%99%90%E4%BC%98%E5%85%88%EF%BC%88Earliest-Deadline-First-EDF%EF%BC%89"><span class="nav-number">1.27.</span> <span class="nav-text">二十七、最早截止期限优先（Earliest-Deadline-First, EDF）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%A7%84%E5%88%99-2"><span class="nav-number">1.27.1.</span> <span class="nav-text">1. 规则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.27.2.</span> <span class="nav-text">2. 示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-EDF-%E7%9A%84%E7%89%B9%E7%82%B9%EF%BC%88%E9%87%8D%E8%A6%81%E8%A1%A5%E5%85%85%EF%BC%89"><span class="nav-number">1.27.3.</span> <span class="nav-text">3. EDF 的特点（重要补充）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%93%8A-RMS-vs-EDF-%E5%AF%B9%E6%AF%94%EF%BC%88%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.27.4.</span> <span class="nav-text">📊 RMS vs EDF 对比（高频考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AB%E3%80%81%E6%AF%94%E4%BE%8B%E5%88%86%E4%BA%AB%E8%B0%83%E5%BA%A6%EF%BC%88Proportional-Share-Scheduling%EF%BC%89"><span class="nav-number">1.28.</span> <span class="nav-text">二十八、比例分享调度（Proportional Share Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%84%E5%88%99"><span class="nav-number">1.28.1.</span> <span class="nav-text">规则</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B9%9D%E3%80%81POSIX-%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6"><span class="nav-number">1.29.</span> <span class="nav-text">二十九、POSIX 实时调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-POSIX-1b-%E6%A0%87%E5%87%86"><span class="nav-number">1.29.1.</span> <span class="nav-text">1. POSIX.1b 标准</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%A4%E4%B8%AA%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="nav-number">1.29.2.</span> <span class="nav-text">2. 两个核心函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.29.3.</span> <span class="nav-text">3. 示例代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%B8%80%EF%BC%9ALinux-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.30.</span> <span class="nav-text">三十、操作系统实例之一：Linux 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-%E7%89%88%E6%9C%AC%E4%B9%8B%E5%89%8D"><span class="nav-number">1.30.1.</span> <span class="nav-text">1. 2.5 版本之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%89%88%E6%9C%AC-2-5%EF%BC%9AO-1-%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="nav-number">1.30.2.</span> <span class="nav-text">2. 版本 2.5：O(1) 调度器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%89%88%E6%9C%AC-2-6-23-%E8%B5%B7%EF%BC%9A%E5%AE%8C%E5%85%A8%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E5%99%A8%EF%BC%88CFS%EF%BC%89"><span class="nav-number">1.30.3.</span> <span class="nav-text">3. 版本 2.6.23 起：完全公平调度器（CFS）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%B0%83%E5%BA%A6%E7%B1%BB%EF%BC%88Scheduling-Classes%EF%BC%89"><span class="nav-number">1.30.3.1.</span> <span class="nav-text">(1) 调度类（Scheduling Classes）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A%E6%8C%89%E6%AF%94%E4%BE%8B%E8%80%8C%E9%9D%9E%E5%9B%BA%E5%AE%9A%E6%97%B6%E9%97%B4%E7%89%87"><span class="nav-number">1.30.3.2.</span> <span class="nav-text">(2) 核心思想：按比例而非固定时间片</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E8%99%9A%E6%8B%9F%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4%EF%BC%88vruntime%EF%BC%89%E2%80%94%E2%80%94-CFS-%E7%9A%84%E7%81%B5%E9%AD%82"><span class="nav-number">1.30.3.3.</span> <span class="nav-text">(3) 虚拟运行时间（vruntime）—— CFS 的灵魂</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-CFS-%E7%9A%84%E5%AE%9E%E7%8E%B0%EF%BC%9A%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">1.30.3.4.</span> <span class="nav-text">(4) CFS 的实现：红黑树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-Linux-%E7%9A%84%E5%AE%9E%E6%97%B6%E8%B0%83%E5%BA%A6"><span class="nav-number">1.30.3.5.</span> <span class="nav-text">(5) Linux 的实时调度</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E4%B8%8E-NUMA-%E6%84%9F%E7%9F%A5"><span class="nav-number">1.30.3.6.</span> <span class="nav-text">(6) 负载均衡与 NUMA 感知</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%80%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%BA%8C%EF%BC%9AWindows-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.31.</span> <span class="nav-text">三十一、操作系统实例之二：Windows 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="nav-number">1.31.1.</span> <span class="nav-text">1. 基本机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-32-%E7%BA%A7%E4%BC%98%E5%85%88%E7%BA%A7%E6%96%B9%E6%A1%88"><span class="nav-number">1.31.2.</span> <span class="nav-text">2. 32 级优先级方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Win32-%E4%BC%98%E5%85%88%E7%BA%A7%E7%B1%BB%EF%BC%88Priority-Classes%EF%BC%89"><span class="nav-number">1.31.3.</span> <span class="nav-text">3. Win32 优先级类（Priority Classes）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8A%A8%E6%80%81%E4%BC%98%E5%85%88%E7%BA%A7%E8%B0%83%E6%95%B4%E8%A7%84%E5%88%99%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.31.4.</span> <span class="nav-text">4. 动态优先级调整规则（考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%BA%8C%E3%80%81Windows-%E4%BC%98%E5%85%88%E7%BA%A7%E6%95%B0%E5%80%BC%E8%A1%A8"><span class="nav-number">1.32.</span> <span class="nav-text">三十二、Windows 优先级数值表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%8C%E6%95%B4%E5%AF%B9%E7%85%A7%E8%A1%A8%EF%BC%88%E8%A1%8C-%E7%9B%B8%E5%AF%B9%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%8C%E5%88%97-%E4%BC%98%E5%85%88%E7%BA%A7%E7%B1%BB%EF%BC%89"><span class="nav-number">1.32.1.</span> <span class="nav-text">1. 完整对照表（行 &#x3D; 相对优先级，列 &#x3D; 优先级类）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E8%AF%BB%E8%A1%A8%E8%A6%81%E7%82%B9%EF%BC%88%E9%AB%98%E9%A2%91%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.32.2.</span> <span class="nav-text">2. 读表要点（高频考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%89%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E4%BE%8B%E4%B9%8B%E4%B8%89%EF%BC%9ASolaris-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.33.</span> <span class="nav-text">三十三、操作系统实例之三：Solaris 调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E7%89%B9%E5%BE%81"><span class="nav-number">1.33.1.</span> <span class="nav-text">1. 基本特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Solaris-%E5%88%86%E6%B4%BE%E8%A1%A8%EF%BC%88TS-IA-%E7%B1%BB%E4%B8%93%E7%94%A8%EF%BC%89"><span class="nav-number">1.33.2.</span> <span class="nav-text">2. Solaris 分派表（TS &#x2F; IA 类专用）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E5%88%97%E7%9A%84%E5%90%AB%E4%B9%89%EF%BC%88%E6%A0%B8%E5%BF%83%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.33.2.1.</span> <span class="nav-text">三列的含义（核心考点）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E6%9D%A1%E8%A7%84%E5%BE%8B%EF%BC%88%E5%BF%85%E9%A1%BB%E7%90%86%E8%A7%A3%EF%BC%89"><span class="nav-number">1.33.2.2.</span> <span class="nav-text">三条规律（必须理解）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Solaris-%E5%85%A8%E5%B1%80%E4%BC%98%E5%85%88%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="nav-number">1.33.3.</span> <span class="nav-text">3. Solaris 全局优先级结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%B0%83%E5%BA%A6%E6%B5%81%E7%A8%8B"><span class="nav-number">1.33.4.</span> <span class="nav-text">4. 调度流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%9B%9B%E3%80%81%E7%AE%97%E6%B3%95%E8%AF%84%E4%BC%B0%EF%BC%88Algorithm-Evaluation%EF%BC%89"><span class="nav-number">1.34.</span> <span class="nav-text">三十四、算法评估（Algorithm Evaluation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E9%97%AE%E9%A2%98"><span class="nav-number">1.34.1.</span> <span class="nav-text">核心问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%BA%94%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BB%BA%E6%A8%A1%EF%BC%88Deterministic-Modeling%EF%BC%89"><span class="nav-number">1.35.</span> <span class="nav-text">三十五、方法一：确定性建模（Deterministic Modeling）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%9A%E4%B9%89"><span class="nav-number">1.35.1.</span> <span class="nav-text">1. 定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%A4%BA%E4%BE%8B%EF%BC%9A5-%E4%B8%AA%E8%BF%9B%E7%A8%8B%EF%BC%8C%E5%9D%87%E5%9C%A8%E6%97%B6%E5%88%BB-0-%E5%88%B0%E8%BE%BE"><span class="nav-number">1.35.2.</span> <span class="nav-text">2. 示例：5 个进程，均在时刻 0 到达</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E4%BC%98%E7%BC%BA%E7%82%B9%EF%BC%88%E8%80%83%E7%82%B9%EF%BC%89"><span class="nav-number">1.35.3.</span> <span class="nav-text">3. 优缺点（考点）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%85%AD%E3%80%81%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E6%8E%92%E9%98%9F%E6%A8%A1%E5%9E%8B%EF%BC%88Queueing-Models%EF%BC%89"><span class="nav-number">1.36.</span> <span class="nav-text">三十六、方法二：排队模型（Queueing Models）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">1.36.1.</span> <span class="nav-text">1. 基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Little-%E5%85%AC%E5%BC%8F%EF%BC%88Little%E2%80%99s-Law%EF%BC%89%E2%98%85-%E5%BF%85%E8%80%83"><span class="nav-number">1.36.2.</span> <span class="nav-text">2. Little 公式（Little’s Law）★ 必考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B1%80%E9%99%90"><span class="nav-number">1.36.3.</span> <span class="nav-text">3. 局限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B8%83%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9A%E4%BB%BF%E7%9C%9F%EF%BC%88Simulations%EF%BC%89"><span class="nav-number">1.37.</span> <span class="nav-text">三十七、方法三：仿真（Simulations）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81-2"><span class="nav-number">1.37.1.</span> <span class="nav-text">1. 为什么需要</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%81%9A%E6%B3%95"><span class="nav-number">1.37.2.</span> <span class="nav-text">2. 做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%A9%B1%E5%8A%A8%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%89%E7%A7%8D%E6%9D%A5%E6%BA%90"><span class="nav-number">1.37.3.</span> <span class="nav-text">3. 驱动数据的三种来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BB%BF%E7%9C%9F%E8%AF%84%E4%BC%B0%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.37.4.</span> <span class="nav-text">4. 仿真评估流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%B1%80%E9%99%90"><span class="nav-number">1.37.5.</span> <span class="nav-text">5. 局限</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E5%85%AB%E3%80%81%E6%96%B9%E6%B3%95%E5%9B%9B%EF%BC%9A%E5%AE%9E%E9%99%85%E5%AE%9E%E7%8E%B0%EF%BC%88Implementation%EF%BC%89"><span class="nav-number">1.38.</span> <span class="nav-text">三十八、方法四：实际实现（Implementation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%81%9A%E6%B3%95"><span class="nav-number">1.38.1.</span> <span class="nav-text">1. 做法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BB%A3%E4%BB%B7"><span class="nav-number">1.38.2.</span> <span class="nav-text">2. 代价</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%BA%94%E5%AF%B9%EF%BC%9A%E5%8F%AF%E9%85%8D%E7%BD%AE%E7%9A%84%E8%B0%83%E5%BA%A6%E5%99%A8"><span class="nav-number">1.38.3.</span> <span class="nav-text">3. 应对：可配置的调度器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E4%B9%9D%E3%80%81%E5%9B%9B%E7%A7%8D%E8%AF%84%E4%BC%B0%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E8%A1%A8"><span class="nav-number">1.39.</span> <span class="nav-text">三十九、四种评估方法对比总表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%8D%81%E3%80%81%E4%B8%89%E5%A4%A7-OS-%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94"><span class="nav-number">1.40.</span> <span class="nav-text">四十、三大 OS 调度机制横向对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E5%8D%81%E4%B8%80%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E4%B8%8E%E8%80%83%E7%82%B9%E6%8F%90%E9%86%92"><span class="nav-number">1.41.</span> <span class="nav-text">四十一、易错点与考点提醒</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -213,7 +213,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-09-16 17:11:14" itemprop="dateModified" datetime="2026-09-16T17:11:14+08:00">2026-09-16</time>
+      <time title="Modified: 2026-09-17 16:36:21" itemprop="dateModified" datetime="2026-09-17T16:36:21+08:00">2026-09-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -459,9 +459,9 @@
 <p>设：</p>
 <ul>
 <li>
-    <span id="mjx-0ed18708">
+    <span id="mjx-111966d">
       <style>
-      #mjx-0ed18708{
+      #mjx-111966d{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -621,9 +621,9 @@ g[data-mml-node="xypic"] path {
     </span>
    = 第 n 次 CPU 突发的<strong>实际</strong>长度</li>
 <li>
-    <span id="mjx-b49ba87">
+    <span id="mjx-f43d71a">
       <style>
-      #mjx-b49ba87{
+      #mjx-f43d71a{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -783,9 +783,9 @@ g[data-mml-node="xypic"] path {
     </span>
    = 对下一次突发的<strong>预测</strong>值</li>
 <li>
-    <span id="mjx-e38d3df8">
+    <span id="mjx-43652c3">
       <style>
-      #mjx-e38d3df8{
+      #mjx-43652c3{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -944,9 +944,9 @@ g[data-mml-node="xypic"] path {
       <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.448ex" height="1.025ex" role="img" focusable="false" viewBox="0 -442 640 453" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D6FC" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>α</mi></math></mjx-assistive-mml></mjx-container>
     </span>
   ，
-    <span id="mjx-a8ebe8f">
+    <span id="mjx-b017ff">
       <style>
-      #mjx-a8ebe8f{
+      #mjx-b017ff{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1107,9 +1107,9 @@ g[data-mml-node="xypic"] path {
   </li>
 </ul>
 <p>
-    <span id="mjx-a04f7e48">
+    <span id="mjx-1030102">
       <style>
-      #mjx-a04f7e48{
+      #mjx-1030102{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1282,9 +1282,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>α = 0</td>
 <td>
-    <span id="mjx-fd79b7">
+    <span id="mjx-64e5753">
       <style>
-      #mjx-fd79b7{
+      #mjx-64e5753{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1448,9 +1448,9 @@ g[data-mml-node="xypic"] path {
 <tr>
 <td>α = 1</td>
 <td>
-    <span id="mjx-6473c3e">
+    <span id="mjx-46711908">
       <style>
-      #mjx-6473c3e{
+      #mjx-46711908{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1615,9 +1615,9 @@ g[data-mml-node="xypic"] path {
 </table>
 <p><strong>展开式</strong>：</p>
 <p>
-    <span id="mjx-d7b17f78">
+    <span id="mjx-d1fd8968">
       <style>
-      #mjx-d7b17f78{
+      #mjx-d1fd8968{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -1781,7 +1781,168 @@ g[data-mml-node="xypic"] path {
 <table>
 <thead>
 <tr>
-<th>实际 tit_i ti</th>
+<th>实际 
+    <span id="mjx-0f553f6">
+      <style>
+      #mjx-0f553f6{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="1.556ex" height="1.773ex" role="img" focusable="false" viewBox="0 -626 688 783.8" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(394,-150) scale(0.707)"><path data-c="1D456" d="M184 600Q184 624 203 642T247 661Q265 661 277 649T290 619Q290 596 270 577T226 557Q211 557 198 567T184 600ZM21 287Q21 295 30 318T54 369T98 420T158 442Q197 442 223 419T250 357Q250 340 236 301T196 196T154 83Q149 61 149 51Q149 26 166 26Q175 26 185 29T208 43T235 78T260 137Q263 149 265 151T282 153Q302 153 302 143Q302 135 293 112T268 61T223 11T161 -11Q129 -11 102 10T74 74Q74 91 79 106T122 220Q160 321 166 341T173 380Q173 404 156 404H154Q124 404 99 371T61 287Q60 286 59 284T58 281T56 279T53 278T49 278T41 278H27Q21 284 21 287Z"></path></g></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>t</mi><mi>i</mi></msub></math></mjx-assistive-mml></mjx-container>
+    </span>
+  </th>
 <th>6</th>
 <th>4</th>
 <th>6</th>
@@ -1795,9 +1956,9 @@ g[data-mml-node="xypic"] path {
 <tbody>
 <tr>
 <td>预测 
-    <span id="mjx-76e44c68">
+    <span id="mjx-144a3458">
       <style>
-      #mjx-76e44c68{
+      #mjx-144a3458{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3025,17 +3186,16 @@ g[data-mml-node="xypic"] path {
 <p><strong>第 1 项</strong> 要求内核必须是<strong>可抢占的（preemptive kernel）</strong>。传统非抢占内核中，一个系统调用可能运行很久而无法被打断，导致实时任务无限期等待。因此实时 OS 必须提供<strong>抢占点</strong>或<strong>完全可抢占内核</strong>。</p>
 </li>
 <li>
-<p>第 2 项</p>
-<p>正是</p>
-<p>优先级反转（priority inversion）</p>
+<p>第 2 项 正是优先级反转（priority inversion）</p>
 <p>问题：高优先级进程 H 需要的锁被低优先级进程 L 持有，而 L 又被中等优先级进程 M 抢占，结果 H 被 M 间接阻塞。</p>
 <ul>
 <li><strong>解法：优先级继承协议（priority-inheritance protocol）</strong>——让持有资源的 L <strong>临时继承</strong> H 的高优先级，使其尽快跑完并释放资源。</li>
-<li>著名案例：1997 年 NASA &quot;火星探路者号&quot;探测器的系统反复重启，根因就是优先级反转。</li>
 </ul>
 </li>
+<li>
+<p>著名案例：1997 年 NASA &quot;火星探路者号&quot;探测器的系统反复重启，根因就是优先级反转。</p>
+</li>
 </ul>
-<h3 id=""></h3>
 <h3 id="二十五、基于优先级的实时调度（Priority-based-Scheduling）">二十五、基于优先级的实时调度（Priority-based Scheduling）</h3>
 <h4 id="1-实时调度的两个层次要求">1. 实时调度的两个层次要求</h4>
 <table>
@@ -3091,9 +3251,331 @@ g[data-mml-node="xypic"] path {
 </tbody>
 </table>
 <p><strong>约束关系（考点）</strong>：</p>
-<p>0≤t≤d≤p\boxed{0 \le t \le d \le p}0≤t≤d≤p</p>
+<p>
+    <span id="mjx-2804b27">
+      <style>
+      #mjx-2804b27{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -1.043ex;" xmlns="http://www.w3.org/2000/svg" width="14.522ex" height="3.217ex" role="img" focusable="false" viewBox="0 -961 6418.7 1422" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="menclose"><g transform="translate(267, 0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g><g data-mml-node="mo" transform="translate(777.8,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path></g><g data-mml-node="mi" transform="translate(1833.6,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mo" transform="translate(2472.3,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path></g><g data-mml-node="mi" transform="translate(3528.1,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mo" transform="translate(4325.9,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path></g><g data-mml-node="mi" transform="translate(5381.7,0)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></g></g></g></g></g><rect x="33.5" y="-427.5" width="6351.7" height="1355" fill="none" stroke-width="67"></rect></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><menclose notation="box"><mrow data-mjx-texclass="ORD"><mstyle displaystyle="true" scriptlevel="0"><mrow data-mjx-texclass="ORD"><mn>0</mn><mo>≤</mo><mi>t</mi><mo>≤</mo><mi>d</mi><mo>≤</mo><mi>p</mi></mrow></mstyle></mrow></menclose></math></mjx-assistive-mml></mjx-container>
+    </span>
+  </p>
 <p><strong>任务速率（Rate）</strong>：</p>
-<p>rate=1p\boxed{\text{rate} = \frac{1}{p}}rate=p1</p>
+<p>
+    <span id="mjx-237bdb88">
+      <style>
+      #mjx-237bdb88{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -2.595ex;" xmlns="http://www.w3.org/2000/svg" width="10.261ex" height="6.235ex" role="img" focusable="false" viewBox="0 -1609 4535.6 2756" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="menclose"><g transform="translate(267, 0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mtext"><path data-c="72" d="M36 46H50Q89 46 97 60V68Q97 77 97 91T98 122T98 161T98 203Q98 234 98 269T98 328L97 351Q94 370 83 376T38 385H20V408Q20 431 22 431L32 432Q42 433 60 434T96 436Q112 437 131 438T160 441T171 442H174V373Q213 441 271 441H277Q322 441 343 419T364 373Q364 352 351 337T313 322Q288 322 276 338T263 372Q263 381 265 388T270 400T273 405Q271 407 250 401Q234 393 226 386Q179 341 179 207V154Q179 141 179 127T179 101T180 81T180 66V61Q181 59 183 57T188 54T193 51T200 49T207 48T216 47T225 47T235 46T245 46H276V0H267Q249 3 140 3Q37 3 28 0H20V46H36Z"></path><path data-c="61" d="M137 305T115 305T78 320T63 359Q63 394 97 421T218 448Q291 448 336 416T396 340Q401 326 401 309T402 194V124Q402 76 407 58T428 40Q443 40 448 56T453 109V145H493V106Q492 66 490 59Q481 29 455 12T400 -6T353 12T329 54V58L327 55Q325 52 322 49T314 40T302 29T287 17T269 6T247 -2T221 -8T190 -11Q130 -11 82 20T34 107Q34 128 41 147T68 188T116 225T194 253T304 268H318V290Q318 324 312 340Q290 411 215 411Q197 411 181 410T156 406T148 403Q170 388 170 359Q170 334 154 320ZM126 106Q126 75 150 51T209 26Q247 26 276 49T315 109Q317 116 318 175Q318 233 317 233Q309 233 296 232T251 223T193 203T147 166T126 106Z" transform="translate(392,0)"></path><path data-c="74" d="M27 422Q80 426 109 478T141 600V615H181V431H316V385H181V241Q182 116 182 100T189 68Q203 29 238 29Q282 29 292 100Q293 108 293 146V181H333V146V134Q333 57 291 17Q264 -10 221 -10Q187 -10 162 2T124 33T105 68T98 100Q97 107 97 248V385H18V422H27Z" transform="translate(892,0)"></path><path data-c="65" d="M28 218Q28 273 48 318T98 391T163 433T229 448Q282 448 320 430T378 380T406 316T415 245Q415 238 408 231H126V216Q126 68 226 36Q246 30 270 30Q312 30 342 62Q359 79 369 104L379 128Q382 131 395 131H398Q415 131 415 121Q415 117 412 108Q393 53 349 21T250 -11Q155 -11 92 58T28 218ZM333 275Q322 403 238 411H236Q228 411 220 410T195 402T166 381T143 340T127 274V267H333V275Z" transform="translate(1281,0)"></path></g><g data-mml-node="mo" transform="translate(2002.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(3058.6,0)"><g data-mml-node="mn" transform="translate(221.5,676)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mi" transform="translate(220,-686)"><path data-c="1D45D" d="M23 287Q24 290 25 295T30 317T40 348T55 381T75 411T101 433T134 442Q209 442 230 378L240 387Q302 442 358 442Q423 442 460 395T497 281Q497 173 421 82T249 -10Q227 -10 210 -4Q199 1 187 11T168 28L161 36Q160 35 139 -51T118 -138Q118 -144 126 -145T163 -148H188Q194 -155 194 -157T191 -175Q188 -187 185 -190T172 -194Q170 -194 161 -194T127 -193T65 -192Q-5 -192 -24 -194H-32Q-39 -187 -39 -183Q-37 -156 -26 -148H-6Q28 -147 33 -136Q36 -130 94 103T155 350Q156 355 156 364Q156 405 131 405Q109 405 94 377T71 316T59 280Q57 278 43 278H29Q23 284 23 287ZM178 102Q200 26 252 26Q282 26 310 49T356 107Q374 141 392 215T411 325V331Q411 405 350 405Q339 405 328 402T306 393T286 380T269 365T254 350T243 336T235 326L232 322Q232 321 229 308T218 264T204 212Q178 106 178 102Z"></path></g><rect width="703" height="60" x="120" y="220"></rect></g></g></g></g></g><rect x="33.5" y="-1113.5" width="4468.6" height="2689" fill="none" stroke-width="67"></rect></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><menclose notation="box"><mrow data-mjx-texclass="ORD"><mstyle displaystyle="true" scriptlevel="0"><mrow data-mjx-texclass="ORD"><mtext>rate</mtext><mo>=</mo><mfrac><mn>1</mn><mi>p</mi></mfrac></mrow></mstyle></mrow></menclose></math></mjx-assistive-mml></mjx-container>
+    </span>
+  </p>
 <p><strong>时间轴示意</strong>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|←────── p ──────|←────── p ──────|←────── p ──────|</span><br><span class="line">|←── d ──|       |←── d ──|       |←── d ──|</span><br><span class="line">|← t →|          |← t →|          |← t →|</span><br><span class="line">[■■■■]           [■■■■]           [■■■■]           → Time</span><br><span class="line">   period₁          period₂          period₃</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -3105,9 +3587,9 @@ g[data-mml-node="xypic"] path {
 <h4 id="3-CPU-利用率与可调度性（补充）">3. CPU 利用率与可调度性（补充）</h4>
 <p>对 n 个周期任务：</p>
 <p>
-    <span id="mjx-325fab9">
+    <span id="mjx-00fb1">
       <style>
-      #mjx-325fab9{
+      #mjx-00fb1{
         display:contents;
         mjx-assistive-mml {
           user-select: text !important;
@@ -3320,12 +3802,168 @@ g[data-mml-node="xypic"] path {
 <p><strong>RMS 是静态优先级策略中的最优者</strong>：若 RMS 都无法调度，则<strong>任何静态优先级算法都不能</strong>。</p>
 </li>
 <li>
-<p>Liu &amp; Layland 界限</p>
-<p>：n 个周期任务，若</p>
-<p>U≤n(21/n−1)U \le n(2^{1/n} - 1)U≤n(21/n−1)</p>
-<p>则 RMS</p>
-<p>一定</p>
-<p>可调度。</p>
+<p>Liu &amp; Layland 界限：n 个周期任务，若 
+    <span id="mjx-ffd3edd8">
+      <style>
+      #mjx-ffd3edd8{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="15.646ex" height="2.587ex" role="img" focusable="false" viewBox="0 -893.3 6915.4 1143.3" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D448" d="M107 637Q73 637 71 641Q70 643 70 649Q70 673 81 682Q83 683 98 683Q139 681 234 681Q268 681 297 681T342 682T362 682Q378 682 378 672Q378 670 376 658Q371 641 366 638H364Q362 638 359 638T352 638T343 637T334 637Q295 636 284 634T266 623Q265 621 238 518T184 302T154 169Q152 155 152 140Q152 86 183 55T269 24Q336 24 403 69T501 205L552 406Q599 598 599 606Q599 633 535 637Q511 637 511 648Q511 650 513 660Q517 676 519 679T529 683Q532 683 561 682T645 680Q696 680 723 681T752 682Q767 682 767 672Q767 650 759 642Q756 637 737 637Q666 633 648 597Q646 592 598 404Q557 235 548 205Q515 105 433 42T263 -22Q171 -22 116 34T60 167V183Q60 201 115 421Q164 622 164 628Q164 635 107 637Z"></path></g><g data-mml-node="mo" transform="translate(1044.8,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"></path></g><g data-mml-node="mi" transform="translate(2100.6,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(2700.6,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msup" transform="translate(3089.6,0)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,363) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(500,0)"><g data-mml-node="mo"><path data-c="2F" d="M423 750Q432 750 438 744T444 730Q444 725 271 248T92 -240Q85 -250 75 -250Q68 -250 62 -245T56 -231Q56 -221 230 257T407 740Q411 750 423 750Z"></path></g></g><g data-mml-node="mi" transform="translate(1000,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g><g data-mml-node="mo" transform="translate(5026.1,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"></path></g><g data-mml-node="mn" transform="translate(6026.4,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mo" transform="translate(6526.4,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>U</mi><mo>≤</mo><mi>n</mi><mo stretchy="false">(</mo><msup><mn>2</mn><mrow data-mjx-texclass="ORD"><mn>1</mn><mrow data-mjx-texclass="ORD"><mo>/</mo></mrow><mi>n</mi></mrow></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></math></mjx-assistive-mml></mjx-container>
+    </span>
+   则 RMS 一定可调度。</p>
 <ul>
 <li>n=1：100%；n=2：<strong>82.83%</strong>；n=∞：收敛到 <strong>ln 2 ≈ 69.3%</strong></li>
 <li>上面失败例子中 U = 93.75% &gt; 82.83%，超出保证范围，故可能失败（注意：超出不代表一定失败，只是不保证）。</li>
@@ -3568,14 +4206,13 @@ g[data-mml-node="xypic"] path {
 <p>比例由 <strong>nice 值（-20 ~ +19）</strong> 计算得出，<strong>数值越低优先级越高</strong>（默认 0）。</p>
 </li>
 <li>
-<p>目标延迟（target latency）</p>
-<p>：每个任务</p>
-<p>至少应运行一次</p>
-<p>的时间区间。</p>
+<p>目标延迟（target latency）：每个任务至少应运行一次的时间区间。</p>
 <ul>
 <li>活动任务数增加时，target latency 可<strong>相应增大</strong>（但有最小值下限，防止切换过频）。</li>
-<li>例：target latency = 10 ms，2 个任务各得 5 ms；10 个任务则各得 1 ms。</li>
 </ul>
+</li>
+<li>
+<p>例：target latency = 10 ms，2 个任务各得 5 ms；10 个任务则各得 1 ms。</p>
 </li>
 </ul>
 <h5 id="3-虚拟运行时间（vruntime）——-CFS-的灵魂">(3) 虚拟运行时间（vruntime）—— CFS 的灵魂</h5>
@@ -3584,12 +4221,14 @@ g[data-mml-node="xypic"] path {
 </blockquote>
 <ul>
 <li>
-<p>vruntime 关联一个基于优先级的</p>
-<p>衰减因子（decay factor）</p>
-<p>：</p>
+<p>vruntime 关联一个基于优先级的衰减因子（decay factor）：</p>
 <ul>
 <li><strong>优先级越低 → 衰减率越高</strong>（vruntime 增长越快 → 越快被&quot;用完额度&quot;）</li>
-<li><strong>普通默认优先级（nice = 0）→ 虚拟运行时间 = 实际运行时间</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>普通默认优先级（nice = 0）→ 虚拟运行时间 = 实际运行时间</strong></p>
+<ul>
 <li>高优先级（nice &lt; 0）→ vruntime 增长<strong>慢于</strong>实际时间</li>
 </ul>
 </li>
@@ -3828,8 +4467,7 @@ g[data-mml-node="xypic"] path {
 → <strong>时间片耗尽时优先级下降，但绝不会低于这个基准值</strong>。</p>
 </li>
 <li>
-<p>time-critical 和 idle 两行是&quot;封顶/触底&quot;行</p>
-<p>，不遵循 ±1 的规律：</p>
+<p>time-critical 和 idle 两行是&quot;封顶/触底&quot;行，不遵循 ±1 的规律：</p>
 <ul>
 <li>非实时类的 <code>time-critical</code> <strong>一律为 15</strong>（可变类的最高值）</li>
 <li>非实时类的 <code>idle</code> <strong>一律为 1</strong>（优先级 0 保留给内存管理线程）</li>
@@ -3840,8 +4478,7 @@ g[data-mml-node="xypic"] path {
 <p><strong>实时类占 16~31，可变类占 1~15</strong>，二者严格隔离——任何实时线程都高于任何可变线程。</p>
 </li>
 <li>
-<p>中间五行呈规律的 ±1 阶梯</p>
-<p>：以 normal 行为中心，向上 +1、+2，向下 −1、−2。</p>
+<p>中间五行呈规律的 ±1 阶梯：以 normal 行为中心，向上 +1、+2，向下 −1、−2。</p>
 <ul>
 <li>例外：real-time 列的 highest = 26（不是 25+1=26 ✓，规律成立），但 time-critical 直接跳到 31。</li>
 </ul>
@@ -4202,12 +4839,334 @@ g[data-mml-node="xypic"] path {
 <li><strong>λ</strong> = 进入队列的平均到达率（average arrival rate）</li>
 </ul>
 <p><strong>推导直觉</strong>：在<strong>稳态（steady state）</strong> 下，<strong>离开队列的进程数必须等于到达队列的进程数</strong>，因此：</p>
-<p>n=λ×W\boxed{n = \lambda \times W}n=λ×W</p>
+<p>​		
+    <span id="mjx-b6f2cb08">
+      <style>
+      #mjx-b6f2cb08{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.79ex;" xmlns="http://www.w3.org/2000/svg" width="12.038ex" height="2.964ex" role="img" focusable="false" viewBox="0 -961 5321 1310" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="menclose"><g transform="translate(267, 0)"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mstyle"><g data-mml-node="TeXAtom" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(877.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(1933.6,0)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><g data-mml-node="mo" transform="translate(2738.8,0)"><path data-c="D7" d="M630 29Q630 9 609 9Q604 9 587 25T493 118L389 222L284 117Q178 13 175 11Q171 9 168 9Q160 9 154 15T147 29Q147 36 161 51T255 146L359 250L255 354Q174 435 161 449T147 471Q147 480 153 485T168 490Q173 490 175 489Q178 487 284 383L389 278L493 382Q570 459 587 475T609 491Q630 491 630 471Q630 464 620 453T522 355L418 250L522 145Q606 61 618 48T630 29Z"></path></g><g data-mml-node="mi" transform="translate(3739,0)"><path data-c="1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path></g></g></g></g></g><rect x="33.5" y="-315.5" width="5254" height="1243" fill="none" stroke-width="67"></rect></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><menclose notation="box"><mrow data-mjx-texclass="ORD"><mstyle displaystyle="true" scriptlevel="0"><mrow data-mjx-texclass="ORD"><mi>n</mi><mo>=</mo><mi>λ</mi><mo>×</mo><mi>W</mi></mrow></mstyle></mrow></menclose></math></mjx-assistive-mml></mjx-container>
+    </span>
+  </p>
 <p><strong>通用性</strong>：<strong>对任何调度算法和任何到达分布都成立</strong>——这是 Little 公式最强大的地方。</p>
 <p><strong>教材例题</strong>：</p>
 <blockquote>
 <p>若平均每秒到达 <strong>7 个</strong>进程（λ = 7），队列中通常有 <strong>14 个</strong>进程（n = 14），则：</p>
-<p>W=nλ=147=2 秒W = \frac{n}{\lambda} = \frac{14}{7} = \textbf{2 秒}W=λn=714=2 秒</p>
+<p>
+    <span id="mjx-af251ac8">
+      <style>
+      #mjx-af251ac8{
+        display:contents;
+        mjx-assistive-mml {
+          user-select: text !important;
+          clip: auto !important;
+          color: rgba(0,0,0,0);
+        }
+        
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+      }
+      </style>
+      <mjx-container class="MathJax" jax="SVG" style="position: relative;"><svg style="vertical-align: -0.816ex;" xmlns="http://www.w3.org/2000/svg" width="20.102ex" height="2.79ex" role="img" focusable="false" viewBox="0 -872.7 8885 1233.3" aria-hidden="true"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44A" d="M436 683Q450 683 486 682T553 680Q604 680 638 681T677 682Q695 682 695 674Q695 670 692 659Q687 641 683 639T661 637Q636 636 621 632T600 624T597 615Q597 603 613 377T629 138L631 141Q633 144 637 151T649 170T666 200T690 241T720 295T759 362Q863 546 877 572T892 604Q892 619 873 628T831 637Q817 637 817 647Q817 650 819 660Q823 676 825 679T839 682Q842 682 856 682T895 682T949 681Q1015 681 1034 683Q1048 683 1048 672Q1048 666 1045 655T1038 640T1028 637Q1006 637 988 631T958 617T939 600T927 584L923 578L754 282Q586 -14 585 -15Q579 -22 561 -22Q546 -22 542 -17Q539 -14 523 229T506 480L494 462Q472 425 366 239Q222 -13 220 -15T215 -19Q210 -22 197 -22Q178 -22 176 -15Q176 -12 154 304T131 622Q129 631 121 633T82 637H58Q51 644 51 648Q52 671 64 683H76Q118 680 176 680Q301 680 313 683H323Q329 677 329 674T327 656Q322 641 318 637H297Q236 634 232 620Q262 160 266 136L501 550L499 587Q496 629 489 632Q483 636 447 637Q428 637 422 639T416 648Q416 650 418 660Q419 664 420 669T421 676T424 680T428 682T436 683Z"></path></g><g data-mml-node="mo" transform="translate(1325.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(2381.6,0)"><g data-mml-node="mi" transform="translate(220,394) scale(0.707)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(226,-345) scale(0.707)"><path data-c="1D706" d="M166 673Q166 685 183 694H202Q292 691 316 644Q322 629 373 486T474 207T524 67Q531 47 537 34T546 15T551 6T555 2T556 -2T550 -11H482Q457 3 450 18T399 152L354 277L340 262Q327 246 293 207T236 141Q211 112 174 69Q123 9 111 -1T83 -12Q47 -12 47 20Q47 37 61 52T199 187Q229 216 266 252T321 306L338 322Q338 323 288 462T234 612Q214 657 183 657Q166 657 166 673Z"></path></g><rect width="624.3" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(3523.6,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(4579.4,0)"><g data-mml-node="mn" transform="translate(220,394) scale(0.707)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="34" d="M462 0Q444 3 333 3Q217 3 199 0H190V46H221Q241 46 248 46T265 48T279 53T286 61Q287 63 287 115V165H28V211L179 442Q332 674 334 675Q336 677 355 677H373L379 671V211H471V165H379V114Q379 73 379 66T385 54Q393 47 442 46H471V0H462ZM293 211V545L74 212L183 211H293Z" transform="translate(500,0)"></path></g><g data-mml-node="mn" transform="translate(396.8,-345) scale(0.707)"><path data-c="37" d="M55 458Q56 460 72 567L88 674Q88 676 108 676H128V672Q128 662 143 655T195 646T364 644H485V605L417 512Q408 500 387 472T360 435T339 403T319 367T305 330T292 284T284 230T278 162T275 80Q275 66 275 52T274 28V19Q270 2 255 -10T221 -22Q210 -22 200 -19T179 0T168 40Q168 198 265 368Q285 400 349 489L395 552H302Q128 552 119 546Q113 543 108 522T98 479L95 458V455H55V458Z"></path></g><rect width="907.1" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(6004.3,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mtext" transform="translate(7060,0)"><path data-c="1D7D0" d="M175 580Q175 578 185 572T205 551T215 510Q215 467 191 449T137 430Q107 430 83 448T58 511Q58 558 91 592T168 640T259 654Q328 654 383 637Q451 610 484 563T517 459Q517 401 482 360T368 262Q340 243 265 184L210 140H274Q416 140 429 145Q439 148 447 186T455 237H517V233Q516 230 501 119Q489 9 486 4V0H57V25Q57 51 58 54Q60 57 109 106T215 214T288 291Q364 377 364 458Q364 515 328 553T231 592Q214 592 201 589T181 584T175 580Z"></path><path data-c="20" d="" transform="translate(575,0)"></path><text data-variant="bold" transform="translate(825,0) scale(1,-1)" font-size="884px" font-family="serif" font-weight="bold">秒</text></g></g></g></svg><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>W</mi><mo>=</mo><mfrac><mi>n</mi><mi>λ</mi></mfrac><mo>=</mo><mfrac><mn>14</mn><mn>7</mn></mfrac><mo>=</mo><mtext mathvariant="bold">2 秒</mtext></math></mjx-assistive-mml></mjx-container>
+    </span>
+  </p>
 </blockquote>
 <blockquote>
 <p>📝 <strong>变式</strong>：三个量知其二即可求第三个。考试常给 λ 和 W 求 n，或给 n 和 W 求 λ。</p>
@@ -4464,7 +5423,7 @@ g[data-mml-node="xypic"] path {
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2026/09/17/Mathematical-Foundations-Module1/" rel="next" title="Mathematical-Foundations-Module1">
+                <a href="/2026/09/17/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/Mathematical-Foundations-Module1/" rel="next" title="Mathematical-Foundations-Module1">
                   Mathematical-Foundations-Module1 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
