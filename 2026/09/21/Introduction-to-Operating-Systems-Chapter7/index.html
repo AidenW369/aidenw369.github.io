@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="同步问题实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction-to-Operating-Systems-Chapter7">
+<meta property="og:url" content="http://example.com/2026/09/21/Introduction-to-Operating-Systems-Chapter7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="同步问题实例">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-21T10:02:11.000Z">
+<meta property="article:modified_time" content="2026-09-21T10:27:35.838Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/09/21/Introduction-to-Operating-Systems-Chapter7/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/09/21/Introduction-to-Operating-Systems-Chapter7/","path":"2026/09/21/Introduction-to-Operating-Systems-Chapter7/","title":"Introduction-to-Operating-Systems-Chapter7"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction-to-Operating-Systems-Chapter7 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">同步问题实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%89%E7%95%8C%E7%BC%93%E5%86%B2%E5%8C%BA%E9%97%AE%E9%A2%98%EF%BC%88Bounded-Buffer-%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">一、有界缓冲区问题（Bounded-Buffer &#x2F; 生产者-消费者）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE"><span class="nav-number">1.1.1.</span> <span class="nav-text">共享数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E4%B8%8E%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-number">1.1.2.</span> <span class="nav-text">生产者与消费者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A6%81%E7%82%B9"><span class="nav-number">1.1.3.</span> <span class="nav-text">要点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AF%BB%E8%80%85-%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98%EF%BC%88Readers-Writers%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">二、读者-写者问题（Readers-Writers）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE-2"><span class="nav-number">1.2.2.</span> <span class="nav-text">共享数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%99%E8%80%85"><span class="nav-number">1.2.3.</span> <span class="nav-text">写者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%BB%E8%80%85"><span class="nav-number">1.2.4.</span> <span class="nav-text">读者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-number">1.2.5.</span> <span class="nav-text">核心思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E4%BD%93%E4%B8%8E%E9%A5%A5%E9%A5%BF"><span class="nav-number">1.2.6.</span> <span class="nav-text">变体与饥饿</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%93%B2%E5%AD%A6%E5%AE%B6%E5%B0%B1%E9%A4%90%E9%97%AE%E9%A2%98%EF%BC%88Dining-Philosophers%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">三、哲学家就餐问题（Dining-Philosophers）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0%EF%BC%88%E8%A7%81%E5%9B%BE1%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">问题描述（见图1）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%AE%80%E5%8D%95%E4%BF%A1%E5%8F%B7%E9%87%8F%E8%A7%A3%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">1. 简单信号量解法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%AE%A1%E7%A8%8B%EF%BC%88Monitor%EF%BC%89%E8%A7%A3%E6%B3%95"><span class="nav-number">1.3.3.</span> <span class="nav-text">2. 管程（Monitor）解法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Windows-%E5%86%85%E6%A0%B8%E5%90%8C%E6%AD%A5"><span class="nav-number">1.4.</span> <span class="nav-text">四、Windows 内核同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E8%B0%83%E5%BA%A6%E5%99%A8%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%EF%BC%88%E8%A7%81%E5%9B%BE2%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">互斥锁调度器对象的状态转换（见图2）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81Linux-%E5%90%8C%E6%AD%A5"><span class="nav-number">1.5.</span> <span class="nav-text">五、Linux 同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E5%8F%98%E9%87%8F%EF%BC%88%E8%A7%81%E5%9B%BE3%EF%BC%89"><span class="nav-number">1.5.1.</span> <span class="nav-text">原子变量（见图3）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81POSIX-%E5%90%8C%E6%AD%A5"><span class="nav-number">1.6.</span> <span class="nav-text">六、POSIX 同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BA%92%E6%96%A5%E9%94%81%EF%BC%88%E8%A7%81%E5%9B%BE4%EF%BC%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 互斥锁（见图4）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%BF%A1%E5%8F%B7%E9%87%8F%EF%BC%9A%E5%88%86%E4%B8%BA%E5%91%BD%E5%90%8D%E5%92%8C%E6%97%A0%E5%90%8D%E4%B8%A4%E7%A7%8D"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 信号量：分为命名和无名两种</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%EF%BC%88%E8%A7%81%E5%9B%BE7%E3%80%81%E5%9B%BE8%EF%BC%89"><span class="nav-number">1.6.3.</span> <span class="nav-text">3. 条件变量（见图7、图8）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81Java-%E5%90%8C%E6%AD%A5"><span class="nav-number">1.7.</span> <span class="nav-text">七、Java 同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Java-%E7%AE%A1%E7%A8%8B%EF%BC%88synchronized%EF%BC%89"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. Java 管程（synchronized）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%94%A8-synchronized-%E5%AE%9E%E7%8E%B0%E6%9C%89%E7%95%8C%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. 用 synchronized 实现有界缓冲区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%8F%AF%E9%87%8D%E5%85%A5%E9%94%81%EF%BC%88ReentrantLock%EF%BC%89"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. 可重入锁（ReentrantLock）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BF%A1%E5%8F%B7%E9%87%8F%EF%BC%88Semaphore%EF%BC%89"><span class="nav-number">1.7.4.</span> <span class="nav-text">4. 信号量（Semaphore）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%EF%BC%88Condition%EF%BC%89%EF%BC%88%E8%A7%81%E5%9B%BE8%EF%BC%89"><span class="nav-number">1.7.5.</span> <span class="nav-text">5. 条件变量（Condition）（见图8）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E7%A4%BA%E4%BE%8B%EF%BC%9A%E4%BA%94%E4%B8%AA%E7%BA%BF%E7%A8%8B%E8%BD%AE%E6%B5%81%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.7.6.</span> <span class="nav-text">6. 条件变量示例：五个线程轮流工作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%85%B6%E4%BB%96%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%EF%BC%88Alternative-Approaches%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、其他同步方法（Alternative Approaches）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BA%8B%E5%8A%A1%E5%86%85%E5%AD%98%EF%BC%88Transactional-Memory%EF%BC%89"><span class="nav-number">1.8.1.</span> <span class="nav-text">1. 事务内存（Transactional Memory）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-OpenMP%EF%BC%88%E8%A7%81%E5%9B%BE12%EF%BC%89"><span class="nav-number">1.8.2.</span> <span class="nav-text">2. OpenMP（见图12）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%EF%BC%88Functional-Programming-Languages%EF%BC%89"><span class="nav-number">1.8.3.</span> <span class="nav-text">3. 函数式编程语言（Functional Programming Languages）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%9C%AC%E7%AB%A0%E6%80%BB%E7%BB%93%EF%BC%88%E5%AE%8C%E6%95%B4%E7%89%88%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">九、本章总结（完整版）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/09/21/Introduction-to-Operating-Systems-Chapter7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction-to-Operating-Systems-Chapter7 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction-to-Operating-Systems-Chapter7
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-09-21 18:02:11 / Modified: 18:27:35" itemprop="dateCreated datePublished" datetime="2026-09-21T18:02:11+08:00">2026-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>同步问题实例<span id="more"></span></h1>
+<p>本章先讲三个<strong>经典同步问题</strong>（有界缓冲区、读者-写者、哲学家就餐），再讲操作系统（Windows、Linux）和编程接口（POSIX）提供的同步工具。经典问题常用来检验新提出的同步机制是否有效。</p>
+<h3 id="一、有界缓冲区问题（Bounded-Buffer-生产者-消费者）">一、有界缓冲区问题（Bounded-Buffer / 生产者-消费者）</h3>
+<h4 id="共享数据">共享数据</h4>
+<table>
+<thead>
+<tr>
+<th>信号量</th>
+<th>初值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mutex</code></td>
+<td>1</td>
+<td>互斥访问缓冲区</td>
+</tr>
+<tr>
+<td><code>full</code></td>
+<td>0</td>
+<td>已装满的槽位数</td>
+</tr>
+<tr>
+<td><code>empty</code></td>
+<td>n</td>
+<td>空闲槽位数</td>
+</tr>
+</tbody>
+</table>
+<p>缓冲区共有 n 个槽位，每个放一个数据项。</p>
+<h4 id="生产者与消费者">生产者与消费者</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 生产者 */</span>                         <span class="comment">/* 消费者 */</span></span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;                       <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="comment">/* 生产一个数据项 */</span>                  wait(full);</span><br><span class="line">    wait(empty);                         wait(mutex);</span><br><span class="line">    wait(mutex);                         <span class="comment">/* 从缓冲区取出一项 */</span></span><br><span class="line">    <span class="comment">/* 放入缓冲区 */</span>                      signal(mutex);</span><br><span class="line">    signal(mutex);                       signal(empty);</span><br><span class="line">    signal(full);                        <span class="comment">/* 消费该数据项 */</span></span><br><span class="line">&#125;                                    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="要点">要点</h4>
+<p>两者结构对称：生产者消耗 <code>empty</code>、增加 <code>full</code>，消费者反过来。<strong>先 wait 资源信号量（empty/full），再 wait mutex，顺序不能颠倒。</strong> 如果先拿 <code>mutex</code> 再等 <code>empty</code>，缓冲区满时生产者会持锁阻塞，消费者进不来，形成死锁。</p>
+<h3 id="二、读者-写者问题（Readers-Writers）">二、读者-写者问题（Readers-Writers）</h3>
+<h4 id="问题描述">问题描述</h4>
+<p>多个并发进程共享一个数据集。<strong>读者</strong>只读不改，<strong>写者</strong>可读可写。要求允许多个读者同时读，但写者必须独占访问。</p>
+<h4 id="共享数据-2">共享数据</h4>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th>初值</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rw_mutex</code></td>
+<td>1</td>
+<td>读者与写者、写者与写者之间互斥</td>
+</tr>
+<tr>
+<td><code>mutex</code></td>
+<td>1</td>
+<td>保护 <code>read_count</code> 的更新</td>
+</tr>
+<tr>
+<td><code>read_count</code></td>
+<td>0</td>
+<td>当前正在读的读者数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="写者">写者</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    wait(rw_mutex);</span><br><span class="line">    <span class="comment">/* 执行写操作 */</span></span><br><span class="line">    signal(rw_mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="读者">读者</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    wait(mutex);</span><br><span class="line">    read_count++;</span><br><span class="line">    <span class="keyword">if</span> (read_count == <span class="number">1</span>)      <span class="comment">/* 第一个读者：替所有读者锁住写者 */</span></span><br><span class="line">        wait(rw_mutex);</span><br><span class="line">    signal(mutex);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 执行读操作 */</span></span><br><span class="line"></span><br><span class="line">    wait(mutex);</span><br><span class="line">    read_count--;</span><br><span class="line">    <span class="keyword">if</span> (read_count == <span class="number">0</span>)      <span class="comment">/* 最后一个读者：放行写者 */</span></span><br><span class="line">        signal(rw_mutex);</span><br><span class="line">    signal(mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="核心思想">核心思想</h4>
+<p>“第一个进来的读者关门，最后一个离开的读者开门”。中间的读者不需要再碰 <code>rw_mutex</code>，因此可以并发读。</p>
+<h4 id="变体与饥饿">变体与饥饿</h4>
+<p>第一类读者-写者问题（即上面的解法）是<strong>读者优先</strong>：只要持续有读者到来，写者可能永远写不了，因此<strong>写者会饥饿</strong>。第二类读者-写者问题是<strong>写者优先</strong>：一旦有写者就绪，新到的读者就不许再进入，这时<strong>读者可能饥饿</strong>。两种都可能导致饥饿，于是又衍生出更多变体。实际系统中常由内核直接提供**读写锁（reader-writer lock）**来解决。</p>
+<h3 id="三、哲学家就餐问题（Dining-Philosophers）">三、哲学家就餐问题（Dining-Philosophers）</h3>
+<h4 id="问题描述（见图1）">问题描述（见图1）</h4>
+<p>N 位哲学家围坐圆桌，中间一碗米饭，相邻两人之间各放一根筷子（5 人则 5 根）。哲学家在思考和吃饭之间交替，彼此不交流。吃饭时要<strong>一根一根地</strong>拿起左右两根筷子，两根都拿到才能吃，吃完两根都放下。</p>
+<p>以 5 人为例，共享数据是米饭（数据集）和 <code>semaphore chopstick[5]</code>，每个初值为 1。</p>
+<h4 id="1-简单信号量解法">1. 简单信号量解法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    wait(chopstick[i]);             <span class="comment">/* 拿左筷子 */</span></span><br><span class="line">    wait(chopstick[(i + <span class="number">1</span>) % <span class="number">5</span>]);   <span class="comment">/* 拿右筷子 */</span></span><br><span class="line">    <span class="comment">/* 吃饭 */</span></span><br><span class="line">    signal(chopstick[i]);</span><br><span class="line">    signal(chopstick[(i + <span class="number">1</span>) % <span class="number">5</span>]);</span><br><span class="line">    <span class="comment">/* 思考 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>这个算法的问题（课件提问）：可能死锁。</strong> 如果 5 位哲学家同时饿了、同时拿起左手筷子，每个人都会永远等待右手那根，已被邻居拿走，谁也吃不上。</p>
+<p>常见改进思路有三种：最多只允许 4 人同时上桌；只有左右两根都空闲时才一次性拿起（在临界区内拿）；采用非对称策略，奇数号先拿左再拿右，偶数号先拿右再拿左。</p>
+<h4 id="2-管程（Monitor）解法">2. 管程（Monitor）解法</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">monitor DiningPhilosophers &#123;</span><br><span class="line">    <span class="class"><span class="keyword">enum</span> &#123;</span>THINKING, HUNGRY, EATING&#125; state[<span class="number">5</span>];</span><br><span class="line">    condition self[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line">    <span class="type">void</span> <span class="title function_">pickup</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        state[i] = HUNGRY;</span><br><span class="line">        test(i);                       <span class="comment">/* 看自己能不能吃 */</span></span><br><span class="line">        <span class="keyword">if</span> (state[i] != EATING)</span><br><span class="line">            self[i].wait;              <span class="comment">/* 不能吃就等待 */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">void</span> <span class="title function_">putdown</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        state[i] = THINKING;</span><br><span class="line">        test((i + <span class="number">4</span>) % <span class="number">5</span>);             <span class="comment">/* 检查左邻居现在能否吃 */</span></span><br><span class="line">        test((i + <span class="number">1</span>) % <span class="number">5</span>);             <span class="comment">/* 检查右邻居现在能否吃 */</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">void</span> <span class="title function_">test</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> ((state[(i + <span class="number">4</span>) % <span class="number">5</span>] != EATING) &amp;&amp;</span><br><span class="line">            (state[i] == HUNGRY) &amp;&amp;</span><br><span class="line">            (state[(i + <span class="number">1</span>) % <span class="number">5</span>] != EATING)) &#123;</span><br><span class="line">            state[i] = EATING;</span><br><span class="line">            self[i].signal();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    initialization_code() &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">            state[i] = THINKING;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用方式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DiningPhilosophers.pickup(i);</span><br><span class="line"><span class="comment">/* EAT */</span></span><br><span class="line">DiningPhilosophers.putdown(i);</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong> 哲学家只有在左右邻居都不在吃饭时才进入 <code>EATING</code>，相当于两根筷子&quot;一次性同时拿&quot;，所以<strong>不会死锁</strong>。但<strong>饥饿仍可能发生</strong>，比如左右两位邻居轮流吃，中间那位一直等不到机会。<code>(i + 4) % 5</code> 是左邻居，<code>(i + 1) % 5</code> 是右邻居。</p>
+<h3 id="四、Windows-内核同步">四、Windows 内核同步</h3>
+<p>在<strong>单处理器</strong>上，Windows 用<strong>中断屏蔽</strong>保护全局资源；在<strong>多处理器</strong>上用<strong>自旋锁</strong>，而且持有自旋锁的线程不会被抢占。</p>
+<p>面向用户态，Windows 提供<strong>调度器对象（dispatcher objects）</strong>，可以充当互斥锁、信号量、事件和定时器。其中事件（event）的作用类似条件变量，定时器在时间到期时通知一个或多个线程。</p>
+<p>调度器对象有两种状态：**signaled（有信号）**表示对象可用，线程获取时不会阻塞；**nonsignaled（无信号）**表示对象不可用，线程会阻塞。</p>
+<h4 id="互斥锁调度器对象的状态转换（见图2）">互斥锁调度器对象的状态转换（见图2）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">        拥有者线程释放互斥锁</span><br><span class="line">nonsignaled ─────────────→ signaled</span><br><span class="line">    ↑                         │</span><br><span class="line">    └─────────────────────────┘</span><br><span class="line">          线程获取互斥锁</span><br></pre></td></tr></table></figure>
+<h3 id="五、Linux-同步">五、Linux 同步</h3>
+<p>在 2.6 版本之前，Linux 内核通过<strong>禁用中断</strong>来实现短临界区；从 2.6 版本开始，内核<strong>完全可抢占</strong>。</p>
+<p>Linux 提供的工具包括信号量、原子整数、自旋锁，以及信号量和自旋锁各自的读写版本。在<strong>单 CPU 系统</strong>上，自旋锁被替换为<strong>启用/禁用内核抢占</strong>（单核上自旋没有意义，因为持锁者不运行就不会释放锁）。</p>
+<h4 id="原子变量（见图3）">原子变量（见图3）</h4>
+<p><code>atomic_t</code> 是原子整数类型，其上的操作不可被打断。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">atomic_t</span> counter;</span><br><span class="line"><span class="type">int</span> value;</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>原子操作</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>atomic_set(&amp;counter, 5);</code></td>
+<td>counter = 5</td>
+</tr>
+<tr>
+<td><code>atomic_add(10, &amp;counter);</code></td>
+<td>counter = counter + 10</td>
+</tr>
+<tr>
+<td><code>atomic_sub(4, &amp;counter);</code></td>
+<td>counter = counter − 4</td>
+</tr>
+<tr>
+<td><code>atomic_inc(&amp;counter);</code></td>
+<td>counter = counter + 1</td>
+</tr>
+<tr>
+<td><code>value = atomic_read(&amp;counter);</code></td>
+<td>value = 12</td>
+</tr>
+</tbody>
+</table>
+<p>按顺序执行后结果为 5 + 10 − 4 + 1 = <strong>12</strong>。原子变量适合计数器这类简单场景，比加锁开销小。</p>
+<h3 id="六、POSIX-同步">六、POSIX 同步</h3>
+<p>POSIX API 提供<strong>互斥锁、信号量、条件变量</strong>三类工具，广泛用于 UNIX、Linux 和 macOS。</p>
+<h4 id="1-互斥锁（见图4）">1. 互斥锁（见图4）</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="type">pthread_mutex_t</span> mutex;</span><br><span class="line"></span><br><span class="line">pthread_mutex_init(&amp;mutex, <span class="literal">NULL</span>);   <span class="comment">/* 创建并初始化，NULL 表示默认属性 */</span></span><br><span class="line"></span><br><span class="line">pthread_mutex_lock(&amp;mutex);         <span class="comment">/* 获取锁 */</span></span><br><span class="line"><span class="comment">/* 临界区 */</span></span><br><span class="line">pthread_mutex_unlock(&amp;mutex);       <span class="comment">/* 释放锁 */</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-信号量：分为命名和无名两种">2. 信号量：分为命名和无名两种</h4>
+<p><strong>命名信号量</strong>可以被<strong>无关进程</strong>共享，<strong>无名信号量</strong>则不行。</p>
+<p><strong>命名信号量</strong>（见图5）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="type">sem_t</span> *sem;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建名为 &quot;SEM&quot; 的信号量，初值为 1 */</span></span><br><span class="line">sem = sem_open(<span class="string">&quot;SEM&quot;</span>, O_CREAT, <span class="number">0666</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">sem_wait(sem);    <span class="comment">/* 获取 */</span></span><br><span class="line"><span class="comment">/* 临界区 */</span></span><br><span class="line">sem_post(sem);    <span class="comment">/* 释放 */</span></span><br></pre></td></tr></table></figure>
+<p><code>sem_open</code> 的参数依次是：名字、<code>O_CREAT</code>（不存在就创建）、权限 <code>0666</code>（所有人可读写）、初值 1。其他进程只要用名字 <code>SEM</code> 就能访问同一个信号量。</p>
+<p><strong>无名信号量</strong>（见图6）：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;semaphore.h&gt;</span></span></span><br><span class="line"><span class="type">sem_t</span> sem;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 创建并初始化为 1 */</span></span><br><span class="line">sem_init(&amp;sem, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">sem_wait(&amp;sem);   <span class="comment">/* 获取 */</span></span><br><span class="line"><span class="comment">/* 临界区 */</span></span><br><span class="line">sem_post(&amp;sem);   <span class="comment">/* 释放 */</span></span><br></pre></td></tr></table></figure>
+<p><code>sem_init</code> 的第 2 个参数为 0 表示只在<strong>同一进程的线程之间</strong>共享，第 3 个参数是初值。</p>
+<p>注意两者的区别：命名信号量用指针 <code>sem_t *</code>，由 <code>sem_open</code> 返回；无名信号量是变量 <code>sem_t</code>，操作时要取地址 <code>&amp;sem</code>。</p>
+<h4 id="3-条件变量（见图7、图8）">3. 条件变量（见图7、图8）</h4>
+<p>C/C++ 语言本身没有管程，所以 POSIX 条件变量必须<strong>配合一个互斥锁</strong>使用来保证互斥。</p>
+<p><strong>创建与初始化：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">pthread_mutex_t</span> mutex;</span><br><span class="line"><span class="type">pthread_cond_t</span> cond_var;</span><br><span class="line"></span><br><span class="line">pthread_mutex_init(&amp;mutex, <span class="literal">NULL</span>);</span><br><span class="line">pthread_cond_init(&amp;cond_var, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>等待条件 <code>a == b</code> 成立的线程：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_lock(&amp;mutex);</span><br><span class="line"><span class="keyword">while</span> (a != b)</span><br><span class="line">    pthread_cond_wait(&amp;cond_var, &amp;mutex);</span><br><span class="line">pthread_mutex_unlock(&amp;mutex);</span><br></pre></td></tr></table></figure>
+<p><strong>发出信号的线程：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pthread_mutex_lock(&amp;mutex);</span><br><span class="line">a = b;</span><br><span class="line">pthread_cond_signal(&amp;cond_var);</span><br><span class="line">pthread_mutex_unlock(&amp;mutex);</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong> <code>pthread_cond_wait</code> 会<strong>自动释放互斥锁</strong>并使线程阻塞，被唤醒后在返回前<strong>重新获取锁</strong>。必须用 <strong><code>while</code> 而不是 <code>if</code></strong> 来检查条件，因为线程被唤醒后条件未必仍然成立（可能被别的线程抢先改变，也可能是虚假唤醒），需要重新检查。修改共享变量和发信号都应在持锁状态下进行。</p>
+<h3 id="七、Java-同步">七、Java 同步</h3>
+<p>Java 提供了丰富的同步机制，主要有四类：<strong>Java 管程（synchronized）</strong>、<strong>可重入锁（ReentrantLock）</strong>、<strong>信号量（Semaphore）**和**条件变量（Condition）</strong>。</p>
+<h4 id="1-Java-管程（synchronized）">1. Java 管程（synchronized）</h4>
+<p><strong>基本规则：</strong></p>
+<ul>
+<li>每个 Java 对象都关联<strong>一把锁</strong>。</li>
+<li>如果方法被声明为 <code>synchronized</code>，调用线程必须先<strong>拥有该对象的锁</strong>才能执行。</li>
+<li>如果锁被其他线程占有，调用线程必须等待，直到锁被释放。</li>
+<li>线程<strong>退出 synchronized 方法时自动释放锁</strong>。</li>
+</ul>
+<p><strong>入口集（entry set）</strong>：试图获取一把不可用的锁的线程会被放入该对象的<strong>入口集</strong>中排队，等待锁的拥有者（owner）释放锁。</p>
+<p><strong>等待集（wait set）</strong>：每个对象除入口集外还有一个<strong>等待集</strong>。线程调用 <code>wait()</code> 时依次发生三件事：</p>
+<ol>
+<li><strong>释放</strong>该对象的锁；</li>
+<li>线程状态设为<strong>阻塞（blocked）</strong>；</li>
+<li>线程被放入该对象的<strong>等待集</strong>。</li>
+</ol>
+<p><strong><code>notify()</code> 的作用：</strong> 线程调用 <code>wait()</code> 通常是在等待某个条件成立。另一个线程调用 <code>notify()</code> 时：</p>
+<ol>
+<li>从等待集中<strong>任意</strong>选出一个线程 T；</li>
+<li>把 T 从<strong>等待集移到入口集</strong>；</li>
+<li>把 T 的状态从<strong>阻塞改为可运行（runnable）</strong>。</li>
+</ol>
+<p>之后 T 可以重新<strong>竞争锁</strong>，拿到锁后再检查它等待的条件是否已经成立。</p>
+<p><strong>两个集合的关系：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">            acquire lock                wait()</span><br><span class="line"> 入口集  ─────────────→  对象锁(owner)  ─────────→  等待集</span><br><span class="line">(等锁)                                              (等条件)</span><br><span class="line">   ↑                                                  │</span><br><span class="line">   └──────────────────── notify() ────────────────────┘</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意区分：入口集里的线程在等<strong>锁</strong>，等待集里的线程在等<strong>条件</strong>。被 notify 的线程并不是立刻运行，而是先回到入口集重新抢锁。</p>
+</blockquote>
+<h4 id="2-用-synchronized-实现有界缓冲区">2. 用 synchronized 实现有界缓冲区</h4>
+<p><strong>类结构：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BoundedBuffer</span>&lt;E&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">BUFFER_SIZE</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> count, in, out;   <span class="comment">// 当前项数、写入位置、读取位置</span></span><br><span class="line">    <span class="keyword">private</span> E[] buffer;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">BoundedBuffer</span><span class="params">()</span> &#123;</span><br><span class="line">        count = <span class="number">0</span>; in = <span class="number">0</span>; out = <span class="number">0</span>;</span><br><span class="line">        buffer = (E[]) <span class="keyword">new</span> <span class="title class_">Object</span>[BUFFER_SIZE];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(E item)</span> &#123; ... &#125;  <span class="comment">// 生产者调用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title function_">remove</span><span class="params">()</span> &#123; ... &#125;           <span class="comment">// 消费者调用</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>生产者 <code>insert()</code>：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">insert</span><span class="params">(E item)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (count == BUFFER_SIZE) &#123;      <span class="comment">// 缓冲区满则等待</span></span><br><span class="line">        <span class="keyword">try</span> &#123; wait(); &#125;</span><br><span class="line">        <span class="keyword">catch</span> (InterruptedException ie) &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    buffer[in] = item;</span><br><span class="line">    in = (in + <span class="number">1</span>) % BUFFER_SIZE;        <span class="comment">// 环形缓冲区</span></span><br><span class="line">    count++;</span><br><span class="line">    notify();                           <span class="comment">// 唤醒可能在等待的消费者</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>消费者 <code>remove()</code>：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title function_">remove</span><span class="params">()</span> &#123;</span><br><span class="line">    E item;</span><br><span class="line">    <span class="keyword">while</span> (count == <span class="number">0</span>) &#123;                <span class="comment">// 缓冲区空则等待</span></span><br><span class="line">        <span class="keyword">try</span> &#123; wait(); &#125;</span><br><span class="line">        <span class="keyword">catch</span> (InterruptedException ie) &#123; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    item = buffer[out];</span><br><span class="line">    out = (out + <span class="number">1</span>) % BUFFER_SIZE;</span><br><span class="line">    count--;</span><br><span class="line">    notify();                           <span class="comment">// 唤醒可能在等待的生产者</span></span><br><span class="line">    <span class="keyword">return</span> item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong></p>
+<ul>
+<li>与信号量版本对比：这里不需要 <code>mutex</code>、<code>full</code>、<code>empty</code> 三个信号量，互斥由 <code>synchronized</code> 自动保证，&quot;满/空&quot;由 <code>count</code> 判断。</li>
+<li><strong>必须用 <code>while</code> 检查条件</strong>（和 POSIX 条件变量同理）：被唤醒后要重新拿锁，拿到时条件可能已被别的线程改变。</li>
+<li>局限：一个对象只有<strong>一个等待集</strong>，生产者和消费者都在里面，<code>notify()</code> 又是任意挑一个，可能唤醒的是&quot;同类&quot;线程。实际开发中常改用 <code>notifyAll()</code>，或者使用下面带多个条件变量的 <code>ReentrantLock</code>。</li>
+</ul>
+<h4 id="3-可重入锁（ReentrantLock）">3. 可重入锁（ReentrantLock）</h4>
+<p>作用类似互斥锁。&quot;可重入&quot;指<strong>已经持有锁的线程可以再次获取同一把锁</strong>而不会自己把自己锁死（内部计数，加锁几次就要释放几次）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line"></span><br><span class="line">key.lock();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">/* 临界区 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">    key.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong> <code>unlock()</code> 放在 <strong><code>finally</code></strong> 中，保证即使 <code>try</code> 块中抛出异常，锁也一定会被释放，避免锁永远不释放导致其他线程死等。</p>
+<p>与 <code>synchronized</code> 相比，<code>ReentrantLock</code> 需要手动加锁/解锁，但更灵活（例如可以创建多个条件变量）。</p>
+<h4 id="4-信号量（Semaphore）">4. 信号量（Semaphore）</h4>
+<p><strong>构造函数：</strong> <code>Semaphore(int value)</code>，<code>value</code> 是初值。</p>
+<p>java</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Semaphore</span> <span class="variable">sem</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Semaphore</span>(<span class="number">1</span>);   <span class="comment">// 初值 1，相当于互斥锁</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    sem.acquire();                  <span class="comment">// 相当于 wait()/P 操作</span></span><br><span class="line">    <span class="comment">/* 临界区 */</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span> (InterruptedException ie) &#123; &#125;</span><br><span class="line"><span class="keyword">finally</span> &#123;</span><br><span class="line">    sem.release();                  <span class="comment">// 相当于 signal()/V 操作</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>对照表：</strong></p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>课本伪代码</th>
+<th>POSIX</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P 操作</td>
+<td><code>wait()</code></td>
+<td><code>sem_wait()</code></td>
+<td><code>acquire()</code></td>
+</tr>
+<tr>
+<td>V 操作</td>
+<td><code>signal()</code></td>
+<td><code>sem_post()</code></td>
+<td><code>release()</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>补充：<code>acquire()</code> 可能抛出 <code>InterruptedException</code>，所以要放在 <code>try</code> 里。课件写法有个小隐患：如果 <code>acquire()</code> 被中断而没拿到许可，<code>finally</code> 仍会执行 <code>release()</code>，使信号量值多加 1。更严谨的写法是把 <code>acquire()</code> 放在 <code>try</code> 之前（或单独处理中断）。</p>
+</blockquote>
+<h4 id="5-条件变量（Condition）（见图8）">5. 条件变量（Condition）（见图8）</h4>
+<p>条件变量<strong>必须与一个 <code>ReentrantLock</code> 关联</strong>，通过锁的 <code>newCondition()</code> 方法创建：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">key</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line"><span class="type">Condition</span> <span class="variable">condVar</span> <span class="operator">=</span> key.newCondition();</span><br></pre></td></tr></table></figure>
+<p>线程调用 <strong><code>await()</code></strong> 等待，调用 <strong><code>signal()</code></strong> 发信号。</p>
+<p><strong>与 synchronized 的对应关系：</strong></p>
+<table>
+<thead>
+<tr>
+<th>synchronized 管程</th>
+<th>ReentrantLock + Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对象锁</td>
+<td><code>lock()</code> / <code>unlock()</code></td>
+</tr>
+<tr>
+<td><code>wait()</code></td>
+<td><code>await()</code></td>
+</tr>
+<tr>
+<td><code>notify()</code></td>
+<td><code>signal()</code></td>
+</tr>
+<tr>
+<td>只有一个等待集</td>
+<td><strong>可以有多个条件变量</strong>，每个一个等待队列</td>
+</tr>
+</tbody>
+</table>
+<p>最大优势是<strong>可以针对不同条件分别等待和唤醒</strong>，精确唤醒指定线程。</p>
+<h4 id="6-条件变量示例：五个线程轮流工作">6. 条件变量示例：五个线程轮流工作</h4>
+<p><strong>问题：</strong> 有 0～4 共 5 个线程，共享变量 <code>turn</code> 表示轮到哪个线程。线程想工作时调用 <code>doWork()</code>，只有轮到自己时才能工作：不是自己的回合就等待；是自己的回合就工作一段时间，完成后通知下一个线程。</p>
+<p><strong>数据结构：</strong> 一把锁 + 每个线程一个条件变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line">Condition[] condVars = <span class="keyword">new</span> <span class="title class_">Condition</span>[<span class="number">5</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)</span><br><span class="line">    condVars[i] = lock.newCondition();</span><br></pre></td></tr></table></figure>
+<p><strong><code>doWork()</code> 方法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doWork</span><span class="params">(<span class="type">int</span> threadNumber)</span> &#123;</span><br><span class="line">    lock.lock();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (threadNumber != turn)              <span class="comment">// 不是我的回合，就等</span></span><br><span class="line">            condVars[threadNumber].await();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 工作一段时间 ... */</span></span><br><span class="line"></span><br><span class="line">        turn = (turn + <span class="number">1</span>) % <span class="number">5</span>;                 <span class="comment">// 轮到下一个线程</span></span><br><span class="line">        condVars[turn].signal();               <span class="comment">// 精确唤醒下一个线程</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (InterruptedException ie) &#123; &#125;</span><br><span class="line">    <span class="keyword">finally</span> &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong></p>
+<ul>
+<li>每个线程在<strong>自己专属的条件变量</strong>上等待，所以 <code>condVars[turn].signal()</code> 能<strong>精确唤醒</strong>下一个线程，而不会像 <code>notify()</code> 那样随机唤醒。</li>
+<li><code>await()</code> 与 POSIX 的 <code>pthread_cond_wait</code> 一样，会自动释放锁，被唤醒后重新获得锁再返回。</li>
+<li>课件为简洁用了 <code>if</code>；考虑到虚假唤醒，更稳妥的写法是 <code>while (threadNumber != turn)</code>。</li>
+</ul>
+<h3 id="八、其他同步方法（Alternative-Approaches）">八、其他同步方法（Alternative Approaches）</h3>
+<p>随着多核普及，锁和信号量在可扩展性、易用性上的问题越来越明显（容易死锁、难以组合、锁粒度难把握），于是出现了以下替代方案：<strong>事务内存</strong>、<strong>OpenMP</strong>、<strong>函数式编程语言</strong>。</p>
+<h4 id="1-事务内存（Transactional-Memory）">1. 事务内存（Transactional Memory）</h4>
+<p>假设函数 <code>update()</code> 必须原子地执行。</p>
+<p><strong>传统做法：用互斥锁</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">update</span><span class="params">()</span> &#123;</span><br><span class="line">    acquire();</span><br><span class="line">    <span class="comment">/* 修改共享数据 */</span></span><br><span class="line">    release();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>事务内存做法：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">update</span><span class="params">()</span> &#123;</span><br><span class="line">    atomic &#123;</span><br><span class="line">        <span class="comment">/* 修改共享数据 */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>概念：</strong> <strong>内存事务</strong>是一组<strong>原子执行</strong>的内存读写操作。通过 <code>atomic{S}</code> 语法，保证 <code>S</code> 中的语句作为一个整体原子执行。</p>
+<p><strong>优势：</strong> 由系统（而不是程序员）负责保证原子性。程序员不用手动管理锁，<strong>不会因为锁而死锁</strong>；系统可以检测到多个事务中哪些操作可以并发执行（例如多个只读访问），并发度更高。（它借鉴了数据库事务的思想：要么全部完成，要么全部不做。）</p>
+<h4 id="2-OpenMP（见图12）">2. OpenMP（见图12）</h4>
+<p>OpenMP 是一组支持<strong>并行编程</strong>的<strong>编译器指令和 API</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">update</span><span class="params">(<span class="type">int</span> value)</span> &#123;</span><br><span class="line">    <span class="meta">#<span class="keyword">pragma</span> omp critical</span></span><br><span class="line">    &#123;</span><br><span class="line">        count += value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要点：</strong> <code>#pragma omp critical</code> 指令内的代码被当作<strong>临界区</strong>，原子地执行，同一时刻只有一个线程能进入。优点是使用简单，不需要手动创建和管理锁，由编译器和运行库自动处理。不过它本质上仍类似互斥锁，程序员仍需自己找出可能存在竞争条件的代码段，并且使用不当也可能出现死锁。</p>
+<h4 id="3-函数式编程语言（Functional-Programming-Languages）">3. 函数式编程语言（Functional Programming Languages）</h4>
+<p>函数式语言与过程式语言（C、Java 等）范式不同：它们<strong>不维护状态</strong>，变量是<strong>不可变的（immutable）</strong>，一旦赋值就不能再改变。</p>
+<p><strong>为什么能帮助同步：</strong> 数据竞争的根源是&quot;多个线程同时修改共享的可变数据&quot;。如果数据根本不可变，就<strong>不存在数据竞争</strong>，也就不需要锁。因此，人们对 <strong>Erlang</strong>、<strong>Scala</strong> 等函数式语言处理数据竞争的方式越来越感兴趣。</p>
+<h3 id="九、本章总结（完整版）">九、本章总结（完整版）</h3>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>工具/问题</th>
+<th>关键点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经典问题</td>
+<td>有界缓冲区</td>
+<td>mutex=1, full=0, empty=n；先等资源再等锁</td>
+</tr>
+<tr>
+<td></td>
+<td>读者-写者</td>
+<td>第一个读者锁写者、最后一个读者放写者；存在饥饿</td>
+</tr>
+<tr>
+<td></td>
+<td>哲学家就餐</td>
+<td>信号量解法会死锁；管程解法无死锁但可能饥饿</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>Windows</td>
+<td>单核屏蔽中断，多核自旋锁；调度器对象 signaled/nonsignaled</td>
+</tr>
+<tr>
+<td></td>
+<td>Linux</td>
+<td>2.6 后完全可抢占；原子整数、自旋锁、信号量</td>
+</tr>
+<tr>
+<td>POSIX</td>
+<td>mutex / 信号量 / 条件变量</td>
+<td>命名信号量可跨无关进程；条件变量配合 mutex，用 while 检查</td>
+</tr>
+<tr>
+<td>Java</td>
+<td>synchronized</td>
+<td>每对象一把锁；入口集等锁，等待集等条件；<code>wait()</code> / <code>notify()</code></td>
+</tr>
+<tr>
+<td></td>
+<td>ReentrantLock</td>
+<td>同一线程可重复加锁；<code>unlock()</code> 放在 <code>finally</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Semaphore</td>
+<td><code>acquire()</code> / <code>release()</code></td>
+</tr>
+<tr>
+<td></td>
+<td>Condition</td>
+<td>与 ReentrantLock 关联；<code>await()</code> / <code>signal()</code>；可多个条件精确唤醒</td>
+</tr>
+<tr>
+<td>替代方法</td>
+<td>事务内存</td>
+<td><code>atomic{}</code> 由系统保证原子性，无锁无死锁</td>
+</tr>
+<tr>
+<td></td>
+<td>OpenMP</td>
+<td><code>#pragma omp critical</code> 标记临界区</td>
+</tr>
+<tr>
+<td></td>
+<td>函数式语言</td>
+<td>变量不可变，从根源上消除数据竞争</td>
+</tr>
+</tbody>
+</table>
+<p><strong>各平台同步原语对照：</strong></p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>伪代码</th>
+<th>POSIX ©</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>加锁</td>
+<td><code>acquire()</code></td>
+<td><code>pthread_mutex_lock()</code></td>
+<td><code>lock()</code> / <code>synchronized</code></td>
+</tr>
+<tr>
+<td>解锁</td>
+<td><code>release()</code></td>
+<td><code>pthread_mutex_unlock()</code></td>
+<td><code>unlock()</code> / 退出 synchronized</td>
+</tr>
+<tr>
+<td>P 操作</td>
+<td><code>wait(S)</code></td>
+<td><code>sem_wait()</code></td>
+<td><code>acquire()</code></td>
+</tr>
+<tr>
+<td>V 操作</td>
+<td><code>signal(S)</code></td>
+<td><code>sem_post()</code></td>
+<td><code>release()</code></td>
+</tr>
+<tr>
+<td>条件等待</td>
+<td><code>x.wait</code></td>
+<td><code>pthread_cond_wait()</code></td>
+<td><code>wait()</code> / <code>await()</code></td>
+</tr>
+<tr>
+<td>条件唤醒</td>
+<td><code>x.signal</code></td>
+<td><code>pthread_cond_signal()</code></td>
+<td><code>notify()</code> / <code>signal()</code></td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/21/Introduction-to-Operating-Systems-Chapter6-%E5%90%8C%E6%AD%A5%E5%B7%A5%E5%85%B7/" rel="prev" title="Introduction-to-Operating-Systems-Chapter6">
+                  <i class="fa fa-angle-left"></i> Introduction-to-Operating-Systems-Chapter6
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
