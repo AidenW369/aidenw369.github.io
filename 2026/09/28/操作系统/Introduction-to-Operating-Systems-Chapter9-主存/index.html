@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="主存（Main Memory）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction-to-Operating-Systems-Chapter9">
+<meta property="og:url" content="http://example.com/2026/09/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter9-%E4%B8%BB%E5%AD%98/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="主存（Main Memory）">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-09-28T02:49:39.000Z">
+<meta property="article:modified_time" content="2026-09-28T03:35:22.001Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/09/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter9-%E4%B8%BB%E5%AD%98/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/09/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter9-%E4%B8%BB%E5%AD%98/","path":"2026/09/28/操作系统/Introduction-to-Operating-Systems-Chapter9-主存/","title":"Introduction-to-Operating-Systems-Chapter9"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction-to-Operating-Systems-Chapter9 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">主存（Main Memory）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">一、背景知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%EF%BC%9A%E5%9F%BA%E5%9D%80%E5%AF%84%E5%AD%98%E5%99%A8%E4%B8%8E%E7%95%8C%E9%99%90%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">二、内存保护：基址寄存器与界限寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9C%B0%E5%9D%80%E7%BB%91%E5%AE%9A%EF%BC%88Address-Binding%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">三、地址绑定（Address Binding）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E4%B8%AA%E7%BB%91%E5%AE%9A%E6%97%B6%E6%9C%BA"><span class="nav-number">1.3.1.</span> <span class="nav-text">三个绑定时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%A4%9A%E6%AD%A5%E5%A4%84%E7%90%86%EF%BC%88%E5%9B%BE3%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">用户程序的多步处理（图3）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%80%BB%E8%BE%91%E5%9C%B0%E5%9D%80-vs-%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="nav-number">1.4.</span> <span class="nav-text">四、逻辑地址 vs 物理地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E5%8D%95%E5%85%83%EF%BC%88MMU%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">五、内存管理单元（MMU）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%A1%88%EF%BC%9A%E9%87%8D%E5%AE%9A%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%88%E5%9B%BE5%EF%BC%89"><span class="nav-number">1.5.1.</span> <span class="nav-text">最简单的方案：重定位寄存器（图5）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.</span> <span class="nav-text">六、动态加载与动态链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%EF%BC%88Dynamic-Loading%EF%BC%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">动态加载（Dynamic Loading）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%EF%BC%88Dynamic-Linking%EF%BC%89"><span class="nav-number">1.6.2.</span> <span class="nav-text">动态链接（Dynamic Linking）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%BF%9E%E7%BB%AD%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%EF%BC%88Contiguous-Allocation%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">七、连续内存分配（Contiguous Allocation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6"><span class="nav-number">1.7.1.</span> <span class="nav-text">保护机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%88%86%E5%8C%BA"><span class="nav-number">1.7.2.</span> <span class="nav-text">可变分区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8%E5%88%86%E9%85%8D%E9%97%AE%E9%A2%98"><span class="nav-number">1.7.3.</span> <span class="nav-text">动态存储分配问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%A2%8E%E7%89%87%EF%BC%88Fragmentation%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、碎片（Fragmentation）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%A4%96%E9%83%A8%E7%A2%8E%E7%89%87%EF%BC%9A%E7%B4%A7%E7%BC%A9%EF%BC%88Compaction%EF%BC%89"><span class="nav-number">1.8.1.</span> <span class="nav-text">解决外部碎片：紧缩（Compaction）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%88%86%E9%A1%B5%EF%BC%88Paging%EF%BC%89%E2%AD%90"><span class="nav-number">1.9.</span> <span class="nav-text">九、分页（Paging）⭐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3"><span class="nav-number">1.9.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.9.2.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%A1%88"><span class="nav-number">1.9.3.</span> <span class="nav-text">地址转换方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E7%A1%AC%E4%BB%B6"><span class="nav-number">1.9.4.</span> <span class="nav-text">分页硬件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.9.5.</span> <span class="nav-text">分页模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E4%BE%8B%E9%A2%98-%E2%AD%90-%E9%87%8D%E7%82%B9%E8%AE%A1%E7%AE%97"><span class="nav-number">1.9.6.</span> <span class="nav-text">分页例题 ⭐ 重点计算</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%88%86%E9%A1%B5%E7%9A%84%E5%86%85%E9%83%A8%E7%A2%8E%E7%89%87%E8%AE%A1%E7%AE%97"><span class="nav-number">1.10.</span> <span class="nav-text">十、分页的内部碎片计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A1%B5%E5%A4%A7%E5%B0%8F%E7%9A%84%E6%9D%83%E8%A1%A1"><span class="nav-number">1.10.1.</span> <span class="nav-text">页大小的权衡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E7%A9%BA%E9%97%B2%E5%B8%A7%EF%BC%88Free-Frames%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、空闲帧（Free Frames）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E9%A1%B5%E8%A1%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.12.</span> <span class="nav-text">十二、页表的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E8%BD%AC%E6%8D%A2%E5%90%8E%E5%A4%87%E7%BC%93%E5%86%B2%E5%8C%BA%EF%BC%88TLB%EF%BC%89%E2%AD%90"><span class="nav-number">1.13.</span> <span class="nav-text">十三、转换后备缓冲区（TLB）⭐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%8E%9F%E7%90%86"><span class="nav-number">1.13.1.</span> <span class="nav-text">硬件原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A6-TLB-%E7%9A%84%E5%88%86%E9%A1%B5%E7%A1%AC%E4%BB%B6"><span class="nav-number">1.13.2.</span> <span class="nav-text">带 TLB 的分页硬件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TLB-%E7%9A%84%E5%85%B6%E4%BB%96%E7%89%B9%E7%82%B9"><span class="nav-number">1.13.3.</span> <span class="nav-text">TLB 的其他特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E6%9C%89%E6%95%88%E8%AE%BF%E9%97%AE%E6%97%B6%E9%97%B4%EF%BC%88EAT%EF%BC%89%E2%AD%90-%E9%87%8D%E7%82%B9%E8%AE%A1%E7%AE%97"><span class="nav-number">1.14.</span> <span class="nav-text">十四、有效访问时间（EAT）⭐ 重点计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.15.</span> <span class="nav-text">十五、内存保护</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E6%8A%A4%E4%BD%8D"><span class="nav-number">1.15.1.</span> <span class="nav-text">保护位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E6%95%88-%E6%97%A0%E6%95%88%E4%BD%8D%EF%BC%88Valid-Invalid-Bit%EF%BC%89"><span class="nav-number">1.15.2.</span> <span class="nav-text">有效-无效位（Valid-Invalid Bit）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E4%BE%8B%E5%88%86%E6%9E%90"><span class="nav-number">1.15.3.</span> <span class="nav-text">图例分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E3%80%81%E5%85%B1%E4%BA%AB%E9%A1%B5%EF%BC%88Shared-Pages%EF%BC%89"><span class="nav-number">1.16.</span> <span class="nav-text">十六、共享页（Shared Pages）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E4%BB%A3%E7%A0%81"><span class="nav-number">1.16.1.</span> <span class="nav-text">共享代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%81%E6%9C%89%E4%BB%A3%E7%A0%81%E5%92%8C%E6%95%B0%E6%8D%AE"><span class="nav-number">1.16.2.</span> <span class="nav-text">私有代码和数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E4%BE%8B"><span class="nav-number">1.16.3.</span> <span class="nav-text">图例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%83%E3%80%81%E9%A1%B5%E8%A1%A8%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.17.</span> <span class="nav-text">十七、页表的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A%E9%A1%B5%E8%A1%A8%E5%A4%AA%E5%A4%A7"><span class="nav-number">1.17.1.</span> <span class="nav-text">问题：页表太大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF%EF%BC%9A%E6%8A%8A%E9%A1%B5%E8%A1%A8%E5%88%86%E6%88%90%E6%9B%B4%E5%B0%8F%E7%9A%84%E5%8D%95%E5%85%83"><span class="nav-number">1.17.2.</span> <span class="nav-text">解决思路：把页表分成更小的单元</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AB%E3%80%81%E5%88%86%E5%B1%82%E9%A1%B5%E8%A1%A8%EF%BC%88Hierarchical-Page-Tables%EF%BC%89"><span class="nav-number">1.18.</span> <span class="nav-text">十八、分层页表（Hierarchical Page Tables）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-2"><span class="nav-number">1.18.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E7%BA%A7%E5%88%86%E9%A1%B5%E7%A4%BA%E4%BE%8B%E2%AD%90"><span class="nav-number">1.18.2.</span> <span class="nav-text">两级分页示例⭐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B9%9D%E3%80%81%E4%B8%A4%E7%BA%A7%E9%A1%B5%E8%A1%A8%E7%9A%84%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E4%B8%8E-64-%E4%BD%8D%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-number">1.19.</span> <span class="nav-text">十九、两级页表的地址转换与 64 位地址空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E7%BA%A7%E9%A1%B5%E8%A1%A8%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.19.1.</span> <span class="nav-text">两级页表地址转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#64-%E4%BD%8D%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4%EF%BC%9A%E4%B8%A4%E7%BA%A7%E4%B9%9F%E4%B8%8D%E5%A4%9F"><span class="nav-number">1.19.2.</span> <span class="nav-text">64 位地址空间：两级也不够</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%BA%A7%E5%88%86%E9%A1%B5%E6%96%B9%E6%A1%88"><span class="nav-number">1.19.3.</span> <span class="nav-text">三级分页方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E3%80%81%E5%93%88%E5%B8%8C%E9%A1%B5%E8%A1%A8%EF%BC%88Hashed-Page-Tables%EF%BC%89"><span class="nav-number">1.20.</span> <span class="nav-text">二十、哈希页表（Hashed Page Tables）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%88%E5%9B%BE4%EF%BC%89"><span class="nav-number">1.20.1.</span> <span class="nav-text">工作原理（图4）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%98%E4%BD%93%EF%BC%9A%E8%81%9A%E7%B0%87%E9%A1%B5%E8%A1%A8%EF%BC%88Clustered-Page-Tables%EF%BC%89"><span class="nav-number">1.20.2.</span> <span class="nav-text">变体：聚簇页表（Clustered Page Tables）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%80%E3%80%81%E5%80%92%E7%BD%AE%E9%A1%B5%E8%A1%A8%EF%BC%88Inverted-Page-Table%EF%BC%89%E2%AD%90"><span class="nav-number">1.21.</span> <span class="nav-text">二十一、倒置页表（Inverted Page Table）⭐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3-3"><span class="nav-number">1.21.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.21.2.</span> <span class="nav-text">地址转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">1.21.3.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E9%A1%B5%E8%A1%A8%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.21.4.</span> <span class="nav-text">三种页表结构对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%8C%E3%80%81%E5%AE%9E%E4%BE%8B%EF%BC%9AOracle-SPARC-Solaris"><span class="nav-number">1.22.</span> <span class="nav-text">二十二、实例：Oracle SPARC Solaris</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%89%E3%80%81%E4%BA%A4%E6%8D%A2%EF%BC%88Swapping%EF%BC%89"><span class="nav-number">1.23.</span> <span class="nav-text">二十三、交换（Swapping）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.23.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%A2%E5%9B%9E%E6%97%B6%E8%A6%81%E5%9B%9E%E5%88%B0%E5%8E%9F%E6%9D%A5%E7%9A%84%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80%E5%90%97%EF%BC%9F"><span class="nav-number">1.23.2.</span> <span class="nav-text">换回时要回到原来的物理地址吗？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%B0%E4%BB%A3%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-number">1.23.3.</span> <span class="nav-text">现代系统的做法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%9B%9B%E3%80%81%E5%8C%85%E5%90%AB%E4%BA%A4%E6%8D%A2%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E6%97%B6%E9%97%B4-%E2%AD%90"><span class="nav-number">1.24.</span> <span class="nav-text">二十四、包含交换的上下文切换时间 ⭐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%99%90%E5%88%B6"><span class="nav-number">1.24.1.</span> <span class="nav-text">其他限制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%BA%94%E3%80%81%E7%A7%BB%E5%8A%A8%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%9A%84%E4%BA%A4%E6%8D%A2"><span class="nav-number">1.25.</span> <span class="nav-text">二十五、移动系统上的交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AD%E3%80%81%E5%B8%A6%E5%88%86%E9%A1%B5%E7%9A%84%E4%BA%A4%E6%8D%A2"><span class="nav-number">1.26.</span> <span class="nav-text">二十六、带分页的交换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B8%83%E3%80%81%E5%AE%9E%E4%BE%8B%EF%BC%9AIntel-IA-32-%E6%9E%B6%E6%9E%84-%E2%AD%90"><span class="nav-number">1.27.</span> <span class="nav-text">二十七、实例：Intel IA-32 架构 ⭐</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%AE%B5"><span class="nav-number">1.27.1.</span> <span class="nav-text">分段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E8%BD%AC%E6%8D%A2%E6%B5%81%E7%A8%8B"><span class="nav-number">1.27.2.</span> <span class="nav-text">地址转换流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%AE%B5%E5%8D%95%E5%85%83"><span class="nav-number">1.27.3.</span> <span class="nav-text">分段单元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E7%BB%93%E6%9E%84"><span class="nav-number">1.27.4.</span> <span class="nav-text">分页结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E5%85%AB%E3%80%81Intel-IA-32-%E9%A1%B5%E5%9C%B0%E5%9D%80%E6%89%A9%E5%B1%95%EF%BC%88PAE%EF%BC%89"><span class="nav-number">1.28.</span> <span class="nav-text">二十八、Intel IA-32 页地址扩展（PAE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8D%81%E4%B9%9D%E3%80%81Intel-x86-64"><span class="nav-number">1.29.</span> <span class="nav-text">二十九、Intel x86-64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E5%8D%81%E3%80%81%E5%AE%9E%E4%BE%8B%EF%BC%9AARM-%E6%9E%B6%E6%9E%84"><span class="nav-number">1.30.</span> <span class="nav-text">三十、实例：ARM 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%A4%E7%BA%A7-TLB"><span class="nav-number">1.30.1.</span> <span class="nav-text">两级 TLB</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/09/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter9-%E4%B8%BB%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction-to-Operating-Systems-Chapter9 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction-to-Operating-Systems-Chapter9
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-09-28 10:49:39 / Modified: 11:35:22" itemprop="dateCreated datePublished" datetime="2026-09-28T10:49:39+08:00">2026-09-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>主存（Main Memory）<span id="more"></span></h1>
+<h3 id="一、背景知识">一、背景知识</h3>
+<p>程序必须先从磁盘调入内存，并放入某个进程中才能运行。<strong>主存和寄存器是 CPU 唯一能直接访问的存储器</strong>，内存单元只看到两类请求：地址 + 读请求，或地址 + 数据 + 写请求。</p>
+<table>
+<thead>
+<tr>
+<th>存储层次</th>
+<th>访问速度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>寄存器</td>
+<td>1 个时钟周期（或更短）</td>
+<td>最快</td>
+</tr>
+<tr>
+<td>缓存 (Cache)</td>
+<td>介于两者之间</td>
+<td>位于主存与寄存器之间，缓解速度差</td>
+</tr>
+<tr>
+<td>主存</td>
+<td>需要多个周期</td>
+<td>可能导致 CPU 停顿 (stall)</td>
+</tr>
+</tbody>
+</table>
+<p>此外，必须对内存进行<strong>保护</strong>，以保证系统正确运行。</p>
+<h3 id="二、内存保护：基址寄存器与界限寄存器">二、内存保护：基址寄存器与界限寄存器</h3>
+<p><strong>目标</strong>：保证每个进程只能访问自己地址空间内的地址。</p>
+<p><strong>方法</strong>：用一对寄存器定义进程的逻辑地址空间。基址寄存器 (base) 保存进程最小的合法物理地址，界限寄存器 (limit) 保存地址范围的大小。</p>
+<p><strong>图例（图1）</strong>：base = 300040，limit = 120900，因此该进程合法地址范围为 300040 ≤ 地址 &lt; 420940（即 base + limit）。</p>
+<p><strong>硬件检查流程（图2）</strong>：CPU 在用户态产生的每一次内存访问都要经过两步比较。先判断地址 ≥ base，否则陷入操作系统；再判断地址 &lt; base + limit，否则陷入操作系统。两项都满足才访问内存，不满足则触发“非法寻址错误”陷阱。</p>
+<blockquote>
+<p>⚠️ 装载 base 和 limit 寄存器的指令是<strong>特权指令</strong>，只能由操作系统在内核态执行，用户程序无法篡改。</p>
+</blockquote>
+<h3 id="三、地址绑定（Address-Binding）">三、地址绑定（Address Binding）</h3>
+<p>磁盘上等待调入内存执行的程序组成<strong>输入队列</strong>。如果没有硬件支持，程序只能装入地址 0000，这很不方便，所以需要地址绑定。</p>
+<p>程序在不同阶段地址的表示形式不同：源代码中是<strong>符号地址</strong>（如变量名 <code>count</code>）；编译后变成<strong>可重定位地址</strong>（如“距本模块起始 14 字节处”）；再由链接器或加载器绑定为<strong>绝对地址</strong>（如 74014）。每一次绑定都是把一个地址空间映射到另一个地址空间。</p>
+<h4 id="三个绑定时机">三个绑定时机</h4>
+<table>
+<thead>
+<tr>
+<th>绑定时机</th>
+<th>条件</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>编译时</strong></td>
+<td>事先已知内存位置</td>
+<td>生成绝对代码；起始位置变化则必须重新编译</td>
+</tr>
+<tr>
+<td><strong>加载时</strong></td>
+<td>编译时不知道内存位置</td>
+<td>编译器生成可重定位代码，加载时确定地址</td>
+</tr>
+<tr>
+<td><strong>执行时（运行时）</strong></td>
+<td>进程运行期间可能在内存中移动</td>
+<td>绑定推迟到运行时；<strong>需要硬件支持</strong>（如 base/limit 寄存器、MMU）；现代操作系统普遍采用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="用户程序的多步处理（图3）">用户程序的多步处理（图3）</h4>
+<p>源程序 → 编译器/汇编器 → 目标模块（<strong>编译时</strong>）<br>
+目标模块 + 其他目标模块 → 链接编辑器 → 装入模块 → 加载器（加入系统库）（<strong>加载时</strong>）<br>
+→ 内存中的二进制映像，可动态链接动态加载的系统库（<strong>执行时</strong>）</p>
+<h3 id="四、逻辑地址-vs-物理地址">四、逻辑地址 vs 物理地址</h3>
+<p><strong>逻辑地址（虚拟地址）</strong> 是 CPU 生成的地址；<strong>物理地址</strong>是内存单元真正看到的地址。逻辑地址空间是程序生成的所有逻辑地址的集合，物理地址空间是与之对应的所有物理地址的集合。</p>
+<table>
+<thead>
+<tr>
+<th>绑定方式</th>
+<th>逻辑地址与物理地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编译时 / 加载时绑定</td>
+<td><strong>相同</strong></td>
+</tr>
+<tr>
+<td>执行时绑定</td>
+<td><strong>不同</strong></td>
+</tr>
+</tbody>
+</table>
+<p>逻辑地址空间与物理地址空间分离的概念，是内存管理的核心。</p>
+<h3 id="五、内存管理单元（MMU）">五、内存管理单元（MMU）</h3>
+<p>MMU 是在<strong>运行时把虚拟地址映射为物理地址</strong>的硬件设备（图4）：CPU →（逻辑地址）→ MMU →（物理地址）→ 物理内存。</p>
+<h4 id="最简单的方案：重定位寄存器（图5）">最简单的方案：重定位寄存器（图5）</h4>
+<p>这是基址寄存器方案的推广，基址寄存器此时改称<strong>重定位寄存器</strong>。用户进程产生的每个地址，在送往内存时都会自动加上重定位寄存器的值。</p>
+<p><strong>例</strong>：重定位寄存器 = 14000，逻辑地址 = 346，则物理地址 = 14000 + 346 = <strong>14346</strong>。</p>
+<blockquote>
+<p>注：图5 中 MMU 内圆圈里的符号显示为“≤”，按原理应为加法“+”（与图6 一致），应是课件排版问题。</p>
+</blockquote>
+<p>要点：用户程序只处理逻辑地址，<strong>永远看不到真实物理地址</strong>；执行时绑定发生在真正访问内存的那一刻。</p>
+<h3 id="六、动态加载与动态链接">六、动态加载与动态链接</h3>
+<h4 id="动态加载（Dynamic-Loading）">动态加载（Dynamic Loading）</h4>
+<p>整个程序<strong>不需要</strong>全部装入内存才能执行（课件原文“does need”应为“does not need”）。例程在被调用时才加载，所有例程以可重定位格式保存在磁盘上。好处是内存利用率更高，从未用到的例程永远不会加载，特别适合有大量处理罕见情况的代码的程序。它<strong>不需要操作系统的特殊支持</strong>，主要靠程序设计实现，操作系统可以提供实现动态加载的库来协助。</p>
+<h4 id="动态链接（Dynamic-Linking）">动态链接（Dynamic Linking）</h4>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>静态链接</th>
+<th>动态链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链接时机</td>
+<td>加载器把系统库和程序代码合并进二进制映像</td>
+<td>推迟到执行时</td>
+</tr>
+<tr>
+<td>实现方式</td>
+<td>—</td>
+<td>使用<strong>存根 (stub)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>stub 的工作过程</strong>：stub 是一小段代码，用于定位内存中对应的库例程；找到后，stub 把自身替换为该例程的地址并执行它。操作系统会检查该例程是否在进程的地址空间中，不在则将其加入。</p>
+<p>动态链接特别适用于库，这类库也叫<strong>共享库 (shared libraries)</strong>。它便于给系统库打补丁（更新库即可，无需重新链接程序），但可能需要<strong>版本管理</strong>。</p>
+<h3 id="七、连续内存分配（Contiguous-Allocation）">七、连续内存分配（Contiguous Allocation）</h3>
+<p>主存需要同时容纳操作系统和用户进程，是有限资源，必须高效分配。连续分配是一种早期方法，主存通常分为两个分区：常驻操作系统一般放在<strong>低地址</strong>（与中断向量在一起），用户进程放在<strong>高地址</strong>。每个进程被装在<strong>一段连续的内存区域</strong>中。</p>
+<h4 id="保护机制">保护机制</h4>
+<p>用重定位寄存器和界限寄存器保护用户进程之间，以及保护操作系统的代码和数据。重定位寄存器保存最小物理地址，界限寄存器保存逻辑地址的范围，每个逻辑地址都必须小于界限寄存器的值。</p>
+<p><strong>硬件流程</strong>：逻辑地址先与界限寄存器比较（&lt; limit？），不满足则陷入“寻址错误”；满足则加上重定位寄存器得到物理地址，再访问内存。</p>
+<blockquote>
+<p>🔑 注意与第二节的区别：第二节是直接用<strong>物理地址</strong>与 base、base+limit 比较；这里是先用<strong>逻辑地址</strong>与 limit 比较，再加上重定位值。</p>
+</blockquote>
+<p>MMU 动态映射地址，还使操作系统可以有临时性 (transient) 内核代码、内核大小可以变化。</p>
+<h4 id="可变分区">可变分区</h4>
+<p>多分区分配时，多道程序的程度受分区数量限制。<strong>可变分区</strong>的大小按进程实际需要来定，以提高效率。<strong>孔 (Hole)</strong> 指一块可用内存，各种大小的孔散布在内存中。进程到达时，从一个足够大的孔中为它分配内存；进程退出时释放分区，<strong>相邻的空闲分区会合并</strong>。操作系统需要维护已分配分区和空闲分区（孔）两类信息。</p>
+<p><strong>图示过程</strong>：初始有 OS、进程5、进程8、进程2 → 进程8 退出留下孔 → 进程9 装入该孔（剩余一个小孔）→ 进程5 退出又留下孔。可以看到内存逐渐被切得零碎。</p>
+<h4 id="动态存储分配问题">动态存储分配问题</h4>
+<p>如何从空闲孔列表中满足大小为 n 的请求？</p>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>做法</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>首次适应 (First-fit)</strong></td>
+<td>分配第一个足够大的孔</td>
+<td>速度快</td>
+</tr>
+<tr>
+<td><strong>最佳适应 (Best-fit)</strong></td>
+<td>分配最小的足够大的孔</td>
+<td>需搜索整个列表（除非按大小排序）；剩余孔最小</td>
+</tr>
+<tr>
+<td><strong>最差适应 (Worst-fit)</strong></td>
+<td>分配最大的孔</td>
+<td>也需搜索整个列表；剩余孔最大</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论</strong>：在速度和存储利用率上，首次适应和最佳适应都优于最差适应。</p>
+<h3 id="八、碎片（Fragmentation）">八、碎片（Fragmentation）</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>外部碎片</strong></td>
+<td>总空闲空间足够满足请求，但这些空间<strong>不连续</strong></td>
+</tr>
+<tr>
+<td><strong>内部碎片</strong></td>
+<td>分配的内存比请求的略大，多出来的部分在分区<strong>内部</strong>却未被使用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>50% 规则</strong>：对首次适应的分析表明，若分配了 N 个块，约有 0.5N 个块因碎片而损失，也就是说约 <strong>1/3 的内存可能不可用</strong>。</p>
+<h4 id="解决外部碎片：紧缩（Compaction）">解决外部碎片：紧缩（Compaction）</h4>
+<p>紧缩是移动内存内容，把所有空闲空间合并成一大块。前提是<strong>重定位是动态的、在执行时进行</strong>。</p>
+<p>它会带来 I/O 问题：进程正在做 I/O 时不能随便移动。解决办法有两种：一是 I/O 期间把作业锁定 (latch) 在内存中；二是只在操作系统缓冲区中进行 I/O。另外要注意，后备存储（磁盘）同样存在碎片问题。</p>
+<h3 id="九、分页（Paging）⭐">九、分页（Paging）⭐</h3>
+<h4 id="基本思想">基本思想</h4>
+<p>分页允许进程的物理地址空间<strong>不连续</strong>，只要有可用物理内存就可以分配给进程。它<strong>避免了外部碎片</strong>，也避免了大小不一的内存块带来的问题，但<strong>仍然存在内部碎片</strong>（最后一页可能用不满）。</p>
+<h4 id="核心概念">核心概念</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>帧 (frame)</strong></td>
+<td>物理内存划分成的固定大小块，大小为 2 的幂，介于 512B 到 16MB 之间</td>
+</tr>
+<tr>
+<td><strong>页 (page)</strong></td>
+<td>逻辑内存划分成的同样大小的块</td>
+</tr>
+<tr>
+<td><strong>页表 (page table)</strong></td>
+<td>负责把逻辑地址转换为物理地址</td>
+</tr>
+</tbody>
+</table>
+<p>操作系统要记录所有空闲帧。运行一个 N 页的程序，就要找到 N 个空闲帧并装入程序。后备存储同样按页划分。</p>
+<h4 id="地址转换方案">地址转换方案</h4>
+<p>设逻辑地址空间大小为 2^m，页大小为 2^n，CPU 生成的地址被分为两部分：</p>
+<table>
+<thead>
+<tr>
+<th>页号 p（高 m−n 位）</th>
+<th>页偏移 d（低 n 位）</th>
+</tr>
+</thead>
+</table>
+<p><strong>页号 p</strong> 作为页表的索引，从中查出该页在物理内存中的基地址（帧号）；<strong>页偏移 d</strong> 与基地址组合，得到送往内存单元的物理地址。</p>
+<h4 id="分页硬件">分页硬件</h4>
+<p>CPU 产生逻辑地址 (p, d) → 用 p 查页表得到帧号 f → 用 f 替换 p，偏移 d 保持不变 → 得到物理地址 (f, d) → 访问物理内存中第 f 帧内偏移为 d 的位置。</p>
+<p>图中一帧的范围是 0x000 到 0xfff，说明页大小为 4KB，偏移 d 占 12 位。</p>
+<h4 id="分页模型">分页模型</h4>
+<p>页表为：页0 → 帧1，页1 → 帧4，页2 → 帧3，页3 → 帧7。可以看出，逻辑上连续的页在物理内存中可以<strong>分散且乱序</strong>存放。</p>
+<h4 id="分页例题-⭐-重点计算">分页例题 ⭐ 重点计算</h4>
+<p><strong>已知</strong>：n = 2，m = 4，即页大小 2² = 4 字节，逻辑地址空间 2⁴ = 16 字节（4 页），物理内存 32 字节（8 帧）。</p>
+<p><strong>页表</strong>：页0 → 帧5，页1 → 帧6，页2 → 帧1，页3 → 帧2。</p>
+<p><strong>计算公式</strong>：物理地址 = 帧号 × 页大小 + 偏移</p>
+<table>
+<thead>
+<tr>
+<th>逻辑地址</th>
+<th>内容</th>
+<th>页号 p</th>
+<th>偏移 d</th>
+<th>帧号 f</th>
+<th>物理地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>a</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>5×4+0 = <strong>20</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>d</td>
+<td>0</td>
+<td>3</td>
+<td>5</td>
+<td>5×4+3 = <strong>23</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>e</td>
+<td>1</td>
+<td>0</td>
+<td>6</td>
+<td>6×4+0 = <strong>24</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td>k</td>
+<td>2</td>
+<td>2</td>
+<td>1</td>
+<td>1×4+2 = <strong>6</strong></td>
+</tr>
+<tr>
+<td>13</td>
+<td>n</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>2×4+1 = <strong>9</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>快速算法</strong>：p = 逻辑地址 ÷ 页大小（取整），d = 逻辑地址 mod 页大小。用二进制表示更直观，例如逻辑地址 13 = 11 01，高 2 位 11 表示页号 3，低 2 位 01 表示偏移 1。</p>
+<h3 id="十、分页的内部碎片计算">十、分页的内部碎片计算</h3>
+<p>分页消除了外部碎片，但<strong>最后一页通常装不满</strong>，从而产生内部碎片。</p>
+<p><strong>例题</strong>：页大小 = 2,048 字节，进程大小 = 72,766 字节。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>整页数</td>
+<td>72,766 ÷ 2,048 = 35 页，余 1,086 字节</td>
+</tr>
+<tr>
+<td>所需帧数</td>
+<td>35 + 1 = <strong>36 帧</strong>（余下的 1,086 字节也要占一整帧）</td>
+</tr>
+<tr>
+<td>内部碎片</td>
+<td>2,048 − 1,086 = <strong>962 字节</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>碎片的范围</strong>：最坏情况是 1 帧 − 1 字节（进程只多出 1 字节，却要占一整帧）；平均情况约为半帧。</p>
+<h4 id="页大小的权衡">页大小的权衡</h4>
+<table>
+<thead>
+<tr>
+<th>页较小</th>
+<th>页较大</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内部碎片少</td>
+<td>内部碎片多</td>
+</tr>
+<tr>
+<td>页表项多，页表占用内存大</td>
+<td>页表项少，管理开销小</td>
+</tr>
+</tbody>
+</table>
+<p>那是不是页越小越好？并不是，因为每个页表项都需要占用内存来记录。实际趋势是<strong>页大小随时间越来越大</strong>，有些系统还支持多种页大小，例如 Solaris 同时支持 8 KB 和 4 MB 两种页。</p>
+<h3 id="十一、空闲帧（Free-Frames）">十一、空闲帧（Free Frames）</h3>
+<p>操作系统用<strong>空闲帧列表 (free-frame list)</strong> 记录哪些帧可用。新进程到来时，从列表中取帧分配给它的各个页，并建立该进程的页表。</p>
+<p><strong>图例（图1）</strong>：新进程有 4 页（页0～页3）。</p>
+<table>
+<thead>
+<tr>
+<th>分配前</th>
+<th>分配后</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空闲帧列表：14、13、18、20、15</td>
+<td>空闲帧列表：只剩 15</td>
+</tr>
+</tbody>
+</table>
+<p>分配后的页表为：页0 → 帧14，页1 → 帧13，页2 → 帧18，页3 → 帧20。可以看出，进程的页按空闲帧列表的顺序装入，<strong>物理上不连续</strong>，这正是分页的特点。</p>
+<h3 id="十二、页表的实现">十二、页表的实现</h3>
+<p>页表保存在<strong>主存</strong>中，通过两个寄存器来定位：</p>
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>页表基址寄存器 (PTBR)</strong></td>
+<td>指向页表在内存中的起始位置</td>
+</tr>
+<tr>
+<td><strong>页表长度寄存器 (PTLR)</strong></td>
+<td>表示页表的大小</td>
+</tr>
+</tbody>
+</table>
+<p>上下文切换时只需修改 PTBR，就能切换到另一个进程的页表，非常方便。</p>
+<p><strong>问题：两次访存</strong>。在这种方案下，每次访问数据或指令都要<strong>访问内存两次</strong>：第一次读页表得到帧号，第二次才真正访问数据或指令。这会让内存访问速度减半。</p>
+<p><strong>解决方法</strong>：使用一种专用的高速查找硬件缓存，称为<strong>转换后备缓冲区 (TLB, Translation Look-aside Buffer)</strong>，也叫<strong>相联存储器 (associative memory)</strong>。</p>
+<h3 id="十三、转换后备缓冲区（TLB）⭐">十三、转换后备缓冲区（TLB）⭐</h3>
+<h4 id="硬件原理">硬件原理</h4>
+<p>TLB 是<strong>相联存储器，支持并行查找</strong>：每个条目存放一对（页号, 帧号），输入页号后，所有条目同时比较，速度极快。</p>
+<p><strong>地址转换 (p, d) 的过程</strong>：如果 p 在 TLB 中（<strong>命中</strong>），直接取出帧号；否则（<strong>未命中</strong>），到内存中的页表查帧号。</p>
+<h4 id="带-TLB-的分页硬件">带 TLB 的分页硬件</h4>
+<p>CPU 产生逻辑地址 (p, d) 后，先用 p 并行查 TLB。</p>
+<p><strong>TLB 命中</strong>：直接得到帧号 f，与 d 组成物理地址 (f, d)，访问内存。<br>
+<strong>TLB 未命中</strong>：到页表中查 p 对应的帧号 f，组成物理地址访问内存，<strong>同时把这一对（p, f）装入 TLB</strong>，下次访问就能更快。</p>
+<h4 id="TLB-的其他特点">TLB 的其他特点</h4>
+<table>
+<thead>
+<tr>
+<th>特点</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>容量小</strong></td>
+<td>通常只有 64～1,024 个条目</td>
+</tr>
+<tr>
+<td><strong>需要替换策略</strong></td>
+<td>TLB 满时要决定替换哪个条目（如 LRU）</td>
+</tr>
+<tr>
+<td><strong>可固定条目 (wired down)</strong></td>
+<td>某些条目（如内核代码的映射）可以永久保留在 TLB 中，不被替换</td>
+</tr>
+<tr>
+<td><strong>地址空间标识符 (ASID)</strong></td>
+<td>部分 TLB 在每个条目中保存 ASID，唯一标识一个进程，从而提供地址空间保护</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>🔑 <strong>ASID 的意义</strong>：有了 ASID，TLB 里可以同时存放多个进程的条目，互不混淆；如果没有 ASID，每次<strong>上下文切换都必须清空 (flush) TLB</strong>，否则新进程会用到旧进程的映射。</p>
+</blockquote>
+<h3 id="十四、有效访问时间（EAT）⭐-重点计算">十四、有效访问时间（EAT）⭐ 重点计算</h3>
+<p><strong>命中率 (hit ratio)</strong> 指在 TLB 中找到页号的次数所占的百分比。例如命中率 80%，就表示 80% 的情况下能在 TLB 中找到所需页号。</p>
+<p><strong>假设</strong>：访问一次内存需要 10 ns（忽略 TLB 查找时间）。TLB 命中时只需 1 次访存，共 10 ns；未命中时需 2 次访存（页表 + 数据），共 20 ns。</p>
+<p><strong>公式</strong>：EAT = 命中率 × 命中时间 + (1 − 命中率) × 未命中时间</p>
+<table>
+<thead>
+<tr>
+<th>命中率</th>
+<th>计算</th>
+<th>EAT</th>
+<th>性能下降</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80%</td>
+<td>0.80 × 10 + 0.20 × 20</td>
+<td><strong>12 ns</strong></td>
+<td>20%</td>
+</tr>
+<tr>
+<td>99%</td>
+<td>0.99 × 10 + 0.01 × 20</td>
+<td><strong>10.1 ns</strong></td>
+<td>仅 1%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>结论</strong>：只要 TLB 命中率足够高，分页带来的额外开销就几乎可以忽略。</p>
+<blockquote>
+<p>📝 做题提示：如果题目给出了 TLB 查找时间 ε，则命中时间 = ε + 10，未命中时间 = ε + 20，要把 ε 加到两种情况中。</p>
+</blockquote>
+<h3 id="十五、内存保护">十五、内存保护</h3>
+<p>分页环境下的内存保护靠页表项中的附加位来实现。</p>
+<h4 id="保护位">保护位</h4>
+<p>每个帧关联一个<strong>保护位</strong>，表示该页是<strong>只读</strong>还是<strong>可读写</strong>。还可以加更多位，比如表示<strong>仅可执行</strong>等。</p>
+<h4 id="有效-无效位（Valid-Invalid-Bit）">有效-无效位（Valid-Invalid Bit）</h4>
+<p>页表的每个条目附带一个有效-无效位。<strong>有效 (v)</strong> 表示该页在进程的逻辑地址空间内，是合法页；<strong>无效 (i)</strong> 表示该页不在进程的逻辑地址空间内。另一种做法是用<strong>页表长度寄存器 (PTLR)</strong> 检查页号是否越界。任何违规访问都会<strong>陷入内核 (trap)</strong>。</p>
+<h4 id="图例分析">图例分析</h4>
+<p>进程地址范围是 0～10,468，页大小为 2KB（12,288 = 6 × 2,048）。</p>
+<table>
+<thead>
+<tr>
+<th>页号</th>
+<th>帧号</th>
+<th>有效位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0～5</td>
+<td>2、3、4、7、8、9</td>
+<td>v</td>
+</tr>
+<tr>
+<td>6、7</td>
+<td>0</td>
+<td><strong>i</strong></td>
+</tr>
+</tbody>
+</table>
+<p>访问页 6、7 会被捕获为非法访问。</p>
+<blockquote>
+<p>⚠️ <strong>易错点</strong>：页 5 覆盖的地址是 10,240～12,287，但进程只用到 10,468。地址 10,469～12,287 虽然超出了进程范围，但因为页 5 被标为有效，<strong>访问这些地址不会被捕获</strong>。这是按页保护的局限，也是内部碎片的一种体现。</p>
+</blockquote>
+<h3 id="十六、共享页（Shared-Pages）">十六、共享页（Shared Pages）</h3>
+<h4 id="共享代码">共享代码</h4>
+<p>只读的<strong>可重入代码 (reentrant code)</strong> 在内存中只保存一份，由多个进程共享，典型例子有文本编辑器、编译器、窗口系统等。这类似于多个线程共享同一进程空间。如果允许共享可读写页，还可以用于<strong>进程间通信 (IPC)</strong>。</p>
+<blockquote>
+<p>可重入代码：执行过程中不会修改自身的代码，因此多个进程可以同时执行同一份。</p>
+</blockquote>
+<h4 id="私有代码和数据">私有代码和数据</h4>
+<p>每个进程保留自己独立的一份代码和数据，这些页可以出现在逻辑地址空间的任意位置。</p>
+<h4 id="图例">图例</h4>
+<p>进程 P1、P2、P3 都使用标准 C 库 libc（4 页），<strong>三个进程的页表中 libc 部分完全相同</strong>：libc1 → 帧3，libc2 → 帧4，libc3 → 帧6，libc4 → 帧1。</p>
+<p>所以物理内存中只需<strong>一份 libc</strong>（占 4 帧），而不是三份（12 帧），大大节省了内存。</p>
+<h3 id="十七、页表的结构">十七、页表的结构</h3>
+<h4 id="问题：页表太大">问题：页表太大</h4>
+<p>用直接的方法实现分页，内存开销会非常大。以 32 位逻辑地址空间为例：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>页大小</td>
+<td>4 KB = 2¹²</td>
+</tr>
+<tr>
+<td>页表项数</td>
+<td>2³² ÷ 2¹² = 2²⁰ ≈ <strong>100 万项</strong></td>
+</tr>
+<tr>
+<td>页表大小</td>
+<td>每项 4 字节 → 100 万 × 4B = <strong>4 MB</strong></td>
+</tr>
+</tbody>
+</table>
+<p>每个进程光页表就要 4 MB 物理内存，而且我们<strong>不希望在主存中连续分配这么大的空间</strong>。</p>
+<h4 id="解决思路：把页表分成更小的单元">解决思路：把页表分成更小的单元</h4>
+<p>常见的三种方法是：<strong>分层页表</strong>、<strong>哈希页表</strong>、<strong>倒置页表</strong>。</p>
+<h3 id="十八、分层页表（Hierarchical-Page-Tables）">十八、分层页表（Hierarchical Page Tables）</h3>
+<h4 id="基本思想-2">基本思想</h4>
+<p>把逻辑地址空间拆分到多个页表中，最简单的方法是<strong>两级页表</strong>，也就是<strong>对页表本身再进行分页</strong>。</p>
+<p><strong>图例</strong>：外层页表 (outer page table) 的条目指向页表的某一页 (page of page table)，页表页中的条目（如 1、500、100、708、929、900）再指向物理内存中的对应帧。这样页表本身也可以分散存放，不需要连续空间。</p>
+<h4 id="两级分页示例⭐">两级分页示例⭐</h4>
+<p>32 位机器、页大小 4 KB 时，逻辑地址先分为 20 位页号和 12 位页偏移。由于页表本身也被分页，20 位页号再拆成两部分：</p>
+<table>
+<thead>
+<tr>
+<th>页号 p1</th>
+<th>页号 p2</th>
+<th>页偏移 d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10 位</td>
+<td>10 位</td>
+<td>12 位</td>
+</tr>
+</tbody>
+</table>
+<p><strong>p1</strong> 是外层页表的索引；<strong>p2</strong> 是在内层页表那一页中的偏移（位移）；<strong>d</strong> 是页内偏移。这种结构也称为<strong>向前映射页表 (forward-mapped page table)</strong>。</p>
+<p><strong>为什么这样拆分正好合适？</strong> 内层页表的每一页有 2¹⁰ 个条目，每条 4 字节，共 2¹⁰ × 4B = <strong>4 KB，恰好占一页</strong>；外层页表同样是 2¹⁰ 项，也正好一页。</p>
+<p><strong>地址转换过程</strong>：用 p1 查外层页表，得到内层页表页的位置 → 用 p2 查该内层页表页，得到帧号 f → 帧号 f 与偏移 d 组合成物理地址。</p>
+<p><strong>优点</strong>：进程没用到的地址区域，对应的内层页表页可以<strong>不分配</strong>，节省内存。<br>
+<strong>代价</strong>：没有 TLB 时，一次访问需要 <strong>3 次访存</strong>（外层页表 → 内层页表 → 数据），所以 TLB 更加重要。</p>
+<h3 id="十九、两级页表的地址转换与-64-位地址空间">十九、两级页表的地址转换与 64 位地址空间</h3>
+<h4 id="两级页表地址转换">两级页表地址转换</h4>
+<p>逻辑地址为 (p1, p2, d)。先用 <strong>p1</strong> 查外层页表，找到对应的页表页；再用 <strong>p2</strong> 在该页表页中找到帧号；最后用 <strong>d</strong> 在帧内定位到具体字节。</p>
+<h4 id="64-位地址空间：两级也不够">64 位地址空间：两级也不够</h4>
+<p>页大小 4 KB（2¹²）时，页表共有 2⁶⁴ ÷ 2¹² = <strong>2⁵² 项</strong>。如果沿用两级方案，让内层页表占一页（2¹⁰ 项 × 4 字节），地址格式是：</p>
+<table>
+<thead>
+<tr>
+<th>外层页 p1</th>
+<th>内层页 p2</th>
+<th>偏移 d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>42 位</td>
+<td>10 位</td>
+<td>12 位</td>
+</tr>
+</tbody>
+</table>
+<p>外层页表有 2⁴² 项，占 2⁴² × 4B = <strong>2⁴⁴ 字节（16 TB）</strong>，根本放不下。</p>
+<h4 id="三级分页方案">三级分页方案</h4>
+<p>一种办法是再加一层“第二外层页表”：</p>
+<table>
+<thead>
+<tr>
+<th>第二外层页 p1</th>
+<th>外层页 p2</th>
+<th>内层页 p3</th>
+<th>偏移 d</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>32 位</td>
+<td>10 位</td>
+<td>10 位</td>
+<td>12 位</td>
+</tr>
+</tbody>
+</table>
+<p>但第二外层页表仍有 2³² 项 × 4B = <strong>2³⁴ 字节（16 GB）</strong>，依然太大；而且访问一个物理内存位置可能需要 <strong>4 次访存</strong>（3 次查页表 + 1 次取数据）。</p>
+<blockquote>
+<p>🔑 结论：对 64 位地址空间，单纯增加页表层数代价太高，于是有了哈希页表、倒置页表等方案。</p>
+</blockquote>
+<h3 id="二十、哈希页表（Hashed-Page-Tables）">二十、哈希页表（Hashed Page Tables）</h3>
+<p>常用于<strong>大于 32 位</strong>的地址空间。</p>
+<h4 id="工作原理（图4）">工作原理（图4）</h4>
+<p>把虚拟页号 p 通过<strong>哈希函数</strong>映射到哈希表中的某个位置，该位置挂着一条<strong>链表</strong>，链上是所有哈希到同一位置的元素。每个元素包含三个字段：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>虚拟页号</td>
+<td>用于比对</td>
+</tr>
+<tr>
+<td>映射的帧号</td>
+<td>查找结果</td>
+</tr>
+<tr>
+<td>指针</td>
+<td>指向链表下一个元素</td>
+</tr>
+</tbody>
+</table>
+<p><strong>查找过程</strong>：沿链表逐个比较虚拟页号，找到匹配项（图中为 p）后取出帧号 r，与偏移 d 组成物理地址 (r, d)。</p>
+<h4 id="变体：聚簇页表（Clustered-Page-Tables）">变体：聚簇页表（Clustered Page Tables）</h4>
+<p>用于 64 位地址，和哈希页表类似，但<strong>每个条目对应多个页</strong>（如 16 页）而不是 1 页。特别适合<strong>稀疏地址空间</strong>（内存引用不连续、分散）。</p>
+<h3 id="二十一、倒置页表（Inverted-Page-Table）⭐">二十一、倒置页表（Inverted Page Table）⭐</h3>
+<h4 id="基本思想-3">基本思想</h4>
+<p>普通页表是“每个进程一张表，记录所有可能的逻辑页”；倒置页表反过来，<strong>全系统只有一张表，记录所有物理页（帧）</strong>。</p>
+<p>每个<strong>物理帧对应一个条目</strong>，条目内容是存放在该帧中的页的虚拟地址，以及拥有该页的进程信息（pid）。</p>
+<h4 id="地址转换">地址转换</h4>
+<p>逻辑地址为 <strong>(pid, p, d)</strong>。在页表中<strong>搜索</strong>与 (pid, p) 匹配的条目，若在第 <strong>i</strong> 项找到，则 <strong>i 就是帧号</strong>，物理地址为 (i, d)。</p>
+<h4 id="优缺点">优缺点</h4>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>页表大小只与物理内存有关，大大<strong>节省存储页表的内存</strong></td>
+<td>每次引用都要<strong>搜索整张表</strong>，时间开销大</td>
+</tr>
+</tbody>
+</table>
+<p><strong>改进办法</strong>：用<strong>哈希表</strong>把搜索范围缩小到 1 个或少数几个条目；再用 <strong>TLB</strong> 加速访问。</p>
+<p><strong>难点：如何实现共享内存？</strong> 因为每个物理帧只有一个条目，只能记录<strong>一个</strong>虚拟地址到它的映射，所以多个进程难以用不同的虚拟地址共享同一帧。</p>
+<h4 id="三种页表结构对比">三种页表结构对比</h4>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>表的数量</th>
+<th>表的大小取决于</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分层页表</td>
+<td>每进程一套</td>
+<td>逻辑地址空间</td>
+<td>32 位系统</td>
+</tr>
+<tr>
+<td>哈希页表</td>
+<td>每进程一张</td>
+<td>实际使用的页数</td>
+<td>大于 32 位、稀疏地址空间</td>
+</tr>
+<tr>
+<td>倒置页表</td>
+<td>全系统一张</td>
+<td>物理内存大小</td>
+<td>物理内存较小、地址空间很大</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十二、实例：Oracle-SPARC-Solaris">二十二、实例：Oracle SPARC Solaris</h3>
+<p>这是一个 64 位操作系统与硬件紧密结合的例子，目标是<strong>高效、低开销</strong>。</p>
+<p><strong>结构</strong>：基于哈希但更复杂，有<strong>两张哈希表</strong>，一张给内核，一张给所有用户进程，都负责把虚拟地址映射到物理地址。每个条目表示<strong>一段连续的虚拟内存区域</strong>，包含<strong>基地址 (base)</strong> 和<strong>跨度 (span，表示该条目覆盖的页数)</strong>，比每页一个条目更高效。</p>
+<p><strong>三级查找流程</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>名称</th>
+<th>查找者</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 级</td>
+<td><strong>TLB</strong>：保存转换表条目 (TTE)</td>
+<td>硬件</td>
+</tr>
+<tr>
+<td>第 2 级</td>
+<td><strong>TSB（转换存储缓冲区）</strong>：TTE 的缓存，每个最近访问的页一项</td>
+<td>硬件遍历</td>
+</tr>
+<tr>
+<td>第 3 级</td>
+<td><strong>哈希表</strong></td>
+<td>内核（中断处理）</td>
+</tr>
+</tbody>
+</table>
+<p>具体过程：虚拟地址先查 TLB；未命中则硬件遍历内存中的 TSB，找到就把条目复制进 TLB，完成转换；TSB 也没有，就中断内核去查哈希表，内核据此创建 TTE 存入 TSB，然后中断处理程序把控制交还 MMU，由 MMU 完成地址转换。</p>
+<h3 id="二十三、交换（Swapping）">二十三、交换（Swapping）</h3>
+<h4 id="基本概念">基本概念</h4>
+<p>进程可以被暂时<strong>换出 (swap out)</strong> 到后备存储，之后再<strong>换入 (swap in)</strong> 内存继续执行。这样<strong>所有进程占用的物理内存总量可以超过实际物理内存</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>后备存储</strong></td>
+<td>快速磁盘，足够大，能容纳所有用户的内存映像，并支持直接访问</td>
+</tr>
+<tr>
+<td><strong>滚出/滚入 (Roll out, roll in)</strong></td>
+<td>用于基于优先级调度的交换变体：换出低优先级进程，装入并执行高优先级进程</td>
+</tr>
+<tr>
+<td><strong>交换时间</strong></td>
+<td>主要是<strong>传输时间</strong>，与交换的内存量<strong>成正比</strong></td>
+</tr>
+</tbody>
+</table>
+<p>系统维护一个<strong>就绪队列</strong>，里面是内存映像在磁盘上、已准备运行的进程。</p>
+<h4 id="换回时要回到原来的物理地址吗？">换回时要回到原来的物理地址吗？</h4>
+<p><strong>取决于地址绑定方式</strong>：编译时或加载时绑定必须回到原位置；执行时绑定则可以放到任意位置。还要考虑进程内存空间中<strong>尚未完成的 I/O</strong>。</p>
+<h4 id="现代系统的做法">现代系统的做法</h4>
+<p>UNIX、Linux、Windows 等使用<strong>改进版交换</strong>：平时<strong>禁用交换</strong>，已分配内存超过某个阈值时才启动，内存需求降到阈值以下后再次禁用。</p>
+<h3 id="二十四、包含交换的上下文切换时间-⭐">二十四、包含交换的上下文切换时间 ⭐</h3>
+<p>如果下一个要运行的进程不在内存，就要先换出一个进程、再换入目标进程，上下文切换时间会非常长。</p>
+<p><strong>例题</strong>：进程大小 100 MB，硬盘传输速率 50 MB/s。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>换出</td>
+<td>100 ÷ 50 = 2 s = <strong>2000 ms</strong></td>
+</tr>
+<tr>
+<td>换入同样大小的进程</td>
+<td><strong>2000 ms</strong></td>
+</tr>
+<tr>
+<td>交换部分总时间</td>
+<td><strong>4000 ms（4 秒）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>优化办法</strong>：只交换进程<strong>真正使用</strong>的内存，进程通过系统调用 <code>request_memory()</code> 和 <code>release_memory()</code> 告诉操作系统自己的内存使用情况。</p>
+<h4 id="其他限制">其他限制</h4>
+<p><strong>挂起的 I/O</strong>：进程正在进行 I/O 时不能换出，否则 I/O 会写到错误的进程里。另一种办法是 I/O 总是先传到内核空间，再传到 I/O 设备，这称为<strong>双缓冲 (double buffering)</strong>，但会增加开销。</p>
+<p><strong>结论</strong>：现代操作系统不使用标准交换，而是使用改进版本，只在<strong>空闲内存极低</strong>时才交换。</p>
+<h3 id="二十五、移动系统上的交换">二十五、移动系统上的交换</h3>
+<p>移动系统<strong>通常不支持交换</strong>，原因有三：基于闪存，空间小；闪存<strong>写入次数有限</strong>；移动平台上闪存与 CPU 之间的吞吐量差。</p>
+<p>内存不足时改用其他方法释放内存：</p>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>iOS</strong></td>
+<td>请求应用<strong>主动释放</strong>内存；只读数据直接丢弃，需要时再从闪存重新加载；应用拒不释放则可能被<strong>终止</strong></td>
+</tr>
+<tr>
+<td><strong>Android</strong></td>
+<td>内存不足时终止应用，但会先把<strong>应用状态写入闪存</strong>，以便快速重启</td>
+</tr>
+</tbody>
+</table>
+<p>两者都支持分页。</p>
+<h3 id="二十六、带分页的交换">二十六、带分页的交换</h3>
+<p>现代系统不再整个进程地交换，而是<strong>以页为单位</strong>交换：<strong>页换出 (page out)</strong> 把页移到后备存储，<strong>页换入 (page in)</strong> 把页从后备存储调回内存。</p>
+<p><strong>图例</strong>：进程 A 的页 b、c、e 被换出到后备存储的 4、5、6 号位置；进程 B 的页 f、h、j 从后备存储的 17、18、19 号位置换入内存。这比交换整个进程快得多，是<strong>虚拟内存</strong>的基础（下一章内容）。</p>
+<h3 id="二十七、实例：Intel-IA-32-架构-⭐">二十七、实例：Intel IA-32 架构 ⭐</h3>
+<blockquote>
+<p>注：课件称当前 64 位 Intel CPU 为“IA-64”，这个说法不准确。IA-64 实际指安腾 (Itanium) 架构，目前主流的 64 位 Intel CPU 是 <strong>x86-64</strong>（第二十九节）。</p>
+</blockquote>
+<h4 id="分段">分段</h4>
+<p>IA-32 同时支持<strong>纯分段</strong>和<strong>段页式</strong>。每个段最大 4 GB，每个进程最多 16 K 个段，分成两个分区：</p>
+<table>
+<thead>
+<tr>
+<th>分区</th>
+<th>段数</th>
+<th>性质</th>
+<th>存放位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一分区</td>
+<td>最多 8 K</td>
+<td>进程私有</td>
+<td><strong>局部描述符表 (LDT)</strong></td>
+</tr>
+<tr>
+<td>第二分区</td>
+<td>最多 8 K</td>
+<td>所有进程共享</td>
+<td><strong>全局描述符表 (GDT)</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="地址转换流程">地址转换流程</h4>
+<p>CPU → <strong>逻辑地址</strong> → 分段单元 → <strong>线性地址</strong> → 分页单元 → <strong>物理地址</strong> → 物理内存</p>
+<p>分页单元相当于 MMU，页大小可以是 4 KB 或 4 MB。</p>
+<p><strong>段选择子 (selector)</strong> 共 16 位：</p>
+<table>
+<thead>
+<tr>
+<th>s（段号）</th>
+<th>g</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>13 位</td>
+<td>1 位：指明段在 GDT 还是 LDT</td>
+<td>2 位：保护信息（特权级）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="分段单元">分段单元</h4>
+<p>逻辑地址 = (selector, offset)。用选择子到描述符表中取出<strong>段描述符</strong>，把段描述符中的段基址与偏移<strong>相加</strong>，得到 <strong>32 位线性地址</strong>。</p>
+<h4 id="分页结构">分页结构</h4>
+<p>32 位线性地址采用两级分页：</p>
+<table>
+<thead>
+<tr>
+<th>页目录</th>
+<th>页表</th>
+<th>偏移</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位 31–22（10 位）</td>
+<td>位 21–12（10 位）</td>
+<td>位 11–0（12 位）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>CR3 寄存器</strong>指向当前进程的页目录（作用类似 PTBR）。</p>
+<table>
+<thead>
+<tr>
+<th>页大小</th>
+<th>转换方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 KB</td>
+<td>页目录 → 页表 → 4 KB 页，偏移 12 位</td>
+</tr>
+<tr>
+<td>4 MB</td>
+<td>页目录<strong>直接指向</strong> 4 MB 页，跳过页表，偏移为低 22 位（位 21–0）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="二十八、Intel-IA-32-页地址扩展（PAE）">二十八、Intel IA-32 页地址扩展（PAE）</h3>
+<p>32 位地址只能访问 4 GB，于是 Intel 推出 <strong>PAE</strong>，让 32 位应用能访问超过 4 GB 的内存空间。</p>
+<table>
+<thead>
+<tr>
+<th>变化</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分页层数</td>
+<td>变为<strong>三级</strong></td>
+</tr>
+<tr>
+<td>最高 2 位</td>
+<td>指向<strong>页目录指针表</strong></td>
+</tr>
+<tr>
+<td>表项大小</td>
+<td>页目录项和页表项从 32 位扩展为 <strong>64 位</strong></td>
+</tr>
+<tr>
+<td>效果</td>
+<td>物理地址扩展到 <strong>36 位，即 64 GB</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>地址格式</strong>：页目录指针表（位 31–30，2 位）→ 页目录（位 29–21，9 位）→ 页表（位 20–12，9 位）→ 偏移（位 11–0，12 位）。</p>
+<blockquote>
+<p>为什么页目录和页表只用 9 位？因为表项变成 8 字节后，一页 4 KB 只能放 4096 ÷ 8 = 512 = <strong>2⁹</strong> 项。</p>
+</blockquote>
+<h3 id="二十九、Intel-x86-64">二十九、Intel x86-64</h3>
+<p>这是当前一代 Intel x86 架构。64 位地址空间极其庞大（超过 16 EB），实际上<strong>只实现 48 位寻址</strong>。支持的页大小有 4 KB、2 MB、1 GB，采用<strong>四级分页</strong>。配合 PAE 时，虚拟地址 48 位，物理地址可达 <strong>52 位</strong>。</p>
+<p><strong>地址格式</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>未使用</th>
+<th>4 级页映射表</th>
+<th>页目录指针表</th>
+<th>页目录</th>
+<th>页表</th>
+<th>偏移</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位 63–48</td>
+<td>位 47–39</td>
+<td>位 38–30</td>
+<td>位 29–21</td>
+<td>位 20–12</td>
+<td>位 11–0</td>
+</tr>
+<tr>
+<td>16 位</td>
+<td>9 位</td>
+<td>9 位</td>
+<td>9 位</td>
+<td>9 位</td>
+<td>12 位</td>
+</tr>
+</tbody>
+</table>
+<p>规律：每级 9 位（一页放 512 个 8 字节表项），加 12 位偏移，9 × 4 + 12 = <strong>48 位</strong>。</p>
+<h3 id="三十、实例：ARM-架构">三十、实例：ARM 架构</h3>
+<p>ARM 是移动平台的主流芯片（如 Apple iOS 和 Google Android 设备），是一种现代、节能的 32 位 CPU。</p>
+<table>
+<thead>
+<tr>
+<th>页的类型</th>
+<th>大小</th>
+<th>分页方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>普通页</td>
+<td>4 KB、16 KB</td>
+<td><strong>两级分页</strong>（外层页 → 内层页 → 偏移）</td>
+</tr>
+<tr>
+<td><strong>段 (section)</strong></td>
+<td>1 MB、16 MB</td>
+<td><strong>一级分页</strong>（外层页直接指向段）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="两级-TLB">两级 TLB</h4>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>组成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外层</td>
+<td>两个<strong>微 TLB</strong>（一个用于数据，一个用于指令）</td>
+</tr>
+<tr>
+<td>内层</td>
+<td>一个<strong>主 TLB</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>查找顺序</strong>：先查微 TLB，未命中再查主 TLB，仍未命中则由 <strong>CPU 硬件进行页表遍历 (page table walk)</strong>。</p>
+<blockquote>
+<p>注：课件文字写成“先查 inner，再查 outer”，与教科书及“微 TLB 更小更快、应最先查”的设计原则不符，一般理解为<strong>先查微 TLB、后查主 TLB</strong>，复习时以教材为准。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/09/28/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter8-%E6%AD%BB%E9%94%81/" rel="prev" title="Introduction-to-Operating-Systems-Chapter8">
+                  <i class="fa fa-angle-left"></i> Introduction-to-Operating-Systems-Chapter8
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/09/28/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/Mathematical-Foundations-Module5-%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3/" rel="next" title="Mathematical-Foundations-Module5">
+                  Mathematical-Foundations-Module5 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
