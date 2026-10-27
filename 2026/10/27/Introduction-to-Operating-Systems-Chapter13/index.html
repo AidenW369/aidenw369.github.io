@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="文件系统接口">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction-to-Operating-Systems-Chapter13">
+<meta property="og:url" content="http://example.com/2026/10/27/Introduction-to-Operating-Systems-Chapter13/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="文件系统接口">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-27T05:15:55.000Z">
+<meta property="article:modified_time" content="2026-10-27T05:51:25.605Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/10/27/Introduction-to-Operating-Systems-Chapter13/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/10/27/Introduction-to-Operating-Systems-Chapter13/","path":"2026/10/27/Introduction-to-Operating-Systems-Chapter13/","title":"Introduction-to-Operating-Systems-Chapter13"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction-to-Operating-Systems-Chapter13 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">文件系统接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AC%E7%AB%A0%E6%A6%82%E8%A7%88"><span class="nav-number">1.1.</span> <span class="nav-text">一、本章概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E6%A6%82%E5%BF%B5%EF%BC%88File-Concept%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">二、文件概念（File Concept）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%EF%BC%88File-Attributes%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 文件属性（File Attributes）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C%EF%BC%88File-Operations%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 文件操作（File Operations）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E7%9A%84%E7%AE%A1%E7%90%86%EF%BC%88Open-Files%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 打开文件的管理（Open Files）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%96%87%E4%BB%B6%E9%94%81%EF%BC%88File-Locking%EF%BC%89"><span class="nav-number">1.2.4.</span> <span class="nav-text">4. 文件锁（File Locking）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E6%96%87%E4%BB%B6%E7%B1%BB%E5%9E%8B%EF%BC%9A%E5%90%8D%E7%A7%B0%E4%B8%8E%E6%89%A9%E5%B1%95%E5%90%8D"><span class="nav-number">1.2.5.</span> <span class="nav-text">5. 文件类型：名称与扩展名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%EF%BC%88File-Structure%EF%BC%89"><span class="nav-number">1.2.6.</span> <span class="nav-text">6. 文件结构（File Structure）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95%EF%BC%88Access-Methods%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">三、访问方法（Access Methods）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%A1%BA%E5%BA%8F%E8%AE%BF%E9%97%AE%EF%BC%88Sequential-Access%EF%BC%89"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 顺序访问（Sequential Access）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%EF%BC%88Direct-Access%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 直接访问（Direct Access）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%9C%A8%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE%E6%96%87%E4%BB%B6%E4%B8%8A%E6%A8%A1%E6%8B%9F%E9%A1%BA%E5%BA%8F%E8%AE%BF%E9%97%AE"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 在直接访问文件上模拟顺序访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%85%B6%E4%BB%96%E8%AE%BF%E9%97%AE%E6%96%B9%E6%B3%95%EF%BC%9A%E7%B4%A2%E5%BC%95%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 其他访问方法：索引方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%EF%BC%88Directory-Structure%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">四、目录结构（Directory Structure）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%A3%81%E7%9B%98%E7%BB%93%E6%9E%84%EF%BC%88Disk-Structure%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">五、磁盘结构（Disk Structure）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%B8%E5%9E%8B%E7%9A%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BB%84%E7%BB%87"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 典型的文件系统组织</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%88%E4%BB%A5-Solaris-%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. 文件系统的类型（以 Solaris 为例）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%EF%BC%88Directory-Structure%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">六、目录结构（Directory Structure）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 目录的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E7%9B%AE%E5%BD%95%E4%B8%8A%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 目录上的操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E7%9B%AE%E5%BD%95%E7%BB%84%E7%BB%87%E7%9A%84%E7%9B%AE%E6%A0%87"><span class="nav-number">1.6.3.</span> <span class="nav-text">3. 目录组织的目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8D%95%E7%BA%A7%E7%9B%AE%E5%BD%95%EF%BC%88Single-Level-Directory%EF%BC%89"><span class="nav-number">1.6.4.</span> <span class="nav-text">4. 单级目录（Single-Level Directory）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E4%B8%A4%E7%BA%A7%E7%9B%AE%E5%BD%95%EF%BC%88Two-Level-Directory%EF%BC%89"><span class="nav-number">1.6.5.</span> <span class="nav-text">5. 两级目录（Two-Level Directory）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E6%A0%91%E5%BD%A2%E7%9B%AE%E5%BD%95%EF%BC%88Tree-Structured-Directories%EF%BC%89"><span class="nav-number">1.6.6.</span> <span class="nav-text">6. 树形目录（Tree-Structured Directories）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E6%97%A0%E7%8E%AF%E5%9B%BE%E7%9B%AE%E5%BD%95%EF%BC%88Acyclic-Graph-Directories%EF%BC%89"><span class="nav-number">1.6.7.</span> <span class="nav-text">7. 无环图目录（Acyclic-Graph Directories）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E9%80%9A%E7%94%A8%E5%9B%BE%E7%9B%AE%E5%BD%95%EF%BC%88General-Graph-Directory%EF%BC%89"><span class="nav-number">1.6.8.</span> <span class="nav-text">8. 通用图目录（General Graph Directory）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%EF%BC%88Current-Directory%EF%BC%89"><span class="nav-number">1.6.9.</span> <span class="nav-text">9. 当前目录（Current Directory）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%93%8A-%E4%BA%94%E7%A7%8D%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.6.10.</span> <span class="nav-text">📊 五种目录结构对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E4%BF%9D%E6%8A%A4%EF%BC%88Protection%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">七、保护（Protection）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E8%A6%81%E6%B1%82"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. 基本要求</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Unix-%E4%B8%AD%E7%9A%84%E8%AE%BF%E9%97%AE%E5%88%97%E8%A1%A8%E5%92%8C%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. Unix 中的访问列表和用户组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-UNIX-%E7%9B%AE%E5%BD%95%E5%88%97%E8%A1%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. UNIX 目录列表示例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Windows-7-%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8%EF%BC%88ACL%EF%BC%89%E7%AE%A1%E7%90%86"><span class="nav-number">1.7.4.</span> <span class="nav-text">4. Windows 7 的访问控制列表（ACL）管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%F0%9F%93%8A-Unix-%E4%B8%8E-Windows-%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6%E5%AF%B9%E6%AF%94"><span class="nav-number">1.7.5.</span> <span class="nav-text">📊 Unix 与 Windows 保护机制对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%A4%8D%E4%B9%A0%E8%A6%81%E7%82%B9%E9%80%9F%E8%AE%B0"><span class="nav-number">1.8.</span> <span class="nav-text">八、复习要点速记</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/10/27/Introduction-to-Operating-Systems-Chapter13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction-to-Operating-Systems-Chapter13 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction-to-Operating-Systems-Chapter13
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-10-27 13:15:55 / Modified: 13:51:25" itemprop="dateCreated datePublished" datetime="2026-10-27T13:15:55+08:00">2026-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>文件系统接口<span id="more"></span></h1>
+<h3 id="一、本章概览">一、本章概览</h3>
+<p><strong>主要内容</strong>：文件概念、访问方法、磁盘与目录结构、保护、内存映射文件</p>
+<p><strong>学习目标</strong>：</p>
+<ul>
+<li>理解文件系统的功能</li>
+<li>了解文件系统提供的接口</li>
+<li>讨论设计上的权衡：访问方法、文件共享、文件锁、目录结构</li>
+<li>探讨文件系统的保护机制</li>
+</ul>
+<h3 id="二、文件概念（File-Concept）">二、文件概念（File Concept）</h3>
+<p><strong>文件</strong>是一段<strong>连续的逻辑地址空间</strong>，内容由创建者定义。</p>
+<p><strong>文件类型</strong>：</p>
+<ul>
+<li>数据文件：数值型、字符型、二进制型</li>
+<li>程序文件</li>
+<li>常见的有文本文件、源文件、可执行文件</li>
+</ul>
+<h4 id="1-文件属性（File-Attributes）">1. 文件属性（File Attributes）</h4>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>名称 Name</td>
+<td>唯一以人类可读形式保存的信息</td>
+</tr>
+<tr>
+<td>标识符 Identifier</td>
+<td>文件系统内部的唯一编号</td>
+</tr>
+<tr>
+<td>类型 Type</td>
+<td>供支持多种文件类型的系统使用</td>
+</tr>
+<tr>
+<td>位置 Location</td>
+<td>指向文件在设备上位置的指针</td>
+</tr>
+<tr>
+<td>大小 Size</td>
+<td>文件当前大小</td>
+</tr>
+<tr>
+<td>保护 Protection</td>
+<td>控制谁可以读、写、执行</td>
+</tr>
+<tr>
+<td>时间、日期、用户标识</td>
+<td>用于保护、安全和使用监控</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>文件的属性信息保存在<strong>目录结构</strong>中，目录结构存放在磁盘上</li>
+<li>部分系统支持<strong>扩展属性</strong>，例如文件校验和（checksum）</li>
+</ul>
+<p>📌 <strong>示例：Mac OS X 的文件信息窗口</strong>（以 <code>11.tex</code> 为例）可以直接看到这些属性：</p>
+<ul>
+<li>类型（Kind）：TeX Document</li>
+<li>大小：111,389 字节（磁盘占用 115 KB）</li>
+<li>位置（Where）：<code>/Users/greg/Dropbox/osc9e/tex</code></li>
+<li>创建时间、修改时间、最后打开时间</li>
+<li>默认打开程序：texmaker</li>
+<li>权限：greg 读写，staff 只读，everyone 无权限</li>
+</ul>
+<h4 id="2-文件操作（File-Operations）">2. 文件操作（File Operations）</h4>
+<ul>
+<li><strong>Create</strong> 创建</li>
+<li><strong>Write</strong> 写：在写指针位置写入</li>
+<li><strong>Read</strong> 读：在读指针位置读取</li>
+<li><strong>Seek</strong> 在文件内重新定位</li>
+<li><strong>Delete</strong> 删除</li>
+<li><strong>Truncate</strong> 截断</li>
+<li><strong>Open(Fi)</strong>：在磁盘上的目录结构中查找 Fi 的条目，并把条目内容调入内存</li>
+<li><strong>Close(Fi)</strong>：把内存中 Fi 的条目内容写回磁盘上的目录结构</li>
+</ul>
+<h4 id="3-打开文件的管理（Open-Files）">3. 打开文件的管理（Open Files）</h4>
+<p>管理已打开的文件需要以下信息：</p>
+<ul>
+<li><strong>打开文件表</strong>（Open-file table）：记录所有已打开的文件</li>
+<li><strong>文件指针</strong>（File pointer）：上次读写的位置，<strong>每个进程各有一个</strong></li>
+<li><strong>文件打开计数</strong>（File-open count）：记录文件被打开的次数，最后一个进程关闭时，才把它从打开文件表中删除</li>
+<li><strong>文件的磁盘位置</strong>：缓存数据访问信息</li>
+<li><strong>访问权限</strong>：每个进程的访问模式</li>
+</ul>
+<h4 id="4-文件锁（File-Locking）">4. 文件锁（File Locking）</h4>
+<ul>
+<li>由部分操作系统或文件系统提供，作用类似<strong>读者-写者锁</strong></li>
+<li><strong>共享锁</strong>（Shared lock）≈ 读锁，多个进程可同时持有</li>
+<li><strong>排他锁</strong>（Exclusive lock）≈ 写锁</li>
+<li>两种机制：
+<ul>
+<li><strong>强制锁</strong>（Mandatory）：系统根据持有和请求的锁，直接拒绝访问</li>
+<li><strong>建议锁</strong>（Advisory）：进程可以查询锁状态，自行决定怎么做</li>
+</ul>
+</li>
+</ul>
+<p>📌 <strong>Java API 示例要点</strong>：</p>
+<ul>
+<li>通过 <code>RandomAccessFile</code> 获取 <code>FileChannel</code></li>
+<li><code>ch.lock(起始位置, 长度, 是否共享)</code>：参数 <code>false</code> 表示排他锁，<code>true</code> 表示共享锁</li>
+<li>示例对文件前半部分加<strong>排他锁</strong>后修改数据，对后半部分加<strong>共享锁</strong>后读取数据</li>
+<li>用完调用 <code>release()</code> 释放，并在 <code>finally</code> 块中确保锁一定被释放</li>
+</ul>
+<h4 id="5-文件类型：名称与扩展名">5. 文件类型：名称与扩展名</h4>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>常见扩展名</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可执行文件</td>
+<td>exe, com, bin 或无</td>
+<td>可直接运行的机器语言程序</td>
+</tr>
+<tr>
+<td>目标文件</td>
+<td>obj, o</td>
+<td>已编译、未链接的机器语言</td>
+</tr>
+<tr>
+<td>源代码</td>
+<td>c, cc, java, pas, asm, a</td>
+<td>各种语言的源代码</td>
+</tr>
+<tr>
+<td>批处理</td>
+<td>bat, sh</td>
+<td>给命令解释器的命令</td>
+</tr>
+<tr>
+<td>文本</td>
+<td>txt, doc</td>
+<td>文本数据、文档</td>
+</tr>
+<tr>
+<td>文字处理</td>
+<td>wp, tex, rtf, doc</td>
+<td>各种文字处理格式</td>
+</tr>
+<tr>
+<td>库文件</td>
+<td>lib, a, so, dll</td>
+<td>供程序员使用的例程库</td>
+</tr>
+<tr>
+<td>打印/查看</td>
+<td>ps, pdf, jpg</td>
+<td>用于打印或查看的 ASCII 或二进制文件</td>
+</tr>
+<tr>
+<td>归档</td>
+<td>arc, zip, tar</td>
+<td>多个相关文件打包成一个，有时会压缩</td>
+</tr>
+<tr>
+<td>多媒体</td>
+<td>mpeg, mov, rm, mp3, avi</td>
+<td>包含音频或音视频的二进制文件</td>
+</tr>
+</tbody>
+</table>
+<h4 id="6-文件结构（File-Structure）">6. 文件结构（File Structure）</h4>
+<ul>
+<li><strong>无结构</strong>：字或字节的序列</li>
+<li><strong>简单记录结构</strong>：按行组织，记录可以是定长或变长</li>
+<li><strong>复杂结构</strong>：格式化文档、可重定位装入文件</li>
+<li>复杂结构可以用无结构方式模拟，方法是插入适当的控制字符</li>
+<li><strong>结构由谁决定</strong>：操作系统，或者应用程序</li>
+</ul>
+<h3 id="三、访问方法（Access-Methods）">三、访问方法（Access Methods）</h3>
+<p>前提：文件由定长的逻辑记录组成。</p>
+<h4 id="1-顺序访问（Sequential-Access）">1. 顺序访问（Sequential Access）</h4>
+<p><strong>操作</strong>：<code>read next</code>、<code>write next</code>、<code>reset</code>（回到开头）</p>
+<ul>
+<li>在最后一次写之后不能再读（rewrite）</li>
+<li>模型：有一个<strong>当前位置</strong>指针，读写操作让指针向后移动，rewind 让它回到开头</li>
+<li>典型应用：磁带，编辑器、编译器的处理过程</li>
+</ul>
+<h4 id="2-直接访问（Direct-Access）">2. 直接访问（Direct Access）</h4>
+<p><strong>操作</strong>：<code>read n</code>、<code>write n</code>、<code>position to n</code>、<code>read next</code>、<code>write next</code>、<code>rewrite n</code></p>
+<ul>
+<li>n 是<strong>相对块号</strong></li>
+<li>好处：相对块号让操作系统可以自行决定文件放在磁盘的什么位置</li>
+</ul>
+<h4 id="3-在直接访问文件上模拟顺序访问">3. 在直接访问文件上模拟顺序访问</h4>
+<p>用一个当前位置变量 <code>cp</code> 就能实现：</p>
+<table>
+<thead>
+<tr>
+<th>顺序访问操作</th>
+<th>直接访问实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reset</td>
+<td><code>cp = 0;</code></td>
+</tr>
+<tr>
+<td>read next</td>
+<td><code>read cp; cp = cp + 1;</code></td>
+</tr>
+<tr>
+<td>write next</td>
+<td><code>write cp; cp = cp + 1;</code></td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ 反过来，在顺序访问上模拟直接访问的效率很低。</p>
+<h4 id="4-其他访问方法：索引方法">4. 其他访问方法：索引方法</h4>
+<ul>
+<li>
+<p>构建在基本方法之上，通常需要为文件建立<strong>索引</strong></p>
+</li>
+<li>
+<p>索引放在内存中，可以快速定位数据。例子：UPC 商品条码加上商品数据记录</p>
+</li>
+<li>
+<p>如果索引太大，可以建立<strong>多级索引</strong>：内存中的索引指向磁盘上的索引</p>
+</li>
+<li>
+<p>IBM ISAM</p>
+<p>（索引顺序访问方法）：</p>
+<ul>
+<li>一个小的主索引，指向二级索引所在的磁盘块</li>
+<li>文件按某个关键字排序</li>
+<li>全部由操作系统完成</li>
+</ul>
+</li>
+<li>
+<p><strong>VMS</strong> 操作系统也提供索引文件和相对文件</p>
+</li>
+</ul>
+<p>📌 <strong>索引文件与相对文件示例</strong>：</p>
+<ul>
+<li><strong>索引文件</strong>：按姓氏排序（Adams、Arthur、Asher……Smith），每项记录一个逻辑记录号</li>
+<li><strong>相对文件</strong>：存放实际记录，例如 <code>smith, john | 社保号 | 年龄</code></li>
+<li>查找过程：先在索引文件中找到 “Smith”，取出逻辑记录号，再直接定位到相对文件中的那条记录</li>
+</ul>
+<h3 id="四、目录结构（Directory-Structure）">四、目录结构（Directory Structure）</h3>
+<ul>
+<li>目录是<strong>包含所有文件信息的节点集合</strong></li>
+<li>每个目录节点指向一个文件（F1、F2、F3……Fn）</li>
+<li><strong>目录结构和文件本身都存放在磁盘上</strong></li>
+</ul>
+<h3 id="五、磁盘结构（Disk-Structure）">五、磁盘结构（Disk Structure）</h3>
+<h4 id="1-基本概念">1. 基本概念</h4>
+<ul>
+<li>一个磁盘可以划分为多个<strong>分区</strong>（partition），分区也叫 <strong>minidisk</strong> 或 <strong>slice</strong></li>
+<li>磁盘或分区可以用 <strong>RAID</strong> 保护，防止故障导致数据丢失</li>
+<li>磁盘或分区有两种用法：
+<ul>
+<li><strong>裸用</strong>（raw）：不建文件系统，直接使用</li>
+<li><strong>格式化</strong>：在上面建立文件系统</li>
+</ul>
+</li>
+<li>包含文件系统的实体叫做<strong>卷</strong>（volume）</li>
+<li>每个卷在<strong>设备目录</strong>或<strong>卷目录表</strong>（volume table of contents）中记录该文件系统的信息</li>
+<li>除了通用文件系统，同一个操作系统中常常还有很多<strong>专用文件系统</strong></li>
+</ul>
+<h4 id="2-典型的文件系统组织">2. 典型的文件系统组织</h4>
+<p>📌 图示说明了<strong>分区与磁盘不必一一对应</strong>：</p>
+<ul>
+<li><strong>一盘多区</strong>：disk 1 被分成 partition A 和 partition B，每个分区各有自己的目录（directory）和文件（files）</li>
+<li><strong>一区多盘</strong>：partition C 横跨 disk 2 和 disk 3，只有一个目录</li>
+</ul>
+<p>结论：每个分区（卷）都由<strong>目录 + 文件</strong>两部分组成。</p>
+<h4 id="3-文件系统的类型（以-Solaris-为例）">3. 文件系统的类型（以 Solaris 为例）</h4>
+<table>
+<thead>
+<tr>
+<th>文件系统</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>tmpfs</strong></td>
+<td>基于内存的易失性文件系统，用于快速的临时 I/O</td>
+</tr>
+<tr>
+<td><strong>objfs</strong></td>
+<td>访问内核内存的接口，用于获取内核符号以便调试</td>
+</tr>
+<tr>
+<td><strong>ctfs</strong></td>
+<td>契约（contract）文件系统，用于管理守护进程</td>
+</tr>
+<tr>
+<td><strong>lofs</strong></td>
+<td>回环（loopback）文件系统，让一个文件系统可以代替另一个被访问</td>
+</tr>
+<tr>
+<td><strong>procfs</strong></td>
+<td>访问进程结构的内核接口</td>
+</tr>
+<tr>
+<td><strong>ufs、zfs</strong></td>
+<td>通用文件系统</td>
+</tr>
+</tbody>
+</table>
+<h3 id="六、目录结构（Directory-Structure）">六、目录结构（Directory Structure）</h3>
+<h4 id="1-目录的定义">1. 目录的定义</h4>
+<ul>
+<li>目录是<strong>包含所有文件信息的节点集合</strong>，每个节点指向一个文件（F1、F2……Fn）</li>
+<li><strong>目录结构和文件都存放在磁盘上</strong></li>
+</ul>
+<h4 id="2-目录上的操作">2. 目录上的操作</h4>
+<ul>
+<li>查找文件</li>
+<li>创建文件</li>
+<li>删除文件</li>
+<li>列出目录内容</li>
+<li>重命名文件</li>
+<li>遍历文件系统</li>
+</ul>
+<h4 id="3-目录组织的目标">3. 目录组织的目标</h4>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>效率</strong> Efficiency</td>
+<td>能快速定位文件</td>
+</tr>
+<tr>
+<td><strong>命名</strong> Naming</td>
+<td>方便用户：两个用户的不同文件可以同名；同一个文件可以有多个名字</td>
+</tr>
+<tr>
+<td><strong>分组</strong> Grouping</td>
+<td>按属性对文件进行逻辑分组，例如所有 Java 程序、所有游戏</td>
+</tr>
+</tbody>
+</table>
+<p>下面几种目录结构，就是围绕这三个目标逐步改进的。</p>
+<h4 id="4-单级目录（Single-Level-Directory）">4. 单级目录（Single-Level Directory）</h4>
+<ul>
+<li><strong>所有用户共用一个目录</strong></li>
+<li>图示：一个目录中平铺着 cat、bo、a、test、data、mail、cont、hex、records，每项直接指向一个文件</li>
+<li>缺点：
+<ul>
+<li><strong>命名问题</strong>：所有文件必须名字不同，用户一多就容易冲突</li>
+<li><strong>分组问题</strong>：无法对文件分类</li>
+</ul>
+</li>
+</ul>
+<h4 id="5-两级目录（Two-Level-Directory）">5. 两级目录（Two-Level Directory）</h4>
+<ul>
+<li><strong>每个用户有自己独立的目录</strong></li>
+<li>结构：
+<ul>
+<li>第一级是<strong>主文件目录</strong>（MFD，master file directory），列出 user 1 到 user 4</li>
+<li>第二级是<strong>用户文件目录</strong>（UFD，user file directory），存放每个用户自己的文件</li>
+</ul>
+</li>
+<li>图示中，user 1、user 2、user 3、user 4 都有名为 <code>a</code> 的文件，互不冲突</li>
+<li>特点：
+<ul>
+<li>引入了<strong>路径名</strong>（如 user1/a）</li>
+<li><strong>不同用户的文件可以同名</strong> ✅</li>
+<li><strong>查找效率高</strong> ✅</li>
+<li><strong>没有分组能力</strong> ❌（每个用户内部仍是平铺的）</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-树形目录（Tree-Structured-Directories）">6. 树形目录（Tree-Structured Directories）</h4>
+<ul>
+<li>
+<p>在两级目录的基础上推广到<strong>任意多层</strong></p>
+</li>
+<li>
+<p>图示：root 下有 spell、bin、programs；spell 下有 stat、mail、dist；mail 下又有 prog、copy、prt、exp；prog 下还有 list、obj、spell……</p>
+</li>
+<li>
+<p>优点：</p>
+<ul>
+<li>查找高效</li>
+<li>有<strong>分组能力</strong>，可以用子目录分类 ✅</li>
+<li>不同目录下的文件可以同名（如 <code>bin/find</code> 和 <code>programs/p/find</code>）</li>
+</ul>
+</li>
+<li>
+<p>引入了</p>
+<p>当前目录</p>
+<p>（工作目录）的概念，以及：</p>
+<ul>
+<li><strong>绝对路径</strong>：从根开始，如 <code>/spell/mail/prog</code></li>
+<li><strong>相对路径</strong>：从当前目录开始</li>
+</ul>
+</li>
+<li>
+<p>局限：一个文件只能属于一个目录，<strong>无法共享</strong></p>
+</li>
+</ul>
+<h4 id="7-无环图目录（Acyclic-Graph-Directories）">7. 无环图目录（Acyclic-Graph Directories）</h4>
+<ul>
+<li>允许<strong>共享子目录和文件</strong>：同一个文件或子目录可以出现在多个目录中</li>
+<li>图示：root 下有 dict 和 spell
+<ul>
+<li><code>dict/count</code> 和 <code>spell/count</code> 指向<strong>同一个文件</strong></li>
+<li><code>dict/w</code> 和 <code>spell/words</code> 指向<strong>同一个子目录</strong>（里面有 list、rade、w7）</li>
+<li><code>dict/all</code> 也指向该子目录中 list 的同一个文件</li>
+</ul>
+</li>
+</ul>
+<p><strong>带来的问题</strong>：</p>
+<ol>
+<li><strong>别名问题</strong>（aliasing）：同一个文件有两个不同的名字，遍历或统计时可能重复处理</li>
+<li><strong>悬空指针</strong>（dangling pointer）：如果 dict 删除了 <code>w/list</code>，其他指向它的指针就悬空了</li>
+</ol>
+<p><strong>解决方法</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>反向指针</strong>（Backpointers）</td>
+<td>记录所有指向该文件的指针，删除时一并删掉；但变长记录不好处理，可以用<strong>菊花链</strong>（daisy chain）组织反向指针</td>
+</tr>
+<tr>
+<td><strong>引用计数</strong>（Entry-hold-count）</td>
+<td>记录有多少个目录项指向该文件，计数为 0 时才真正删除</td>
+</tr>
+</tbody>
+</table>
+<p><strong>新的目录项类型：链接（Link）</strong></p>
+<ul>
+<li>链接就是现有文件的另一个名字（一个指针）</li>
+<li><strong>解析链接</strong>（resolve the link）：沿着指针找到实际的文件</li>
+</ul>
+<h4 id="8-通用图目录（General-Graph-Directory）">8. 通用图目录（General Graph Directory）</h4>
+<ul>
+<li>允许目录之间形成<strong>环</strong></li>
+<li>图示：root 下有 avi、tc、jim
+<ul>
+<li><code>avi/book</code> 指向一个子目录（含 avi、count），而这个子目录中的 avi 又<strong>指回</strong> <code>avi/book</code> 所在的目录，形成了环</li>
+<li><code>jim/book</code> 也指向同一个子目录</li>
+</ul>
+</li>
+</ul>
+<p><strong>存在环会带来的问题</strong>：遍历时可能陷入死循环；引用计数可能永远不为 0，导致无法回收空间。</p>
+<p><strong>如何保证没有环</strong>：</p>
+<ol>
+<li><strong>只允许链接到文件，不允许链接到子目录</strong></li>
+<li><strong>垃圾回收</strong>（Garbage collection）：遍历整个文件系统，标记所有可访问的对象，回收没被标记的</li>
+<li><strong>每次添加新链接时运行环检测算法</strong>，判断是否允许添加</li>
+</ol>
+<h4 id="9-当前目录（Current-Directory）">9. 当前目录（Current Directory）</h4>
+<ul>
+<li>
+<p>可以把某个目录指定为</p>
+<p>当前（工作）目录</p>
+<ul>
+<li>例：<code>cd /spell/mail/prog</code> 切换目录</li>
+<li>例：<code>type list</code> 直接访问当前目录下的 list 文件</li>
+</ul>
+</li>
+<li>
+<p><strong>创建和删除文件都在当前目录中进行</strong></p>
+</li>
+<li>
+<p>示例：当前目录是 <code>/mail</code> 时，执行 <code>mkdir &lt;dir-name&gt;</code>，会在 mail 下新建一个子目录。图中 mail 下的子项为 prog、copy、prt、exp、count</p>
+</li>
+<li>
+<p>⚠️ <strong>删除 “mail” 意味着删除以 mail 为根的整棵子树</strong></p>
+</li>
+</ul>
+<h4 id="📊-五种目录结构对比">📊 五种目录结构对比</h4>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>允许重名</th>
+<th>分组</th>
+<th>共享</th>
+<th>主要问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单级</td>
+<td>❌</td>
+<td>❌</td>
+<td>—</td>
+<td>命名冲突、无法分组</td>
+</tr>
+<tr>
+<td>两级</td>
+<td>✅（不同用户之间）</td>
+<td>❌</td>
+<td>❌</td>
+<td>无法分组</td>
+</tr>
+<tr>
+<td>树形</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>无法共享</td>
+</tr>
+<tr>
+<td>无环图</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>别名、悬空指针</td>
+</tr>
+<tr>
+<td>通用图</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>环导致遍历死循环、回收困难</td>
+</tr>
+</tbody>
+</table>
+<h3 id="七、保护（Protection）">七、保护（Protection）</h3>
+<h4 id="1-基本要求">1. 基本要求</h4>
+<p>文件的拥有者或创建者应该能控制：</p>
+<ul>
+<li><strong>能做什么</strong></li>
+<li><strong>由谁来做</strong></li>
+</ul>
+<p><strong>访问类型</strong>：读（Read）、写（Write）、执行（Execute）、追加（Append）、删除（Delete）、列目录（List）</p>
+<h4 id="2-Unix-中的访问列表和用户组">2. Unix 中的访问列表和用户组</h4>
+<p><strong>访问模式</strong>：读（r）、写（w）、执行（x）</p>
+<p><strong>三类用户</strong>，每类用 3 位二进制 RWX 表示：</p>
+<table>
+<thead>
+<tr>
+<th>用户类别</th>
+<th>数值</th>
+<th>RWX</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a) 拥有者 owner</td>
+<td>7</td>
+<td>1 1 1</td>
+<td>读、写、执行</td>
+</tr>
+<tr>
+<td>b) 用户组 group</td>
+<td>6</td>
+<td>1 1 0</td>
+<td>读、写</td>
+</tr>
+<tr>
+<td>c) 其他人 public</td>
+<td>1</td>
+<td>0 0 1</td>
+<td>仅执行</td>
+</tr>
+</tbody>
+</table>
+<p><strong>使用步骤</strong>：</p>
+<ol>
+<li>请管理员创建一个组（名字唯一），比如 G，并把一些用户加进去</li>
+<li>为文件（如 game）或子目录设置合适的权限：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 761 game</span><br></pre></td></tr></table></figure>
+<p>三位数字依次对应 <strong>owner、group、public</strong></p>
+<ol start="3">
+<li>把组关联到文件：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chgrp G game</span><br></pre></td></tr></table></figure>
+<p>💡 <strong>换算技巧</strong>：r = 4，w = 2，x = 1，相加即可。例如 rw- = 4+2 = 6，r-x = 4+1 = 5。</p>
+<h4 id="3-UNIX-目录列表示例">3. UNIX 目录列表示例</h4>
+<p><strong>权限字符串的读法</strong>：第 1 位是类型（<code>d</code> 表示目录，<code>-</code> 表示普通文件），后面 9 位每 3 位一组，依次是 owner、group、others。</p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>所属组</th>
+<th>名称</th>
+<th>解读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-rw-rw-r--</code></td>
+<td>staff</td>
+<td><a target="_blank" rel="noopener" href="http://intro.ps">intro.ps</a></td>
+<td>文件；拥有者和组可读写，其他人只读（664）</td>
+</tr>
+<tr>
+<td><code>drwx------</code></td>
+<td>staff</td>
+<td>private/</td>
+<td>目录；只有拥有者能访问（700）</td>
+</tr>
+<tr>
+<td><code>drwxrwxr-x</code></td>
+<td>staff</td>
+<td>doc/</td>
+<td>目录；拥有者和组完全权限，其他人可读和进入（775）</td>
+</tr>
+<tr>
+<td><code>drwxrwx---</code></td>
+<td>student</td>
+<td>student-proj/</td>
+<td>目录；拥有者和 student 组完全权限，其他人无权限（770）</td>
+</tr>
+<tr>
+<td><code>-rw-r--r--</code></td>
+<td>staff</td>
+<td>program.c</td>
+<td>源文件；拥有者读写，其他人只读（644）</td>
+</tr>
+<tr>
+<td><code>-rwxr-xr-x</code></td>
+<td>staff</td>
+<td>program</td>
+<td>可执行文件；所有人可执行，只有拥有者能修改（755）</td>
+</tr>
+<tr>
+<td><code>drwx--x--x</code></td>
+<td>faculty</td>
+<td>lib/</td>
+<td>目录；其他人只能进入，不能列出内容（711）</td>
+</tr>
+<tr>
+<td><code>drwx------</code></td>
+<td>staff</td>
+<td>mail/</td>
+<td>目录；私有（700）</td>
+</tr>
+<tr>
+<td><code>drwxrwxrwx</code></td>
+<td>staff</td>
+<td>test/</td>
+<td>目录；所有人完全权限（777）</td>
+</tr>
+</tbody>
+</table>
+<p>其他列依次为：链接数、拥有者（pbg）、所属组、大小（字节）、修改日期。</p>
+<h4 id="4-Windows-7-的访问控制列表（ACL）管理">4. Windows 7 的访问控制列表（ACL）管理</h4>
+<ul>
+<li>在文件属性的&quot;<strong>安全</strong>&quot;（Security）选项卡中管理，示例文件为 <code>ListPanel.java</code></li>
+<li>用户和组列表包括：SYSTEM、Gregory G. Gagne、Guest、FileAdmins、Administrators</li>
+<li>可以为<strong>每个用户或组</strong>分别设置权限，每项都有&quot;<strong>允许</strong>&quot;和&quot;<strong>拒绝</strong>&quot;两列</li>
+<li>权限类型：完全控制、修改、读取和执行、读取、写入、特殊权限</li>
+<li>图示中，<strong>Guest 的所有权限都被设为拒绝</strong></li>
+<li>点&quot;高级&quot;可以设置特殊权限和更细的选项</li>
+</ul>
+<h4 id="📊-Unix-与-Windows-保护机制对比">📊 Unix 与 Windows 保护机制对比</h4>
+<table>
+<thead>
+<tr>
+<th>方面</th>
+<th>Unix</th>
+<th>Windows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>方式</td>
+<td>拥有者、组、其他人三类 + rwx 位</td>
+<td>访问控制列表（ACL）</td>
+</tr>
+<tr>
+<td>粒度</td>
+<td>较粗，只分三类用户</td>
+<td>较细，可针对任意用户或组</td>
+</tr>
+<tr>
+<td>设置方式</td>
+<td><code>chmod</code>、<code>chgrp</code> 命令</td>
+<td>图形界面（属性 → 安全）</td>
+</tr>
+<tr>
+<td>拒绝规则</td>
+<td>没有显式的&quot;拒绝&quot;</td>
+<td>有显式的&quot;拒绝&quot;，可覆盖允许</td>
+</tr>
+</tbody>
+</table>
+<h3 id="八、复习要点速记">八、复习要点速记</h3>
+<ol>
+<li>分区与磁盘不必一一对应：<strong>一盘多区</strong>或<strong>一区多盘</strong>都可以；包含文件系统的实体叫<strong>卷</strong></li>
+<li>目录组织的三个目标：<strong>效率、命名、分组</strong></li>
+<li>单级 → 两级 → 树形 → 无环图 → 通用图，依次解决：<strong>命名冲突 → 分组 → 共享</strong></li>
+<li>无环图的问题是<strong>别名</strong>和<strong>悬空指针</strong>，解决方法是<strong>反向指针</strong>或<strong>引用计数</strong></li>
+<li>通用图防环：<strong>只链接文件</strong>、<strong>垃圾回收</strong>、<strong>添加链接时检测环</strong></li>
+<li>删除一个目录会删除<strong>整棵子树</strong></li>
+<li>Unix 权限：<strong>owner / group / public</strong>，r=4、w=2、x=1，例如 <code>chmod 761</code></li>
+<li>Windows 用 <strong>ACL</strong>，可以对每个用户分别设置允许或拒绝</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/10/27/Mathematical-Foundations-Module9/" rel="prev" title="Mathematical-Foundations-Module9">
+                  <i class="fa fa-angle-left"></i> Mathematical-Foundations-Module9
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
