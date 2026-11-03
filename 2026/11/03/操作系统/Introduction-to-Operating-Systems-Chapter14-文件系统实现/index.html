@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="文件系统实现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction-to-Operating-Systems-Chapter14">
+<meta property="og:url" content="http://example.com/2026/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter14-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="文件系统实现">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-03T04:21:50.000Z">
+<meta property="article:modified_time" content="2026-11-03T04:43:26.384Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2026/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter14-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2026/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter14-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/","path":"2026/11/03/操作系统/Introduction-to-Operating-Systems-Chapter14-文件系统实现/","title":"Introduction-to-Operating-Systems-Chapter14"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction-to-Operating-Systems-Chapter14 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">文件系统实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9C%AC%E7%AB%A0%E5%A4%A7%E7%BA%B2%E4%B8%8E%E7%9B%AE%E6%A0%87"><span class="nav-number">1.1.</span> <span class="nav-text">一、本章大纲与目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">二、文件系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%88%86%E5%B1%82%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%88%E8%87%AA%E4%B8%8A%E8%80%8C%E4%B8%8B%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 分层文件系统（自上而下）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%B8%B8%E8%A7%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 常见文件系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%EF%BC%9A%E7%A3%81%E7%9B%98%E4%B8%8A%E5%92%8C%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">三、文件系统操作：磁盘上和内存中的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%A3%81%E7%9B%98%E4%B8%8A%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 磁盘上的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%EF%BC%88FCB%EF%BC%89"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 文件控制块（FCB）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.3.</span> <span class="nav-text">3. 内存中的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E6%89%93%E5%BC%80%E5%92%8C%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%88%E5%9B%BE-12-3%EF%BC%89"><span class="nav-number">1.3.4.</span> <span class="nav-text">4. 打开和读取文件的过程（图 12-3）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%9B%AE%E5%BD%95%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.</span> <span class="nav-text">四、目录实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%88%86%E9%85%8D%E6%96%B9%E6%B3%95%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">五、分配方法（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D-Contiguous-Allocation"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 连续分配 (Contiguous Allocation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%9F%BA%E4%BA%8E%E5%8C%BA%E6%AE%B5%E7%9A%84%E7%B3%BB%E7%BB%9F-Extent-Based-Systems"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 基于区段的系统 (Extent-Based Systems)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%93%BE%E6%8E%A5%E5%88%86%E9%85%8D-Linked-Allocation"><span class="nav-number">1.5.3.</span> <span class="nav-text">3. 链接分配 (Linked Allocation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-FAT%EF%BC%88%E6%96%87%E4%BB%B6%E5%88%86%E9%85%8D%E8%A1%A8%EF%BC%89"><span class="nav-number">1.5.4.</span> <span class="nav-text">4. FAT（文件分配表）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D-Indexed-Allocation"><span class="nav-number">1.5.5.</span> <span class="nav-text">5. 索引分配 (Indexed Allocation)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%88%86%E9%85%8D%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.6.</span> <span class="nav-text">6. 分配方法对比总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%88%86%E9%85%8D%E6%96%B9%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83"><span class="nav-number">1.6.</span> <span class="nav-text">六、分配方法的性能比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%A9%BA%E9%97%B2%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">七、空闲空间管理（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BD%8D%E5%90%91%E9%87%8F-%E4%BD%8D%E5%9B%BE-Bit-Vector-Bit-Map"><span class="nav-number">1.7.1.</span> <span class="nav-text">1. 位向量 &#x2F; 位图 (Bit Vector &#x2F; Bit Map)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E9%93%BE%E8%A1%A8-Linked-Free-Space-List"><span class="nav-number">1.7.2.</span> <span class="nav-text">2. 链表 (Linked Free Space List)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%88%86%E7%BB%84-Grouping"><span class="nav-number">1.7.3.</span> <span class="nav-text">3. 分组 (Grouping)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E8%AE%A1%E6%95%B0-Counting"><span class="nav-number">1.7.4.</span> <span class="nav-text">4. 计数 (Counting)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E7%A9%BA%E9%97%B4%E5%9B%BE-Space-Maps%EF%BC%8CZFS-%E4%BD%BF%E7%94%A8"><span class="nav-number">1.7.5.</span> <span class="nav-text">5. 空间图 (Space Maps，ZFS 使用)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-TRIM%EF%BC%9A%E5%9B%9E%E6%94%B6%E6%9C%AA%E4%BD%BF%E7%94%A8%E7%9A%84%E5%9D%97"><span class="nav-number">1.7.6.</span> <span class="nav-text">6. TRIM：回收未使用的块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E7%A9%BA%E9%97%B2%E7%A9%BA%E9%97%B4%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94"><span class="nav-number">1.7.7.</span> <span class="nav-text">7. 空闲空间管理方法对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E6%95%88%E7%8E%87%E4%B8%8E%E6%80%A7%E8%83%BD"><span class="nav-number">1.8.</span> <span class="nav-text">八、效率与性能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%BD%B1%E5%93%8D%E6%95%88%E7%8E%87%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="nav-number">1.8.1.</span> <span class="nav-text">1. 影响效率的因素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD%E7%9A%84%E6%89%8B%E6%AE%B5"><span class="nav-number">1.8.2.</span> <span class="nav-text">2. 提高性能的手段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%A1%B5%E7%BC%93%E5%AD%98%E4%B8%8E%E7%BB%9F%E4%B8%80%E7%BC%93%E5%86%B2%E7%BC%93%E5%AD%98"><span class="nav-number">1.8.3.</span> <span class="nav-text">3. 页缓存与统一缓冲缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E6%81%A2%E5%A4%8D-Recovery"><span class="nav-number">1.9.</span> <span class="nav-text">九、恢复 (Recovery)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E6%9F%A5-Consistency-Checking"><span class="nav-number">1.9.1.</span> <span class="nav-text">1. 一致性检查 (Consistency Checking)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D"><span class="nav-number">1.9.2.</span> <span class="nav-text">2. 备份与恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%97%A5%E5%BF%97%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-Log-Structured-Journaling"><span class="nav-number">1.9.3.</span> <span class="nav-text">3. 日志结构文件系统 &#x2F; 日志文件系统 (Log Structured &#x2F; Journaling)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E5%AE%9E%E4%BE%8B%EF%BC%9AWAFL-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.10.</span> <span class="nav-text">十、实例：WAFL 文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.10.1.</span> <span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%96%87%E4%BB%B6%E5%B8%83%E5%B1%80"><span class="nav-number">1.10.2.</span> <span class="nav-text">2. 文件布局</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%BF%AB%E7%85%A7-Snapshots"><span class="nav-number">1.10.3.</span> <span class="nav-text">3. 快照 (Snapshots)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E5%AE%9E%E4%BE%8B%EF%BC%9AApple-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%88APFS%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">十一、实例：Apple 文件系统（APFS）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E8%83%8C%E6%99%AF"><span class="nav-number">1.11.1.</span> <span class="nav-text">1. 背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E4%B8%BB%E8%A6%81%E7%89%B9%E6%80%A7"><span class="nav-number">1.11.2.</span> <span class="nav-text">2. 主要特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%96%B0%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A"><span class="nav-number">1.11.3.</span> <span class="nav-text">3. 新概念解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%85%B6%E4%BB%96"><span class="nav-number">1.11.4.</span> <span class="nav-text">4. 其他</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81%E8%A1%A5%E5%85%85%E4%B8%8E%E5%9B%9E%E9%A1%BE"><span class="nav-number">1.12.</span> <span class="nav-text">十二、补充与回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E9%93%BE%E6%8E%A5%E5%88%86%E9%85%8D%E7%9A%84%E5%9D%97%E7%BB%93%E6%9E%84%EF%BC%88%E8%A1%A5%E5%85%85%E7%AC%AC%E4%BA%94%E8%8A%82%EF%BC%89"><span class="nav-number">1.12.1.</span> <span class="nav-text">1. 链接分配的块结构（补充第五节）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%86%85%E5%AD%98%E4%B8%AD%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84%EF%BC%88%E8%A1%A5%E5%85%85%E7%AC%AC%E4%B8%89%E8%8A%82%EF%BC%89"><span class="nav-number">1.12.2.</span> <span class="nav-text">2. 内存中文件系统结构（补充第三节）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E6%98%93%E9%94%99%E7%82%B9%E4%B8%8E%E8%80%83%E7%82%B9%E6%8F%90%E7%A4%BA"><span class="nav-number">1.13.</span> <span class="nav-text">十三、易错点与考点提示</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2026/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter14-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction-to-Operating-Systems-Chapter14 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction-to-Operating-Systems-Chapter14
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-11-03 12:21:50 / Modified: 12:43:26" itemprop="dateCreated datePublished" datetime="2026-11-03T12:21:50+08:00">2026-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>文件系统实现<span id="more"></span></h1>
+<h3 id="一、本章大纲与目标">一、本章大纲与目标</h3>
+<p><strong>大纲</strong>：文件系统结构 → 文件系统操作 → 目录实现 → 分配方法 → 空闲空间管理 → 效率与性能 → 恢复 → 实例（WAFL）</p>
+<p><strong>学习目标</strong>：</p>
+<ul>
+<li>理解本地文件系统和目录结构的实现细节</li>
+<li>掌握各种块分配算法、空闲块算法及其权衡</li>
+<li>了解文件系统的效率、性能和故障恢复</li>
+<li>以 WAFL 为例分析一个具体的文件系统</li>
+</ul>
+<blockquote>
+<p>注：本次材料只覆盖到分配方法，空闲空间管理及之后的内容还没有涉及。</p>
+</blockquote>
+<h3 id="二、文件系统结构">二、文件系统结构</h3>
+<h4 id="1-基本概念">1. 基本概念</h4>
+<ul>
+<li><strong>文件</strong>是逻辑存储单位，由一组相关的信息组成。</li>
+<li>文件系统存放在**二级存储（磁盘）*<em>上。它向用户提供访问存储的接口，并负责把*<em>逻辑地址映射到物理地址</em></em>。</li>
+<li>磁盘的两个关键特性：可以<strong>原地重写</strong>，也支持<strong>随机访问</strong>。</li>
+<li>I/O 以<strong>块</strong>为单位传输，一个块由若干扇区组成，扇区通常为 <strong>512 字节</strong>。</li>
+<li>**FCB（文件控制块）**是保存文件信息的存储结构。</li>
+<li><strong>设备驱动程序</strong>负责控制物理设备。</li>
+</ul>
+<h4 id="2-分层文件系统（自上而下）">2. 分层文件系统（自上而下）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">应用程序 (application programs)</span><br><span class="line">    ↓</span><br><span class="line">逻辑文件系统 (logical file system)</span><br><span class="line">    ↓</span><br><span class="line">文件组织模块 (file-organization module)</span><br><span class="line">    ↓</span><br><span class="line">基本文件系统 (basic file system)</span><br><span class="line">    ↓</span><br><span class="line">I/O 控制 (I/O control)</span><br><span class="line">    ↓</span><br><span class="line">设备 (devices)</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>职责</th>
+<th>典型输入 / 输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>逻辑文件系统</strong></td>
+<td>管理<strong>元数据</strong>；维护 FCB（UNIX 中即 inode）；负责目录管理和保护</td>
+<td>把<strong>文件名</strong>转换成文件号、文件句柄和位置</td>
+</tr>
+<tr>
+<td><strong>文件组织模块</strong></td>
+<td>理解文件、逻辑地址和物理块；管理空闲空间和磁盘分配</td>
+<td>把<strong>逻辑块号</strong>转换成<strong>物理块号</strong></td>
+</tr>
+<tr>
+<td><strong>基本文件系统</strong></td>
+<td>向设备驱动发出通用命令；管理内存缓冲区和缓存（分配、释放、替换）</td>
+<td>例如&quot;读取第 123 块&quot;</td>
+</tr>
+<tr>
+<td><strong>I/O 控制</strong></td>
+<td>由设备驱动程序和中断处理程序组成，负责管理 I/O 设备</td>
+<td>输入&quot;读 1 号驱动器、72 号柱面、2 号磁道、10 号扇区，到内存 1060&quot;，输出硬件相关的低级命令</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>**缓冲区（buffer）**存放正在传输中的数据，**缓存（cache）**存放经常使用的数据。</li>
+<li>分层的<strong>优点</strong>是降低复杂度、减少冗余；<strong>缺点</strong>是增加开销，可能降低性能。</li>
+<li>各逻辑层可以由 OS 设计者用任意方式实现。</li>
+</ul>
+<h4 id="3-常见文件系统">3. 常见文件系统</h4>
+<ul>
+<li>CD-ROM：ISO 9660</li>
+<li>Unix：UFS、FFS</li>
+<li>Windows：FAT、FAT32、NTFS</li>
+<li>Linux：超过 130 种，主流是 ext3 和 ext4，此外还有分布式文件系统</li>
+<li>较新的：ZFS、GoogleFS、Oracle ASM、FUSE</li>
+</ul>
+<h3 id="三、文件系统操作：磁盘上和内存中的结构">三、文件系统操作：磁盘上和内存中的结构</h3>
+<h4 id="1-磁盘上的结构">1. 磁盘上的结构</h4>
+<table>
+<thead>
+<tr>
+<th>结构</th>
+<th>内容</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>引导控制块</strong> (boot control block)</td>
+<td>从该卷引导 OS 所需的信息</td>
+<td>仅在卷上装有 OS 时需要，通常位于卷的第一个块</td>
+</tr>
+<tr>
+<td><strong>卷控制块</strong> (volume control block)</td>
+<td>总块数、空闲块数、块大小、空闲块指针或数组</td>
+<td>UFS 中叫 <strong>superblock</strong>，NTFS 中叫 <strong>master file table</strong></td>
+</tr>
+<tr>
+<td><strong>目录结构</strong></td>
+<td>组织文件：文件名加 inode 号</td>
+<td>NTFS 中同样存放在 master file table</td>
+</tr>
+<tr>
+<td><strong>FCB</strong></td>
+<td>每个文件一个，记录文件的详细信息</td>
+<td>见下文</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-文件控制块（FCB）">2. 文件控制块（FCB）</h4>
+<p>每个文件都有一个 FCB，通常包含 inode 号、权限、大小和日期。典型字段如下：</p>
+<ul>
+<li>文件权限</li>
+<li>文件日期（创建、访问、写入）</li>
+<li>文件所有者、组、ACL</li>
+<li>文件大小</li>
+<li>文件数据块，或指向数据块的指针</li>
+</ul>
+<h4 id="3-内存中的结构">3. 内存中的结构</h4>
+<ul>
+<li><strong>挂载表 (mount table)</strong>：记录已挂载的文件系统、挂载点和文件系统类型。</li>
+<li><strong>系统级打开文件表 (system-wide open-file table)</strong>：保存每个已打开文件的 <strong>FCB 副本</strong>及其他信息。</li>
+<li><strong>进程级打开文件表 (per-process open-file table)</strong>：保存指向系统级表中对应项的<strong>指针</strong>，以及其他信息（如当前读写位置、访问模式）。</li>
+</ul>
+<h4 id="4-打开和读取文件的过程（图-12-3）">4. 打开和读取文件的过程（图 12-3）</h4>
+<p><strong>(a) open(file name)</strong></p>
+<ol>
+<li>用户进程调用 <code>open(文件名)</code>。</li>
+<li>内核在<strong>目录结构</strong>中查找文件名。常用的目录可能已缓存在内存中，否则从磁盘读入。</li>
+<li>找到后，从磁盘读入该文件的 <strong>FCB</strong>，放入系统级打开文件表。</li>
+<li>在进程级打开文件表中新建一项，指向系统级表，并向用户返回<strong>索引</strong>（UNIX 中叫文件描述符，Windows 中叫文件句柄）。</li>
+</ol>
+<p><strong>(b) read(index)</strong></p>
+<ol>
+<li>用户以 <code>read(index)</code> 发起读请求。</li>
+<li>用 index 找到<strong>进程级打开文件表</strong>中的项。</li>
+<li>由该项找到<strong>系统级打开文件表</strong>中的 FCB。</li>
+<li>根据 FCB 中的块信息定位并读取磁盘上的<strong>数据块</strong>。</li>
+</ol>
+<blockquote>
+<p>关键点：open 之后，后续读写都不需要再查目录，直接通过 index 访问。</p>
+</blockquote>
+<h3 id="四、目录实现">四、目录实现</h3>
+<table>
+<thead>
+<tr>
+<th>方式</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>线性列表</strong></td>
+<td>文件名加指向数据块的指针</td>
+<td>编程简单</td>
+<td>查找需要线性时间，执行慢。可以用链表按字母排序，或改用 <strong>B+ 树</strong></td>
+</tr>
+<tr>
+<td><strong>哈希表</strong></td>
+<td>线性列表加哈希结构</td>
+<td>大大缩短目录查找时间</td>
+<td>存在<strong>冲突</strong>（两个文件名哈希到同一位置）。只适合定长表项，否则需要用<strong>链式溢出</strong>法</td>
+</tr>
+</tbody>
+</table>
+<h3 id="五、分配方法（重点）">五、分配方法（重点）</h3>
+<p>分配方法指<strong>如何为文件分配磁盘块</strong>，主要有：连续分配、链接分配（及其变体 FAT）、索引分配。</p>
+<h4 id="1-连续分配-Contiguous-Allocation">1. 连续分配 (Contiguous Allocation)</h4>
+<p><strong>原理</strong>：每个文件占用一组<strong>连续</strong>的块，目录中只需记录<strong>起始块号</strong>和<strong>长度</strong>。</p>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>大多数情况下性能最好，顺序访问和随机访问都很快。</li>
+<li>实现简单。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>很难为新文件找到足够大的连续空间。</li>
+<li>创建文件时必须预先知道文件大小。</li>
+<li>会产生<strong>外部碎片</strong>，需要紧缩（compaction）：可以离线进行（需要停机），也可以在线进行。</li>
+</ul>
+<p><strong>地址映射</strong>（块大小为 512 字节）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LA / 512  →  商 Q，余数 R</span><br><span class="line">要访问的物理块 = 起始地址 + Q</span><br><span class="line">块内偏移       = R</span><br></pre></td></tr></table></figure>
+<p><strong>例题</strong>（使用图中目录）：</p>
+<table>
+<thead>
+<tr>
+<th>file</th>
+<th>start</th>
+<th>length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>count</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr>
+<td>tr</td>
+<td>14</td>
+<td>3</td>
+</tr>
+<tr>
+<td>mail</td>
+<td>19</td>
+<td>6</td>
+</tr>
+<tr>
+<td>list</td>
+<td>28</td>
+<td>4</td>
+</tr>
+<tr>
+<td>f</td>
+<td>6</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>访问 mail 文件的逻辑地址 LA = 1300：<br>
+1300 / 512 → Q = 2，R = 276<br>
+物理块 = 19 + 2 = <strong>21</strong>，块内偏移 = <strong>276</strong></p>
+</blockquote>
+<h4 id="2-基于区段的系统-Extent-Based-Systems">2. 基于区段的系统 (Extent-Based Systems)</h4>
+<ul>
+<li>这是<strong>改进的连续分配</strong>，例如 Veritas 文件系统。</li>
+<li>以<strong>区段 (extent)</strong> 为单位分配磁盘块。一个区段是一段连续的磁盘块。</li>
+<li>一个文件由一个或多个区段组成，从而缓解了连续分配需要大块连续空间的问题。</li>
+</ul>
+<h4 id="3-链接分配-Linked-Allocation">3. 链接分配 (Linked Allocation)</h4>
+<p><strong>原理</strong>：每个文件是一个块的<strong>链表</strong>，块可以散布在磁盘任何位置。每个块中存有指向下一块的指针，文件以 <strong>nil 指针</strong>结束。目录中记录起始块和结束块。</p>
+<p><strong>示例</strong>（图中文件 jeep，start = 9，end = 25）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9 → 16 → 1 → 10 → 25 → nil</span><br></pre></td></tr></table></figure>
+<p><strong>优点</strong>：</p>
+<ul>
+<li><strong>没有外部碎片</strong>，也不需要紧缩。</li>
+<li>文件可以动态增长：需要新块时调用空闲空间管理系统即可。</li>
+</ul>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li><strong>只适合顺序访问</strong>。定位某一块需要沿链逐个读取，涉及多次 I/O 和磁盘寻道。</li>
+<li><strong>可靠性差</strong>：一个指针损坏，后面的整条链都会丢失。</li>
+<li>每个块都要拿出一部分空间存放指针。</li>
+<li>可以把若干块组成<strong>簇 (cluster)</strong> 来提高效率，但这会增加<strong>内部碎片</strong>。</li>
+</ul>
+<p><strong>地址映射</strong>（块大小 512 字节，其中 1 字节存放指针，数据区只有 511 字节）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LA / 511  →  商 Q，余数 R</span><br><span class="line">要访问的块 = 链表中的第 Q 块（从 0 开始计数）</span><br><span class="line">块内偏移   = R + 1   （跳过块开头的指针字节）</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>例题</strong>：访问 jeep 的 LA = 1300<br>
+1300 / 511 → Q = 2，R = 278<br>
+沿链 9 → 16 → <strong>1</strong>，第 Q = 2 块是物理块 <strong>1</strong>；块内偏移 = 278 + 1 = <strong>279</strong></p>
+</blockquote>
+<h4 id="4-FAT（文件分配表）">4. FAT（文件分配表）</h4>
+<p><strong>原理</strong>：</p>
+<ul>
+<li>卷的开头存放一张表，<strong>按块号索引</strong>。</li>
+<li>表中每项记录该块的&quot;下一块&quot;块号，相当于把链接分配的指针<strong>集中</strong>放进一张表；文件尾用特殊值（如 −1）标记。</li>
+<li>目录项中只需记录文件的<strong>起始块号</strong>。</li>
+</ul>
+<p><strong>示例</strong>（图中文件 test，起始块为 217）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">目录项: test → 217</span><br><span class="line">FAT[217] = 618</span><br><span class="line">FAT[618] = 339</span><br><span class="line">FAT[339] = EOF（文件结束）</span><br><span class="line">→ 文件块序列：217 → 618 → 339</span><br></pre></td></tr></table></figure>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>本质上和链表相同，但 FAT 可以<strong>缓存到内存</strong>，查链时不用逐块读磁盘，因此<strong>速度更快</strong>，随机访问也得到改善。</li>
+<li><strong>分配新块很简单</strong>：在 FAT 中找到值为 0（空闲）的项，再接到链尾即可。</li>
+</ul>
+<h4 id="5-索引分配-Indexed-Allocation">5. 索引分配 (Indexed Allocation)</h4>
+<p><strong>原理</strong>：每个文件有自己的<strong>索引块</strong>，即一张指针数组，第 i 项指向文件的第 i 个数据块。目录中记录索引块的块号。</p>
+<p><strong>示例</strong>（图中文件 jeep，索引块为 19）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">索引块 19 的内容：</span><br><span class="line">[0] 9</span><br><span class="line">[1] 16</span><br><span class="line">[2] 1</span><br><span class="line">[3] 10</span><br><span class="line">[4] 25</span><br><span class="line">[5] -1  (未使用)</span><br><span class="line">[6] -1</span><br><span class="line">[7] -1</span><br></pre></td></tr></table></figure>
+<p><strong>特点</strong>：</p>
+<ul>
+<li><strong>支持直接（随机）访问</strong>，并且<strong>没有外部碎片</strong>。</li>
+<li>代价是每个文件都要占用一个索引块。小文件也是如此，所以未用的 −1 项会造成浪费。</li>
+</ul>
+<blockquote>
+<p>补充（材料中未给出，来自教材常规内容）：映射方式为 <code>LA / 512 → Q, R</code>，Q 是索引表中的下标，R 是块内偏移。大文件可以使用链接式索引块、多级索引，或 UNIX inode 那样的组合方案。</p>
+</blockquote>
+<h4 id="6-分配方法对比总结">6. 分配方法对比总结</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>目录中记录</th>
+<th>顺序访问</th>
+<th>随机访问</th>
+<th>外部碎片</th>
+<th>主要问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>连续</td>
+<td>起始块、长度</td>
+<td>快</td>
+<td>快</td>
+<td><strong>有</strong></td>
+<td>难找空间，需预知文件大小，需紧缩</td>
+</tr>
+<tr>
+<td>区段</td>
+<td>区段列表</td>
+<td>快</td>
+<td>较快</td>
+<td>较少</td>
+<td>区段大小难以选择</td>
+</tr>
+<tr>
+<td>链接</td>
+<td>起始块、结束块</td>
+<td>可以</td>
+<td><strong>慢</strong></td>
+<td>无</td>
+<td>可靠性差，指针占空间，寻道多</td>
+</tr>
+<tr>
+<td>FAT</td>
+<td>起始块</td>
+<td>可以</td>
+<td>较快（FAT 已缓存时）</td>
+<td>无</td>
+<td>FAT 表本身占空间，未缓存时需额外寻道</td>
+</tr>
+<tr>
+<td>索引</td>
+<td>索引块号</td>
+<td>可以</td>
+<td><strong>快</strong></td>
+<td>无</td>
+<td>索引块有开销，小文件浪费</td>
+</tr>
+</tbody>
+</table>
+<h3 id="六、分配方法的性能比较">六、分配方法的性能比较</h3>
+<p><strong>核心结论</strong>：哪种分配方法最好，取决于文件的<strong>访问方式</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>顺序访问</th>
+<th>随机访问</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>连续分配</strong></td>
+<td>好</td>
+<td>好</td>
+<td>两种访问方式都很快</td>
+</tr>
+<tr>
+<td><strong>链接分配</strong></td>
+<td>好</td>
+<td>差</td>
+<td>随机访问需要沿链逐块查找</td>
+</tr>
+<tr>
+<td><strong>索引分配</strong></td>
+<td>好</td>
+<td>较好</td>
+<td>实现更复杂；访问一个数据块，可能先要读 <strong>2 个索引块</strong>（如二级索引），再读数据块</td>
+</tr>
+</tbody>
+</table>
+<p><strong>常见策略与优化</strong>：</p>
+<ul>
+<li>创建文件时<strong>声明访问类型</strong>，系统据此选择连续分配或链接分配。</li>
+<li><strong>聚簇 (clustering)</strong>：把若干块合成一组分配，可以提高吞吐量，减少 CPU 开销。</li>
+</ul>
+<p><strong>NVM（非易失性存储，如 SSD）的特殊性</strong>：</p>
+<ul>
+<li>NVM <strong>没有磁头</strong>，因此需要不同的算法和优化。</li>
+<li>如果沿用为 HDD 设计的旧算法，会白白耗费大量 CPU 周期去避免根本不存在的磁头移动。</li>
+<li>优化目标是<strong>减少 CPU 周期</strong>，缩短 I/O 的整体路径。</li>
+</ul>
+<h3 id="七、空闲空间管理（重点）">七、空闲空间管理（重点）</h3>
+<p>文件系统维护一个<strong>空闲空间表 (free-space list)</strong>，记录哪些块或簇可用。为简便起见，下文统称&quot;块&quot;。</p>
+<h4 id="1-位向量-位图-Bit-Vector-Bit-Map">1. 位向量 / 位图 (Bit Vector / Bit Map)</h4>
+<p><strong>原理</strong>：n 个块对应 n 个位。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bit[i] = 1  →  block[i] 空闲</span><br><span class="line">bit[i] = 0  →  block[i] 已占用</span><br></pre></td></tr></table></figure>
+<p><strong>查找第一个空闲块的块号</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">块号 = (每字的位数) × (值为 0 的字的个数) + (第一个 1 位在该字中的偏移)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>值全为 0 的字说明整字都被占用，可以整字跳过。</li>
+<li>许多 CPU 有专门的指令，能直接返回字中第一个 “1” 位的偏移，所以速度很快。</li>
+</ul>
+<blockquote>
+<p><strong>例</strong>：每字 32 位，前 2 个字全为 0，第 3 个字中第一个 1 位于偏移 5（从 0 开始计）。<br>
+块号 = 32 × 2 + 5 = <strong>69</strong></p>
+</blockquote>
+<p><strong>缺点：位图本身需要额外空间</strong></p>
+<blockquote>
+<p><strong>例题</strong>：<br>
+块大小 = 4KB = 2¹² 字节<br>
+磁盘大小 = 2⁴⁰ 字节（1TB）<br>
+n = 2⁴⁰ / 2¹² = <strong>2²⁸ 位</strong> = 2²⁵ 字节 = <strong>32MB</strong><br>
+如果以 4 块为一簇，位数变为 2²⁶ 位，即 <strong>8MB</strong></p>
+</blockquote>
+<p><strong>优点</strong>：容易找到连续的空闲块，适合连续分配的文件。</p>
+<h4 id="2-链表-Linked-Free-Space-List">2. 链表 (Linked Free Space List)</h4>
+<p><strong>原理</strong>：把所有空闲块用指针串成一条链，内存中只保存<strong>链表头</strong>。</p>
+<p><strong>图中示例</strong>（空闲块链）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head → 2 → 3 → 4 → 5 → 8 → 9 → 10 → 11 → 12 → 13 → 17 → 18 → 25 → 26 → 27</span><br></pre></td></tr></table></figure>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>优点是<strong>不浪费空间</strong>，因为指针就存放在空闲块自身里。</li>
+<li>只要另外记录了<strong>空闲块总数</strong>，就<strong>不需要遍历整条链</strong>。一般只从链头取块即可。</li>
+<li>缺点是<strong>不易获得连续空间</strong>。</li>
+</ul>
+<h4 id="3-分组-Grouping">3. 分组 (Grouping)</h4>
+<p>对链表的改进：</p>
+<ul>
+<li>在<strong>第一个空闲块</strong>中存放接下来 <strong>n−1 个空闲块的地址</strong>，最后一项指向下一个同样存放空闲块地址的块。</li>
+<li>这样一次读取就能拿到大量空闲块的地址，比普通链表快得多。</li>
+</ul>
+<h4 id="4-计数-Counting">4. 计数 (Counting)</h4>
+<ul>
+<li>依据：空间经常是<strong>连续</strong>分配和释放的，例如连续分配、区段分配或聚簇的情况。</li>
+<li>做法：只记录<strong>第一个空闲块的地址</strong>以及<strong>其后连续空闲块的个数</strong>。</li>
+<li>空闲表的每一项形如 <strong>（起始地址，个数）</strong>，表因此变得很短。</li>
+</ul>
+<h4 id="5-空间图-Space-Maps，ZFS-使用">5. 空间图 (Space Maps，ZFS 使用)</h4>
+<p><strong>背景</strong>：在超大文件系统中，位图这类完整的数据结构无法装进内存，元数据 I/O 可能多达数千次。</p>
+<p><strong>做法</strong>：</p>
+<ol>
+<li>把设备空间划分为若干 <strong>metaslab</strong>，一个卷可以有数百个 metaslab。</li>
+<li>每个 metaslab 有一个对应的<strong>空间图</strong>。</li>
+<li>空间图使用<strong>计数</strong>算法，但记录写到<strong>日志文件</strong>，而不是直接写入文件系统结构。日志按时间顺序、以计数格式记下所有块的分配和释放。</li>
+<li>当某个 metaslab 有活动时：
+<ul>
+<li>把它的空间图载入内存，组织成<strong>按偏移索引的平衡树</strong>；</li>
+<li>把日志<strong>重放 (replay)</strong> 到这棵树中；</li>
+<li>把相邻的连续空闲块<strong>合并</strong>成一项。</li>
+</ul>
+</li>
+</ol>
+<h4 id="6-TRIM：回收未使用的块">6. TRIM：回收未使用的块</h4>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>特点</th>
+<th>释放块的处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HDD</strong></td>
+<td>可以<strong>原地覆盖</strong></td>
+<td>只需空闲表。块被释放后不做特殊处理，数据还留着，只是没有文件指向它，直到被覆盖</td>
+</tr>
+<tr>
+<td><strong>NVM</strong></td>
+<td><strong>不能原地覆盖</strong>，写之前必须先擦除；擦除以大块（由多个页组成）为单位，而且很慢</td>
+<td>沿用 HDD 的做法效果很差</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TRIM 机制</strong>：文件系统<strong>通知 NVM 设备某个页已经空闲</strong>。设备据此可以做垃圾回收；如果整个块都空闲了，就可以提前擦除这个块。</p>
+<h4 id="7-空闲空间管理方法对比">7. 空闲空间管理方法对比</h4>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>空间开销</th>
+<th>找连续空间</th>
+<th>分配速度</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位图</td>
+<td>需要额外空间（1TB 磁盘约 32MB）</td>
+<td><strong>容易</strong></td>
+<td>快（有硬件指令支持）</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>链表</td>
+<td>无额外浪费</td>
+<td><strong>困难</strong></td>
+<td>取一块很快，遍历很慢</td>
+<td>简单系统</td>
+</tr>
+<tr>
+<td>分组</td>
+<td>小</td>
+<td>较难</td>
+<td>快（一次获得多个地址）</td>
+<td>链表的改进</td>
+</tr>
+<tr>
+<td>计数</td>
+<td>很小（空闲块连续时）</td>
+<td>容易</td>
+<td>快</td>
+<td>连续分配、区段分配</td>
+</tr>
+<tr>
+<td>空间图</td>
+<td>小（基于日志）</td>
+<td>容易</td>
+<td>快</td>
+<td>ZFS 等超大文件系统</td>
+</tr>
+</tbody>
+</table>
+<h3 id="八、效率与性能">八、效率与性能</h3>
+<h4 id="1-影响效率的因素">1. 影响效率的因素</h4>
+<ul>
+<li>磁盘分配算法和目录算法</li>
+<li>文件目录项中保存的数据类型（如是否记录&quot;最后访问时间&quot;，记录的话每次读都要写回）</li>
+<li>元数据结构是<strong>预分配</strong>还是<strong>按需分配</strong></li>
+<li>数据结构是<strong>定长</strong>还是<strong>变长</strong></li>
+</ul>
+<h4 id="2-提高性能的手段">2. 提高性能的手段</h4>
+<ul>
+<li><strong>把数据和元数据放在一起</strong>，减少寻道。</li>
+<li><strong>缓冲区缓存 (buffer cache)</strong>：在主存中划出一块区域，存放常用的磁盘块。</li>
+<li><strong>同步写与异步写</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>同步写</th>
+<th>异步写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>缓冲 / 缓存</td>
+<td>不经过缓冲</td>
+<td>可以缓冲</td>
+</tr>
+<tr>
+<td>何时返回确认</td>
+<td>数据<strong>写到磁盘后</strong>才确认</td>
+<td>写入缓存后立即返回</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>慢</td>
+<td><strong>快</strong>，也更常见</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>应用要求或 OS 需要时（如元数据）</td>
+<td>一般场景</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>顺序访问的优化：
+<ul>
+<li><strong>free-behind</strong>：请求下一页时，立即从缓冲区中移除上一页，因为顺序访问不会再用到它。</li>
+<li><strong>read-ahead（预读）</strong>：读取请求页时，把后面的若干页一并读入。</li>
+</ul>
+</li>
+<li><strong>读往往比写慢</strong>：异步写只需写到缓存就能返回，而读如果缓存不命中，就必须等待磁盘。</li>
+</ul>
+<h4 id="3-页缓存与统一缓冲缓存">3. 页缓存与统一缓冲缓存</h4>
+<ul>
+<li>页缓存 (page cache)：用虚拟内存技术和地址缓存页，而不是磁盘块。
+<ul>
+<li><strong>内存映射 I/O</strong> 使用页缓存。</li>
+<li>普通文件系统 I/O（<code>read()</code>/<code>write()</code>）使用<strong>缓冲区（磁盘）缓存</strong>。</li>
+</ul>
+</li>
+</ul>
+<p><strong>没有统一缓冲缓存时</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">memory-mapped I/O → page cache → buffer cache → file system</span><br><span class="line">read()/write()   ─────────────→ buffer cache → file system</span><br></pre></td></tr></table></figure>
+<p>问题是<strong>双重缓存 (double caching)</strong>：内存映射的数据在页缓存和缓冲区缓存中各存一份，既浪费内存，又可能不一致。</p>
+<p><strong>使用统一缓冲缓存时</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">memory-mapped I/O ─┐</span><br><span class="line">                   ├→ buffer cache（统一） → file system</span><br><span class="line">read()/write()   ──┘</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内存映射页和普通文件 I/O <strong>共用同一个页缓存</strong>，避免了双重缓存。</li>
+<li>带来的新问题：各类缓存谁优先？采用什么<strong>替换算法</strong>？</li>
+</ul>
+<h3 id="九、恢复-Recovery">九、恢复 (Recovery)</h3>
+<h4 id="1-一致性检查-Consistency-Checking">1. 一致性检查 (Consistency Checking)</h4>
+<ul>
+<li>把目录结构中的数据与磁盘上的数据块进行比较，尝试修复不一致（如 UNIX 的 <code>fsck</code>）。</li>
+<li>缺点：<strong>速度慢</strong>，而且<strong>有时会失败</strong>。</li>
+</ul>
+<h4 id="2-备份与恢复">2. 备份与恢复</h4>
+<ul>
+<li>用系统程序把磁盘数据<strong>备份</strong>到其他存储设备，如磁带、其他磁盘或光盘。</li>
+<li>丢失文件或磁盘损坏时，从备份中<strong>恢复</strong>。</li>
+</ul>
+<h4 id="3-日志结构文件系统-日志文件系统-Log-Structured-Journaling">3. 日志结构文件系统 / 日志文件系统 (Log Structured / Journaling)</h4>
+<p><strong>流程</strong>：</p>
+<ol>
+<li>每次<strong>元数据更新</strong>都作为一个<strong>事务 (transaction)</strong> 记录下来。</li>
+<li>事务<strong>顺序写入日志</strong>（日志有时放在单独的设备或磁盘区域）。<strong>写入日志即视为已提交</strong>。</li>
+<li>此时文件系统结构本身可能还没更新。</li>
+<li>日志中的事务被<strong>异步</strong>地应用到文件系统结构上。</li>
+<li>文件系统结构修改完成后，该事务从日志中<strong>删除</strong>。</li>
+<li>如果系统<strong>崩溃</strong>，日志中剩余的事务在恢复时<strong>必须全部执行完</strong>。</li>
+</ol>
+<p><strong>优点</strong>：</p>
+<ul>
+<li>崩溃后<strong>恢复更快</strong>，不需要像 fsck 那样扫描整个磁盘。</li>
+<li><strong>消除了元数据不一致</strong>的可能。</li>
+<li>日志是顺序写，速度快。</li>
+</ul>
+<h3 id="十、实例：WAFL-文件系统">十、实例：WAFL 文件系统</h3>
+<h4 id="1-概述">1. 概述</h4>
+<ul>
+<li>全称 <strong>Write-Anywhere File Layout（任意位置写文件布局）</strong>。</li>
+<li>用于 Network Appliance 公司的 “Filer”，即分布式文件系统专用设备。</li>
+<li>提供 NFS、CIFS、http、ftp 等服务。</li>
+<li>针对<strong>随机 I/O</strong> 和<strong>写操作</strong>做了优化，用 <strong>NVRAM</strong> 作为写缓存。</li>
+<li>与 Berkeley Fast File System 类似，但做了大量修改。</li>
+</ul>
+<h4 id="2-文件布局">2. 文件布局</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">root inode（根 inode）</span><br><span class="line">     ↓</span><br><span class="line">inode file（inode 文件）</span><br><span class="line">     ├→ free block map（空闲块位图）</span><br><span class="line">     ├→ free inode map（空闲 inode 位图）</span><br><span class="line">     ├→ 文件系统中的各个文件 ...</span><br><span class="line">     └→ ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>所有元数据都存放在文件中</strong>：inode 本身组成一个 inode 文件，空闲块图和空闲 inode 图也都是文件。</li>
+<li>因此元数据块可以写到<strong>任意位置</strong>，这正是 “write anywhere” 的含义。只有根 inode 的位置是固定的。</li>
+</ul>
+<h4 id="3-快照-Snapshots">3. 快照 (Snapshots)</h4>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a) 快照前</td>
+<td>root inode 指向块 A、B、C、D、E</td>
+</tr>
+<tr>
+<td>(b) 刚做完快照，块还没有变化</td>
+<td><strong>复制一份 root inode</strong> 作为新快照，两者指向<strong>同一组块</strong>，几乎不占额外空间</td>
+</tr>
+<tr>
+<td>© 块 D 被修改为 D′ 后</td>
+<td>新数据<strong>写到新位置 D′</strong>，root inode 改为指向 D′；快照仍然指向旧的 D</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>本质是<strong>写时复制 (copy-on-write)</strong>：只有被修改的块才产生新副本，未修改的块由当前文件系统和快照共享。</li>
+<li>快照创建得<strong>快</strong>，<strong>占用空间少</strong>，可以保留多个历史版本。</li>
+</ul>
+<h3 id="十一、实例：Apple-文件系统（APFS）">十一、实例：Apple 文件系统（APFS）</h3>
+<h4 id="1-背景">1. 背景</h4>
+<ul>
+<li>Apple 于 <strong>2017 年</strong>发布 APFS，用来替代用了约 30 年的 <strong>HFS+</strong>。</li>
+<li>HFS+ 为不断加入新功能被反复扩展，变得越来越复杂，继续添加功能也越来越难。因此 Apple 选择从零开始重新设计，直接基于当前的技术和方法，只提供真正需要的功能。</li>
+<li>目标是运行在<strong>所有 Apple 设备</strong>上，从 Apple Watch、iPhone 到 Mac（watchOS、iOS、tvOS、macOS）。</li>
+</ul>
+<h4 id="2-主要特性">2. 主要特性</h4>
+<ul>
+<li>64 位指针</li>
+<li>文件和目录的<strong>克隆 (clones)</strong></li>
+<li><strong>快照</strong></li>
+<li><strong>空间共享 (space sharing)</strong></li>
+<li><strong>快速目录大小统计 (fast directory sizing)</strong></li>
+<li><strong>原子安全保存 (atomic safe-save)</strong></li>
+<li><strong>写时复制 (copy-on-write)</strong> 设计</li>
+<li>加密（单密钥和多密钥）</li>
+<li><strong>I/O 合并 (I/O coalescing)</strong></li>
+<li>同时支持 NVM 和 HDD</li>
+</ul>
+<h4 id="3-新概念解释">3. 新概念解释</h4>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>空间共享</strong></td>
+<td>与 ZFS 类似：存储被组织为一个或多个大的空闲空间，称为<strong>容器 (container)</strong>，各文件系统从中按需取用空间，因此 APFS 卷可以动态增大或缩小</td>
+</tr>
+<tr>
+<td><strong>快速目录大小统计</strong></td>
+<td>能够快速计算和更新已用空间</td>
+</tr>
+<tr>
+<td><strong>原子安全保存</strong></td>
+<td>把文件、文件包或目录的重命名作为<strong>单个原子操作</strong>完成。只能通过 API 调用，不能通过文件系统命令使用</td>
+</tr>
+<tr>
+<td><strong>I/O 合并</strong></td>
+<td>针对 NVM 的优化：把多个小写操作合并成一次大写操作，以提高写性能</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-其他">4. 其他</h4>
+<ul>
+<li>APFS <strong>本身不实现 RAID</strong>，软件 RAID 依赖 Apple 现有的 RAID 卷机制。</li>
+<li><strong>兼容 HFS+</strong>，现有系统可以方便地转换过来。</li>
+</ul>
+<h3 id="十二、补充与回顾">十二、补充与回顾</h3>
+<h4 id="1-链接分配的块结构（补充第五节）">1. 链接分配的块结构（补充第五节）</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">┌──────────┐</span><br><span class="line">│ pointer  │ ← 块开头存放指向下一块的指针</span><br><span class="line">├──────────┤</span><br><span class="line">│          │</span><br><span class="line">│  data    │ ← 数据区（512 − 1 = 511 字节）</span><br><span class="line">│          │</span><br><span class="line">└──────────┘</span><br></pre></td></tr></table></figure>
+<p>这就是映射时用 <strong>LA / 511</strong>、块内偏移取 <strong>R + 1</strong> 的原因：前 1 字节是指针，数据从偏移 1 开始。</p>
+<h4 id="2-内存中文件系统结构（补充第三节）">2. 内存中文件系统结构（补充第三节）</h4>
+<ul>
+<li>除了挂载表、系统级打开文件表和进程级打开文件表之外，还有<strong>缓冲区</strong>，用来存放从二级存储读入的数据块。</li>
+<li><code>open</code> 返回一个<strong>文件句柄</strong>，供后续操作使用。</li>
+<li><code>read</code> 读出的数据最终被<strong>复制到用户进程指定的内存地址</strong>。</li>
+</ul>
+<h3 id="十三、易错点与考点提示">十三、易错点与考点提示</h3>
+<ol>
+<li><strong>位图中 1 表示空闲，0 表示占用</strong>（本教材的约定，有的教材正好相反，需要留意）。</li>
+<li><strong>位图空间计算</strong>：位数 = 磁盘大小 / 块大小；换成字节还要再<strong>除以 8</strong>。2²⁸ 位 = 2²⁵ 字节 = 32MB。</li>
+<li><strong>块号计算公式</strong>：每字位数 × 全 0 字的个数 + 第一个 1 位的偏移。</li>
+<li><strong>链表与位图</strong>：链表不浪费空间，但难以获得连续空间；位图容易获得连续空间，但需要额外空间。</li>
+<li><strong>分组与计数的区别</strong>：分组是在一个块里存放 n−1 个空闲块的<strong>地址</strong>；计数存放的是**（起始地址，连续个数）**。</li>
+<li><strong>TRIM 只对 NVM 有意义</strong>：HDD 可以原地覆盖，不需要 TRIM。</li>
+<li><strong>统一缓冲缓存解决的是&quot;双重缓存&quot;问题</strong>。</li>
+<li><strong>日志文件系统中，事务写入日志即视为提交</strong>，而不是写入文件系统结构后才提交；崩溃后要重做日志中剩余的事务。</li>
+<li><strong>WAFL 快照的原理是写时复制</strong>：复制根 inode，被修改的块写到新位置。</li>
+<li><strong>同步写</strong>要等数据落盘后才确认；<strong>异步写</strong>更快也更常见；<strong>读往往比写慢</strong>。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/10/27/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter13-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E6%8E%A5%E5%8F%A3/" rel="prev" title="Introduction-to-Operating-Systems-Chapter13">
+                  <i class="fa fa-angle-left"></i> Introduction-to-Operating-Systems-Chapter13
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/11/03/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter15-%E7%B3%BB%E7%BB%9F%E5%86%85%E9%83%A8%E6%9C%BA%E5%88%B6/" rel="next" title="Introduction-to-Operating-Systems-Chapter15">
+                  Introduction-to-Operating-Systems-Chapter15 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
