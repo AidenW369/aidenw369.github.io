@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"aidenw369.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="Linux 系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Introduction-to-Operating-Systems-Chapter20">
+<meta property="og:url" content="https://aidenw369.github.io/2026/11/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter20-Linux%20%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux 系统">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-23T08:10:52.000Z">
+<meta property="article:modified_time" content="2026-11-24T01:32:12.890Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Operating Systems">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://aidenw369.github.io/2026/11/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter20-Linux%20%E7%B3%BB%E7%BB%9F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://aidenw369.github.io/2026/11/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter20-Linux%20%E7%B3%BB%E7%BB%9F/","path":"2026/11/23/操作系统/Introduction-to-Operating-Systems-Chapter20-Linux 系统/","title":"Introduction-to-Operating-Systems-Chapter20"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Introduction-to-Operating-Systems-Chapter20 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Hexo</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Linux 系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Linux-%E7%9A%84%E5%8E%86%E5%8F%B2%EF%BC%88Linux-History%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1. Linux 的历史（Linux History）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%EF%BC%88Design-Principles%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2. 设计原则（Design Principles）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Linux-%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90%EF%BC%88Components-of-a-Linux-System%EF%BC%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Linux 系统的组成（Components of a Linux System）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%EF%BC%88Kernel-Modules%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3. 内核模块（Kernel Modules）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86%EF%BC%88Process-Management%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4. 进程管理（Process Management）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-%E8%BF%9B%E7%A8%8B%E8%BA%AB%E4%BB%BD%EF%BC%88Process-Identity%EF%BC%89"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 进程身份（Process Identity）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E8%BF%9B%E7%A8%8B%E7%8E%AF%E5%A2%83%EF%BC%88Process-Environment%EF%BC%89"><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2 进程环境（Process Environment）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%88Process-Context%EF%BC%89"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3 进程上下文（Process Context）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%EF%BC%88Processes-and-Threads%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">4.4 进程与线程（Processes and Threads）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E8%B0%83%E5%BA%A6%EF%BC%88Scheduling%EF%BC%89"><span class="nav-number">1.5.</span> <span class="nav-text">5. 调度（Scheduling）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-CFS-%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.1 CFS 公平调度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E5%86%85%E6%A0%B8%E5%90%8C%E6%AD%A5%EF%BC%88Kernel-Synchronization%EF%BC%89"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2 内核同步（Kernel Synchronization）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E4%B8%AD%E6%96%AD%E4%B8%8A%E5%8D%8A%E9%83%A8%E4%B8%8E%E4%B8%8B%E5%8D%8A%E9%83%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.3 中断上半部与下半部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-%E5%AF%B9%E7%A7%B0%E5%A4%9A%E5%A4%84%E7%90%86%EF%BC%88SMP%EF%BC%89"><span class="nav-number">1.5.4.</span> <span class="nav-text">5.4 对称多处理（SMP）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88Memory-Management%EF%BC%89"><span class="nav-number">1.6.</span> <span class="nav-text">6. 内存管理（Memory Management）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-1-%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%88Memory-Zones%EF%BC%89"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 物理内存区域（Memory Zones）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F%EF%BC%88Buddy-System%EF%BC%89"><span class="nav-number">1.6.2.</span> <span class="nav-text">6.2 伙伴系统（Buddy System）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-Slab-%E5%88%86%E9%85%8D%E5%99%A8%EF%BC%88Slab-Allocator%EF%BC%89"><span class="nav-number">1.6.3.</span> <span class="nav-text">6.3 Slab 分配器（Slab Allocator）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-4-%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98%EF%BC%88Virtual-Memory%EF%BC%89"><span class="nav-number">1.6.4.</span> <span class="nav-text">6.4 虚拟内存（Virtual Memory）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-5-%E6%8D%A2%E9%A1%B5%E4%B8%8E%E4%BA%A4%E6%8D%A2%EF%BC%88Swapping-and-Paging%EF%BC%89"><span class="nav-number">1.6.5.</span> <span class="nav-text">6.5 换页与交换（Swapping and Paging）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-6-%E5%86%85%E6%A0%B8%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">1.6.6.</span> <span class="nav-text">6.6 内核虚拟内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-7-ELF-%E7%A8%8B%E5%BA%8F%E5%8A%A0%E8%BD%BD%E4%B8%8E%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80"><span class="nav-number">1.6.7.</span> <span class="nav-text">6.7 ELF 程序加载与内存布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-8-%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.8.</span> <span class="nav-text">6.8 静态链接与动态链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%88File-Systems%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">7. 文件系统（File Systems）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-%E8%99%9A%E6%8B%9F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F-VFS"><span class="nav-number">1.7.1.</span> <span class="nav-text">7.1 虚拟文件系统 VFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-ext2-ext3-%E4%B8%8E%E5%9D%97%E5%88%86%E9%85%8D"><span class="nav-number">1.7.2.</span> <span class="nav-text">7.2 ext2 &#x2F; ext3 与块分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-%E6%97%A5%E5%BF%97%E6%9C%BA%E5%88%B6%EF%BC%88Journaling%EF%BC%89"><span class="nav-number">1.7.3.</span> <span class="nav-text">7.3 日志机制（Journaling）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-proc-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.7.4.</span> <span class="nav-text">7.4 proc 文件系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA%EF%BC%88Input-and-Output%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">8. 输入与输出（Input and Output）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1-%E8%AE%BE%E5%A4%87%E5%88%86%E7%B1%BB%E4%B8%8E%E9%A9%B1%E5%8A%A8%E7%BB%93%E6%9E%84"><span class="nav-number">1.8.1.</span> <span class="nav-text">8.1 设备分类与驱动结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E5%9D%97%E8%AE%BE%E5%A4%87%E4%B8%8E-I-O-%E8%B0%83%E5%BA%A6"><span class="nav-number">1.8.2.</span> <span class="nav-text">8.2 块设备与 I&#x2F;O 调度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E4%B8%8E%E7%BA%BF%E8%B7%AF%E8%A7%84%E7%A8%8B"><span class="nav-number">1.8.3.</span> <span class="nav-text">8.3 字符设备与线路规程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%EF%BC%88Interprocess-Communication%EF%BC%89"><span class="nav-number">1.9.</span> <span class="nav-text">9. 进程间通信（Interprocess Communication）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%EF%BC%88Network-Structure%EF%BC%89"><span class="nav-number">1.10.</span> <span class="nav-text">10. 网络结构（Network Structure）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%AE%89%E5%85%A8%E6%80%A7%EF%BC%88Security%EF%BC%89"><span class="nav-number">1.11.</span> <span class="nav-text">11. 安全性（Security）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E8%80%83%E8%AF%95%E9%87%8D%E7%82%B9%E9%80%9F%E8%AE%B0"><span class="nav-number">1.12.</span> <span class="nav-text">12. 考试重点速记</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">84</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://aidenw369.github.io/2026/11/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter20-Linux%20%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Introduction-to-Operating-Systems-Chapter20 | Hexo">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Introduction-to-Operating-Systems-Chapter20
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2026-11-23 16:10:52" itemprop="dateCreated datePublished" datetime="2026-11-23T16:10:52+08:00">2026-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-11-24 09:32:12" itemprop="dateModified" datetime="2026-11-24T09:32:12+08:00">2026-11-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Operating-Systems/" itemprop="url" rel="index"><span itemprop="name">Operating Systems</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1>Linux 系统<span id="more"></span></h1>
+<h2 id="1-Linux-的历史（Linux-History）">1. Linux 的历史（Linux History）</h2>
+<p>Linux 是基于 UNIX 标准的自由、开源操作系统，1991 年由 Linus Torvalds 开发，主要目标是 UNIX 兼容性。Linux 内核具有独立实现，并通过全球开发者协作不断发展。</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>主要特点（按课件）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.01（1991）</td>
+<td>支持 80386、Minix 文件系统，缺少网络支持</td>
+</tr>
+<tr>
+<td>1.0（1994）</td>
+<td>TCP/IP、BSD socket、以太网、SCSI、增强文件系统</td>
+</tr>
+<tr>
+<td>1.2（1995）</td>
+<td>最后一个仅面向 PC 的内核版本</td>
+</tr>
+<tr>
+<td>2.0（1996）</td>
+<td>多体系结构、64 位 Alpha、SMP、内核线程和模块支持</td>
+</tr>
+<tr>
+<td>2.4 / 2.6</td>
+<td>增强 SMP、日志文件系统、内核抢占、64 位内存支持</td>
+</tr>
+<tr>
+<td>3.0 时代</td>
+<td>虚拟化、内存管理、页面回写等改进；课件同时讨论 CFS</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>早期版本曾采用奇数开发版本、偶数生产版本的命名惯例，并非现代通用规则。</li>
+<li>Linux 系统包含 GNU 系统库与工具、BSD 网络工具以及 X Window System 等组件。</li>
+<li>FHS（File System Hierarchy Standard）规定配置文件、库、系统二进制文件和运行时数据的目录布局。</li>
+<li>发行版（Distribution）是内核、应用、安装和管理工具的集合，例如 Slackware、Red Hat、Debian。</li>
+<li>GPL（GNU General Public License）：Linux 内核不是公有领域软件；允许商业销售，但分发受 GPL 约束的程序或衍生作品时须遵守相应源码提供等义务。</li>
+</ul>
+<h2 id="2-设计原则（Design-Principles）">2. 设计原则（Design Principles）</h2>
+<p>Linux 是多用户（Multiuser）、多任务（Multitasking）系统，主要设计目标为速度、效率、标准化。遵循 UNIX 文件系统语义和网络模型，支持 POSIX、Pthreads 及部分实时进程控制接口。课件指出其编程接口主要遵循 SVR4 UNIX 语义。</p>
+<h3 id="2-1-Linux-系统的组成（Components-of-a-Linux-System）">2.1 Linux 系统的组成（Components of a Linux System）</h3>
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kernel（内核）</td>
+<td>管理进程、内存、设备等操作系统抽象；在内核态执行</td>
+</tr>
+<tr>
+<td>System Libraries（系统库）</td>
+<td>提供应用与内核交互的标准函数，实现无需内核特权的功能</td>
+</tr>
+<tr>
+<td>System Utilities（系统工具）</td>
+<td>完成专门的系统管理任务</td>
+</tr>
+</tbody>
+</table>
+<p>截图上层包含系统管理程序、用户进程、用户实用程序和编译器；中间为系统共享库；下层为 Linux 内核和可加载内核模块。内核代码和数据结构位于共同的内核地址空间，可加载模块属于内核的一部分，而非独立的用户态层。</p>
+<h2 id="3-内核模块（Kernel-Modules）">3. 内核模块（Kernel Modules）</h2>
+<p>内核模块是可独立编译、加载、卸载的内核代码，常用于设备驱动、文件系统和网络协议。通过模块化可以保持基础内核精简，并按需求扩展功能。</p>
+<table>
+<thead>
+<tr>
+<th>模块支持组成</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Module-management system</td>
+<td>管理模块代码占用的内核内存及模块可引用的符号</td>
+</tr>
+<tr>
+<td>Module loader / unloader</td>
+<td>加载、卸载模块</td>
+</tr>
+<tr>
+<td>Driver-registration system</td>
+<td>将新驱动注册到内核动态表中</td>
+</tr>
+<tr>
+<td>Conflict-resolution mechanism</td>
+<td>管理硬件资源预留，避免多个驱动冲突</td>
+</tr>
+</tbody>
+</table>
+<p>驱动注册表包括设备驱动、文件系统、网络协议和二进制格式。驱动在访问硬件前申请资源，资源已被占用时可拒绝申请，避免自动探测干扰已有驱动。课件还介绍了按需加载及不再使用时卸载模块的机制。</p>
+<h2 id="4-进程管理（Process-Management）">4. 进程管理（Process Management）</h2>
+<p>UNIX 将创建进程与运行新程序分离：<code>fork()</code> 创建新进程，<code>exec()</code> 替换当前进程的程序映像（不创建新进程）。Linux 将进程属性分为 Identity、Environment、Context 三类。</p>
+<h3 id="4-1-进程身份（Process-Identity）">4.1 进程身份（Process Identity）</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PID</td>
+<td>进程标识，用于发送信号、等待或操作进程</td>
+</tr>
+<tr>
+<td>Credentials</td>
+<td>UID、GID 等凭证，决定访问权限</td>
+</tr>
+<tr>
+<td>Personality</td>
+<td>调整部分系统调用语义，用于兼容其他 UNIX 风格</td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td>课件主要指文件系统视图，可拥有不同根目录和挂载集合</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2-进程环境（Process-Environment）">4.2 进程环境（Process Environment）</h3>
+<p>由父进程继承的环境包含两个以空指针结束的向量：参数向量（argument vector，<code>argv</code>）与环境向量（environment vector，<code>envp</code>）。后者采用 <code>NAME=VALUE</code> 格式，使系统行为可按进程配置，而不必全局修改。</p>
+<h3 id="4-3-进程上下文（Process-Context）">4.3 进程上下文（Process Context）</h3>
+<p>进程运行时不断变化的状态，包括调度上下文（暂停和恢复所需信息）、资源统计信息、文件表（文件描述符 fd 是索引）、文件系统上下文（根目录、当前目录）、信号处理表及虚拟内存上下文。</p>
+<h3 id="4-4-进程与线程（Processes-and-Threads）">4.4 进程与线程（Processes and Threads）</h3>
+<p>Linux 使用统一的内部任务（Task）表示进程与线程。<code>fork()</code> 创建独立任务上下文；<code>clone()</code> 创建有独立身份的新任务，并通过标志指定共享资源。线程通常共享地址空间等资源，但仍具有各自的执行上下文。</p>
+<table>
+<thead>
+<tr>
+<th>clone 标志</th>
+<th>共享内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLONE_FS</code></td>
+<td>文件系统上下文（根目录、当前目录等）</td>
+</tr>
+<tr>
+<td><code>CLONE_VM</code></td>
+<td>虚拟地址空间</td>
+</tr>
+<tr>
+<td><code>CLONE_SIGHAND</code></td>
+<td>信号处理函数表</td>
+</tr>
+<tr>
+<td><code>CLONE_FILES</code></td>
+<td>打开的文件描述符表</td>
+</tr>
+</tbody>
+</table>
+<p>注意：<code>fork()</code> 的地址空间逻辑独立，但可通过写时复制暂时共享物理页；不能简单理解为立即复制所有物理内存。</p>
+<h2 id="5-调度（Scheduling）">5. 调度（Scheduling）</h2>
+<p>调度负责在不同任务间分配 CPU 时间，既涉及用户进程，也涉及内核任务。课件介绍早期 O(1) 抢占式优先级调度器及 Linux 2.6 系列中的 CFS（Completely Fair Scheduler，完全公平调度器）。</p>
+<h3 id="5-1-CFS-公平调度">5.1 CFS 公平调度</h3>
+<p>设有 N 个权重相同的可运行任务，则理想 CPU 时间份额为：</p>
+<p>[ s_i=\frac{1}{N} ]</p>
+<p>设目标延迟（Target Latency）为 T，则理想运行时间为：</p>
+<p>[ t_i=\frac{T}{N} ]</p>
+<p>若任务权重不同，设第 i 个任务权重为 w_i，则：</p>
+<p>[ s_i=\frac{w_i}{\sum_{j=1}^{N}w_j} ][ t_i=T\cdot\frac{w_i}{\sum_{j=1}^{N}w_j} ]</p>
+<p>nice 值越小，权重越大，获得的 CPU 时间比例越高。目标延迟指希望所有可运行任务至少运行一次的时间区间。</p>
+<p>例：目标延迟为 10 ms，2 个等权重任务各运行 5 ms；10 个等权重任务各运行 1 ms。</p>
+<p>[ t_i=\frac{10,\mathrm{ms}}{2}=5,\mathrm{ms} ][ t_i=\frac{10,\mathrm{ms}}{10}=1,\mathrm{ms} ]</p>
+<p>Minimum Granularity（最小调度粒度）避免每次运行时间过短、上下文切换开销过大，因此实际调度可能偏离理想公平模型。以上为课件中的简化模型。</p>
+<h3 id="5-2-内核同步（Kernel-Synchronization）">5.2 内核同步（Kernel Synchronization）</h3>
+<p>进入内核态的两种途径：进程主动请求系统服务（系统调用）或隐式触发异常（如缺页）；硬件中断触发内核中断处理程序。内核同步用于保护临界区（Critical Section）及共享数据结构。</p>
+<ol>
+<li><strong>内核抢占控制</strong>：课件中早期不可抢占内核收到时钟中断后设置 <code>need_resched</code>，待系统调用结束、返回用户态前执行调度。可抢占内核可在安全点抢占，但临界区仍需要保护。</li>
+<li><strong>中断控制</strong>：在必要的临界区禁用本 CPU 的相关中断，防止本 CPU 中断处理程序并发访问共享数据；不能阻止其他 CPU 访问。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>单处理器（课件简化模型）</th>
+<th>多处理器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>禁止内核抢占</td>
+<td>获取自旋锁</td>
+</tr>
+<tr>
+<td>执行临界区</td>
+<td>执行临界区</td>
+</tr>
+<tr>
+<td>恢复内核抢占</td>
+<td>释放自旋锁</td>
+</tr>
+</tbody>
+</table>
+<p>Linux 提供 Spinlock（自旋锁）、Semaphore（信号量）及读写版本。自旋锁适合短临界区，等待者忙等；信号量可使等待任务睡眠。若临界区与中断共享数据，还需相应中断保护。</p>
+<h3 id="5-3-中断上半部与下半部">5.3 中断上半部与下半部</h3>
+<p>为避免长时间关闭中断，中断处理分为 Top Half（上半部，处理紧急工作）和 Bottom Half（下半部，延后处理非紧急工作）。课件的模型中，下半部执行时允许硬件中断，并可按需禁止选定的下半部。</p>
+<table>
+<thead>
+<tr>
+<th>优先级（高到低）</th>
+<th>执行层次</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1（最高）</td>
+<td>Top-half interrupt handlers</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bottom-half interrupt handlers</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Kernel-system service routines</td>
+</tr>
+<tr>
+<td>4（最低）</td>
+<td>User-mode programs</td>
+</tr>
+</tbody>
+</table>
+<p>在课件的简化保护模型中，高层可以打断低层，同层或低层不能打断高层。用户进程可在时间共享调度中被抢占。实际内核的中断、抢占和下半部机制更复杂。</p>
+<h3 id="5-4-对称多处理（SMP）">5.4 对称多处理（SMP）</h3>
+<p>Linux 2.0 首次支持 SMP，多个进程或线程可以在不同处理器并行运行。早期以单个内核自旋锁限制内核态并行，后来逐渐采用多个细粒度锁，并增强处理器亲和性（Processor Affinity）和负载均衡（Load Balancing）。</p>
+<h2 id="6-内存管理（Memory-Management）">6. 内存管理（Memory Management）</h2>
+<p>Linux 管理物理页、连续页组、小块内存及虚拟地址空间。</p>
+<h3 id="6-1-物理内存区域（Memory-Zones）">6.1 物理内存区域（Memory Zones）</h3>
+<p>课件正文称四种 zone，但截图仅列出传统 32 位 x86 的三个区域，以下按截图整理（非现代所有架构的固定划分）。</p>
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>物理地址范围</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ZONE_DMA</code></td>
+<td>小于 16 MB</td>
+<td>受地址限制的 DMA 设备</td>
+</tr>
+<tr>
+<td><code>ZONE_NORMAL</code></td>
+<td>16–896 MB</td>
+<td>常规、可直接映射的内存</td>
+</tr>
+<tr>
+<td><code>ZONE_HIGHMEM</code></td>
+<td>896 MB 以上</td>
+<td>不能全部永久直接映射的高端内存</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-2-伙伴系统（Buddy-System）">6.2 伙伴系统（Buddy System）</h3>
+<p>物理页分配器采用 Buddy Heap 算法，管理连续物理页。大小为 2 的幂次个页的内存块称为一个 order 对应的块：</p>
+<p>[ B_k=2^k\times P ]</p>
+<p>其中 P 为页大小，k 为 order。申请小块时，若没有合适的空闲块，就将更大的块二等分；释放时，若对应的伙伴也空闲，则合并并继续尝试向上合并。</p>
+<p>以截图为例，16 KB 分成两个 8 KB，再将其中一个 8 KB 分成两个 4 KB：</p>
+<p>[ 16,\mathrm{KB}=8,\mathrm{KB}+8,\mathrm{KB} ][ 8,\mathrm{KB}=4,\mathrm{KB}+4,\mathrm{KB} ]</p>
+<p>若申请 4 KB，最终可分配一个 4 KB 块，保留另外一个 4 KB 和一个 8 KB。两个对应的空闲 4 KB 伙伴可合并为 8 KB，再在满足伙伴条件时合并为 16 KB。不是任意相邻空闲块都能合并。</p>
+<p>优点：快速拆分与合并，便于提供连续物理页；缺点：按幂次分配可能造成内部碎片。</p>
+<h3 id="6-3-Slab-分配器（Slab-Allocator）">6.3 Slab 分配器（Slab Allocator）</h3>
+<p>Slab 用于高效分配频繁创建和销毁的内核对象。结构为 Cache → Slab → Object：一个 cache 管理特定类型或大小的对象，包含一个或多个 slab；每个 slab 由一个或多个连续物理页构成，并划分为对象槽位。截图分别展示 3 KB 对象与 7 KB 对象对应的缓存。</p>
+<table>
+<thead>
+<tr>
+<th>Buddy System</th>
+<th>Slab Allocator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>面向物理页或连续页组</td>
+<td>面向内核对象</td>
+</tr>
+<tr>
+<td>按 2 的幂次拆分和合并</td>
+<td>按对象大小组织与复用</td>
+</tr>
+<tr>
+<td>为上层分配器提供页</td>
+<td>从页分配器获取内存</td>
+</tr>
+</tbody>
+</table>
+<p>内核还可通过静态预留或动态分配获取内存。Page Cache（页缓存）保存文件内容页，为本地、网络文件 I/O 提供缓存，并与虚拟内存系统结合。</p>
+<h3 id="6-4-虚拟内存（Virtual-Memory）">6.4 虚拟内存（Virtual Memory）</h3>
+<p>虚拟内存管理器维护进程可见的地址空间，并按需建立、加载或换出页面。</p>
+<table>
+<thead>
+<tr>
+<th>视图</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Logical View</td>
+<td>由互不重叠、连续且页对齐的虚拟内存区域（VMA）组成</td>
+</tr>
+<tr>
+<td>Physical View</td>
+<td>由硬件使用的进程页表描述虚拟页到物理页的映射</td>
+</tr>
+</tbody>
+</table>
+<p>虚拟内存区域由后备存储（Backing Store，如文件或 demand-zero 匿名内存）和写入行为（共享或 Copy-on-Write）描述。</p>
+<ul>
+<li><code>exec()</code>：替换旧地址空间，加载程序并建立新的区域。</li>
+<li><code>fork()</code>：复制 VMA 描述符及页表，初始阶段父子进程共享相应物理页，增加引用计数；对私有可写页采用 COW，在写入时按需复制。</li>
+</ul>
+<h3 id="6-5-换页与交换（Swapping-and-Paging）">6.5 换页与交换（Swapping and Paging）</h3>
+<p>Pageout Policy 决定换出哪些页、何时换出；Paging Mechanism 执行实际的数据传输。课件介绍 swap device 或 swap file、位图记录交换空间使用状态，以及 next-fit 算法尝试分配连续块。</p>
+<h3 id="6-6-内核虚拟内存">6.6 内核虚拟内存</h3>
+<p>课件模型中，每个进程虚拟地址空间预留体系结构相关的内核区域，用户态不能直接访问。其中包括直接映射区域及可动态改变映射的区域。具体映射范围因体系结构与内核配置而异。</p>
+<h3 id="6-7-ELF-程序加载与内存布局">6.7 ELF 程序加载与内存布局</h3>
+<p>ELF（Executable and Linkable Format）是可执行与可链接格式。Linux 在 <code>exec()</code> 时通过相应加载器读取 ELF 头部，将可加载内容映射到虚拟地址空间，实际页面可在访问触发缺页时按需加载。课件也提到历史上的 a.out 格式。</p>
+<table>
+<thead>
+<tr>
+<th>从高地址到低地址</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kernel virtual memory</td>
+<td>内核虚拟内存，用户态不可直接访问</td>
+</tr>
+<tr>
+<td>Stack</td>
+<td>栈，保存调用帧、局部变量等，图中向低地址增长</td>
+</tr>
+<tr>
+<td>Memory-mapped region</td>
+<td>映射文件、共享库及匿名区域等</td>
+</tr>
+<tr>
+<td>Run-time data（Heap）</td>
+<td>动态分配内存，传统 brk 堆向高地址增长</td>
+</tr>
+<tr>
+<td>Uninitialized data（BSS）</td>
+<td>未初始化或零初始化的静态/全局数据</td>
+</tr>
+<tr>
+<td>Initialized data（Data）</td>
+<td>已初始化的静态/全局数据</td>
+</tr>
+<tr>
+<td>Program text（Text）</td>
+<td>程序机器指令</td>
+</tr>
+<tr>
+<td>Forbidden region</td>
+<td>不可访问区域，用于防止非法访问等</td>
+</tr>
+</tbody>
+</table>
+<p><code>brk</code> 指针表示传统堆的末端；实际布局可能受 ASLR、体系结构及分配器影响。</p>
+<h3 id="6-8-静态链接与动态链接">6.8 静态链接与动态链接</h3>
+<table>
+<thead>
+<tr>
+<th>静态链接</th>
+<th>动态链接</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所需库代码直接包含在可执行文件中</td>
+<td>运行时映射所需共享库</td>
+</tr>
+<tr>
+<td>不同程序可能重复保存库代码</td>
+<td>可共享库的只读代码页，节约内存和磁盘空间</td>
+</tr>
+<tr>
+<td>不依赖相应的运行时共享库</td>
+<td>依赖动态链接器及所需共享库</td>
+</tr>
+</tbody>
+</table>
+<p>Linux 在用户态执行动态链接：启动时映射动态链接器，确定所需库、映射共享库并解析符号。共享库通常使用 PIC（Position-Independent Code，位置无关代码）。</p>
+<h2 id="7-文件系统（File-Systems）">7. 文件系统（File Systems）</h2>
+<h3 id="7-1-虚拟文件系统-VFS">7.1 虚拟文件系统 VFS</h3>
+<p>VFS（Virtual File System）向用户提供统一的 UNIX 层次目录及访问接口，屏蔽底层文件系统差异。</p>
+<table>
+<thead>
+<tr>
+<th>VFS 对象</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>inode</td>
+<td>表示单个文件的元数据对象</td>
+</tr>
+<tr>
+<td>file</td>
+<td>表示打开的文件实例</td>
+</tr>
+<tr>
+<td>superblock</td>
+<td>表示整个文件系统</td>
+</tr>
+<tr>
+<td>dentry</td>
+<td>表示目录项，用于名字与 inode 的关联</td>
+</tr>
+</tbody>
+</table>
+<p>通过 <code>file_operations</code> 等操作集合实现 <code>open()</code>、<code>read()</code>、<code>write()</code>、<code>mmap()</code> 等统一接口。</p>
+<h3 id="7-2-ext2-ext3-与块分配">7.2 ext2 / ext3 与块分配</h3>
+<p>课件以 ext3 为当时的标准磁盘文件系统，介绍其与 ext2、BSD FFS 的关系，并提及 ext4 的 extents（区段）特性。该描述属于历史背景。</p>
+<p>FFS 使用较大块并划分片段（Fragments）；课件中的 ext3 采用较小的分配单位而不使用 FFS 式片段，支持的块大小依架构等条件而定。</p>
+<p>图中灰色为已使用块，白色为空闲块，蓝色带点为选中的块，箭头为位图搜索路径。细线表示 bit 边界，粗线表示 byte 边界。</p>
+<table>
+<thead>
+<tr>
+<th>分散分配</th>
+<th>连续分配</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>从不同位置选择空闲块</td>
+<td>优先选择相邻空闲块</td>
+</tr>
+<tr>
+<td>文件块可能分散</td>
+<td>逻辑相邻块尽量物理相邻</td>
+</tr>
+<tr>
+<td>可能增加磁盘寻道和 I/O 请求</td>
+<td>有利于合并 I/O，减少机械磁盘寻道</td>
+</tr>
+</tbody>
+</table>
+<p>课件介绍通过块组中的空闲位图查找全空闲字节，尝试一次分配至少 8 个连续块。一个字节包含 8 个 bit，每个 bit 对应一个块。</p>
+<h3 id="7-3-日志机制（Journaling）">7.3 日志机制（Journaling）</h3>
+<p>ext3 将需要记录的文件系统更新组织成事务，先写入日志并提交，再写回实际文件系统位置。崩溃后重放已提交但尚未写回的事务，通常不需要传统方式的全面一致性扫描。日志还可能将部分随机写转为顺序写。具体记录数据还是元数据取决于日志模式。</p>
+<h3 id="7-4-proc-文件系统">7.4 proc 文件系统</h3>
+<p><code>/proc</code> 是虚拟文件系统，其内容主要由内核根据访问请求动态生成，而非普通磁盘持久化数据。课件描述其通过 inode 标识所需操作，收集信息、格式化并放入进程读取缓冲区。</p>
+<h2 id="8-输入与输出（Input-and-Output）">8. 输入与输出（Input and Output）</h2>
+<p>课件区分 Page Cache（缓存文件数据，与虚拟内存统一）和 Buffer Cache（按磁盘块组织，课件用于描述元数据缓存等）。这一划分按课件历史模型理解。</p>
+<h3 id="8-1-设备分类与驱动结构">8.1 设备分类与驱动结构</h3>
+<table>
+<thead>
+<tr>
+<th>设备类型</th>
+<th>访问方式</th>
+<th>典型路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Block Device</td>
+<td>固定大小块、支持随机访问</td>
+<td>文件系统/块设备文件 → I/O 调度器 → 块设备驱动</td>
+</tr>
+<tr>
+<td>Character Device</td>
+<td>不要求固定块随机访问</td>
+<td>字符设备文件 → 字符设备驱动</td>
+</tr>
+<tr>
+<td>Network Device</td>
+<td>通过网络子系统收发数据包</td>
+<td>Socket → 协议驱动 → 网络设备驱动</td>
+</tr>
+</tbody>
+</table>
+<p>截图还显示 SCSI manager / SCSI device driver，以及终端设备的 TTY driver / Line discipline。</p>
+<h3 id="8-2-块设备与-I-O-调度">8.2 块设备与 I/O 调度</h3>
+<p>块缓冲用于活动 I/O 和缓存已完成 I/O，Request Manager 管理缓冲区与驱动之间的读写。课件介绍 Linux 2.6 时代 CFQ（Completely Fair Queueing）：按进程维护队列，以 C-SCAN 与轮转方式组织请求，课件示例每次处理一个进程的四个块。CFQ 是历史调度器，不应理解为现代内核默认值。</p>
+<h3 id="8-3-字符设备与线路规程">8.3 字符设备与线路规程</h3>
+<p>字符设备驱动注册文件 I/O 操作，内核通常直接转发读写请求。终端设备是例外，TTY Line Discipline（线路规程）连接终端数据流与进程的标准输入/输出，并处理前后台进程相关的终端访问。课件还列举 PPP、SLIP 等网络线路规程。</p>
+<h2 id="9-进程间通信（Interprocess-Communication）">9. 进程间通信（Interprocess Communication）</h2>
+<table>
+<thead>
+<tr>
+<th>IPC 机制</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Signal（信号）</td>
+<td>通知事件发生；传统普通信号主要传递事件而非大量数据</td>
+</tr>
+<tr>
+<td>Semaphore（信号量）</td>
+<td>同步与资源协调；System V 支持多个信号量操作的原子执行</td>
+</tr>
+<tr>
+<td>Pipe（管道）</td>
+<td>一端写入、另一端读取，可由子进程继承通信通道</td>
+</tr>
+<tr>
+<td>Shared Memory（共享内存）</td>
+<td>多个进程映射同一内存区域，数据通信速度快，但需额外同步</td>
+</tr>
+</tbody>
+</table>
+<p>内核内部还通过调度状态和 <code>wait_queue</code> 等机制实现等待和唤醒。</p>
+<h2 id="10-网络结构（Network-Structure）">10. 网络结构（Network Structure）</h2>
+<p>Linux 网络内核的三层结构：Socket Interface（套接字接口）→ Protocol Drivers（协议驱动）→ Network Device Drivers（网络设备驱动）。支持 Internet 协议族、IP 路由、TCP、UDP、ICMP，并通过防火墙规则链过滤数据包。课件还列举 AppleTalk、IPX 等历史协议。</p>
+<h2 id="11-安全性（Security）">11. 安全性（Security）</h2>
+<p>PAM（Pluggable Authentication Modules，可插拔认证模块）为系统组件提供统一的用户认证机制。</p>
+<p>访问控制以 UID、GID 为基础，保护掩码分别规定所有者（Owner）、所属组（Group）和其他用户（Others）的读取 r、写入 w、执行 x 权限。</p>
+<p>课件介绍 Saved UID（保存的用户 ID），允许进程在许可条件下放弃并恢复有效 UID；Capabilities（能力机制）将特权细分，使进程只获得所需权限；还可选择性传递单个打开文件的访问能力，而无需授予接收进程其他权限。</p>
+<h2 id="12-考试重点速记">12. 考试重点速记</h2>
+<table>
+<thead>
+<tr>
+<th>知识点</th>
+<th>核心结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linux 三大组件</td>
+<td>内核、系统库、系统工具</td>
+</tr>
+<tr>
+<td>fork / exec / clone</td>
+<td>创建进程 / 替换程序映像 / 按标志共享资源创建任务</td>
+</tr>
+<tr>
+<td>CFS</td>
+<td>CPU 份额与权重成比例，nice 越小权重越大</td>
+</tr>
+<tr>
+<td>内核同步</td>
+<td>抢占控制、中断控制、锁与信号量</td>
+</tr>
+<tr>
+<td>中断处理</td>
+<td>上半部紧急处理，下半部延迟处理</td>
+</tr>
+<tr>
+<td>Buddy</td>
+<td>按幂次页组拆分、伙伴合并</td>
+</tr>
+<tr>
+<td>Slab</td>
+<td>缓存内核对象，减少重复分配开销</td>
+</tr>
+<tr>
+<td>COW</td>
+<td>初始共享物理页，私有写入时复制</td>
+</tr>
+<tr>
+<td>ELF</td>
+<td>Text、Data、BSS、Heap、映射区、Stack</td>
+</tr>
+<tr>
+<td>VFS</td>
+<td>inode、file、superblock、dentry</td>
+</tr>
+<tr>
+<td>ext2 / ext3</td>
+<td>位图与连续块分配；ext3 增加日志机制</td>
+</tr>
+<tr>
+<td>设备类型</td>
+<td>块设备、字符设备、网络设备</td>
+</tr>
+<tr>
+<td>IPC</td>
+<td>信号通知、信号量同步、管道传输、共享内存</td>
+</tr>
+<tr>
+<td>安全</td>
+<td>PAM、UID/GID、权限掩码、Capabilities</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Operating-Systems/" rel="tag"># Operating Systems</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/11/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter17-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/" rel="prev" title="Introduction-to-Operating-Systems-Chapter17">
+                  <i class="fa fa-angle-left"></i> Introduction-to-Operating-Systems-Chapter17
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/11/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Introduction-to-Operating-Systems-Chapter21-Windows10%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="next" title="Introduction-to-Operating-Systems-Chapter21">
+                  Introduction-to-Operating-Systems-Chapter21 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">John Doe</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>
